@@ -1,0 +1,43 @@
+//
+// Testimonials section
+// 
+
+.testimonials {
+    padding-top: 4rem;
+    padding-bottom: 18rem;
+    background-image: url("/images/main-wallpaper-4.png");
+    background-repeat: no-repeat;
+    background-position: 75% 0%;
+    background-size: cover;
+
+    .carousel-item {
+        min-height: 17rem;
+    }
+
+    .testimonials-img {
+        width: 2rem;
+    }
+
+    .testimonials-text {
+        color: $white;
+        font-size: 1.3rem;
+        text-align: center;
+
+        @media (min-width: 576px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .testimonials-person {
+        color: $white;
+        font-size: 0.7rem;
+    }
+}
+
+.testimonials-landing {
+    padding-top: 6rem !important;
+
+    .carousel-item {
+        min-height: 0 !important;
+    }
+}

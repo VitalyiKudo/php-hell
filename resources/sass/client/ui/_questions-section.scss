@@ -1,0 +1,30 @@
+//
+// Questions section
+// 
+
+.questions {
+    .card {
+        border-radius: 0.4rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem 1.5rem;
+
+        a:before {
+            font-size: 1.1rem;
+            content: "↑";
+            float: right;
+            transition: all 0.5s;
+        }
+
+        a.collapsed:before {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+        } 
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+}

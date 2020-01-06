@@ -1,0 +1,212 @@
+//
+// Profile page
+// 
+
+.profile-page {
+    padding-top: 4rem;
+    padding-bottom: 24rem;
+    max-width: 100%;
+
+    h2 {
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        @media (min-width: 768px) {
+            font-size: 1.7rem;
+        }
+
+        @media (min-width: 992px) {
+            font-size: 1.9rem;
+        }
+    }
+
+    .right-profile-title, .right-profile-nav {
+        margin-left: -15px;
+        padding-left: 15px;
+        
+        @media (min-width: 576px) {
+            margin-left: -15px;
+            padding-left: calc((100% - 540px) / 2 + 15px);
+            margin-right: calc((100% - 540px) / 2);
+        }
+    
+        @media (min-width: 768px) {
+            margin-left: -15px;
+            padding-left: calc((100% * 3 - 720px) / 2 + 60px);
+            margin-right: 0;
+        }
+
+        @media (min-width: 992px) {
+            margin-left: -15px;
+            padding-left: calc((100% * 3 - 960px) / 2 + 60px);
+        }
+        
+        @media (min-width: 1200px) {
+            margin-left: -15px;
+            padding-left: calc((100% * 3 - 1140px) / 2 + 60px);
+        }
+    }
+
+    .left-profile {
+        margin-top: 4rem;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        @media (min-width: 576px) {
+            padding-left: calc((100% - 540px) / 2);
+            padding-right: calc((100% - 540px) / 2);
+        }
+
+        @media (min-width: 768px) {
+            margin-top: 0;
+            padding-left: 15px;
+            padding-right: calc((100% - 720px) / 2 + 30px);
+        }
+
+        @media (min-width: 992px) {
+            padding-right: calc((100% - 960px) / 2 + 30px);
+        }
+        
+        @media (min-width: 1200px) {
+            padding-right: calc((100% - 1140px) / 2 + 30px);
+        }
+    }
+
+    .right-profile-nav {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        border-radius: 0 1rem 1rem 0;
+        box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+        height: auto;
+        min-height: 0;
+        
+        @media (min-width: 768px) {
+            height: calc(100% - 3rem);
+            min-height: 30rem;
+        }
+    }
+
+    .nav-link {
+        padding: 0;
+        padding-bottom: 2rem;
+    }
+
+    .nav-link-last {
+        padding-bottom: 0 !important;
+    }
+
+    .nav-link.active {
+        color: $headings-color;
+        background-color: transparent;
+    }
+
+    .nav-link:hover {
+        color: $headings-color;
+    }
+
+    .nav-item a {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    .form-control {
+        padding: 0;
+        color: $blue;
+        border: none;
+        border-bottom: 2px solid #e5e5e5; 
+        border-radius: 0; 
+    }
+    
+    .input:focus {
+        border: none !important;
+    }
+        
+    ::placeholder {
+        color: #e5e5e5;
+        opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+        color: #e5e5e5;
+    }
+          
+    ::-ms-input-placeholder {
+        color: #e5e5e5;
+    }
+
+    label {
+        margin-bottom: 0;
+        color: #4d4d4d;
+        text-transform: uppercase;
+        font-size: 0.8rem;  
+    }
+
+    .btn {
+        text-transform: uppercase;
+        color:#ffffff;
+        background-color: #113961;
+        font-size: 0.8rem;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.2rem;
+    }
+
+    .dlt-btn {
+        color: $headings-color !important;
+        background-color: transparent !important;
+        border-color: $headings-color !important;
+    }
+
+    .checkbox {
+        label {
+            margin-bottom: 0;
+            color: #999999;
+            text-transform: none !important;
+            font-size: 0.9rem;  
+        }
+    }
+
+    .date-sep {
+        color: #e5e5e5;
+        font-size: 1.2rem;
+    }
+
+    .plus-btn {
+        width: 80px;
+        height: 2.75rem;
+        background-color: transparent;
+        border: 1px solid #999999;
+        border-radius: 0.2rem;
+    }
+
+    .icon-img {
+        width: 20px;
+        display: block;
+        margin: auto;
+    }
+
+    .cards-block {
+
+        p {
+            font-size: 0.8rem;
+            color: #999999;
+        }
+
+        .cards-list {
+            background-color: #e5e5e5;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+    }
+
+    .cvv-btn {
+        position: absolute;
+        top: 0;
+        right: 0.9rem;
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        color: #333333;
+        background-color: #e5e5e5;
+        border-radius: 1rem;
+    }
+}

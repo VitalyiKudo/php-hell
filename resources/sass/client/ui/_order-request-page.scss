@@ -1,0 +1,252 @@
+//
+// Order and request pagesws
+// 
+
+.order-page, .request-page {
+    padding-top: 4rem;
+    padding-bottom: 24rem;
+    max-width: 100%;
+
+    h2 {
+        text-transform: uppercase;
+    }
+
+    .left-order-title, .left-order, .left-request-title, .left-request {
+        margin-left: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        
+        @media (min-width: 576px) {
+            padding-left: calc((100% - 540px) / 2 + 15px);
+            margin-right: calc((100% - 540px) / 2);
+        }
+    
+        @media (min-width: 768px) {
+            padding-left: calc((100% - 720px) / 2 + 15px);
+            margin-right: calc((100% - 720px) / 2);
+        }
+
+        @media (min-width: 992px) {
+            padding-left: calc((100% * 3 - 960px) / 2 + 60px);
+            margin-right: 0;
+        }
+        
+        @media (min-width: 1200px) {
+            padding-left: calc((100% * 3 - 1140px) / 2 + 60px);
+        }
+    }
+
+    .right-order, .right-request {
+        margin-top: 4rem;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        @media (min-width: 576px) {
+            padding-left: calc((100% - 540px) / 2);
+            padding-right: calc((100% - 540px) / 2);
+        }
+
+        @media (min-width: 768px) {
+            padding-left: calc((100% - 720px) / 2);
+            padding-right: calc((100% - 720px) / 2);
+        }
+
+        @media (min-width: 992px) {
+            margin-top: 0;
+            padding-left: 15px;
+            padding-right: calc((100% - 960px) / 2 + 30px);
+        }
+        
+        @media (min-width: 1200px) {
+            padding-right: calc((100% - 1140px) / 2 + 30px);
+        }
+    }
+
+    .left-order, .left-request {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        border-radius: 0 1rem 1rem 0;
+        box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+        height: auto;
+        min-height: 0;
+        
+        @media (min-width: 768px) {
+            height: calc(100% - 3rem);
+            min-height: 30rem;
+        }
+
+        p {
+            text-transform: uppercase;
+            font-size: 0.8rem;  
+        }
+
+        .dropdown-label {
+            color: #4d4d4d;
+        }
+
+        .bootstrap-select .dropdown-toggle:focus {
+            outline: 0 !important;
+        }
+
+        .bootstrap-select .btn {
+            background-color: transparent;
+            border-color: transparent;
+            border-bottom: 2px solid #e5e5e5; 
+            border-radius: 0;
+            padding: 0;
+            color: #999999; 
+            text-transform: uppercase;
+            font-size: 0.8rem; 
+        }
+        
+        .bootstrap-select .dropdown-menu {
+            margin: 0.25rem 0 0;
+            border-color: transparent;
+            box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+        }
+
+        .bootstrap-select .dropdown-item {
+            color: #999999; 
+            text-transform: uppercase;
+            font-size: 0.8rem; 
+        }
+
+        .bootstrap-select .dropdown-item.active.selected {
+            background-color: #e5e5e5;
+        }
+
+        .datepicker {
+            padding: 0;
+            width: 100%;
+            color: #4d4d4d;
+            font-size: 0.8rem;
+            font-weight: 400 !important;
+            text-transform: uppercase;
+        }
+        
+        .datepicker .table-condensed {
+            width: 100%;
+        }
+        
+        .datepicker .prev, .datepicker .next {
+            width: 10%;
+            font-weight: 400;
+            color: #999999; 
+        }
+
+        .datepicker .datepicker-switch {
+            width: 80%;
+            font-weight: 400;
+            color: #999999; 
+        }
+
+        .datepicker .dow {
+            width: 14.285%;
+            font-weight: 400;
+        }
+
+        .datepicker .datepicker-switch:hover, .datepicker .prev:hover, .datepicker .next:hover {
+            background: #e5e5e5;
+        }
+
+        .datepicker table tr td.active {
+            background: $blue !important;
+            color: #fff !important;
+            border-radius: 1rem;
+        }
+
+        .datepicker table tr td.day:hover, .datepicker table tr td.day.focused {
+            background: $blue !important;
+            color: #fff !important;
+            border-radius: 1rem;
+        }
+    }
+
+    .right-order, .right-request {
+
+        .card-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+
+            span {
+                font-size: 2rem;
+                font-weight: 300;
+            }
+        }
+        
+        .card {
+            border-color: transparent;
+            border-radius: 0.5rem;
+            box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+        }
+
+        .card-body {
+            padding: 0.75rem 2rem;
+        }
+
+        .col-md-auto, .col-md-2, .col-md-3 {
+            padding: 0 5px;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            text-align: center;
+
+            @media (min-width: 768px) {
+                margin-bottom: 0;
+                text-align: left;
+            }
+        }
+
+        .red-box {
+            width: 0.8rem;
+            height: 0.8rem;
+            background-color: #ee161f;
+        }
+
+        .green-box {
+            width: 0.8rem;
+            height: 0.8rem;
+            background-color: #127c2c;
+        }
+
+        .yellow-box {
+            width: 0.8rem;
+            height: 0.8rem;
+            background-color: #fafa2a;
+        }
+
+        .date {
+            color: #999999;
+        }
+
+        .book {
+            display: flex;
+            justify-content: center;
+
+            @media (min-width: 768px) {
+                justify-content: flex-end;
+            }
+        
+            .btn {
+            text-transform: uppercase;
+            color:#ffffff;
+            background-color: #113961;
+            font-size: 0.5rem;
+            border-radius: 0.2rem;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            text-align: right;
+
+            @media (min-width: 768px) {
+                position: static;
+                font-size: 0.6rem;
+            }
+        }
+    }
+}

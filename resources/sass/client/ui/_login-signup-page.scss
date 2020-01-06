@@ -1,0 +1,104 @@
+//
+// Sign Up and Log In pages
+// 
+
+.login-page, .signup-page, .reset-password-page {
+    padding-top: 4rem;
+    padding-bottom: 12rem;
+    
+    .card {
+        border: none;
+        border-radius: 0;
+    }
+
+    .card-header {
+        padding: 0 0 1.5rem;
+        font-family: "Capoon PERSONAL USE";
+        font-size: 2rem;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        color: $headings-color;
+        background-color: transparent;
+        border-bottom: none;
+    }
+
+    .card-body {
+        @media (min-width: 576px) {
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+        }
+
+        .form-control {
+            padding: 0;
+            color: $blue;
+            border: none;
+            border-bottom: 2px solid #e5e5e5; 
+            border-radius: 0; 
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+            
+            .login-page-text {
+                p {
+                    font-size: 0.9rem;
+                    color: #999999;
+                    text-align: center;
+                }
+    
+                a {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        .input:focus {
+            border: none !important;
+        }
+            
+        ::placeholder {
+            color: #e5e5e5;
+            opacity: 1;
+        }
+    
+        :-ms-input-placeholder {
+            color: #e5e5e5;
+        }
+              
+        ::-ms-input-placeholder {
+            color: #e5e5e5;
+        }
+    
+        label {
+            margin-bottom: 0;
+            color: #4d4d4d;
+            text-transform: uppercase;
+            font-size: 0.8rem;  
+        }
+
+        .btn {
+            text-transform: uppercase;
+            color:#ffffff;
+            background-color:#113961;
+            font-size: 0.8rem;
+            padding: 0.5rem 4rem;
+            border-radius: 0.2rem;
+        }
+
+        .checkboxes {
+            .form-check-input {
+                margin-top: 0.45rem;
+            }
+
+            label {
+                margin-bottom: 0;
+                color: #999999;
+                text-transform: none !important;
+                font-size: 0.9rem;  
+            }
+        }
+    }
+}
+

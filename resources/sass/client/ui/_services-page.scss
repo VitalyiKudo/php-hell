@@ -1,0 +1,44 @@
+//
+// Services page
+// 
+
+.services-title {
+    margin-top: -8.5rem;
+    padding-top: 17.1em;
+    background-image: url("/images/services-wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+
+    @media (min-width: 992px) {
+        padding-top: 30.1em;
+    }
+
+    .title-p-text {
+        font-family: 'Capoon PERSONAL USE';
+        font-size: 1.9rem;
+        font-weight: 300;
+    }
+}
+
+.services-list {
+    padding-top: 4rem;
+
+    .luxury-travel-image  {
+        background-position: top left !important;
+        background-image: url("/images/luxury-travel-photo.jpg");
+    }
+
+    .corporate-travel-image  {
+        background-image: url("/images/corporate-travel-photo.jpg");
+    }
+    
+    .private-transportation-image {
+        background-image: url("/images/private-transportation-photo.jpg");
+    }
+
+    .medical-tourism-image {
+        background-position: left !important;
+        background-image: url("/images/medical-tourism-photo.jpg");
+    }
+}

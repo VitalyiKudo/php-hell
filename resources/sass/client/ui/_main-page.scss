@@ -1,0 +1,302 @@
+//
+// Main page
+// 
+
+.main-search {
+    margin-top: -8.5rem;
+    padding-top: 10rem;
+    
+    @media (min-width: 992px) {
+        padding-top: 15rem;
+        background-image: url("/images/main-wallpaper.png");
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: cover;
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-1 {
+            flex: 0 0 6%;
+            max-width: 6%;
+            padding-right: 0;
+        }
+
+        .col-lg-2 {
+            flex: 0 0 16%;
+            max-width: 16%;
+            padding-right: 0;
+        }
+
+        .col-lg-3 {
+            flex: 0 0 20%;
+            max-width: 20%;
+            padding-right: 0;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col-lg-2 {
+            flex: 0 0 14%;
+            max-width: 14%;
+            padding-right: 0;
+        }
+
+        .col-lg-3 {
+            flex: 0 0 18%;
+            max-width: 18%;
+            padding-right: 0;
+        }
+    }
+    
+    .input-group-prepend {
+        margin-right: 0px;
+    }
+
+    .input-group-text {
+        background-color: #ededed;
+        border: 1px solid #ededed;
+        border-radius: 0 0.2rem 0.2rem 0 !important;
+    }
+
+    .icon-img {
+        max-width: 26px;
+        max-height: 20px;
+    }
+
+    .form-control {
+        height: 2.75rem;
+        font-size: 0.7rem;
+        color: #7a7a7a;
+        background-color: #ededed;
+        border: 1px solid #ededed;
+        border-radius: 0.2rem;
+    }
+    
+    .plus-btn {
+        width: 100%;
+        display: block;
+        margin: auto;
+        height: 2.75rem;
+        background-color: #d7d7d7;
+        border: 1px solid #d7d7d7;
+        border-radius: 0.2rem;
+
+        .icon-img {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .btn {
+        width: 100%;
+        height: 2.75rem;
+        font-size: 0.7rem;
+        color: $white;
+        background-color: $blue;
+        border: 1px solid $blue;
+        border-radius: 0.2rem;
+    }
+
+    .scroll-button {
+        margin: 2rem auto 0;
+        display: flex;
+
+        @media (min-width: 992px) {
+            margin: 13rem auto 0;
+        }
+    }
+}
+
+.main-works {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+
+    @media (min-width: 992px) {
+        padding-bottom: 4rem;
+    }
+
+    .devider {
+        margin: 1rem auto;
+        display: flex;
+
+        @media (min-width: 992px) {
+            margin: auto;
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .col-lg-1 {
+            flex: 0 0 5%;
+            max-width: 5%;
+        }
+        .col-lg-1-5 {
+            flex: 0 0 16%;
+            max-width: 16%;
+        }
+    }
+    
+    .card-img-top {
+        width: 35%;
+        margin: auto;
+    }
+    
+    .card {
+        padding: 1rem;
+        border: 1px solid #7c9ec6;
+        border-radius: 0.4rem;
+        width: 9.5rem;
+        margin: auto;
+
+        @media (min-width: 1200px) {
+            min-height: 8rem !important;
+        }
+
+        @media (min-width: 992px) {
+            width: auto;
+        }
+    }
+    
+    .last-card {
+        border: 2px solid $headings-color;
+        border-radius: 0.4rem;
+    }
+    
+    .card-body {
+        padding: 0;
+    }
+    
+    .card-text {
+        padding-top: 0.5rem;
+        font-size: 0.9rem;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .align-items-center {
+        padding-top: 4rem;
+    }
+}
+
+.main-services {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    @media (min-width: 992px) {
+        margin-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .luxury-travel-image  {
+        background-position: left !important;
+        background-image: url("/images/luxury-travel-photo.jpg");
+    }
+
+    .corporate-travel-image  {
+        background-image: url("/images/corporate-travel-photo.jpg");
+    }
+
+    .container-bottom {
+        margin-top: 3rem;
+
+        .col-auto {
+            margin: auto;
+        }
+
+        a {
+           display: block;
+           text-align: center;
+           padding: 0.35rem 1.5rem;
+           color: $white;
+           background-color: $headings-color;
+           border: 1px solid $headings-color;
+           border-radius: 0.2rem;
+           cursor: pointer;
+        }
+
+        a:hover {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+
+    .btn {
+        display: block;
+        margin: auto;
+        padding: 0.35rem 1.5rem;
+        background-color: $headings-color;
+        border: 1px solid $headings-color;
+        border-radius: 0.2rem;
+    }
+}
+
+.main-get-mobile {
+    padding-top: 2rem;
+    padding-bottom: 14rem;
+    background-image: url("/images/get-mobile-photo.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 19rem;
+
+    @media (min-width: 576px) {
+        padding-bottom: 20rem;
+        background-size: 27rem;
+    }
+
+    @media (min-width: 768px) {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+
+    @media (min-width: 992px) {
+        background-size: contain;
+    }
+
+    @media (min-width: 1200px) {
+        margin: 0 calc((100% - 1140px) / 2 - 2rem);
+    }
+
+    .download-container {
+        margin-top: 4rem;
+    }
+
+    .ios {
+        width: 191px;
+    }
+
+    .android {
+        width: 223px;
+    }
+
+    .download-img {
+        display: block;
+        margin: auto;
+        width: 140px;
+    }
+
+    .download-text {
+        padding-top: 1rem;
+        text-align: center;
+    }
+}
+
+.main-about-us {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-image: url("/images/main-wallpaper-2.png");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+
+    p {
+        text-align: justify;
+    }
+    
+    a {
+        margin-bottom: 2rem;
+        font-size: 1.05rem;
+        color: $headings-color;
+    }
+}

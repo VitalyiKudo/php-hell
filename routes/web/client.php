@@ -1,0 +1,67 @@
+<?php
+
+use App\User;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('client.landing');
+});
+Route::get('/services', function () {
+    return view('client.services');
+});
+Route::get('/aircraft', function () {
+    return view('client.aircraft');
+});
+Route::get('/mobile-app', function () {
+    return view('client.mobile-app');
+});
+Route::get('/about', function () {
+    return view('client.about');
+});
+Route::get('/blog', function () {
+    return view('client.blog');
+});
+Route::get('/terms-conditions', function () {
+    return view('client.terms-conditions');
+});
+
+Route::get('/support', 'SupportController@index')->name('support');
+Route::post('/support/client', 'SupportController@client')->name('support.client');
+Route::post('/support/operator', 'SupportController@operator')->name('support.operator');
+
+Auth::routes();
+
+Route::namespace('Account')->group(function () {
+    // Profile
+    Route::get('/profile', 'Profile\PersonalInformationController@index')->name('profile');
+    Route::put('/profile', 'Profile\PersonalInformationController@update')->name('profile.update');
+
+    Route::get('/profile/account', 'Profile\AccountController@index')->name('profile.account.index');
+    Route::put('/profile/account', 'Profile\AccountController@update')->name('profile.account.update');
+    Route::delete('/profile/account', 'Profile\AccountController@destroy')->name('profile.account.destroy');
+
+    Route::get('/profile/payment', 'Profile\PaymentController@index')->name('profile.payment.index');
+    Route::post('/profile/payment', 'Profile\PaymentController@store')->name('profile.payment.store');
+    Route::get('/profile/payment/{card}', 'Profile\PaymentController@show')->name('profile.payment.show');
+    Route::delete('/profile/payment/{card}', 'Profile\PaymentController@destroy')->name('profile.payment.destroy');
+
+    Route::get('/profile/companions', 'Profile\CompanionController@index')->name('profile.companions.index');
+
+    // Orders
+    Route::get('/requests', 'RequestController@index')->name('requests.index');
+
+    // Orders
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/{order}/booking', 'OrderController@booking')->name('orders.booking');
+    Route::post('/orders/{order}/booking', 'OrderController@payment')->name('orders.payment');
+});
