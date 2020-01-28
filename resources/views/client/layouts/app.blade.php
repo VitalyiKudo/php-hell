@@ -164,16 +164,7 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-5">
                         <h5 class="column-title text-uppercase">Join our newsletter</h5>
                         <p class="mb-3">Receive the latest reviews, offers and more</p>
-
-                        <div class="form-group mb-5 mb-md-4">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter your email address" aria-describedby="subscribe">
-                                <div class="input-group-append">
-                                    <button class="btn" type="button" id="subscribe">SUBSCRIBE</button>
-                                </div>
-                            </div>
-                        </div>
-
+                        <subscribe></subscribe>
                         <div class="row">
                             <div class="col">
                                 <img src="/images/iOS-logo.png" class="card-img-top" alt="...">

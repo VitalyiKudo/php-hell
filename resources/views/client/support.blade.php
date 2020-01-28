@@ -37,7 +37,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clientName">Your name</label>
-                                <input id="clientName" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name', Auth::user()->full_name) }}" required>
+                                <input id="clientName" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name', (isset(Auth::user()->full_name)) ? Auth::user()->full_name : '') }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clientEmail">Email</label>
-                                <input id="clientEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', Auth::user()->email) }}" placeholder="mail@example@.com" required>
+                                <input id="clientEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', (isset(Auth::user()->email)) ? Auth::user()->email : '') }}" placeholder="mail@example@.com" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clientPhone">Phone</label>
-                                <input id="clientPhone" type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number', Auth::user()->phone_number) }}">
+                                <input id="clientPhone" type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number', (isset(Auth::user()->phone_number)) ? Auth::user()->phone_number : '') }}">
 
                                 @if ($errors->has('phone_number'))
                                     <span class="invalid-feedback" role="alert">

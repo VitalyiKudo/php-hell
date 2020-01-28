@@ -232,8 +232,33 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="carousel-item" data-interval="4000">
+                            <div class="container">
+                                <div class="col-12">
+                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
+                                </div>
+                                <div class="col-sm-10 offset-sm-1 col-12">
+                                    <p class="testimonials-text mb-0">I would recommend everyone to atleast try once!</p>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
+                                </div>
+                                <div class="col-10 offset-1">
+                                    <div class="media">
+                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <div class="media-body">
+                                            <p class="testimonials-person mb-0">Aaron D.</p>
+                                            <p class="testimonials-person mb-0">JetOnset Client</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

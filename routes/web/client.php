@@ -15,7 +15,7 @@ use App\User;
 
 Route::get('/', function () {
     return view('client.landing');
-});
+})->name('landing');;
 Route::get('/services', function () {
     return view('client.services');
 });
@@ -38,6 +38,7 @@ Route::get('/terms-conditions', function () {
 Route::get('/support', 'SupportController@index')->name('support');
 Route::post('/support/client', 'SupportController@client')->name('support.client');
 Route::post('/support/operator', 'SupportController@operator')->name('support.operator');
+Route::post('/subscribed', 'SupportController@subscribe')->name('subscribed');
 
 Auth::routes();
 

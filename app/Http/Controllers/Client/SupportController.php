@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Client;
 use Helpdeskeddy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\SubscribedUser;
 
 class SupportController extends Controller
 {
@@ -68,7 +71,7 @@ class SupportController extends Controller
 
         $status = Helpdeskeddy::createTicket([
             'title' => 'Operator request from website',
-            'description' => $request->input('message'),
+            'description' => $request->input  ('message'),
             'department_id' => 2,
             'user_email' => $request->input('email'),
         ]);
@@ -76,5 +79,25 @@ class SupportController extends Controller
         return redirect()
             ->route('client.support')
             ->with('status', 'The ticket was successfully created.');
+    }
+
+    public function subscribe(Request $request) {
+
+
+        $this->validate($request, [
+            'email' => 'required|email|unique:subscribed_users',
+        ]);
+
+
+        // Check if email already exists
+        $email = $request->input('email');
+
+
+        $subscribedUser = new SubscribedUser;
+        $subscribedUser->email = $email;
+        $subscribedUser->status = 1;
+        $subscribedUser->save();
+
+        return (["message"=>["success"=>"you have successfully subscribed for the newsletter"]]);
     }
 }
