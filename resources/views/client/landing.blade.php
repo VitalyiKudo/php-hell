@@ -247,7 +247,7 @@
                                 <div class="col-10 offset-1">
                                     <div class="media">
                                         <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body mt-10">
+                                        <div class="media-body mt-2">
                                             <p class="testimonials-person mb-0">Sergio W.</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
@@ -269,7 +269,7 @@
                                 <div class="col-10 offset-1">
                                     <div class="media">
                                         <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body mt-10">
+                                        <div class="media-body mt-2">
                                             <p class="testimonials-person mb-0">Alexander</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
@@ -291,7 +291,7 @@
                                 <div class="col-10 offset-1">
                                     <div class="media">
                                         <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body mt-10">
+                                        <div class="media-body mt-2">
                                             <p class="testimonials-person mb-0">Bradly</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
@@ -313,7 +313,7 @@
                                 <div class="col-10 offset-1">
                                     <div class="media">
                                         <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body mt-10">
+                                        <div class="media-body mt-2">
                                             <p class="testimonials-person mb-0">Henry S.</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
