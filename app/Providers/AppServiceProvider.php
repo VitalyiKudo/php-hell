@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Schema;
+use GuzzleHttp\Client;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+
+        $baseUrl = env('AVINODE_API_BASE_URL');
+
+        $this->app->singleton('GuzzleHttp\Client', function($api) use ($baseUrl) {
+            return new Client([
+                'base_uri' => $baseUrl,
+            ]);
+        });
     }
 
     /**

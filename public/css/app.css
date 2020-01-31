@@ -12781,7 +12781,7 @@ h3 {
 }
 
 .testimonials .testimonials-img {
-  width: 2rem;
+  width: 3.5rem;
 }
 
 .testimonials .testimonials-text {
@@ -12792,7 +12792,7 @@ h3 {
 
 @media (min-width: 576px) {
   .testimonials .testimonials-text {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 

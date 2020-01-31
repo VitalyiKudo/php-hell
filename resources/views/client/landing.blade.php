@@ -217,22 +217,21 @@
                                     <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
                                 </div>
                                 <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">This has helped my typical Airport Anxiety and made flying a much better experience!</p>
+                                    <p class="testimonials-text mb-0">I’ve always dreaded the airports, especially for work. You guys have actually made this nightmare a much easier process for me to deal with.</p>
                                 </div>
                                 <div class="col-12 mb-5">
                                     <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
                                 </div>
                                 <div class="col-10 offset-1">
                                     <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Aaron D.</p>
+                                        <img src="/images/slider/frank.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <div class="media-body mt-2">
+                                            <p class="testimonials-person mb-0">Frank D.</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="carousel-item" data-interval="4000">
                             <div class="container">
@@ -240,7 +239,73 @@
                                     <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
                                 </div>
                                 <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">I would recommend everyone to atleast try once!</p>
+                                    <p class="testimonials-text mb-0">My anxiety has always impacted my work. I have to frequently fly and this service has profoundly improved my “mental preparedness” for my work.</p>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
+                                </div>
+                                <div class="col-10 offset-1">
+                                    <div class="media">
+                                        <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <div class="media-body mt-10">
+                                            <p class="testimonials-person mb-0">Sergio W.</p>
+                                            <p class="testimonials-person mb-0">JetOnset Client</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-interval="4000">
+                            <div class="container">
+                                <div class="col-12">
+                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
+                                </div>
+                                <div class="col-sm-10 offset-sm-1 col-12">
+                                    <p class="testimonials-text mb-0">My company has tried them out and saved a small fortune using this service. Same planes, half the price!</p>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
+                                </div>
+                                <div class="col-10 offset-1">
+                                    <div class="media">
+                                        <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <div class="media-body mt-10">
+                                            <p class="testimonials-person mb-0">Alexander</p>
+                                            <p class="testimonials-person mb-0">JetOnset Client</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-interval="4000">
+                            <div class="container">
+                                <div class="col-12">
+                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
+                                </div>
+                                <div class="col-sm-10 offset-sm-1 col-12">
+                                    <p class="testimonials-text mb-0">Our company has private jets of their own, but some meetings are too sensitive for the public, and this service allows us to fly anywhere without rumors hurting the stock price.</p>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
+                                </div>
+                                <div class="col-10 offset-1">
+                                    <div class="media">
+                                        <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <div class="media-body mt-10">
+                                            <p class="testimonials-person mb-0">Bradly</p>
+                                            <p class="testimonials-person mb-0">JetOnset Client</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-interval="4000">
+                            <div class="container">
+                                <div class="col-12">
+                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
+                                </div>
+                                <div class="col-sm-10 offset-sm-1 col-12">
+                                    <p class="testimonials-text mb-0">My wife and I planned an extravagant wedding and honeymoon, but this was a surprise for her. Let’s just say it was worth every penny.</p>
                                 </div>
                                 <div class="col-12 mb-5">
                                     <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
@@ -248,22 +313,21 @@
                                 <div class="col-10 offset-1">
                                     <div class="media">
                                         <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Aaron D.</p>
+                                        <div class="media-body mt-10">
+                                            <p class="testimonials-person mb-0">Henry S.</p>
                                             <p class="testimonials-person mb-0">JetOnset Client</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="section questions">
     <div class="container" style="margin-top: 2rem;">

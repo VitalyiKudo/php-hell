@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('services', 'ServiceController@getServicesList');
 Route::get('airports', 'AirportController@getAirportsList');
+Route::get('/avinode', 'AvinodeController@index')->name('avinode');
