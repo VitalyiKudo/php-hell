@@ -34,6 +34,9 @@ Route::get('/blog', function () {
 Route::get('/terms-conditions', function () {
     return view('client.terms-conditions');
 });
+Route::get('/listing-search', function () {
+    return view('client.listing-search');
+});
 
 Route::get('/support', 'SupportController@index')->name('support');
 Route::post('/support/client', 'SupportController@client')->name('support.client');
@@ -60,6 +63,7 @@ Route::namespace('Account')->group(function () {
 
     // Orders
     Route::get('/requests', 'RequestController@index')->name('requests.index');
+
 
     // Orders
     Route::get('/orders', 'OrderController@index')->name('orders.index');

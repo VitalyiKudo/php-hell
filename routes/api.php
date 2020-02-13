@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('services', 'ServiceController@getServicesList');
 Route::get('airports', 'AirportController@getAirportsList');
 Route::get('/avinode', 'AvinodeController@index')->name('avinode');
+Route::post('/search/flights', 'AvinodeController@index')->name('flight.search');
+Route::get('/requests/request/{start}/{end}/{startDate}/{endDate}', 'AvinodeController@request')->name('requests.request');

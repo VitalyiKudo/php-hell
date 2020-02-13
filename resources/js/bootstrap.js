@@ -14,6 +14,7 @@ try {
     require('bootstrap');
     require('bootstrap-datepicker');
     require('bootstrap-select');
+    require('bootstrap-daterangepicker');
 } catch (e) {}
 
 /**

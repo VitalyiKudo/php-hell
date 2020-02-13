@@ -32,6 +32,7 @@ class AirportController extends Controller
             ->limit(10)
             ->get();
 
-        return AirportResource::collection($airports);
+        //return AirportResource::collection($airports);
+        return response()->json($airports);
     }
 }

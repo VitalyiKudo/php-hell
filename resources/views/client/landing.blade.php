@@ -5,61 +5,73 @@
 @endsection
 
 @section('content')
-    <!--<search-form></search-form>-->
+{{--    <search-form></search-form>--}}
 
 <div class="section main-search">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="mb-3">Private Jet Charter: Fly Different Today</h1>
-            </div>
-            <div class="col-lg-3 mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Departure Airport" aria-describedby="departure-airport">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="departure-airport"><img src="/images/departure-icon.png" class="icon-img" alt="..."></span>
+        <form action="{{ route('flight.search') }}" method="POST">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="mb-3">Private Jet Charter: Fly Different Today</h1>
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <div class="input-group">
+                        <input type="text"
+                               class="form-control from"
+                               placeholder="Departure Airport"
+                               aria-describedby="departure-airport"
+                               name="startPoint"
+                        >
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="departure-airport"><img src="/images/departure-icon.png" class="icon-img" alt="..."></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Arrival Airport" aria-describedby="arrival-airport">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="arrival-airport"><img src="/images/arrival-icon.png" class="icon-img" alt="..."></span>
+                <div class="col-lg-3 mb-3">
+                    <div class="input-group">
+                        <input type="text"
+                               class="form-control to"
+                               placeholder="Arrival Airport"
+                               aria-describedby="arrival-airport"
+                               name="endPoint"
+                        >
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="arrival-airport"><img src="/images/arrival-icon.png" class="icon-img" alt="..."></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-2 mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Date & Time" aria-describedby="date-time">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="date-time"><img src="/images/date-icon.png" class="icon-img" alt="..."></span>
+                <div class="col-lg-3 mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="departure">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date-time"><img src="/images/date-icon.png" class="icon-img" alt="..."></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-2 mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Passengers" aria-describedby="passengers">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="passengers"><img src="/images/passengers-icon.png" class="icon-img" alt="..."></span>
+                <div class="col-lg-2 mb-3">
+                    <div class="input-group">
+                        <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="passengers" name="passengers" ><img src="/images/passengers-icon.png" class="icon-img" alt="..."></span>
+                        </div>
                     </div>
                 </div>
+    {{--            <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
+    {{--                <button type="button" class="plus-btn">--}}
+    {{--                    <img src="/images/plus.png" class="icon-img" alt="...">--}}
+    {{--                </button>--}}
+    {{--            </div>--}}
+                <div class="col-lg-1 form-container-1">
+                    <button type="submit" class="btn">Search</button>
+                </div>
+                <div class="col-lg-12">
+                    <a href="#how-it-works"><img src="/images/scroll.png" class="scroll-button" alt="..."></a>
+                </div>
             </div>
-            <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">
-                <button type="button" class="plus-btn">
-                    <img src="/images/plus.png" class="icon-img" alt="...">
-                </button> 
-            </div>
-            <div class="col-lg-2 form-container-1">
-                <button type="button" class="btn">Search</button>
-            </div>
-            <div class="col-lg-12">
-                <a href="#how-it-works"><img src="/images/scroll.png" class="scroll-button" alt="..."></a>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
-
+{{--<flight></flight>--}}
 <div class="section main-works" id="how-it-works">
     <div class="container">
         <div class="row">
@@ -410,4 +422,39 @@
     </div>
 </div>
 
+
+
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('input[name="departure"]').daterangepicker({
+                opens: 'left',
+
+            });
+
+
+            $('input.from').typeahead({
+
+                source:  function (query, process) {
+                    console.log(query);
+                    return $.get("/api/airports", { query: query }, function (data) {
+                        return process(data);
+                    });
+                }
+            });
+            $('input.to').typeahead({
+                source:  function (query, process) {
+                    return $.get("/api/airports", { query: query }, function (data) {
+                        return process(data);
+                    });
+                }
+            });
+
+        });
+    </script>
+
+@endpush

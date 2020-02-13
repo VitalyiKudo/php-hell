@@ -14,6 +14,7 @@
         "bootstrap": "^4.0.0",
         "bootstrap-datepicker": "^1.9.0",
         "bootstrap-select": "^1.13.12",
+        "bootstrap-daterangepicker": "^3.0.5",
         "cross-env": "^5.1",
         "jquery": "^3.4.1",
         "laravel-mix": "^4.0.7",
@@ -23,9 +24,11 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
-        "vue-template-compiler": "2.6.9"
+        "vue-template-compiler": "2.6.9",
+        "moment": "^2.24.0"
     },
     "dependencies": {
-        "vue-bootstrap-typeahead": "0.2.6"
+        "vue-bootstrap-typeahead": "0.2.6",
+        "vue2-daterange-picker": "^0.4.4"
     }
 }

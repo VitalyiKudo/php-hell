@@ -30,4 +30,5 @@ class RequestController extends Controller
 
         return view('client.account.requests.index', compact('requests'));
     }
+
 }

@@ -30,6 +30,7 @@ Vue.component('vue-bootstrap-typeahead', VueBootstrapTypeahead);
 Vue.component('search-form', require('./components/Search/SearchForm.vue').default);
 Vue.component('search-row', require('./components/Search/SearchRow.vue').default);
 Vue.component('subscribe', require('./components/Search/Subscribe.vue').default);
+Vue.component('flight', require('./components/Search/Flight.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -57,3 +58,9 @@ $(function () {
 
   $('.calendar').datepicker({
 });
+
+$('.dateranger').datepicker({
+    format: 'yyyy-mm-dd',
+});
+
+

@@ -29,11 +29,12 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/cb8c197ec4.js"></script>
-    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -81,7 +82,7 @@
                                 <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('about') }}">{{ __('About') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/" target="_blank">{{ __('Blog') }}</a>
+                                <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/">{{ __('Blog') }}</a>
                             </li>
                         @else
                             <li class="nav-item">
@@ -207,5 +208,13 @@
             </div>
         </div>
     </div>
+    <script src="{{ mix('js/app.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    @stack('scripts')
 </body>
 </html>
