@@ -35,7 +35,7 @@
             <div class="col-xl-8 offset-xl-1 col-lg-8 right-request">
                 <h2 class="mb-5">Overview of your requests</h2>
 
-                <p class="card-title"><span>3</span> results are available</p>
+{{--                <p class="card-title"><span>3</span> results are available</p>--}}
 
                 @foreach ($searchResults->data->results as $flight)
 
@@ -51,9 +51,9 @@
 
                                 <div class="col-md-2 icao">
                                     {{ $flight->quote->segments[0]->startAirport->iata. '-'.$flight->quote->segments[0]->endAirport->iata }}</div>
-                                <div class="col-md-3 country">RUSSIA</div>
+                                <div class="col-md-3 country"></div>
                                 <div class="col-md-2 date">
-                                    {{ $flight->quote->segments[0]->departureDateTime->dateTimeUTC }}
+                                    {{ \Carbon\Carbon::parse($flight->quote->segments[0]->departureDateTime->dateTimeUTC)->format('Y-m-d')  }}
                                 </div>
                                 <div class="col-md-2 price">
                                     {{ $flight->quote->sellerPriceWithoutCommission->currency .' '.$flight->quote->sellerPriceWithoutCommission->price }}
