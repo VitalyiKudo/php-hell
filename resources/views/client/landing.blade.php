@@ -10,12 +10,13 @@
 <div class="section main-search">
     <div class="container">
         <form action="{{ route('flight.search') }}" method="POST">
-            <div class="row">
+            <div class="row form-body">
+
                 <div class="col-lg-12">
-                    <h1 class="mb-3">Private Jet Charter: Fly Different Today</h1>
+                    <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="input-group">
+                <div class="col-lg-3 mb-3 mt-2">
+                    <div class="input-group input-style-3">
                         <input type="text"
                                class="form-control from"
                                placeholder="Departure Airport"
@@ -27,8 +28,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="input-group">
+                <div class="col-lg-3 mb-3 mt-2 pl-0 bd">
+                    <div class="input-group input-style-2">
                         <input type="text"
                                class="form-control to"
                                placeholder="Arrival Airport"
@@ -40,16 +41,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="departure">
+                <div class="col-lg-3 mb-3 mt-2">
+                    <div class="input-group input-style">
+                        <input type="text" class="form-control " name="departure">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="date-time"><img src="/images/date-icon.png" class="icon-img" alt="..."></span>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-lg-2 mb-3">
-                    <div class="input-group">
+                <div class="col-lg-2 mb-3 mt-2">
+                    <div class="input-group input-style">
                         <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="passengers" name="passengers" ><img src="/images/passengers-icon.png" class="icon-img" alt="..."></span>
@@ -61,7 +63,7 @@
     {{--                    <img src="/images/plus.png" class="icon-img" alt="...">--}}
     {{--                </button>--}}
     {{--            </div>--}}
-                <div class="col-lg-1 form-container-1">
+                <div class="col-lg-2 form-container-1 mt-2">
                     <button type="submit" class="btn">Search</button>
                 </div>
                 <div class="col-lg-12">
@@ -85,9 +87,9 @@
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
                     <img src="/images/works-search.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Search for your flight</p>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <p class="card-text">Search for your flight</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-1">
@@ -96,9 +98,9 @@
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
                     <img src="/images/works-choose.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Choose a flight that fits you</p>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <p class="card-text">Choose a flight that fits you</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-1">
@@ -107,9 +109,9 @@
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
                     <img src="/images/works-book.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Book your flight</p>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <p class="card-text">Book your flight</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-1">
@@ -118,9 +120,9 @@
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
                     <img src="/images/works-wait.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Wait for a confirmation</p>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <p class="card-text">Wait for a confirmation</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-1">
@@ -129,9 +131,9 @@
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card last-card">
                     <img src="/images/works-enjoy.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Enjoy your flight</p>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <p class="card-text">Enjoy your flight</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
