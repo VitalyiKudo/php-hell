@@ -4,10 +4,10 @@
     <list default="true" id="f2248184-e8e0-47f2-8b39-fc4b057c4e06" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/client/ui/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/client/ui/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/main-wallpaper-4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/client/landing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client/landing.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/client/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/client/landing.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="92" column="22" lean-forward="true" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+            <state relative-caret-position="318">
+              <caret line="387" column="51" selection-start-line="387" selection-start-column="51" selection-end-line="387" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -50,11 +50,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="154" column="12" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
+            <state relative-caret-position="1084">
+              <caret line="401" column="16" selection-start-line="401" selection-start-column="16" selection-end-line="401" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -79,10 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>full</find>
-      <find>testimonials-landing</find>
-      <find>media-bod</find>
-      <find>SearchForm</find>
       <find>main-se</find>
       <find>main</find>
       <find>min-width</find>
@@ -109,6 +114,10 @@
       <find>mix</find>
       <find>margin-lg</find>
       <find>main-wor</find>
+      <find>main-wall</find>
+      <find>test</find>
+      <find>carousel</find>
+      <find>testimonial-top</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\mnadee\Documents\Code</dir>
@@ -135,7 +144,6 @@
         <option value="$PROJECT_DIR$/resources/views/client/support.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Client/SupportController.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/client/listing-search.blade.php" />
@@ -154,8 +162,9 @@
         <option value="$PROJECT_DIR$/resources/views/client/account/requests/request.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/client/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/client/ui/_header.scss" />
-        <option value="$PROJECT_DIR$/resources/views/client/landing.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" />
+        <option value="$PROJECT_DIR$/resources/views/client/landing.blade.php" />
       </list>
     </option>
   </component>
@@ -397,12 +406,12 @@
       <workItem from="1580231689302" duration="15424000" />
       <workItem from="1580414446288" duration="68592000" />
       <workItem from="1581531128264" duration="18091000" />
-      <workItem from="1581782154109" duration="12748000" />
+      <workItem from="1581782154109" duration="16944000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143342000" />
+    <option name="totallyTimeSpent" value="147538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -478,13 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="262" column="23" lean-forward="true" selection-start-line="262" selection-start-column="23" selection-end-line="262" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -804,17 +806,24 @@
     <entry file="file://$PROJECT_DIR$/public/images/works-search.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/client/landing.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="92" column="22" lean-forward="true" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+        <state relative-caret-position="1084">
+          <caret line="401" column="16" selection-start-line="401" selection-start-column="16" selection-end-line="401" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss">
+    <entry file="file://$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="154" column="12" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
+        <state relative-caret-position="210">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/client/landing.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="387" column="51" selection-start-line="387" selection-start-column="51" selection-end-line="387" selection-end-column="51" />
         </state>
       </provider>
     </entry>

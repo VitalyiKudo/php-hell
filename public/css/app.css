@@ -12903,10 +12903,11 @@ h3 {
 .testimonials {
   padding-top: 4rem;
   padding-bottom: 18rem;
-  background-image: url("/images/main-wallpaper-4.png");
+  background-image: url("/images/main-wallpaper-4.jpg");
   background-repeat: no-repeat;
   background-position: 75% 0%;
   background-size: cover;
+  border-radius: 16px;
 }
 
 .testimonials .carousel-item {
@@ -12940,6 +12941,46 @@ h3 {
 
 .testimonials-landing .carousel-item {
   min-height: 0 !important;
+}
+
+.text-bg {
+  width: 510px;
+  height: 141px;
+  background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
+  border: 1px solid rgba(42, 96, 174, 0.2);
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  left: 52px;
+}
+
+.img-pos {
+  top: 35px;
+  left: -22px;
+  width: 30%;
+}
+
+.text-pos {
+  left: 76px;
+  top: -35px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+  color: #000000;
+  width: 70%;
+}
+
+.text-pos h6 {
+  font-weight: 600;
+  left: 76px;
+  top: -35px;
+  font-size: 16px;
+  font-family: Roboto;
+  font-style: normal;
+  color: #000000;
 }
 
 .questions .card {
