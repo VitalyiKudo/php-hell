@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2248184-e8e0-47f2-8b39-fc4b057c4e06" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/main-wallpaper-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/client/ui/_main-page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/client/ui/_testimonials-section.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/client/landing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client/landing.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/client/landing.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="387" column="51" selection-start-line="387" selection-start-column="51" selection-end-line="387" selection-end-column="51" />
+            <state relative-caret-position="340">
+              <caret line="514" column="13" selection-start-line="514" selection-start-column="13" selection-end-line="514" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -406,12 +401,12 @@
       <workItem from="1580231689302" duration="15424000" />
       <workItem from="1580414446288" duration="68592000" />
       <workItem from="1581531128264" duration="18091000" />
-      <workItem from="1581782154109" duration="16944000" />
+      <workItem from="1581782154109" duration="17225000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147538000" />
+    <option name="totallyTimeSpent" value="147819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -822,8 +817,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/client/landing.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="387" column="51" selection-start-line="387" selection-start-column="51" selection-end-line="387" selection-end-column="51" />
+        <state relative-caret-position="340">
+          <caret line="514" column="13" selection-start-line="514" selection-start-column="13" selection-end-line="514" selection-end-column="13" />
         </state>
       </provider>
     </entry>

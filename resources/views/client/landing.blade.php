@@ -512,7 +512,7 @@
 
             $('.carousel').carousel({
                 interval: 3000
-            };
+            });
 
             $('input[name="departure"]').daterangepicker({
                 opens: 'left',
