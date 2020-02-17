@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3 mt-2">
+                <div class="col-lg-4 mb-3 mt-2">
                     <div class="input-group input-style">
                         <input type="text" class="form-control " name="departure">
                         <div class="input-group-prepend">
@@ -50,7 +50,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-2 mb-3 mt-2">
+                <div class="col-lg-2 mb-3 mt-2 pl-0">
                     <div class="input-group input-style">
                         <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
                         <div class="input-group-prepend">
@@ -530,6 +530,7 @@
                 }
             });
             $('input.to').typeahead({
+
                 source:  function (query, process) {
                     return $.get("/api/airports", { query: query }, function (data) {
                         return process(data);

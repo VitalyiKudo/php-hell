@@ -11685,7 +11685,7 @@ h3 {
 }
 
 .custom-navbar .nav-item a {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-decoration: none;
 }
 
@@ -11725,16 +11725,16 @@ h3 {
   }
 
   .custom-navbar .margin-lg-left {
-    margin-left: 12rem;
+    margin-left: 8rem;
   }
 }
 
 @media (min-width: 992px) {
   .custom-navbar .navbar-style {
-    width: 865px;
+    width: 740px;
     position: absolute;
     height: 72px;
-    left: 466px;
+    left: 325px;
     top: 32px;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.8;
@@ -11957,9 +11957,12 @@ h3 {
     padding-top: 15rem;
     background-image: url("/images/main-wallpaper.png");
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: center;
     background-size: cover;
-    height: 595px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 485px;
   }
 }
 
@@ -11968,9 +11971,12 @@ h3 {
     padding-top: 15rem;
     background-image: url("/images/main-wallpaper.png");
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: center;
     background-size: cover;
-    height: 725px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 650px;
   }
 }
 
@@ -12016,6 +12022,7 @@ h3 {
   background-color: #ededed;
   border: 1px solid #ededed;
   border-radius: 0 0.2rem 0.2rem 0 !important;
+  padding: 0.2rem 0.4rem;
 }
 
 .main-search .icon-img {
@@ -12124,10 +12131,10 @@ h3 {
 @media (min-width: 992px) {
   .form-body {
     position: absolute;
-    width: 1032px;
-    height: 188px;
-    left: 365px;
-    top: 345px;
+    width: 1000px;
+    height: 180px;
+    left: 150px;
+    top: 280px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
@@ -12142,8 +12149,8 @@ h3 {
     position: absolute;
     width: 1032px;
     height: 188px;
-    left: 515px;
-    top: 417px;
+    left: 505px;
+    top: 380px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
