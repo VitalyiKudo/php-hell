@@ -12375,7 +12375,16 @@ h3 {
 .main-about-us a {
   margin-bottom: 2rem;
   font-size: 1.05rem;
-  color: #b58267;
+}
+
+.learn-more {
+  display: block;
+  text-align: center !important;
+  background-color: #B58267;
+  border-radius: 6px;
+  color: #FFFFFF !important;
+  padding: 10px;
+  text-decoration: none !important;
 }
 
 .services-title {
@@ -12877,7 +12886,7 @@ h3 {
 
 @media (min-width: 1200px) {
   .services-fullwidth .services-text {
-    padding-right: calc((100% - 1140px) / 2 + 15px);
+    padding-right: calc((100% - 1200px) / 2);
   }
 }
 
@@ -12894,8 +12903,8 @@ h3 {
 }
 
 .services-h2 {
-  font-size: 2.1rem;
-  font-weight: 100;
+  font-size: 22px;
+  font-weight: 300;
   padding-bottom: 1.5rem;
 }
 
@@ -12905,6 +12914,22 @@ h3 {
 
 .services-p {
   text-align: justify;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+  color: #FFFFFF;
+}
+
+.service-fancy-p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 16px;
+  line-height: 26px;
+  color: #FFFFFF;
+  left: -30px;
 }
 
 .testimonials {
@@ -12915,6 +12940,18 @@ h3 {
   background-position: 75% 0%;
   background-size: cover;
   border-radius: 16px;
+}
+
+@media (min-width: 992px) {
+  .testimonials {
+    height: 570px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .testimonials {
+    height: 760px;
+  }
 }
 
 .testimonials .carousel-item {
@@ -12951,14 +12988,14 @@ h3 {
 }
 
 .text-bg {
-  width: 510px;
-  height: 141px;
+  width: 480px;
+  height: 130px;
   background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
   border: 1px solid rgba(42, 96, 174, 0.2);
   box-sizing: border-box;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  left: 52px;
+  left: 70px;
 }
 
 .img-pos {
@@ -12977,7 +13014,6 @@ h3 {
   line-height: 20px;
   /* identical to box height, or 125% */
   color: #000000;
-  width: 70%;
 }
 
 .text-pos h6 {
@@ -12992,6 +13028,8 @@ h3 {
 
 .questions .card {
   border-radius: 0.4rem;
+  border: 1px solid rgba(42, 96, 174, 0.4);
+  border-radius: 8px;
 }
 
 .questions .card-body {
@@ -13012,6 +13050,18 @@ h3 {
 
 .questions .card-title {
   font-size: 1.1rem;
+}
+
+.questions .line-border {
+  margin-top: 22px;
+}
+
+.questions .position {
+  right: 55px;
+}
+
+.questions .pos-full {
+  right: 15px;
 }
 
 .concierge {

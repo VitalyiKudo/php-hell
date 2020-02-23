@@ -422,6 +422,16 @@
     a {
         margin-bottom: 2rem;
         font-size: 1.05rem;
-        color: $headings-color;
+        //color: $headings-color;
     }
+}
+
+.learn-more {
+    display: block;
+    text-align: center !important;
+    background-color: #B58267;
+    border-radius: 6px;
+    color: #FFFFFF !important;
+    padding:10px;
+    text-decoration:none !important;
 }

@@ -5,6 +5,8 @@
 .questions {
     .card {
         border-radius: 0.4rem;
+        border: 1px solid rgba(42, 96, 174, 0.4);
+        border-radius: 8px;
     }
     
     .card-body {
@@ -27,4 +29,14 @@
     .card-title {
         font-size: 1.1rem;
     }
+    .line-border {
+        margin-top: 22px;
+    }
+    .position {
+        right:55px;
+    }
+    .pos-full {
+        right: 15px
+    }
+   
 }
