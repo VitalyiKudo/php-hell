@@ -66,7 +66,7 @@
                 <div class="col-lg-2 form-container-1 mt-2">
                     <button type="submit" class="btn">Search</button>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 mb-5">
                     <a href="#how-it-works"><img src="/images/scroll.png" class="scroll-button" alt="..."></a>
                 </div>
             </div>
@@ -152,8 +152,8 @@
         <div class="row">
             <div class="col-md-6 services-text">
 
-                <h5 class="services-h2 color-white">Luxury Travel, Luxury Vacations</h5>
-                <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
+                <h5 class="services-h2 ">Luxury Travel, Luxury Vacations</h5>
+                <p class="services-p">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
                         <img src="/images/line.png" alt="line">
@@ -173,7 +173,7 @@
         <div class="row">
             <div class="col-md-6 services-image corporate-travel-image"></div>
             <div class="col-md-6 services-text">
-                <h2 class="services-h2 color-white">Corporate Travel, Corporate Retreats</h2>
+                <h2 class="services-h2">Corporate Travel, Corporate Retreats</h2>
                 <p class="services-p color-white">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
@@ -251,120 +251,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-12">
-{{--                <div id="testimonialsCarousel" class="carousel slide" data-ride="carousel">--}}
-{{--                    <div class="carousel-inner">--}}
-{{--                        <div class="carousel-item active" data-interval="4000">--}}
-{{--                            <div class="container">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-10 offset-sm-1 col-12">--}}
-{{--                                    <p class="testimonials-text mb-0">I’ve always dreaded the airports, especially for work. You guys have actually made this nightmare a much easier process for me to deal with.</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12 mb-5">--}}
-{{--                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-10 offset-1">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <img src="/images/slider/frank.png" class="testimonials-img align-self-center mr-2" alt="...">--}}
-{{--                                        <div class="media-body mt-2">--}}
-{{--                                            <p class="testimonials-person mb-0">Frank D.</p>--}}
-{{--                                            <p class="testimonials-person mb-0">JetOnset Client</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="carousel-item" data-interval="4000">--}}
-{{--                            <div class="container">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-10 offset-sm-1 col-12">--}}
-{{--                                    <p class="testimonials-text mb-0">My anxiety has always impacted my work. I have to frequently fly and this service has profoundly improved my “mental preparedness” for my work.</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12 mb-5">--}}
-{{--                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-10 offset-1">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">--}}
-{{--                                        <div class="media-body mt-2">--}}
-{{--                                            <p class="testimonials-person mb-0">Sergio W.</p>--}}
-{{--                                            <p class="testimonials-person mb-0">JetOnset Client</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="carousel-item" data-interval="4000">--}}
-{{--                            <div class="container">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-10 offset-sm-1 col-12">--}}
-{{--                                    <p class="testimonials-text mb-0">My company has tried them out and saved a small fortune using this service. Same planes, half the price!</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12 mb-5">--}}
-{{--                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-10 offset-1">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">--}}
-{{--                                        <div class="media-body mt-2">--}}
-{{--                                            <p class="testimonials-person mb-0">Alexander</p>--}}
-{{--                                            <p class="testimonials-person mb-0">JetOnset Client</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="carousel-item" data-interval="4000">--}}
-{{--                            <div class="container">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-10 offset-sm-1 col-12">--}}
-{{--                                    <p class="testimonials-text mb-0">Our company has private jets of their own, but some meetings are too sensitive for the public, and this service allows us to fly anywhere without rumors hurting the stock price.</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12 mb-5">--}}
-{{--                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-10 offset-1">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">--}}
-{{--                                        <div class="media-body mt-2">--}}
-{{--                                            <p class="testimonials-person mb-0">Bradly</p>--}}
-{{--                                            <p class="testimonials-person mb-0">JetOnset Client</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="carousel-item" data-interval="4000">--}}
-{{--                            <div class="container">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-sm-10 offset-sm-1 col-12">--}}
-{{--                                    <p class="testimonials-text mb-0">My wife and I planned an extravagant wedding and honeymoon, but this was a surprise for her. Let’s just say it was worth every penny.</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12 mb-5">--}}
-{{--                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-10 offset-1">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">--}}
-{{--                                        <div class="media-body mt-2">--}}
-{{--                                            <p class="testimonials-person mb-0">Henry S.</p>--}}
-{{--                                            <p class="testimonials-person mb-0">JetOnset Client</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                     <div class="carousel-inner">

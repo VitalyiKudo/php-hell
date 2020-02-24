@@ -12071,7 +12071,7 @@ h3 {
 
 @media (min-width: 992px) {
   .main-search .scroll-button {
-    margin: 13rem auto 0;
+    margin: 5rem auto 0;
   }
 }
 
@@ -12163,6 +12163,11 @@ h3 {
 .main-works {
   padding-top: 4rem;
   padding-bottom: 2rem;
+  background-position: center !important;
+  background-image: url("/images/how-it-works.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 @media (min-width: 992px) {
@@ -12390,7 +12395,7 @@ h3 {
 .services-title {
   margin-top: -8.5rem;
   padding-top: 17.1em;
-  background-image: url("/images/services-wallpaper.jpg");
+  background-image: url("/images/services-wallpaper.png");
   background-repeat: no-repeat;
   background-position: left center;
   background-size: cover;
@@ -12398,7 +12403,7 @@ h3 {
 
 @media (min-width: 992px) {
   .services-title {
-    padding-top: 30.1em;
+    padding-top: 28.1em;
   }
 }
 
@@ -12436,24 +12441,43 @@ h3 {
 }
 
 .aircraft-planes {
-  color: #ffffff;
+  color: #000;
+}
+
+.aircraft-planes .sec-style {
+  background: #f0f6fa;
+}
+
+.aircraft-planes .tab-content {
+  max-width: 100%;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .aircraft-planes .tab-content {
+    padding-right: calc((100% - 720px) / 2 + 15px);
+  }
+}
+
+@media (min-width: 992px) {
+  .aircraft-planes .tab-content {
+    padding-right: calc((100% - 960px) / 2 + 15px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .aircraft-planes .tab-content {
+    padding-right: calc((100% - 1200px) / 2);
+  }
 }
 
 .aircraft-planes .planes-block {
-  background-color: #113961;
   border-radius: 1rem;
-  padding: 1.5rem 1.5rem;
-  margin: 0 15px;
-}
-
-@media (min-width: 576px) {
-  .aircraft-planes .planes-block {
-    padding: 1.5rem 3rem;
-  }
 }
 
 .aircraft-planes .nav-tabs {
   border-bottom: none !important;
+  margin-left: 11%;
 }
 
 .aircraft-planes .nav-tabs .nav-link {
@@ -12467,14 +12491,19 @@ h3 {
 .aircraft-planes .nav-tabs .nav-item a {
   font-size: 0.9rem;
   text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  padding-bottom: 0px !important;
 }
 
 .aircraft-planes .nav-tabs .nav-link {
-  color: #ffffff;
+  color: #000;
   border: none !important;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  padding-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .aircraft-planes .nav-tabs .last-nav-link {
@@ -12484,7 +12513,7 @@ h3 {
 .aircraft-planes .nav-tabs .nav-link.active,
 .aircraft-planes .nav-tabs .nav-tabs .nav-item.show .nav-link,
 .aircraft-planes .nav-tabs a:hover {
-  color: #ffffff;
+  color: #000;
   background-color: transparent;
 }
 
@@ -12502,8 +12531,13 @@ h3 {
 .aircraft-planes .nav-tabs .nav-item .active:after {
   font-size: 1.2rem;
   margin-top: -0.5rem;
-  content: "\2191";
   background: #b58267;
+  right: 40px;
+}
+
+.aircraft-planes .nav-tabs .nav-item .active {
+  border-bottom: 1px solid #CA9D86 !important;
+  color: #CA9D86 !important;
 }
 
 .aircraft-planes .tab-content ul {
@@ -12511,9 +12545,14 @@ h3 {
 }
 
 .aircraft-planes .plane-tab {
-  font-size: 2rem;
+  font-size: 24px;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  color: #294A7A !important;
+}
+
+.aircraft-planes .plane-tab-2 {
+  font-size: 14px;
 }
 
 .aircraft-planes .plane-block {
@@ -12535,6 +12574,10 @@ h3 {
 
 .aircraft-planes .plane-list p {
   margin-bottom: 0;
+}
+
+.aircraft-planes .car-padding {
+  padding: 5%;
 }
 
 .aircraft-planes .plane-img {
@@ -12625,8 +12668,23 @@ h3 {
   font-weight: 300;
 }
 
+.about-title h1 {
+  font-family: Capoon PERSONAL USE;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 44px;
+  /* or 147% */
+  color: #2B4B7A;
+  opacity: 0.8;
+}
+
 .about-introduction {
   padding-top: 4rem;
+}
+
+.about-h3-text {
+  font-size: 30px;
 }
 
 .about-services {
@@ -12805,10 +12863,12 @@ h3 {
 }
 
 .services {
-  margin-top: 4rem;
+  margin-top: 1rem;
   max-width: 100%;
   width: auto;
-  background-color: #113961;
+  /* Rectangle 22 */
+  background: linear-gradient(202.34deg, #2B4060 29.95%, rgba(55, 94, 151, 0.9) 63.86%);
+  border-radius: 16px;
 }
 
 .services-right {
@@ -12906,6 +12966,7 @@ h3 {
   font-size: 22px;
   font-weight: 300;
   padding-bottom: 1.5rem;
+  color: #C6DDFF;
 }
 
 .services-h3 {
@@ -12926,7 +12987,7 @@ h3 {
   font-family: Roboto;
   font-style: normal;
   font-weight: 100;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 26px;
   color: #FFFFFF;
   left: -30px;

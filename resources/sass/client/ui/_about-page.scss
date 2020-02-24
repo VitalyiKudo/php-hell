@@ -11,6 +11,7 @@
     background-position: left top;
     background-size: cover;
 
+
     @media (min-width: 992px) {
         padding-top: 11rem;
         padding-bottom: 14rem;
@@ -23,8 +24,25 @@
     }
 }
 
+.about-title h1 {
+    font-family: Capoon PERSONAL USE;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 44px;
+    /* or 147% */
+
+    color: #2B4B7A;
+
+    opacity: 0.8;
+
+}
 .about-introduction {
     padding-top: 4rem;
+}
+
+.about-h3-text {
+    font-size: 30px;
 }
 
 .about-services {

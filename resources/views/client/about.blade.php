@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="section about-introduction">
+<div class="section about-introduction mb-5">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -35,7 +35,17 @@
         <div class="row">
             <div class="col-md-6 services-text">
                 <h2 class="services-h2 color-white">Sky Philosophy</h2>
-                <p class="services-p color-white">We believe the sky is sacred, and your time in it should be treated with respect. We aren't just a private jet charter company, we want your entire experience to and from to be as comfortable and hands-free as your time in the air. We can arrange personal Black class transportation to and from your plane. When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane. The same treatment will transpire once you arrive as well. On larger jets, you'll even have private cabin attendants who will wait on your needs. </p>
+                <p class="services-p color-white">We believe the sky is sacred, and your time in it should be treated with respect. We aren't just a private jet charter company, we want your entire experience to and from to be as comfortable and hands-free as your time in the air. We can arrange personal Black class transportation to and from your plane.  </p> 
+                
+                <div class="row mt-5">
+                    <div class="col-md-1 pr-md-0">
+                        <img src="/images/line4.png" alt="line">
+                    </div>
+                    <div class="col-md-10 service-fancy-p">
+                        <p>When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane.</p>
+                        <p> The same treatment will transpire once you arrive as well. On larger jets, you'll even have private cabin attendants who will wait on your needs.</p>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6 services-image sky-philosophy-image"></div>
         </div>
@@ -69,123 +79,86 @@
     </div>
 </div>
 
-<div class="section testimonials" id="reviews">
+<div class="section testimonials testimonials-landing">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-12">
-                <div id="testimonialsCarousel" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-interval="4000">
-                            <div class="container">
-                                <div class="col-12">
-                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
-                                </div>
-                                <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">I’ve always dreaded the airports, especially for work. You guys have actually made this nightmare a much easier process for me to deal with.</p>
-                                </div>
-                                <div class="col-12 mb-5">
-                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
-                                </div>
-                                <div class="col-10 offset-1">
-                                    <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Michael B.</p>
-                                            <p class="testimonials-person mb-0">JetOnset Client</p>
-                                        </div>
+                        <div class="carousel-item active" >
+                            <div class="col-sm-10 offset-sm-1 col-12 text-bg">
+                                <div class="col-md-12">
+                                    <div class="col-md-2 img-pos">
+                                        <img src="/images/slider/frank.png" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
+                                    <div class="col-md-10 text-pos">
+                                        <h6>Frank D.</h6>
+                                        <p> I’ve always dreaded the airports, especially for work. You guys have actually made this nightmare a much easier process for me to deal with </p>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
-                        <div class="carousel-item" data-interval="4000">
-                            <div class="container">
-                                <div class="col-12">
-                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
-                                </div>
-                                <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">My anxiety has always impacted my work. I have to frequently fly and this service has profoundly improved my “mental preparedness” for my work.</p>
-                                </div>
-                                <div class="col-12 mb-5">
-                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
-                                </div>
-                                <div class="col-10 offset-1">
-                                    <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Josie S.</p>
-                                            <p class="testimonials-person mb-0">JetOnset Client</p>
-                                        </div>
+                        <div class="carousel-item" >
+                            <div class="col-sm-10 offset-sm-1 col-12 text-bg">
+                                <div class="col-md-12">
+                                    <div class="col-md-2 img-pos">
+                                        <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
+                                    <div class="col-md-10 text-pos">
+                                        <h6>Sergio W.</h6>
+                                        <p> My anxiety has always impacted my work. I have to frequently fly and this service has profoundly improved my “mental preparedness” for my work.</p>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
-                        <div class="carousel-item" data-interval="4000">
-                            <div class="container">
-                                <div class="col-12">
-                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
-                                </div>
-                                <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">My company has tried them out and saved a small fortune using this service. Same planes, half the price!</p>
-                                </div>
-                                <div class="col-12 mb-5">
-                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
-                                </div>
-                                <div class="col-10 offset-1">
-                                    <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Sigfied M.</p>
-                                            <p class="testimonials-person mb-0">JetOnset Client</p>
-                                        </div>
+                        <div class="carousel-item" >
+                            <div class="col-sm-10 offset-sm-1 col-12 text-bg">
+                                <div class="col-md-12">
+                                    <div class="col-md-2 img-pos">
+                                        <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
+                                    <div class="col-md-10 text-pos">
+                                        <h6>Alexander</h6>
+                                        <p>My company has tried them out and saved a small fortune using this service. Same planes, half the price! </p>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
-                        <div class="carousel-item" data-interval="4000">
-                            <div class="container">
-                                <div class="col-12">
-                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
-                                </div>
-                                <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">Our company has private jets of their own, but some meetings are too sensitive for the public, and this service allows us to fly anywhere without rumors hurting the stock price.</p>
-                                </div>
-                                <div class="col-12 mb-5">
-                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
-                                </div>
-                                <div class="col-10 offset-1">
-                                    <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Stacy H.</p>
-                                            <p class="testimonials-person mb-0">JetOnset Client</p>
-                                        </div>
+                        <div class="carousel-item" >
+                            <div class="col-sm-10 offset-sm-1 col-12 text-bg">
+                                <div class="col-md-12">
+                                    <div class="col-md-2 img-pos">
+                                        <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
+                                    <div class="col-md-10 text-pos">
+                                        <h6>Bradly</h6>
+                                        <p>Our company has private jets of their own, but some meetings are too sensitive for the public, and this service allows us to fly anywhere without rumors hurting the stock price.</p>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
-                        <div class="carousel-item" data-interval="4000">
-                            <div class="container">
-                                <div class="col-12">
-                                    <img src="/images/testimonials-top.png" class="testimonials-img" alt="...">
-                                </div>
-                                <div class="col-sm-10 offset-sm-1 col-12">
-                                    <p class="testimonials-text mb-0">My wife and I planned an extravagant wedding and honeymoon, but this was a surprise for her. Let’s just say it was worth every penny.</p>
-                                </div>
-                                <div class="col-12 mb-5">
-                                    <img src="/images/testimonials-bottom.png" class="testimonials-img float-right" alt="...">
-                                </div>
-                                <div class="col-10 offset-1">
-                                    <div class="media">
-                                        <img src="/images/person.png" class="testimonials-img align-self-center mr-2" alt="...">
-                                        <div class="media-body">
-                                            <p class="testimonials-person mb-0">Henry S.</p>
-                                            <p class="testimonials-person mb-0">JetOnset Client</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
+
+
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>

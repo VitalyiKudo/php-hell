@@ -119,7 +119,7 @@
         display: flex;
 
         @media (min-width: 992px) {
-            margin: 13rem auto 0;
+            margin: 5rem auto 0;
         }
     }
     @media (min-width: 1600px) {
@@ -212,6 +212,11 @@
 .main-works {
     padding-top: 4rem;
     padding-bottom: 2rem;
+    background-position: center !important;
+    background-image: url("/images/how-it-works.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 
     @media (min-width: 992px) {
         padding-bottom: 4rem;
