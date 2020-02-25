@@ -12,10 +12,10 @@
         <form action="{{ route('flight.search') }}" method="POST">
             <div class="row form-body">
 
-                <div class="col-lg-12">
+                <div class="col-lg-10 ml-4">
                     <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
                 </div>
-                <div class="col-lg-3 mb-3 mt-2">
+                <div class="col-lg-3 mb-3 mt-2 ml-4">
                     <div class="input-group input-style-3">
                         <input type="text"
                                class="form-control from"
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-3 mt-2">
+                <div class="col-lg-3 mb-3 mt-2">
                     <div class="input-group input-style">
                         <input type="text" class="form-control " name="departure">
                         <div class="input-group-prepend">
@@ -50,7 +50,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-2 mb-3 mt-2 pl-0">
+                <div class="col-lg-3 mb-3 mt-2 pl-0 ml-3">
                     <div class="input-group input-style">
                         <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
                         <div class="input-group-prepend">
@@ -63,7 +63,7 @@
     {{--                    <img src="/images/plus.png" class="icon-img" alt="...">--}}
     {{--                </button>--}}
     {{--            </div>--}}
-                <div class="col-lg-2 form-container-1 mt-2">
+                <div class="col-lg-3 form-container-1 mt-2">
                     <button type="submit" class="btn">Search</button>
                 </div>
                 <div class="col-lg-12 mb-5">

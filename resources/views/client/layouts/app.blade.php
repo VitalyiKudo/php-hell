@@ -104,10 +104,14 @@
 
                         @guest()
                             <li class="nav-item border-lg-right margin-lg-left">
-                                <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">{{ __('Sign Up') }}</a>
+                                <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
+                                <i class="far fa-user mr-1"></i>    
+                                    {{ __('Sign Up') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('client.login') }}">{{ __('Log In') }}</a>
+                                <a class="nav-link" href="{{ route('client.login') }}">
+                                <i class="fas fa-key key-angle mr-1"></i>
+                                    {{ __('Log In') }}</a>
                             </li>
                         @else
                             <li class="nav-item">

@@ -11690,9 +11690,15 @@ h3 {
 }
 
 .custom-navbar .navbar-nav .nav-link,
+.custom-navbar .navbar-nav .nav-link,
+.custom-navbar .navbar-nav .nav-link:hover {
+  color: #2B4060;
+  font-weight: 500;
+}
+
 .custom-navbar .navbar-nav .nav-link.active,
 .custom-navbar .navbar-nav .nav-link:hover {
-  color: #2b4b7a;
+  color: #2A60AE;
 }
 
 @media (min-width: 992px) {
@@ -11720,12 +11726,18 @@ h3 {
 
 @media (min-width: 992px) {
   .custom-navbar .border-lg-right {
-    border-right: 0.1rem solid #2b4b7a;
+    border-right: 1px solid #ccc;
     height: 1.6rem;
   }
 
   .custom-navbar .margin-lg-left {
-    margin-left: 8rem;
+    margin-left: 5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .custom-navbar .margin-lg-left {
+    margin-left: 12rem;
   }
 }
 
@@ -11746,10 +11758,10 @@ h3 {
 
 @media (min-width: 1600px) {
   .custom-navbar .navbar-style {
-    width: 865px;
+    width: 830px;
     position: absolute;
     height: 72px;
-    left: 466px;
+    left: 605px;
     top: 32px;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.8;
@@ -11796,11 +11808,13 @@ h3 {
 .custom-navbar .collapsing .nav-item .active,
 .custom-navbar .show .nav-item .active {
   background-color: #f7f7f7 !important;
+  color: #2A60AE;
 }
 
 .custom-navbar .collapsing .nav-item :hover,
 .custom-navbar .show .nav-item :hover {
   background-color: #f7f7f7 !important;
+  color: #2A60AE;
 }
 
 @media (min-width: 576px) {
@@ -11831,6 +11845,11 @@ h3 {
   .header-page-image {
     padding-top: 11rem;
   }
+}
+
+.key-angle {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
 }
 
 .footer {
@@ -12146,8 +12165,6 @@ h3 {
 
 @media (min-width: 1600px) {
   .form-body {
-    position: absolute;
-    width: 1032px;
     height: 188px;
     left: 505px;
     top: 380px;

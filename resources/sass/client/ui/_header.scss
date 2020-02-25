@@ -37,8 +37,13 @@
         text-decoration: none;
     }
     
-    .navbar-nav .nav-link, .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
-        color: $blue;
+    .navbar-nav .nav-link, .navbar-nav .nav-link, .navbar-nav .nav-link:hover {
+        color: $header-inactive;
+        font-weight: 500;
+    }
+
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+        color: $header-active;
     }
     
     @media (min-width: 992px) {
@@ -65,12 +70,19 @@
     
     @media (min-width: 992px) {
         .border-lg-right {
-            border-right: 0.1rem solid $blue;
+            border-right: 1px solid #ccc;
             height: 1.6rem;
         }
         
         .margin-lg-left {
-            margin-left: 8rem;
+            margin-left: 5rem;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        
+        .margin-lg-left {
+            margin-left: 12rem;
         }
     }
 
@@ -92,10 +104,10 @@
 
     @media (min-width: 1600px) {
         .navbar-style{
-            width: 865px;
+            width: 830px;
             position: absolute;
             height: 72px;
-            left: 466px;
+            left: 605px;
             top: 32px;
             background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
             opacity: 0.8;
@@ -138,13 +150,16 @@
         .nav-item {
             line-height: 2.5rem;
             background-color: $white;
+            
         }
     
         .nav-item .active {
             background-color: #f7f7f7 !important;
+            color: $header-active;
         }
         .nav-item :hover {
             background-color: #f7f7f7 !important;
+            color: $header-active;
         }
     
         @media (min-width: 576px) {
@@ -169,4 +184,9 @@
     @media (min-width: 992px) {
         padding-top: 11rem;
     }
+}
+
+.key-angle{
+    transform: rotate(-135deg)  
+
 }
