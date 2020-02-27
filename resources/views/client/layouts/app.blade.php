@@ -105,12 +105,15 @@
                         @guest()
                             <li class="nav-item border-lg-right margin-lg-left">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
-                                <i class="far fa-user mr-1"></i>    
+                                
+                                    <img src="/images/sg1.jpg" class="icon-img mr-1 sg-icon" alt="..."></span>
+                                
                                     {{ __('Sign Up') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('client.login') }}">
-                                <i class="fas fa-key key-angle mr-1"></i>
+                                    
+                                    <img src="/images/key.jpg" class="icon-img mr-1 sg-icon" alt="...">
                                     {{ __('Log In') }}</a>
                             </li>
                         @else

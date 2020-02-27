@@ -11716,7 +11716,9 @@ h3 {
   .custom-navbar .nav-item a:hover:after,
   .custom-navbar .nav-item .active:after {
     width: 100%;
-    background: #b58267;
+    background-image: url("/images/active.png");
+    background-repeat: no-repeat;
+    background-position: left top;
   }
 }
 
@@ -11745,9 +11747,9 @@ h3 {
   .custom-navbar .navbar-style {
     width: 740px;
     position: absolute;
-    height: 72px;
+    height: 55px;
     left: 325px;
-    top: 32px;
+    top: 38px;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.8;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -11758,11 +11760,11 @@ h3 {
 
 @media (min-width: 1600px) {
   .custom-navbar .navbar-style {
-    width: 830px;
+    width: 850px;
     position: absolute;
-    height: 72px;
+    height: 60px;
     left: 605px;
-    top: 32px;
+    top: 37px;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.8;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -11847,9 +11849,8 @@ h3 {
   }
 }
 
-.key-angle {
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
+.sg-icon {
+  width: 15px;
 }
 
 .footer {
@@ -11981,7 +11982,7 @@ h3 {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    height: 485px;
+    height: 600px;
   }
 }
 
@@ -12047,6 +12048,7 @@ h3 {
 .main-search .icon-img {
   max-width: 26px;
   max-height: 20px;
+  opacity: 0.3;
 }
 
 .main-search .form-control {
@@ -12083,14 +12085,25 @@ h3 {
   border-radius: 0.2rem;
 }
 
+.main-search .scroll-mouse2 {
+  margin-top: 8rem !important;
+}
+
 .main-search .scroll-button {
   margin: 2rem auto 0;
   display: flex;
+  opacity: 0.6;
 }
 
 @media (min-width: 992px) {
   .main-search .scroll-button {
-    margin: 5rem auto 0;
+    margin: 1rem auto 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .main-search .scroll-button {
+    margin: 0.7rem auto 0;
   }
 }
 
@@ -12150,9 +12163,9 @@ h3 {
 @media (min-width: 992px) {
   .form-body {
     position: absolute;
-    width: 1000px;
+    width: 850px;
     height: 180px;
-    left: 150px;
+    left: 230px;
     top: 280px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
@@ -12165,9 +12178,11 @@ h3 {
 
 @media (min-width: 1600px) {
   .form-body {
-    height: 188px;
-    left: 505px;
-    top: 380px;
+    position: absolute;
+    width: 1100px;
+    height: 170px;
+    left: 600px;
+    top: 353px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
@@ -12219,7 +12234,7 @@ h3 {
 }
 
 .main-works .card-img-top {
-  width: 35%;
+  width: 50%;
   margin: auto;
 }
 
@@ -12407,6 +12422,13 @@ h3 {
   color: #FFFFFF !important;
   padding: 10px;
   text-decoration: none !important;
+}
+
+.see-more {
+  padding: 7px 50px !important;
+  background: linear-gradient(180deg, #CA9D86 0%, #B58267 29.69%);
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 }
 
 .services-title {

@@ -12,10 +12,10 @@
         <form action="{{ route('flight.search') }}" method="POST">
             <div class="row form-body">
 
-                <div class="col-lg-10 ml-4">
+                <div class="col-lg-10">
                     <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
                 </div>
-                <div class="col-lg-3 mb-3 mt-2 ml-4">
+                <div class="mb-3 mt-2 ml-3" style="width:23% !important">
                     <div class="input-group input-style-3">
                         <input type="text"
                                class="form-control from"
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3 mt-2 pl-0 bd">
+                <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
                     <div class="input-group input-style-2">
                         <input type="text"
                                class="form-control to"
@@ -41,33 +41,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3 mt-2">
+                <div class="mb-3 mt-2 ml-3" style="width: 20% !important">
                     <div class="input-group input-style">
                         <input type="text" class="form-control " name="departure">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="date-time"><img src="/images/date-icon.png" class="icon-img" alt="..."></span>
-                        </div>
+                        </div>  
                     </div>
 
                 </div>
-                <div class="col-lg-3 mb-3 mt-2 pl-0 ml-3">
+                <div class="mb-3 mt-2 pl-0 ml-3" style="width:12% !important">
                     <div class="input-group input-style">
-                        <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="passengers" name="passengers" ><img src="/images/passengers-icon.png" class="icon-img" alt="..."></span>
                         </div>
+                        <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
+                        
                     </div>
                 </div>
-    {{--            <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
-    {{--                <button type="button" class="plus-btn">--}}
-    {{--                    <img src="/images/plus.png" class="icon-img" alt="...">--}}
-    {{--                </button>--}}
-    {{--            </div>--}}
-                <div class="col-lg-3 form-container-1 mt-2">
+    {{--        <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
+    {{--             <button type="button" class="plus-btn">--}}
+    {{--                 <img src="/images/plus.png" class="icon-img" alt="...">--}}
+    {{--              </button>--}}
+    {{--        </div>--}}
+                <div class="form-container-1 mt-2 ml-3" style="width:12% !important">
                     <button type="submit" class="btn">Search</button>
                 </div>
                 <div class="col-lg-12 mb-5">
-                    <a href="#how-it-works"><img src="/images/scroll.png" class="scroll-button" alt="..."></a>
+                    <a href="#how-it-works">
+                    <img src="/images/mouse.png" class="scroll-button scroll-mouse2" alt="...">
+                        <img src="/images/scroll.png" class="scroll-button" alt="...">
+                    </a>
                 </div>
             </div>
         </form>
@@ -79,7 +83,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="mb-3">How It Works</h2>
-                <p class="font-weight-bold mb-0">It’s simple.</p>
+                <p class="font-weight-bold mb-3">It’s simple.</p>
                 <p class="mb-0">You choose where you want to go, when you want to go, and where you are coming from to get started. Next, we will show you every option available with an accurate price quote. Finally, you choose the private jet that fits your needs. It’s that simple.</p>
             </div>
         </div>
@@ -126,7 +130,7 @@
                 </div>
             </div>
             <div class="col-lg-1">
-                <img src="/images/devider.png" class="devider" alt="...">
+                <img src="/images/brown-devider.png"  alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card last-card">
@@ -190,7 +194,7 @@
     <div class="container container-bottom">
         <div class="row">
             <div class="col-auto">
-                <a href="/services" class="mb-0">See more</a>
+                <a href="/services" class="mb-0 see-more">See more</a>
             </div>
         </div>
     </div>
@@ -201,6 +205,7 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
+                <p><strong>All Private Jets in your pocket</strong></p>
                 <p class="mb-0">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
             </div>
         </div>
