@@ -24,7 +24,8 @@
                                name="startPoint"
                         >
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="departure-airport"><img src="/images/departure-icon.png" class="icon-img" alt="..."></span>
+                            <span class="input-group-text" id="departure-airport">
+                                <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
                         </div>
                     </div>
                 </div>
@@ -37,7 +38,8 @@
                                name="endPoint"
                         >
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="arrival-airport"><img src="/images/arrival-icon.png" class="icon-img" alt="..."></span>
+                            <span class="input-group-text" id="arrival-airport">
+                                <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
                         </div>
                     </div>
                 </div>
@@ -45,7 +47,8 @@
                     <div class="input-group input-style">
                         <input type="text" class="form-control " name="departure">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="date-time"><img src="/images/date-icon.png" class="icon-img" alt="..."></span>
+                            <span class="input-group-text" id="date-time">
+                                <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
                         </div>  
                     </div>
 
@@ -53,7 +56,8 @@
                 <div class="mb-3 mt-2 pl-0 ml-3" style="width:12% !important">
                     <div class="input-group input-style">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="passengers" name="passengers" ><img src="/images/passengers-icon.png" class="icon-img" alt="..."></span>
+                            <span class="input-group-text" id="passengers" name="passengers" >
+                                <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
                         </div>
                         <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
                         
@@ -69,8 +73,8 @@
                 </div>
                 <div class="col-lg-12 mb-5">
                     <a href="#how-it-works">
-                    <img src="/images/mouse.png" class="scroll-button scroll-mouse2" alt="...">
-                        <img src="/images/scroll.png" class="scroll-button" alt="...">
+                    <img src="/images/mouse.svg" class="scroll-button scroll-mouse2" alt="...">
+                        <img src="/images/scroll.svg" class="scroll-button" alt="...">
                     </a>
                 </div>
             </div>
@@ -90,55 +94,51 @@
         <div class="row align-items-center">
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-search.png" class="card-img-top" alt="...">
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-text">Search for your flight</p>--}}
-{{--                    </div>--}}
+                    <img src="/images/works-search.svg" class="card-img-top" alt="...">
                 </div>
+                <p class="card-text-h">Search</p>
+                <p class="card-text-p"> for your flight</p>
             </div>
             <div class="col-lg-1">
                 <img src="/images/devider.png" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-choose.png" class="card-img-top" alt="...">
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-text">Choose a flight that fits you</p>--}}
-{{--                    </div>--}}
+                    <img src="/images/works-choose.svg" class="card-img-top" alt="...">
                 </div>
+                <p class="card-text-h">Choose a flight</p>
+                <p class="card-text-p">that fits you</p>
             </div>
             <div class="col-lg-1">
                 <img src="/images/devider.png" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-book.png" class="card-img-top" alt="...">
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-text">Book your flight</p>--}}
-{{--                    </div>--}}
+                    <img src="/images/works-book.svg" class="card-img-top" alt="...">
                 </div>
+                <p class="card-text-h">Book</p>
+                <p class="card-text-p">your flight</p>
             </div>
             <div class="col-lg-1">
                 <img src="/images/devider.png" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-wait.png" class="card-img-top" alt="...">
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-text">Wait for a confirmation</p>--}}
-{{--                    </div>--}}
+                    <img src="/images/works-wait.svg" class="card-img-top" alt="...">
                 </div>
+                <p class="card-text-h">Wait for</p>
+                <p class="card-text-p">Confirmation</p>
             </div>
             <div class="col-lg-1">
                 <img src="/images/brown-devider.png"  alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card last-card">
-                    <img src="/images/works-enjoy.png" class="card-img-top" alt="...">
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-text">Enjoy your flight</p>--}}
-{{--                    </div>--}}
+                    <img src="/images/works-enjoy.svg" class="card-img-top" alt="...">
+
                 </div>
+                <p class="card-text-h">Enjoy</p>
+                <p class="card-text-p">your flight</p>
             </div>
         </div>
     </div>
@@ -206,7 +206,7 @@
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
                 <p><strong>All Private Jets in your pocket</strong></p>
-                <p class="mb-0">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
+                <p class="text-width mb-0">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
             </div>
         </div>
     </div>

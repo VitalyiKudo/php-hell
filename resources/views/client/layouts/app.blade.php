@@ -106,14 +106,14 @@
                             <li class="nav-item border-lg-right margin-lg-left">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
                                 
-                                    <img src="/images/sg1.jpg" class="icon-img mr-1 sg-icon" alt="..."></span>
+                                    <img src="/images/sg.svg" class="icon-img mr-1 sg-icon" alt="..."></span>
                                 
                                     {{ __('Sign Up') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('client.login') }}">
                                     
-                                    <img src="/images/key.jpg" class="icon-img mr-1 sg-icon" alt="...">
+                                    <img src="/images/key.svg" class="icon-img mr-1 sg-icon" alt="...">
                                     {{ __('Log In') }}</a>
                             </li>
                         @else
