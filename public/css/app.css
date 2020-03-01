@@ -12605,13 +12605,15 @@ h3 {
 
 .aircraft-planes .plane-tab {
   font-size: 24px;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 0.5rem;
   color: #294A7A !important;
+  font-weight: 600;
+  text-align: justify;
 }
 
 .aircraft-planes .plane-tab-2 {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .aircraft-planes .plane-block {
@@ -12649,6 +12651,22 @@ h3 {
   .aircraft-planes .plane-img {
     display: block;
   }
+}
+
+.aircraft-planes .read-more {
+  font-size: 18px;
+  line-height: 30px;
+  cursor: pointer;
+  color: #2A60AE !important;
+  text-transform: uppercase;
+}
+
+.aircraft-planes .carousel-indicators-r {
+  top: 295px !important;
+}
+
+.aircraft-planes .img-style {
+  border-radius: 10px;
 }
 
 .mobile-app-title {

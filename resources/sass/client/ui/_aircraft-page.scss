@@ -111,12 +111,14 @@
 
     .plane-tab {
         font-size: 24px;
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-top: 2.5rem;
+        padding-bottom: 0.5rem;
         color: #294A7A !important;
+        font-weight:600;
+        text-align: justify;
     }
     .plane-tab-2 {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .plane-block {
@@ -150,5 +152,19 @@
         @media (min-width: 576px) {
             display: block;
         }
+    }
+    .read-more{
+        
+        font-size: 18px;
+        line-height: 30px;
+        cursor: pointer;
+        color: #2A60AE !important;  
+        text-transform: uppercase;
+    }
+    .carousel-indicators-r {
+        top: 295px !important;
+    }
+    .img-style {
+        border-radius: 10px;
     }
 }

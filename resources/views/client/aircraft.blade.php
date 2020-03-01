@@ -54,210 +54,227 @@
     </div>
     <div class="container sec-style">
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="vip-airliner" role="tabpanel" aria-labelledby="vip-airliner-tab">
+            <div class="tab-pane fade show active tab-click" id="vip-airliner" role="tabpanel" aria-labelledby="vip-airliner-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
-                        <p class="mb-0 plane-tab">VIP airliner</p>
-                        <p class="mb-0 plane-tab-2">There are many good reasons why this class is called VIP Airliner, and that’s because they truly live up to their name. These jets have been designed for VIP’s from the ground up. Featuring a private bedroom, customized styling for all interiors, these planes are often used by Sports Teams and celebrities alike. They can take you and your company anywhere you need to go, with a carrying capacity of over 100 passengers. They can travel 7,500 miles, unlocking limitless destinations for your next corporate retreat or your next concert hall. These are the crown jewels of the Airbus and Boeing Aircraft lines, and are truly something to behold.</p>
+                    <div class="col-md-5">
+                        <p class="mb-0 plane-tab">VIP Airliner</p>
+                        <p class="mb-0 plane-tab-2">There are many good reasons why this class is called VIP Airliner, and that’s because they truly live up to their name. These jets have been designed for VIP’s from the ground up. Featuring a private bedroom, customized styling for all interiors, these planes are often used by Sports Teams and celebrities alike. 
+                            <span class="extra_text">They can take you and your company anywhere you need to go, with a carrying capacity of over 100 passengers. They can travel 7,500 miles, unlocking limitless destinations for your next corporate retreat or your next concert hall. These are the crown jewels of the Airbus and Boeing Aircraft lines, and are truly something to behold.</span>
+                        </p>
+                        <a class="read-more">Read More</a>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="ultra-long-range-jets" role="tabpanel" aria-labelledby="ultra-long-range-jets-tab">
+            <div class="tab-pane fade tab-click" id="ultra-long-range-jets" role="tabpanel" aria-labelledby="ultra-long-range-jets-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                     <p class="mb-0 plane-tab">Ultra Long Range Jets</p>
-                        <p class="mb-0 plane-tab-2">These Ultra Long Range Jets are what you need if you are flying around the world. These are the most common types of jets used for flights that will last over 12 hours, and have a carrying capacity of up to 19 passengers. If your business or family is looking for a non-stop option to travel around the world, this is your safest bet. Coincidentally with the rise and popularity of private jet charters, these are the newest class of aircraft to join the marketplace.</p>
-                    </div>
+                        <p class="mb-0 plane-tab-2">These Ultra Long Range Jets are what you need if you are flying around the world. These are the most common types of jets used for flights that will last over 12 hours, and have a carrying capacity of up to 19 passengers. 
+                            <span class="extra_text">If your business or family is looking for a non-stop option to travel around the world, this is your safest bet. Coincidentally with the rise and popularity of private jet charters, these are the newest class of aircraft to join the marketplace.</span>
+                        </p>
+                        <a class="read-more">Read More</a>    
+                        </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="heavy-jets" role="tabpanel" aria-labelledby="heavy-jets-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <p class="mb-0 plane-tab">Heavy Jets</p>
-                        <p class="mb-0 plane-tab-2">The Heavy Jets are getting closer in appearance to large commercial aircraft, and can hold a capacity of 18 passengers. These are complete with the luxurious amenities often found on commercial airliners as well as a potential 10 hour duration capacity of flight. These are the most common planes used for intercontinental flights due to their 4,000 mile range and are a favorite among the elite.</p>
+                        <p class="mb-0 plane-tab-2">The Heavy Jets are getting closer in appearance to large commercial aircraft, and can hold a capacity of 18 passengers. These are complete with the luxurious amenities often found on commercial airliners as well as a potential 10 hour duration capacity of flight. 
+                        <span class="extra_text"> These are the most common planes used for intercontinental flights due to their 4,000 mile range and are a favorite among the elite.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="super-mid-size-jets" role="tabpanel" aria-labelledby="super-mid-size-jets-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
-                    <p class="mb-0 plane-tab">Super Midsize Jets</p>
-                        <p class="mb-0 plane-tab-2">The Super Midsize Jets are the Goldilocks of the businessman's private jet experience. Often referred to as the most effective in getting the best bang for your buck, these planes are equipped with the luxurious amenities often only found on larger commercial airliners but can accommodate 10 passengers. These planes will have bathrooms and larger luggage capacity. The distance and the duration are also slightly better than the Midsize Jets with a range of up to 2,500 miles in one direction.</p>
+                    <div class="col-md-5">
+                        <p class="mb-0 plane-tab">Super Midsize Jets</p>
+                        <p class="mb-0 plane-tab-2">The Super Midsize Jets are the Goldilocks of the businessman's private jet experience. Often referred to as the most effective in getting the best bang for your buck, these planes are equipped with the luxurious amenities often only found on larger commercial airliners but can accommodate 10 passengers.
+                        <span class="extra_text">These planes will have bathrooms and larger luggage capacity. The distance and the duration are also slightly better than the Midsize Jets with a range of up to 2,500 miles in one direction.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="mid-size-jets" role="tabpanel" aria-labelledby="mid-size-jets-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <p class="mb-0 plane-tab">Midsize Jets</p>
-                        <p class="mb-0 plane-tab-2">These midsize jets are where things get interesting. These can travel up to 4 hours in one direction, and all models are equipped with luxuries and even bathrooms onboard. These can accommodate 9 passengers and can travel 2,000 miles in one direction. These are among the most common planes used for business purposes regarding executives and critical meetings.</p>
+                        <p class="mb-0 plane-tab-2">These midsize jets are where things get interesting. These can travel up to 4 hours in one direction, and all models are equipped with luxuries and even bathrooms onboard. These can accommodate 9 passengers and can travel 2,000 miles in one direction.
+                        <span class="extra_text"> These are among the most common planes used for business purposes regarding executives and critical meetings.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="light-jets" role="tabpanel" aria-labelledby="light-jets-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <p class="mb-0 plane-tab">Light Jets</p>
-                        <p class="mb-0 plane-tab-2">The Light Jet class is often the smallest used for business purposes, but can often fit up to 6 passengers at once. These planes will come standard with luxurious seats that can recline as well as temperature and humidity control onboard. These are often used for short-range trips of 1,000 miles, or two hours. These limitations might be able to be greatly lengthened depending on the number of passengers or weight of what you’ll be bringing along  the ride.</p>
+                        <p class="mb-0 plane-tab-2">The Light Jet class is often the smallest used for business purposes, but can often fit up to 6 passengers at once. These planes will come standard with luxurious seats that can recline as well as temperature and humidity control onboard. These are often used for short-range trips of 1,000 miles, or two hours. 
+                        <span class="extra_text">These limitations might be able to be greatly lengthened depending on the number of passengers or weight of what you’ll be bringing along  the ride.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="entry-level-jet" role="tabpanel" aria-labelledby="entry-level-jet-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <p class="mb-0 plane-tab">Entry-level Jet</p>
-                        <p class="mb-0 plane-tab-2">This class of jet is slightly larger than the Turboprop and is the smallest plane class without propellers. This plane can still access small runways as well as major airports. The carrying capacity can range from 4-5 passengers and are equipped with some amenities. The most common limitation on this class is the carrying capacity of 10,000 pounds, however, these flights can travel 750 miles in one direction.</p>
+                        <p class="mb-0 plane-tab-2">This class of jet is slightly larger than the Turboprop and is the smallest plane class without propellers. This plane can still access small runways as well as major airports. The carrying capacity can range from 4-5 passengers and are equipped with some amenities.
+                        <span class="extra_text"> The most common limitation on this class is the carrying capacity of 10,000 pounds, however, these flights can travel 750 miles in one direction.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
+
                 </div>
             </div>
 
             <div class="tab-pane fade" id="turbopop" role="tabpanel" aria-labelledby="turbopop-tab">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -266,20 +283,22 @@
                             </ol>
                             <div class="carousel-inner car-padding">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="/images/jet-trans.png" alt="First slide">
+                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <p class="mb-0 plane-tab">Turbopop</p>
-                        <p class="mb-0 plane-tab-2">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 mph. They are the most cost-efficient option and are often used for flights with an approximate duration of two hours and can land at both short runways as well as major airports.</p>
+                        <p class="mb-0 plane-tab-2">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 mph.
+                        <span class="extra_text"> They are the most cost-efficient option and are often used for flights with an approximate duration of two hours and can land at both short runways as well as major airports.</span></p>
+                        <a class="read-more">Read More</a>  
                     </div>
                 </div>
             </div>
@@ -580,3 +599,19 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+                
+            $('.extra_text').hide();
+            
+            $('.read-more').click(function(e){
+                e.preventDefault();
+                $('.extra_text').toggle();  
+            });
+            
+        });
+    </script>        
+    
+@endpush          
