@@ -39,7 +39,11 @@
                 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line4.png" alt="line">
+                        <!-- <img src="/images/line4.png" alt="line"> -->
+                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="160" fill="#EFAE9F"/>
+                        </svg>
+
                     </div>
                     <div class="col-md-10 service-fancy-p">
                         <p>When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane.</p>
@@ -56,6 +60,19 @@
             <div class="col-md-6 services-text">
                 <h2 class="services-h2 color-white">Artificial Intelligence Technology</h2>
                 <p class="services-p color-white">When you use JetOnset to find and reserve a private jet charter service, you have the backing of the latest and greatest artificial intelligence and technology that will find the best fit based on your needs, your starting location, and your final destination at the best price. When it comes to getting yourself, your team, or your family on a private jet - you simply can't beat our prices!</p>
+
+                <div class="row mt-5">
+                    <div class="col-md-1 pr-md-0">
+                        <!-- <img src="/images/line4.png" alt="line"> -->
+                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="110" fill="#EFAE9F"/>
+                        </svg>
+
+                    </div>
+                    <div class="col-md-10 service-fancy-p">
+                        <p>The JetOnset intelligent engine finds the best fit, based on your needs, your starting location, and your final destination at the best price. When it comes to getting yourself, your team, or your family on a private jet - you simply can't beat our prices!</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +80,20 @@
         <div class="row">
             <div class="col-md-6 services-text">
                 <h2 class="services-h2 color-white">Private-Security Screening | Avoid TSA Lines</h2>
-                <p class="services-p color-white">Most people new to the world of private chartered jets are pleased to find out that you have the added luxury of avoiding TSA lines and hassles altogether. While there is still private-security screening that must occur, it's handled by private corporations instead of the government, and we all know how that works out. Better, Faster, Safer security for everyone.</p>
+                <p class="services-p color-white">Most people new to the world of private chartered jets are pleased to find out that you have the added luxury of avoiding TSA lines and hassles altogether.</p>
+
+                <div class="row mt-5">
+                    <div class="col-md-1 pr-md-0">
+                        <!-- <img src="/images/line4.png" alt="line"> -->
+                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="80" fill="#EFAE9F"/>
+                        </svg>
+
+                    </div>
+                    <div class="col-md-10 service-fancy-p">
+                        <p> While there is still private-security screening that must occur, it's handled by private corporations instead of the government, and we all know how that works out. Better, Faster, Safer security for everyone.</p>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6 services-image private-screening-image"></div>
         </div>
@@ -73,7 +103,19 @@
             <div class="col-md-6 services-image private-booker-image"></div>
             <div class="col-md-6 services-text">
                 <h2 class="services-h2 color-white">Private Flight Booker</h2>
-                <p class="services-p color-white">JetOnset always has your back, especially if it's your first time dealing with private jets! We understand there are a lot of questions that are unique to your situation and we are always here to help. We have private flight bookers that can answer any question you might have and help you through the entire reserving and flying process, step by step! Don't hesitate to reach out if you have questions that we haven't thought of on our website! We love feedback of any kind!</p>
+                <p class="services-p color-white">JetOnset always has your back, especially if it's your first time dealing with private jets! We understand there are a lot of questions that are unique to your situation and we are always here to help.</p>
+                <div class="row mt-5">
+                    <div class="col-md-1 pr-md-0">
+                        <!-- <img src="/images/line4.png" alt="line"> -->
+                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="110" fill="#EFAE9F"/>
+                        </svg>
+
+                    </div>
+                    <div class="col-md-10 service-fancy-p">
+                        <p> We have private flight bookers that can answer any question you might have and help you through the entire reserving and flying process, step by step! Don't hesitate to reach out if you have questions that we haven't thought of on our website! We love feedback of any kind!</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
