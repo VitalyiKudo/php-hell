@@ -12,17 +12,31 @@
     .card-body {
         padding: 0.75rem 1.5rem;
 
-        a:before {
-            font-size: 1.1rem;
-            content: "↑";
-            float: right;
-            transition: all 0.5s;
-        }
+        // a:before {
+        //     font-size: 1.1rem;
+        //     content: "↑";
+        //     // background-image: url('/images/scroll.png');
+        //     float: right;
+        //     transition: all 0.5s;
+        // }
 
-        a.collapsed:before {
-            -webkit-transform: rotate(180deg);
-            -moz-transform: rotate(180deg);
-            transform: rotate(180deg);
+        // a.collapsed:before {
+        //     -webkit-transform: rotate(180deg);
+        //     -moz-transform: rotate(180deg);
+        //     transform: rotate(180deg);
+        // }
+
+        i {
+            border: solid #2B4B7A;
+            border-width: 0 1px 1px 0;
+            display: inline-block;
+            padding: 3px;
+            margin-top:5px;
+            float: right !important;
+        }
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
         } 
     }
 

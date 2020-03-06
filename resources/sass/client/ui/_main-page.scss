@@ -232,16 +232,20 @@
     }
 
     .devider {
-        margin: 1rem auto;
         display: flex;
-
+        margin-top: -2rem !important;    
         @media (min-width: 992px) {
             margin: auto;
             -webkit-transform: rotate(-90deg);
             -moz-transform: rotate(-90deg);
             transform: rotate(-90deg);
+            margin-top: -2rem !important;
         }
     }
+    .devider2 {
+        display: flex;
+        margin-top: -2rem !important;    
+     }
     
     @media (min-width: 992px) {
         .col-lg-1 {

@@ -130,7 +130,7 @@
                 <p class="card-text-p">Confirmation</p>
             </div>
             <div class="col-lg-1">
-                <img src="/images/brown-devider.png"  alt="...">
+                <img src="/images/brown-devider.png"  alt="..." class="devider2">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card last-card">
@@ -257,7 +257,11 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
+                    <ol class="carousel-indicators carousel-indicators2">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active" >
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
@@ -324,12 +328,12 @@
                     </div>
 
 
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <a class="carousel-control-prev carousel-control-prev2" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon carousel-control-prev-icon2 " aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <a class="carousel-control-next carousel-control-next2" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon carousel-control-next-icon2" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
@@ -371,7 +375,9 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq2" role="button" aria-expanded="false" aria-controls="collapseFaq2">How Much Does Private Charter Jet Cost?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq2" role="button" aria-expanded="false" aria-controls="collapseFaq2">How Much Does Private Charter Jet Cost?
+                        <i class="down"></i>   
+                        </a>
                         <div class="collapse" id="collapseFaq2">
                             <div class="row col-md-12 pos-full">
                                 <div class="col-md-1 line-border mt-3">

@@ -108,9 +108,13 @@
                                 
                                     <img src="/images/sg.svg" class="icon-img mr-1 sg-icon" alt="..."></span>
                                 
-                                    {{ __('Sign Up') }}</a>
+                                    {{ __('Sign Up') }}
+                                    
+                                </a>
+                                  
                             </li>
                             <li class="nav-item">
+                            
                                 <a class="nav-link" href="{{ route('client.login') }}">
                                     
                                     <img src="/images/key.svg" class="icon-img mr-1 sg-icon" alt="...">

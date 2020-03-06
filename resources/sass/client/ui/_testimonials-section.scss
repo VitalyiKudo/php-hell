@@ -90,3 +90,31 @@
     font-style: normal;
     color: #000000;
 }
+.carousel-control-prev2 {
+    left:25px !important;
+}
+.carousel-control-next2 {
+    right:25px !important;
+}
+.carousel-control-prev-icon2 {
+    background-image: url('/images/prev.svg') !important;
+    height: 45px !important;
+    
+}
+
+.carousel-control-next-icon2 {
+    background-image: url('/images/next.svg') !important;
+    height: 45px !important;
+    right: 25px;
+}
+
+.carousel-indicators2 {
+    bottom: -50px !important;
+}
+
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    color: #EDF5FB !important;
+  }
