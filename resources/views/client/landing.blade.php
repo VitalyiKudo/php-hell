@@ -350,7 +350,9 @@
                 <h2 class="mb-3">Frequent "Flyer" Questions</h2>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What is Private Jet Charter?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What is Private Jet Charter?
+                        <i class="down"></i>
+                        </a>
                         <div class="collapse" id="collapseFaq1">
                             <div class="row col-md-12 pos-full">
                                 <div class="col-md-1 line-border">
@@ -394,7 +396,9 @@
                 </div>
                 <div class="card mb-3">
                         <div class="card-body">
-                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq3" role="button" aria-expanded="false" aria-controls="collapseFaq3">Where To Charter A Private Jet?</a>
+                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq3" role="button" aria-expanded="false" aria-controls="collapseFaq3">Where To Charter A Private Jet?
+                            <i class="down"></i>
+                            </a>
                             <div class="collapse" id="collapseFaq3">
                             <div class="row col-md-12 pos-full">
                                     <div class="col-md-1 line-border mt-3">
@@ -411,7 +415,9 @@
                 </div>    
                 <div class="card mb-3">
                         <div class="card-body">
-                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq4" role="button" aria-expanded="false" aria-controls="collapseFaq4">Why Charter A Private Jet?</a>
+                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq4" role="button" aria-expanded="false" aria-controls="collapseFaq4">Why Charter A Private Jet?
+                            <i class="down"></i>
+                            </a>
                             <div class="collapse" id="collapseFaq4">
                                 <div class="row col-md-12 pos-full">
                                     <div class="col-md-1 line-border mt-4">
@@ -429,7 +435,9 @@
                 </div>    
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq5" role="button" aria-expanded="false" aria-controls="collapseFaq5">How Long To Charter A Private Jet?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq5" role="button" aria-expanded="false" aria-controls="collapseFaq5">How Long To Charter A Private Jet?
+                        <i class="down"></i>
+                        </a>
                         <div class="collapse" id="collapseFaq5">
                             <div class="row col-md-12 pos-full">
                                 <div class="col-md-1 line-border mt-4">
@@ -447,7 +455,9 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq6" role="button" aria-expanded="false" aria-controls="collapseFaq6">Can I Charter A Private Jet?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq6" role="button" aria-expanded="false" aria-controls="collapseFaq6">Can I Charter A Private Jet?
+                        <i class="down"></i>
+                        </a>
                         <div class="collapse" id="collapseFaq6">
                             <div class="row">
                                 
