@@ -23,7 +23,7 @@
     <div class="container sec-size">
         <div class="row">
             <div class="col planes-block">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs new-nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active active-link" id="vip-airliner-tab" data-toggle="tab" href="#vip-airliner" role="tab" aria-controls="vip-airliner" aria-selected="true">VIP airliner</a>
                     </li>
@@ -45,7 +45,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="entry-level-jet-tab" data-toggle="tab" href="#entry-level-jet" role="tab" aria-controls="entry-level-jet" aria-selected="false">Entry-level jet</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item turbopop">
                         <a class="nav-link last-nav-link" id="turbopop-tab" data-toggle="tab" href="#turbopop" role="tab" aria-controls="turbopop" aria-selected="false">Turbopop</a>
                     </li>
                 </ul>
@@ -276,7 +276,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -578,12 +578,52 @@
         </div>
     </div>-->
 </div>
+<div class="section planes">
+    <div class="container">
+        <div class="row plane-listing">
+            <div class="col-sm">
+                <p> Beechjet 400 </p>  
+                <p> Citation Bravo </p>  
+                <p> Citation CJ1 </p>  
+                <p> Citation CJ1+</p>
+                <p> Citation CJ2</p>
+                <p> Citation CJ2+</p>
+                <p> Citation CJ3</p>
+            </div>
+            <div class="col-sm">
+                <p> Citation CJ4</p>
+                <p> Citation Encore </p>
+                <p> Citation Encore + </p>  
+                <p> Citation I / ISP</p>
+                <p> Citation II / IISP</p>
+                <p> Citation Jet</p>
+                <p> Citation M2</p>
+            </div>
+            <div class="col-sm">
+                <p> Citation Mustang</p>
+                <p> Citation S / II</p>
+                <p> Citation Ultra</p>
+                <p> Citation V</p>
+                <p> Citation Hawker 400XP</p>
+                <p> Honda Jet</p>
+                <p> Learjet 35A</p>
+            </div>
+            <div class="col-sm">
+                <p> Learjet 40 / XR</p>
+                <p> Learjet 45 / XR</p>
+                <p> Learjet 55</p>
+                <p> Phenom 300</p>
+                <p> Premier I</p>
+            </div>
+        </div>
+    </div>
+</div>    
 
 <div class="section concierge">
     <div class="container">
         <div class="row">
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
-                <div class="row align-items-center">
+                <div class="row align-items-center visit-card">
                     <div class="col-lg-6">
                         <img src="/images/person.png" class="" alt="...">
                     </div>

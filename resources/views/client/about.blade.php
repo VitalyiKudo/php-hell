@@ -22,9 +22,9 @@
         <div class="row">
             <div class="col">
                 <h3 class="about-h3-text mb-3">Introduction</h3>
-                <p class="mb-4 title-p-text">JetOnset is a team of avid professionals who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>
-                <p class="mb-4 title-p-text">We have partnered up with private jet operators around the world and have harnessed the power of artificial intelligence to create technology which will put you in control of these planes at affordable rates.</p>
-                <p class="mb-0 title-p-text">From propeller driven Turboprops to VIP Airliners, we can accommodate a private individual and their family or an entire professional Sports Team! The airplanes we have access to come in every class size imaginable, and can fit the exact needs of your important flight.</p>
+                <p class="mb-4 title-p-text txt-color">JetOnset is a team of avid professionals who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>
+                <p class="mb-4 title-p-text txt-color">We have partnered up with private jet operators around the world and have harnessed the power of artificial intelligence to create technology which will put you in control of these planes at affordable rates.</p>
+                <p class="mb-0 title-p-text txt-color">From propeller driven Turboprops to VIP Airliners, we can accommodate a private individual and their family or an entire professional Sports Team! The airplanes we have access to come in every class size imaginable, and can fit the exact needs of your important flight.</p>
             </div>
         </div>
     </div>
