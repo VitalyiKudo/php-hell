@@ -10,9 +10,8 @@ Companions
 @section('body')
 <div class="row">
     <div class="col-md-12">
-        <form method="POST" action="{{ route('client.profile.payment.store') }}">
+        <form method="POST" action="{{ route('client.profile.companions.store') }}">
             @csrf
-            @method('PUT')
 
             <div class="row names-block">
                 <div class="col-md-12 mb-4">
@@ -32,7 +31,7 @@ Companions
                 <div class="col-md-6">
                     <div class="form-group mb-5">
                         <label for="companion_first_name">{{ __('First name') }}</label>
-                        <input id="first_companion_first_namename" type="text" class="form-control{{ $errors->has('companion_first_name') ? ' is-invalid' : '' }}" name="companion_first_name" value="{{ old('companion_first_name', $user->companion_first_name) }}" required>
+                        <input id="first_name" type="text" class="form-control{{ $errors->has('companion_first_name') ? ' is-invalid' : '' }}" name="companion_first_name" value="{{ old('companion_first_name', $user->companion_first_name) }}" required>
                     
                         @if ($errors->has('companion_first_name'))
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +58,7 @@ Companions
                 <div class="col-md-6">
                     <div class="form-group mb-5">
                         <label for="companion_date_of_birth">{{ __('Date of birth') }}</label>
-                        <input id="companion_date_of_birth" type="text" class="form-control{{ $errors->has('companion_date_of_birth') ? ' is-invalid' : '' }}" name="companion_date_of_birth" value="{{ old('companion_date_of_birth', optional($user->companion_date_of_birth)->format('d.m.Y')) }}">
+                        <input id="companion_date_of_birth" type="text" class="companion form-control{{ $errors->has('companion_date_of_birth') ? ' is-invalid' : '' }}" name="companion_date_of_birth" value="{{ old('companion_date_of_birth', optional($user->companion_date_of_birth)->format('d.m.Y')) }}">
                     
                         @if ($errors->has('companion_date_of_birth'))
                             <span class="invalid-feedback" role="alert">
@@ -85,8 +84,8 @@ Companions
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-5">
-                        <label for="companion_home_aadress">{{ __('Home aadress') }}</label>
-                        <input id="companion_home_aadress" type="text" class="form-control{{ $errors->has('companion_home_aadress') ? ' is-invalid' : '' }}" name="companion_home_aadress" value="{{ old('companion_home_aadress', $user->companion_home_aadress) }}">
+                        <label for="companion_home_address">{{ __('Home aadress') }}</label>
+                        <input id="companion_home_aadress" type="text" class="form-control{{ $errors->has('companion_home_aadress') ? ' is-invalid' : '' }}" name="companion_home_address" value="{{ old('companion_home_aadress', $user->companion_home_aadress) }}">
                     
                         @if ($errors->has('companion_home_aadress'))
                             <span class="invalid-feedback" role="alert">

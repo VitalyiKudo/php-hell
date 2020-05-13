@@ -41,15 +41,22 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row align-items-center">
+                            
                             @if ($order->status->code === 'completed')
                                 <div class="col-md-auto green-box"></div>
                             @elseif ($order->status->code === 'cancelled')
                                 <div class="col-md-auto red-box"></div>
-                            @else
+                            @elseif ($order->status->code === 'awaiting_payment')
                                 <div class="col-md-auto yellow-box"></div>
+                            @else
+                            <div class="col-md-auto"></div>
                             @endif
-                            <div class="col-md-2 icao">{{ $order->search_result->search->start_airport->icao }}-{{ $order->search_result->search->end_airport->icao }}</div>
-                            <div class="col-md-3 country">{{ $order->search_result->search->end_airport->country->name }}</div>
+                            <div class="col-md-3 icao">
+                                {{ $order->search_result->search->start_airport->icao }}-{{ $order->search_result->search->end_airport->icao }}
+                                <br>
+                                <small>{{ $order->status->name }}</small>
+                            </div>
+                            <div class="col-md-2 country text-center">{{ $order->search_result->search->end_airport->country->name }}</div>
                             <div class="col-md-2 date">{{ $order->created_at->format('d/m/Y') }}</div>
                             <div class="col-md-2 price">EUR {{ number_format($order->price, 2, '.', ',') }}</div>
                             <div class="col-md-2 book">

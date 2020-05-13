@@ -77167,6 +77167,8 @@ $(function () {
   $('[data-toggle="popover"]').popover();
 });
 $('.calendar').datepicker({});
+$('.profile').datepicker({});
+$('.companion').datepicker({});
 $('.dateranger').datepicker({
   format: 'yyyy-mm-dd'
 });

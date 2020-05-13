@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\StoreOrder as StoreOrderRequest;
 use App\Http\Requests\Admin\UpdateOrder as UpdateOrderRequest;
-
+use App\Mail\SendMail;
+use App\Models\OrderStatus;
+use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
 {
     /**
@@ -29,7 +31,6 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::orderBy('id', 'desc')->paginate(25);
-
         return view('admin.orders.list', compact('orders'));
     }
 
@@ -62,7 +63,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('admin.orders.view', compact('order'));
+        $orderStatuses = OrderStatus::all();
+        
+        return view('admin.orders.view', compact('order','orderStatuses'));
     }
 
     /**
@@ -73,7 +76,9 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        abort(404);
+        $orderStatuses = OrderStatus::all();
+        
+        return view('admin.orders.edit', compact('order','orderStatuses'));
     }
 
     /**
@@ -85,7 +90,18 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        abort(404);
+        $order = Order::where('id', $order->id)->first();
+        
+        $order->order_status_id = $request->order_status;
+        $order->price = $request->price;
+        $order->save();
+        
+        //Mail::to($order->user->email)->send(new SendMail($order));
+        Mail::send('admin.emails.order_status', ['order' => $order], function ($m) use ($order) {
+            $m->from('support@jetonset.com', 'JetOnSet');
+            $m->to($order->user->email)->subject('Order status Updated');
+        });     
+        return redirect()->back()->with('status', 'The order was successfully updated.');
     }
 
     /**

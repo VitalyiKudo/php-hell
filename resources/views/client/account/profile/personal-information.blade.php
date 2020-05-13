@@ -45,7 +45,7 @@ Profile
                 <div class="col-md-6">
                     <div class="form-group mb-5">
                         <label for="date_of_birth">{{ __('Date of birth') }}</label>
-                        <input id="date_of_birth" type="text" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth', optional($user->date_of_birth)->format('m/d/Y')) }}">
+                        <input id="date_of_birth" type="text" class="profile form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth', optional($user->date_of_birth)->format('m/d/Y')) }}">
                     
                         @if ($errors->has('date_of_birth'))
                             <span class="invalid-feedback" role="alert">

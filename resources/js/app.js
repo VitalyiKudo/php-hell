@@ -54,9 +54,15 @@ $(document).on('click', '.main-search a[href^="#"]', function (event) {
 /* Popover */
 $(function () {
     $('[data-toggle="popover"]').popover()
-  })
+})
 
-  $('.calendar').datepicker({
+$('.calendar').datepicker({
+});
+
+$('.profile').datepicker({
+});
+
+$('.companion').datepicker({
 });
 
 $('.dateranger').datepicker({

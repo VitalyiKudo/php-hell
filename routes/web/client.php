@@ -60,7 +60,11 @@ Route::namespace('Account')->group(function () {
     Route::delete('/profile/payment/{card}', 'Profile\PaymentController@destroy')->name('profile.payment.destroy');
 
     Route::get('/profile/companions', 'Profile\CompanionController@index')->name('profile.companions.index');
-
+    Route::post('/profile/companions/store', 'Profile\CompanionController@store')->name('profile.companions.store');
+    Route::get('/profile/companions/list', 'Profile\CompanionController@list')->name('profile.companions.list');
+    Route::get('/profile/companion/{id}/edit', 'Profile\CompanionController@edit')->name('profile.companion.edit');
+    Route::get('/profile/companion/{id}/delete', 'Profile\CompanionController@destroy')->name('profile.companion.delete');
+    Route::put('/profile/companion/update', 'Profile\CompanionController@update')->name('profile.companion.update');
     // Orders
     Route::get('/requests', 'RequestController@index')->name('requests.index');
 

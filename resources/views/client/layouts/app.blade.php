@@ -61,16 +61,16 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <li class="nav-item item-position">
                             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
                         </li>
 
                         @guest()
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ url('services') }}">{{ __('Services') }}</a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('aircraft') ? 'active' : '' }}" href="{{ url('aircraft') }}">{{ __('Aircraft') }}</a>
                             </li>
                             <!--
@@ -78,32 +78,32 @@
                                 <a class="nav-link {{ Request::is('mobile-app') ? 'active' : '' }}" href="/mobile-app">{{ __('Mobile App') }}</a>
                             </li>
                             -->
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('about') }}">{{ __('About') }}</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/">{{ __('Blog') }}</a>
                             </li>
                         @else
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a class="nav-link {{ Request::is('profile*') ? 'active' : '' }}" href="{{ route('client.profile') }}">{{ __('Profile') }}</a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('requests') ? 'active' : '' }}" href="{{ route('client.requests.index') }}">{{ __('Requests') }}</a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('orders') ? 'active' : '' }}" href="{{ route('client.orders.index') }}">{{ __('Orders') }}</a>
                             </li>
                         @endguest
 
-                        <li class="nav-item">
+                        <li class="nav-item item-position">
                             <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
                         </li>
 
                         @guest()
-                            <li class="nav-item border-lg-right margin-lg-left">
+                            <li class="nav-item item-position border-lg-right margin-lg-left ">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
                                 
                                     <img src="/images/sg.svg" class="icon-img mr-1 sg-icon" alt="..."></span>
@@ -114,6 +114,11 @@
                                   
                             </li>
                             <li class="nav-item">
+                                <svg width="1" height="50" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line opacity="0.1" x1="0.5" x2="0.5" y2="68" stroke="#2B4060"/>
+                                </svg>
+                            </li>
+                            <li class="nav-item item-position">
                             
                                 <a class="nav-link" href="{{ route('client.login') }}">
                                     
@@ -121,7 +126,7 @@
                                     {{ __('Log In') }}</a>
                             </li>
                         @else
-                            <li class="nav-item">
+                            <li class="nav-item item-position">
                                 <a class="nav-link" href="{{ route('client.logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

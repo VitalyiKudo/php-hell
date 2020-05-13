@@ -27,20 +27,8 @@
         <div class="col-md-8">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3>Selected result</h3>
-
-                    @include('admin.searches.result-card', ['result' => $order->search_result])
-
-                    <!-- <form class="mt-3">
-                        <button type="submit" class="btn btn-success">Accept</button>
-                        <button type="submit" class="btn btn-danger">Decline</button>
-                    </form> -->
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-5">
-            <div class="card mb-3">
+                    <h3>Edit Order</h3>
+                    <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Change Order Status</h5>
                     <dl class="mb-0">
@@ -48,6 +36,19 @@
                         <form class="mt-3" action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                             @method('PUT')
                             @csrf
+
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
+                                    id="price" name="price" value="{{ $order->price }}" required>
+
+                                @if ($errors->has('price'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Select Status</label>
                                 
@@ -57,11 +58,11 @@
                                         @endforeach
                                     </select>
                             </div>
-                            @if($order->order_status_id != 3 && $order->order_status_id != 4 )
+                            
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Update</button>
                                 </div>
-                            @endif    
+                                
                             </form>
                         </dt>
                         
@@ -115,6 +116,18 @@
                     <a href="{{ route('admin.users.show', $order->user->id) }}">View details</a>
                 </div>
             </div>
+                    <!-- @include('admin.searches.result-card', ['result' => $order->search_result]) -->
+
+                    <!-- <form class="mt-3">
+                        <button type="submit" class="btn btn-success">Accept</button>
+                        <button type="submit" class="btn btn-danger">Decline</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-5">
+            
         </div>
     </div>
 </div>

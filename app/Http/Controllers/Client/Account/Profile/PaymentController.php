@@ -59,10 +59,11 @@ class PaymentController extends Controller
     public function store(StoreCardRequest $request)
     {
         $user = $request->user();
-
+      //  dd($request->all());
         // Add card
         $paymentProfileId = $user->addCard(
             $request->input('number'),
+            $request->input('expiration_year'),
             $request->input('expiration_year'),
             $request->input('expiration_month'),
             $request->input('cvv')

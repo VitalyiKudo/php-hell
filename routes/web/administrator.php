@@ -16,11 +16,14 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware('auth:admin')->group(function () {
+    
+    Route::post('/orders/status', 'OrderController@UpdateStatus')->name('orders.status');
     Route::get('/', 'DashboardController')->name('dashboard');
-
     Route::resource('orders', 'OrderController');
     Route::resource('searches', 'SearchController');
     Route::resource('services', 'ServiceController');
     Route::resource('users', 'UserController');
     Route::resource('administrators', 'AdministratorController');
+
+    
 });

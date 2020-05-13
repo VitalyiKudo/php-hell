@@ -19,7 +19,7 @@
                     <a class="nav-link{{ Request::is('profile/payment*') ? ' active' : '' }}" href="{{ route('client.profile.payment.index') }}">Payment method</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ Request::is('profile/companions*') ? ' active' : '' }} nav-link-last" href="{{ route('client.profile.companions.index') }}">Companions</a>
+                    <a class="nav-link{{ Request::is('profile/companions*') ? ' active' : '' }} nav-link-last" href="{{ route('client.profile.companions.list') }}">Companions</a>
                 </li>
 {{--                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/orders') ? ' active' : '' }}" href="{{ route('client.profile.orders.index') }}">Orders</a>

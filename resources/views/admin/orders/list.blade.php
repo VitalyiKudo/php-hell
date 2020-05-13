@@ -55,7 +55,13 @@
                                     </td>
                                     <td class="align-middle">{{ number_format($order->price, 2, '.', ' ') }} &euro;</td>
                                     <td class="align-middle">{{ $order->created_at->format('d.m.Y H:i') }}</td>
+                                    
                                     <td class="align-middle text-right">
+                                    <!-- {{ route('admin.orders.edit', $order->id) }} -->
+                                        <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-secondary btn-sm">
+                                            Edit
+                                        </a>
+
                                         <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-secondary btn-sm">
                                             View
                                         </a>
