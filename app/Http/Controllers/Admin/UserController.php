@@ -106,7 +106,7 @@ class UserController extends Controller
         $user->billing_address_secondary = $request->input('billing_address_secondary');
         $user->billing_country = $request->input('billing_country');
         $user->billing_city = $request->input('billing_city');
-        $user->billing_province = $request->input('billing_province');
+        $user->billing_state = $request->input('billing_province');
         $user->billing_postcode = $request->input('billing_postcode');
 
         if ($request->filled('password')) {

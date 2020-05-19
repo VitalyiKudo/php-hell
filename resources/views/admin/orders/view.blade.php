@@ -39,36 +39,8 @@
             </div>
         </div>
 
-        <div class="col-md-4 mt-5">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Change Order Status</h5>
-                    <dl class="mb-0">
-                        <dt>
-                        <form class="mt-3" action="{{ route('admin.orders.update', $order->id) }}" method="POST">
-                            @method('PUT')
-                            @csrf
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Status</label>
-                                
-                                    <select class="form-control" name="order_status" id="exampleFormControlSelect1">
-                                        @foreach($orderStatuses as $stauts)
-                                            <option {{($order->status->id== $stauts->id ? 'selected' : '' ) }} value=" {{ $stauts->id}}">{{ $stauts->name}}</option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                            @if($order->order_status_id != 3 && $order->order_status_id != 4 )
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Update</button>
-                                </div>
-                            @endif    
-                            </form>
-                        </dt>
-                        
-                    </dl>
-                </div>
-            </div>    
-
+        <div class="col-md-4 mt-3">
+        <br>
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Order details</h5>

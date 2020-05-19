@@ -134,12 +134,12 @@
 
                             <div class="col-md-4">
                                 <div class="form-group mb-sm-3 mb-md-0">
-                                    <label for="billing_province">Province</label>
-                                    <input type="text" class="form-control{{ $errors->has('billing_province') ? ' is-invalid' : '' }}" id="billing_province" name="billing_province" value="{{ old('billing_province', $user->billing_province) }}">
+                                    <label for="billing_state">Province</label>
+                                    <input type="text" class="form-control{{ $errors->has('billing_state') ? ' is-invalid' : '' }}" id="billing_state" name="billing_state" value="{{ old('billing_state', $user->billing_state) }}">
 
                                     @if ($errors->has('billing_province'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('billing_province') }}</strong>
+                                            <strong>{{ $errors->first('billing_state') }}</strong>
                                         </span>
                                     @endif
                                 </div>
