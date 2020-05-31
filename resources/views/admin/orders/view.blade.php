@@ -52,9 +52,22 @@
 
                         <dt>Status</dt>
                         <dd>
-                            <span class="badge badge-pill badge-{{ $order->status->style }}">
-                                {{ $order->status->name }}
-                            </span>
+                        @if(is_null($order->is_accepted))
+                                <span class="badge badge-pill badge-warning">
+                                    Awaiting for Acceptance
+                                </span>
+                            @elseif ($order->is_accepted == 1)
+                                <span class="badge badge-pill badge-success">
+                                    Accepted
+                                </span>  
+                                <span class="badge badge-pill badge-{{ $order->status->style }}">
+                                    {{ $order->status->name }} 
+                                </span>
+                            @else
+                                <span class="badge badge-pill badge-danger">
+                                    Declined
+                                </span>
+                            @endif
                         </dd>
 
                         <dt>Price</dt>
@@ -62,6 +75,7 @@
 
                         <dt>Created at</dt>
                         <dd class="mb-0">{{ $order->created_at->format('d.m.Y G:h') }}</dd>
+                        
                     </dl>
                 </div>
             </div>

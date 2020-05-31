@@ -20,6 +20,7 @@ class Order extends Model
         'billing_city',
         'billing_province',
         'billing_postcode',
+        'is_accepted'
     ];
 
     /**

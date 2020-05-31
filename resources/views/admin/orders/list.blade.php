@@ -51,7 +51,24 @@
                                         @endif
                                     </td>
                                     <td class="align-middle">
-                                        <span class="badge badge-pill badge-{{ $order->status->style }}">{{ $order->status->name }}</span>
+                                        @if(is_null($order->is_accepted))
+                                            <span class="badge badge-pill badge-warning">
+                                                Awaiting for Acceptance
+                                            </span>
+                                        @elseif ($order->is_accepted == 1)
+                                            <span class="badge badge-pill badge-success">
+                                                Accepted
+                                            </span>  
+                                            <span class="badge badge-pill badge-{{ $order->status->style }}">
+                                                {{ $order->status->name }} 
+                                            </span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger">
+                                                Declined
+                                            </span>
+                                        @endif
+
+                                        <!-- <span class="badge badge-pill badge-{{ $order->status->style }}">{{ $order->status->name }}</span> -->
                                     </td>
                                     <td class="align-middle">{{ number_format($order->price, 2, '.', ' ') }} &euro;</td>
                                     <td class="align-middle">{{ $order->created_at->format('d.m.Y H:i') }}</td>

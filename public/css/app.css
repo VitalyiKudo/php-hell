@@ -12522,6 +12522,89 @@ h3 {
   padding-bottom: 1rem;
 }
 
+.bg-plane {
+  background-image: url("/images/aircrafts/jet_background7-8.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100% !important;
+}
+
+.bg-plane2 {
+  background-image: url("/images/aircrafts/jet_background5-6.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100% !important;
+}
+
+.bg-plane3 {
+  background-image: url("/images/aircrafts/jet_background3-4.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100% !important;
+}
+
+.bg-plane4 {
+  background-image: url("/images/aircrafts/jet_background1-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100% !important;
+}
+
+.air-pole {
+  left: 600;
+  width: 40% !important;
+  margin-left: 470px;
+  bottom: -90px !important;
+  padding-bottom: 0px !important;
+}
+
+.air-pole2 {
+  left: 600;
+  width: 40% !important;
+  margin-left: 470px;
+  bottom: -55px !important;
+  padding-bottom: 0px !important;
+}
+
+.air-pole3 {
+  left: 600;
+  width: 40% !important;
+  margin-left: 470px;
+  bottom: -20px !important;
+  padding-bottom: 0px !important;
+}
+
+.read-more {
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+  cursor: pointer;
+  color: #4390FF !important;
+  text-transform: uppercase;
+}
+
+.rd-more-section {
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
+}
+
 .aircraft-planes {
   color: #000;
 }
@@ -12636,16 +12719,19 @@ h3 {
 }
 
 .aircraft-planes .plane-tab {
-  font-size: 24px;
+  font-size: 22px;
   padding-top: 2.5rem;
   padding-bottom: 0.5rem;
-  color: #294A7A !important;
-  font-weight: 600;
+  color: #C6DDFF !important;
+  font-weight: 500;
   text-align: justify;
+  text-transform: uppercase;
 }
 
 .aircraft-planes .plane-tab-2 {
-  font-size: 16px;
+  font-size: 12px;
+  text-align: justify;
+  color: #C6DDFF !important;
 }
 
 .aircraft-planes .plane-block {
@@ -12671,6 +12757,7 @@ h3 {
 
 .aircraft-planes .car-padding {
   padding: 5%;
+  height: 420px !important;
 }
 
 .aircraft-planes .plane-img {
@@ -12685,20 +12772,20 @@ h3 {
   }
 }
 
-.aircraft-planes .read-more {
-  font-size: 18px;
-  line-height: 30px;
-  cursor: pointer;
-  color: #2A60AE !important;
-  text-transform: uppercase;
-}
-
 .aircraft-planes .carousel-indicators-r {
-  top: 295px !important;
+  top: 365px !important;
 }
 
 .aircraft-planes .img-style {
   border-radius: 10px;
+  width: 47% !important;
+  margin-left: 90px;
+}
+
+.aircraft-planes .img-style2 {
+  border-radius: 10px;
+  width: 40% !important;
+  margin-left: 115px;
 }
 
 .list-set {
@@ -12730,6 +12817,54 @@ h3 {
 
 .planes {
   margin-top: 20px;
+}
+
+.table-portion {
+  width: 25% !important;
+}
+
+.table-portion2 {
+  width: 30% !important;
+}
+
+.main-text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  color: #C6DDFF;
+}
+
+.txt1 {
+  text-align: left;
+}
+
+.txt3 {
+  text-align: center;
+}
+
+.txt2 {
+  text-align: right;
+}
+
+.plane-details {
+  line-height: 1 !important;
+}
+
+.main-text2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #C6DDFF;
+}
+
+.sub-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  text-align: center;
+  color: #C6DDFF;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .mobile-app-title {

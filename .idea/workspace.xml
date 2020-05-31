@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2248184-e8e0-47f2-8b39-fc4b057c4e06" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/view.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -294,7 +295,7 @@
       <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="2424" />
@@ -466,8 +467,7 @@
     <option name="totallyTimeSpent" value="183753000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27044535" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

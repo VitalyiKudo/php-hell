@@ -32,6 +32,25 @@
                 <div class="card-body">
                     <h5 class="card-title">Change Order Status</h5>
                     <dl class="mb-0">
+                        <div class="form-group">
+                        
+                    @if($order->is_accepted == null)
+                        <div class="form-group">
+                            <form class="mt-3" action="{{ route('admin.orders.accepted') }}" method="POST">
+                                @csrf
+                                <div class="custom-control custom-radio">
+                                    <input value="1" name="accept" type="radio" class="custom-control-input" id="customControlValidation2" >
+                                    <label class="custom-control-label" for="customControlValidation2">Accept</label>
+                                </div>
+                                <div class="custom-control custom-radio mb-3">
+                                    <input value="0" name="accept" type="radio" class="custom-control-input" id="customControlValidation3" >
+                                    <label class="custom-control-label" for="customControlValidation3">Decline</label>
+                                </div>
+                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                <button type="submit" class="btn btn-sm btn-success">Save</button>
+                            </form>    
+                        </div>
+                    @elseif($order->is_accepted)     
                         <dt>
                         <form class="mt-3" action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                             @method('PUT')
@@ -49,6 +68,8 @@
                                 @endif
                             </div>
 
+                            
+
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Select Status</label>
                                 
@@ -65,7 +86,8 @@
                                 
                             </form>
                         </dt>
-                        
+
+                    @endif    
                     </dl>
                 </div>
             </div>    
@@ -81,11 +103,24 @@
 
                         <dt>Status</dt>
                         <dd>
-                            <span class="badge badge-pill badge-{{ $order->status->style }}">
-                                {{ $order->status->name }}
-                            </span>
+                            @if(is_null($order->is_accepted))
+                                <span class="badge badge-pill badge-warning">
+                                    Awaiting for Acceptance
+                                </span>
+                            @elseif ($order->is_accepted == 1)
+                                <span class="badge badge-pill badge-success">
+                                    Accepted
+                                </span>  
+                                <span class="badge badge-pill badge-{{ $order->status->style }}">
+                                    {{ $order->status->name }} 
+                                </span>
+                            @else
+                                <span class="badge badge-pill badge-danger">
+                                    Declined
+                                </span>
+                            @endif
                         </dd>
-
+                        
                         <dt>Price</dt>
                         <dd>{{ number_format($order->price, 2, '.', ' ') }} &euro;</dd>
 
@@ -132,3 +167,5 @@
     </div>
 </div>
 @endsection
+
+

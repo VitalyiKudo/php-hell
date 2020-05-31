@@ -35,7 +35,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" rel="stylesheet" type="text/css">
-
+    
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>

@@ -114,4 +114,19 @@ class OrderController extends Controller
     {
         abort(404);
     }
+
+    /**
+     * Updated Order Status.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function orderAccepted(Request $request) {
+        $data = Order::where('id', $request->order_id)->first();
+        
+        $data->is_accepted = $request->input('accept');
+        $data->save();
+
+        return redirect()->back()->with('status', 'The order was successfully updated.');
+    }
 }
