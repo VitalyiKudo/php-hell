@@ -52,11 +52,11 @@
             </div>
         </div>
     </div>
-    <div class="container sec-style">
+    <div class="container">
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active tab-click bg-plane" id="vip-airliner" role="tabpanel" aria-labelledby="vip-airliner-tab">
+            <div class="tab-pane fade show active tab-click" id="vip-airliner" role="tabpanel" aria-labelledby="vip-airliner-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -102,50 +102,42 @@
                                                 <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                             </tr>
                                         </table>
-                                        <!-- <div style="width:100%; float:left">
-
-                                            <span style="width:25%">
-                                                20+ 
-                                                <span>Passengers</span>
-                                            </span>
-                                            <span style="width:25%">
-                                                20+ 
-                                                <span>Passengers</span>
-                                            </span>
-                                            <span style="width:25%">
-                                                20+ 
-                                                <span>Passengers</span>
-                                            </span>
-                                            <span style="width:25%">
-                                                20+ 
-                                                <span>Passengers</span>
-                                            </span>
-                                        </div> -->
+                                        
                                     </div>
                                     
                                 </div>
-                                <!-- <div class="carousel-item">
-                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100 img-style" src="/images/jet-trans.png" alt="First slide">
-                                </div> -->
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-5">
-                        <p class="mb-0 plane-tab">VIP Airliner</p>
-                        <p class="mb-0 plane-tab-2">There are many good reasons why this class is called VIP Airliner, and that’s because they truly live up to their name. These jets have been designed for VIP’s from the ground up. Featuring a private bedroom, customized styling for all interiors, these planes are often used by Sports Teams and celebrities alike. 
-                            <span class="extra_text">They can take you and your company anywhere you need to go, with a carrying capacity of over 100 passengers. They can travel 7,500 miles, unlocking limitless destinations for your next corporate retreat or your next concert hall. These are the crown jewels of the Airbus and Boeing Aircraft lines, and are truly something to behold.</span>
-                        </p>
-                        <a class="read-more">Read More</a>
-                    </div> -->
+                    
                 </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> VIP Airliner  </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                    <p> Beechjet 400 </p>  
+                                    <p> Citation Bravo </p>  
+                                    <p> Citation CJ1 </p>  
+                                    <p> Citation CJ1+</p>
+                                    <p> Citation CJ2</p>
+                                    <p> Citation CJ2+</p>
+                                    <p> Citation CJ3</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>    
             </div>
 
-            <div class="tab-pane fade tab-click bg-plane" id="ultra-long-range-jets" role="tabpanel" aria-labelledby="ultra-long-range-jets-tab">
+            <div class="tab-pane fade tab-click " id="ultra-long-range-jets" role="tabpanel" aria-labelledby="ultra-long-range-jets-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane" >
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -199,11 +191,32 @@
                     </div>
                     
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Ultra Long Range Jets </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                   
+                                    <p> Citation CJ1+</p>
+                                    <p> Citation CJ2</p>
+                                    <p> Citation CJ2+</p>
+                                    <p> Citation CJ3</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> 
             </div>
 
-            <div class="tab-pane fade tab-click bg-plane2" id="heavy-jets" role="tabpanel" aria-labelledby="heavy-jets-tab">
+            <div class="tab-pane fade tab-click" id="heavy-jets" role="tabpanel" aria-labelledby="heavy-jets-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane2">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -256,11 +269,33 @@
                     </div>
                     
                 </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Heavy Jets </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                     <p> Citation Mustang</p>
+                                    <p> Citation S / II</p>
+                                    <p> Citation Ultra</p>
+                                    <p> Citation V</p>
+                                    <p> Citation Hawker 400XP</p>
+                                    <p> Honda Jet</p>
+                                    <p> Learjet 35A</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="tab-pane tab-click bg-plane2" id="super-mid-size-jets" role="tabpanel" aria-labelledby="super-mid-size-jets-tab">
+            <div class="tab-pane tab-click " id="super-mid-size-jets" role="tabpanel" aria-labelledby="super-mid-size-jets-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane2">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -313,11 +348,34 @@
                     </div>
                     
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Super Midsize Jets </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                     <p> Citation Mustang</p>
+                                    <p> Citation S / II</p>
+                                    <p> Citation Ultra</p>
+                                    <p> Citation V</p>
+                                    <p> Citation Hawker 400XP</p>
+                                    <p> Honda Jet</p>
+                                    <p> Learjet 35A</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="tab-pane tab-click bg-plane3" id="mid-size-jets" role="tabpanel" aria-labelledby="mid-size-jets-tab">
+            <div class="tab-pane tab-click" id="mid-size-jets" role="tabpanel" aria-labelledby="mid-size-jets-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane3">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -370,11 +428,31 @@
                     </div>
                     
                 </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Midsize Jets </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                    <p> Learjet 40 / XR</p>
+                                    <p> Learjet 45 / XR</p>
+                                    <p> Learjet 55</p>
+                                    <p> Phenom 300</p>
+                                    <p> Premier I</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="tab-pane tab-click bg-plane4" id="light-jets" role="tabpanel" aria-labelledby="light-jets-tab">
+            <div class="tab-pane tab-click" id="light-jets" role="tabpanel" aria-labelledby="light-jets-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane4">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -428,12 +506,30 @@
                     </div>
                     
                 </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Light Jets </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                <p> Citation II / IISP</p>
+                                    <p> Citation Jet</p>
+                                    <p> Citation M2</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
 
 
-            <div class="tab-pane fade tab-click bg-plane4" id="entry-level-jet" role="tabpanel" aria-labelledby="entry-level-jet-tab">
+            <div class="tab-pane fade tab-click" id="entry-level-jet" role="tabpanel" aria-labelledby="entry-level-jet-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane4">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -487,11 +583,29 @@
                     </div>
                     
                 </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Entry-level Jet </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                    <p> Learjet 55</p>
+                                    <p> Phenom 300</p>
+                                    <p> Premier I</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>    
 
-            <div class="tab-pane fade tab-click bg-plane4" id="turbopop" role="tabpanel" aria-labelledby="turbopop-tab">
+            <div class="tab-pane fade tab-click" id="turbopop" role="tabpanel" aria-labelledby="turbopop-tab">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bg-plane4">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators carousel-indicators-r">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -544,6 +658,26 @@
                         </div>
                     </div>
                     
+                </div>
+                <div class="row">
+                    <div class="col-md-12 plane-list">
+                        <span class="flight-header"> Turbo prop </span> 
+                        <span class="flight-header2"> fleet  </span> 
+                        <div class="section planes">
+                        <div class="container">
+                            <div class="row plane-listing">
+                                <div class="col-sm">
+                                    <p> Learjet 40 / XR</p>
+                                    <p> Learjet 45 / XR</p>
+                                    <p> Learjet 55</p>
+                                    <p> Phenom 300</p>
+                                    <p> Premier I</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
 
@@ -825,7 +959,7 @@
         </div>
     </div>-->
 </div>
-<div class="section planes">
+<!-- <div class="section planes">
     <div class="container">
         <div class="row plane-listing">
             <div class="col-sm">
@@ -864,7 +998,7 @@
             </div>
         </div>
     </div>
-</div>    
+</div>     -->
 
 <div class="section concierge">
     <div class="container">

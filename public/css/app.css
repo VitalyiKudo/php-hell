@@ -12867,6 +12867,30 @@ h3 {
   opacity: 0.8;
 }
 
+.flight-header {
+  font-family: "Capoon PERSONAL USE";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  margin-top: 20px;
+  color: #294A7A;
+}
+
+.flight-header2 {
+  font-family: "Capoon PERSONAL USE";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  margin-top: 20px;
+  color: #294A7A;
+}
+
+.plane-list {
+  margin-top: 20px;
+}
+
 .mobile-app-title {
   margin-top: -8.5rem;
   padding-top: 15rem;
