@@ -14,6 +14,7 @@ class OrderStatusesTableSeeder extends Seeder
     {
         $data = [
             'on_hold' => 'On hold',
+            'in_process' => 'In Process',
             'awaiting_payment' => 'Awaiting for payment',
             'completed' => 'Completed',
             'cancelled' => 'Cancelled',
