@@ -12,8 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="mb-3">Private Chartered Jets & Planes</h2>
-                <p class="mb-5">With JetOnset you have access to thousands of planes positioned across the world, all accessible at your own fingertips. Take a journey through the wide variety of classes and options we can bring to you, at a fraction of the cost. These range from small propeller driven planes to VIP Airliners designed for professional Sports Teams and celebrities. </p>
+                <h2 class="mb-3">Private Aircraft Categories</h2>
+                <p class="mb-5">With JetOnset you have access to <strong> thousands of planes</strong> positioned across the world, all accessible at your own fingertips. Take a journey through the wide variety of classes and options we can bring to you, at a fraction of the cost. These range from small propeller driven planes to VIP Airliners designed for professional Sports Teams and celebrities. </p>
             </div>
         </div>
     </div>
