@@ -11,21 +11,21 @@
 <div class="section services-list">
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col services-right">
                 <h1 class="">JetOnset Services</h1>
                 <!-- <p class="mb-0 title-p-text">While we offer the greatest fleet and pricing for private jets, it's important that you understand the unique aspects and details that are included in the JetOnset experience. You can also learn from unique opportunities and uses for private jets that you never knew were even an option! Here, we will expand upon in detail the common and uncommon uses JetOnset customers to enjoy on a regular basis!</p> -->
             </div>
         </div>
     </div>
     <div class="container services services-right">
-        <div class="row">
+        <div class="row ">
             <div class="col-md-6 services-text">
-
+                
                 <h5 class="services-h2">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
-                        <img src="/images/line.png" alt="line">
+                    <div class="col-md-1 pr-md-0 img-align">
+                        <img src="/images/line2.png" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
                         <p>We have access to almost any jet size, shape, and class you can imagine. It doesn’t matter if you want to travel to a nearby island or halfway around the world - we have the jets for you! World-class!</p>
@@ -35,7 +35,7 @@
             <div class="col-md-6 services-image luxury-travel-image"></div>
         </div>
     </div>
-    <div class="container services services-fullwidth">
+    <div class="container services2 services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image corporate-travel-image"></div>
             <div class="col-md-6 services-text">
@@ -71,7 +71,7 @@
             <div class="col-md-6 services-image private-transportation-image"></div>
         </div>
     </div>
-    <div class="container services services-fullwidth">
+    <div class="container services2 services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image medical-tourism-image"></div>
             <div class="col-md-6 services-text">

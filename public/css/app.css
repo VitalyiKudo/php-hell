@@ -13166,11 +13166,18 @@ h3 {
 }
 
 .services {
+  margin-top: 2rem;
+  max-width: 100%;
+  width: auto;
+  background: linear-gradient(160.58deg, #2B4060 29.21%, rgba(55, 94, 151, 0.9) 83.93%);
+  border-radius: 16px;
+}
+
+.services2 {
   margin-top: 3rem;
   max-width: 100%;
   width: auto;
-  /* Rectangle 22 */
-  background: linear-gradient(202.34deg, #2B4060 29.95%, rgba(55, 94, 151, 0.9) 63.86%);
+  background: linear-gradient(219.58deg, #2B4060 30.9%, rgba(55, 94, 151, 0.9) 62.93%);
   border-radius: 16px;
 }
 
@@ -13199,12 +13206,12 @@ h3 {
 
 @media (min-width: 1200px) {
   .services-right {
-    margin-left: calc((100% - 1140px) / 2 + 15px);
+    margin-left: calc((100% - 1140px) / 2 + 150px);
   }
 }
 
 .services-right .services-text {
-  padding: 3rem;
+  padding: 2rem;
   min-height: 24.375rem;
   order: 2;
 }
@@ -13218,14 +13225,12 @@ h3 {
 .services-right .services-image {
   background-size: cover;
   background-position: center;
-  border-radius: 1rem 0 0 0;
   min-height: 20rem;
   order: 1;
 }
 
 @media (min-width: 768px) {
   .services-right .services-image {
-    border-radius: 1rem 0 0 1rem;
     min-height: 0;
     order: 2;
   }
@@ -13293,6 +13298,10 @@ h3 {
   color: #FFFFFF;
   left: -30px;
   opacity: 0.7;
+}
+
+.img-align {
+  margin-top: 5px;
 }
 
 .testimonials {
