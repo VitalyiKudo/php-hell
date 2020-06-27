@@ -10,7 +10,7 @@
 
 <div class="section aircraft-title">
     <div class="container">
-        <div class="row">
+        <div class="row txt-pos">
             <div class="col">
                 <h2 class="mb-3">Private Aircraft Categories</h2>
                 <p class="mb-5">With JetOnset you have access to <strong> thousands of planes</strong> positioned across the world, all accessible at your own fingertips. Take a journey through the wide variety of classes and options we can bring to you, at a fraction of the cost. These range from small propeller driven planes to VIP Airliners designed for professional Sports Teams and celebrities. </p>
@@ -20,8 +20,8 @@
 </div>
 
 <div class="section aircraft-planes">       
-    <div class="container sec-size">
-        <div class="row">
+    <div class="container">
+        <div class="row txt-pos2">
             <div class="col planes-block">
                 <ul class="nav nav-tabs new-nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container sec-size">
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active tab-click" id="vip-airliner" role="tabpanel" aria-labelledby="vip-airliner-tab">
                 <div class="row">
@@ -111,7 +111,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> VIP Airliner  </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -192,7 +192,7 @@
                     
                 </div>
 
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Ultra Long Range Jets </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -269,7 +269,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Heavy Jets </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -349,7 +349,7 @@
                     
                 </div>
 
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Super Midsize Jets </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -428,7 +428,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Midsize Jets </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -506,7 +506,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Light Jets </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -583,7 +583,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Entry-level Jet </span> 
                         <span class="flight-header2"> fleet  </span> 
@@ -659,7 +659,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
+                <div class="row txt-pos3">
                     <div class="col-md-12 plane-list">
                         <span class="flight-header"> Turbo prop </span> 
                         <span class="flight-header2"> fleet  </span> 
