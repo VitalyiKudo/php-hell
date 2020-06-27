@@ -8,7 +8,7 @@
 
 <div class="section about-title">
     <div class="container">
-        <div class="row">
+        <div class="row text-padding">
             <div class="col">
                 <h1 class="mb-2 color-blue"> About JetOnset</h2>
                 <h2 class="mb-0 color-blue">Why Charter Jets with JetOnset?</h2>

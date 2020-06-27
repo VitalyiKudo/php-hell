@@ -12531,7 +12531,7 @@ h3 {
 }
 
 .txt-pos3 {
-  padding: 0px 0px 0px 180px;
+  padding: 27rem 0px 0px 15rem;
 }
 
 .sec-size {
@@ -12548,7 +12548,8 @@ h3 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 100% !important;
+  height: 440px !important;
+  position: absolute;
 }
 
 .bg-plane2 {
@@ -12559,7 +12560,8 @@ h3 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 100% !important;
+  height: 440px !important;
+  position: absolute;
 }
 
 .bg-plane3 {
@@ -12570,7 +12572,8 @@ h3 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 100% !important;
+  height: 440px !important;
+  position: absolute;
 }
 
 .bg-plane4 {
@@ -12581,7 +12584,8 @@ h3 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 100% !important;
+  height: 440px !important;
+  position: absolute;
 }
 
 .air-pole {
@@ -12983,6 +12987,10 @@ h3 {
   font-family: "Capoon PERSONAL USE";
   font-size: 1.8rem;
   font-weight: 300;
+}
+
+.text-padding {
+  padding: 0px 0px 0px 200px;
 }
 
 .about-title h1 {
