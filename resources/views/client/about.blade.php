@@ -19,7 +19,7 @@
 
 <div class="section about-introduction mb-5">
     <div class="container">
-        <div class="row">
+        <div class="row text-padding">
             <div class="col">
                 <h3 class="about-h3-text mb-3">Introduction</h3>
                 <p class="mb-4 title-p-text txt-color">JetOnset is a team of avid professionals who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>

@@ -13004,6 +13004,10 @@ h3 {
   opacity: 0.8;
 }
 
+.about-title h1 {
+  opacity: 0.8;
+}
+
 .about-introduction {
   padding-top: 4rem;
 }
@@ -13232,7 +13236,7 @@ h3 {
 
 @media (min-width: 1200px) {
   .services-right {
-    margin-left: calc((100% - 1140px) / 2 + 150px);
+    margin-left: calc((100% - 1140px) / 2 + 210px);
   }
 }
 
