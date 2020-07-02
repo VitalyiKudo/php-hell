@@ -22,8 +22,8 @@
         <div class="row text-padding">
             <div class="col">
                 <h3 class="about-h3-text mb-3">Introduction</h3>
-                <p class="mb-4 title-p-text txt-color">JetOnset is a team of avid professionals who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>
-                <p class="mb-4 title-p-text txt-color">We have partnered up with private jet operators around the world and have harnessed the power of artificial intelligence to create technology which will put you in control of these planes at affordable rates.</p>
+                <p class="mb-4 title-p-text txt-color">JetOnset is a <strong> team of avid professionals </strong> who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>
+                <p class="mb-4 title-p-text txt-color">We have partnered up with private jet operators around the world and have harnessed the power of  <strong>artificial intelligence  </strong> to create technology which will put you in control of these planes at affordable rates.</p>
                 <p class="mb-0 title-p-text txt-color">From propeller driven Turboprops to VIP Airliners, we can accommodate a private individual and their family or an entire professional Sports Team! The airplanes we have access to come in every class size imaginable, and can fit the exact needs of your important flight.</p>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="col-md-6 services-image sky-philosophy-image"></div>
         </div>
     </div>
-    <div class="container services services-fullwidth">
+    <div class="container services2 services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image artificial-technology-image"></div>
             <div class="col-md-6 services-text">
@@ -98,7 +98,7 @@
             <div class="col-md-6 services-image private-screening-image"></div>
         </div>
     </div>
-    <div class="container services services-fullwidth">
+    <div class="container services2 services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image private-booker-image"></div>
             <div class="col-md-6 services-text">
@@ -126,7 +126,12 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
+                    <ol class="carousel-indicators carousel-indicators2">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active" >
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">

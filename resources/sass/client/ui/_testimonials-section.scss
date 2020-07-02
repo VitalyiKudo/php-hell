@@ -24,7 +24,7 @@
     }
 
     .testimonials-img {
-        width: 3.5rem;
+        width: 4.5rem;
     }
 
     .testimonials-text {
@@ -52,24 +52,24 @@
 }
 
 .text-bg {
-    width: 480px;
-    height: 130px;
+    width: 510px;
+    height: 145px;
 
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     border: 1px solid rgba(42, 96, 174, 0.2);
     box-sizing: border-box;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    left: 70px;
+    left: 40px;
 }
 .img-pos {
-    top: 35px;
+    top: 28px;
     left: -22px;
     width: 30%;
 }
 .text-pos {
     left: 76px;
-    top: -35px;
+    top: -55px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -91,7 +91,7 @@
     color: #000000;
 }
 .carousel-control-prev2 {
-    left:25px !important;
+    left:0px !important;
 }
 .carousel-control-next2 {
     right:25px !important;
