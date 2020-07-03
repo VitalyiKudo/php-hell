@@ -15,7 +15,6 @@
     max-width: 100%;
     width: auto;
     background: linear-gradient(219.58deg, #2B4060 30.9%, rgba(55, 94, 151, 0.9) 62.93%);
-    border-radius: 16px;
 }
 
 .services-right {
@@ -65,9 +64,10 @@
 }
 
 .services-fullwidth {
+    border-radius: 1rem 0 0 1rem !important;
     .services-text{
         padding: 3rem;
-
+            
         @media (min-width: 768px) {
             padding-right: calc((100% - 720px) / 2 + 15px);
         }
