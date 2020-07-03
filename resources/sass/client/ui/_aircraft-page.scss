@@ -15,69 +15,161 @@
 }
 
 .txt-pos3{
-    padding: 27rem 0px 0px 15rem;
+    padding: 30rem 0px 0px 15rem;
+    @media (min-width: 1600px) {
+        padding: 30rem 0px 0px 32rem;
+    }
 }
 .sec-size {
-    max-width: 100% !important;
+    max-width: 98% !important;
     padding:0px;
-    margin-left: 15px;
+    margin-left: 16px;
 }
-.bg-plane {
-    background-image: url("/images/aircrafts/jet_background7-8.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height:440px !important;
-    position: absolute;
+@media (min-width: 768px) {
+    .bg-plane {
+        background-image: url("/images/aircrafts/jet_background7-8.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:440px !important;
+        position: absolute;
+    }
+    
+    
+    .bg-plane2 {
+        background-image: url("/images/aircrafts/jet_background5-6.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:440px !important;
+        position: absolute;
+    }
+    
+    .bg-plane3 {
+        background-image: url("/images/aircrafts/jet_background3-4.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:440px !important;
+        position: absolute;
+    }
+    
+    .bg-plane4 {
+        background-image: url("/images/aircrafts/jet_background1-2.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:440px !important;
+        position: absolute;
+    
+    }
 }
 
-
-.bg-plane2 {
-    background-image: url("/images/aircrafts/jet_background5-6.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height:440px !important;
-    position: absolute;
+@media (min-width: 1200px) {
+    .bg-plane {
+        background-image: url("/images/aircrafts/jet_background7-8.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:480px !important;
+        position: absolute;
+    }
+    
+    
+    .bg-plane2 {
+        background-image: url("/images/aircrafts/jet_background5-6.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:480px !important;
+        position: absolute;
+    }
+    
+    .bg-plane3 {
+        background-image: url("/images/aircrafts/jet_background3-4.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:480px !important;
+        position: absolute;
+    }
+    
+    .bg-plane4 {
+        background-image: url("/images/aircrafts/jet_background1-2.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:480px !important;
+        position: absolute;
+    
+    }
+    
 }
 
-.bg-plane3 {
-    background-image: url("/images/aircrafts/jet_background3-4.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height:440px !important;
-    position: absolute;
+@media (min-width: 1600px) {
+    .bg-plane {
+        background-image: url("/images/aircrafts/jet_background7-8.png");
+        height:450px !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        position: absolute;
+    }
+    
+    
+    .bg-plane2 {
+        background-image: url("/images/aircrafts/jet_background5-6.png");
+        height:450px !important;
+    }
+    
+    .bg-plane3 {
+        background-image: url("/images/aircrafts/jet_background3-4.png");
+        height:450px !important;
+    }
+    
+    .bg-plane4 {
+        background-image: url("/images/aircrafts/jet_background1-2.png");
+        height:450px !important;
+    }
 }
-
-.bg-plane4 {
-    background-image: url("/images/aircrafts/jet_background1-2.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height:440px !important;
-    position: absolute;
-
-}
-
 .air-pole {
     left:600;
     width: 40% !important;
     margin-left: 470px;
-    bottom: -90px !important;
+    bottom: -60px !important;
     padding-bottom: 0px !important;
+
+    @media (min-width: 1600px) { 
+        margin-left: 650px;
+        bottom: 42px !important;
+    }
 }
 
 .air-pole2 {
@@ -86,6 +178,10 @@
     margin-left: 470px;
     bottom: -55px !important;
     padding-bottom: 0px !important;
+    @media (min-width: 1600px) { 
+        margin-left: 650px;
+        bottom: 42px !important;
+    }
 }
 
 .air-pole3 {
@@ -94,6 +190,10 @@
     margin-left: 470px;
     bottom: -20px !important;
     padding-bottom: 0px !important;
+    @media (min-width: 1600px) { 
+        margin-left: 650px;
+        bottom: 42px !important;
+    }
 }
 
 .read-more{
@@ -268,17 +368,38 @@
     
     .carousel-indicators-r {
         top: 365px !important;
+        @media (min-width: 1600px) { 
+            top: 395px !important;
+        }
     }
+        
     .img-style {
         border-radius: 10px;
-        width: 38% !important;
-        margin-left: 90px;
+        @media (min-width: 768px) {
+            width: 35% !important;
+            margin-left: 90px;
+        }
+        @media (min-width: 1200px) {
+            width: 38% !important;
+            margin-left: 175px;
+        }
     }
-
+    
     .img-style2 {
         border-radius: 10px;
-        width: 40% !important;
-        margin-left: 115px;
+        
+        @media (min-width: 768px) {
+            width: 40% !important;
+            margin-left: 115px;
+        }
+        @media (min-width: 1200px) {
+            width: 35% !important;
+            margin-left: 115px;
+        }
+        @media (min-width: 1600px) {
+            width: 30% !important;
+            margin-left: 256px;
+        }
     }
 }
 
@@ -365,6 +486,9 @@
     line-height: 30px;
     margin-top:20px;
     color: #294A7A;
+    @media (min-width: 1600px) { 
+        margin-left: 15px;
+    }
     
 }
 
