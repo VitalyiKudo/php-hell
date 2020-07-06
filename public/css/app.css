@@ -12784,7 +12784,7 @@ h3 {
 }
 
 .aircraft-planes .nav-tabs .nav-item {
-  margin-bottom: 0;
+  margin-bottom: -3px;
   margin-right: 1%;
 }
 
@@ -12798,7 +12798,7 @@ h3 {
   text-align: center;
   padding: 10px;
   width: 100%;
-  padding-bottom: 0px !important;
+  padding-bottom: 10px !important;
 }
 
 .aircraft-planes .nav-tabs .nav-link {
@@ -12825,8 +12825,8 @@ h3 {
   content: "";
   display: block;
   margin: auto;
-  margin-top: 0rem;
-  height: 1.5rem;
+  margin-top: -2px;
+  height: 1rem;
   width: 0px;
   background: transparent;
 }
@@ -12840,7 +12840,7 @@ h3 {
 }
 
 .aircraft-planes .nav-tabs .nav-item .active {
-  border-bottom: 1px solid #CA9D86 !important;
+  border-bottom: 3px solid #CA9D86 !important;
   color: #CA9D86 !important;
 }
 
