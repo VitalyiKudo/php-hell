@@ -155,6 +155,8 @@
             border-radius: 6px 0px 0px 6px;
 
         }
+        
+    
     }
 
     @media (min-width: 992px) {
@@ -181,6 +183,7 @@
             border-radius: 6px 0px 0px 6px;
 
         }
+        
     }
 }
 
@@ -491,4 +494,7 @@
 
 .visit-card a {
     color: #000000;
+}
+.service-headline {
+    margin-left: 145px;    
 }

@@ -148,7 +148,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="mb-3">Services</h2>
+                <h2 class="mb-3 service-headline">Services</h2>
             </div>
         </div>
     </div>
