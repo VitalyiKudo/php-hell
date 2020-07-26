@@ -77544,9 +77544,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mnadee\Documents\Code\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\mnadee\Documents\Code\resources\sass\client\client.scss */"./resources/sass/client/client.scss");
-module.exports = __webpack_require__(/*! C:\Users\mnadee\Documents\Code\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
+__webpack_require__(/*! C:\Users\mnadee\Documents\code\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\mnadee\Documents\code\resources\sass\client\client.scss */"./resources/sass/client/client.scss");
+module.exports = __webpack_require__(/*! C:\Users\mnadee\Documents\code\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
 
 
 /***/ })

@@ -241,7 +241,7 @@
 
             <div class="col-md-12 mt-5">
 
-                <div class="offset-5 col-md-4 ">
+                <div class="offset-5 col-md-3">
                     <a href="{{ url('about') }}" class="learn-more">More about JetOnset Co.</a>
                 </div>
 

@@ -434,7 +434,7 @@
 }
 
 .table-portion {
-    width:25% !important;
+    width:17% !important;
 }
 
 .table-portion2 {
@@ -455,7 +455,7 @@
 }
 
 .txt2 {
-    text-align: right;
+    text-align: center;
 }
 
 .plane-details {
@@ -464,7 +464,7 @@
 .main-text2 {
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 22px;
     color: #C6DDFF;
 }
 
@@ -511,3 +511,8 @@
 .aircraft-cat {
     color: #373737;
 }
+
+sup { 
+    vertical-align: super; 
+    font-size: small; 
+} 
