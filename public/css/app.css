@@ -12163,13 +12163,13 @@ h3 {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1600px) {
   .form-body {
     position: absolute;
-    width: 850px;
-    height: 180px;
-    left: 230px;
-    top: 280px;
+    width: 1100px;
+    height: 170px;
+    left: 390x !important;
+    top: 353px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
@@ -12179,13 +12179,13 @@ h3 {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 992px) {
   .form-body {
     position: absolute;
-    width: 1100px;
-    height: 170px;
-    left: 390x;
-    top: 353px;
+    width: 850px;
+    height: 180px;
+    left: 230px;
+    top: 280px;
     background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
@@ -12477,12 +12477,6 @@ h3 {
 
 .service-headline {
   margin-left: 145px;
-}
-
-@media (min-width: 1200px) {
-  .service-headline {
-    margin-left: 15px;
-  }
 }
 
 .services-title {
@@ -13408,7 +13402,7 @@ sup {
 
 @media (min-width: 1200px) {
   .services-right {
-    margin-left: calc((100% - 1140px) / 2 + 210px);
+    margin-left: calc((100% - 1140px) / 2 + 160px);
   }
 }
 
