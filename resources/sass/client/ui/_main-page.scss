@@ -187,13 +187,13 @@
     }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 992px) {
     .form-body {
         position: absolute;
-        width: 1100px;
-        height: 170px;
-        left: 490Px !important;
-        top: 353px;
+        width: 850px;
+        height: 180px;
+        left: 230px;
+        top: 280px;
         background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
         opacity: 0.9;
         border: 1px solid rgba(42, 96, 174, 0.2);
@@ -204,13 +204,13 @@
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1600px) {
     .form-body {
         position: absolute;
-        width: 850px;
-        height: 180px;
-        left: 230px;
-        top: 280px;
+        width: 1100px;
+        height: 170px;
+        left: 490Px !important;
+        top: 353px;
         background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
         opacity: 0.9;
         border: 1px solid rgba(42, 96, 174, 0.2);
