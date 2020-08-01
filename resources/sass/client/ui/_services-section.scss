@@ -1,6 +1,6 @@
 //
 // Services section
-// 
+//
 
 .services {
     margin-top: 2rem;
@@ -40,9 +40,9 @@
     .services-text {
         padding: 2rem;
         min-height: 24.375rem;
-        
+
         order: 2;
-        
+
         @media (min-width: 768px) {
             order: 1;
         }
@@ -67,15 +67,15 @@
     border-radius: 1rem 0 0 1rem !important;
     .services-text{
         padding: 3rem;
-            
+
         @media (min-width: 768px) {
             padding-right: calc((100% - 720px) / 2 + 15px);
         }
-    
+
         @media (min-width: 992px) {
             padding-right: calc((100% - 960px) / 2 + 15px);
         }
-    
+
         @media (min-width: 1200px) {
             padding-right: calc((100% - 1200px) / 2);
         }
@@ -103,17 +103,18 @@
 }
 
 .services-p {
+    font-family: $main-font-family;
+    font-weight:300;
     text-align: justify;
     font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 28px;
-
     color: #FFFFFF;
 }
 .service-fancy-p {
+    font-family: $main-font-family;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
     line-height: 26px;
     color: #FFFFFF;

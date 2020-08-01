@@ -13215,6 +13215,7 @@ sup {
 
 .txt-color {
   color: #373737;
+  font-family: "Roboto", sans-serif !important;
 }
 
 .support-for {
@@ -13492,17 +13493,19 @@ sup {
 }
 
 .services-p {
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300;
   text-align: justify;
   font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 28px;
   color: #FFFFFF;
 }
 
 .service-fancy-p {
+  font-family: "Roboto", sans-serif !important;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   line-height: 26px;
   color: #FFFFFF;
@@ -13515,9 +13518,14 @@ sup {
 }
 
 .testimonials {
+  font-family: "Roboto", sans-serif !important;
   padding-top: 4rem;
   padding-bottom: 18rem;
+  background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
   background-image: url("/images/main-wallpaper-4.jpg");
+  border: 1px solid rgba(42, 96, 174, 0.2);
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   background-repeat: no-repeat;
   background-position: 75% 0%;
   background-size: cover;
@@ -13589,7 +13597,7 @@ sup {
 .text-pos {
   left: 76px;
   top: -55px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif !important;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -13603,7 +13611,7 @@ sup {
   left: 76px;
   top: -35px;
   font-size: 16px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif !important;
   font-style: normal;
   color: #000000;
 }
@@ -13628,13 +13636,13 @@ sup {
 }
 
 .carousel-indicators2 {
-  bottom: -50px !important;
+  bottom: -60px !important;
 }
 
 .carousel-indicators li {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
+  width: 12px;
+  height: 14px;
+  border-radius: 42%;
   color: #EDF5FB !important;
   margin-right: 8px !important;
   margin-left: 8px !important;
