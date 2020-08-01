@@ -12681,10 +12681,10 @@ h3 {
 }
 
 .air-pole {
-  left: 600;
+  left: 600 !important;
   width: 40% !important;
   margin-left: 470px;
-  bottom: -60px !important;
+  bottom: -25px !important;
   padding-bottom: 0px !important;
 }
 
@@ -12699,14 +12699,14 @@ h3 {
   left: 600;
   width: 40% !important;
   margin-left: 470px;
-  bottom: -55px !important;
+  bottom: -25px !important;
   padding-bottom: 0px !important;
 }
 
 @media (min-width: 1600px) {
   .air-pole2 {
     margin-left: 650px;
-    bottom: 42px !important;
+    bottom: 25px !important;
   }
 }
 
@@ -12714,14 +12714,14 @@ h3 {
   left: 600;
   width: 40% !important;
   margin-left: 470px;
-  bottom: -20px !important;
+  bottom: 20px !important;
   padding-bottom: 0px !important;
 }
 
 @media (min-width: 1600px) {
   .air-pole3 {
     margin-left: 650px;
-    bottom: 42px !important;
+    bottom: 25px !important;
   }
 }
 
@@ -12930,7 +12930,7 @@ h3 {
 
 @media (min-width: 1200px) {
   .aircraft-planes .img-style {
-    width: 38% !important;
+    width: 35% !important;
     margin-left: 175px;
   }
 }
@@ -13075,6 +13075,16 @@ h3 {
 sup {
   vertical-align: super;
   font-size: small;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.scale {
+  color: #C6DDFF;
+  font-size: 26px;
+  font-weight: 300 !important;
 }
 
 .mobile-app-title {
@@ -13710,6 +13720,10 @@ sup {
     text-align: left;
     font-size: 1.1rem;
   }
+}
+
+.concierge .txt-color {
+  color: #B58267;
 }
 
 .login-page,
