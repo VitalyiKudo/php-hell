@@ -381,7 +381,7 @@
                                                     <span class="scale">ft<sup>3</sup></span> 
                                                 </td>
                                                 <td class="table-portion2 txt2"> 
-                                                    <span class='main-text'>2434-<span class='main-text2'>4010</span>
+                                                    <span class='main-text'>2434-4010</span>
                                                     <span class="scale">km</span>
                                                 </td>
                                             </tr>
@@ -451,7 +451,7 @@
                                                     <span class="scale">ft<sup>3</sup></span>
                                                 </td>
                                                 <td class="table-portion2 txt2"> 
-                                                    <span class='main-text'>2048-<span class='main-text2'>3223 </span>
+                                                    <span class='main-text'>2048-3223 </span>
                                                     <span class="scale">km</span>
                                                 </td>
                                             </tr>
@@ -518,7 +518,7 @@
                                                     <span class="scale">ft<sup>3</sup></span>
                                                 </td>
                                                 <td class="table-portion2 txt2"> 
-                                                    <span class='main-text'>2434-<span class='main-text2'>4010</span>
+                                                    <span class='main-text'>2434-4010</span>
                                                     <span class="scale">km</span>
                                                 </td>
                                             </tr>
@@ -584,7 +584,7 @@
                                                     <span class="scale">ft<sup>3</sup></span>  
                                                 </td>
                                                 <td class="table-portion2 txt2"> 
-                                                    <span class='main-text'>2434-<span class='main-text2'>4010</span>
+                                                    <span class='main-text'>2434-4010</span>
                                                     <span class="scale">km</span>
                                                 </td>
                                             </tr>
