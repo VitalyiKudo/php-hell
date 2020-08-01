@@ -40,8 +40,8 @@
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="200" viewBox="0 0 3 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="260" fill="#EFAE9F"/>
+                        <svg width="3" height="200" viewBox="0 0 3 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="165" fill="#EFAE9F"/>
                         </svg>
 
                     </div>
@@ -65,7 +65,7 @@
                     <div class="col-md-1 pr-md-0">
                         <!-- <img src="/images/line4.png" alt="line"> -->
                         <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="110" fill="#EFAE9F"/>
+                            <rect opacity="0.5" width="3" height="102" fill="#EFAE9F"/>
                         </svg>
 
                     </div>
@@ -86,7 +86,7 @@
                     <div class="col-md-1 pr-md-0">
                         <!-- <img src="/images/line4.png" alt="line"> -->
                         <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="115" fill="#EFAE9F"/>
+                            <rect opacity="0.5" width="3" height="78" fill="#EFAE9F"/>
                         </svg>
 
                     </div>
@@ -108,7 +108,7 @@
                     <div class="col-md-1 pr-md-0">
                         <!-- <img src="/images/line4.png" alt="line"> -->
                         <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="110" fill="#EFAE9F"/>
+                            <rect opacity="0.5" width="3" height="103" fill="#EFAE9F"/>
                         </svg>
 
                     </div>
