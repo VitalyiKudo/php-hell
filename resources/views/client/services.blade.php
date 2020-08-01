@@ -20,7 +20,7 @@
     <div class="container services services-right">
         <div class="row ">
             <div class="col-md-6 services-text">
-                
+
                 <h5 class="services-h2">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
@@ -60,7 +60,7 @@
                 <p class="services-p color-white">Do you want to move a priceless or prized possession? From multi-million dollar luxury custom cars to archeological artifacts and relics of art from the past - there is no safer way to relocate them than with a private chartered jet.</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-2 pr-md-0">
+                    <div class="col-md-1 pr-md-0">
                         <img src="/images/line3.png" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
@@ -102,7 +102,7 @@
                     <div class="col-lg-6">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>
                         <p class="mb-3">Concierge Service</p>
-                        <a href="mailto:concierge@jetonset.com"><p class="mb-0">concierge@jetonset.com</p></a>
+                        <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
                     </div>
                 </div>
             </div>
