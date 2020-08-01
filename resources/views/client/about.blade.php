@@ -40,12 +40,12 @@
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="200" viewBox="0 0 3 195" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="165" fill="#EFAE9F"/>
+                        <svg width="3" height="200" viewBox="0 0 3 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" width="3" height="145" fill="#EFAE9F"/>
                         </svg>
 
                     </div>
-                    <div class="col-md-10 service-fancy-p">
+                    <div class="col-md-11 service-fancy-p">
                         <p>When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane.</p>
                         <p> The same treatment will transpire once you arrive as well. On larger jets, you'll even have private cabin attendants who will wait on your needs.</p>
                     </div>
