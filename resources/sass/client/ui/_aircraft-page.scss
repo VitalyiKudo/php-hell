@@ -79,6 +79,14 @@
 }
 
 @media (min-width: 1200px) {
+    .plane-pos{
+        margin-left: 70px;
+        width: 100%;
+    }
+    .plane-pos2{
+        margin-left: 130px;
+        width: 80%;
+    }
     .bg-plane {
         background-image: url("/images/aircrafts/jet_background7-8.png");
         background-repeat: no-repeat;
@@ -132,6 +140,14 @@
 }
 
 @media (min-width: 1600px) {
+    .plane-pos{
+        margin-left: 100px;
+        width: 80%;
+    }
+    .plane-pos2{
+        margin-left: 150px;
+        width: 60%;
+    }
     .bg-plane {
         background-image: url("/images/aircrafts/jet_background7-8.png");
         height:450px !important;
@@ -536,11 +552,4 @@ sup {
     padding: 80px;
     text-align: center;
 }
-.plane-pos{
-    margin-left: 70px;
-    width: 100%;
-}
-.plane-pos2{
-    margin-left: 130px;
-    width: 80%;
-}
+
