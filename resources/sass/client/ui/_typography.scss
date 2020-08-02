@@ -1,10 +1,11 @@
 //
 // Typography
-// 
+//
 
 body {
     -webkit-font-smoothing: antialiased;
-    line-height: 1.6
+    line-height: 1.6;
+    font-family: $main-font-family;
 }
 
 strong {

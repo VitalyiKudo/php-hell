@@ -9,77 +9,93 @@
 
 <div class="section main-search">
     <div class="container">
-        <form action="{{ route('flight.search') }}" method="POST">
-            <div class="row form-body">
+        <div class="row">
+            <form action="{{ route('flight.search') }}" method="POST">
+                <div class="row form-body">
 
-                <div class="col-lg-10">
-                    <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
-                </div>
-                <div class="mb-3 mt-2 ml-3" style="width:23% !important">
-                    <div class="input-group input-style-3">
-                        <input type="text"
-                               class="form-control from"
-                               placeholder="Departure Airport"
-                               aria-describedby="departure-airport"
-                               name="startPoint"
-                        >
-                        <div class="input-group-prepend">
+                    <div class="col-lg-10">
+                        <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
+                    </div>
+                    <div class="mb-3 mt-2 ml-3" style="width:23% !important">
+                        <div class="input-group input-style-3">
+                            <input type="text"
+                                   class="form-control from"
+                                   placeholder="Departure Airport"
+                                   aria-describedby="departure-airport"
+                                   name="startPoint"
+                            >
+                            <div class="input-group-prepend">
                             <span class="input-group-text" id="departure-airport">
                                 <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
-                    <div class="input-group input-style-2">
-                        <input type="text"
-                               class="form-control to"
-                               placeholder="Arrival Airport"
-                               aria-describedby="arrival-airport"
-                               name="endPoint"
-                        >
-                        <div class="input-group-prepend">
+                    <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
+                        <div class="input-group input-style-2">
+                            <input type="text"
+                                   class="form-control to"
+                                   placeholder="Arrival Airport"
+                                   aria-describedby="arrival-airport"
+                                   name="endPoint"
+                            >
+                            <div class="input-group-prepend">
                             <span class="input-group-text" id="arrival-airport">
                                 <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="mb-3 mt-2 ml-3" style="width: 20% !important">
-                    <div class="input-group input-style">
-                        <input type="text" class="form-control " name="departure">
-                        <div class="input-group-prepend">
+                    <div class="mb-3 mt-2 ml-3" style="width: 20% !important">
+                        <div class="input-group input-style">
+                            <input type="text" class="form-control " name="departure">
+                            <div class="input-group-prepend">
                             <span class="input-group-text" id="date-time">
                                 <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
-                        </div>  
-                    </div>
-
-                </div>
-                <div class="mb-3 mt-2 pl-0 ml-3" style="width:12% !important">
-                    <div class="input-group input-style">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="passengers" name="passengers" >
-                                <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
+                            </div>
                         </div>
-                        <input type="number" class="form-control" placeholder="Passengers" aria-describedby="passengers" name="passengers">
-                        
+
+                    </div>
+                    <div class="mb-3 mt-2 pl-0 ml-3" style="width:12% !important">
+                        <div class="input-group input-style">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text bd-input" id="passengers" name="passengers" >
+                                <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
+                            </div>
+                            <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers">
+
+                        </div>
+                    </div>
+                    {{--        <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
+                    {{--             <button type="button" class="plus-btn">--}}
+                    {{--                 <img src="/images/plus.png" class="icon-img" alt="...">--}}
+                    {{--              </button>--}}
+                    {{--        </div>--}}
+                    <div class="form-container-1 mt-2 ml-3" style="width:12% !important">
+                        <button type="submit" class="btn">Search Jet</button>
                     </div>
                 </div>
-    {{--        <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
-    {{--             <button type="button" class="plus-btn">--}}
-    {{--                 <img src="/images/plus.png" class="icon-img" alt="...">--}}
-    {{--              </button>--}}
-    {{--        </div>--}}
-                <div class="form-container-1 mt-2 ml-3" style="width:12% !important">
-                    <button type="submit" class="btn">Search</button>
-                </div>
-                <div class="col-lg-12 mb-5">
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5 ml-5">
+                <div class="col-5 float-left">
                     <a href="#how-it-works">
-                    <img src="/images/mouse.svg" class="scroll-button scroll-mouse2" alt="...">
-                        <img src="/images/scroll.svg" class="scroll-button" alt="...">
+
+                        <img src="/images/scroll.svg" class="scroll-button scroll-arrow" alt="..."  align="right">
+                        <img src="/images/mouse.svg" class="scroll-button scroll-mouse2 scroll-upper" align="right" alt="...">
                     </a>
                 </div>
+                <div class="col-7 mt-2">
+                    <span class="scroll-txt">Scroll down</span>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
+
 </div>
 {{--<flight></flight>--}}
 <div class="section main-works" id="how-it-works">
@@ -362,24 +378,24 @@
                                     </svg>
 
                                 </div>
-                                
+
                                 <div class="col-md-11 position">
-                                    <p class="mt-3 mb-3">JetOnset is the first platform in the world to allow you to comfortably fly on a private jet without having to own one. You can book on the 1700 plus private jets in the shortest time possible. Select from the four categories outlined; light jets, mid-size jets, long-range (heavy jets), and short-range turboprops for your appropriate fit. 
+                                    <p class="mt-3 mb-3">JetOnset is the first platform in the world to allow you to comfortably fly on a private jet without having to own one. You can book on the 1700 plus private jets in the shortest time possible. Select from the four categories outlined; light jets, mid-size jets, long-range (heavy jets), and short-range turboprops for your appropriate fit.
                                         </p>
-                                    <p class="mt-3 mb-3">We guarantee you the best fit with the lowest prices on booking, for each jet category. Once you have your best jet choice, confirm your booking by paying either by Bitcoin, Credit card, Etherium, or wired transfer. Your flight is approved, and you can go ahead and start planning for your travel.</p>    
+                                    <p class="mt-3 mb-3">We guarantee you the best fit with the lowest prices on booking, for each jet category. Once you have your best jet choice, confirm your booking by paying either by Bitcoin, Credit card, Etherium, or wired transfer. Your flight is approved, and you can go ahead and start planning for your travel.</p>
                                     <p class="mb-0"><strong>We offer you three convenient options:</strong></p>
                                     <p class="mb-0"><strong>Door to Door</strong> - You are picked up from your doorstep and dropped at the doorstep of your destination.</p>
                                     <p class="mb-0"><strong>Airport to Airport</strong> - From your departure airport to your arrival airport, everything is personally managed.</p>
                                     <p class="mb-0"><strong>Flight Auctions</strong> - If your schedule is flexible; there are discounted prices for sale available for you.</p>
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
                         <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq2" role="button" aria-expanded="false" aria-controls="collapseFaq2">How Much Does Private Charter Jet Cost?
-                        <i class="down"></i>   
+                        <i class="down"></i>
                         </a>
                         <div class="collapse" id="collapseFaq2">
                             <div class="row col-md-12 pos-full">
@@ -391,7 +407,7 @@
                                 <div class="col-md-11 position">
                                     <p class="mt-3 mb-0">JetOnset looks into its over 1700 available jets on the dates you are placing your reservation, and we ensure you get the lowest price possible. If you find another jet flight for less than we offer you, we will match the price and give you a 5% discount, if it is the same jet type, and the same travel route at the same time and date as yours.</p>
                                 </div>
-                                </div>    
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -413,7 +429,7 @@
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
                 <div class="card mb-3">
                         <div class="card-body">
                             <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq4" role="button" aria-expanded="false" aria-controls="collapseFaq4">Why Charter A Private Jet?
@@ -428,12 +444,12 @@
                                     </div>
                                     <div class="col-md-11 position">
                                         <p class="mt-3 mb-0">There are many reasons people and organizations charter private jets. It could be a romantic getaway for a grand honeymoon. It could also be a corporate retreat to reward your executives and employees. Some companies own their own planes and use these to avoid creating rumors as they visit their manufacturing facility unannounced.</p>
-                            
+
                                     </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
-                </div>    
+                </div>
                 <div class="card mb-3">
                     <div class="card-body">
                         <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq5" role="button" aria-expanded="false" aria-controls="collapseFaq5">How Long To Charter A Private Jet?
@@ -448,9 +464,9 @@
                                 </div>
                                 <div class="col-md-11 position">
                                     <p class="mt-3 mb-0">JetOnset operates around the clock, and booking two hours before departure is okay, but maybe affected by positions that may arise. Booking in advance is advised.</p>
-                    
+
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -461,11 +477,11 @@
                         </a>
                         <div class="collapse" id="collapseFaq6">
                             <div class="row">
-                                
+
                                 <div class="col-md-12 ">
                                     <p class="mt-3 mb-0">As long as you aren’t on a No-Fly List and have the funds available to pay for the service, you absolutely can!</p>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -485,7 +501,7 @@
                     <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>
                         <p class="mb-3">Concierge Service</p>
-                        <a href="mailto:concierge@jetonset.com"><p class="mb-0">concierge@jetonset.com</p></a>
+                        <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
                     </div>
                 </div>
             </div>
