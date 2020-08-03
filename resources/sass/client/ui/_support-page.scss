@@ -90,11 +90,14 @@
     }
 
     .btn {
-        color: $white;
-        background-color: #113961;
+        display: block;
+        
+        height: 2.75rem;
         font-size: 0.9rem;
-        padding: 0.5rem 2rem;
-        border-radius: 0;
+        color: #C6DDFF;
+        background-color: $blue;
+        border: 1px solid $blue;
+        border-radius: 0.2rem;
     }
 }
 

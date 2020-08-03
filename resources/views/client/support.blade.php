@@ -97,7 +97,7 @@
                         @endif
                     </div>
 
-                    <button type="submit" class="btn d-block m-auto">Send</button>
+                    <button type="submit" class="btn d-block m-auto btn-lg">Send</button>
                 </div>
 
                 <div class="col-md-5 support-image-for-clients"></div>
