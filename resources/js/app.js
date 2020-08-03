@@ -65,8 +65,8 @@ $('.profile').datepicker({
 $('.companion').datepicker({
 });
 
-$('.dateranger').datepicker({
-    format: 'yyyy-mm-dd',
-});
+// $('.dateranger').datepicker({
+//     format: 'yyyy-mm-dd',
+// });
 
 

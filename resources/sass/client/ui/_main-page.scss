@@ -195,7 +195,7 @@
 @media (min-width: 992px) {
     .form-body {
         position: absolute;
-        width: 850px;
+        width: 950px;
         height: 180px;
         left: 230px;
         top: 280px;
@@ -407,7 +407,7 @@
     }
 
     @media (min-width: 1200px) {
-        margin: 0 calc((100% - 1140px) / 2 - 3rem);
+        margin: 0 calc((100% - 1140px) / 2 - 5rem);
     }
 
     .download-container {

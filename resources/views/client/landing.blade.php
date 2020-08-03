@@ -44,9 +44,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3 mt-2 ml-3" style="width: 20% !important">
+                    <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                         <div class="input-group input-style">
-                            <input type="text" class="form-control " name="departure">
+                            <input type="text" class="form-control " name="departure" placeholder="Date&Time">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="date-time">
                                 <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -54,7 +54,7 @@
                         </div>
 
                     </div>
-                    <div class="mb-3 mt-2 pl-0 ml-3" style="width:12% !important">
+                    <div class="mb-3 mt-2 pl-0 ml-3" style="width:16% !important">
                         <div class="input-group input-style">
                             <div class="input-group-prepend">
                             <span class="input-group-text bd-input" id="passengers" name="passengers" >
@@ -64,12 +64,8 @@
 
                         </div>
                     </div>
-                    {{--        <div class="col-4 offset-4 col-sm-2 offset-sm-5 col-lg-1 offset-lg-0 mb-3">--}}
-                    {{--             <button type="button" class="plus-btn">--}}
-                    {{--                 <img src="/images/plus.png" class="icon-img" alt="...">--}}
-                    {{--              </button>--}}
-                    {{--        </div>--}}
-                    <div class="form-container-1 mt-2 ml-3" style="width:12% !important">
+                    
+                    <div class="form-container-1 mt-2 ml-3" style="width:11% !important">
                         <button type="submit" class="btn">Search Jet</button>
                     </div>
                 </div>
@@ -524,9 +520,10 @@
 
             $('input[name="departure"]').daterangepicker({
                 opens: 'left',
-
+                keepEmptyValues: true
             });
-
+            $('input[name="departure"]').val('');
+            $('input[name="departure"]').attr("placeholder","Date & Time");
 
             $('input.from').typeahead({
 

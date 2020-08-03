@@ -77168,10 +77168,9 @@ $(function () {
 });
 $('.calendar').datepicker({});
 $('.profile').datepicker({});
-$('.companion').datepicker({});
-$('.dateranger').datepicker({
-  format: 'yyyy-mm-dd'
-});
+$('.companion').datepicker({}); // $('.dateranger').datepicker({
+//     format: 'yyyy-mm-dd',
+// });
 
 /***/ }),
 

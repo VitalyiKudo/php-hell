@@ -284,14 +284,14 @@
     <div class="container">
         <div class="row">
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
+                <div class="row align-items-center visit-card">
+                    <div class="col-lg-5">
                         <img src="/images/person.png" class="" alt="...">
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>
                         <p class="mb-3">Concierge Service</p>
-                        <a href="mailto:concierge@jetonset.com"><p class="mb-0">concierge@jetonset.com</p></a>
+                        <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
                     </div>
                 </div>
             </div>
