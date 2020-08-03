@@ -77,7 +77,7 @@
                                     </td>
                                     <td class="table-portion txt3">
                                         <span class='main-text'>60-305</span>
-                                        <span class="scale">ft<sup>3</sup></span>
+                                        <span class="scale">ft<sup>3</sup></spagit n>
 
                                     </td>
                                     <td class="table-portion2 txt2">
