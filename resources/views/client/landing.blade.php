@@ -10,68 +10,68 @@
 <div class="section main-search">
     <div class="container">
         <div class="row">
-            <form action="{{ route('flight.search') }}" method="POST">
-                <div class="row form-body">
-
-                    <div class="col-lg-10">
-                        <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
-                    </div>
-                    <div class="mb-3 mt-2 ml-3" style="width:23% !important">
-                        <div class="input-group input-style-3">
-                            <input type="text"
-                                   class="form-control from"
-                                   placeholder="Departure Airport"
-                                   aria-describedby="departure-airport"
-                                   name="startPoint"
-                            >
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="departure-airport">
-                                <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
+            <div class="offset-md-2 col-md-8">
+                <form action="{{ route('flight.search') }}" method="POST">
+                    <div class="row form-body">
+                        <div class="col-lg-10">
+                            <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
+                        </div>
+                        <div class="mb-3 mt-2 ml-3" style="width:23% !important">
+                            <div class="input-group input-style-3">
+                                <input type="text"
+                                    class="form-control from"
+                                    placeholder="Departure Airport"
+                                    aria-describedby="departure-airport"
+                                    name="startPoint"
+                                >
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="departure-airport">
+                                    <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
-                        <div class="input-group input-style-2">
-                            <input type="text"
-                                   class="form-control to"
-                                   placeholder="Arrival Airport"
-                                   aria-describedby="arrival-airport"
-                                   name="endPoint"
-                            >
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="arrival-airport">
-                                <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
+                        <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
+                            <div class="input-group input-style-2">
+                                <input type="text"
+                                    class="form-control to"
+                                    placeholder="Arrival Airport"
+                                    aria-describedby="arrival-airport"
+                                    name="endPoint"
+                                >
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="arrival-airport">
+                                    <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
-                        <div class="input-group input-style">
-                            <input type="text" class="form-control " name="departure" placeholder="Date&Time">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="date-time">
-                                <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
+                        <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
+                            <div class="input-group input-style">
+                                <input type="text" class="form-control " name="departure" placeholder="Date&Time">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="date-time">
+                                    <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <div class="mb-3 mt-2 pl-0 ml-3" style="width:16% !important">
-                        <div class="input-group input-style">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text bd-input" id="passengers" name="passengers" >
-                                <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
-                            </div>
-                            <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers">
 
                         </div>
+                        <div class="mb-3 mt-2 pl-0 ml-3" style="width:16% !important">
+                            <div class="input-group input-style">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text bd-input" id="passengers" name="passengers" >
+                                    <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
+                                </div>
+                                <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers">
+
+                            </div>
+                        </div>
+                        
+                        <div class="form-container-1 mt-2 ml-3" style="width:11% !important">
+                            <button type="submit" class="btn">Search Jet</button>
+                        </div>
                     </div>
-                    
-                    <div class="form-container-1 mt-2 ml-3" style="width:11% !important">
-                        <button type="submit" class="btn">Search Jet</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-
     </div>
 </div>
 <div class="section">
