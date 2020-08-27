@@ -12188,9 +12188,9 @@ h3 {
 
 @media (min-width: 992px) {
   .form-body {
-    width: 1075px;
-    height: 180px;
-    top: 175px;
+    width: 1025px;
+    height: 175px;
+    top: 150px;
     margin-left: -55px;
   }
 }
@@ -12208,7 +12208,7 @@ h3 {
 @media (min-width: 992px) {
   .main-works {
     padding-bottom: 4rem;
-    padding: 5rem 0rem 4rem 18rem;
+    padding: 5rem 0rem 4rem 12rem;
   }
 }
 
@@ -12477,7 +12477,7 @@ h3 {
 }
 
 .service-headline {
-  margin-left: 145px;
+  margin-left: 125px;
 }
 
 .scroll-arrow {
@@ -12516,7 +12516,7 @@ h3 {
 }
 
 .mouse-top {
-  margin-top: 10rem;
+  margin-top: 6rem;
 }
 
 .services-title {
@@ -13489,7 +13489,7 @@ sup {
 
 @media (min-width: 1200px) {
   .services-right {
-    margin-left: calc((100% - 1140px) / 2 + 160px);
+    margin-left: calc((100% - 1140px) / 2 + 125px);
   }
 }
 

@@ -10,7 +10,7 @@
 <div class="section main-search">
     <div class="container">
         <div class="row">
-            <div class="offset-md-2 col-md-8">
+            <div class="offset-md-1 col-md-8">
                 <form action="{{ route('flight.search') }}" method="POST">
                     <div class="row form-body">
                         <div class="col-lg-10">
