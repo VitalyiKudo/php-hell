@@ -55,6 +55,10 @@
                             <li class="nav-item {{ Request::is('manage/administrators*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.administrators.index') }}">{{ __('Administrators') }}</a>
                             </li>
+                            
+                            <li class="nav-item {{ Request::is('manage/airports*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.airports.index') }}">{{ __('Airports') }}</a>
+                            </li>
                         </ul>
                     @endauth
 

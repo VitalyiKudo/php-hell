@@ -25,6 +25,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('services', 'ServiceController');
     Route::resource('users', 'UserController');
     Route::resource('administrators', 'AdministratorController');
-
+    Route::resource('airports', 'AirportController');
     
 });
