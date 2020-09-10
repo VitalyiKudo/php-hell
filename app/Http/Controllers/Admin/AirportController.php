@@ -78,7 +78,9 @@ class AirportController extends Controller
      */
     public function show(Airport $airport)
     {
-        abort(404);
+        $country = Country::find($airport->country_id);
+
+        return view('admin.airports.view', compact('airport','country'));
     }
 
     /**

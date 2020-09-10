@@ -61,6 +61,9 @@
                                                 <a href="{{ route('admin.airports.edit', $airport->id) }}" class="btn btn-secondary btn-sm">
                                                     Edit
                                                 </a>
+                                                <a href="{{ route('admin.airports.show', $airport->id) }}" class="btn btn-secondary btn-sm">
+                                                    View
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
