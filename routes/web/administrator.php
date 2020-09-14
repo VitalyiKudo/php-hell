@@ -27,5 +27,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('administrators', 'AdministratorController');
     Route::get('airports/csvstore', 'AirportController@csvStore')->name('airports.csvstore');
     Route::resource('airports', 'AirportController');
+    Route::resource('airlines', 'AirlineController');
     
 });

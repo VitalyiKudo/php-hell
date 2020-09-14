@@ -59,6 +59,10 @@
                             <li class="nav-item {{ Request::is('manage/airports*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.airports.index') }}">{{ __('Airports') }}</a>
                             </li>
+                            
+                            <li class="nav-item {{ Request::is('manage/airlines*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.airlines.index') }}">{{ __('Airlines') }}</a>
+                            </li>
                         </ul>
                     @endauth
 

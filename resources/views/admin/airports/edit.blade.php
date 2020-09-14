@@ -135,7 +135,7 @@
 
                         <p>Are you sure you want to delete this airport? This action cannot be undone.</p>
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this airport? This action cannot be undone.')">Delete</button>
                     </form>
                 </div>
             </div>
