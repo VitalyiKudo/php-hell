@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\Authorize\AuthorizeServiceProvider::class,
         App\Providers\Helpdeskeddy\HelpdeskeddyServiceProvider::class,
+        
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -229,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Authorize' => App\Providers\Authorize\Facades\Authorize::class,
         'Helpdeskeddy' => App\Providers\Helpdeskeddy\Facades\Helpdeskeddy::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

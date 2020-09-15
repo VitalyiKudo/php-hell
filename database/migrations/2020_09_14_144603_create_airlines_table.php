@@ -20,8 +20,8 @@ class CreateAirlinesTable extends Migration
             $table->string('reg_number');
             $table->string('category');
             $table->string('homebase');
-            $table->integer('max_pax')->nullable();
-            $table->integer('yom')->nullable();
+            $table->unsignedDecimal('max_pax', 8, 0)->nullable();
+            $table->unsignedDecimal('yom', 8, 0)->nullable();
             $table->string('operator');
             $table->timestamps();
         });

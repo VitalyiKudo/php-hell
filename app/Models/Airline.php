@@ -12,6 +12,7 @@ class Airline extends Model
      * @var array
      */
     protected $fillable = [
+        'source_id',
         'type',
         'reg_number',
         'category',

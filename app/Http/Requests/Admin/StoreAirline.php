@@ -25,6 +25,7 @@ class StoreAirline extends FormRequest
     public function rules()
     {
         return [
+            'source_id' => 'numeric|max:191',
             'type' => 'required|string|max:191',
             'reg_number' => 'required|string|max:191',
             'category' => 'required|string|max:191',

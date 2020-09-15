@@ -15,7 +15,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-between mb-3">
-                <a href="{{ route('admin.airlines.create') }}" class="btn btn-success" onclick="return confirm('Are you sure that you want to update the database, but the old data will be lost?')">Update database</a>
+                
+                
+                <form action="{{ route('admin.airline.import') }}" method="POST" enctype="multipart/form-data" class="form-inline">
+                    @csrf
+                    <input type="file" name="file" class="form-control mr-3">
+                    <button class="btn btn-success" onclick="return confirm('Are you sure that you want to update the database, but the old data will be lost?')">Import Data from Excel</button>
+                </form>
+
+                
                 <a href="{{ route('admin.airlines.create') }}" class="btn btn-primary">Add new</a>
             </div>
         </div>
