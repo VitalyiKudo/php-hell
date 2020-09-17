@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="departure_city">Departure City</label>
-                            <input type="text" class="form-control{{ $errors->has('departure_city') ? ' is-invalid' : '' }}" id="departure_city" name="departure_city" value="{{ old('departure_city', $pricing->departure_city) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('departure_city') ? ' is-invalid' : '' }}" id="departure_city" name="departure_city" value="{{ old('departure_city', $pricing->departure_city) }}" autocomplete="off" required>
                             <div id="departureList" style="position: relative;"></div>
                             
                             @if ($errors->has('departure_city'))
@@ -43,7 +43,7 @@
 
                         <div class="form-group">
                             <label for="departure_city_to_airport">Airport of Departure City</label>
-                            <input type="text" class="form-control{{ $errors->has('departure_city_to_airport') ? ' is-invalid' : '' }}" id="departure_city_to_airport" name="departure_city_to_airport" value="{{ old('departure_city_to_airport', $pricing->departure_city_to_airport) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('departure_city_to_airport') ? ' is-invalid' : '' }}" id="departure_city_to_airport" name="departure_city_to_airport" value="{{ old('departure_city_to_airport', $pricing->departure_city_to_airport) }}" autocomplete="off" required>
                             <div id="departureAirportList" style="position: relative;"></div>
                             
                             @if ($errors->has('departure_city_to_airport'))
@@ -55,7 +55,7 @@
 
                         <div class="form-group">
                             <label for="arrival_city">Arrival City</label>
-                            <input type="text" class="form-control{{ $errors->has('arrival_city') ? ' is-invalid' : '' }}" id="arrival_city" name="arrival_city" value="{{ old('arrival_city', $pricing->arrival_city) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('arrival_city') ? ' is-invalid' : '' }}" id="arrival_city" name="arrival_city" value="{{ old('arrival_city', $pricing->arrival_city) }}" autocomplete="off" required>
                             <div id="arrivalList" style="position: relative;"></div>
                             
                             @if ($errors->has('arrival_city'))
@@ -67,7 +67,7 @@
 
                         <div class="form-group">
                             <label for="arrival_city_to_airport">Airport of Arrival City</label>
-                            <input type="text" class="form-control{{ $errors->has('arrival_city_to_airport') ? ' is-invalid' : '' }}" id="arrival_city_to_airport" name="arrival_city_to_airport" value="{{ old('arrival_city_to_airport', $pricing->arrival_city_to_airport) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('arrival_city_to_airport') ? ' is-invalid' : '' }}" id="arrival_city_to_airport" name="arrival_city_to_airport" value="{{ old('arrival_city_to_airport', $pricing->arrival_city_to_airport) }}" autocomplete="off" required>
                             <div id="arrivalAirportList" style="position: relative;"></div>
                             
                             @if ($errors->has('arrival_city_to_airport'))
