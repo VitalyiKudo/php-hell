@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,7 +20,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ mix('css/admin.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -63,6 +65,11 @@
                             <li class="nav-item {{ Request::is('manage/airlines*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.airlines.index') }}">{{ __('Airlines') }}</a>
                             </li>
+                            
+                            <li class="nav-item {{ Request::is('manage/pricing*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.pricing.index') }}">{{ __('Pricing') }}</a>
+                            </li>
+
                         </ul>
                     @endauth
 
