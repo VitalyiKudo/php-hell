@@ -62,8 +62,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="iata">Iata</label>
-                            <input type="text" class="form-control{{ $errors->has('iata') ? ' is-invalid' : '' }}" id="iata" name="iata" value="{{ old('iata', $airport->iata) }}" required>
+                            <label for="iata">IATA</label>
+                            <input type="text" class="form-control{{ $errors->has('iata') ? ' is-invalid' : '' }}" id="iata" name="iata" value="{{ old('iata', $airport->iata) }}">
 
                             @if ($errors->has('iata'))
                                 <span class="invalid-feedback" role="alert">
@@ -73,8 +73,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="icao">Icao</label>
-                            <input type="text" class="form-control{{ $errors->has('icao') ? ' is-invalid' : '' }}" id="icao" name="icao" value="{{ old('icao', $airport->icao) }}" required>
+                            <label for="icao">ICAO</label>
+                            <input type="text" class="form-control{{ $errors->has('icao') ? ' is-invalid' : '' }}" id="icao" name="icao" value="{{ old('icao', $airport->icao) }}">
 
                             @if ($errors->has('icao'))
                                 <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                         
                         <div class="form-group">
                             <label for="latitude">Latitude</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('latitude') ? ' is-invalid' : '' }}" id="latitude" name="latitude" value="{{ old('latitude', $airport->latitude) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('latitude') ? ' is-invalid' : '' }}" id="latitude" name="latitude" value="{{ old('latitude', $airport->latitude) }}">
 
                             @if ($errors->has('latitude'))
                                 <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                         
                         <div class="form-group">
                             <label for="longitude">Longitude</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('longitude') ? ' is-invalid' : '' }}" id="longitude" name="longitude" value="{{ old('longitude', $airport->longitude) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('longitude') ? ' is-invalid' : '' }}" id="longitude" name="longitude" value="{{ old('longitude', $airport->longitude) }}">
 
                             @if ($errors->has('longitude'))
                                 <span class="invalid-feedback" role="alert">
@@ -107,7 +107,7 @@
                         
                         <div class="form-group">
                             <label for="timezone">Timezone</label>
-                            <input type="text" class="form-control{{ $errors->has('timezone') ? ' is-invalid' : '' }}" id="timezone" name="timezone" value="{{ old('timezone', $airport->timezone) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('timezone') ? ' is-invalid' : '' }}" id="timezone" name="timezone" value="{{ old('timezone', $airport->timezone) }}">
 
                             @if ($errors->has('timezone'))
                                 <span class="invalid-feedback" role="alert">

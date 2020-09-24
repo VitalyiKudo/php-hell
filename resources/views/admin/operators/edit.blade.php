@@ -42,7 +42,7 @@
                         
                         <div class="form-group">
                             <label for="web_site">Web-site</label>
-                            <input type="text" class="form-control{{ $errors->has('web_site') ? ' is-invalid' : '' }}" id="web_site" name="web_site" value="{{ old('web_site', $operator->web_site) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('web_site') ? ' is-invalid' : '' }}" id="web_site" name="web_site" value="{{ old('web_site', $operator->web_site) }}">
 
                             @if ($errors->has('web_site'))
                                 <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $operator->email) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $operator->email) }}">
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" id="phone" name="phone" value="{{ old('phone', $operator->phone) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" id="phone" name="phone" value="{{ old('phone', $operator->phone) }}">
 
                             @if ($errors->has('phone'))
                                 <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                         
                         <div class="form-group">
                             <label for="mobile">Mobile</label>
-                            <input type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile" name="mobile" value="{{ old('mobile', $operator->mobile) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile" name="mobile" value="{{ old('mobile', $operator->mobile) }}">
 
                             @if ($errors->has('mobile'))
                                 <span class="invalid-feedback" role="alert">
@@ -86,7 +86,7 @@
                         
                         <div class="form-group">
                             <label for="fax">Fax</label>
-                            <input type="text" class="form-control{{ $errors->has('fax') ? ' is-invalid' : '' }}" id="fax" name="fax" value="{{ old('fax', $operator->fax) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('fax') ? ' is-invalid' : '' }}" id="fax" name="fax" value="{{ old('fax', $operator->fax) }}">
 
                             @if ($errors->has('fax'))
                                 <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
                         
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" id="address" name="address" value="{{ old('address', $operator->address) }}" required>
+                            <input type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" id="address" name="address" value="{{ old('address', $operator->address) }}">
 
                             @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">

@@ -38,7 +38,7 @@
                         
                         <div class="form-group">
                             <label for="reg_number">Reg. number</label>
-                            <input type="text" class="form-control{{ $errors->has('reg_number') ? ' is-invalid' : '' }}" id="reg_number" name="reg_number" value="{{ old('reg_number') }}" required>
+                            <input type="text" class="form-control{{ $errors->has('reg_number') ? ' is-invalid' : '' }}" id="reg_number" name="reg_number" value="{{ old('reg_number') }}">
 
                             @if ($errors->has('reg_number'))
                                 <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                         
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" id="category" name="category" value="{{ old('category') }}" required>
+                            <input type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" id="category" name="category" value="{{ old('category') }}">
 
                             @if ($errors->has('category'))
                                 <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                         
                         <div class="form-group">
                             <label for="homebase">Homebase</label>
-                            <input type="text" class="form-control{{ $errors->has('homebase') ? ' is-invalid' : '' }}" id="homebase" name="homebase" value="{{ old('homebase') }}" required>
+                            <input type="text" class="form-control{{ $errors->has('homebase') ? ' is-invalid' : '' }}" id="homebase" name="homebase" value="{{ old('homebase') }}">
 
                             @if ($errors->has('homebase'))
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                         
                         <div class="form-group">
                             <label for="max_pax">Max PAX</label>
-                            <input type="number" min="0" class="form-control{{ $errors->has('max_pax') ? ' is-invalid' : '' }}" id="max_pax" name="max_pax" value="{{ old('max_pax') }}" required>
+                            <input type="number" min="0" class="form-control{{ $errors->has('max_pax') ? ' is-invalid' : '' }}" id="max_pax" name="max_pax" value="{{ old('max_pax') }}">
 
                             @if ($errors->has('max_pax'))
                                 <span class="invalid-feedback" role="alert">
@@ -82,7 +82,7 @@
                         
                         <div class="form-group">
                             <label for="yom">YOM</label>
-                            <input type="number" min="0" class="form-control{{ $errors->has('yom') ? ' is-invalid' : '' }}" id="yom" name="yom" value="{{ old('yom') }}" required>
+                            <input type="number" min="0" class="form-control{{ $errors->has('yom') ? ' is-invalid' : '' }}" id="yom" name="yom" value="{{ old('yom') }}">
 
                             @if ($errors->has('yom'))
                                 <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                         
                         <div class="form-group">
                             <label for="operator">Operator</label>
-                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" value="{{ old('operator') }}" required>
+                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" value="{{ old('operator') }}">
 
                             @if ($errors->has('operator'))
                                 <span class="invalid-feedback" role="alert">

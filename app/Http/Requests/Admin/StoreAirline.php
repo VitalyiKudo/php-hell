@@ -27,12 +27,12 @@ class StoreAirline extends FormRequest
         return [
             'source_id' => 'numeric|max:191',
             'type' => 'required|string|max:191',
-            'reg_number' => 'required|string|max:191',
-            'category' => 'required|string|max:191',
-            'homebase' => 'required|string|max:191',
-            'max_pax' => 'required|numeric',
-            'yom' => 'required|numeric',
-            'operator' => 'required|string|max:191',
+            'reg_number' => 'nullable|string|max:191',
+            'category' => 'nullable|string|max:191',
+            'homebase' => 'nullable|string|max:191',
+            'max_pax' => 'nullable|numeric',
+            'yom' => 'nullable|numeric',
+            'operator' => 'nullable|string|max:191',
         ];
     }
 }

@@ -33,10 +33,10 @@
                                 <dt>Country</dt>
                                 <dd>{{ $country->name }}</dd>
                                 
-                                <dt>Iata</dt>
+                                <dt>IATA</dt>
                                 <dd>{{ $airport->iata }}</dd>
 
-                                <dt>Icao</dt>
+                                <dt>ICAO</dt>
                                 <dd>{{ $airport->icao }}</dd>
 
                                 <dt>Latitude</dt>

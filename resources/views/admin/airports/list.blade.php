@@ -46,6 +46,7 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>City</th>
+                                        <th>IATA</th>
                                         <th>Created at</th>
                                         <th></th>
                                     </tr>
@@ -57,6 +58,7 @@
                                             <td class="align-middle">{{ $loop->iteration }}</td>
                                             <td class="align-middle">{{ $airport->name }}</td>
                                             <td class="align-middle">{{ $airport->city }}</td>
+                                            <td class="align-middle">{{ $airport->iata }}</td>
                                             <td class="align-middle">{{ $airport->created_at->format('d.m.Y H:i') }}</td>
                                             <td class="align-middle text-right">
                                                 <a href="{{ route('admin.airports.edit', $airport->id) }}" class="btn btn-secondary btn-sm">

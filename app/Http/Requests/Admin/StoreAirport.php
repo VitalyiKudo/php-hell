@@ -27,11 +27,11 @@ class StoreAirport extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'iata' => 'string|max:3',
-            'icao' => 'string|max:4',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'timezone' => 'string|max:255',
+            'iata' => 'nullable|string|max:3',
+            'icao' => 'nullable|string|max:4',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'timezone' => 'nullable|string|max:255',
         ];
     }
 }

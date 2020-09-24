@@ -27,12 +27,12 @@ class StoreOperator extends FormRequest
         return [
             'source_id' => 'numeric|max:255',
             'name' => 'required|string|max:255',
-            'web_site' => 'string|max:255',
-            'email' => 'email|max:255',
-            'phone' => 'string|max:255',
-            'mobile' => 'string|max:255',
-            'fax' => 'string|max:255',
-            'address' => 'min:5',
+            'web_site' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'mobile' => 'nullable|string|max:255',
+            'fax' => 'nullable|string|max:255',
+            'address' => 'nullable|min:5',
         ];
     }
 }
