@@ -30,9 +30,17 @@
             </div>
         </div>
     @endif
-
+    
     <div class="row">
         <div class="col-md-12">
+            <div class="mb-4 mt-1">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Search">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" id="fetch-list">
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Airports</h5>
@@ -80,9 +88,45 @@
                     @endif
                 </div>
             </div>
-
             {{ $airports->links() }}
         </div>
+        <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     </div>
 </div>
+
+<script type="application/javascript">
+    $(document).ready(function(){
+
+        function fetch_data(page, query)
+        {
+            $.ajax({
+                url:"/manage/airport/search?page="+page+"&query="+query,
+                success:function(data)
+                {
+                    $('#fetch-list').html('');
+                    $('#fetch-list').html(data);
+                }
+            });
+        }
+
+        $(document).on('keyup', '#search', function(){
+            var query = $('#search').val();
+            var page = $('#hidden_page').val();
+            fetch_data(page, query);
+        });
+
+        $(document).on('click', '.pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            $('#hidden_page').val(page);
+            var query = $('#search').val();
+
+            $('li').removeClass('active');
+            $(this).parent().addClass('active');
+            fetch_data(page, query);
+        });
+
+    });
+</script>
+
 @endsection

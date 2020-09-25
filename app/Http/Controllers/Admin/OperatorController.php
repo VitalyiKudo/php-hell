@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreOperator as StoreOperatorRequest;
 use App\Http\Requests\Admin\UpdateOperator as UpdateOperatorRequest;
 use Carbon\Carbon;
+use DB;
 
 class OperatorController extends Controller
 {
@@ -154,4 +155,25 @@ class OperatorController extends Controller
             ->route('admin.operators.index')
             ->with('status', 'The operator was successfully deleted.');
     }
+    
+    function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $operators = DB::table('operators') 
+                ->where('name', 'like', '%'.$query.'%')
+                ->orWhere('web_site', 'like', '%'.$query.'%')
+                ->orWhere('email', 'like', '%'.$query.'%')
+                ->orWhere('phone', 'like', '%'.$query.'%')
+                ->orWhere('mobile', 'like', '%'.$query.'%')
+                ->orWhere('fax', 'like', '%'.$query.'%')
+                ->orWhere('address', 'like', '%'.$query.'%')
+                ->orderBy('id', 'asc')
+                ->paginate(25);
+            return view('admin.operators.pagination', compact('operators'))->render();
+        }
+    }
+    
 }

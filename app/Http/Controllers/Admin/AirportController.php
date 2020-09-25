@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAirport as StoreAirportRequest;
 use App\Http\Requests\Admin\UpdateAirport as UpdateAirportRequest;
 use Carbon\Carbon;
+use DB;
 
 class AirportController extends Controller
 {
@@ -185,4 +186,25 @@ class AirportController extends Controller
             ->route('admin.airports.index')
             ->with('status', 'The airport was successfully deleted.');
     }
+    
+    function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $airports = DB::table('airports') 
+                ->where('name', 'like', '%'.$query.'%')
+                ->orWhere('city', 'like', '%'.$query.'%')
+                ->orWhere('iata', 'like', '%'.$query.'%')
+                ->orWhere('icao', 'like', '%'.$query.'%')
+                ->orWhere('latitude', 'like', '%'.$query.'%')
+                ->orWhere('longitude', 'like', '%'.$query.'%')
+                ->orWhere('timezone', 'like', '%'.$query.'%')
+                ->orderBy('id', 'asc')
+                ->paginate(25);
+            return view('admin.airports.pagination', compact('airports'))->render();
+        }
+    }
+
 }

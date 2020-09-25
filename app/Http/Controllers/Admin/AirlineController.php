@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAirline as StoreAirlineRequest;
 use App\Http\Requests\Admin\UpdateAirline as UpdateAirlineRequest;
 use Carbon\Carbon;
+use DB;
 
 class AirlineController extends Controller
 {
@@ -154,4 +155,25 @@ class AirlineController extends Controller
             ->route('admin.airlines.index')
             ->with('status', 'The airline was successfully deleted.');
     }
+    
+    function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $airlines = DB::table('airlines') 
+                ->where('type', 'like', '%'.$query.'%')
+                ->orWhere('reg_number', 'like', '%'.$query.'%')
+                ->orWhere('category', 'like', '%'.$query.'%')
+                ->orWhere('homebase', 'like', '%'.$query.'%')
+                ->orWhere('max_pax', 'like', '%'.$query.'%')
+                ->orWhere('yom', 'like', '%'.$query.'%')
+                ->orWhere('operator', 'like', '%'.$query.'%')
+                ->orderBy('id', 'asc')
+                ->paginate(25);
+            return view('admin.airlines.pagination', compact('airlines'))->render();
+        }
+    }
+    
 }
