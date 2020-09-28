@@ -25,12 +25,13 @@ class StorePricing extends FormRequest
     public function rules()
     {
         return [
-            'departure_city' => 'required|string|max:190',
-            'departure_city_to_airport' => 'required|string|max:190',
-            'arrival_city' => 'required|string|max:190',
-            'arrival_city_to_airport' => 'required|string|max:190',
-            'price_first' => 'required|numeric',
-            'price_second' => 'required|numeric',
+            'departure' => 'required|string|max:255',
+            'arrival' => 'required|string|max:255',
+            'time' => 'required|string|max:255',
+            'price_turbo' => 'required|numeric',
+            'price_light' => 'required|numeric',
+            'price_medium' => 'required|numeric',
+            'price_heavy' => 'required|numeric',
         ];
     }
 }

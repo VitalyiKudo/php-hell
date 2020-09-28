@@ -6,12 +6,13 @@ use App\Models\Pricing;
 use App\Models\Country;
 use App\Models\Airport;
 use Illuminate\Http\Request;
-use App\Imports\AirlineImport;
+use App\Imports\PricingImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePricing as StorePricingRequest;
 use App\Http\Requests\Admin\UpdatePricing as UpdatePricingRequest;
 use Carbon\Carbon;
+use DB;
 
 class PricingController extends Controller
 {
@@ -59,12 +60,13 @@ class PricingController extends Controller
     {
         $pricing = new Pricing;
 
-        $pricing->departure_city = $request->input('departure_city');
-        $pricing->departure_city_to_airport = $request->input('departure_city_to_airport');
-        $pricing->arrival_city = $request->input('arrival_city');
-        $pricing->arrival_city_to_airport = $request->input('arrival_city_to_airport');
-        $pricing->price_first = $request->input('price_first');
-        $pricing->price_second = $request->input('price_second');
+        $pricing->departure = $request->input('departure');
+        $pricing->arrival = $request->input('arrival');
+        $pricing->time = $request->input('time');
+        $pricing->price_turbo = $request->input('price_turbo');
+        $pricing->price_light = $request->input('price_light');
+        $pricing->price_medium = $request->input('price_medium');
+        $pricing->price_heavy = $request->input('price_heavy');
 
         $pricing->save();
 
@@ -84,11 +86,9 @@ class PricingController extends Controller
     {
         $status = "Excel file was not uploaded";
         if(request()->file('file') && request()->file('file')->extension() == 'xlsx'){
-            /*
-            Airline::whereNotNull('id')->delete();
-            Excel::import(new AirlineImport, request()->file('file'));
+            Pricing::whereNotNull('id')->delete();
+            Excel::import(new PricingImport, request()->file('file'));
             $status = "The database was successfully updated.";
-            */
         }
 
         return redirect()
@@ -127,12 +127,13 @@ class PricingController extends Controller
      */
     public function update(UpdatePricingRequest $request, Pricing $pricing)
     {
-        $pricing->departure_city = $request->input('departure_city');
-        $pricing->departure_city_to_airport = $request->input('departure_city_to_airport');
-        $pricing->arrival_city = $request->input('arrival_city');
-        $pricing->arrival_city_to_airport = $request->input('arrival_city_to_airport');
-        $pricing->price_first = $request->input('price_first');
-        $pricing->price_second = $request->input('price_second');
+        $pricing->departure = $request->input('departure');
+        $pricing->arrival = $request->input('arrival');
+        $pricing->time = $request->input('time');
+        $pricing->price_turbo = $request->input('price_turbo');
+        $pricing->price_light = $request->input('price_light');
+        $pricing->price_medium = $request->input('price_medium');
+        $pricing->price_heavy = $request->input('price_heavy');
 
         $pricing->save();
 
@@ -187,5 +188,26 @@ class PricingController extends Controller
         }
 
     }
+    
+    public function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $pricing = DB::table('pricings')
+                ->where('departure', 'like', '%'.$query.'%')
+                ->orWhere('arrival', 'like', '%'.$query.'%')
+                ->orWhere('time', 'like', '%'.$query.'%')
+                ->orWhere('price_turbo', 'like', '%'.$query.'%')
+                ->orWhere('price_light', 'like', '%'.$query.'%')
+                ->orWhere('price_medium', 'like', '%'.$query.'%')
+                ->orWhere('price_heavy', 'like', '%'.$query.'%')
+                ->orderBy('id', 'asc')
+                ->paginate(25);
+            return view('admin.pricing.pagination', compact('pricing'))->render();
+        }
+    }
+
     
 }

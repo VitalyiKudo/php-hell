@@ -187,7 +187,7 @@ class AirportController extends Controller
             ->with('status', 'The airport was successfully deleted.');
     }
     
-    function search(Request $request)
+    public function search(Request $request)
     {
         if($request->ajax())
         {

@@ -13,12 +13,14 @@ class Pricing extends Model
      */
 
     protected $fillable = [
-        'departure_city',
-        'departure_city_to_airport',
-        'arrival_city',
-        'arrival_city_to_airport',
-        'price_first',
-        'price_second',
+        'source_id',
+        'departure',
+        'arrival',
+        'time',
+        'price_turbo',
+        'price_light',
+        'price_medium',
+        'price_heavy',
     ];
 
 }

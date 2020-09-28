@@ -156,7 +156,7 @@ class AirlineController extends Controller
             ->with('status', 'The airline was successfully deleted.');
     }
     
-    function search(Request $request)
+    public function search(Request $request)
     {
         if($request->ajax())
         {

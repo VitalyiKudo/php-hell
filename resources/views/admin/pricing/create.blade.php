@@ -24,73 +24,82 @@
 
                     <form method="POST" action="{{ route('admin.pricing.store') }}">
                         @csrf
-                        
-                        <div class="form-group">
-                            <label for="departure_city">Departure City</label>
-                            <input type="text" class="form-control{{ $errors->has('departure_city') ? ' is-invalid' : '' }}" id="departure_city" name="departure_city" value="{{ old('departure_city') }}" autocomplete="off" required>
-                            <div id="departureList" style="position: relative;"></div>
-                            
-                            @if ($errors->has('departure_city'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('departure_city') }}</strong>
-                                </span>
-                            @endif
-                        </div>
 
                         <div class="form-group">
-                            <label for="departure_city_to_airport">Airport of Departure City</label>
-                            <input type="text" class="form-control{{ $errors->has('departure_city_to_airport') ? ' is-invalid' : '' }}" id="departure_city_to_airport" name="departure_city_to_airport" value="{{ old('departure_city_to_airport') }}" autocomplete="off" required>
+                            <label for="departure">Departure Airport</label>
+                            <input type="text" class="form-control{{ $errors->has('departure') ? ' is-invalid' : '' }}" id="departure" name="departure" value="{{ old('departure') }}" autocomplete="off" required>
                             <div id="departureAirportList" style="position: relative;"></div>
                             
-                            @if ($errors->has('departure_city_to_airport'))
+                            @if ($errors->has('departure'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('departure_city_to_airport') }}</strong>
+                                    <strong>{{ $errors->first('departure') }}</strong>
                                 </span>
                             @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="arrival_city">Arrival City</label>
-                            <input type="text" class="form-control{{ $errors->has('arrival_city') ? ' is-invalid' : '' }}" id="arrival_city" name="arrival_city" value="{{ old('arrival_city') }}" autocomplete="off" required>
-                            <div id="arrivalList" style="position: relative;"></div>
-                            
-                            @if ($errors->has('arrival_city'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('arrival_city') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="arrival_city_to_airport">Airport of Arrival City</label>
-                            <input type="text" class="form-control{{ $errors->has('arrival_city_to_airport') ? ' is-invalid' : '' }}" id="arrival_city_to_airport" name="arrival_city_to_airport" value="{{ old('arrival_city_to_airport') }}" autocomplete="off" required>
+                            <label for="arrival">Arrival Airport</label>
+                            <input type="text" class="form-control{{ $errors->has('arrival') ? ' is-invalid' : '' }}" id="arrival" name="arrival" value="{{ old('arrival') }}" autocomplete="off" required>
                             <div id="arrivalAirportList" style="position: relative;"></div>
                             
-                            @if ($errors->has('arrival_city_to_airport'))
+                            @if ($errors->has('arrival'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('arrival_city_to_airport') }}</strong>
+                                    <strong>{{ $errors->first('arrival') }}</strong>
                                 </span>
                             @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="price_first">First Price</label>
-                            <input type="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" id="price_first" name="price_first" value="{{ old('price_first') }}" required>
+                            <label for="time">Time</label>
+                            <input type="text" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" min="00:01" max="24:00" id="time" name="time" value="{{ old('time') }}" required>
 
-                            @if ($errors->has('price_first'))
+                            @if ($errors->has('time'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('price_first') }}</strong>
+                                    <strong>{{ $errors->first('time') }}</strong>
                                 </span>
                             @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="price_second">Second Price</label>
-                            <input type="price" class="form-control{{ $errors->has('price_second') ? ' is-invalid' : '' }}" id="price_second" name="price_second" value="{{ old('price_second') }}" required>
+                            <label for="price_turbo">Price Turbo</label>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_turbo') ? ' is-invalid' : '' }}" id="price_turbo" name="price_turbo" value="{{ old('price_turbo') }}" required>
 
-                            @if ($errors->has('price_second'))
+                            @if ($errors->has('price_turbo'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('price_second') }}</strong>
+                                    <strong>{{ $errors->first('price_turbo') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price_light">Price Light</label>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_light') ? ' is-invalid' : '' }}" id="price_light" name="price_light" value="{{ old('price_light') }}" required>
+
+                            @if ($errors->has('price_light'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('price_light') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price_medium">Price Medium</label>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_medium') ? ' is-invalid' : '' }}" id="price_medium" name="price_medium" value="{{ old('price_medium') }}" required>
+
+                            @if ($errors->has('price_medium'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('price_medium') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price_heavy">Price Heavy</label>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_heavy') ? ' is-invalid' : '' }}" id="price_heavy" name="price_heavy" value="{{ old('price_heavy') }}" required>
+
+                            @if ($errors->has('price_heavy'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('price_heavy') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -106,30 +115,7 @@
 <script type="application/javascript">
     $(document).ready(function(){
 
-        $('#departure_city').keyup(function(){ 
-            var query = $(this).val();
-            if(query != ''){
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url:"{{ route('admin.api.cities') }}",
-                    method:"POST",
-                    data:{query:query, _token:_token},
-                    success:function(data){
-                        $('#departureList').fadeIn();  
-                        $('#departureList').html(data);
-                    }
-                });
-            }
-        });
-
-        $(document).on('click', '#departureList li', function(e){
-            e.preventDefault();
-            $('#departure_city').val($(this).text());  
-            $('#departureList').fadeOut();
-        });
-
-
-        $('#departure_city_to_airport').keyup(function(){ 
+        $('#departure').keyup(function(){ 
             var query = $(this).val();
             if(query != ''){
                 var _token = $('input[name="_token"]').val();
@@ -147,35 +133,12 @@
 
         $(document).on('click', '#departureAirportList li', function(e){
             e.preventDefault();
-            $('#departure_city_to_airport').val($(this).text());  
+            $('#departure').val($(this).text());
             $('#departureAirportList').fadeOut();
         });
-       
-       
-        $('#arrival_city').keyup(function(){ 
-            var query = $(this).val();
-            if(query != ''){
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url:"{{ route('admin.api.cities') }}",
-                    method:"POST",
-                    data:{query:query, _token:_token},
-                    success:function(data){
-                        $('#arrivalList').fadeIn();  
-                        $('#arrivalList').html(data);
-                    }
-                });
-            }
-        });
+        
 
-        $(document).on('click', '#arrivalList li', function(e){
-            e.preventDefault();
-            $('#arrival_city').val($(this).text());  
-            $('#arrivalList').fadeOut();
-        });
-
-
-        $('#arrival_city_to_airport').keyup(function(){ 
+        $('#arrival').keyup(function(){ 
             var query = $(this).val();
             if(query != ''){
                 var _token = $('input[name="_token"]').val();
@@ -193,7 +156,7 @@
 
         $(document).on('click', '#arrivalAirportList li', function(e){
             e.preventDefault();
-            $('#arrival_city_to_airport').val($(this).text());  
+            $('#arrival').val($(this).text());  
             $('#arrivalAirportList').fadeOut();
         });
 

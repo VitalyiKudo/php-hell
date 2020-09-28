@@ -39,5 +39,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/airport/search','AirportController@search')->name('airport.search');
     Route::get('/airline/search','AirlineController@search')->name('airline.search');
     Route::get('/operator/search','OperatorController@search')->name('operator.search');
+    Route::get('/pricings/search','PricingController@search')->name('pricing.search');
 
 });

@@ -24,23 +24,26 @@
                         <div class="card-body">
 
                             <dl class="mb-0">
-                                <dt>Departure City</dt>
-                                <dd>{{ $pricing->departure_city }}</dd>
+                                <dt>Departure Airport</dt>
+                                <dd>{{ $pricing->departure }}</dd>
 
-                                <dt>Airport of Departure City</dt>
-                                <dd>{{ $pricing->departure_city_to_airport }}</dd>
+                                <dt>Arrival Airport</dt>
+                                <dd>{{ $pricing->arrival }}</dd>
 
-                                <dt>Arrival City</dt>
-                                <dd>{{ $pricing->arrival_city }}</dd>
+                                <dt>Time</dt>
+                                <dd>{{ $pricing->time }}</dd>
 
-                                <dt>Airport of Arrival City</dt>
-                                <dd>{{ $pricing->arrival_city_to_airport }}</dd>
+                                <dt>Price Turbo</dt>
+                                <dd>{{ number_format($pricing->price_turbo, 2, '.', ' ') }} &euro;</dd>
 
-                                <dt>First Price</dt>
-                                <dd>{{ number_format($pricing->price_first, 2, '.', ' ') }} &euro;</dd>
+                                <dt>Price Light</dt>
+                                <dd>{{ number_format($pricing->price_light, 2, '.', ' ') }} &euro;</dd>
+                                
+                                <dt>Price Medium</dt>
+                                <dd>{{ number_format($pricing->price_medium, 2, '.', ' ') }} &euro;</dd>
 
-                                <dt>Second Price</dt>
-                                <dd>{{ number_format($pricing->price_second, 2, '.', ' ') }} &euro;</dd>
+                                <dt>Price Heavy</dt>
+                                <dd>{{ number_format($pricing->price_heavy, 2, '.', ' ') }} &euro;</dd>
                             </dl>
                             
                         </div>

@@ -15,12 +15,14 @@ class CreatePricingTable extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('departure_city');
-            $table->string('departure_city_to_airport');
-            $table->string('arrival_city');
-            $table->string('arrival_city_to_airport');
-            $table->unsignedDecimal('price_first', 11, 2);
-            $table->unsignedDecimal('price_second', 11, 2);
+            $table->string('source_id')->nullable();
+            $table->string('departure', 255);
+            $table->string('arrival', 255);
+            $table->string('time', 255);
+            $table->unsignedDecimal('price_turbo', 11, 2);
+            $table->unsignedDecimal('price_light', 11, 2);
+            $table->unsignedDecimal('price_medium', 11, 2);
+            $table->unsignedDecimal('price_heavy', 11, 2);
             $table->timestamps();
         });
     }
