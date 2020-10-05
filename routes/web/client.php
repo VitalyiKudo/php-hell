@@ -65,6 +65,10 @@ Route::namespace('Account')->group(function () {
     Route::get('/profile/companion/{id}/edit', 'Profile\CompanionController@edit')->name('profile.companion.edit');
     Route::get('/profile/companion/{id}/delete', 'Profile\CompanionController@destroy')->name('profile.companion.delete');
     Route::put('/profile/companion/update', 'Profile\CompanionController@update')->name('profile.companion.update');
+    
+    Route::get('/profile/quote', 'Profile\QuoteController@index')->name('profile.quote.index');
+    //Route::put('/profile/quote', 'Profile\QuoteController@update')->name('profile.quote.update');
+    //Route::delete('/profile/quote', 'Profile\QuoteController@destroy')->name('profile.quote.destroy');
     // Orders
     Route::get('/requests', 'RequestController@index')->name('requests.index');
 
@@ -73,4 +77,11 @@ Route::namespace('Account')->group(function () {
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/{order}/booking', 'OrderController@booking')->name('orders.booking');
     Route::post('/orders/{order}/booking', 'OrderController@payment')->name('orders.payment');
+    
+    //Flights search
+    Route::get('/flights/search', 'SearchController@index')->name('search.index');
+    Route::post('/flights/requestQuote', 'SearchController@requestQuote')->name('search.requestQuote');
+    Route::get('/flights/success', 'SearchController@createQuote')->name('search.createQuote');
+    
+    Route::get('/flights/sendMail', 'SearchController@sendMail')->name('search.sendMail');
 });

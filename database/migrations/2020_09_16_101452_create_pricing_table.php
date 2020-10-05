@@ -19,10 +19,10 @@ class CreatePricingTable extends Migration
             $table->string('departure', 255);
             $table->string('arrival', 255);
             $table->string('time', 255);
-            $table->unsignedDecimal('price_turbo', 11, 2);
-            $table->unsignedDecimal('price_light', 11, 2);
-            $table->unsignedDecimal('price_medium', 11, 2);
-            $table->unsignedDecimal('price_heavy', 11, 2);
+            $table->unsignedDecimal('price_turbo', 11, 2)->nullable();
+            $table->unsignedDecimal('price_light', 11, 2)->nullable();
+            $table->unsignedDecimal('price_medium', 11, 2)->nullable();
+            $table->unsignedDecimal('price_heavy', 11, 2)->nullable();
             $table->timestamps();
         });
     }

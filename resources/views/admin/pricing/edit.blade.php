@@ -66,7 +66,7 @@
 
                         <div class="form-group">
                             <label for="price_turbo">Price Turbo</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('price_turbo') ? ' is-invalid' : '' }}" id="price_turbo" name="price_turbo" value="{{ old('price_turbo', $pricing->price_turbo) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_turbo') ? ' is-invalid' : '' }}" id="price_turbo" name="price_turbo" value="{{ old('price_turbo', $pricing->price_turbo) }}">
 
                             @if ($errors->has('price_turbo'))
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                             <label for="price_light">Price Light</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('price_light') ? ' is-invalid' : '' }}" id="price_light" name="price_light" value="{{ old('price_light', $pricing->price_light) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_light') ? ' is-invalid' : '' }}" id="price_light" name="price_light" value="{{ old('price_light', $pricing->price_light) }}">
 
                             @if ($errors->has('price_light'))
                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                         
                         <div class="form-group">
                             <label for="price_medium">Price Medium</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('price_medium') ? ' is-invalid' : '' }}" id="price_medium" name="price_medium" value="{{ old('price_medium', $pricing->price_medium) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_medium') ? ' is-invalid' : '' }}" id="price_medium" name="price_medium" value="{{ old('price_medium', $pricing->price_medium) }}">
 
                             @if ($errors->has('price_medium'))
                                 <span class="invalid-feedback" role="alert">
@@ -99,7 +99,7 @@
                         
                         <div class="form-group">
                             <label for="price_heavy">Price Heavy</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('price_heavy') ? ' is-invalid' : '' }}" id="price_heavy" name="price_heavy" value="{{ old('price_heavy', $pricing->price_heavy) }}" required>
+                            <input type="number" step="any" class="form-control{{ $errors->has('price_heavy') ? ' is-invalid' : '' }}" id="price_heavy" name="price_heavy" value="{{ old('price_heavy', $pricing->price_heavy) }}">
 
                             @if ($errors->has('price_heavy'))
                                 <span class="invalid-feedback" role="alert">

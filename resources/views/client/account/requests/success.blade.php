@@ -71,7 +71,6 @@
                                             aria-describedby="departure-airport"
                                             name="startPoint"
                                             autocomplete="off"
-                                            value="{{ $params['startPointName'] }}"
                                         >
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="departure-airport">
@@ -87,7 +86,6 @@
                                             aria-describedby="arrival-airport"
                                             name="endPoint"
                                             autocomplete="off"
-                                            value="{{ $params['endPointnName'] }}"
                                         >
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="arrival-airport">
@@ -97,7 +95,7 @@
                                 </div>
                                 <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                                     <div class="input-group input-style">
-                                        <input type="text" class="form-control " name="departure" placeholder="Date&Time" value="{{ $params['date'] }}">
+                                        <input type="text" class="form-control " name="departure" placeholder="Date&Time">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="date-time">
                                             <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -111,7 +109,7 @@
                                         <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                             <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
                                         </div>
-                                        <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" value="{{ $params['passengers'] }}">
+                                        <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers">
 
                                     </div>
                                 </div>
@@ -129,130 +127,24 @@
                 </div>
             
 
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+
+                            @if (session('status'))
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
             
-            
-                
-                @if( count($searchResults) > 0) 
-                
-                    @foreach ($searchResults as $key => $flight)
-
-                        <form action="{{ route('client.search.requestQuote') }}" method="POST">
-                            @csrf
-                            @if($flight->price_turbo)         
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Turbo: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Turbo: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_turbo, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($flight->price_light)    
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Light: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Light: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_light, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($flight->price_medium)    
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Medium: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Medium: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_medium, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($flight->price_heavy)
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Heavy: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Heavy: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_heavy, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            
-                            <input type="hidden" name="user_id" value="{{ $params['userId'] }}">
-                            <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}">
-                            <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}">
-                            <input type="hidden" name="departure_at" value="{{ $params['startDate'] }}">
-                            <input type="hidden" name="pax" value="{{ $params['passengers'] }}">
-                            <button type="submit" class="btn btn-primary">Request a Quote</button>
-                        </form>
-                        
-
-                        @if($loop->iteration == 15)
-                            @break
-                        @endif
-                    @endforeach
-                    
-                @else
-                
-                    <p>cvbcxb</p>
-
-                @endif   
 
             </div>
         </div>

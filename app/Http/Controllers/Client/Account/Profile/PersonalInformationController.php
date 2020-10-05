@@ -26,6 +26,17 @@ class PersonalInformationController extends Controller
      */
     public function index()
     {
+        /*
+        print_r(Auth::user()->id);
+        
+        if (Auth::check())
+        {
+            echo 'ok';
+        } else {
+            echo 'no';
+        }
+        */
+        
         $user = Auth::user();
 
         return view('client.account.profile.personal-information', compact('user'));

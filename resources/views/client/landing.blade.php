@@ -11,7 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="offset-md-1 col-md-8">
-                <form action="{{ route('flight.search') }}" method="POST">
+                <form action="{{ route('client.search.index') }}" method="GET">
+                    @csrf
                     <div class="row form-body">
                         <div class="col-lg-10">
                             <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
@@ -23,6 +24,7 @@
                                     placeholder="Departure Airport"
                                     aria-describedby="departure-airport"
                                     name="startPoint"
+                                    autocomplete="off"
                                 >
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="departure-airport">
@@ -37,6 +39,7 @@
                                     placeholder="Arrival Airport"
                                     aria-describedby="arrival-airport"
                                     name="endPoint"
+                                    autocomplete="off"
                                 >
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="arrival-airport">
@@ -526,16 +529,13 @@
             $('input[name="departure"]').attr("placeholder","Date & Time");
 
             $('input.from').typeahead({
-
                 source:  function (query, process) {
-                    console.log(query);
                     return $.get("/api/airports", { query: query }, function (data) {
                         return process(data);
                     });
                 }
             });
             $('input.to').typeahead({
-
                 source:  function (query, process) {
                     return $.get("/api/airports", { query: query }, function (data) {
                         return process(data);

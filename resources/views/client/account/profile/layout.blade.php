@@ -19,9 +19,15 @@
                     <a class="nav-link{{ Request::is('profile/payment*') ? ' active' : '' }}" href="{{ route('client.profile.payment.index') }}">Payment method</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ Request::is('profile/companions*') ? ' active' : '' }} nav-link-last" href="{{ route('client.profile.companions.list') }}">Companions</a>
+                    <a class="nav-link{{ Request::is('profile/companions*') ? ' active' : '' }}" href="{{ route('client.profile.companions.list') }}">Companions</a>
                 </li>
-{{--                 <li class="nav-item">
+                
+                <li class="nav-item">
+                    <a class="nav-link{{ Request::is('profile/quote*') ? ' active' : '' }} nav-link-last" href="{{ route('client.profile.quote.index') }}">Quotes</a>
+                </li>
+                
+                {{-- 
+                <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/orders') ? ' active' : '' }}" href="{{ route('client.profile.orders.index') }}">Orders</a>
                 </li>
                 <li class="nav-item">
@@ -32,7 +38,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/settings') ? ' active' : '' }}" href="{{ route('client.profile.settings.index') }}">Settings</a>
-                </li> --}}
+                </li> 
+                --}}
             </ul>
         </div>
 
