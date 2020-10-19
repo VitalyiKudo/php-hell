@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                                     <div class="input-group input-style">
-                                        <input type="text" class="form-control " name="departure" placeholder="Date&Time" value="{{ $params['date'] }}">
+                                        <input type="text" class="form-control " name="departure" placeholder="Date&Time" value="{{ $params['flightDate'] }}">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="date-time">
                                             <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -132,127 +132,160 @@
             
             
                 
-                @if( count($searchResults) > 0) 
-                
-                    @foreach ($searchResults as $key => $flight)
+                @if($searchResults) 
 
-                        <form action="{{ route('client.search.requestQuote') }}" method="POST">
-                            @csrf
-                            @if($flight->price_turbo)         
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
+                    <form action="{{ route('client.search.requestQuote') }}" method="POST">
+                        @csrf
+                        @if($searchResults->price_turbo > 0)         
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-auto green-box"></div>
+                                    <div class="col-md-auto red-box"></div>
+                                    <div class="col-md-auto yellow-box"></div>
 
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Turbo: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Turbo: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_turbo, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
+                                    <div class="col-md-2 icao">
+                                        <input type="checkbox" name="result_id[]" value="{{ 'Turbo: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
                                     </div>
+                                    <div class="col-md-3 country">{{ 'Turbo: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                    <div class="col-md-2 date">
+                                        {{ $searchResults->time }}
+                                    </div>
+                                    <div class="col-md-2 price">
+                                        {{ number_format($searchResults->price_turbo, 2, '.', ' ') }} &euro;
+                                    </div>
+
                                 </div>
                             </div>
-                            @endif
-
-                            @if($flight->price_light)    
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Light: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Light: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_light, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($flight->price_medium)    
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Medium: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Medium: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_medium, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($flight->price_heavy)
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-auto green-box"></div>
-                                        <div class="col-md-auto red-box"></div>
-                                        <div class="col-md-auto yellow-box"></div>
-
-                                        <div class="col-md-2 icao">
-                                            <input type="checkbox" name="result_id[]" value="{{ 'Heavy: '.$flight->departure. ' - '.$flight->arrival }}">
-                                        </div>
-                                        <div class="col-md-3 country">{{ 'Heavy: '.$flight->departure. ' - '.$flight->arrival }}</div>
-                                        <div class="col-md-2 date">
-                                            {{ $flight->time }}
-                                        </div>
-                                        <div class="col-md-2 price">
-                                            {{ number_format($flight->price_heavy, 2, '.', ' ') }} &euro;
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            
-                            <input type="hidden" name="user_id" value="{{ $params['userId'] }}">
-                            <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}">
-                            <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}">
-                            <input type="hidden" name="departure_at" value="{{ $params['startDate'] }}">
-                            <input type="hidden" name="pax" value="{{ $params['passengers'] }}">
-                            <button type="submit" class="btn btn-primary">Request a Quote</button>
-                        </form>
-                        
-
-                        @if($loop->iteration == 15)
-                            @break
+                        </div>
                         @endif
-                    @endforeach
-                    
+
+                        @if($searchResults->price_light > 0)    
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-auto green-box"></div>
+                                    <div class="col-md-auto red-box"></div>
+                                    <div class="col-md-auto yellow-box"></div>
+
+                                    <div class="col-md-2 icao">
+                                        <input type="checkbox" name="result_id[]" value="{{ 'Light: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
+                                    </div>
+                                    <div class="col-md-3 country">{{ 'Light: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                    <div class="col-md-2 date">
+                                        {{ $searchResults->time }}
+                                    </div>
+                                    <div class="col-md-2 price">
+                                        {{ number_format($searchResults->price_light, 2, '.', ' ') }} &euro;
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if($searchResults->price_medium > 0)    
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-auto green-box"></div>
+                                    <div class="col-md-auto red-box"></div>
+                                    <div class="col-md-auto yellow-box"></div>
+
+                                    <div class="col-md-2 icao">
+                                        <input type="checkbox" name="result_id[]" value="{{ 'Medium: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
+                                    </div>
+                                    <div class="col-md-3 country">{{ 'Medium: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                    <div class="col-md-2 date">
+                                        {{ $searchResults->time }}
+                                    </div>
+                                    <div class="col-md-2 price">
+                                        {{ number_format($searchResults->price_medium, 2, '.', ' ') }} &euro;
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if($searchResults->price_heavy > 0)
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-auto green-box"></div>
+                                    <div class="col-md-auto red-box"></div>
+                                    <div class="col-md-auto yellow-box"></div>
+
+                                    <div class="col-md-2 icao">
+                                        <input type="checkbox" name="result_id[]" value="{{ 'Heavy: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
+                                    </div>
+                                    <div class="col-md-3 country">{{ 'Heavy: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                    <div class="col-md-2 date">
+                                        {{ $searchResults->time }}
+                                    </div>
+                                    <div class="col-md-2 price">
+                                        {{ number_format($searchResults->price_heavy, 2, '.', ' ') }} &euro;
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        <input type="hidden" name="user_id" value="{{ $params['userId'] }}">
+                        <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}">
+                        <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}">
+                        <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}">
+                        <input type="hidden" name="pax" value="{{ $params['passengers'] }}">
+                        <!--<button type="submit" class="btn btn-primary">Request a Quote</button>-->
+                    </form>
+                        
                 @else
                 
-                    <p>cvbcxb</p>
+                    <p>We do not have such a flight, make a request e quote</p>
 
                 @endif   
+                
+                <hr>
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form action="{{ route('client.search.requestQuote') }}" method="POST" id="request_quote">
+                            @csrf
+                            <div class="row align-items-center">
+                                <div class="col-md-auto green-box"></div>
+                                <div class="col-md-auto red-box"></div>
+                                <div class="col-md-auto yellow-box"></div>
+                                    <div class="col-md-4 icao">
+                                        <select name="flight_model" class="form-control" id="flight_model">
+                                            <option>King Air 200</option>
+                                            <option>TBM 850</option>
+                                            <option>King Air 350</option>
+                                            <option>Learjet 75</option>
+                                            <option>TBM 850</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 country">{{ $searchResults->departure. ' - '.$searchResults->arrival }}</div>
+
+                                    <div class="col-md-2 price">
+                                        {{ $params['flightDate'] }}
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Request a Quote</button>
+
+                            </div>
+                            <input type="hidden" name="result_id" value="{{ $searchResults->departure. ' - '.$searchResults->arrival }}" id="result_id">
+                            <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
+                            <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}" id="start_airport_id">
+                            <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}" id="end_airport_id">
+                            <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
+                            <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
+                        </form>
+                            
+                    </div>
+                </div>
+                
+                
 
             </div>
         </div>
@@ -308,3 +341,88 @@
 </div>
 @endsection
 
+
+@push('scripts')
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('#request_quote').submit(function(e){
+                e.preventDefault();
+                
+                var flight_model = $('#flight_model').val();
+                var result_id = $('#result_id').val();
+                var user_id = $('#user_id').val();
+                var start_airport_id = $('#start_airport_id').val();
+                var end_airport_id = $('#end_airport_id').val();
+                var departure_at = $('#departure_at').val();
+                var pax = $('#pax').val();
+                var _token = $('input[name="_token"]').val();
+                
+                $.ajax({
+                    url: "{{ route('client.search.requestQuote') }}",
+                    type:"POST",
+                    data:{
+                        _token:_token,
+                        flight_model: flight_model,
+                        result_id: result_id,
+                        user_id: user_id,
+                        start_airport_id: start_airport_id,
+                        end_airport_id: end_airport_id,
+                        departure_at: departure_at,
+                        pax: pax
+                    },
+                    success:function(response){
+                        console.log(response);
+                    },
+                });
+
+                
+            });
+                    
+            
+            
+            
+            $('input.from').keyup(function(){ 
+                var query = $(this).val();
+                if(query != ''){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#departureList').fadeIn();  
+                            $('#departureList').html(output);
+                        }
+                    });
+                }
+            });
+
+
+            $(document).on('click', '#arrivalList li', function(e){
+                e.preventDefault();
+                $('input.to').val($(this).text());
+                //$('input.hidden-to').val(parseFloat($(this).find('a').attr('href')));
+                $('#arrivalList').fadeOut();
+            });
+            
+            
+        });
+    </script>
+
+@endpush

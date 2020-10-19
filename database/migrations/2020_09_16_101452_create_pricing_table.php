@@ -18,10 +18,13 @@ class CreatePricingTable extends Migration
             $table->string('source_id')->nullable();
             $table->string('departure', 255);
             $table->string('arrival', 255);
-            $table->string('time', 255);
+            $table->string('time_turbo', 255);
             $table->unsignedDecimal('price_turbo', 11, 2)->nullable();
+            $table->string('time_light', 255)->nullable();
             $table->unsignedDecimal('price_light', 11, 2)->nullable();
+            $table->string('time_medium', 255)->nullable();
             $table->unsignedDecimal('price_medium', 11, 2)->nullable();
+            $table->string('time_heavy', 255)->nullable();
             $table->unsignedDecimal('price_heavy', 11, 2)->nullable();
             $table->timestamps();
         });

@@ -21,6 +21,7 @@ class CreateSearchesTable extends Migration
             $table->integer('end_airport_id')->unsigned();
             $table->timestamp('departure_at')->nullable();
             $table->integer('pax')->default(1);
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             // Foreign keys

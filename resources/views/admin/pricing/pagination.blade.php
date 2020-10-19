@@ -11,7 +11,6 @@
                             <th class="align-middle">#</th>
                             <th class="align-middle">Departure</th>
                             <th class="align-middle">Arrival</th>
-                            <th class="align-middle">Flight time</th>
                             <th class="align-middle">Price Turbo-prop</th>
                             <th class="align-middle">Price Light</th>
                             <th class="align-middle">Price Medium</th>
@@ -28,7 +27,6 @@
 
                                 <td class="align-middle">{{ $price->departure }}</td>
                                 <td class="align-middle">{{ $price->arrival }}</td>
-                                <td class="align-middle">{{ $price->time }}</td>
                                 <td class="align-middle">{{ number_format($price->price_turbo, 2, '.', ' ') }} &euro;</td>
 
                                 <td class="align-middle">{{ number_format($price->price_light, 2, '.', ' ') }} &euro;</td>

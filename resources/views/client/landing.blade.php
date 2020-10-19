@@ -26,6 +26,7 @@
                                     name="startPoint"
                                     autocomplete="off"
                                 >
+                                <div id="departureList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="departure-airport">
                                     <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
@@ -41,6 +42,7 @@
                                     name="endPoint"
                                     autocomplete="off"
                                 >
+                                <div id="arrivalList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="arrival-airport">
                                     <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
@@ -49,7 +51,7 @@
                         </div>
                         <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                             <div class="input-group input-style">
-                                <input type="text" class="form-control " name="departure" placeholder="Date&Time">
+                                <input type="text" class="form-control " name="flight_date" placeholder="Date&Time" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="date-time">
                                     <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -63,7 +65,7 @@
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                     <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
                                 </div>
-                                <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers">
+                                <input type="number" min="0" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
 
                             </div>
                         </div>
@@ -521,20 +523,102 @@
                 interval: 25000
             });
 
-            $('input[name="departure"]').daterangepicker({
+            $('input[name="flight_date"]').daterangepicker({
                 opens: 'left',
-                keepEmptyValues: true
+                keepEmptyValues: true,
+                singleDatePicker: true,
             });
-            $('input[name="departure"]').val('');
-            $('input[name="departure"]').attr("placeholder","Date & Time");
+            $('input[name="flight_date"]').val('');
+            $('input[name="flight_date"]').attr("placeholder","Date & Time");
+            
+            
+            $('input.from').keyup(function(){ 
+                var query = $(this).val();
+                if(query != ''){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#departureList').fadeIn();  
+                            $('#departureList').html(output);
+                        }
+                    });
+                }
+            });
 
+            $(document).on('click', '#departureList li', function(e){
+                e.preventDefault();
+                $('input.from').val($(this).text());
+                //$('input.hidden-from').val(parseFloat($(this).find('a').attr('href')));
+                $('#departureList').fadeOut();
+            });
+            
+            
+            $('input.to').keyup(function(){ 
+                var query = $(this).val();
+                if(query != ''){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#arrivalList').fadeIn();  
+                            $('#arrivalList').html(output);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#arrivalList li', function(e){
+                e.preventDefault();
+                $('input.to').val($(this).text());
+                //$('input.hidden-to').val(parseFloat($(this).find('a').attr('href')));
+                $('#arrivalList').fadeOut();
+            });
+            
+            /*
             $('input.from').typeahead({
+                offset: true,
+                hint: true,
+                searchOnFocus: true,
                 source:  function (query, process) {
                     return $.get("/api/airports", { query: query }, function (data) {
                         return process(data);
                     });
-                }
+                },
             });
+            
             $('input.to').typeahead({
                 source:  function (query, process) {
                     return $.get("/api/airports", { query: query }, function (data) {
@@ -542,7 +626,7 @@
                     });
                 }
             });
-
+            */
         });
     </script>
 

@@ -8949,6 +8949,56 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
+#departureList {
+    position: absolute;
+    top: 44px; 
+    left: 0px; 
+    display: block;
+}
+
+#departureList .dropdown-menu {
+    min-width: 16rem !important;
+    display: block; 
+    position: absolute;
+    padding: 1rem 1.5rem;
+    z-index: 999999;
+}
+#departureList .dropdown-menu a:link, #departureList .dropdown-menu a:visited {
+    color: #25383C;
+    display: block;
+    padding: 3px 0;
+}
+
+#departureList .dropdown-menu a:hover, #departureList .dropdown-menu a:active {
+    text-decoration: none;
+    color: #000000;
+}
+
+#arrivalList {
+    position: absolute;
+    top: 44px; 
+    left: 0px; 
+    display: block;
+}
+
+#arrivalList .dropdown-menu {
+    min-width: 16rem !important;
+    display: block; 
+    position: absolute;
+    padding: 1rem 1.5rem;
+    z-index: 999999;
+}
+#arrivalList .dropdown-menu a:link, #arrivalList .dropdown-menu a:visited {
+    color: #25383C;
+    display: block;
+    padding: 3px 0;
+}
+
+#arrivalList .dropdown-menu a:hover, #arrivalList .dropdown-menu a:active {
+    text-decoration: none;
+    color: #000000;
+}
+
 @supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
     position: -webkit-sticky;
@@ -14660,4 +14710,3 @@ sup {
     font-size: 0.6rem;
   }
 }
-

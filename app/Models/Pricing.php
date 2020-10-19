@@ -16,10 +16,13 @@ class Pricing extends Model
         'source_id',
         'departure',
         'arrival',
-        'time',
+        'time_turbo',
         'price_turbo',
+        'time_light',
         'price_light',
+        'time_medium',
         'price_medium',
+        'time_heavy',
         'price_heavy',
     ];
 

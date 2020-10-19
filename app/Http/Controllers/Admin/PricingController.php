@@ -62,10 +62,13 @@ class PricingController extends Controller
 
         $pricing->departure = $request->input('departure');
         $pricing->arrival = $request->input('arrival');
-        $pricing->time = $request->input('time');
+        $pricing->time_turbo = $request->input('time_turbo');
         $pricing->price_turbo = $request->input('price_turbo');
+        $pricing->time_light = $request->input('time_light');
         $pricing->price_light = $request->input('price_light');
+        $pricing->time_medium = $request->input('time_medium');
         $pricing->price_medium = $request->input('price_medium');
+        $pricing->time_heavy = $request->input('time_heavy');
         $pricing->price_heavy = $request->input('price_heavy');
 
         $pricing->save();
@@ -85,6 +88,7 @@ class PricingController extends Controller
     public function import() 
     {
         $status = "Excel file was not uploaded";
+        
         if(request()->file('file') && request()->file('file')->extension() == 'xlsx'){
             Pricing::whereNotNull('id')->delete();
             Excel::import(new PricingImport, request()->file('file'));
@@ -115,6 +119,9 @@ class PricingController extends Controller
      */
     public function edit(Pricing $pricing)
     {
+        //echo "<pre>";
+        //print_r($pricing);
+        //echo "</pre>";
         return view('admin.pricing.edit', compact('pricing'));
     }
 
@@ -129,10 +136,13 @@ class PricingController extends Controller
     {
         $pricing->departure = $request->input('departure');
         $pricing->arrival = $request->input('arrival');
-        $pricing->time = $request->input('time');
+        $pricing->time_turbo = $request->input('time_turbo');
         $pricing->price_turbo = $request->input('price_turbo');
+        $pricing->time_light = $request->input('time_light');
         $pricing->price_light = $request->input('price_light');
+        $pricing->time_medium = $request->input('time_medium');
         $pricing->price_medium = $request->input('price_medium');
+        $pricing->time_heavy = $request->input('time_heavy');
         $pricing->price_heavy = $request->input('price_heavy');
 
         $pricing->save();
@@ -198,10 +208,13 @@ class PricingController extends Controller
             $pricing = DB::table('pricings')
                 ->where('departure', 'like', '%'.$query.'%')
                 ->orWhere('arrival', 'like', '%'.$query.'%')
-                ->orWhere('time', 'like', '%'.$query.'%')
+                ->orWhere('time_turbo', 'like', '%'.$query.'%')
                 ->orWhere('price_turbo', 'like', '%'.$query.'%')
+                ->orWhere('time_light', 'like', '%'.$query.'%')
                 ->orWhere('price_light', 'like', '%'.$query.'%')
+                ->orWhere('time_medium', 'like', '%'.$query.'%')
                 ->orWhere('price_medium', 'like', '%'.$query.'%')
+                ->orWhere('time_heavy', 'like', '%'.$query.'%')
                 ->orWhere('price_heavy', 'like', '%'.$query.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(25);

@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="departure">Departure Airport</label>
                             <input type="text" class="form-control{{ $errors->has('departure') ? ' is-invalid' : '' }}" id="departure" name="departure" value="{{ old('departure') }}" autocomplete="off" required>
-                            <div id="departureAirportList" style="position: relative;"></div>
+                            <div id="departureCityList" style="position: relative;"></div>
                             
                             @if ($errors->has('departure'))
                                 <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="arrival">Arrival Airport</label>
                             <input type="text" class="form-control{{ $errors->has('arrival') ? ' is-invalid' : '' }}" id="arrival" name="arrival" value="{{ old('arrival') }}" autocomplete="off" required>
-                            <div id="arrivalAirportList" style="position: relative;"></div>
+                            <div id="arrivalCityList" style="position: relative;"></div>
                             
                             @if ($errors->has('arrival'))
                                 <span class="invalid-feedback" role="alert">
@@ -50,12 +50,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="time">Time</label>
-                            <input type="text" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" min="00:01" max="24:00" id="time" name="time" value="{{ old('time') }}" required>
+                            <label for="time_turbo">Time Turbo</label>
+                            <input type="text" class="form-control{{ $errors->has('time_turbo') ? ' is-invalid' : '' }}" id="time_turbo" name="time_turbo" value="{{ old('time_turbo') }}">
 
-                            @if ($errors->has('time'))
+                            @if ($errors->has('time_turbo'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('time') }}</strong>
+                                    <strong>{{ $errors->first('time_turbo') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -67,6 +67,17 @@
                             @if ($errors->has('price_turbo'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('price_turbo') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time_light">Time Light</label>
+                            <input type="text" class="form-control{{ $errors->has('time_light') ? ' is-invalid' : '' }}" id="time_light" name="time_light" value="{{ old('time_light') }}">
+
+                            @if ($errors->has('time_light'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('time_light') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -83,12 +94,34 @@
                         </div>
                         
                         <div class="form-group">
+                            <label for="time_medium">Time Medium</label>
+                            <input type="text" class="form-control{{ $errors->has('time_medium') ? ' is-invalid' : '' }}" id="time_medium" name="time_medium" value="{{ old('time_medium') }}">
+
+                            @if ($errors->has('time_medium'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('time_medium') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="price_medium">Price Medium</label>
                             <input type="number" step="any" class="form-control{{ $errors->has('price_medium') ? ' is-invalid' : '' }}" id="price_medium" name="price_medium" value="{{ old('price_medium') }}">
 
                             @if ($errors->has('price_medium'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('price_medium') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time_heavy">Time Heavy</label>
+                            <input type="text" class="form-control{{ $errors->has('time_heavy') ? ' is-invalid' : '' }}" id="time_heavy" name="time_heavy" value="{{ old('time_heavy') }}">
+
+                            @if ($errors->has('time_heavy'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('time_heavy') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -120,21 +153,21 @@
             if(query != ''){
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url:"{{ route('admin.api.airports') }}",
+                    url:"{{ route('admin.api.cities') }}",
                     method:"POST",
                     data:{query:query, _token:_token},
                     success:function(data){
-                        $('#departureAirportList').fadeIn();  
-                        $('#departureAirportList').html(data);
+                        $('#departureCityList').fadeIn();  
+                        $('#departureCityList').html(data);
                     }
                 });
             }
         });
 
-        $(document).on('click', '#departureAirportList li', function(e){
+        $(document).on('click', '#departureCityList li', function(e){
             e.preventDefault();
             $('#departure').val($(this).text());
-            $('#departureAirportList').fadeOut();
+            $('#departureCityList').fadeOut();
         });
         
 
@@ -143,21 +176,21 @@
             if(query != ''){
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url:"{{ route('admin.api.airports') }}",
+                    url:"{{ route('admin.api.cities') }}",
                     method:"POST",
                     data:{query:query, _token:_token},
                     success:function(data){
-                        $('#arrivalAirportList').fadeIn();  
-                        $('#arrivalAirportList').html(data);
+                        $('#arrivalCityList').fadeIn();  
+                        $('#arrivalCityList').html(data);
                     }
                 });
             }
         });
 
-        $(document).on('click', '#arrivalAirportList li', function(e){
+        $(document).on('click', '#arrivalCityList li', function(e){
             e.preventDefault();
             $('#arrival').val($(this).text());  
-            $('#arrivalAirportList').fadeOut();
+            $('#arrivalCityList').fadeOut();
         });
 
    });

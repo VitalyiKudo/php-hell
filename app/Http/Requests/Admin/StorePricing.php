@@ -27,10 +27,13 @@ class StorePricing extends FormRequest
         return [
             'departure' => 'required|string|max:255',
             'arrival' => 'required|string|max:255',
-            'time' => 'required|string|max:255',
+            'time_turbo' => 'nullable|string|max:255',
             'price_turbo' => 'nullable|numeric',
+            'time_light' => 'nullable|string|max:255',
             'price_light' => 'nullable|numeric',
+            'time_medium' => 'nullable|string|max:255',
             'price_medium' => 'nullable|numeric',
+            'time_heavy' => 'nullable|string|max:255',
             'price_heavy' => 'nullable|numeric',
         ];
     }
