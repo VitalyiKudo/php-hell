@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFlightModelToSearchesTable extends Migration
+class AddTypeToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFlightModelToSearchesTable extends Migration
      */
     public function up()
     {
-        Schema::table('searches', function (Blueprint $table) {
-            $table->string('flight_model', 255)->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('type')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddFlightModelToSearchesTable extends Migration
      */
     public function down()
     {
-        Schema::table('searches', function (Blueprint $table) {
-            $table->dropColumn('flight_model');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('type');
         });
     }
 }

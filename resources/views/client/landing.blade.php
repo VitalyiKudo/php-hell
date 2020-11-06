@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                             <div class="input-group input-style">
-                                <input type="text" class="form-control " name="flight_date" placeholder="Date&Time" autocomplete="off">
+                                <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="date-time">
                                     <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -523,18 +523,19 @@
                 interval: 25000
             });
 
-            $('input[name="flight_date"]').daterangepicker({
+            $('input[name="flightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
             });
-            $('input[name="flight_date"]').val('');
-            $('input[name="flight_date"]').attr("placeholder","Date & Time");
+            $('input[name="flightDate"]').val('');
+            $('input[name="flightDate"]').attr("placeholder","Date & Time");
             
             
             $('input.from').keyup(function(){ 
                 var query = $(this).val();
-                if(query != ''){
+
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -572,7 +573,7 @@
             
             $('input.to').keyup(function(){ 
                 var query = $(this).val();
-                if(query != ''){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",

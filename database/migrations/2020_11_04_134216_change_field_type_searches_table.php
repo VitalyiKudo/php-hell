@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommentToSearchesTable extends Migration
+class ChangeFieldTypeSearchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCommentToSearchesTable extends Migration
     public function up()
     {
         Schema::table('searches', function (Blueprint $table) {
-            $table->text('comment')->nullable();
+            $table->integer('result_id')->unsigned()->charset(null)->collation(null)->change();
         });
     }
 
@@ -25,8 +25,6 @@ class AddCommentToSearchesTable extends Migration
      */
     public function down()
     {
-        Schema::table('searches', function (Blueprint $table) {
-            $table->dropColumn('comment');
-        });
+        
     }
 }

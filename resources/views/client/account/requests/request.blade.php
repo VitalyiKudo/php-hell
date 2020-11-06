@@ -49,6 +49,18 @@
                 
             
             
+                @if ($messages)
+                    <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($messages->all() as $error)
+                            <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                    </div><br />
+                @endif
+            
+                
+                
                 
             
                 <div class="card mb-4">
@@ -73,6 +85,7 @@
                                             autocomplete="off"
                                             value="{{ $params['startPointName'] }}"
                                         >
+                                        <div id="departureList"></div>
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="departure-airport">
                                             <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
@@ -89,6 +102,7 @@
                                             autocomplete="off"
                                             value="{{ $params['endPointnName'] }}"
                                         >
+                                        <div id="arrivalList"></div>
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="arrival-airport">
                                             <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
@@ -97,7 +111,7 @@
                                 </div>
                                 <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
                                     <div class="input-group input-style">
-                                        <input type="text" class="form-control " name="departure" placeholder="Date&Time" value="{{ $params['flightDate'] }}">
+                                        <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" value="{{ $params['flightDate'] }}">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text" id="date-time">
                                             <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
@@ -111,7 +125,7 @@
                                         <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                             <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
                                         </div>
-                                        <input type="number" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" value="{{ $params['passengers'] }}">
+                                        <input type="number" min="0" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" value="{{ $params['passengers'] }}">
 
                                     </div>
                                 </div>
@@ -132,113 +146,116 @@
             
             
                 
-                @if($searchResults) 
+                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0)) 
 
-                    <form action="{{ route('client.search.requestQuote') }}" method="POST">
-                        @csrf
-                        @if($searchResults->price_turbo > 0)         
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-auto green-box"></div>
-                                    <div class="col-md-auto red-box"></div>
-                                    <div class="col-md-auto yellow-box"></div>
+                    @if($searchResults->price_turbo > 0)         
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-auto green-box"></div>
+                                <div class="col-md-auto red-box"></div>
+                                <div class="col-md-auto yellow-box"></div>
 
-                                    <div class="col-md-2 icao">
-                                        <input type="checkbox" name="result_id[]" value="{{ 'Turbo: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
-                                    </div>
-                                    <div class="col-md-3 country">{{ 'Turbo: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
-                                    <div class="col-md-2 date">
-                                        {{ $searchResults->time }}
-                                    </div>
-                                    <div class="col-md-2 price">
-                                        {{ number_format($searchResults->price_turbo, 2, '.', ' ') }} &euro;
-                                    </div>
-
+                                <div class="col-md-2 icao">
+                                    <p>{{ $params['flightDate'] }}</p> 
                                 </div>
+                                <div class="col-md-3 country">{{ 'Turbo: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                <div class="col-md-2 date">
+                                    {{ $searchResults->time }}
+                                </div>
+                                <div class="col-md-2 price">
+                                    {{ number_format($searchResults->price_turbo, 2, '.', ' ') }} &euro;
+                                </div>
+                                <div class="col-md-2 book">
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn">Book now</a>
+                                </div>
+                                <div class="col-md-auto arrow">▼</div>
                             </div>
                         </div>
-                        @endif
+                    </div>
+                    @endif
 
-                        @if($searchResults->price_light > 0)    
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-auto green-box"></div>
-                                    <div class="col-md-auto red-box"></div>
-                                    <div class="col-md-auto yellow-box"></div>
+                    @if($searchResults->price_light > 0)    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-auto green-box"></div>
+                                <div class="col-md-auto red-box"></div>
+                                <div class="col-md-auto yellow-box"></div>
 
-                                    <div class="col-md-2 icao">
-                                        <input type="checkbox" name="result_id[]" value="{{ 'Light: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
-                                    </div>
-                                    <div class="col-md-3 country">{{ 'Light: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
-                                    <div class="col-md-2 date">
-                                        {{ $searchResults->time }}
-                                    </div>
-                                    <div class="col-md-2 price">
-                                        {{ number_format($searchResults->price_light, 2, '.', ' ') }} &euro;
-                                    </div>
-
+                                <div class="col-md-2 icao">
+                                    <p>{{ $params['flightDate'] }}</p> 
                                 </div>
+                                <div class="col-md-3 country">{{ 'Light: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                <div class="col-md-2 date">
+                                    {{ $searchResults->time }}
+                                </div>
+                                <div class="col-md-2 price">
+                                    {{ number_format($searchResults->price_light, 2, '.', ' ') }} &euro;
+                                </div>
+                                <div class="col-md-2 book">
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn">Book now</a>
+                                </div>
+                                <div class="col-md-auto arrow">▼</div>
                             </div>
                         </div>
-                        @endif
+                    </div>
+                    @endif
 
-                        @if($searchResults->price_medium > 0)    
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-auto green-box"></div>
-                                    <div class="col-md-auto red-box"></div>
-                                    <div class="col-md-auto yellow-box"></div>
+                    @if($searchResults->price_medium > 0)    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-auto green-box"></div>
+                                <div class="col-md-auto red-box"></div>
+                                <div class="col-md-auto yellow-box"></div>
 
-                                    <div class="col-md-2 icao">
-                                        <input type="checkbox" name="result_id[]" value="{{ 'Medium: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
-                                    </div>
-                                    <div class="col-md-3 country">{{ 'Medium: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
-                                    <div class="col-md-2 date">
-                                        {{ $searchResults->time }}
-                                    </div>
-                                    <div class="col-md-2 price">
-                                        {{ number_format($searchResults->price_medium, 2, '.', ' ') }} &euro;
-                                    </div>
-
+                                <div class="col-md-2 icao">
+                                    <p>{{ $params['flightDate'] }}</p> 
                                 </div>
+                                <div class="col-md-3 country">{{ 'Medium: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                <div class="col-md-2 date">
+                                    {{ $searchResults->time }}
+                                </div>
+                                <div class="col-md-2 price">
+                                    {{ number_format($searchResults->price_medium, 2, '.', ' ') }} &euro;
+                                </div>
+                                <div class="col-md-2 book">
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn">Book now</a>
+                                </div>
+                                <div class="col-md-auto arrow">▼</div>
                             </div>
                         </div>
-                        @endif
+                    </div>
+                    @endif
 
-                        @if($searchResults->price_heavy > 0)
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-auto green-box"></div>
-                                    <div class="col-md-auto red-box"></div>
-                                    <div class="col-md-auto yellow-box"></div>
+                    @if($searchResults->price_heavy > 0)
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-auto green-box"></div>
+                                <div class="col-md-auto red-box"></div>
+                                <div class="col-md-auto yellow-box"></div>
 
-                                    <div class="col-md-2 icao">
-                                        <input type="checkbox" name="result_id[]" value="{{ 'Heavy: '.$searchResults->departure. ' - '.$searchResults->arrival }}">
-                                    </div>
-                                    <div class="col-md-3 country">{{ 'Heavy: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
-                                    <div class="col-md-2 date">
-                                        {{ $searchResults->time }}
-                                    </div>
-                                    <div class="col-md-2 price">
-                                        {{ number_format($searchResults->price_heavy, 2, '.', ' ') }} &euro;
-                                    </div>
-
+                                <div class="col-md-2 icao">
+                                    <p>{{ $params['flightDate'] }}</p> 
                                 </div>
+                                <div class="col-md-3 country">{{ 'Heavy: '.$searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                <div class="col-md-2 date">
+                                    {{ $searchResults->time }}
+                                </div>
+                                <div class="col-md-2 price">
+                                    {{ number_format($searchResults->price_heavy, 2, '.', ' ') }} &euro;
+                                </div>
+                                <div class="col-md-2 book">
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn">Book now</a>
+                                </div>
+                                <div class="col-md-auto arrow">▼</div>
                             </div>
                         </div>
-                        @endif
+                    </div>
+                    @endif
 
-                        <input type="hidden" name="user_id" value="{{ $params['userId'] }}">
-                        <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}">
-                        <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}">
-                        <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}">
-                        <input type="hidden" name="pax" value="{{ $params['passengers'] }}">
-                        <!--<button type="submit" class="btn btn-primary">Request a Quote</button>-->
-                    </form>
                         
                 @else
                 
@@ -265,19 +282,25 @@
                                             <option>TBM 850</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 country">{{ $searchResults->departure. ' - '.$searchResults->arrival }}</div>
+                                
+                                    <div class="col-md-3 country">  {{ $params['startPointName'] . ' - ' . $params['endPointnName'] }}</div>
 
                                     <div class="col-md-2 price">
                                         {{ $params['flightDate'] }}
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Request a Quote</button>
-
                             </div>
-                            <input type="hidden" name="result_id" value="{{ $searchResults->departure. ' - '.$searchResults->arrival }}" id="result_id">
+                            
+                            <div class="form-group">
+                                <label for="comment">Comment</label>
+                                <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
+                            </div>
+                            
+                            <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
                             <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
-                            <input type="hidden" name="start_airport_id" value="{{ $params['startPoint'] }}" id="start_airport_id">
-                            <input type="hidden" name="end_airport_id" value="{{ $params['endPoint'] }}" id="end_airport_id">
+                            <input type="hidden" name="start_airport_name" value="{{ $params['startPointName'] }}" id="start_airport_name">
+                            <input type="hidden" name="end_airport_name" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                             <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                             <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
                         </form>
@@ -346,46 +369,48 @@
     <script type="text/javascript">
 
         $(function() {
+            
+            $('input[name="flightDate"]').daterangepicker({
+                opens: 'left',
+                keepEmptyValues: true,
+                singleDatePicker: true,
+            });
 
             $('#request_quote').submit(function(e){
                 e.preventDefault();
-                
                 var flight_model = $('#flight_model').val();
                 var result_id = $('#result_id').val();
                 var user_id = $('#user_id').val();
-                var start_airport_id = $('#start_airport_id').val();
-                var end_airport_id = $('#end_airport_id').val();
-                var departure_at = $('#departure_at').val();
-                var pax = $('#pax').val();
+                var comment = $('#comment').val();
+                var start_airport_name = $('#start_airport_name').val();
+                var end_airport_name = $('#end_airport_name').val();
                 var _token = $('input[name="_token"]').val();
                 
-                $.ajax({
-                    url: "{{ route('client.search.requestQuote') }}",
-                    type:"POST",
-                    data:{
-                        _token:_token,
-                        flight_model: flight_model,
-                        result_id: result_id,
-                        user_id: user_id,
-                        start_airport_id: start_airport_id,
-                        end_airport_id: end_airport_id,
-                        departure_at: departure_at,
-                        pax: pax
-                    },
-                    success:function(response){
-                        console.log(response);
-                    },
-                });
-
-                
+                if(start_airport_name.length > 0 && end_airport_name.length > 0){
+                    $.ajax({
+                        url: "{{ route('client.search.requestQuote') }}",
+                        type:"POST",
+                        data:{
+                            _token:_token,
+                            flight_model: flight_model,
+                            result_id: result_id,
+                            user_id: user_id,
+                            comment: comment,
+                            start_airport_name: start_airport_name,
+                            end_airport_name: end_airport_name
+                        },
+                        success:function(response){
+                            console.log(response);
+                        },
+                    });
+                }
             });
-                    
-            
-            
+
             
             $('input.from').keyup(function(){ 
                 var query = $(this).val();
-                if(query != ''){
+
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -413,11 +438,46 @@
                 }
             });
 
+            $(document).on('click', '#departureList li', function(e){
+                e.preventDefault();
+                $('input.from').val($(this).text());
+                $('#departureList').fadeOut();
+            });
+            
+            
+            $('input.to').keyup(function(){ 
+                var query = $(this).val();
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#arrivalList').fadeIn();  
+                            $('#arrivalList').html(output);
+                        }
+                    });
+                }
+            });
 
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
                 $('input.to').val($(this).text());
-                //$('input.hidden-to').val(parseFloat($(this).find('a').attr('href')));
                 $('#arrivalList').fadeOut();
             });
             
