@@ -35,23 +35,16 @@
         <div class="col-xl-7 offset-xl-1 col-lg-8 right-request">
             <h2 class="mb-5">Overview of your requests</h2>
 
-            <p class="card-title"><span>3</span> results are available</p>
+            <p class="card-title"><span>{{ $requests->count() }}</span> results are available</p>
 
             @foreach ($requests as $request)
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            @if ($request->status->code === 'completed')
-                                <div class="col-md-auto green-box"></div>
-                            @elseif ($request->status->code === 'cancelled')
-                                <div class="col-md-auto red-box"></div>
-                            @else
-                                <div class="col-md-auto yellow-box"></div>
-                            @endif
-                            <div class="col-md-2 icao">{{ $request->search_result->search->start_airport->icao }}-{{ $request->search_result->search->end_airport->icao }}</div>
-                            <div class="col-md-3 country">{{ $request->search_result->search->end_airport->country->name }}</div>
+                            <div class="col-md-4 country">{{ $request->start_airport_name }} - {{ $request->end_airport_name }}</div>
+                            <div class="col-md-2 icao">Pax: {{ $request->pax }}</div>
                             <div class="col-md-2 date">{{ $request->created_at->format('d/m/Y') }}</div>
-                            <div class="col-md-2 price">EUR {{ number_format($request->price, 2, '.', ',') }}</div>
+
                             <div class="col-md-2 book">
                                 <a href="#" class="btn">Request again</a>
                             </div>

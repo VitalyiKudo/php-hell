@@ -27,7 +27,7 @@ Payment
 
                         <div class="col-auto">
                             <a href="{{ route('client.profile.payment.index') }}" class="d-flex plus-btn align-items-center">
-                                <img src="/images/plus2.png" class="icon-img" alt="...">
+                                <img src="/images/plus2.webp" loading="lazy" class="icon-img" alt="...">
                             </a>
                         </div>
                     </div>

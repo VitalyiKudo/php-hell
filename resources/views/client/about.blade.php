@@ -137,7 +137,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/frank.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/frank.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Frank D.</h6>
@@ -152,7 +152,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/serg.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Sergio W.</h6>
@@ -167,7 +167,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/aleksander.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Alexander</h6>
@@ -182,7 +182,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/bradly.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Bradly</h6>

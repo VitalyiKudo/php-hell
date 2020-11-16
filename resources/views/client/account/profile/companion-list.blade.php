@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-auto">
                                 <a href='{{ url("/profile/companions") }}' type="button" class="plus-btn">
-                                        <img src="/images/plus2.png" class="icon-img" alt="...">
+                                        <img src="/images/plus2.webp" loading="lazy" class="icon-img" alt="...">
                                     </a> 
                                 </div>
                             </div>

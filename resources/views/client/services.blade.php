@@ -25,7 +25,7 @@
                 <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 img-align">
-                        <img src="/images/line2.png" alt="line">
+                        <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
                         <p>We have access to almost any jet size, shape, and class you can imagine. It doesn’t matter if you want to travel to a nearby island or halfway around the world - we have the jets for you! World-class!</p>
@@ -44,7 +44,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line2.png" alt="line">
+                        <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
@@ -61,7 +61,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line3.png" alt="line">
+                        <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
                         <p> We have a fleet of jets varied enough to transport almost any object of any size.</p>
@@ -80,7 +80,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line2.png" alt="line">
+                        <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">
                         <p> We even have the capability in certain situations to effectively operate nearly as an ambulance with our fast service using our apps and technologies! Certain surgeries can be so expensive that you might end up saving money while you fly out to optimum luxury for the same procedure!</p>
@@ -97,7 +97,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <img src="/images/person.png" class="" alt="...">
+                        <img src="/images/person.webp" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-6">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

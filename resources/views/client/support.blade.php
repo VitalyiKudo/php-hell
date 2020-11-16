@@ -286,7 +286,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center visit-card">
                     <div class="col-lg-5">
-                        <img src="/images/person.png" class="" alt="...">
+                        <img src="/images/person.webp" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

@@ -14,6 +14,8 @@ class Order extends Model
     protected $fillable = [
         'comment',
         'price',
+        'order_status_id',
+        'search_result_id',
         'billing_address',
         'billing_address_secondary',
         'billing_country',
@@ -51,8 +53,8 @@ class Order extends Model
     /**
      * Get the search result of the order.
      */
-    public function search_result()
+    public function searches()
     {
-        return $this->belongsTo('App\Models\SearchResult', 'search_result_id');
+        return $this->belongsTo('App\Models\Search', 'search_result_id');
     }
 }

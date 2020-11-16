@@ -14,8 +14,8 @@
                 <form action="{{ route('client.search.index') }}" method="GET">
                     @csrf
                     <div class="row form-body">
-                        <div class="col-lg-10">
-                            <h4 class="mb-3 mt-4">Fly different today: Search your private jet</h4>
+                        <div class="col-lg-10 mb-2 mt-4 home-title">
+                            <h1>Fly different today: Search your private jet</h1>
                         </div>
                         <div class="mb-3 mt-2 ml-3" style="width:23% !important">
                             <div class="input-group input-style-3">
@@ -29,7 +29,7 @@
                                 <div id="departureList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="departure-airport">
-                                    <img src="/images/departure-icon.svg" class="icon-img" alt="..."></span>
+                                    <img src="/images/departure-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 <div id="arrivalList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="arrival-airport">
-                                    <img src="/images/arrival-icon.svg" class="icon-img" alt="..."></span>
+                                    <img src="/images/arrival-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="date-time">
-                                    <img src="/images/date-icon.svg" class="icon-img" alt="..."></span>
+                                    <img src="/images/date-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                             <div class="input-group input-style">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
-                                    <img src="/images/passengers-icon.svg" class="icon-img" alt="..."></span>
+                                    <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
                                 <input type="number" min="0" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
 
@@ -86,8 +86,8 @@
                 <div class="col-5 float-left">
                     <a href="#how-it-works">
 
-                        <img src="/images/scroll.svg" class="scroll-button scroll-arrow" alt="..."  align="right">
-                        <img src="/images/mouse.svg" class="scroll-button scroll-mouse2 scroll-upper" align="right" alt="...">
+                        <img src="/images/scroll.svg" loading="lazy" class="scroll-button scroll-arrow" alt="..."  align="right">
+                        <img src="/images/mouse.svg" loading="lazy" class="scroll-button scroll-mouse2 scroll-upper" align="right" alt="...">
                     </a>
                 </div>
                 <div class="col-7 mt-2">
@@ -103,7 +103,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="mb-3">How It Works</h2>
+                <h2>Private Jet Charter - How It Works</h2>
                 <p class="font-weight-bold mb-3">It’s simple.</p>
                 <p class="mb-0">You choose where you want to go, when you want to go, and where you are coming from to get started. Next, we will show you every option available with an accurate price quote. Finally, you choose the private jet that fits your needs. It’s that simple.</p>
             </div>
@@ -111,47 +111,47 @@
         <div class="row align-items-center">
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-search.svg" class="card-img-top" alt="...">
+                    <img src="/images/works-search.svg" loading="lazy" class="card-img-top" alt="...">
                 </div>
                 <p class="card-text-h">Search</p>
                 <p class="card-text-p"> for your flight</p>
             </div>
             <div class="col-lg-1">
-                <img src="/images/devider.png" class="devider" alt="...">
+                <img src="/images/devider.webp" loading="lazy" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-choose.svg" class="card-img-top" alt="...">
+                    <img src="/images/works-choose.svg" loading="lazy" class="card-img-top" alt="...">
                 </div>
                 <p class="card-text-h">Choose a flight</p>
                 <p class="card-text-p">that fits you</p>
             </div>
             <div class="col-lg-1">
-                <img src="/images/devider.png" class="devider" alt="...">
+                <img src="/images/devider.webp" loading="lazy" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-book.svg" class="card-img-top" alt="...">
+                    <img src="/images/works-book.svg" loading="lazy" class="card-img-top" alt="...">
                 </div>
                 <p class="card-text-h">Book</p>
                 <p class="card-text-p">your flight</p>
             </div>
             <div class="col-lg-1">
-                <img src="/images/devider.png" class="devider" alt="...">
+                <img src="/images/devider.webp" loading="lazy" class="devider" alt="...">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card">
-                    <img src="/images/works-wait.svg" class="card-img-top" alt="...">
+                    <img src="/images/works-wait.svg" loading="lazy" class="card-img-top" alt="...">
                 </div>
                 <p class="card-text-h">Wait for</p>
                 <p class="card-text-p">Confirmation</p>
             </div>
             <div class="col-lg-1">
-                <img src="/images/brown-devider.png"  alt="..." class="devider2">
+                <img src="/images/brown-devider.webp" loading="lazy"  alt="..." class="devider2">
             </div>
             <div class="col-lg-1 col-lg-1-5">
                 <div class="card last-card">
-                    <img src="/images/works-enjoy.svg" class="card-img-top" alt="...">
+                    <img src="/images/works-enjoy.svg" loading="lazy" class="card-img-top" alt="...">
 
                 </div>
                 <p class="card-text-h">Enjoy</p>
@@ -164,8 +164,8 @@
 <div class="section main-services">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h2 class="mb-3 service-headline">Services</h2>
+            <div class="col mb-2 service-headline">
+                <h2>Private Charter Jet Services</h2>
             </div>
         </div>
     </div>
@@ -177,7 +177,7 @@
                 <p class="services-p">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line.png" alt="line">
+                        <img src="/images/line.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
                         <p>We have access to almost any jet size, shape, and class you can imagine. It doesn’t matter if you want to travel to a nearby island or halfway around the world - we have the jets for you! World-class!</p>
@@ -199,7 +199,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0">
-                        <img src="/images/line2.png" alt="line">
+                        <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
@@ -230,11 +230,11 @@
     <div class="container download-container">
         <div class="row">
             <div class="col-12 col-md-auto ios">
-                <img src="/images/iOS-logo.png" class="download-img" alt="...">
+                <img src="/images/iOS-logo.webp" loading="lazy" class="download-img" alt="...">
                 <p class="download-text">Download Now for iOS</p>
             </div>
             <div class="col-12 col-md-auto android">
-                <img src="/images/Android-logo.png" class="download-img" alt="...">
+                <img src="/images/Android-logo.webp" loading="lazy" class="download-img" alt="...">
                 <p class="download-text">Download Now for Android</p>
             </div>
         </div>
@@ -244,8 +244,8 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2 class="mb-3">About Us</h2>
+            <div class="col-md-12 mb-2">
+                <h2>About JetOnset's Charter for Private Jets</h2>
             </div>
             <div class="col-md-6">
                 <p><strong>We are a group of people</strong> who wanted to apply the social and technological revolution found in cars yesterday, to the private jets of today and tomorrow.</p>
@@ -285,7 +285,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/frank.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/frank.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Frank D.</h6>
@@ -300,7 +300,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/serg.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/serg.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Sergio W.</h6>
@@ -315,7 +315,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/aleksander.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/aleksander.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Alexander</h6>
@@ -330,7 +330,7 @@
                             <div class="col-sm-10 offset-sm-1 col-12 text-bg">
                                 <div class="col-md-12">
                                     <div class="col-md-2 img-pos">
-                                        <img src="/images/slider/bradly.png" class="testimonials-img align-self-center mr-2" alt="...">
+                                        <img src="/images/slider/bradly.webp" loading="lazy" class="testimonials-img align-self-center mr-2" alt="...">
                                     </div>
                                     <div class="col-md-10 text-pos">
                                         <h6>Bradly</h6>
@@ -497,7 +497,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center visit-card">
                     <div class="col-lg-5">
-                        <img src="/images/person.png" class="" alt="...">
+                        <img src="/images/person.webp" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

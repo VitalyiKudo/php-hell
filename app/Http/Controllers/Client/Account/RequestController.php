@@ -26,7 +26,8 @@ class RequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $requests = $user->orders()->orderBy('id', 'desc')->get();
+        //$requests = $user->orders()->orderBy('id', 'desc')->get();
+        $requests = $user->searches()->orderBy('id', 'desc')->get();
 
         return view('client.account.requests.index', compact('requests'));
     }

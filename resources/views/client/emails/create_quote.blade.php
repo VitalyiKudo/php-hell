@@ -24,7 +24,7 @@
                     <tr>
                       <td>
                         <a href="jetonset.com">
-                            <img style="width:160px; height:70px"src="https://jetonset.com/images/svg/logo.svg" alt="">
+                            <img style="width:160px; height:70px"src="https://jetonset.com/images/svg/logo.svg" loading="lazy" alt="">
                         </a>
                       <br>  
                         <p></p>

@@ -51,12 +51,29 @@
                             @else
                             <div class="col-md-auto"></div>
                             @endif
+                            
+                            <?php /* ?>
                             <div class="col-md-3 icao">
                                 {{ $order->search_result->search->start_airport->icao }}-{{ $order->search_result->search->end_airport->icao }}
                                 <br>
                                 <small>{{ $order->status->name }}</small>
                             </div>
                             <div class="col-md-2 country text-center">{{ $order->search_result->search->end_airport->country->name }}</div>
+                            <?php */ ?>
+                            
+                            
+                            <div class="col-md-3 icao">
+                                {{ $order->searches->start_airport_name }}-{{ $order->searches->end_airport_name }}
+                                <br>
+                                <small>{{ $order->status->name }}</small>
+                            </div>
+                            
+                            
+                            
+                            <div class="col-md-2 country text-center">Pax: {{ $order->searches->pax }}</div>
+
+                            
+                            
                             <div class="col-md-2 date">{{ $order->created_at->format('d/m/Y') }}</div>
                             <div class="col-md-2 price">EUR {{ number_format($order->price, 2, '.', ',') }}</div>
                             <div class="col-md-2 book">

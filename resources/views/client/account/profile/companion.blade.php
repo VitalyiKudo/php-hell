@@ -19,7 +19,7 @@ Companions
                         <div class="row">
                             <div class="col-auto">
                                 <button type="button" class="plus-btn">
-                                    <img src="/images/plus2.png" class="icon-img" alt="...">
+                                    <img src="/images/plus2.webp" loading="lazy" class="icon-img" alt="...">
                                 </button> 
                             </div>
                         </div>

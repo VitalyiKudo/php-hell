@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane">
                         <div class="size-width">
-                            <img class="d-block plane-pos" src="/images/aircrafts/jet_types_8.png" alt="First slide">
+                            <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_8.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="plane-tab upcase">VIP Airliner</p>
@@ -128,7 +128,7 @@
                     <div class="row">
                         <div class="col-md-12 bg-plane">
                             <div class="size-width">
-                                <img class="d-block plane-pos" src="/images/aircrafts/jet_types_7.png" alt="First slide">
+                                <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_7.png" alt="First slide">
                             </div>
                             <div class="size-width">
                                 <p class="mb-0 plane-tab upcase">Ultra Long Range</p>
@@ -196,7 +196,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane2">
                         <div class="size-width">
-                            <img class="d-block plane-pos" src="/images/aircrafts/jet_types_6.png" alt="First slide">
+                            <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_6.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Heavy Jet</p>
@@ -264,7 +264,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane2">
                         <div class="size-width">
-                            <img class="d-block plane-pos" src="/images/aircrafts/jet_types_5.png" alt="First slide">
+                            <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_5.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Super Midsize Jet</p>
@@ -332,7 +332,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane3">
                         <div class="size-width">
-                            <img class="d-block plane-pos" src="/images/aircrafts/jet_types_4.png" alt="First slide">
+                            <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_4.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Midsize Jet</p>
@@ -395,7 +395,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane3">
                         <div class="size-width">
-                            <img class="d-block plane-pos2" src="/images/aircrafts/jet_types_3.png" alt="First slide">
+                            <img class="d-block plane-pos2" loading="lazy" src="/images/aircrafts/jet_types_3.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Light Jets</p>
@@ -458,7 +458,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane4">
                         <div class="size-width">
-                            <img class="d-block plane-pos2" src="/images/aircrafts/jet_types_2.png" alt="First slide">
+                            <img class="d-block plane-pos2" loading="lazy" src="/images/aircrafts/jet_types_2.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Entry-level Jet</p>
@@ -517,7 +517,7 @@
                 <div class="row">
                     <div class="col-md-12 bg-plane4">
                         <div class="size-width">
-                            <img class="d-block plane-pos2" src="/images/aircrafts/jet_types_1.png" alt="First slide">
+                            <img class="d-block plane-pos2" loading="lazy" src="/images/aircrafts/jet_types_1.png" alt="First slide">
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Turbo prop</p>
@@ -601,7 +601,7 @@
                         </ul>
                     </div>
                     <div class="col-5">
-                        <img src="/images/plane.jpg" class="plane-img" alt="...">
+                        <img src="/images/plane.jpg" loading="lazy" class="plane-img" alt="...">
                     </div>
                 </div>
             </div>
@@ -617,7 +617,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center visit-card">
                     <div class="col-lg-5">
-                        <img src="/images/person.png" class="" alt="...">
+                        <img src="/images/person.png" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

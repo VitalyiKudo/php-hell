@@ -15,7 +15,7 @@ use App\User;
 
 Route::get('/', function () {
     return view('client.landing');
-})->name('landing');;
+})->name('landing');
 Route::get('/services', function () {
     return view('client.services');
 });

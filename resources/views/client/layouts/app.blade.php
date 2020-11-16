@@ -9,22 +9,22 @@
 
     <!-- Meta -->
     @yield('meta')
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/meta/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/meta/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/meta/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/meta/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/meta/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/meta/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/meta/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/meta/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/meta/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/images/meta/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/meta/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/meta/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/meta/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/meta/apple-icon-57x57.webp">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/meta/apple-icon-60x60.webp">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/meta/apple-icon-72x72.webp">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/meta/apple-icon-76x76.webp">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/meta/apple-icon-114x114.webp">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/meta/apple-icon-120x120.webp">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/meta/apple-icon-144x144.webp">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/meta/apple-icon-152x152.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/meta/apple-icon-180x180.webp">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/meta/android-icon-192x192.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/meta/favicon-32x32.webp">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/meta/favicon-96x96.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/meta/favicon-16x16.webp">
     <link rel="manifest" href="/images/meta/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/images/meta/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/images/meta/ms-icon-144x144.webp">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Scripts -->
@@ -38,6 +38,19 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </head>
 <body>
     <div id="app">
@@ -45,7 +58,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!--{{ config('app.name', 'Laravel') }}-->
-                    <img src="/images/svg/logo.svg" class="logo-img" alt="JetOnset">
+                    <img src="/images/svg/logo.svg" loading="lazy" class="logo-img" alt="JetOnset">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -102,7 +115,7 @@
                             <li class="nav-item item-position border-lg-right margin-lg-left ">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
                                 
-                                    <img src="/images/sg.svg" class="icon-img mr-1 sg-icon" alt="..."></span>
+                                    <img src="/images/sg.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="..."></span>
                                 
                                     {{ __('Sign Up') }}
                                     
@@ -118,7 +131,7 @@
                             
                                 <a class="nav-link" href="{{ route('client.login') }}">
                                     
-                                    <img src="/images/key.svg" class="icon-img mr-1 sg-icon" alt="...">
+                                    <img src="/images/key.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="...">
                                     {{ __('Log In') }}</a>
                             </li>
                         @else
@@ -180,10 +193,10 @@
                         <subscribe></subscribe>
                         <div class="row">
                             <div class="col">
-                                <img src="/images/iOS-logo.png" class="card-img-top" alt="...">
+                                <img src="/images/iOS-logo.webp" loading="lazy" class="card-img-top" alt="...">
                             </div>
                             <div class="col">
-                                <img src="/images/Android-logo.png" class="card-img-top" alt="...">
+                                <img src="/images/Android-logo.webp" loading="lazy" class="card-img-top" alt="...">
                             </div> 
                         </div>       
                     </div>
@@ -197,16 +210,16 @@
                     <div class="col-12 col-lg-4 order-1 mb-3">
                         <div class="row mb-0 justify-content-center">
                             <div class="col-auto">
-                                <a href="https://www.facebook.com/jet.onset" target="_blank"><img src="/images/facebook-icon.png" class="social-ico" alt="..."></a>
+                                <a href="https://www.facebook.com/jet.onset" target="_blank"><img src="/images/facebook-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                             <div class="col-auto">
-                                <a href="https://www.instagram.com/jetonset/" target="_blank"><img src="/images/instagram-icon.png" class="social-ico" alt="..."></a>
+                                <a href="https://www.instagram.com/jetonset/" target="_blank"><img src="/images/instagram-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                             <div class="col-auto">
-                                <a href="https://twitter.com/jetonset1" target="_blank"><img src="/images/twitter-icon.png" class="social-ico" alt="..."></a>
+                                <a href="https://twitter.com/jetonset1" target="_blank"><img src="/images/twitter-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                             <div class="col-auto">
-                                <a href="https://www.pinterest.com/4jetonset/" target="_blank"><img src="/images/pinest-icon.png" class="social-ico" alt="..."></a>
+                                <a href="https://www.pinterest.com/4jetonset/" target="_blank"><img src="/images/pinest-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div> 
                         </div>
                     </div>
@@ -220,13 +233,20 @@
             </div>
         </div>
     </div>
+    
     <script src="{{ mix('js/app.js') }}"></script>
+    
+    
+    
 
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>
+    
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
     @stack('scripts')
 </body>
 </html>

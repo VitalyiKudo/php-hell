@@ -35,7 +35,7 @@
                             @foreach ($searches as $search)
                                 <tr>
                                     <td>{{ $loop->iteration + $searches->firstItem() - 1 }}</td>
-                                    <td>{{ $search->search_id }}</td>
+                                    <td>{{ $search->id }}</td>
                                     <td>
                                         @if (! is_null($search->user))
                                             <a href="{{ route('admin.users.show', $search->user->id) }}">{{ $search->user->full_name }}</a>

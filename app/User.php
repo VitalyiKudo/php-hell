@@ -95,6 +95,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order');
     }
+    
+    public function searches()
+    {
+        return $this->hasMany('App\Models\Search');
+    }
 
     /**
      * Get all of the transactions for the user.
