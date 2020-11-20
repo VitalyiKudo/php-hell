@@ -151,12 +151,7 @@
                     <a href="{{ route('admin.users.show', $order->user->id) }}">View details</a>
                 </div>
             </div>
-                    <!-- @include('admin.searches.result-card', ['result' => $order->search_result]) -->
-
-                    <!-- <form class="mt-3">
-                        <button type="submit" class="btn btn-success">Accept</button>
-                        <button type="submit" class="btn btn-danger">Decline</button>
-                    </form> -->
+                    
                 </div>
             </div>
         </div>

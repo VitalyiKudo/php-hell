@@ -11,6 +11,9 @@ use App\Http\Requests\Admin\UpdateOrder as UpdateOrderRequest;
 use App\Mail\SendMail;
 use App\Models\OrderStatus;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Search;
+use App\Models\Pricing;
+use App\User;
 
 
 class OrderController extends Controller
@@ -66,8 +69,11 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $orderStatuses = OrderStatus::all();
-        
-        return view('admin.orders.view', compact('order','orderStatuses'));
+        $search = Search::find($order->search_result_id);
+        $user = User::find($order->user_id);
+        $pricing = Pricing::find($search->result_id);
+
+        return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing'));
     }
 
     /**
@@ -79,7 +85,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $orderStatuses = OrderStatus::all();
-        
+
         return view('admin.orders.edit', compact('order','orderStatuses'));
     }
 

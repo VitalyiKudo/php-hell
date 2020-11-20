@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="offset-md-1 col-md-8">
-                <form action="{{ route('client.search.index') }}" method="GET">
+                <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
                     @csrf
                     <div class="row form-body">
                         <div class="col-lg-10 mb-2 mt-4 home-title">
@@ -65,7 +65,7 @@
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                     <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
-                                <input type="number" min="0" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
+                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
 
                             </div>
                         </div>
@@ -566,7 +566,6 @@
             $(document).on('click', '#departureList li', function(e){
                 e.preventDefault();
                 $('input.from').val($(this).text());
-                //$('input.hidden-from').val(parseFloat($(this).find('a').attr('href')));
                 $('#departureList').fadeOut();
             });
             
@@ -604,30 +603,37 @@
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
                 $('input.to').val($(this).text());
-                //$('input.hidden-to').val(parseFloat($(this).find('a').attr('href')));
                 $('#arrivalList').fadeOut();
             });
-            
-            /*
-            $('input.from').typeahead({
-                offset: true,
-                hint: true,
-                searchOnFocus: true,
-                source:  function (query, process) {
-                    return $.get("/api/airports", { query: query }, function (data) {
-                        return process(data);
-                    });
-                },
-            });
-            
-            $('input.to').typeahead({
-                source:  function (query, process) {
-                    return $.get("/api/airports", { query: query }, function (data) {
-                        return process(data);
-                    });
+
+
+            $('#main-search-form').submit(function(e){
+
+                var start_point = $(this).find('input[name="startPoint"]').val();
+                var end_point = $(this).find('input[name="endPoint"]').val();
+                var flight_date = $(this).find('input[name="flightDate"]').val();
+                var passengers = $(this).find('input[name="passengers"]').val();
+                var html_message = '<span class="search-error">This field is required.</span>';
+                
+                if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
+                    $('.search-error').remove();
+                    
+                    if(start_point.length <= 0){
+                        $(this).find('input[name="startPoint"]').parent('div').append(html_message);
+                    }
+                    if(end_point.length <= 0){
+                        $(this).find('input[name="endPoint"]').parent('div').append(html_message);
+                    }
+                    if(flight_date.length <= 0){
+                        $(this).find('input[name="flightDate"]').parent('div').append(html_message);
+                    }
+                    if(passengers.length <= 0){
+                        $(this).find('input[name="passengers"]').parent('div').append(html_message);
+                    }
+                    e.preventDefault();
                 }
             });
-            */
+            
         });
     </script>
 

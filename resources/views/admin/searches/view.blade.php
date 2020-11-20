@@ -9,7 +9,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('admin.searches.index') }}">Searches</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $search->search_id }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $search->id }}</li>
                 </ol>
             </nav>
         </div>
@@ -17,13 +17,13 @@
 
     <div class="row">
         <div class="col-md-8">
-            @foreach ($search->results as $result)
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        @include('admin.searches.result-card', ['result' => $result, 'iteration' => $loop->iteration])
-                    </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    @include('admin.searches.result-card', ['search' => $search])
                 </div>
-            @endforeach
+            </div>
+            
         </div>
 
         <div class="col-md-4">

@@ -17,9 +17,28 @@
     <div class="section main-search-page">
         <div class="container">
             <div class="row">
-                <div class="offset-md-1 col-md-8">
 
-                    <form action="{{ route('client.search.index') }}" method="GET">
+                <div class="offset-md-1 col-md-8">
+                    
+                    
+                    @if($lastSearchResults)    
+                    <nav aria-label="breadcrumb" class="row search-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
+                            @foreach ($lastSearchResults as $lastSearch)
+                            <li class="breadcrumb-item">
+                                <a href="#" data-from="{{ $lastSearch->start_airport_name }}" data-to="{{ $lastSearch->end_airport_name }}">
+                                    <span class="search-item-first">{{ $lastSearch->start_airport_name }}</span>
+                                    <span class="search-item-second">{{ $lastSearch->end_airport_name }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ol>
+                    </nav>
+                    @endif
+
+                    <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
+
                         @csrf
                         <div class="row form-body mt-5">
                             <div class="col-lg-10">
@@ -75,7 +94,7 @@
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
-                                    <input type="number" min="0" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
                                 </div>
                             </div>
 
@@ -90,8 +109,8 @@
     </div>
 
     
-    <div class="section show-hide-map-wrapper mt-5 mb-3">
-        <a href="#" id="show-hide-map"><span class="caret caret-down"></span> <span class="map-text">MAPS OF YOUR ROUTE</span> <span class="caret caret-down"></span></a>
+    <div class="container show-hide-map-wrapper mt-5 mb-3">
+        <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
     </div>
 
 
@@ -134,21 +153,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
-                                <!--
-                                <div class="turbo-gallery">
-                                    <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
-                                    </div>
-                                    <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
-                                    </div>
-                                    <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
-                                    </div>
-                                </div>
-                                -->
-                                
-                                
+
                                 <div class="turbo-gallery-for">
                                     <div>
                                         <img src="/images/search_galery/turbo/turbo.png">
@@ -160,10 +165,7 @@
                                         <img src="/images/search_galery/medium/medium.png">
                                     </div>
                                 </div>
-                                
-                                
-                                
-                                
+
                                 <div class="turbo-gallery-nav">
                                     <div>
                                         <img src="/images/search_galery/turbo/turbo.png">
@@ -175,40 +177,49 @@
                                         <img src="/images/search_galery/medium/medium.png">
                                     </div>
                                 </div>
-                                
-                                
+
                             </div>
                             <div class="card-inner-body pl-4">
+
                                 <div class="type-price">
-                                    <div>Turbo</div>
-                                    <div><span>Price:</span> &#36;{{ number_format($searchResults->price_turbo, 2, '.', ' ') }}</div>
+                                    <div>
+                                        <span class="flight-type">Turbo</span>
+                                        <span class="flight-dep-arr">{{ $searchResults->departure . ' - ' . $searchResults->arrival }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="flight-price">&#36;{{ number_format($searchResults->price_turbo, 2, '.', ' ') }}</span>
+                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                    </div>
                                 </div>
+
                                 <ul class="card-body-details">
                                     <li>
-                                        <span>Departure City:</span>
-                                        <span>{{ $searchResults->departure }}</span>
+                                        <img src="/images/passagers.svg" alt="passagers">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['passengers'] }}</span>
+                                            <span>Passengers:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Arrival City:</span>
-                                        <span>{{ $searchResults->arrival }}</span>
+                                        <img src="/images/time.svg" alt="time">
+                                        <div class="card-details-info">
+                                            <span>{{ $searchResults->time_turbo }}</span>
+                                            <span>Flight Time:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Flight Time:</span>
-                                        <span>{{ $searchResults->time_turbo }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Flight Date:</span>
-                                        <span>{{ $params['flightDate'] }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Max Passengers:</span>
-                                        <span>{{ $params['passengers'] }}</span>
+                                        <img src="/images/callender.svg" alt="callender">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['flightDate'] }}</span>
+                                            <span>Flight Date:</span>
+                                        </div>
                                     </li>
                                 </ul>
 
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="learn-more">Book now</a>
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn book-now">Book now</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -218,48 +229,73 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
-                                <div class="light-gallery">
+
+                                <div class="light-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/turbo/turbo.png">
                                     </div>
                                     <div>
                                         <img src="/images/search_galery/light/light.png">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/medium/medium.png">
                                     </div>
                                 </div>
+
+                                <div class="light-gallery-nav">
+                                    <div>
+                                        <img src="/images/search_galery/turbo/turbo.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/light.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/medium.png">
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="card-inner-body pl-4">
+                            <div class="card-inner-body">
+
                                 <div class="type-price">
-                                    <div>Light</div>
-                                    <div><span>Price:</span> &#36;{{ number_format($searchResults->price_light, 2, '.', ' ') }}</div>
+                                    <div>
+                                        <span class="flight-type">Light</span>
+                                        <span class="flight-dep-arr">{{ $searchResults->departure . ' - ' . $searchResults->arrival }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="flight-price">&#36;{{ number_format($searchResults->price_light, 2, '.', ' ') }}</span>
+                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                    </div>
                                 </div>
+
                                 <ul class="card-body-details">
                                     <li>
-                                        <span>Departure City:</span>
-                                        <span>{{ $searchResults->departure }}</span>
+                                        <img src="/images/passagers.svg" alt="passagers">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['passengers'] }}</span>
+                                            <span>Passengers:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Arrival City:</span>
-                                        <span>{{ $searchResults->arrival }}</span>
+                                        <img src="/images/time.svg" alt="time">
+                                        <div class="card-details-info">
+                                            <span>{{ $searchResults->time_light }}</span>
+                                            <span>Flight Time:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Flight Time:</span>
-                                        <span>{{ $searchResults->time_light }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Flight Date:</span>
-                                        <span>{{ $params['flightDate'] }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Max Passengers:</span>
-                                        <span>{{ $params['passengers'] }}</span>
+                                        <img src="/images/callender.svg" alt="callender">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['flightDate'] }}</span>
+                                            <span>Flight Date:</span>
+                                        </div>
                                     </li>
                                 </ul>
+
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="learn-more">Book now</a>
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -269,48 +305,73 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
-                                <div class="medium-gallery">
+
+                                <div class="medium-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/turbo/turbo.png">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/light/light.png">
                                     </div>
                                     <div>
                                         <img src="/images/search_galery/medium/medium.png">
                                     </div>
                                 </div>
+
+                                <div class="medium-gallery-nav">
+                                    <div>
+                                        <img src="/images/search_galery/turbo/turbo.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/light.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/medium.png">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="card-inner-body pl-4">
+
                                 <div class="type-price">
-                                    <div>Medium</div>
-                                    <div><span>Price:</span> &#36;{{ number_format($searchResults->price_medium, 2, '.', ' ') }}</div>
+                                    <div>
+                                        <span class="flight-type">Medium</span>
+                                        <span class="flight-dep-arr">{{ $searchResults->departure . ' - ' . $searchResults->arrival }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="flight-price">&#36;{{ number_format($searchResults->price_medium, 2, '.', ' ') }}</span>
+                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                    </div>
                                 </div>
+
                                 <ul class="card-body-details">
                                     <li>
-                                        <span>Departure City:</span>
-                                        <span>{{ $searchResults->departure }}</span>
+                                        <img src="/images/passagers.svg" alt="passagers">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['passengers'] }}</span>
+                                            <span>Passengers:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Arrival City:</span>
-                                        <span>{{ $searchResults->arrival }}</span>
+                                        <img src="/images/time.svg" alt="time">
+                                        <div class="card-details-info">
+                                            <span>{{ $searchResults->time_medium }}</span>
+                                            <span>Flight Time:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Flight Time:</span>
-                                        <span>{{ $searchResults->time_medium }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Flight Date:</span>
-                                        <span>{{ $params['flightDate'] }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Max Passengers:</span>
-                                        <span>{{ $params['passengers'] }}</span>
+                                        <img src="/images/callender.svg" alt="callender">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['flightDate'] }}</span>
+                                            <span>Flight Date:</span>
+                                        </div>
                                     </li>
                                 </ul>
+
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="learn-more">Book now</a>
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -320,114 +381,128 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
-                                <div class="heavy-gallery">
+
+                                <div class="heavy-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/heavy/heavy.png">
+                                        <img src="/images/search_galery/turbo/turbo.png">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/heavy/heavy.png">
+                                        <img src="/images/search_galery/light/light.png">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/heavy/heavy.png">
+                                        <img src="/images/search_galery/medium/medium.png">
                                     </div>
                                 </div>
+
+                                <div class="heavy-gallery-nav">
+                                    <div>
+                                        <img src="/images/search_galery/turbo/turbo.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/light.png">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/medium.png">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="card-inner-body pl-4">
+
                                 <div class="type-price">
-                                    <div>Heavy</div>
-                                    <div><span>Price:</span> &#36;{{ number_format($searchResults->price_heavy, 2, '.', ' ') }}</div>
+                                    <div>
+                                        <span class="flight-type">Heavy</span>
+                                        <span class="flight-dep-arr">{{ $searchResults->departure . ' - ' . $searchResults->arrival }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="flight-price">&#36;{{ number_format($searchResults->price_heavy, 2, '.', ' ') }}</span>
+                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                    </div>
                                 </div>
+
                                 <ul class="card-body-details">
                                     <li>
-                                        <span>Departure City:</span>
-                                        <span>{{ $searchResults->departure }}</span>
+                                        <img src="/images/passagers.svg" alt="passagers">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['passengers'] }}</span>
+                                            <span>Passengers:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Arrival City:</span>
-                                        <span>{{ $searchResults->arrival }}</span>
+                                        <img src="/images/time.svg" alt="time">
+                                        <div class="card-details-info">
+                                            <span>{{ $searchResults->time_heavy }}</span>
+                                            <span>Flight Time:</span>
+                                        </div>
                                     </li>
                                     <li>
-                                        <span>Flight Time:</span>
-                                        <span>{{ $searchResults->time_heavy }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Flight Date:</span>
-                                        <span>{{ $params['flightDate'] }}</span>
-                                    </li>
-                                    <li>
-                                        <span>Max Passengers:</span>
-                                        <span>{{ $params['passengers'] }}</span>
+                                        <img src="/images/callender.svg" alt="callender">
+                                        <div class="card-details-info">
+                                            <span>{{ $params['flightDate'] }}</span>
+                                            <span>Flight Date:</span>
+                                        </div>
                                     </li>
                                 </ul>
+
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="learn-more">Book now</a>
+                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                     @endif
-
-                        
+    
                 @else
                 
-                    <p>We do not have such a flight, make a request e quote</p>
+                    <p class="not-found-message">We do not have such a flight, make a request e quote</p>
 
-                @endif   
-                
+                @endif  
+
                 <div class="pb-5"></div>
                     
                 <div class="card mb-4 mt-5">
                     <div class="card-body">
                         <div class="card-inner-image">
-                            <div class="request_quote-gallery">
-                                <div>
-                                    <img src="/images/search_galery/request_quote/04_rr_dm_wi-jet-in-the-sky.webp">
-                                </div>
-                                <div>
-                                    <img src="/images/search_galery/request_quote/Baron_2_social.webp">
-                                </div>
-                                <div>
-                                    <img src="/images/search_galery/request_quote/bombardier20challenger2030020ex_tcm36-3782.webp">
-                                </div>
-                                <div>
-                                    <img src="/images/search_galery/request_quote/challenger-605-opt.webp">
-                                </div>
-                            </div>
+                            <img src="/images/search_galery/reqest_quote.png" class="img-fluid" alt="reqest quote">
                         </div>
+                        
                         <div class="card-inner-body pl-4">
-                            <div class="type-price">
-                                <div>SELECT SPECIFIC PLANE MODEL</div>
+                            <div class="custom-flight">
+                                <div>Custom flight search</div>
+                                <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
                             </div>
                             <form action="{{ route('client.search.requestQuote') }}" method="POST" id="request_quote">
                                 @csrf
-                                <div class="row d-flex justify-content-between request-quote-from-to mt-4 mb-4">
-                                    <div class="ml-4">{{ $params['startPointName'] . ' - ' . $params['endPointnName'] }}</div>
-                                    <div class="mr-4">{{ $params['flightDate'] }}</div>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="flight_model">Preferred aircraft:</label>
+                                        <select name="flight_model" class="form-control" id="flight_model">
+                                            <option value="">--- Nothing selected ---</option>
+                                            <option value="turbo">Turbo</option>
+                                            <option value="light">Light</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="heavy">Heavy</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="comment">Comment</label>
+                                        <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <select name="flight_model" class="form-control" id="flight_model">
-                                        <option value="">--- Nothing selected ---</option>
-                                        <option value="nurbo">Turbo</option>
-                                        <option value="light">Light</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="heavy">Heavy</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mt-4">
-                                    <label for="comment">Comment</label>
-                                    <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
-                                </div>
+
                                 <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
                                 <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
                                 <input type="hidden" name="start_airport_name" value="{{ $params['startPointName'] }}" id="start_airport_name">
                                 <input type="hidden" name="end_airport_name" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                                 <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                                 <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary mt-5">Request a Quote</button>
+                                
+                                <div class="text-right pull-right">
+                                    <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
                                 </div>
                             </form>
-                        
                         </div>
                             
                     </div>
@@ -488,10 +563,6 @@
     </div>
 </div>  
 
-    
-    
- 
-
 
 <div class="hover_bkgr_fricc">
     <span class="helper"></span>
@@ -501,9 +572,7 @@
     </div>
 </div>
     
-    
-    
-    
+  
 @endsection
 
 
@@ -572,89 +641,121 @@
             } 
         });
 
-        /*
-        $('.turbo-gallery').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            arrows: false,
-        });
-        
-       
-        */
-       
-        
-        $('.turbo-gallery-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            fade: true,
-            dots: false,
-            //asNavFor: '.turbo-gallery-nav',
-        });
-        
-        
-        
-        $('.turbo-gallery-nav').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.turbo-gallery-for',
-            dots: false,
-            centerMode: true,
-            focusOnSelect: true,
-            arrows: false,
-        });
-        
-        
-
-        
-       
-        
-        $('.light-gallery').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            arrows: false,
-        });
-        
-        $('.medium-gallery').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            arrows: false,
-        });
-        
-        $('.heavy-gallery').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            arrows: false,
-        });
-        
-        $('.request_quote-gallery').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            arrows: false,
-        });
-
 
         $(function() {
+
+            $('.turbo-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.turbo-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.turbo-gallery-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                asNavFor: '.turbo-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
+
+            
+            $('.light-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.light-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.light-gallery-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                asNavFor: '.light-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.light-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
+            
+
+            $('.medium-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.medium-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.medium-gallery-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                asNavFor: '.medium-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.medium-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
+
+
+            $('.heavy-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.heavy-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.heavy-gallery-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                asNavFor: '.heavy-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
+
+
             $('.hover_bkgr_fricc').click(function(){
                 $('.hover_bkgr_fricc').hide();
             });
@@ -679,6 +780,8 @@
                 var _token = $('input[name="_token"]').val();
                 
                 if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
+                    $('#flight_model').removeClass('is-invalid');
+                    $('.invalid-feedback').remove();
                     $('.hover_bkgr_fricc').show();
                     $.ajax({
                         url: "{{ route('client.search.requestQuote') }}",
@@ -696,6 +799,10 @@
                             console.log(response);
                         },
                     });
+                } else {
+                    $('#flight_model').removeClass('is-invalid');
+                    $('.invalid-feedback').remove();
+                    $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
                 }
             });
 
@@ -773,8 +880,45 @@
                 $('input.to').val($(this).text());
                 $('#arrivalList').fadeOut();
             });
+
+            $('.search-breadcrumb a').click(function(e){
+                e.preventDefault();
+                $('.form-body input[name="startPoint"]').val($(this).data("from"));
+                $('.form-body input[name="endPoint"]').val($(this).data("to"));
+            });
             
             
+            
+            
+            $('#main-search-form').submit(function(e){
+
+                var start_point = $(this).find('input[name="startPoint"]').val();
+                var end_point = $(this).find('input[name="endPoint"]').val();
+                var flight_date = $(this).find('input[name="flightDate"]').val();
+                var passengers = $(this).find('input[name="passengers"]').val();
+                var html_message = '<span class="search-error">This field is required.</span>';
+                
+                if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
+                    $('.search-error').remove();
+                    
+                    if(start_point.length <= 0){
+                        $(this).find('input[name="startPoint"]').parent('div').append(html_message);
+                    }
+                    if(end_point.length <= 0){
+                        $(this).find('input[name="endPoint"]').parent('div').append(html_message);
+                    }
+                    if(flight_date.length <= 0){
+                        $(this).find('input[name="flightDate"]').parent('div').append(html_message);
+                    }
+                    if(passengers.length <= 0){
+                        $(this).find('input[name="passengers"]').parent('div').append(html_message);
+                    }
+                    e.preventDefault();
+                }
+            });
+            
+            
+
         });
     </script>
 

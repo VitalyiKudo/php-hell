@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <h3>Selected result</h3>
 
-                    @include('admin.searches.result-card', ['result' => $order->searches])
+                    @include('admin.orders.result-card', ['search' => $search])
 
                     <!-- <form class="mt-3">
                         <button type="submit" class="btn btn-success">Accept</button>

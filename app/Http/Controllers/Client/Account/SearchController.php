@@ -62,8 +62,13 @@ class SearchController extends Controller
         } else {
             $params["result_id"] = 0;
         }
-        
-        
+
+        $lastSearchResults = Search::where('user_id', 33)
+                                ->orderBy('id', 'desc')
+                                ->take(4)
+                                ->get()
+                                ->reverse();
+
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::user()->id;
@@ -95,7 +100,7 @@ class SearchController extends Controller
             $messages = $validator->messages();
         }
 
-        return view('client.account.requests.request', compact('searchResults', 'params', 'messages'));
+        return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults'));
     }
     
     public function findAirport($keyword) {

@@ -23,12 +23,15 @@
     line-height: 0;
 
     position: absolute;
-    top: 50%;
-
+    /*top: 50%;
+    top: calc(50% - 10px);*/
+    top: calc(50% - 5px);
+    
+    
     display: block;
 
-    width: 20px;
-    height: 20px;
+    width: 33px;
+    height: 48px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -49,7 +52,8 @@
 {
     color: transparent;
     outline: none;
-    background: transparent;
+    opacity: 0.6;
+    /*background: transparent;*/
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
@@ -81,6 +85,7 @@
 .slick-prev
 {
     left: 15px;
+    background: no-repeat center center url("../images/arrow_left.svg");
 }
 [dir='rtl'] .slick-prev
 {
@@ -89,7 +94,7 @@
 }
 .slick-prev:before
 {
-    content: '←';
+    /*content: '←';*/
 }
 [dir='rtl'] .slick-prev:before
 {
@@ -99,6 +104,7 @@
 .slick-next
 {
     right: 15px;
+    background: no-repeat center center url("../images/arrow_right.svg");
 }
 [dir='rtl'] .slick-next
 {
@@ -107,7 +113,7 @@
 }
 .slick-next:before
 {
-    content: '→';
+    /*content: '→';*/
 }
 [dir='rtl'] .slick-next:before
 {
@@ -208,3 +214,31 @@
 .slick-slide img {
     max-width: 100%;
 }
+
+.turbo-gallery-nav .slick-slide img, .light-gallery-nav .slick-slide img, .medium-gallery-nav .slick-slide img, .heavy-gallery-nav .slick-slide img {
+    border: 2px solid #FFF;
+    opacity: 0.8;
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.turbo-gallery-nav .slick-current img, .light-gallery-nav .slick-current img, .medium-gallery-nav .slick-current img, .heavy-gallery-nav .slick-current img {
+    opacity: 1;
+    -webkit-filter: brightness(100%);
+}
+
+.turbo-gallery-nav .slick-slide, .light-gallery-nav .slick-slide, .medium-gallery-nav .slick-slide, .heavy-gallery-nav .slick-slide {
+    padding: 3px;
+    outline: none;
+}
+
+
+.turbo-gallery-nav, .light-gallery-nav, .medium-gallery-nav, .heavy-gallery-nav {
+    position: absolute;
+    bottom: 10px;
+}
+

@@ -6,11 +6,15 @@
         <div class="col-md-4">
             <h2 class="mb-4">Flight data</h2>
 
-            Name ..
+            <p>Name: {{ $user->first_name }} {{ $user->last_name }}</p>
+            <p>Type: {{ $order->type }}</p>
+            <p>{{ $search->start_airport_name }} - {{ $search->end_airport_name }}</p>
+            <p>Price: &#36;{{ number_format($order->price, 2, '.', ' ') }}</p>
+            
         </div>
         
 
-        <div class="col-md-8">
+        <div class="col-md-8 profile-page">
             <form method="POST" action="{{ route('client.orders.checkout') }}">
 
                 <h2 class="mb-4">Booking your flight</h2>
@@ -20,13 +24,9 @@
 
 
                 Summary ..
-                
-                <hr>
-                
-                <p>{{ $order->type }} | {{ $search->start_airport_name }} - {{ $search->end_airport_name }} | {{ number_format($order->price, 2, '.', ' ') }}</p>
 
                 <div class="row my-5">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         
                         
                         

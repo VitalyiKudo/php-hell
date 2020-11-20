@@ -105,7 +105,7 @@ class OrderController extends Controller
         
         //echo \Request::route()->getName();
         //echo "fghgfh";
-        
+        $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
         
@@ -128,7 +128,7 @@ class OrderController extends Controller
         //echo $price;
         
 
-        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price'));
+        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'user'));
     }
     
     public function checkout(Request $request)
@@ -208,8 +208,9 @@ class OrderController extends Controller
         $order_id = $request->route('order_id');
         $order = Order::find($order_id);
         $search = Search::find($order->search_result_id);
+        $user = Auth::user();
   
-        return view('client.account.orders.complete', compact('order', 'search'));
+        return view('client.account.orders.complete', compact('order', 'search', 'user'));
     }
     
     
