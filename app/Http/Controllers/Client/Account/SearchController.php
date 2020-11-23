@@ -165,8 +165,8 @@ class SearchController extends Controller
         Mail::send([], [], function ($message) use ($search_id) {
             $user = Auth::user();
             $message->from('quote@jetonset.com', 'JetOnset team');
-            $message->to('ju.odarjuk@gmail.com')->subject("Your request for quote on JetOnset # {$search_id}");
-            //$message->to($user->email)->subject("We have received your request");
+            //$message->to('ju.odarjuk@gmail.com')->subject("Your request for quote on JetOnset # {$search_id}");
+            $message->to($user->email)->subject("We have received your request");
             $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
         });
 
@@ -213,8 +213,9 @@ class SearchController extends Controller
             Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                 $user = Auth::user();
                 $message->from($user->email, 'JetOnset team');
-                $message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
                 //$message->to($email)->subject("We have received your request");
+                $message->to($user->email)->subject("We have received your request");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
            
