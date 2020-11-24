@@ -133,7 +133,7 @@
             {{--<div class="col-lg-2"></div>--}}
 
             <div class="col-xl-12 col-lg-12 right-request">
-                <h2 class="mb-5">Overview of your requests</h2>
+                <!--<h2 class="mb-5">Overview of your requests</h2>-->
 
                 @if ($messages)
                     <div class="alert alert-danger">
@@ -459,9 +459,7 @@
 
                 @endif  
 
-                <div class="pb-5"></div>
-                    
-                <div class="card mb-4 mt-5">
+                <div class="card mb-4">
                     <div class="card-body">
                         <div class="card-inner-image">
                             <img src="/images/search_galery/reqest_quote.png" class="img-fluid" alt="reqest quote">
@@ -508,17 +506,18 @@
                     </div>
                 </div>
                 
-                
+                <div class="pb-5"></div>
 
             </div>
         </div>
     </div>
 
-    <div class="container">
+<!--    
+<div class="container">
     <div class="col-md-10">
         <div class="row">
             <div class="col-md-12">
-                <!--div class="well well-sm"-->
+                
                     <div class="row">
                     
                         <div class="panel panel-default panel-horizontal">
@@ -532,9 +531,7 @@
                             
                             <div class="panel-body">                
                             
-                        <!--div class="col-xs-2 col-md-3 text-center age">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=40&txt=John%20Doe&w=200&h=200" class="img-circle img-responsive" alt="" />
-    					</div-->
+                       
                         <div class="col-xs-12 col-md-12 section-box">
                             <div class="email" style="padding-top: 10px;">johndoe@tasktick.com</div>
                             <h2>
@@ -557,12 +554,12 @@
                         </div>
     
                     </div>
-                <!--/div-->
+                
             </div>
         </div>
     </div>
 </div>  
-
+-->    
 
 <div class="hover_bkgr_fricc">
     <span class="helper"></span>

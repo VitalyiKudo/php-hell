@@ -94,7 +94,7 @@
                                 <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/">{{ __('Blog') }}</a>
                             </li>
                         @else
-                            <li class="nav-item ">
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('profile*') ? 'active' : '' }}" href="{{ route('client.profile') }}">{{ __('Profile') }}</a>
                             </li>
 
