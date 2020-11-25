@@ -17,7 +17,7 @@
                         <div class="col-lg-10 mb-2 mt-4 home-title">
                             <h1>Fly different today: Search your private jet</h1>
                         </div>
-                        <div class="mb-3 mt-2 ml-3" style="width:23% !important">
+                        <div class="mb-3 mt-2 ml-3 start-point">
                             <div class="input-group input-style-3">
                                 <input type="text"
                                     class="form-control from"
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 mt-2 pl-0 bd" style="width: 23% !important">
+                        <div class="mb-3 mt-2 pl-0 bd end-point">
                             <div class="input-group input-style-2">
                                 <input type="text"
                                     class="form-control to"
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 mt-2 ml-3" style="width: 19% !important">
+                        <div class="mb-3 mt-2 ml-3 dt-field">
                             <div class="input-group input-style">
                                 <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off">
                                 <div class="input-group-prepend">
@@ -59,7 +59,7 @@
                             </div>
 
                         </div>
-                        <div class="mb-3 mt-2 pl-0 ml-3" style="width:16% !important">
+                        <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                             <div class="input-group input-style">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         
-                        <div class="form-container-1 mt-2 ml-3" style="width:11% !important">
+                        <div class="form-container-1 mt-2 ml-3 butn-search">
                             <button type="submit" class="btn">Search Jet</button>
                         </div>
                     </div>

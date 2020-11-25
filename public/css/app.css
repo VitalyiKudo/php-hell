@@ -11954,7 +11954,7 @@ h3 {
   background-color: #ffffff;
   border-top: 3px solid #b58267;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  z-index: 9999;
 }
 
 .custom-navbar .collapsing ul li,
@@ -12133,6 +12133,7 @@ h3 {
   margin-top: -8.5rem;
   padding-top: 10rem;
   font-family: "Roboto", sans-serif !important;
+  height: 510px;
 }
 
 @media (min-width: 992px) {
@@ -12329,6 +12330,7 @@ h3 {
   margin-top: -8.5rem;
   /*padding-top: 10rem;*/
   font-family: "Roboto", sans-serif !important;
+  height: 600px;
 }
 
 @media (min-width: 992px) {
@@ -12531,6 +12533,14 @@ h3 {
   border-radius: 8px;
 }
 
+.main-search-page .form-body {
+    top: 190px;
+}
+
+.main-search .form-body {
+    //top: 200px;
+}
+
 @media (min-width: 1600px) {
   .form-body {
     position: absolute;
@@ -12546,6 +12556,14 @@ h3 {
     height: 175px;
     top: 175px;
     margin-left: -55px;
+  }
+}
+
+@media (max-width: 991px) {
+  .form-body {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
@@ -15435,6 +15453,22 @@ sup {
     border-bottom: none;
 }
 
+
+
+@media (max-width: 992px) {
+    .breadcrumb-item .search-item-first, .breadcrumb-item .search-item-second, .breadcrumb-item .search-title {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 850px) {
+    .main-search-page .search-breadcrumb {
+        display: none;
+    }
+}
+
+
+
 .search-error {
     position: absolute;
     top: -30px;
@@ -15455,4 +15489,47 @@ sup {
     position: absolute;
     top: 100%;
     width: 0;
+}
+
+.start-point, .end-point, .dt-field, .pass-field, .butn-search {
+    width: auto !important;
+}
+
+@media (min-width: 992px) {
+    .start-point {
+        width:23% !important;
+    }
+    .end-point {
+        width: 23% !important;
+    }
+    .dt-field {
+        width: 19% !important;
+    }
+    .pass-field {
+        width:16% !important;
+    }
+    .butn-search {
+        width:11% !important;
+    }
+}
+
+@media (max-width: 570px) {
+    .main-search-page .form-body, .main-search .form-body {
+        background: #c5d0d9 !important;
+        opacity: 0.8;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .start-point, .end-point, .dt-field, .pass-field, .butn-search {
+        width: 90% !important;
+    }
+    .end-point {
+        margin-left: 15px;
+    }
+    .main-search-page .form-body .home-title, .main-search .form-body .home-title {
+        display: none;
+    }
 }
