@@ -2,10 +2,10 @@
 @section('meta')
     <title>Requests | JetOnset</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>
-    
+
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
     <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
-    
+
 @endsection
 
 @section('content')
@@ -19,9 +19,9 @@
             <div class="row">
 
                 <div class="offset-md-1 col-md-8">
-                    
-                    
-                    @if($lastSearchResults)    
+
+
+                    @if($lastSearchResults)
                     <nav aria-label="breadcrumb" class="row search-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    
+
     <div class="container show-hide-map-wrapper mt-5 mb-3">
         <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
     </div>
@@ -117,8 +117,8 @@
     <div class="section map-section">
         <div id="map"></div>
     </div>
-    
-    
+
+
 
 
 
@@ -126,10 +126,10 @@
 
     <div class="container request-search-page">
 
-        
-        
+
+
         <div class="row">
-            
+
             {{--<div class="col-lg-2"></div>--}}
 
             <div class="col-xl-12 col-lg-12 right-request">
@@ -144,12 +144,12 @@
                       </ul>
                     </div><br />
                 @endif
-                
-                
 
-                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0)) 
 
-                    @if($searchResults->price_turbo > 0)         
+
+                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0))
+
+                    @if($searchResults->price_turbo > 0)
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
@@ -225,7 +225,7 @@
                     </div>
                     @endif
 
-                    @if($searchResults->price_light > 0)    
+                    @if($searchResults->price_light > 0)
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
@@ -301,7 +301,7 @@
                     </div>
                     @endif
 
-                    @if($searchResults->price_medium > 0)    
+                    @if($searchResults->price_medium > 0)
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="card-inner-image">
@@ -371,7 +371,7 @@
                                 <div class="book">
                                     <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -452,19 +452,19 @@
                         </div>
                     </div>
                     @endif
-    
+
                 @else
-                
+
                     <p class="not-found-message">We do not have such a flight, make a request e quote</p>
 
-                @endif  
+                @endif
 
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="card-inner-image">
                             <img src="/images/search_galery/reqest_quote.png" class="img-fluid" alt="reqest quote">
                         </div>
-                        
+
                         <div class="card-inner-body pl-4">
                             <div class="custom-flight">
                                 <div>Custom flight search</div>
@@ -496,30 +496,30 @@
                                 <input type="hidden" name="end_airport_name" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                                 <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                                 <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
-                                
+
                                 <div class="text-right pull-right">
                                     <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
                                 </div>
                             </form>
                         </div>
-                            
+
                     </div>
                 </div>
-                
+
                 <div class="pb-5"></div>
 
             </div>
         </div>
     </div>
 
-<!--    
+<!--
 <div class="container">
     <div class="col-md-10">
         <div class="row">
             <div class="col-md-12">
-                
+
                     <div class="row">
-                    
+
                         <div class="panel panel-default panel-horizontal">
                             <div class="panel-heading text-center" style="width:10em;">
                                 <span><h3>3 weeks</h3></span>
@@ -528,10 +528,10 @@
                                 <div class="email" style="padding-top: 10px;">johndoe@tasktick.com</div>
                                 <span><h5>2 weeks</h5><span>
                             </div>
-                            
-                            <div class="panel-body">                
-                            
-                       
+
+                            <div class="panel-body">
+
+
                         <div class="col-xs-12 col-md-12 section-box">
                             <div class="email" style="padding-top: 10px;">johndoe@tasktick.com</div>
                             <h2>
@@ -548,18 +548,18 @@
                                 </div>
                             </div>
                         </div>
-    
-                            </div>                            
+
+                            </div>
                             <div class="panel-footer text-center" style="width:4em;">Actions</div>
                         </div>
-    
+
                     </div>
-                
+
             </div>
         </div>
     </div>
-</div>  
--->    
+</div>
+-->
 
 <div class="hover_bkgr_fricc">
     <span class="helper"></span>
@@ -568,8 +568,8 @@
         <p>Thank you!<br />We will send email soon.</p>
     </div>
 </div>
-    
-  
+
+
 @endsection
 
 
@@ -586,7 +586,7 @@
                     mapTypeId: "terrain",
                 });
 
-                
+
                 var LatLngList = new Array (new google.maps.LatLng ( {{ $params['startCityLat'] }}, {{ $params['startCityLng'] }}), new google.maps.LatLng ( {{ $params['endCityLat'] }}, {{ $params['endCityLng'] }} ));
                 //  Create a new viewpoint bound
                 var bounds = new google.maps.LatLngBounds ();
@@ -597,7 +597,7 @@
                 }
                 //  Fit these bounds to the map
                 map.fitBounds(bounds);
-                
+
 
                 // Define a symbol using a predefined path (an arrow)
                 // supplied by the Google Maps JavaScript API.
@@ -618,6 +618,8 @@
                   ],
                   map: map,
                   strokeColor: "#1479BF",
+                  draggable: true,
+                  geodesic: true,
                 });
             }
         @endif
@@ -635,7 +637,7 @@
                 $( ".map-section" ).animate({
                     height: "0px",
                 }, 300);
-            } 
+            }
         });
 
 
@@ -668,7 +670,7 @@
                 $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
             });
 
-            
+
             $('.light-gallery-for').slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -695,7 +697,7 @@
             $('.light-gallery-for').on('click', '.slick-arrow', function(){
                 $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
             });
-            
+
 
             $('.medium-gallery-for').slick({
                 slidesToShow: 1,
@@ -759,7 +761,7 @@
             $('.popupCloseButton').click(function(){
                 $('.hover_bkgr_fricc').hide();
             });
-            
+
             $('input[name="flightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
@@ -775,7 +777,7 @@
                 var start_airport_name = $('#start_airport_name').val();
                 var end_airport_name = $('#end_airport_name').val();
                 var _token = $('input[name="_token"]').val();
-                
+
                 if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
                     $('#flight_model').removeClass('is-invalid');
                     $('.invalid-feedback').remove();
@@ -803,8 +805,8 @@
                 }
             });
 
-            
-            $('input.from').keyup(function(){ 
+
+            $('input.from').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -828,7 +830,7 @@
                                 }
                             });
                             output += '</ul>';
-                            $('#departureList').fadeIn();  
+                            $('#departureList').fadeIn();
                             $('#departureList').html(output);
                         }
                     });
@@ -840,9 +842,9 @@
                 $('input.from').val($(this).text());
                 $('#departureList').fadeOut();
             });
-            
-            
-            $('input.to').keyup(function(){ 
+
+
+            $('input.to').keyup(function(){
                 var query = $(this).val();
                 if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
@@ -865,7 +867,7 @@
                                 }
                             });
                             output += '</ul>';
-                            $('#arrivalList').fadeIn();  
+                            $('#arrivalList').fadeIn();
                             $('#arrivalList').html(output);
                         }
                     });
@@ -883,10 +885,10 @@
                 $('.form-body input[name="startPoint"]').val($(this).data("from"));
                 $('.form-body input[name="endPoint"]').val($(this).data("to"));
             });
-            
-            
-            
-            
+
+
+
+
             $('#main-search-form').submit(function(e){
 
                 var start_point = $(this).find('input[name="startPoint"]').val();
@@ -894,10 +896,10 @@
                 var flight_date = $(this).find('input[name="flightDate"]').val();
                 var passengers = $(this).find('input[name="passengers"]').val();
                 var html_message = '<span class="search-error">This field is required.</span>';
-                
+
                 if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
                     $('.search-error').remove();
-                    
+
                     if(start_point.length <= 0){
                         $(this).find('input[name="startPoint"]').parent('div').append(html_message);
                     }
@@ -913,8 +915,8 @@
                     e.preventDefault();
                 }
             });
-            
-            
+
+
 
         });
     </script>
