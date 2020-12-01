@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <h2 class="mb-4">Flight data</h2>
-            
+
             <p>Name: {{ $user->first_name }} {{ $user->last_name }}</p>
             <p>Type: {{ $search_type }}</p>
             <p>{{ $pricing->departure }} - {{ $pricing->arrival }}</p>
@@ -31,7 +31,7 @@
                     <div class="col-md-12">
                         <input type="hidden" name="search_result_id" value="{{ $search_id }}">
                         <input type="hidden" name="search_result_type" value="{{ $search_type }}">
-                        <input type="hidden" name="price" value="{{ number_format($price, 2, '.', ' ') }}">
+                        <input type="hidden" name="price" value="{{ $price }}">
                         <input type="hidden" name="type" value="{{ $search_type }}">
                         <div class="form-group mb-5">
                             <label for="billing_address">{{ __('Billing Address') }}</label>

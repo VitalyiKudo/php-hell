@@ -94,7 +94,7 @@ class OrderController extends Controller
 
         return redirect()->route('client.orders.booking', $order->id);
     }
-    
+
     public function confirm(Request $request)
     {
         /*
@@ -102,13 +102,13 @@ class OrderController extends Controller
         echo $user->id;
         echo $user->email;
         */
-        
+
         //echo \Request::route()->getName();
         //echo "fghgfh";
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
-        
+
         $search = Search::find($search_id);
 
         $pricing = Pricing::find($search->result_id);
@@ -124,13 +124,13 @@ class OrderController extends Controller
         } else {
             $price = 0.00;
         }
-        
+
         //echo $price;
-        
+
 
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'user'));
     }
-    
+
     public function checkout(Request $request)
     {
         $validator = Validator::make(
@@ -177,7 +177,7 @@ class OrderController extends Controller
             $order->is_accepted = (bool)$request->input('is_accepted');
             $order->save();
 
-            
+
             Mail::send([], [], function ($message) {
                 $user = Auth::user();
                 $message->from('quote@jetonset.com', 'JetOnset team');
@@ -185,7 +185,7 @@ class OrderController extends Controller
                 $message->to($user->email)->subject("We have received your request");
                 $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
             });
-            
+
 
         }
 
@@ -196,36 +196,36 @@ class OrderController extends Controller
             return redirect()->back()->with(['messages' => $messages])->withInput();
         }
     }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     public function checkoutComplete(Request $request)
     {
         $order_id = $request->route('order_id');
         $order = Order::find($order_id);
         $search = Search::find($order->search_result_id);
         $user = Auth::user();
-  
+
         return view('client.account.orders.complete', compact('order', 'search', 'user'));
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     public function orderAccepted(Request $request) {
         $data = Order::where('id', $request->order_id)->first();
-        
+
         $data->is_accepted = $request->input('accept');
         $data->save();
 
         return redirect()->back()->with('status', 'The order was successfully updated.');
     }
-    
-    
-    
+
+
+
 }
