@@ -156,25 +156,37 @@
 
                                 <div class="turbo-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-4.webp">
                                     </div>
                                 </div>
 
                                 <div class="turbo-gallery-nav">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/turbo/TURBO-PROP-4.webp">
                                     </div>
                                 </div>
 
@@ -232,25 +244,37 @@
 
                                 <div class="light-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/light/LIGHT.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/light/LIGHT-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/light/LIGHT-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/LIGHT-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/LIGHT-4.webp">
                                     </div>
                                 </div>
 
                                 <div class="light-gallery-nav">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/light/LIGHT.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/light/LIGHT-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/light/LIGHT-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/LIGHT-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/light/LIGHT-4.webp">
                                     </div>
                                 </div>
 
@@ -308,25 +332,37 @@
 
                                 <div class="medium-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/MIDSIZE-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/MIDSIZE-4.webp">
                                     </div>
                                 </div>
 
                                 <div class="medium-gallery-nav">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/medium/MIDSIZE-2.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/MIDSIZE-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/medium/MIDSIZE-4.webp">
                                     </div>
                                 </div>
 
@@ -384,26 +420,42 @@
 
                                 <div class="heavy-gallery-for">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/heavy/HEAVY.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/heavy/HEAVY-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/heavy/HEAVY-2.webp">
                                     </div>
+                                    
+                                    <div>
+                                        <img src="/images/search_galery/heavy/HEAVY-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/heavy/HEAVY-4.webp">
+                                    </div>
+                                    
                                 </div>
 
                                 <div class="heavy-gallery-nav">
                                     <div>
-                                        <img src="/images/search_galery/turbo/turbo.png">
+                                        <img src="/images/search_galery/heavy/HEAVY.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/light/light.png">
+                                        <img src="/images/search_galery/heavy/HEAVY-1.webp">
                                     </div>
                                     <div>
-                                        <img src="/images/search_galery/medium/medium.png">
+                                        <img src="/images/search_galery/heavy/HEAVY-2.webp">
                                     </div>
+                                    
+                                    <div>
+                                        <img src="/images/search_galery/heavy/HEAVY-3.webp">
+                                    </div>
+                                    <div>
+                                        <img src="/images/search_galery/heavy/HEAVY-4.webp">
+                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -655,8 +707,8 @@
             });
 
             $('.turbo-gallery-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 asNavFor: '.turbo-gallery-for',
                 dots: false,
                 centerMode: true,
@@ -683,8 +735,8 @@
             });
 
             $('.light-gallery-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 asNavFor: '.light-gallery-for',
                 dots: false,
                 centerMode: true,
@@ -711,8 +763,8 @@
             });
 
             $('.medium-gallery-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 asNavFor: '.medium-gallery-for',
                 dots: false,
                 centerMode: true,
@@ -739,8 +791,8 @@
             });
 
             $('.heavy-gallery-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 asNavFor: '.heavy-gallery-for',
                 dots: false,
                 centerMode: true,
