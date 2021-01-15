@@ -52,34 +52,50 @@
                         </div>
                     @elseif($order->is_accepted)     
                         <dt>
-                        <form class="mt-3" action="{{ route('admin.orders.update', $order->id) }}" method="POST">
-                            @method('PUT')
-                            @csrf
+                            <form class="mt-3" action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+                                @method('PUT')
+                                @csrf
 
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
-                                    id="price" name="price" value="{{ $order->price }}" required>
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    <input type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
+                                        id="price" name="price" value="{{ $order->price }}" required>
 
-                                @if ($errors->has('price'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('price') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                                    @if ($errors->has('price'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('price') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
-                            
 
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Status</label>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Select Status</label>
+
+                                        <select class="form-control" name="order_status" id="exampleFormControlSelect1">
+                                            @foreach($orderStatuses as $stauts)
+                                                <option {{($order->status->id== $stauts->id ? 'selected' : '' ) }} value="{{ $stauts->id}}">{{ $stauts->name}}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
                                 
-                                    <select class="form-control" name="order_status" id="exampleFormControlSelect1">
-                                        @foreach($orderStatuses as $stauts)
-                                            <option {{($order->status->id== $stauts->id ? 'selected' : '' ) }} value=" {{ $stauts->id}}">{{ $stauts->name}}</option>
+                                
+                                
+                                
+                                <div class="form-group">
+                                    <label for="formControlOperator">Select Operator</label>
+
+                                    <select class="form-control" name="operator" id="formControlOperator">
+                                        <option value="0"> -- Select Operator -- </option>
+                                        @foreach($operators as $operator)
+                                            <option {{($order->operator_id == $operator->id ? 'selected' : '' ) }} value="{{$operator->id}}">{{ $operator->name}}</option>
                                         @endforeach
                                     </select>
-                            </div>
-                            
+                                </div>
+                                
+                                
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Update</button>
                                 </div>

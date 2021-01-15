@@ -37,6 +37,12 @@
                     <dd>00:00</dd>
                 @endif
             @endif
+            
+            @if($operator)
+            <dt>Operator</dt>
+            <dd>{{ $operator->name }}</dd>
+            @endif
+            
         </dl>
     </div>
     <hr>

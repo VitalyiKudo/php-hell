@@ -13,6 +13,7 @@ use App\Models\OrderStatus;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Search;
 use App\Models\Pricing;
+use App\Models\Operator;
 use App\User;
 
 
@@ -72,8 +73,9 @@ class OrderController extends Controller
         $search = Search::find($order->search_result_id);
         $user = User::find($order->user_id);
         $pricing = Pricing::find($search->result_id);
+        $operator = Operator::find($order->operator_id);
 
-        return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing'));
+        return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
     }
 
     /**
@@ -85,8 +87,9 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $orderStatuses = OrderStatus::all();
+        $operators = Operator::all();
 
-        return view('admin.orders.edit', compact('order','orderStatuses'));
+        return view('admin.orders.edit', compact('order','orderStatuses', 'operators'));
     }
 
     /**
@@ -99,16 +102,17 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $order = Order::where('id', $order->id)->first();
-        
         $order->order_status_id = $request->order_status;
         $order->price = $request->price;
+        $order->operator_id = $request->operator;
         $order->save();
-        
+
         //Mail::to($order->user->email)->send(new SendMail($order));
         Mail::send('admin.emails.order_status', ['order' => $order], function ($m) use ($order) {
             $m->from('support@jetonset.com', 'JetOnSet');
             $m->to($order->user->email)->subject('Order status Updated');
-        });     
+        });
+        
         return redirect()->back()->with('status', 'The order was successfully updated.');
     }
 
