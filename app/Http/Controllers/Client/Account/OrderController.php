@@ -198,11 +198,6 @@ class OrderController extends Controller
     }
 
 
-
-
-
-
-
     public function checkoutComplete(Request $request)
     {
         $order_id = $request->route('order_id');
@@ -214,9 +209,6 @@ class OrderController extends Controller
     }
 
 
-
-
-
     public function orderAccepted(Request $request) {
         $data = Order::where('id', $request->order_id)->first();
 
@@ -226,6 +218,5 @@ class OrderController extends Controller
         return redirect()->back()->with('status', 'The order was successfully updated.');
     }
 
-
-
+    
 }
