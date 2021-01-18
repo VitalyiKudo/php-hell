@@ -828,6 +828,7 @@
                 var comment = $('#comment').val();
                 var start_airport_name = $('#start_airport_name').val();
                 var end_airport_name = $('#end_airport_name').val();
+                var pax = $('#pax').val();
                 var _token = $('input[name="_token"]').val();
 
                 if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
@@ -844,7 +845,8 @@
                             user_id: user_id,
                             comment: comment,
                             start_airport_name: start_airport_name,
-                            end_airport_name: end_airport_name
+                            end_airport_name: end_airport_name,
+                            pax: pax
                         },
                         success:function(response){
                             console.log(response);
