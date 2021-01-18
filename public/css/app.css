@@ -11934,6 +11934,10 @@ h3 {
   }
 }
 
+.custom-navbar .navbar-style {
+    z-index: 99999999;
+}
+
 .custom-navbar .navbar-toggler {
   z-index: 200;
   padding: 0;
