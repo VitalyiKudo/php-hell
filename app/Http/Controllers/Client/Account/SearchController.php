@@ -171,14 +171,14 @@ class SearchController extends Controller
         });
 
         $operator_list = [];
-        $airlines = Airline::where('type', $request->input('flight_model'))->get();
+        $airlines = Airline::where('category', $request->input('flight_model'))->get();
+        
         
         foreach($airlines as $airline){
             $operator_list[] = $airline->operator;
         }
         $operator_list = array_unique($operator_list);
-        
-        
+
         $emails = [];
         $operators = Operator::whereIn('name', $operator_list)->get();
         foreach($operators as $operator){
