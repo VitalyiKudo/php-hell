@@ -43,12 +43,9 @@ class SearchController extends Controller
             $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
         }
-         
-         
-        
+
         //echo $params["startCityLng"];
-        
-                
+      
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
         $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
@@ -161,7 +158,7 @@ class SearchController extends Controller
         $search->save();
         
         $search_id = $search->id;
-
+        
         Mail::send([], [], function ($message) use ($search_id) {
             $user = Auth::user();
             $message->from('quote@jetonset.com', 'JetOnset team');
@@ -170,10 +167,18 @@ class SearchController extends Controller
             $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
         });
 
+        $airport_list = [];
+        $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
+        foreach($airport_items as $airport_item){
+            if($airport_item->icao){
+                $airport_list[] = $airport_item->icao;
+            }
+        }
+        $airport_list = array_unique($airport_list);
+
         $operator_list = [];
-        $airlines = Airline::where('category', $request->input('flight_model'))->get();
-        
-        
+        $airlines = Airline::where('category', $request->input('flight_model'))->whereIn('homebase', $airport_list)->get();
+
         foreach($airlines as $airline){
             $operator_list[] = $airline->operator;
         }
@@ -208,16 +213,14 @@ class SearchController extends Controller
         $emails = array_unique($emails);
         
         foreach($emails as $email){
-
             Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                 $user = Auth::user();
                 $message->from($user->email, 'JetOnset team');
                 //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
-                $message->to($email)->subject("We have received your request");
+                $message->to($email)->subject("We have request for you #{$request->input('result_id')}");
                 //$message->to($user->email)->subject("We have received your request");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
-  
         }
         return response()->json($emails);
     }

@@ -33,6 +33,12 @@
                         <input type="hidden" name="search_result_type" value="{{ $search_type }}">
                         <input type="hidden" name="price" value="{{ $price }}">
                         <input type="hidden" name="type" value="{{ $search_type }}">
+                        
+                        <input type="hidden" name="start_airport_name" value="{{ $start_airport_name }}">
+                        <input type="hidden" name="end_airport_name" value="{{ $end_airport_name }}">
+                        <input type="hidden" name="departure_at" value="{{ $departure_at }}">
+                        <input type="hidden" name="pax" value="{{ $pax }}">
+                        
                         <div class="form-group mb-5">
                             <label for="billing_address">{{ __('Billing Address') }}</label>
                             <input type="text" name="billing_address" value="{{ old('billing_address', $user->billing_address) }}" class="form-control{{ $messages && $messages->has('billing_address') ? ' is-invalid' : '' }}" id="billing_address">

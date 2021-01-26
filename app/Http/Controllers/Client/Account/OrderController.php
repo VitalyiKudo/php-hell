@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Client\Account;
 
 use Auth;
 use App\Models\Order;
+use App\Models\Airport;
+use App\Models\Airline;
+use App\Models\Operator;
 use Mail;
 use App\Models\Transaction;
 use App\Models\Search;
@@ -14,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
 use \Validator;
 use Session;
+use Carbon\Carbon;
 
 
 class OrderController extends Controller
@@ -105,11 +109,24 @@ class OrderController extends Controller
 
         //echo \Request::route()->getName();
         //echo "fghgfh";
+        
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
         $search = Search::find($search_id);
+        
+        $start_airport_name = $search->start_airport_name;
+        $end_airport_name = $search->end_airport_name;
+        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
+        $pax = $search->pax;
+        
+        //echo "<pre>";
+        //print_r($search);
+        //echo $search->start_airport_name;
+        //echo $search->end_airport_name;
+        //echo Carbon::parse($search->departure_at)->format('d F Y');
+        //echo "</pre>";
 
         $pricing = Pricing::find($search->result_id);
 
@@ -125,10 +142,7 @@ class OrderController extends Controller
             $price = 0.00;
         }
 
-        //echo $price;
-
-
-        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'user'));
+        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'user', 'start_airport_name', 'end_airport_name', 'departure_at', 'pax'));
     }
 
     public function checkout(Request $request)
@@ -177,7 +191,6 @@ class OrderController extends Controller
             $order->is_accepted = (bool)$request->input('is_accepted');
             $order->save();
 
-
             Mail::send([], [], function ($message) {
                 $user = Auth::user();
                 $message->from('quote@jetonset.com', 'JetOnset team');
@@ -185,16 +198,78 @@ class OrderController extends Controller
                 $message->to($user->email)->subject("We have received your request");
                 $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
             });
+            
+            $airport_list = [];
+            $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
+            foreach($airport_items as $airport_item){
+                if($airport_item->icao){
+                    $airport_list[] = $airport_item->icao;
+                }
+            }
+            $airport_list = array_unique($airport_list);
 
+
+            $operator_list = [];
+            $airlines = Airline::where('category', $request->input('type'))->whereIn('homebase', $airport_list)->get();
+
+            foreach($airlines as $airline){
+                $operator_list[] = $airline->operator;
+            }
+            $operator_list = array_unique($operator_list);
+
+
+            $emails = [];
+            $operators = Operator::whereIn('name', $operator_list)->get();
+            foreach($operators as $operator){
+                if ($operator->email == trim($operator->email) && strpos($operator->email, ' ') !== false) {
+                    $mail_list = explode(" ", $operator->email);
+                    foreach($mail_list as $mail){
+                        $emails[] = trim($mail);
+                    }
+                    $mail_list = [];
+                } else if(strstr($operator->email, PHP_EOL)) {
+                    $mail_list = explode(PHP_EOL, $operator->email);
+                    foreach($mail_list as $mail){
+                        $emails[] = trim($mail);
+                    }
+                    $mail_list = [];
+                } else {
+                    $emails[] = trim($operator->email);
+                }
+            }
+
+            $emails = array_unique($emails);
+            
+            $airports = [
+                'start_city' => $request->input('start_airport_name'),
+                'end_city' => $request->input('end_airport_name'),
+            ];
+            
+            $date = $request->input('departure_at');
+            
+            foreach($emails as $email){
+                Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
+                    $user = Auth::user();
+                    $message->from($user->email, 'JetOnset team');
+                    //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                    $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
+                    //$message->to($user->email)->subject("We have received your request");
+                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('type')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                });
+            }
+            
 
         }
-
+        
+        
         if (!$validator->fails()){
             $order_id = $order->id;
             return redirect()->route('client.orders.complete', $order_id);
         } else {
             return redirect()->back()->with(['messages' => $messages])->withInput();
         }
+
+        
     }
 
 
