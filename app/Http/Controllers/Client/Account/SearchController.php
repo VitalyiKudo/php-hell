@@ -219,7 +219,7 @@ class SearchController extends Controller
                 //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
                 $message->to($email)->subject("We have request for you #{$request->input('result_id')}");
                 //$message->to($user->email)->subject("We have received your request");
-                $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
         }
         return response()->json($emails);
