@@ -33,7 +33,7 @@ class AirportController extends Controller
     public function index()
     {
         $airports = Airport::paginate(25);
-
+        
         return view('admin.airports.list', compact('airports'));
     }
 
@@ -118,6 +118,60 @@ class AirportController extends Controller
             ->route('admin.airports.index')
             ->with('status', 'The database was successfully updated.');
     }
+    
+    
+    
+    public function import() 
+    {
+        ini_set('max_execution_time', 8000000);
+        Airport::whereNotNull('id')->delete();
+        
+        $status = "CSV file was not uploaded";
+        
+        if(request()->file('file') && request()->file('file')->getClientOriginalExtension() == 'csv'){
+            
+            $data = fopen(request()->file('file'), "r");
+            $column = fgetcsv($data);
+            $rows = [];
+            $airport_records = [];
+            $now = Carbon::now();
+            
+            while(!feof($data)){
+                $rows[] = fgetcsv($data);
+            }
+            
+            foreach(array_chunk($rows, 500) as $row) {
+                foreach($row as $val) {
+                    $airport_data = $val;
+                    if(is_array($airport_data) && count($airport_data) >= 10 && $airport_data[2] != "closed" && $airport_data[2] != "heliport"){
+                        $airport_records[] = [
+                            'source_id' => (int)$airport_data[0],
+                            'name' => (string)$airport_data[3],
+                            'city' => (string)$airport_data[10],
+                            'country_id' => Country::where('a2', (string)$airport_data[8])->first()?Country::where('a2', (string)$airport_data[8])->first()->id:0,
+                            'iata' => substr((string)$airport_data[13], 0, 3),
+                            'icao' => substr((string)$airport_data[14], 0, 4),
+                            'latitude' => (float)$airport_data[4],
+                            'longitude' => (float)$airport_data[5],
+                            'timezone' => '',
+                            'updated_at' => $now,
+                            'created_at' => $now
+                        ];
+                    }
+                }
+                Airport::insert($airport_records);
+                $airport_records = [];
+            }
+            
+            $status = "The database was successfully updated.";
+            
+        }
+        
+        return redirect()
+            ->route('admin.airports.index')
+            ->with('status', $status);
+    }
+
 
     /**
      * Display the specified resource.
