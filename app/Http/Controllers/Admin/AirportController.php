@@ -150,7 +150,7 @@ class AirportController extends Controller
                             'city' => (string)$airport_data[10],
                             'country_id' => Country::where('a2', (string)$airport_data[8])->first()?Country::where('a2', (string)$airport_data[8])->first()->id:0,
                             'iata' => substr((string)$airport_data[13], 0, 3),
-                            'icao' => substr((string)$airport_data[14], 0, 4),
+                            'icao' => substr((string)$airport_data[12], 0, 4),
                             'latitude' => (float)$airport_data[4],
                             'longitude' => (float)$airport_data[5],
                             'timezone' => '',
