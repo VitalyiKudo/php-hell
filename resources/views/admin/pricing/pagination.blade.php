@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <div class="card-body">
         <h5 class="card-title">Pricing</h5>
-        <h6 class="card-subtitle mb-3 text-muted">The list of airlines</h6>
+        <h6 class="card-subtitle mb-3 text-muted">The list of pricings</h6>
 
         @if ($pricing->isNotEmpty())
             <div class="table-responsive">
@@ -49,7 +49,7 @@
             </div>
         @else
             <div class="alert alert-primary mb-0">
-                The list of airlines is empty.
+                The list of fleets is empty.
             </div>
         @endif
     </div>

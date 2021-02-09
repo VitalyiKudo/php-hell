@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.airlines.index') }}">Airlines</a>
+                        <a href="{{ route('admin.airlines.index') }}">Fleet</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>

@@ -166,7 +166,21 @@ class SearchController extends Controller
             $message->to($user->email)->subject("We have received your request");
             $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
         });
+        
 
+        $date = Carbon::parse($request->input('departure_at'))->format('d F Y');
+        $airports = [
+            'start_city' => $request->input('start_airport_name'),
+            'end_city' => $request->input('end_airport_name'),
+        ];
+        Mail::send([], [], function ($message) use ($request, $date, $airports) {
+            $user = Auth::user();
+            $message->from($user->email, 'JetOnset team');
+            $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
+            $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+        });
+
+        /*
         $airport_list = [];
         $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
         foreach($airport_items as $airport_item){
@@ -222,7 +236,8 @@ class SearchController extends Controller
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
         }
-        return response()->json($emails);
+        */
+        return response()->json([]);
     }
     
     public function createQuote(Request $request){

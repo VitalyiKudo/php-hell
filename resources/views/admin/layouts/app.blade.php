@@ -63,7 +63,7 @@
                             </li>
                             
                             <li class="nav-item {{ Request::is('manage/airlines*') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('admin.airlines.index') }}">{{ __('Airlines') }}</a>
+                                <a class="nav-link" href="{{ route('admin.airlines.index') }}">{{ __('Fleet') }}</a>
                             </li>
                             
                             <li class="nav-item {{ Request::is('manage/operators*') ? 'active' : '' }}">

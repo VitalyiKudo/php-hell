@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.airlines.index') }}">Airlines</a>
+                        <a href="{{ route('admin.airlines.index') }}">Fleet</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $airline->type }}</li>
                 </ol>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3>View Airline</h3>
+                    <h3>View Fleet</h3>
 
                     <div class="card">
                         <div class="card-body">
