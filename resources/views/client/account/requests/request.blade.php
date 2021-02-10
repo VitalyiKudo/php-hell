@@ -108,11 +108,11 @@
         </div>
     </div>
 
-
-    <div class="container show-hide-map-wrapper mt-5 mb-3">
-        <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
+    <div class="show-hide-map-outside-wrapper">
+        <div class="container show-hide-map-wrapper mt-5 mb-3">
+            <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
+        </div>
     </div>
-
 
     <div class="section map-section">
         <div id="map"></div>

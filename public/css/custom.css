@@ -164,11 +164,15 @@
 @media (max-width: 767.98px) {
   .custom-navbar {
     padding: 1rem 1rem;
-    background: linear-gradient(180deg, #FFFFFF 45.14%, #EDF5FB 118.75%);
-    border: 1px solid rgba(42, 96, 174, 0.2);
+    background: none;
+    border: none;
     box-sizing: border-box;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
+}
+
+.custom-navbar {
+    padding: 3rem 1rem;
 }
 
 .custom-navbar .logo-img {
@@ -219,47 +223,17 @@
   margin-left: revert;
 }
 
-::-webkit-input-placeholder {
-  color: revert;
-  opacity: revert;
-}
-
-:-ms-input-placeholder {
-  color: revert;
-  opacity: revert;
-}
-
-::-ms-input-placeholder {
-  color: revert;
-  opacity: revert;
-}
-
-::placeholder {
-  color: revert;
-  opacity: revert;
-}
-
 .main-search {
   height: 510px;
 }
 
 @media (max-width: 576px) {
   .main-search {
-    padding-top: revert;
-    background-image: revert;
-    background-repeat: revert;
-    background-position: revert;
-    background-size: revert;
-    -webkit-background-size: revert;
-    -moz-background-size: revert;
-    -o-background-size: revert;
-    height: revert;
-    margin-top: revert;
-    margin-right: revert;
+    all: revert;
   }
 
   .main-search .h1-main {
-    display: revert;
+    all: revert;
   }
 }
 
@@ -294,6 +268,7 @@
 @media (min-width: 1600px) {
   .main-search {
     background-image: url("/images/main-wallpaper.webp");
+    height: 650px;
   }
 }
 
@@ -753,17 +728,6 @@
   }
 }
 
-.txt-pos3 {
-  padding: revert;
-}
-
-@media (max-width: 576px) {
-  .txt-pos3 {
-    padding: revert;
-    margin-top: revert;
-  }
-}
-
 @media (max-width: 400px) {
   .txt-pos3 {
     padding: revert;
@@ -855,12 +819,7 @@
 
 @media (min-width: 1200px) {
   .plane-pos {
-    margin-left: 70px;
-    width: 100%;
-  }
-
-  .plane-pos2 {
-    margin-left: 130px;
+    margin-left: 100px;
     width: 80%;
   }
 
@@ -872,7 +831,6 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    height: 480px !important;
     position: absolute;
   }
 
@@ -908,7 +866,6 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    height: 480px !important;
     position: absolute;
   }
 }
@@ -1007,13 +964,7 @@
 }
 
 .text-padding {
-  adding: 0px 0px 0px 145px;
-}
-
-@media (max-width: 567px) {
-  .text-padding {
-    padding: revert;
-  }
+  padding: 0px 0px 0px 145px;
 }
 
 @media (max-width: 576px) {
@@ -1111,24 +1062,29 @@
 @media (min-width: 576px) {
   .services-right {
     margin-left: calc((100% - 540px) / 2 + 15px);
+    /*margin-left: calc((100% - 1140px) / 2 + 65px);*/
+    
   }
 }
 
 @media (min-width: 768px) {
   .services-right {
     border-radius: 1rem 0 0 1rem;
+    margin-left: calc((100% - 720px) / 2 + 15px);
   }
 }
 
 @media (min-width: 992px) {
   .services-right {
     border-radius: 1rem 0 0 1rem;
+    margin-left: calc((100% - 960px) / 2 + 15px);
   }
 }
 
 @media (min-width: 1200px) {
   .services-right {
     border-radius: 1rem 0 0 1rem;
+    margin-left: calc((100% - 1140px) / 2 + 65px);
   }
 }
 
@@ -1611,4 +1567,66 @@
     .main-search-page .form-body .home-title, .main-search .form-body .home-title {
         display: none;
     }
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+}
+
+.form-control::-ms-input-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+}
+
+.form-control::placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+}
+
+.support-for .form-control::-webkit-input-placeholder {
+  color: #e5e5e5 !important;
+  opacity: 1 !important;
+}
+
+.support-for .form-control:-ms-input-placeholder {
+  color: #e5e5e5 !important;
+  opacity: 1 !important;
+}
+
+.support-for .form-control::-ms-input-placeholder {
+  color: #e5e5e5 !important;
+  opacity: 1 !important;
+}
+
+.support-for .form-control::placeholder {
+  color: #e5e5e5 !important;
+  opacity: 1 !important;
+}
+
+
+
+
+.show-hide-map-outside-wrapper {
+    background-color: #2B4060;
+    overflow: hidden;
+}
+.header-page-image {
+    padding-top: 0;
+}
+.header-page-image, .main-search-page, .show-hide-map-outside-wrapper {
+    background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
+    /*
+    background-color: #2B4060;
+    background-color: red;
+    background-color: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
+    */
+}
+#show-hide-map {
+    //background-color: transparent !important;
 }

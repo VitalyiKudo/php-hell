@@ -38,19 +38,13 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>-->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>-->
+
+    <!--<link href="/css/app_1.css" rel="stylesheet">-->
+
 </head>
 <body>
     <div id="app">
