@@ -8,12 +8,10 @@
 
 @endsection
 
+@section('book_page', 'book-page-nav')
+
 @section('content')
-
-
-<div class="container header-page-image"></div>
-
-
+<div class="container header-page-image header-page-image-bg"></div>
     <div class="section main-search-page">
         <div class="container">
             <div class="row">
@@ -564,55 +562,6 @@
         </div>
     </div>
 
-<!--
-<div class="container">
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-12">
-
-                    <div class="row">
-
-                        <div class="panel panel-default panel-horizontal">
-                            <div class="panel-heading text-center" style="width:10em;">
-                                <span><h3>3 weeks</h3></span>
-                                <span>8 Febrero 2016</span>
-                                <hr />
-                                <div class="email" style="padding-top: 10px;">johndoe@tasktick.com</div>
-                                <span><h5>2 weeks</h5><span>
-                            </div>
-
-                            <div class="panel-body">
-
-
-                        <div class="col-xs-12 col-md-12 section-box">
-                            <div class="email" style="padding-top: 10px;">johndoe@tasktick.com</div>
-                            <h2>
-                                Subject <a href="http://bootsnipp.com/" target="_blank"><span class="glyphicon glyphicon-new-window">
-                                </span></a>
-                            </h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, eos ea prima ullamcorper. Epicurei efficiendi duo ex, ludus equidem epicuri id his, libris perfecto in usu. Lorem ipsum dolor sit amet, eos ea prima ullamcorper. Epicurei efficiendi duo ex, ludus equidem epicuri id his, libris perfecto in usu.
-                            </p>
-                            <hr />
-                            <div class="row rating-desc">
-                                <div class="col-md-12">
-                                    <span class="glyphicon glyphicon-comment"></span>(100 Comments)<span class="separator">|</span>
-                                </div>
-                            </div>
-                        </div>
-
-                            </div>
-                            <div class="panel-footer text-center" style="width:4em;">Actions</div>
-                        </div>
-
-                    </div>
-
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 <div class="hover_bkgr_fricc">
     <span class="helper"></span>
     <div>
@@ -620,15 +569,10 @@
         <p>Thank you!<br />We will send email soon.</p>
     </div>
 </div>
-
-
 @endsection
 
-
 @push('scripts')
-
     <script src="{{ asset('js/slick.min.js') }}"></script>
-
     <script type="text/javascript">
         @if( isset($params['biggerLat']) && isset($params['biggerLng']) && isset($params['startCityLat']) && isset($params['startCityLng']) && isset($params['endCityLat']) && isset($params['endCityLng']) )
             function initMap() {

@@ -52,13 +52,17 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!--{{ config('app.name', 'Laravel') }}-->
-                    <img src="/images/svg/logo.svg" loading="lazy" class="logo-img" alt="JetOnset">
+                    @if(View::hasSection('book_page'))
+                        <img src="{{ asset('images/svg/logo_white.svg') }}" loading="lazy" class="logo-img" alt="JetOnset">
+                    @else
+                        <img src="{{ asset('images/svg/logo.svg') }}" loading="lazy" class="logo-img" alt="JetOnset">
+                    @endif
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse navbar-style" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse navbar-style @yield('book_page')" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     
 
