@@ -80,8 +80,8 @@
 
 @media (min-width: 1200px) {
     .plane-pos{
-        margin-left: 70px;
-        width: 100%;
+        margin-left: 100px;
+        width: 80%;
     }
     .plane-pos2{
         margin-left: 130px;
@@ -149,7 +149,7 @@
         width: 60%;
     }
     .bg-plane {
-        background-image: url("/images/aircrafts/jet_background7-8.png");
+        background-image: url("/images/aircrafts/jet_background7-8.webp");
         height:450px !important;
         background-repeat: no-repeat;
         background-position: center;
@@ -162,17 +162,17 @@
 
 
     .bg-plane2 {
-        background-image: url("/images/aircrafts/jet_background5-6.png");
+        background-image: url("/images/aircrafts/jet_background5-6.webp");
         height:450px !important;
     }
 
     .bg-plane3 {
-        background-image: url("/images/aircrafts/jet_background3-4.png");
+        background-image: url("/images/aircrafts/jet_background3-4.webp");
         height:450px !important;
     }
 
     .bg-plane4 {
-        background-image: url("/images/aircrafts/jet_background1-2.png");
+        background-image: url("/images/aircrafts/jet_background1-2.webp"); 
         height:450px !important;
     }
 }

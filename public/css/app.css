@@ -11974,10 +11974,6 @@ h3 {
   }
 }
 
-.test {
-  background-color: red;
-}
-
 .main-search {
   margin-top: -8.5rem;
   padding-top: 10rem;
@@ -12181,24 +12177,6 @@ h3 {
   box-sizing: border-box;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-}
-
-@media (min-width: 1600px) {
-  .form-body {
-    position: absolute;
-    width: 990px;
-    height: 170px;
-    top: 353px;
-  }
-}
-
-@media (min-width: 992px) {
-  .form-body {
-    width: 1025px;
-    height: 175px;
-    top: 150px;
-    margin-left: -55px;
-  }
 }
 
 .main-works {
@@ -12651,8 +12629,8 @@ h3 {
 
 @media (min-width: 1200px) {
   .plane-pos {
-    margin-left: 70px;
-    width: 100%;
+    margin-left: 100px;
+    width: 80%;
   }
 
   .plane-pos2 {
@@ -12721,7 +12699,7 @@ h3 {
   }
 
   .bg-plane {
-    background-image: url("/images/aircrafts/jet_background7-8.png");
+    background-image: url("/images/aircrafts/jet_background7-8.webp");
     height: 450px !important;
     background-repeat: no-repeat;
     background-position: center;
@@ -12733,17 +12711,17 @@ h3 {
   }
 
   .bg-plane2 {
-    background-image: url("/images/aircrafts/jet_background5-6.png");
+    background-image: url("/images/aircrafts/jet_background5-6.webp");
     height: 450px !important;
   }
 
   .bg-plane3 {
-    background-image: url("/images/aircrafts/jet_background3-4.png");
+    background-image: url("/images/aircrafts/jet_background3-4.webp");
     height: 450px !important;
   }
 
   .bg-plane4 {
-    background-image: url("/images/aircrafts/jet_background1-2.png");
+    background-image: url("/images/aircrafts/jet_background1-2.webp");
     height: 450px !important;
   }
 }
@@ -13171,7 +13149,7 @@ sup {
   margin-top: -8.5rem;
   padding-top: 15rem;
   padding-bottom: 2rem;
-  background-image: url("/images/plane-wallpaper.jpg");
+  background-image: url("/images/plane-wallpaper.webp");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
@@ -13185,7 +13163,7 @@ sup {
 
 .mobile-app-benefits {
   padding-top: 2rem;
-  background-image: url("/images/get-mobile-photo.png");
+  background-image: url("/images/get-mobile-photo.webp");
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: 52%;
@@ -13224,7 +13202,7 @@ sup {
   margin-top: -8.5rem;
   padding-top: 8.5rem;
   padding-bottom: 3.5rem;
-  background-image: url("/images/about-wallpaper.jpg");
+  background-image: url("/images/about-wallpaper.webp");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
@@ -13280,7 +13258,7 @@ sup {
 }
 
 .about-services .artificial-technology-image {
-  background-image: url("/images/artificial-technology-photo.jpg");
+  background-image: url("/images/artificial-technology-photo.webp");
   border-radius: 1rem 0 0 1rem;
 }
 
@@ -13372,7 +13350,7 @@ sup {
 }
 
 .support-for .support-image-for-clients {
-  background-image: url("/images/for-clients-photo.jpg");
+  background-image: url("/images/for-clients-photo.webp");
   background-size: cover;
   background-position: right;
   border-radius: 1rem;
@@ -13393,7 +13371,7 @@ sup {
 }
 
 .support-for .support-image-for-operators {
-  background-image: url("/images/for-operators-photo.jpg");
+  background-image: url("/images/for-operators-photo.webp");
   background-size: cover;
   background-position: left;
   border-radius: 1rem;
@@ -13438,7 +13416,7 @@ sup {
 .text-page {
   margin-top: -8.5rem;
   padding-top: 17.1rem;
-  background-image: url("/images/text-page-photo.jpg");
+  background-image: url("/images/text-page-photo.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -13604,7 +13582,7 @@ sup {
   padding-top: 4rem;
   padding-bottom: 18rem;
   background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
-  background-image: url("/images/main-wallpaper-4.jpg");
+  background-image: url("/images/main-wallpaper-4.webp");
   border: 1px solid rgba(42, 96, 174, 0.2);
   box-sizing: border-box;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
@@ -14858,6 +14836,15 @@ sup {
   max-width: 100%;
 }
 
+.custom-navbar .navbar-style {
+  z-index: 99999999;
+}
+
+.custom-navbar .collapsing,
+.custom-navbar .show {
+  z-index: 9999;
+}
+
 @media (min-width: 300px) {
   .custom-navbar .logo-img {
     width: 175px;
@@ -14881,15 +14868,6 @@ sup {
   .custom-navbar .nav-item .active:after {
     background-image: url("/images/active.webp");
   }
-}
-
-.custom-navbar .navbar-style {
-  z-index: 99999999;
-}
-
-.custom-navbar .collapsing,
-.custom-navbar .show {
-  z-index: 9999;
 }
 
 .header-page-image {
@@ -14964,95 +14942,6 @@ sup {
   height: 600px;
 }
 
-@media (min-width: 992px) {
-  .main-search-page {
-    /*padding-top: 15rem;
-    background-image: url("/images/main-wallpaper.png");*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 375px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .form-body {
-    background: revert;
-    position: revert;
-    width: revert;
-    height: revert;
-    top: revert;
-    opacity: revert;
-    border: revert;
-    box-sizing: revert;
-    box-shadow: revert;
-    border-radius: revert;
-  }
-
-  .main-search-page {
-    /*padding-top: 15rem;
-    background-image: url("/images/main-wallpaper.png");*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 375px;
-  }
-}
-
-@media (min-width: 992px) {
-  .form-body {
-    background: revert;
-    width: revert;
-    height: revert;
-    position: revert;
-    top: revert;
-    margin-left: revert;
-    opacity: revert;
-    border: revert;
-    box-sizing: revert;
-    box-shadow: revert;
-    border-radius: revert;
-  }
-
-  .main-search-page .col-lg-1 {
-    flex: 0 0 6%;
-    max-width: 6%;
-    padding-right: 0;
-  }
-
-  .main-search-page .col-lg-2 {
-    flex: 0 0 16%;
-    max-width: 16%;
-    padding-right: 0;
-  }
-
-  .main-search-page .col-lg-3 {
-    flex: 0 0 20%;
-    max-width: 20%;
-    padding-right: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main-search-page .col-lg-2 {
-    flex: 0 0 14%;
-    max-width: 14%;
-    padding-right: 0;
-  }
-
-  .main-search-page .col-lg-3 {
-    flex: 0 0 18%;
-    max-width: 18%;
-    padding-right: 0;
-  }
-}
-
 .main-search-page .input-group-prepend {
   margin-right: 0px;
 }
@@ -15118,22 +15007,72 @@ sup {
 }
 
 @media (min-width: 992px) {
-  .start-point {
-    width: revert;
+  .main-search-page {
+    /*padding-top: 15rem;
+    background-image: url("/images/main-wallpaper.png");*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 375px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .main-search-page {
+    /*padding-top: 15rem;
+    background-image: url("/images/main-wallpaper.png");*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 375px;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-search-page .col-lg-1 {
+    flex: 0 0 6%;
+    max-width: 6%;
+    padding-right: 0;
   }
 
-  .end-point {
-    width: revert;
+  .main-search-page .col-lg-2 {
+    flex: 0 0 16%;
+    max-width: 16%;
+    padding-right: 0;
   }
 
-  .dt-field {
-    width: revert;
+  .main-search-page .col-lg-3 {
+    flex: 0 0 20%;
+    max-width: 20%;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-search-page .col-lg-2 {
+    flex: 0 0 14%;
+    max-width: 14%;
+    padding-right: 0;
   }
 
-  .pass-field {
-    width: revert;
+  .main-search-page .col-lg-3 {
+    flex: 0 0 18%;
+    max-width: 18%;
+    padding-right: 0;
   }
+}
 
+@media (min-width: 992px) {
+  .start-point,
+  .end-point,
+  .dt-field,
+  .pass-field,
   .butn-search {
     width: revert;
   }
@@ -15154,14 +15093,8 @@ sup {
     width: revert;
   }
 
-  .dt-field {
-    width: revert;
-  }
-
-  .pass-field {
-    width: revert;
-  }
-
+  .dt-field,
+  .pass-field,
   .butn-search {
     width: revert;
   }
@@ -15296,15 +15229,7 @@ sup {
 }
 
 @media (max-width: 567px) {
-  .main-works .card {
-    background: revert;
-    box-shadow: revert;
-    border: revert;
-    border-radius: revert;
-    opacity: revert;
-    box-shadow: revert;
-  }
-
+  .main-works .card,
   .main-works .last-card {
     background: revert;
     box-shadow: revert;
@@ -15331,10 +15256,7 @@ sup {
   background-image: url("/images/main-wallpaper-2.webp");
 }
 
-.learn-more {
-  background: linear-gradient(180deg, #CA9D86 0%, #B58267 29.69%);
-}
-
+.learn-more,
 .see-more {
   background: linear-gradient(180deg, #CA9D86 0%, #B58267 29.69%);
 }
@@ -15439,51 +15361,16 @@ sup {
 }
 
 @media (max-width: 576px) {
-  .plane-pos {
-    margin-left: revert;
-    width: revert;
-    margin-top: revert;
-  }
-
+  .plane-pos,
   .plane-pos2 {
     margin-left: revert;
     width: revert;
     margin-top: revert;
   }
 
-  .bg-plane {
-    background-image: revert;
-    background-repeat: revert;
-    background-position: revert;
-    background-size: revert;
-    -webkit-background-size: revert;
-    -moz-background-size: revert;
-    -o-background-size: revert;
-    height: revert;
-  }
-
-  .bg-plane2 {
-    background-image: revert;
-    background-repeat: revert;
-    background-position: revert;
-    background-size: revert;
-    -webkit-background-size: revert;
-    -moz-background-size: revert;
-    -o-background-size: revert;
-    height: revert;
-  }
-
-  .bg-plane3 {
-    background-image: revert;
-    background-repeat: revert;
-    background-position: revert;
-    background-size: revert;
-    -webkit-background-size: revert;
-    -moz-background-size: revert;
-    -o-background-size: revert;
-    height: revert;
-  }
-
+  .bg-plane,
+  .bg-plane2,
+  .bg-plane3,
   .bg-plane4 {
     background-image: revert;
     background-repeat: revert;
@@ -15497,11 +15384,6 @@ sup {
 }
 
 @media (min-width: 1200px) {
-  .plane-pos {
-    margin-left: 100px;
-    width: 80%;
-  }
-
   .bg-plane {
     background-image: url("/images/aircrafts/jet_background7-8.webp");
     background-repeat: no-repeat;
@@ -15546,24 +15428,6 @@ sup {
     -moz-background-size: cover;
     -o-background-size: cover;
     position: absolute;
-  }
-}
-
-@media (min-width: 1600px) {
-  .bg-plane {
-    background-image: url("/images/aircrafts/jet_background7-8.webp");
-  }
-
-  .bg-plane2 {
-    background-image: url("/images/aircrafts/jet_background5-6.webp");
-  }
-
-  .bg-plane3 {
-    background-image: url("/images/aircrafts/jet_background3-4.webp");
-  }
-
-  .bg-plane4 {
-    background-image: url("/images/aircrafts/jet_background1-2.webp");
   }
 }
 
@@ -15624,18 +15488,6 @@ sup {
   }
 }
 
-.mobile-app-title {
-  background-image: url("/images/plane-wallpaper.webp");
-}
-
-.mobile-app-benefits {
-  background-image: url("/images/get-mobile-photo.webp");
-}
-
-.about-title {
-  background-image: url("/images/about-wallpaper.webp");
-}
-
 @media (max-width: 567px) {
   .about-title {
     height: revert;
@@ -15647,17 +15499,10 @@ sup {
 }
 
 @media (max-width: 576px) {
-  .about-title h1 {
-    display: revert;
-  }
-
+  .about-title h1,
   .about-title h2 {
     display: revert;
   }
-}
-
-.about-services .artificial-technology-image {
-  background-image: url("/images/artificial-technology-photo.webp");
 }
 
 @media (max-width: 576px) {
@@ -15691,18 +15536,6 @@ sup {
   .btn-res {
     display: revert;
   }
-}
-
-.support-for .support-image-for-clients {
-  background-image: url("/images/for-clients-photo.webp");
-}
-
-.support-for .support-image-for-operators {
-  background-image: url("/images/for-operators-photo.webp");
-}
-
-.text-page {
-  background-image: url("/images/text-page-photo.webp");
 }
 
 .services {
@@ -15792,10 +15625,6 @@ sup {
   }
 }
 
-.testimonials {
-  background-image: url("/images/main-wallpaper-4.webp");
-}
-
 @media (max-width: 567px) {
   .text-bg {
     width: revert;
@@ -15880,15 +15709,15 @@ sup {
   color: #4D4D4D;
 }
 
-.request-search-page .book .btn {
-  color: #ffffff;
-}
-
 .request-search-page .book {
   justify-content: flex-end;
   display: flex;
   border-top: 1px solid #DEE3EA;
   padding-top: 12px;
+}
+
+.request-search-page .book .btn {
+  color: #ffffff;
 }
 
 .request-search-page .book .learn-more {
@@ -15973,8 +15802,7 @@ sup {
   margin-bottom: -3px;
 }
 
-.caret-up,
-.caret-down {
+.caret-up {
   width: 14px;
   height: 12px;
   display: inline-block;
@@ -15983,6 +15811,11 @@ sup {
 }
 
 .caret-down {
+  width: 14px;
+  height: 12px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
   border-bottom: 8px solid #DEE3EA;
   border-left: 8px solid rgba(0, 0, 0, 0);
   border-right: 8px solid rgba(0, 0, 0, 0);
@@ -16007,10 +15840,7 @@ sup {
 }
 
 #departureList,
-#arrivalList {
-  z-index: 3001 !important;
-}
-
+#arrivalList,
 .dropdown-menu {
   z-index: 3001 !important;
 }
@@ -16253,10 +16083,7 @@ sup {
 }
 
 @media (min-width: 992px) {
-  .start-point {
-    width: 23% !important;
-  }
-
+  .start-point,
   .end-point {
     width: 23% !important;
   }
@@ -16304,41 +16131,33 @@ sup {
   }
 }
 
+.form-control::-webkit-input-placeholder,
+.form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder,
 .form-control::-webkit-input-placeholder {
   color: #6c757d !important;
   opacity: 1 !important;
 }
 
-.form-control:-ms-input-placeholder {
-  color: #6c757d !important;
-  opacity: 1 !important;
-}
-
-.form-control::-ms-input-placeholder {
-  color: #6c757d !important;
-  opacity: 1 !important;
-}
-
+.form-control::-webkit-input-placeholder,
+.form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder,
 .form-control::placeholder {
   color: #6c757d !important;
   opacity: 1 !important;
 }
 
+.support-for .form-control::-webkit-input-placeholder,
+.support-for .form-control:-ms-input-placeholder,
+.support-for .form-control::-ms-input-placeholder,
 .support-for .form-control::-webkit-input-placeholder {
   color: #e5e5e5 !important;
   opacity: 1 !important;
 }
 
-.support-for .form-control:-ms-input-placeholder {
-  color: #e5e5e5 !important;
-  opacity: 1 !important;
-}
-
-.support-for .form-control::-ms-input-placeholder {
-  color: #e5e5e5 !important;
-  opacity: 1 !important;
-}
-
+.support-for .form-control::-webkit-input-placeholder,
+.support-for .form-control:-ms-input-placeholder,
+.support-for .form-control::-ms-input-placeholder,
 .support-for .form-control::placeholder {
   color: #e5e5e5 !important;
   opacity: 1 !important;
@@ -16351,9 +16170,9 @@ sup {
 
 .header-page-image-bg {
   padding-top: 0;
+  background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
 }
 
-.header-page-image-bg,
 .main-search-page,
 .show-hide-map-outside-wrapper {
   background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
