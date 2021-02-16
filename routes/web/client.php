@@ -84,7 +84,7 @@ Route::namespace('Account')->group(function () {
     
     //Flights search
     Route::get('/flights/search', 'SearchController@index')->name('search.index');
-    Route::post('/flights/requestQuote', 'SearchController@requestQuote')->name('search.requestQuote');
+    Route::get('/flights/quote', 'SearchController@requestQuote')->name('search.requestQuote');
     Route::get('/flights/success', 'SearchController@createQuote')->name('search.createQuote');
     
     Route::get('/flights/sendMail', 'SearchController@sendMail')->name('search.sendMail');

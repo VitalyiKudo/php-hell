@@ -116,15 +116,9 @@
         <div id="map"></div>
     </div>
 
-
-
-
-
     {{--<div class="container header-page-image"></div>--}}
 
     <div class="container request-search-page">
-
-
 
         <div class="row">
 
@@ -142,8 +136,6 @@
                       </ul>
                     </div><br />
                 @endif
-
-
 
                 @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0))
 
@@ -187,7 +179,6 @@
                                         <img src="/images/search_galery/turbo/TURBO-PROP-4.webp">
                                     </div>
                                 </div>
-
                             </div>
                             <div class="card-inner-body pl-4">
 
@@ -520,7 +511,7 @@
                                 <div>Custom flight search</div>
                                 <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
                             </div>
-                            <form action="{{ route('client.search.requestQuote') }}" method="POST" id="request_quote">
+                            <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
                                 @csrf
 
                                 <div class="form-row">
@@ -764,6 +755,7 @@
                 singleDatePicker: true,
             });
 
+            /*
             $('#request_quote').submit(function(e){
                 e.preventDefault();
                 var flight_model = $('#flight_model').val();
@@ -793,6 +785,7 @@
                             pax: pax
                         },
                         success:function(response){
+                            //$('.hover_bkgr_fricc').show();
                             console.log(response);
                         },
                     });
@@ -801,8 +794,9 @@
                     $('.invalid-feedback').remove();
                     $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
                 }
+                
             });
-
+            */
 
             $('input.from').keyup(function(){
                 var query = $(this).val();

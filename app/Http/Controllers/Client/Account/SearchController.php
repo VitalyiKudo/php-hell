@@ -60,7 +60,7 @@ class SearchController extends Controller
             $params["result_id"] = 0;
         }
 
-        $lastSearchResults = Search::where('user_id', 33)
+        $lastSearchResults = Search::where('user_id', Auth::user()->id)
                                 ->orderBy('id', 'desc')
                                 ->take(4)
                                 ->get()
@@ -149,6 +149,7 @@ class SearchController extends Controller
 
     public function requestQuote(Request $request)
     {
+        /*
         $search = new Order;
         $search->user_id = $request->input('user_id');
         $search->order_status_id = 5;
@@ -173,14 +174,17 @@ class SearchController extends Controller
             'start_city' => $request->input('start_airport_name'),
             'end_city' => $request->input('end_airport_name'),
         ];
+        
         Mail::send([], [], function ($message) use ($request, $date, $airports) {
             $user = Auth::user();
             $message->from($user->email, 'JetOnset team');
             $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
             $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
         });
-
-        /*
+        */
+        
+        
+        /* not needed
         $airport_list = [];
         $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
         foreach($airport_items as $airport_item){
@@ -237,7 +241,36 @@ class SearchController extends Controller
             });
         }
         */
-        return response()->json([]);
+        //return response()->json([]);
+        
+        $lastSearchResults = Search::where('user_id', Auth::user()->id)
+                                ->orderBy('id', 'desc')
+                                ->take(4)
+                                ->get()
+                                ->reverse();
+        
+        $searchResult = Search::where('user_id', Auth::user()->id)->latest()->first();
+        
+        //echo Carbon::parse($searchResult->departure_at)->format('m/d/Y');
+        
+        $params['start_airport_name'] = $searchResult->start_airport_name;
+        $params['end_airport_name'] = $searchResult->end_airport_name;
+        $params['departure_at'] = Carbon::parse($searchResult->departure_at)->format('m/d/Y');
+        $params['result_id'] = $searchResult->result_id;
+        $params['pax'] = $searchResult->pax;
+        $params['flight_model'] = $request->input('flight_model');
+        $params['comment'] = $request->input('comment');
+
+        //echo "<pre>";
+        //print_r($params);
+        //echo $searchResult->start_airport_name." - ".$searchResult->end_airport_name." - ";
+        //echo $searchResult->departure_at." - ".$searchResult->pax." - ";
+        //echo $searchResult->result_id;
+        
+        //echo "</pre>";
+
+        
+        return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
     }
     
     public function createQuote(Request $request){

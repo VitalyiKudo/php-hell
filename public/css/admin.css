@@ -8020,6 +8020,14 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+}
 
 .sr-only {
   position: absolute;
@@ -10652,40 +10660,3 @@ a.text-dark:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.dropdown-menu {
-    webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
-.dropdown-menu li {
-    padding: 0.1rem 1rem;
-}
-.dropdown-menu li:hover {
-    background-color: #e9ecef;
-}
-.dropdown-menu a:link, .dropdown-menu a:visited {
-    font-size: 0.9rem;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-}
-.dropdown-menu a, .dropdown-menu a:active {
-    text-decoration: none;
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sticky-top {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1020;
-  }
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sticky-top {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1020;
-  }
-}
