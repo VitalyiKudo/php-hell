@@ -253,30 +253,112 @@ class SearchController extends Controller
         
         //echo Carbon::parse($searchResult->departure_at)->format('m/d/Y');
         
-        $params['start_airport_name'] = $searchResult->start_airport_name;
-        $params['end_airport_name'] = $searchResult->end_airport_name;
-        $params['departure_at'] = Carbon::parse($searchResult->departure_at)->format('m/d/Y');
-        $params['result_id'] = $searchResult->result_id;
-        $params['pax'] = $searchResult->pax;
+        //echo "<pre>";
+        //print_r($searchResult);
+        //echo "</pre>";
+     
+        $startCity = $this->findCity($request->input('startPoint'));
+        $endCity = $this->findCity($request->input('endPoint'));
+        $params['start_airport_name'] = $startCity ? $startCity : $request->input('startPoint');
+        $params['end_airport_name'] = $endCity ? $endCity : $request->input('endPoint');
+        $params['stop_airport_name'] = $request->input('stopPoint');
+        $params['return_airport_name'] = $request->input('returnPoint');
+        $params['departure_at'] = Carbon::parse($request->input('departure_at'))->format('m/d/Y');
+        $params['result_id'] = $request->input('result_id');
+        $params['pax'] = $request->input('pax');
         $params['flight_model'] = $request->input('flight_model');
         $params['comment'] = $request->input('comment');
+        $params['previous'] = url()->previous();
+        $params['aircraft'] = $request->input('aircraft');
+        $params['pets'] = $request->input('pets');
+        $params['bags'] = $request->input('bags');
+        $params['lbags'] = $request->input('lbags');
+        $params['wifi'] = $request->input('wifi');
+        $params['lavatory'] = $request->input('lavatory');
+        $params['disabilities'] = $request->input('disabilities');
+        $params['catering'] = $request->input('catering');
 
-        //echo "<pre>";
-        //print_r($params);
+        $comment = "";
+        
+        if($request->input('page_name') == "reqest-page" && strlen($params['start_airport_name']) > 0 && strlen($params['end_airport_name']) > 0 && strlen($params['departure_at']) > 0 && $params['pax'] > 0){
+            $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
+            $comment .= $request->input('aircraft') ? "Preffered aircraft: " . $request->input('aircraft') . ";\r\n" : "" ;
+            $comment .= $request->input('stopPoint') ? "Stop airport: " . $request->input('stopPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('returnPoint') ? "Return airport: " . $request->input('returnPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('pets') ? "Pets: " . $request->input('pets') . ";\r\n" : "" ;
+            $comment .= $request->input('bags') ? "Bags: ".$request->input('bags').";\r\n" : "" ;
+            $comment .= $request->input('lbags') ? "Large baggage: ".$request->input('lbags').";\r\n" : "" ;
+            $comment .= $request->input('wifi') ? "Wi-Fi: ".$request->input('wifi').";\r\n" : "" ;
+            $comment .= $request->input('lavatory') ? "Lavatory: ".$request->input('lavatory').";\r\n" : "" ;
+            $comment .= $request->input('disabilities') ? "People with disabilities: ".$request->input('disabilities').";\r\n" : "" ;
+            $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;
+
+            $search = new Order;
+            $search->user_id = Auth::user()->id;
+            $search->order_status_id = 5;
+            $search->search_result_id = $searchResult->id;
+            $search->comment = $comment;
+            $search->type = $params['flight_model'];
+            $search->save();
+
+            $search_id = $search->id;
+
+            Mail::send([], [], function ($message) use ($search_id) {
+                $user = Auth::user();
+                $message->from('quote@jetonset.com', 'JetOnset team');
+                //$message->to('ju.odarjuk@gmail.com')->subject("Your request for quote on JetOnset # {$search_id}");
+                $message->to($user->email)->subject("Your request for quote on JetOnset # {$search_id}");
+                $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
+            });
+
+            $date = Carbon::parse($request->input('departure_at'))->format('d F Y');
+            $airports = [
+                'start_city' => $request->input('start_airport_name'),
+                'end_city' => $request->input('end_airport_name'),
+            ];
+
+            Mail::send([], [], function ($message) use ($request, $date, $airports) {
+                $user = Auth::user();
+                $message->from($user->email, 'JetOnset team');
+                $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
+                $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+            });
+            
+            //return view('client.account.requests.requestQuoteSuccess', compact('lastSearchResults', 'searchResult', 'params'));
+            return redirect()->route('client.search.requestQuoteSuccess', $search->id);
+        } else {
+            return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
+        }
+        
+        //echo $request->input('returnPoint');
+        //echo $request->input('catering');
         //echo $searchResult->start_airport_name." - ".$searchResult->end_airport_name." - ";
         //echo $searchResult->departure_at." - ".$searchResult->pax." - ";
         //echo $searchResult->result_id;
-        
-        //echo "</pre>";
-
-        
-        return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
+        //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
     }
     
     public function createQuote(Request $request){
         
         return view('client.account.requests.success');
     }
+    
+    
+    public function requestQuoteSuccess(Request $request){
+        $lastSearchResults = Search::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get()
+            ->reverse();
+        
+        $params['reqest_number'] = $request->route('order_id');
+        
+        //echo $params['reqest_number'];
+        
+        return view('client.account.requests.requestQuoteSuccess', compact('lastSearchResults', 'params'));
+    }
+
+    
     
     public function sendMail(Request $request)
     {

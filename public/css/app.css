@@ -14795,7 +14795,6 @@ sup {
   display: block;
   position: absolute;
   padding: 1rem 1.5rem;
-  /*z-index: 999999;*/
 }
 
 #arrivalList .dropdown-menu a:link,
@@ -16193,10 +16192,19 @@ sup {
   }
 }
 
+@media (max-width: 992px) {
+  .book-page-nav {
+    background: white !important;
+  }
+
+  .book-page-nav a {
+    color: #2B4060 !important;
+  }
+}
+
 .header-page-image-request-quote {
   background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
   max-height: 250px;
-  /*margin-bottom: 15px;*/
 }
 
 .back_arrow:link,
@@ -16229,7 +16237,15 @@ sup {
   margin: auto;
 }
 
-.container-request-quote .custom-flight div {
+@media (max-width: 570px) {
+  .container-request-quote .form-group .col-sm-3 {
+    padding-left: 0.25rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+.container-request-quote .custom-flight-page div {
+  font-family: "Capoon PERSONAL USE";
   text-align: center;
   font-style: normal;
   font-weight: 500;
@@ -16240,13 +16256,506 @@ sup {
   opacity: 0.8;
 }
 
-.container-request-quote .custom-flight p {
-  font-family: Roboto !important;
+.container-request-quote .custom-flight-page p {
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
   color: #2B4B7A;
   opacity: 0.7;
   font-style: normal;
+  font-weight: 300;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-bottom: 1px solid rgba(43, 75, 122, 0.2);
+}
+
+.container-request-quote .custom-flight-bottom {
+  border-bottom: 1px solid rgba(43, 75, 122, 0.2);
+  display: flex;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-request-quote .custom-flight-bottom p {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #2B4B7A;
+  opacity: 0.7;
+  font-style: normal;
+  font-weight: 300;
+  width: 50%;
+  flex-grow: 1;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.container-request-quote #departure-airportRQ,
+.container-request-quote #arrival-airportRQ,
+.container-request-quote #flightDateRQ,
+.container-request-quote #aircraftRQ,
+.container-request-quote #stop-airportRQ,
+.container-request-quote #return-airportRQ {
+  width: auto;
+  height: 45px;
+  border: 1px solid rgba(41, 74, 122, 0.4);
+}
+
+.container-request-quote #departure-airportRQ::-webkit-input-placeholder,
+.container-request-quote #arrival-airportRQ::-webkit-input-placeholder,
+.container-request-quote #flightDateRQ::-webkit-input-placeholder,
+.container-request-quote #aircraftRQ::-webkit-input-placeholder,
+.container-request-quote #stop-airportRQ::-webkit-input-placeholder,
+.container-request-quote #return-airportRQ::-webkit-input-placeholder {
+  color: #9A9B9B;
+  text-transform: uppercase;
+}
+
+.container-request-quote #departure-airportRQ:-ms-input-placeholder,
+.container-request-quote #arrival-airportRQ:-ms-input-placeholder,
+.container-request-quote #flightDateRQ:-ms-input-placeholder,
+.container-request-quote #aircraftRQ:-ms-input-placeholder,
+.container-request-quote #stop-airportRQ:-ms-input-placeholder,
+.container-request-quote #return-airportRQ:-ms-input-placeholder {
+  color: #9A9B9B;
+  text-transform: uppercase;
+}
+
+.container-request-quote #departure-airportRQ::-ms-input-placeholder,
+.container-request-quote #arrival-airportRQ::-ms-input-placeholder,
+.container-request-quote #flightDateRQ::-ms-input-placeholder,
+.container-request-quote #aircraftRQ::-ms-input-placeholder,
+.container-request-quote #stop-airportRQ::-ms-input-placeholder,
+.container-request-quote #return-airportRQ::-ms-input-placeholder {
+  color: #9A9B9B;
+  text-transform: uppercase;
+}
+
+.container-request-quote #departure-airportRQ::placeholder,
+.container-request-quote #arrival-airportRQ::placeholder,
+.container-request-quote #flightDateRQ::placeholder,
+.container-request-quote #aircraftRQ::placeholder,
+.container-request-quote #stop-airportRQ::placeholder,
+.container-request-quote #return-airportRQ::placeholder {
+  color: #9A9B9B;
+  text-transform: uppercase;
+}
+
+.container-request-quote .display-none {
+  display: none;
+}
+
+.container-request-quote #stop-airportRQ,
+.container-request-quote #return-airportRQ {
+  margin-top: 10px;
+}
+
+.container-request-quote #stop-airportRQ {
+  border-radius: 6px 0px 0px 6px;
+}
+
+.container-request-quote #return-airportRQ {
+  border-radius: 0px 6px 6px 0px;
+  margin-left: -1px;
+}
+
+.container-request-quote #add-stop-button,
+.container-request-quote #add-return-button {
+  border: 1px solid rgba(42, 96, 174, 0.3);
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 6px;
+  padding-left: 34px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #2A60AE;
+  transition: color 0.25s;
+}
+
+.container-request-quote #add-stop-button:hover,
+.container-request-quote #add-return-button:hover {
+  color: rgba(42, 96, 174, 0.8);
+  transition: color 0.25s;
+}
+
+.container-request-quote #add-stop-button:focus,
+.container-request-quote #add-return-button:focus {
+  outline: none;
+}
+
+.container-request-quote #add-stop-button {
+  background: url("/images/plus_request.png") no-repeat 10% center;
+}
+
+.container-request-quote #add-return-button {
+  background: url("/images/arrow_request.png") no-repeat 10% center;
+}
+
+.container-request-quote #departure-airportRQ {
+  border-radius: 6px 0px 0px 6px;
+  background: url("/images/flight_up.png") no-repeat 95% center, url("/images/MIA.png") no-repeat 80% center;
+}
+
+.container-request-quote #arrival-airportRQ {
+  background: url("/images/flight_down.png") no-repeat 95% center, url("/images/SAT.png") no-repeat 80% center;
+  margin-left: -1px !important;
+}
+
+.container-request-quote #flightDateRQ {
+  background: url("/images/callender_reqest.png") no-repeat 95% center;
+  border-radius: 6px;
+  width: auto !important;
+}
+
+.container-request-quote .pass-field {
+  margin-left: 30px !important;
+}
+
+@media (max-width: 570px) {
+  .container-request-quote .pass-field {
+    margin-left: 15px !important;
+  }
+}
+
+.container-request-quote #aircraftRQ {
+  border-radius: 6px;
+  background: url("/images/arrow_bottom.png") no-repeat 94% center;
+}
+
+.container-request-quote #arrival-airportRQ {
+  border-radius: 0px 6px 6px 0px;
+}
+
+.container-request-quote #request_quote label,
+.container-request-quote #request_quote .extra-title {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #373737;
+}
+
+.container-request-quote #request_quote .extra-block .form-check label {
+  text-transform: none;
+}
+
+.container-request-quote #request_quote input[type=text]:focus,
+.container-request-quote #request_quote input[type=number]:focus {
+  box-shadow: 0px 0px 0px 1px #5198ff !important;
+  border: 1px solid #5198FF;
+}
+
+.container-request-quote #passengers {
+  background: url("/images/passengers.png") no-repeat 10px center;
+  padding-left: 38px;
+}
+
+.container-request-quote #pets {
+  background: url("/images/pets.png") no-repeat 10px center;
+  padding-left: 38px;
+}
+
+.container-request-quote #bags {
+  background: url("/images/bags.png") no-repeat 10px center;
+  padding-left: 38px;
+}
+
+.container-request-quote #lbags {
+  background: url("/images/lbags.png") no-repeat 10px center;
+  padding-left: 38px;
+}
+
+.container-request-quote .request-quote-block {
+  margin-top: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-top: 1px solid rgba(43, 75, 122, 0.2);
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  .container-request-quote .request-quote-block {
+    flex-direction: column;
+  }
+}
+
+.container-request-quote .request-quote-block input {
+  border: 1px solid #E6E8ED;
+  background-color: #E6E8ED;
+  height: 45px;
+  width: 40%;
+}
+
+@media (max-width: 800px) {
+  .container-request-quote .request-quote-block input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.container-request-quote .request-quote-block div {
+  display: flex;
+}
+
+@media (max-width: 800px) {
+  .container-request-quote .request-quote-block div {
+    flex-direction: column-reverse;
+  }
+}
+
+.container-request-quote .request-quote-block div .request-quote-submit-page {
+  background: url(/images/request_send.png) no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+  opacity: 0.8;
+  border-radius: 6px;
+  padding: 0.5rem 2rem 0.5rem 3.5rem;
+  border: none;
+  color: #FFFFFF;
+  transition: opacity 0.2s;
+}
+
+.container-request-quote .request-quote-block div .request-quote-submit-page:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.container-request-quote .request-quote-block div p {
+  color: #98A7BA;
+  background: url(/images/ClockCircle.png) no-repeat left center;
+  line-height: 30px;
+  height: 30px;
+  padding-left: 30px;
+  padding-right: 10px;
+  margin-bottom: 0;
+  position: relative;
+  bottom: -25px;
+}
+
+.container-request-quote .request-quote-block div p span {
+  color: #526D94;
+}
+
+@media (max-width: 800px) {
+  .container-request-quote .request-quote-block div p {
+    flex-direction: column-reverse;
+    position: static;
+    margin-top: 15px;
+  }
+}
+
+.container-request-quote #departureList {
+  top: 70px;
+}
+
+.container-request-quote #arrivalList {
+  top: 70px;
+}
+
+.container-request-quote #stopList {
+  position: absolute;
+  top: 125px;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+.container-request-quote #stopList .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+.container-request-quote #stopList .dropdown-menu a:link,
+.container-request-quote #stopList .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+.container-request-quote #stopList .dropdown-menu a:hover,
+.container-request-quote #stopList .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+.container-request-quote #returnList {
+  position: absolute;
+  top: 125px;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+.container-request-quote #returnList .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+.container-request-quote #returnList .dropdown-menu a:link,
+.container-request-quote #returnList .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+.container-request-quote #returnList .dropdown-menu a:hover,
+.container-request-quote #returnList .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+.container-request-quote #aircraftList {
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+.container-request-quote #aircraftList .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+.container-request-quote #aircraftList .dropdown-menu a:link,
+.container-request-quote #aircraftList .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+.container-request-quote #aircraftList .dropdown-menu a:hover,
+.container-request-quote #aircraftList .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+@media (max-width: 992px) {
+  .container-request-quote .input-group {
+    flex-direction: column;
+  }
+}
+
+.request-search-page-success {
+  background-color: #EFF5F9;
+}
+
+.request-search-page-success .card {
+  max-width: 644px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: transparent;
+  border-radius: 0;
+  border: none;
+  background: 2px top repeat-x url(/images/bg_top_perforation.png), 2px bottom repeat-x url(/images/bg_bottom_perforation.png);
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.request-search-page-success .card:before,
+.request-search-page-success .card:after {
+  content: "";
+  height: calc(100% - 20px);
+  position: absolute;
+  top: 8px;
+  width: 1px;
+  z-index: 1;
+}
+
+.request-search-page-success .card:before {
+  box-shadow: -2px 0px 6px #cccccc;
+  left: 0px;
+}
+
+.request-search-page-success .card:after {
+  box-shadow: 2px 0px 6px #cccccc;
+  right: 0px;
+}
+
+.request-search-page-success .card .card-body {
+  margin-top: 16px;
+  margin-bottom: 22px;
+  background: linear-gradient(180deg, #FFFFFF 83.07%, #f7f9f9 100%);
+}
+
+.request-search-page-success .card .card-body .custom-flight-page {
+  text-align: center;
+}
+
+.request-search-page-success .card .card-body .custom-flight-page div {
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  color: #373737;
+  margin-top: 15px;
+}
+
+.request-search-page-success .card .card-body .custom-flight-page p {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #373737;
+  margin-top: 15px;
+}
+
+.request-search-page-success .card .card-body .custom-flight-page p span {
+  color: #5198FF;
+}
+
+.request-search-page-success .card .card-body .custom-flight-page a:link,
+.request-search-page-success .card .card-body .custom-flight-page a:visited {
+  color: #294A7A;
+  border: 1px solid rgba(42, 96, 174, 0.3);
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 21px;
+  background: url(/images/key.png) no-repeat 15px center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 50px;
+  padding-right: 20px;
+  transition: opacity 0.2s;
+}
+
+.request-search-page-success .card .card-body .custom-flight-page a:hover,
+.request-search-page-success .card .card-body .custom-flight-page a:active {
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
 }
 

@@ -137,33 +137,31 @@
 }
 
 #arrivalList {
-  position: absolute;
-  top: 44px;
-  left: 0px;
-  display: block;
-  z-index: 3001 !important;
-
-  .dropdown-menu {
-    min-width: 16rem !important;
-    display: block;
     position: absolute;
-    padding: 1rem 1.5rem;
+    top: 44px;
+    left: 0px;
+    display: block;
+    z-index: 3001 !important;
 
-    /*z-index: 999999;*/
-
-    a {
-      &:link, &:visited {
-        color: #25383C;
+    .dropdown-menu {
+        min-width: 16rem !important;
         display: block;
-        padding: 3px 0;
-      }
+        position: absolute;
+        padding: 1rem 1.5rem;
 
-      &:hover, &:active {
-        text-decoration: none;
-        color: #000000;
-      }
+        a {
+            &:link, &:visited {
+                color: #25383C;
+                display: block;
+                padding: 3px 0;
+            }
+
+            &:hover, &:active {
+                text-decoration: none;
+                color: #000000;
+            }
+        }
     }
-  }
 }
 
 @media (min-width: 992px) {
@@ -1530,62 +1528,12 @@
   }
 }
 
-.header-page-image-request-quote {
-  background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
-  max-height: 250px;
 
-  /*margin-bottom: 15px;*/
-}
-
-.back_arrow {
-  &:link, &:visited {
-    background: no-repeat 10% center rgba(172, 183, 197, 0.2) url("/images/rq_back_arrow.png") !important;
-    border: none;
-    border-radius: 6px;
-    color: #2A60AE;
-    padding: 0.5rem 1.5rem 0.5rem 3rem;
-    text-transform: uppercase;
-  }
-
-  &:hover, &:active {
-    background: no-repeat 10% center rgba(172, 183, 197, 0.5) url("/images/rq_back_arrow.png") !important;
-  }
-}
-
-.request-quote-page {
-  background-color: #EFF5F9;
-}
-
-.container-request-top-quote {
-  max-width: 1140px;
-  margin: auto;
-  margin-top: 15px;
-}
-
-.container-request-quote {
-  max-width: 1140px;
-  margin: auto;
-
-  .custom-flight {
-    div {
-      text-align: center;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 27px;
-      text-transform: uppercase;
-      color: #294A7A;
-      opacity: 0.8;
+@media (max-width: 992px) {
+    .book-page-nav {
+        background: rgba(255, 255, 255, 1) !important;
+        a {
+            color: #2B4060 !important;
+        }
     }
-
-    p {
-      font-family: Roboto !important;
-      font-size: 24px;
-      line-height: 28px;
-      text-transform: uppercase;
-      color: #2B4B7A;
-      opacity: 0.7;
-      font-style: normal;
-    }
-  }
 }

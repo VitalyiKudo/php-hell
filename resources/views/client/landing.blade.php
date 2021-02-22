@@ -568,8 +568,7 @@
                 $('input.from').val($(this).text());
                 $('#departureList').fadeOut();
             });
-            
-            
+
             $('input.to').keyup(function(){ 
                 var query = $(this).val();
                 if(query != '' && query.length >= 3){
@@ -603,6 +602,12 @@
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
                 $('input.to').val($(this).text());
+                $('#arrivalList').fadeOut();
+            });
+            
+            
+            $('body').on('click', function(){
+                $('#departureList').fadeOut();
                 $('#arrivalList').fadeOut();
             });
 

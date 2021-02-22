@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Airport;
+use App\Models\Airline;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Airport as AirportResource;
@@ -18,7 +19,7 @@ class AirportController extends Controller
     public function getAirportsList(Request $request)
     {
         $keyword = $request->input('query');
-
+        
         $airports = Airport::with('country')
             ->where(function ($query) use ($keyword) {
                 $query->where('name', 'like', "{$keyword}%")
@@ -34,5 +35,18 @@ class AirportController extends Controller
 
         //return AirportResource::collection($airports);
         return response()->json($airports);
+    }
+    
+    public function getTypesList(Request $request)
+    {
+        $keyword = $request->input('query');
+        
+        
+        $airlines = Airline::where('type', 'like', "{$keyword}%")
+                ->limit(10)
+                ->groupBy('type')
+                ->get();
+
+        return response()->json($airlines);
     }
 }

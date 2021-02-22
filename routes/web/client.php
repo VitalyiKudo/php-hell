@@ -84,7 +84,10 @@ Route::namespace('Account')->group(function () {
     
     //Flights search
     Route::get('/flights/search', 'SearchController@index')->name('search.index');
+    //Route::post('/flights/quote', 'SearchController@requestQuote')->name('search.requestQuote');
+    Route::match(['GET', 'POST'], '/flights/quote', 'SearchController@requestQuote')->name('search.requestQuote');
     Route::get('/flights/quote', 'SearchController@requestQuote')->name('search.requestQuote');
+    Route::get('/flights/quote/{order_id}/success', 'SearchController@requestQuoteSuccess')->name('search.requestQuoteSuccess');
     Route::get('/flights/success', 'SearchController@createQuote')->name('search.createQuote');
     
     Route::get('/flights/sendMail', 'SearchController@sendMail')->name('search.sendMail');

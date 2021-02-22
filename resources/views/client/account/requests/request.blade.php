@@ -533,10 +533,11 @@
 
                                 <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
                                 <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
-                                <input type="hidden" name="start_airport_name" value="{{ $params['startPointName'] }}" id="start_airport_name">
-                                <input type="hidden" name="end_airport_name" value="{{ $params['endPointnName'] }}" id="end_airport_name">
+                                <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
+                                <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                                 <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                                 <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
+                                <input type="hidden" name="page_name" value="search-page">
 
                                 <div class="text-right pull-right">
                                     <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
@@ -879,6 +880,10 @@
             });
 
 
+            $('body').on('click', function(){
+                $('#departureList').fadeOut();
+                $('#arrivalList').fadeOut();
+            });
 
 
             $('#main-search-form').submit(function(e){

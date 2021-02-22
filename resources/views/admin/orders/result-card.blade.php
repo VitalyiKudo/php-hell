@@ -55,6 +55,18 @@
                 <thead>
                     <tr>
                         <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{!! nl2br($order->comment) !!}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="table mb-0">
+                <thead>
+                    <tr>
                         <th>Billing Address</th>
                         <th>Billing Address secondary</th>
                         <th>Billing Country</th>
@@ -65,7 +77,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $order->comment }}</td>
                         <td>{{ $order->billing_address }}</td>
                         <td>{{ $order->billing_address_secondary }}</td>
                         <td>{{ $order->billing_country }}</td>

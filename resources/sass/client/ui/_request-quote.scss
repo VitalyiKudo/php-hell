@@ -1,0 +1,503 @@
+.header-page-image-request-quote {
+  background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
+  max-height: 250px;
+}
+
+.back_arrow {
+  &:link, &:visited {
+    background: no-repeat 10% center rgba(172, 183, 197, 0.2) url("/images/rq_back_arrow.png") !important;
+    border: none;
+    border-radius: 6px;
+    color: #2A60AE;
+    padding: 0.5rem 1.5rem 0.5rem 3rem;
+    text-transform: uppercase;
+  }
+
+  &:hover, &:active {
+    background: no-repeat 10% center rgba(172, 183, 197, 0.5) url("/images/rq_back_arrow.png") !important;
+  }
+}
+
+.request-quote-page {
+  background-color: #EFF5F9;
+}
+
+.container-request-top-quote {
+  max-width: 1140px;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.container-request-quote {
+    max-width: 1140px;
+    margin: auto;
+    
+    .form-group .col-sm-3 {
+        @media (max-width: 570px) {
+            padding-left: 0.25rem !important;
+            padding-right: 0.5rem !important;
+        }
+    }
+    .custom-flight-page {
+        div {
+            font-family: "Capoon PERSONAL USE";
+            text-align: center;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 27px;
+            text-transform: uppercase;
+            color: #294A7A;
+            opacity: 0.8;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            line-height: 28px;
+            text-transform: uppercase;
+            color: #2B4B7A;
+            opacity: 0.7;
+            font-style: normal;
+            font-weight: 300;
+            padding: {
+                bottom: 5px;
+                left: 10px;
+                right: 10px;
+            }
+            margin: {
+                left: -10px;
+                right: -10px;
+            }
+            border-bottom: 1px solid rgba(#2B4B7A, 0.2);
+        }
+    }
+    .custom-flight-bottom {
+        border-bottom: 1px solid rgba(#2B4B7A, 0.2);
+        display: flex;
+        margin: {
+            left: -10px;
+            right: -10px;
+            top: 20px;
+            bottom: 20px;
+        }
+        padding: {
+            left: 10px;
+            right: 10px;
+        }
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            line-height: 28px;
+            text-transform: uppercase;
+            color: #2B4B7A;
+            opacity: 0.7;
+            font-style: normal;
+            font-weight: 300;
+            width: 50%;
+            flex-grow: 1;
+            padding: {
+                bottom: 5px;
+            }
+            margin: {
+                bottom: 5px;
+            }
+        }
+    }
+    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #aircraftRQ, #stop-airportRQ, #return-airportRQ {
+        width: auto;
+        height: 45px;
+        border: 1px solid rgba(41, 74, 122, 0.4);
+        &::placeholder {
+            color: #9A9B9B;
+            text-transform: uppercase;
+        }
+    }
+    .display-none {
+        display: none;
+    }
+    #stop-airportRQ, #return-airportRQ {
+        //display: none;
+        margin: {
+            top: 10px;
+        }
+    }
+    #stop-airportRQ {
+        border-radius: 6px 0px 0px 6px;
+    }
+    #return-airportRQ {
+        border-radius: 0px 6px 6px 0px;
+        margin-left: -1px;
+    }
+    #add-stop-button, #add-return-button {
+        border: 1px solid rgba(#2A60AE,0.3);
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        margin: {
+            top: 10px;
+            left: auto;
+            right: auto;
+        };
+        padding: {
+            top: 6px;
+            left: 34px;
+            right: 12px;
+            bottom: 6px;
+        };
+        font-family: 'Roboto';
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #2A60AE;
+        transition: color 0.25s;
+    }
+    #add-stop-button:hover, #add-return-button:hover {
+        color: rgba(#2A60AE, 0.8);
+        transition: color 0.25s;
+    }
+    #add-stop-button:focus, #add-return-button:focus {
+        outline: none;
+    }
+    #add-stop-button {
+        background: url("/images/plus_request.png") no-repeat 10% center;
+    }
+    #add-return-button {
+        background: url("/images/arrow_request.png") no-repeat 10% center;
+    }
+    #departure-airportRQ {
+        border-radius: 6px 0px 0px 6px;
+        background: url("/images/flight_up.png") no-repeat 95% center, url("/images/MIA.png") no-repeat 80% center;
+    }
+    #arrival-airportRQ {
+        background: url("/images/flight_down.png") no-repeat 95% center, url("/images/SAT.png") no-repeat 80% center;
+        margin: {
+            left: -1px !important;
+        }
+    }
+    #flightDateRQ {
+        background: url("/images/callender_reqest.png") no-repeat 95% center;
+        border-radius: 6px;
+        width: auto !important;
+    }
+    .pass-field {
+        margin-left: 30px !important;
+        @media (max-width: 570px) {
+            margin-left: 15px !important;
+        }
+    }
+    #aircraftRQ {
+        border-radius: 6px;
+        background: url("/images/arrow_bottom.png") no-repeat 94% center;
+    }
+    #arrival-airportRQ {
+        border-radius: 0px 6px 6px 0px;
+    }
+    #request_quote {
+        label, .extra-title {
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #373737;
+        }
+        .extra-block {
+            .form-check {
+                label {
+                    text-transform: none;
+                }
+            }
+        }
+        input[type=text]:focus, input[type=number]:focus {
+            box-shadow: 0px 0px 0px 1px rgba(#5198FF, 1) !important;
+            border: 1px solid #5198FF;
+        }
+    }
+    #passengers {
+        background: url("/images/passengers.png") no-repeat 10px center;
+        padding-left: 38px;
+    }
+    #pets {
+        background: url("/images/pets.png") no-repeat 10px center;
+        padding-left: 38px;
+    }
+    #bags {
+        background: url("/images/bags.png") no-repeat 10px center;
+        padding-left: 38px;
+    }
+    #lbags {
+        background: url("/images/lbags.png") no-repeat 10px center;
+        padding-left: 38px;
+    }
+    .request-quote-block {
+        margin: {
+            top: 10px;
+            left: -10px;
+            right: -10px;
+        }
+        border: {
+            top: 1px solid rgba(43, 75, 122, 0.2);
+        }
+        padding: {
+            top: 15px;
+            left: 10px;
+            right: 10px;
+        }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        @media (max-width: 800px) {
+            flex-direction: column;
+        }
+
+        
+        input {
+            border: 1px solid #E6E8ED;
+            background-color: #E6E8ED;
+            height: 45px;
+            width: 40%;
+            
+            @media (max-width: 800px) {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+        div {
+            display: flex;
+            @media (max-width: 800px) {
+                flex-direction: column-reverse;
+            }
+            .request-quote-submit-page {
+                background: url(/images/request_send.png) no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+                opacity: 0.8;
+                border-radius: 6px;
+                padding: 0.5rem 2rem 0.5rem 3.5rem;
+                border: none;
+                color: #FFFFFF;
+                transition: opacity 0.2s;
+                &:hover {
+                    opacity: 0.7;
+                    transition: opacity 0.2s;
+                }
+            }
+            p {
+                color: #98A7BA;
+                background: url(/images/ClockCircle.png) no-repeat left center;
+                line-height: 30px;
+                height: 30px;
+                padding: {
+                    left: 30px;
+                    right: 10px;
+                }
+                margin: {
+                    bottom: 0;
+                }
+                position: relative;
+                bottom: -25px;
+                span {
+                    color: #526D94;
+                }
+                @media (max-width: 800px) {
+                    flex-direction: column-reverse;
+                    position: static;
+                    margin-top: 15px;
+                }
+            }
+        }
+        
+    }
+    #departureList {
+        top: 70px;
+    }
+    #arrivalList {
+        top: 70px;
+    }
+    
+    #stopList {
+        position: absolute;
+        top: 125px;
+        left: 0px;
+        display: block;
+        z-index: 3001 !important;
+
+        .dropdown-menu {
+            min-width: 16rem !important;
+            display: block;
+            position: absolute;
+            padding: 1rem 1.5rem;
+
+            a {
+                &:link, &:visited {
+                    color: #25383C;
+                    display: block;
+                    padding: 3px 0;
+                }
+
+                &:hover, &:active {
+                    text-decoration: none;
+                    color: #000000;
+                }
+            }
+        }
+    }
+    
+    #returnList {
+        position: absolute;
+        top: 125px;
+        left: 0px;
+        display: block;
+        z-index: 3001 !important;
+
+        .dropdown-menu {
+            min-width: 16rem !important;
+            display: block;
+            position: absolute;
+            padding: 1rem 1.5rem;
+
+            a {
+                &:link, &:visited {
+                    color: #25383C;
+                    display: block;
+                    padding: 3px 0;
+                }
+
+                &:hover, &:active {
+                    text-decoration: none;
+                    color: #000000;
+                }
+            }
+        }
+    }
+    
+    #aircraftList {
+        position: absolute;
+        top: 70px;
+        left: 0px;
+        display: block;
+        z-index: 3001 !important;
+
+        .dropdown-menu {
+            min-width: 16rem !important;
+            display: block;
+            position: absolute;
+            padding: 1rem 1.5rem;
+
+            a {
+                &:link, &:visited {
+                    color: #25383C;
+                    display: block;
+                    padding: 3px 0;
+                }
+
+                &:hover, &:active {
+                    text-decoration: none;
+                    color: #000000;
+                }
+            }
+        }
+    }
+    
+    .input-group {
+        @media (max-width: 992px) {
+            flex-direction: column;
+        }
+    }
+
+}
+
+.request-search-page-success {
+    background-color: #EFF5F9;
+    .card {
+        max-width: 644px;
+        margin: {
+            top: 50px;
+            left: auto;
+            right: auto;
+        }
+        border-color: transparent;
+        border-radius: 0;
+        border: none;
+        background: 2px top repeat-x url(/images/bg_top_perforation.png), 2px bottom repeat-x url(/images/bg_bottom_perforation.png);
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+        
+        &:before, &:after {
+            content: "";
+            height: calc(100% - 20px);
+            position: absolute;
+            top: 8px;
+            width: 1px;
+            z-index: 1;
+        }
+
+        &:before {
+            box-shadow: -2px 0px 6px rgba(#CCC, 1);
+            left: 0px;
+        }
+        &:after {
+            box-shadow: 2px 0px 6px rgba(#CCC, 1);
+            right: 0px;
+        }
+
+        .card-body {
+            margin: {
+                top: 16px;
+                bottom: 22px;
+            }
+            background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(#F7F9F9, 1) 100%);
+            .custom-flight-page {
+                text-align: center;
+                div {
+                    font-family: Roboto;
+                    font-weight: 300;
+                    font-size: 26px;
+                    line-height: 30px;
+                    text-align: center;
+                    color: #373737;
+                    margin-top: 15px;
+                }
+                p {
+                    font-weight: 500;
+                    font-size: 22px;
+                    line-height: 26px;
+                    text-align: center;
+                    color: #373737;
+                    margin-top: 15px;
+                    span {
+                        color: #5198FF;
+                    }
+                }
+                a:link, a:visited {
+                    color: #294A7A;
+                    border: 1px solid rgba(#2A60AE, 0.3);
+                    border-radius: 6px;
+                    display: inline-block;
+                    font-size: 18px;
+                    line-height: 21px;
+                    background: url(/images/key.png) no-repeat 15px center;
+                    
+                    margin: {
+                        top: 30px;
+                        left: auto;
+                        right: auto;
+                    }
+                    padding: {
+                        top: 12px;
+                        bottom: 12px;
+                        left: 50px;
+                        right: 20px;
+                    }
+                    transition: opacity 0.20s;
+                }
+                a:hover, a:active {
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.20s;
+                }
+            }
+        }
+    }
+    
+}
