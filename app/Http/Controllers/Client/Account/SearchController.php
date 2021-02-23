@@ -317,11 +317,12 @@ class SearchController extends Controller
                 'end_city' => $request->input('end_airport_name'),
             ];
 
-            Mail::send([], [], function ($message) use ($request, $date, $airports) {
+            Mail::send([], [], function ($message) use ($request, $date, $airports, $comment) {
+                $request_details = $comment ? "\r\n\r\nRequest details: \r\n" . $comment . "\r\n" : "";
                 $user = Auth::user();
                 $message->from($user->email, 'JetOnset team');
                 $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
-                $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
             
             //return view('client.account.requests.requestQuoteSuccess', compact('lastSearchResults', 'searchResult', 'params'));

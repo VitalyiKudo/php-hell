@@ -799,6 +799,18 @@
             });
             */
 
+
+            $('#request_quote').submit(function(e){
+                var flight_model = $('#flight_model').val();
+                if(flight_model.length <= 0){
+                    e.preventDefault();
+                    $('#flight_model').removeClass('is-invalid');
+                    $('.invalid-feedback').remove();
+                    $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
+                }
+            });
+
+
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
@@ -885,7 +897,7 @@
                 $('#arrivalList').fadeOut();
             });
 
-
+            
             $('#main-search-form').submit(function(e){
 
                 var start_point = $(this).find('input[name="startPoint"]').val();

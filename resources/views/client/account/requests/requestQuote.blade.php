@@ -461,6 +461,12 @@
                 
             });
 
+            
+            $('.search-breadcrumb a').click(function(e){
+                e.preventDefault();
+                $('#request_quote input[name="startPoint"]').val($(this).data("from"));
+                $('#request_quote input[name="endPoint"]').val($(this).data("to"));
+            });
 
 
             $('#request_quote').submit(function(e){
