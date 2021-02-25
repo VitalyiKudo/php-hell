@@ -14,8 +14,8 @@ class AddOperatorsToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('operator_id')->unsigned()->nullabe();
-            $table->foreign('operator_id')->references('id')->on('operators')->onDelete('cascade');
+            //$table->integer('operator_id')->unsigned()->nullabe();
+            //$table->foreign('operator_id')->references('id')->on('operators')->onDelete('cascade');
         });
     }
 

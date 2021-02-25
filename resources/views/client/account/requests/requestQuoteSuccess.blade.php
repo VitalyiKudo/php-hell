@@ -8,7 +8,7 @@
 @section('book_page', 'book-page-nav')
 
 @section('content')
-<div class="container header-page-image header-page-image-bg"></div>
+    <div class="container header-page-image header-page-image-bg"></div>
     <div class="section main-search-page header-page-image-request-quote">
         <div class="container">
             <div class="row">

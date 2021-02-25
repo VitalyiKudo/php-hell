@@ -73,6 +73,10 @@
                             <li class="nav-item {{ Request::is('manage/pricing*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.pricing.index') }}">{{ __('Pricing') }}</a>
                             </li>
+                            
+                            <li class="nav-item {{ Request::is('manage/fees*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.fees.index') }}">{{ __('Additional Fees') }}</a>
+                            </li>
 
                         </ul>
                     @endauth

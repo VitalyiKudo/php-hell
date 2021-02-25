@@ -36,6 +36,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('airlines', 'AirlineController');
     Route::resource('operators', 'OperatorController');
     Route::resource('pricing', 'PricingController');
+    Route::resource('fees', 'FeesController');
     
     Route::post('api/airports','PricingController@getAutocompleteAirports')->name('api.airports');
     Route::post('api/cities','PricingController@getAutocompleteCities')->name('api.cities');

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Airport;
 use App\Models\Airline;
 use App\Models\Operator;
+use App\Models\Fees;
 use Mail;
 use App\Models\Transaction;
 use App\Models\Search;
@@ -108,7 +109,8 @@ class OrderController extends Controller
         */
 
         //echo \Request::route()->getName();
-        //echo "fghgfh";
+        //Fees
+        $feeses = Fees::all();
         
         $user = Auth::user();
         $search_id = $request->route('search');
@@ -132,17 +134,37 @@ class OrderController extends Controller
 
         if($search_type == 'turbo'){
             $price = $pricing->price_turbo;
+            $time = $pricing->time_turbo;
         } elseif($search_type == 'light'){
             $price = $pricing->price_light;
+            $time = $pricing->time_light;
         } elseif($search_type == 'medium'){
             $price = $pricing->price_medium;
+            $time = $pricing->time_medium;
         } elseif($search_type == 'heavy'){
             $price = $pricing->price_heavy;
+            $time = $pricing->time_heavy;
         } else {
             $price = 0.00;
+            $time = "00:00";
         }
 
-        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'user', 'start_airport_name', 'end_airport_name', 'departure_at', 'pax'));
+        
+        $total_price = $price;
+
+        foreach($feeses as $fees){
+            
+            if($fees->active == 1){
+                if($fees->type == "$"){
+                    $total_price += $fees->amount;
+                } else {
+                    $total_price += $price * ($fees->amount / 100 );
+                }
+                
+            }
+        }
+
+        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'time', 'user', 'start_airport_name', 'end_airport_name', 'departure_at', 'pax', 'feeses', 'total_price'));
     }
 
     public function checkout(Request $request)

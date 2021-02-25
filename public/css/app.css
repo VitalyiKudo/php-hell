@@ -16759,3 +16759,292 @@ sup {
   transition: opacity 0.2s;
 }
 
+.header-page-image-booking-two {
+  max-height: 250px;
+}
+
+@media (max-width: 1450px) {
+  .header-page-image-booking-two {
+    max-height: 275px;
+  }
+}
+
+.header-page-image-booking-two .container-fluid {
+  padding-top: 125px;
+  padding-left: 22%;
+  padding-right: 12%;
+}
+
+@media (max-width: 850px) {
+  .header-page-image-booking-two .container-fluid {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+.header-page-image-booking-two .container-fluid .booking-left {
+  display: flex;
+}
+
+.header-page-image-booking-two .container-fluid .booking-left .booking-row-left {
+  font-family: Capoon PERSONAL USE;
+  font-style: normal;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-size: 22px;
+  line-height: 27px;
+  align-self: flex-end;
+}
+
+.header-page-image-booking-two .container-fluid .booking-row-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-page-image-booking-two .container-fluid .booking-row-right div {
+  align-self: flex-end;
+  flex-direction: column;
+}
+
+.header-page-image-booking-two .container-fluid .booking-row-right div p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: right;
+  color: #C6DDFF;
+}
+
+.header-page-image-booking-two .container-fluid .booking-row-right div p span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+.header-page-image-booking-two .header-book-class {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  color: #C6DDFF;
+}
+
+.header-page-image-booking-two .header-book-class span {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  color: #C6DDFF;
+}
+
+.header-page-image-booking-two .text-center {
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #C6DDFF;
+}
+
+.header-page-image-booking-two .header-book-time {
+  text-align: center;
+  position: relative;
+  background: url(/images/plane_top.png) no-repeat left center, url(/images/plane_bottom.png) no-repeat right center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header-page-image-booking-two .header-book-time:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 6px;
+  width: 98%;
+  border-bottom: 1px dashed #C6DDFF;
+  z-index: 1;
+}
+
+.header-page-image-booking-two .header-book-time span {
+  display: inline-block;
+  background: url(/images/clock.png) no-repeat 10px center, linear-gradient(180deg, #C6DDFF 0%, rgba(198, 221, 255, 0.81) 100%);
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2A60AE;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 30px;
+  padding-right: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.header-page-image-booking-two .header-book-cities div p {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.header-page-image-booking-two .header-book-cities div:first-child p {
+  text-align: left;
+}
+
+.header-page-image-booking-two .header-book-cities div:last-child p {
+  text-align: right;
+}
+
+.booking-bg {
+  border-top: 1px solid #EFF5F9;
+  background-color: #EFF5F9;
+  padding-left: 21%;
+}
+
+@media (max-width: 992px) {
+  .booking-bg {
+    padding-left: 0;
+  }
+}
+
+.booking-bg .booking-breadbranch {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 8%;
+}
+
+.booking-bg .booking-breadbranch li {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #D3D9DC;
+  background: url(/images/booking_arrow.png) no-repeat right center;
+  margin-bottom: 15px;
+  padding-right: 25px;
+}
+
+.booking-bg .booking-breadbranch li span {
+  background-color: #D3D9DC;
+  display: inline-block;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  margin-right: 5px;
+}
+
+.booking-bg .booking-breadbranch li:last-child {
+  background-image: none;
+}
+
+.booking-bg .booking-breadbranch .booking-last {
+  color: #788EAD;
+}
+
+.booking-bg .booking-breadbranch .booking-last span {
+  background-color: #788EAD;
+}
+
+.booking-bg .booking-breadbranch .booking-active {
+  color: #D1AF9D;
+}
+
+.booking-bg .booking-breadbranch .booking-active span {
+  background-color: #D1AF9D;
+}
+
+.booking-bg .details-block {
+  padding-left: 8%;
+}
+
+@media (max-width: 992px) {
+  .booking-bg .details-block {
+    padding-left: 0;
+  }
+}
+
+.booking-bg .details-block table.table {
+  margin-bottom: 50px;
+}
+
+.booking-bg .details-block table.table thead th {
+  border-top: none;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #2B4B7A;
+}
+
+.booking-bg .details-block table.table tbody tr:nth-child(odd) {
+  background-color: #E5ECF1;
+}
+
+.booking-bg .details-block table.table tbody tr td {
+  border: none;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 48px;
+  color: #373737;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.booking-bg .details-block table.table tbody tr td:last-child {
+  text-align: right;
+  text-transform: uppercase;
+  color: #373737;
+  font-weight: normal;
+}
+
+.booking-bg .details-block table.table tbody .total {
+  border-bottom: 2px solid #DBE4EC;
+}
+
+.booking-bg .details-block table.table tbody .total td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.booking-bg .details-block table.table tbody .total td:first-child {
+  font-size: 28px;
+}
+
+.booking-bg .details-block table.table tbody .total td:last-child {
+  font-size: 28px;
+  color: #2A60AE;
+}
+
+.booking-bg .details-block table.table tbody .pay-button-block {
+  background-color: transparent !important;
+}
+
+.booking-bg .details-block table.table tbody .pay-button-block td {
+  text-align: center !important;
+}
+
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button {
+  margin-top: 25px;
+  background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+  opacity: 0.8;
+  border-radius: 6px;
+  border: none;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 45px;
+  padding-right: 25px;
+  transition: opacity 0.2s;
+}
+
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+

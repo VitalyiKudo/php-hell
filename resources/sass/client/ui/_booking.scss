@@ -1,0 +1,301 @@
+.header-page-image-booking-two {
+    max-height: 250px;
+    
+    @media (max-width: 1450px) {
+        max-height: 275px;
+    }
+
+    .container-fluid {
+        padding: {
+            top: 125px;
+            left: 22%;
+            right: 12%;
+        }
+        
+        @media (max-width: 850px) {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        
+        .booking-left {
+            display: flex;
+            
+            .booking-row-left {
+                font-family: Capoon PERSONAL USE;
+                font-style: normal;
+                font-weight: 500;
+                color: #FFFFFF;
+                font-size: 22px;
+                line-height: 27px;
+                //margin-bottom: 0;
+                align-self: flex-end;
+            }
+        }
+
+        .booking-row-right {
+            display: flex;
+            justify-content: flex-end;
+            
+            div {
+                align-self: flex-end;
+                flex-direction: column;
+                p {
+                    font-family: Roboto;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 20px;
+                    line-height: 23px;
+                    text-align: right;
+                    color: #C6DDFF;
+                    span {
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 26px;
+                        line-height: 30px;
+                        text-align: right;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .header-book-class {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 23px;
+        color: #C6DDFF;
+        
+        span {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23px;
+            text-transform: uppercase;
+            color: #C6DDFF;
+        }
+    }
+    .text-center {
+        font-weight: 500;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #C6DDFF;
+    }
+    .header-book-time {
+        text-align: center;
+        position: relative;
+        background: url(/images/plane_top.png) no-repeat left center, url(/images/plane_bottom.png) no-repeat right center;
+        margin: {
+            top: 10px;
+            bottom: 10px;
+        }
+        
+        &:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 6px;
+            width: 98%;
+            border-bottom: 1px dashed #C6DDFF;
+            z-index: 1;
+        }
+        
+        span {
+            display: inline-block;
+            background: url(/images/clock.png) no-repeat 10px center, linear-gradient(180deg, #C6DDFF 0%, rgba(198, 221, 255, 0.81) 100%);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 16px;
+            color: #2A60AE;
+            padding: {
+                top: 2px;
+                bottom: 2px;
+                left: 30px;
+                right: 15px;
+            }
+            position: relative;
+            z-index: 2;
+            //background: url(/images/clock.png) no-repeat 15px center;
+        }
+    }
+    
+    .header-book-cities {
+        div {
+            p {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 23px;
+                text-transform: uppercase;
+                color: #FFFFFF;
+            }
+            &:first-child {
+                p {
+                    text-align: left;
+                }
+            }
+            &:last-child {
+                p {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+.booking-bg {
+    border-top: 1px solid #EFF5F9;
+    background-color: #EFF5F9;
+    padding-left: 21%;
+    
+    @media (max-width: 992px) {
+        padding-left: 0;
+    }
+    
+    .booking-breadbranch {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: {
+            left: 8%;
+        }
+            
+        li {
+            display: inline-block;
+            text-transform: uppercase;
+            color: #D3D9DC;
+            background: url(/images/booking_arrow.png) no-repeat right center;
+            margin-bottom: 15px;
+            padding: {
+                right: 25px;
+            }
+            
+            span {
+                background-color: #D3D9DC;
+                display: inline-block;
+                text-align: center;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                color: #FFFFFF;
+                margin: {
+                    right: 5px;
+                }
+            }
+            
+            &:last-child {
+                background-image: none;
+            }
+        }
+        
+        .booking-last {
+            color: #788EAD;
+            span {
+                background-color: #788EAD;
+            }
+        }
+        
+        .booking-active {
+            color: #D1AF9D;
+            span {
+                background-color: #D1AF9D;
+            }
+        }
+        
+    }
+    
+    .details-block {
+        padding: {
+            left: 8%;
+        }
+        @media (max-width: 992px) {
+            padding-left: 0;
+        }
+        table.table {
+            margin-bottom: 50px;
+            thead {
+                th {
+                    border-top: none;
+                    font-weight: 300;
+                    font-size: 24px;
+                    line-height: 28px;
+                    text-transform: uppercase;
+                    color: #2B4B7A;
+                }
+            }
+            tbody {
+                tr {
+                    &:nth-child(odd) {
+                        background-color: #E5ECF1;
+                    }
+                    td {
+                        border: none;
+                        font-weight: 300;
+                        font-size: 20px;
+                        line-height: 48px;
+                        color: #373737;
+                        padding: {
+                            top: 0;
+                            bottom: 0;
+                        };
+                        &:last-child {
+                            text-align: right;
+                            text-transform: uppercase;
+                            color: #373737;
+                            font-weight: normal;
+                        }
+                    }
+                }
+                .total {
+                    border-bottom: 2px solid #DBE4EC;
+                    td {
+                        padding: {
+                            top: 8px;
+                            bottom: 8px;
+                        };
+                        &:first-child {
+                            font-size: 28px;
+                        }
+                        &:last-child {
+                            font-size: 28px;
+                            color: #2A60AE;
+                        }
+                    }
+                }
+                .pay-button-block {
+                    background-color: transparent !important;
+                    
+                    td {
+                        text-align: center !important;
+                    }
+
+                    .pay-button {
+                        margin-top: 25px;
+                        background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+                        opacity: 0.8;
+                        border-radius: 6px;
+                        border: none;
+                        color: #FFFFFF;
+                        font-weight: 500;
+                        font-size: 16px;
+                        padding: {
+                            top: 0;
+                            bottom: 0;
+                            left: 45px;
+                            right: 25px;
+                        };
+                        transition: opacity 0.20s;
+                        
+                        &:hover {
+                            opacity: 0.7;
+                            transition: opacity 0.20s;
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
+    }
+}
