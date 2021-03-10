@@ -434,9 +434,9 @@
   margin-left: -5px;
   margin-right: -5px;
 }/*!
- * Bootstrap-select v1.13.18 (https://developer.snapappointments.com/bootstrap-select)
+ * Bootstrap-select v1.13.12 (https://developer.snapappointments.com/bootstrap-select)
  *
- * Copyright 2012-2020 SnapAppointments, LLC
+ * Copyright 2012-2019 SnapAppointments, LLC
  * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 
@@ -803,8 +803,6 @@ select.selectpicker {
   height: 1em;
   border-style: solid;
   border-width: 0 0.26em 0.26em 0;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
        -o-transform: rotate(45deg);
@@ -17027,8 +17025,12 @@ sup {
   text-align: center !important;
 }
 
-.booking-bg .details-block table.table tbody .pay-button-block .pay-button {
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:link:link,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:link:visited,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:visited:link,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:visited:visited {
   margin-top: 25px;
+  display: inline-block;
   background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
   opacity: 0.8;
   border-radius: 6px;
@@ -17043,8 +17045,209 @@ sup {
   transition: opacity 0.2s;
 }
 
-.booking-bg .details-block table.table tbody .pay-button-block .pay-button:hover {
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:link:hover,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:link:active,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:visited:hover,
+.booking-bg .details-block table.table tbody .pay-button-block .pay-button:visited:active {
   opacity: 0.7;
   transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.booking-bg .info-square-block {
+  padding-left: 8%;
+}
+
+@media (max-width: 992px) {
+  .booking-bg .info-square-block {
+    padding-left: 0;
+  }
+}
+
+.booking-bg .info-square-block .form-titles {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #2B4B7A;
+  opacity: 0.7;
+  border-bottom: 2px solid rgba(43, 75, 122, 0.2);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 8px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 30px;
+}
+
+.booking-bg .info-square-block form label {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: #373737;
+}
+
+.booking-bg .info-square-block form input.form-control,
+.booking-bg .info-square-block form select.form-control {
+  height: 52px;
+}
+
+.booking-bg .info-square-block form input.form-control::-webkit-input-placeholder,
+.booking-bg .info-square-block form select.form-control::-webkit-input-placeholder {
+  text-transform: uppercase;
+}
+
+.booking-bg .info-square-block form input.form-control:-ms-input-placeholder,
+.booking-bg .info-square-block form select.form-control:-ms-input-placeholder {
+  text-transform: uppercase;
+}
+
+.booking-bg .info-square-block form input.form-control::-ms-input-placeholder,
+.booking-bg .info-square-block form select.form-control::-ms-input-placeholder {
+  text-transform: uppercase;
+}
+
+.booking-bg .info-square-block form input.form-control::placeholder,
+.booking-bg .info-square-block form select.form-control::placeholder {
+  text-transform: uppercase;
+}
+
+.booking-bg .info-square-block form #comments::-webkit-input-placeholder {
+  text-transform: initial;
+}
+
+.booking-bg .info-square-block form #comments:-ms-input-placeholder {
+  text-transform: initial;
+}
+
+.booking-bg .info-square-block form #comments::-ms-input-placeholder {
+  text-transform: initial;
+}
+
+.booking-bg .info-square-block form #comments::placeholder {
+  text-transform: initial;
+}
+
+.booking-bg .info-square-block form .agree-block {
+  border-top: 2px solid rgba(43, 75, 122, 0.2);
+}
+
+.booking-bg .info-square-block form .agree-block label {
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: none;
+}
+
+.booking-bg .info-square-block form #birth_date {
+  background: #FFF url(/images/callender_booking.png) no-repeat 93% center;
+}
+
+.booking-bg .info-succeed-block {
+  max-width: 644px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-color: transparent;
+  border-radius: 0;
+  border: none;
+  background: 2px top repeat-x url(/images/bg_top_perforation.png), 2px bottom repeat-x url(/images/bg_bottom_perforation.png);
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.booking-bg .info-succeed-block:before,
+.booking-bg .info-succeed-block:after {
+  content: "";
+  height: calc(100% - 20px);
+  position: absolute;
+  top: 8px;
+  width: 1px;
+  z-index: 1;
+}
+
+.booking-bg .info-succeed-block:before {
+  box-shadow: -2px 0px 6px #cccccc;
+  left: 0px;
+}
+
+.booking-bg .info-succeed-block:after {
+  box-shadow: 2px 0px 6px #cccccc;
+  right: 0px;
+}
+
+.booking-bg .info-succeed-block .card-body {
+  margin-top: 16px;
+  margin-bottom: 21px;
+  background: linear-gradient(180deg, #FFFFFF 83.07%, #f7f9f9 100%);
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page {
+  text-align: center;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page div {
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  color: #373737;
+  margin-top: 15px;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page p {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #373737;
+  margin-top: 15px;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page p span {
+  color: #5198FF;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page a:link,
+.booking-bg .info-succeed-block .card-body .custom-flight-page a:visited {
+  color: #294A7A;
+  border: 1px solid rgba(42, 96, 174, 0.3);
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 21px;
+  background: url(/images/key.png) no-repeat 15px center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 50px;
+  padding-right: 20px;
+  transition: opacity 0.2s;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page a:hover,
+.booking-bg .info-succeed-block .card-body .custom-flight-page a:active {
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page .succeed-payment span {
+  font-weight: 400;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page .succeed-order {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.booking-bg .info-succeed-block .card-body .custom-flight-page .succeed-order span {
+  color: #5198FF;
 }
 

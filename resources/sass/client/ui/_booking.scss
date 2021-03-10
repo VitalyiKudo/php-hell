@@ -270,26 +270,30 @@
                         text-align: center !important;
                     }
 
-                    .pay-button {
-                        margin-top: 25px;
-                        background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
-                        opacity: 0.8;
-                        border-radius: 6px;
-                        border: none;
-                        color: #FFFFFF;
-                        font-weight: 500;
-                        font-size: 16px;
-                        padding: {
-                            top: 0;
-                            bottom: 0;
-                            left: 45px;
-                            right: 25px;
-                        };
-                        transition: opacity 0.20s;
+                    .pay-button:link, .pay-button:visited {
+                        &:link, &:visited {
+                            margin-top: 25px;
+                            display: inline-block;
+                            background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+                            opacity: 0.8;
+                            border-radius: 6px;
+                            border: none;
+                            color: #FFFFFF;
+                            font-weight: 500;
+                            font-size: 16px;
+                            padding: {
+                                top: 0;
+                                bottom: 0;
+                                left: 45px;
+                                right: 25px;
+                            };
+                            transition: opacity 0.20s;
+                        }
                         
-                        &:hover {
+                        &:hover, &:active {
                             opacity: 0.7;
                             transition: opacity 0.20s;
+                            text-decoration: none;
                         }
                         
                     }
@@ -297,5 +301,186 @@
             }
             
         }
+    }
+    
+    .info-square-block {
+        padding: {
+            left: 8%;
+        }
+        @media (max-width: 992px) {
+            padding-left: 0;
+        }
+        .form-titles {
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 28px;
+            text-transform: uppercase;
+            color: #2B4B7A;
+            opacity: 0.7;
+            border-bottom: 2px solid rgba(#2B4B7A, 0.2);
+            padding: {
+                left: 15px;
+                right: 15px;
+                bottom: 8px;
+            }
+            margin: {
+                left: -15px;
+                right: -15px;
+                bottom: 30px;
+            }
+        }
+        form {
+            label {
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 19px;
+                text-transform: uppercase;
+                color: #373737;
+            }
+            input.form-control, select.form-control {
+                height: 52px;
+                //box-shadow: 0px 0px 12px rgba(153, 153, 153, 0.3);
+                &:focus {
+                    //box-shadow: 0px 0px 12px rgba(153, 153, 153, 0.3);
+                    
+                }
+                &::placeholder {
+                    text-transform: uppercase;
+                }
+            }
+            #comments::placeholder {
+                text-transform: initial;
+            }
+            .agree-block {
+                border-top: 2px solid rgba(#2B4B7A, 0.2);
+                label {
+                    font-weight: 300;
+                    font-size: 16px;
+                    text-transform: none;
+                }
+            }
+            #birth_date {
+                background: #FFF url(/images/callender_booking.png) no-repeat 93% center;
+            }
+        }
+    }
+    
+    .info-succeed-block {
+        
+        
+        
+        
+            
+        max-width: 644px;
+        margin: {
+            left: auto;
+            right: auto;
+            bottom: 50px;
+        }
+        padding: {
+            top: 1px;
+            bottom: 1px;
+        }
+        border-color: transparent;
+        border-radius: 0;
+        border: none;
+        background: 2px top repeat-x url(/images/bg_top_perforation.png), 2px bottom repeat-x url(/images/bg_bottom_perforation.png);
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+
+        &:before, &:after {
+            content: "";
+            height: calc(100% - 20px);
+            position: absolute;
+            top: 8px;
+            width: 1px;
+            z-index: 1;
+        }
+
+        &:before {
+            box-shadow: -2px 0px 6px rgba(#CCC, 1);
+            left: 0px;
+        }
+        &:after {
+            box-shadow: 2px 0px 6px rgba(#CCC, 1);
+            right: 0px;
+        }
+
+        .card-body {
+            margin: {
+                top: 16px;
+                bottom: 21px;
+            }
+            background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(#F7F9F9, 1) 100%);
+            .custom-flight-page {
+                text-align: center;
+                div {
+                    font-family: Roboto;
+                    font-weight: 300;
+                    font-size: 26px;
+                    line-height: 30px;
+                    text-align: center;
+                    color: #373737;
+                    margin-top: 15px;
+                }
+                p {
+                    font-weight: 500;
+                    font-size: 22px;
+                    line-height: 26px;
+                    text-align: center;
+                    color: #373737;
+                    margin-top: 15px;
+                    span {
+                        color: #5198FF;
+                    }
+                }
+                a:link, a:visited {
+                    color: #294A7A;
+                    border: 1px solid rgba(#2A60AE, 0.3);
+                    border-radius: 6px;
+                    display: inline-block;
+                    font-size: 18px;
+                    line-height: 21px;
+                    background: url(/images/key.png) no-repeat 15px center;
+
+                    margin: {
+                        top: 30px;
+                        left: auto;
+                        right: auto;
+                    }
+                    padding: {
+                        top: 12px;
+                        bottom: 12px;
+                        left: 50px;
+                        right: 20px;
+                    }
+                    transition: opacity 0.20s;
+                }
+                a:hover, a:active {
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.20s;
+                }
+                .succeed-payment {
+                    span {
+                        font-weight: 400;
+                    }
+                }
+                .succeed-order {
+                    font-weight: 500;
+                    font-size: 22px;
+                    span {
+                        color: #5198FF
+                    }
+                }
+            }
+        }
+            
+
+       
+        
+        
+        
     }
 }

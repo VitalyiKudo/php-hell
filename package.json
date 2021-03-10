@@ -13,22 +13,23 @@
         "axios": "^0.18.1",
         "bootstrap": "^4.0.0",
         "bootstrap-datepicker": "^1.9.0",
-        "bootstrap-select": "^1.13.12",
         "bootstrap-daterangepicker": "^3.0.5",
+        "bootstrap-select": "^1.13.12",
         "cross-env": "^5.1",
         "jquery": "^3.4.1",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.15",
+        "moment": "^2.24.0",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12",
-        "moment": "^2.24.0"
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "vue-bootstrap-typeahead": "0.2.6",
-        "vue2-daterange-picker": "^0.4.4"
+        "vue2-daterange-picker": "^0.4.4",
+        "webpack": "^4.41.5"
     }
 }
