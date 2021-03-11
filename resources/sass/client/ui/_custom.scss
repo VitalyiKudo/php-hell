@@ -164,6 +164,62 @@
     }
 }
 
+#aircraftList-one {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    display: block;
+    z-index: 3001 !important;
+
+    .dropdown-menu {
+        min-width: 16rem !important;
+        display: block;
+        position: absolute;
+        padding: 1rem 1.5rem;
+
+        a {
+            &:link, &:visited {
+                color: #25383C;
+                display: block;
+                padding: 3px 0;
+            }
+
+            &:hover, &:active {
+                text-decoration: none;
+                color: #000000;
+            }
+        }
+    }
+}
+
+#aircraftList-two {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    display: block;
+    z-index: 3001 !important;
+
+    .dropdown-menu {
+        min-width: 16rem !important;
+        display: block;
+        position: absolute;
+        padding: 1rem 1.5rem;
+
+        a {
+            &:link, &:visited {
+                color: #25383C;
+                display: block;
+                padding: 3px 0;
+            }
+
+            &:hover, &:active {
+                text-decoration: none;
+                color: #000000;
+            }
+        }
+    }
+}
+
 @media (min-width: 992px) {
   .custom-navbar {
     padding: 3rem 1rem;
@@ -1204,7 +1260,7 @@
   width: 0;
 }
 
-#departureList, #arrivalList, .dropdown-menu {
+#departureList, #arrivalList, .dropdown-menu, #aircraftList-one, #aircraftList-two {
   z-index: 3001 !important;
 }
 
@@ -1454,6 +1510,10 @@
   .pass-field {
     width: 16% !important;
   }
+  
+  .pf-request {
+    width: 19% !important;
+  }
 
   .butn-search {
     width: 11% !important;
@@ -1482,6 +1542,26 @@
   .main-search-page .form-body .home-title, .main-search .form-body .home-title {
     display: none;
   }
+}
+
+.preff-air {
+    background-color: #FFFFFF;
+    border: 1px solid #2A60AE;
+    display: inline-block;
+    border-radius: 6px;
+    font-size: 28px;
+    margin: {
+        left: 15px;
+    }
+    padding: 0 15px;
+    color: #2A60AE;
+    outline: none;
+    /*
+    padding: {
+        left: 15px;
+        right: 15px;
+    }
+    */
 }
 
 .form-control {

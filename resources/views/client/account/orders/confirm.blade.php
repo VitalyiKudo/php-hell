@@ -58,7 +58,7 @@
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-row-right">
                 <div>
                     <p>Including taxes</p>
-                    <p>TOTAL: <span> &#36;{{ number_format($price, 2, '.', ' ') }}</span></p>
+                    <p>TOTAL: <span> &#36;{{ number_format($total_price, 2, '.', ' ') }}</span></p>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                                     @if($fees->active == 1)
                                         <tr>
                                             <td>{{ $fees->item }}:</td>
-                                            <td>{{ $fees->type }}{{ $fees->amount }}</td>
+                                            <td>{{ $fees->type }}{{ number_format($fees->amount, 2, '.', ' ') }}</td>
                                         </tr>
                                     @endif
                                 @endforeach

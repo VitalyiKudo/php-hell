@@ -515,8 +515,8 @@
                                 @csrf
 
                                 <div class="form-row">
-                                    <div class="col">
-                                        <label for="flight_model">Preferred aircraft:</label>
+                                    <div class="form-group col-sm-6">
+                                        <label for="flight_model">Flight model:</label>
                                         <select name="flight_model" class="form-control" id="flight_model">
                                             <option value="">--- Nothing selected ---</option>
                                             <option value="turbo">Turbo</option>
@@ -525,10 +525,23 @@
                                             <option value="heavy">Heavy</option>
                                         </select>
                                     </div>
-                                    <div class="col">
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="passengers">Passengers</label>
+                                        <input type="number" min="1" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="bags">Bags</label>
+                                        <input type="number" min="1" aria-describedby="bags" name="bags" autocomplete="off" id="bags" class="form-control">
+                                    </div>
+
+                                    <!--
+                                    <div class="form-group col-sm-6">
                                         <label for="comment">Comment</label>
                                         <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
                                     </div>
+                                    -->
                                 </div>
 
                                 <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
@@ -536,7 +549,7 @@
                                 <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
                                 <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                                 <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
-                                <input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">
+                                <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
                                 <input type="hidden" name="page_name" value="search-page">
 
                                 <div class="text-right pull-right">

@@ -67,7 +67,7 @@
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-row-right">
                 <div>
                     <p>Including taxes</p>
-                    <p>TOTAL: <span> &#36;{{ number_format($price, 2, '.', ' ') }}</span></p>
+                    <p>TOTAL: <span> &#36;{{ number_format($total_price, 2, '.', ' ') }}</span></p>
                 </div>
             </div>
         </div>
@@ -172,22 +172,20 @@
                         
                         
                         <div class="sq-field-out-wrapper">
-                            
-                            
                             <img src="{{ asset('images/card_numbers.png') }}" class="img-fluid" alt="card-numbers"/>
-                            
                             <div class="sq-field" id="sq-card-number-wrapper">
+                                <label class="sq-label hide-desctop">Card number</label>
                                 <div id="sq-card-number"></div>
                             </div>
                             
                             <div class="sq-field" id="sq-cvv-wrapper">
+                                <label class="sq-label hide-desctop">3 digits on the back of card</label>
                                 <div id="sq-cvv"></div>
                             </div>
                             <div class="sq-field" id="sq-expiration-date-wrapper">
+                                <label class="sq-label hide-desctop">Expiration date</label>
                                 <div id="sq-expiration-date"></div>
                             </div>
-
-                            
                         </div>
                         
                         

@@ -123,16 +123,37 @@
 
                                     <div class="mb-3 mt-2 ml-3 dt-field">
                                         <div class="input-group input-style">
-                                            <label for="flightDateRQ">arrival date</label>
+                                            <label for="flightDateRQ">Arrival Date</label>
                                             <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['departure_at'] }}" id="flightDateRQ">
                                         </div>
 
                                     </div>
-                                    <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
+                                    <div class="mb-3 mt-2 pl-0 ml-3 pass-field pf-request">
                                         <div class="input-group input-style">
-                                            <label for="aircraftRQ">preffered aircraft</label>
-                                            <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft" name="aircraft" autocomplete="off" value="{{ $params['aircraft'] }}" id="aircraftRQ">
+                                            <label for="aircraftRQ">Preffered Aircraft</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft" name="aircraft" autocomplete="off" value="{{ $params['aircraft'] }}" id="aircraftRQ">
+                                                <button type="button" class="preff-air {{ $params['aircraft_one'] ? 'preff-air-with-additional' : '' }}" id="additional-air-one-button">+</button>
+                                            </div>
                                             <div id="aircraftList"></div>
+
+                                            <div class="additional-air-one mt-3 {{ $params['aircraft_one'] ? '' : 'display-none' }}" id="additional-air-one-block">
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_one" name="aircraft_one" autocomplete="off" value="{{ $params['aircraft_one'] }}" id="aircraftRQ-one">
+                                                    <button type="button" class="preff-air" id="additional-air-two-button">+</button>
+                                                </div>
+                                                <div id="aircraftList-one"></div>
+                                            </div>
+                                            
+                                            
+                                            <div class="additional-air-two mt-3 {{ $params['aircraft_two'] ? '' : 'display-none' }}" id="additional-air-two-block">
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_two" name="aircraft_two" autocomplete="off" value="{{ $params['aircraft_two'] }}" id="aircraftRQ-two">
+                                                    <button type="button" class="preff-air preff-air-last">+</button>
+                                                </div>
+                                                <div id="aircraftList-two"></div>
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -157,15 +178,15 @@
                                             </div>
                                             <div class="col-sm-3 pl-1 pr-3">
                                                 <label for="pets">PETS</label>
-                                                <input type="number" min="1" class="form-control" aria-describedby=pets" name="pets" autocomplete="off" value="{{ $params['pets'] }}" id="pets">
+                                                <input type="number" min="0" class="form-control" aria-describedby=pets" name="pets" autocomplete="off" value="{{ $params['pets'] }}" id="pets">
                                             </div>
                                             <div class="col-sm-3 pl-2 pr-2">
                                                 <label for="bags">bagS</label>
-                                                <input type="number" min="1" class="form-control" aria-describedby="bags" name="bags" autocomplete="off" value="{{ $params['bags'] }}" id="bags">
+                                                <input type="number" min="0" class="form-control" aria-describedby="bags" name="bags" autocomplete="off" value="{{ $params['bags'] }}" id="bags">
                                             </div>
                                             <div class="col-sm-3 pl-1">
                                                 <label for="lbags">large baggage</label>
-                                                <input type="number" min="1" class="form-control" aria-describedby="lbags" name="lbags" autocomplete="off" value="{{ $params['lbags'] }}" id="lbags">
+                                                <input type="number" min="0" class="form-control" aria-describedby="lbags" name="lbags" autocomplete="off" value="{{ $params['lbags'] }}" id="lbags">
                                             </div>
                                         </div>
 
@@ -418,7 +439,69 @@
                 $('input#aircraftRQ').val($(this).text());
                 $('#aircraftList').fadeOut();
             });
+            
+            
+            $('input#aircraftRQ-one').keyup(function(){
+                var query = $(this).val();
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/types",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.type.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.type + '</a></li>';
+                                }
+                            });
+                            output += '</ul>';
+                            $('#aircraftList-one').fadeIn();
+                            $('#aircraftList-one').html(output);
+                        }
+                    });
+                }
+            });
 
+            $(document).on('click', '#aircraftList-one li', function(e){
+                e.preventDefault();
+                $('input#aircraftRQ-one').val($(this).text());
+                $('#aircraftList-one').fadeOut();
+            });
+
+            
+            $('input#aircraftRQ-two').keyup(function(){
+                var query = $(this).val();
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/types",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.type.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.type + '</a></li>';
+                                }
+                            });
+                            output += '</ul>';
+                            $('#aircraftList-two').fadeIn();
+                            $('#aircraftList-two').html(output);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#aircraftList-two li', function(e){
+                e.preventDefault();
+                $('input#aircraftRQ-two').val($(this).text());
+                $('#aircraftList-two').fadeOut();
+            });
+            
 
             $('body').on('click', function(){
                 $('#departureList').fadeOut();
@@ -496,6 +579,22 @@
                 }
   
             });
+            
+            
+            
+            
+            $('#additional-air-one-button').click(function(e){
+                e.preventDefault();
+                $('#additional-air-one-block').show();
+                $(this).addClass('preff-air-with-additional');
+            });
+            
+            
+            $('#additional-air-two-button').click(function(e){
+                e.preventDefault();
+                $('#additional-air-two-block').show();
+            });
+            
 
         });
     </script>

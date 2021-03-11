@@ -4,12 +4,15 @@
     min-height: 254px;
     margin: auto;
     overflow: hidden;
-    //outline: 1px solid red;
 }
 
 .sq-field-out-wrapper img {
     position: absolute;
     z-index: 1;
+}
+
+.sq-field-out-wrapper .hide-desctop {
+    display: none;
 }
 
 .sq-field {
@@ -214,4 +217,26 @@
     text-transform: uppercase;
     color: #373737 !important;
     
+}
+
+
+@media screen and (max-width: 500px) {
+    .sq-field-out-wrapper .img-fluid {
+        display: none;
+    }
+    .sq-field-out-wrapper .hide-desctop {
+        display: block;
+    }
+    .sq-field-out-wrapper {
+        height: auto;
+        position: static;
+        
+    }
+    .sq-field {
+        position: static;
+    }
+
+    #sq-card-number-wrapper, #sq-cvv-wrapper, #sq-expiration-date-wrapper {
+        width: 100%;
+    }
 }

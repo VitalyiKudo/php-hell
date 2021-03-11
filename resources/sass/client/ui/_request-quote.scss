@@ -104,7 +104,7 @@
             }
         }
     }
-    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #aircraftRQ, #stop-airportRQ, #return-airportRQ {
+    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two, #stop-airportRQ, #return-airportRQ {
         width: auto;
         height: 45px;
         border: 1px solid rgba(41, 74, 122, 0.4);
@@ -125,6 +125,27 @@
     #stop-airportRQ {
         border-radius: 6px 0px 0px 6px;
     }
+    
+    #additional-air-one-block {
+        position: relative;
+    }
+    
+    #additional-air-two-block {
+        position: relative;
+    }
+    
+    .preff-air-last {
+        visibility: hidden;
+    }
+    
+    .preff-air-with-additional {
+        border: 1px solid #FFF;
+        background: no-repeat url("/images/check-circle.png") center center ;
+        text-indent: -9999px;
+        min-width: 50px;
+        outline: none;
+    }
+    
     #return-airportRQ {
         border-radius: 0px 6px 6px 0px;
         margin-left: -1px;
@@ -177,7 +198,7 @@
     #flightDateRQ {
         background: url("/images/callender_reqest.png") no-repeat 95% center;
         border-radius: 6px;
-        width: auto !important;
+        width: 100% !important;
     }
     .pass-field {
         margin-left: 30px !important;
@@ -185,9 +206,10 @@
             margin-left: 15px !important;
         }
     }
-    #aircraftRQ {
+    #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two {
         border-radius: 6px;
         background: url("/images/arrow_bottom.png") no-repeat 94% center;
+        width: 100% !important;
     }
     #arrival-airportRQ {
         border-radius: 0px 6px 6px 0px;

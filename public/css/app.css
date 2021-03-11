@@ -14808,6 +14808,62 @@ sup {
   color: #000000;
 }
 
+#aircraftList-one {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+#aircraftList-one .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+#aircraftList-one .dropdown-menu a:link,
+#aircraftList-one .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+#aircraftList-one .dropdown-menu a:hover,
+#aircraftList-one .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+#aircraftList-two {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+#aircraftList-two .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+#aircraftList-two .dropdown-menu a:link,
+#aircraftList-two .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+#aircraftList-two .dropdown-menu a:hover,
+#aircraftList-two .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
 @media (min-width: 992px) {
   .custom-navbar {
     padding: 3rem 1rem;
@@ -15838,7 +15894,9 @@ sup {
 
 #departureList,
 #arrivalList,
-.dropdown-menu {
+.dropdown-menu,
+#aircraftList-one,
+#aircraftList-two {
   z-index: 3001 !important;
 }
 
@@ -16093,6 +16151,10 @@ sup {
     width: 16% !important;
   }
 
+  .pf-request {
+    width: 19% !important;
+  }
+
   .butn-search {
     width: 11% !important;
   }
@@ -16126,6 +16188,24 @@ sup {
   .main-search .form-body .home-title {
     display: none;
   }
+}
+
+.preff-air {
+  background-color: #FFFFFF;
+  border: 1px solid #2A60AE;
+  display: inline-block;
+  border-radius: 6px;
+  font-size: 28px;
+  margin-left: 15px;
+  padding: 0 15px;
+  color: #2A60AE;
+  outline: none;
+  /*
+  padding: {
+      left: 15px;
+      right: 15px;
+  }
+  */
 }
 
 .form-control::-webkit-input-placeholder,
@@ -16301,6 +16381,8 @@ sup {
 .container-request-quote #arrival-airportRQ,
 .container-request-quote #flightDateRQ,
 .container-request-quote #aircraftRQ,
+.container-request-quote #aircraftRQ-one,
+.container-request-quote #aircraftRQ-two,
 .container-request-quote #stop-airportRQ,
 .container-request-quote #return-airportRQ {
   width: auto;
@@ -16312,6 +16394,8 @@ sup {
 .container-request-quote #arrival-airportRQ::-webkit-input-placeholder,
 .container-request-quote #flightDateRQ::-webkit-input-placeholder,
 .container-request-quote #aircraftRQ::-webkit-input-placeholder,
+.container-request-quote #aircraftRQ-one::-webkit-input-placeholder,
+.container-request-quote #aircraftRQ-two::-webkit-input-placeholder,
 .container-request-quote #stop-airportRQ::-webkit-input-placeholder,
 .container-request-quote #return-airportRQ::-webkit-input-placeholder {
   color: #9A9B9B;
@@ -16322,6 +16406,8 @@ sup {
 .container-request-quote #arrival-airportRQ:-ms-input-placeholder,
 .container-request-quote #flightDateRQ:-ms-input-placeholder,
 .container-request-quote #aircraftRQ:-ms-input-placeholder,
+.container-request-quote #aircraftRQ-one:-ms-input-placeholder,
+.container-request-quote #aircraftRQ-two:-ms-input-placeholder,
 .container-request-quote #stop-airportRQ:-ms-input-placeholder,
 .container-request-quote #return-airportRQ:-ms-input-placeholder {
   color: #9A9B9B;
@@ -16332,6 +16418,8 @@ sup {
 .container-request-quote #arrival-airportRQ::-ms-input-placeholder,
 .container-request-quote #flightDateRQ::-ms-input-placeholder,
 .container-request-quote #aircraftRQ::-ms-input-placeholder,
+.container-request-quote #aircraftRQ-one::-ms-input-placeholder,
+.container-request-quote #aircraftRQ-two::-ms-input-placeholder,
 .container-request-quote #stop-airportRQ::-ms-input-placeholder,
 .container-request-quote #return-airportRQ::-ms-input-placeholder {
   color: #9A9B9B;
@@ -16342,6 +16430,8 @@ sup {
 .container-request-quote #arrival-airportRQ::placeholder,
 .container-request-quote #flightDateRQ::placeholder,
 .container-request-quote #aircraftRQ::placeholder,
+.container-request-quote #aircraftRQ-one::placeholder,
+.container-request-quote #aircraftRQ-two::placeholder,
 .container-request-quote #stop-airportRQ::placeholder,
 .container-request-quote #return-airportRQ::placeholder {
   color: #9A9B9B;
@@ -16359,6 +16449,26 @@ sup {
 
 .container-request-quote #stop-airportRQ {
   border-radius: 6px 0px 0px 6px;
+}
+
+.container-request-quote #additional-air-one-block {
+  position: relative;
+}
+
+.container-request-quote #additional-air-two-block {
+  position: relative;
+}
+
+.container-request-quote .preff-air-last {
+  visibility: hidden;
+}
+
+.container-request-quote .preff-air-with-additional {
+  border: 1px solid #FFF;
+  background: no-repeat url("/images/check-circle.png") center center;
+  text-indent: -9999px;
+  min-width: 50px;
+  outline: none;
 }
 
 .container-request-quote #return-airportRQ {
@@ -16418,7 +16528,7 @@ sup {
 .container-request-quote #flightDateRQ {
   background: url("/images/callender_reqest.png") no-repeat 95% center;
   border-radius: 6px;
-  width: auto !important;
+  width: 100% !important;
 }
 
 .container-request-quote .pass-field {
@@ -16431,9 +16541,12 @@ sup {
   }
 }
 
-.container-request-quote #aircraftRQ {
+.container-request-quote #aircraftRQ,
+.container-request-quote #aircraftRQ-one,
+.container-request-quote #aircraftRQ-two {
   border-radius: 6px;
   background: url("/images/arrow_bottom.png") no-repeat 94% center;
+  width: 100% !important;
 }
 
 .container-request-quote #arrival-airportRQ {

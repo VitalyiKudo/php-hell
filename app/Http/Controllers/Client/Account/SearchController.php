@@ -256,7 +256,7 @@ class SearchController extends Controller
         //echo "<pre>";
         //print_r($searchResult);
         //echo "</pre>";
-     
+
         $startCity = $this->findCity($request->input('startPoint'));
         $endCity = $this->findCity($request->input('endPoint'));
         $params['start_airport_name'] = $startCity ? $startCity : $request->input('startPoint');
@@ -270,6 +270,10 @@ class SearchController extends Controller
         $params['comment'] = $request->input('comment');
         $params['previous'] = url()->previous();
         $params['aircraft'] = $request->input('aircraft');
+        
+        $params['aircraft_one'] = $request->input('aircraft_one');
+        $params['aircraft_two'] = $request->input('aircraft_two');
+        
         $params['pets'] = $request->input('pets');
         $params['bags'] = $request->input('bags');
         $params['lbags'] = $request->input('lbags');
@@ -283,6 +287,8 @@ class SearchController extends Controller
         if($request->input('page_name') == "reqest-page" && strlen($params['start_airport_name']) > 0 && strlen($params['end_airport_name']) > 0 && strlen($params['departure_at']) > 0 && $params['pax'] > 0){
             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
             $comment .= $request->input('aircraft') ? "Preffered aircraft: " . $request->input('aircraft') . ";\r\n" : "" ;
+            $comment .= $request->input('aircraft_one') ? "Preffered second aircraft: " . $request->input('aircraft_one') . ";\r\n" : "";
+            $comment .= $request->input('aircraft_two') ? "Preffered third aircraft: " . $request->input('aircraft_two') . ";\r\n" : "";
             $comment .= $request->input('stopPoint') ? "Stop airport: " . $request->input('stopPoint') . ";\r\n" : "" ;
             $comment .= $request->input('returnPoint') ? "Return airport: " . $request->input('returnPoint') . ";\r\n" : "" ;
             $comment .= $request->input('pets') ? "Pets: " . $request->input('pets') . ";\r\n" : "" ;
@@ -302,7 +308,7 @@ class SearchController extends Controller
             $search->save();
 
             $search_id = $search->id;
-
+            
             Mail::send([], [], function ($message) use ($search_id) {
                 $user = Auth::user();
                 $message->from('quote@jetonset.com', 'JetOnset team');
@@ -325,7 +331,7 @@ class SearchController extends Controller
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
             
-            //return view('client.account.requests.requestQuoteSuccess', compact('lastSearchResults', 'searchResult', 'params'));
+            //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
             return redirect()->route('client.search.requestQuoteSuccess', $search->id);
         } else {
             return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
