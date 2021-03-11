@@ -394,7 +394,7 @@ class OrderController extends Controller
                         // If there was an error with the request we will
                         // print them to the browser screen here
                         if ($response->isError()) {
-                            echo 'Api response has Errors';
+                            //echo 'Api response has Errors';
                             $errors = $response->getErrors();
                             //echo '<ul>';
                             foreach ($errors as $error) {
@@ -436,7 +436,7 @@ class OrderController extends Controller
                             /*
                             * Mailing start
                             */
-
+                            /*
                             Mail::send([], [], function ($message) {
                                 $user = Auth::user();
                                 $message->from('quote@jetonset.com', 'JetOnset team');
@@ -503,7 +503,7 @@ class OrderController extends Controller
                                     $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('type')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
-
+                            */
                            /*
                             * Mailing end
                             */
