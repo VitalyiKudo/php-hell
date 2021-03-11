@@ -15325,7 +15325,7 @@ sup {
 
 @media (max-width: 576px) {
   .mouse-top {
-    margin-top: revert;
+    margin-top: 450px;
   }
 }
 
