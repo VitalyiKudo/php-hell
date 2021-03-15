@@ -68,10 +68,9 @@
 .sq-button:active {
   color: #fff;
 }
+
 .sq-payment-form {
-  max-width: 100%;
-  padding: 20px 20px 5px;
-  width: 380px;
+  width: 100%;
 }
 
 .sq-label {

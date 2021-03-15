@@ -78,18 +78,35 @@
                                             >
                                             <div id="departureList"></div>
 
-                                            <input type="text"
-                                                class="form-control stop {{ $params['stop_airport_name'] ? '' : 'display-none' }}"
-                                                placeholder="Stop Airport"
-                                                aria-describedby="departure-airport"
-                                                name="stopPoint"
-                                                autocomplete="off"
-                                                value="{{ $params['stop_airport_name'] }}"
-                                                id="stop-airportRQ" {{ $params['stop_airport_name'] ? '' : 'disabled' }}
-                                            >
-                                            <div id="stopList"></div>
+                                            <div class="w-100 position-relative stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
+                                                <label for="from-stop-airportRQ" class="mt-3">From Stop Airport</label>
+                                                <input type="text"
+                                                    class="form-control from-stop w-100"
+                                                    placeholder="From Stop Airport"
+                                                    aria-describedby="from-stop-airport"
+                                                    name="fromStopPoint"
+                                                    autocomplete="off"
+                                                    value="{{ $params['from_stop_airport_name'] ? $params['from_stop_airport_name'] : $params['end_airport_name'] }}"
+                                                    id="from-stop-airportRQ" {{ $params['from_stop_airport_name'] ? '' : 'disabled' }}
+                                                >
+                                                <div id="fromStopList"></div>
+                                            </div>
+                                            
+                                            <div class="w-100 position-relative return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
+                                                <label for="from-return-airportRQ" class="mt-3">From Return Airport</label>
+                                                <input type="text"
+                                                    class="form-control from-return w-100"
+                                                    placeholder="From Return Airport"
+                                                    aria-describedby="from-return-airport"
+                                                    name="fromReturnPoint"
+                                                    autocomplete="off"
+                                                    value="{{ $params['from_return_airport_name'] }}"
+                                                    id="from-return-airportRQ" {{ $params['from_return_airport_name'] ? '' : 'disabled' }}
+                                                >
+                                                <div id="fromReturnList"></div>
+                                            </div>
 
-                                            <button type="button" id="add-stop-button">{{ $params['stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
+                                            <button type="button" class="mt-3" id="add-stop-button">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
                                         </div>
                                     </div>
                                     <div class="mb-3 mt-2 pl-0 bd end-point">
@@ -106,18 +123,35 @@
                                             >
                                             <div id="arrivalList"></div>
 
-                                            <input type="text"
-                                                class="form-control return {{ $params['return_airport_name'] ? '' : 'display-none' }}"
-                                                placeholder="Return Airport"
-                                                aria-describedby="arrival-airport"
-                                                name="returnPoint"
-                                                autocomplete="off"
-                                                value="{{ $params['return_airport_name'] }}"
-                                                id="return-airportRQ" {{ $params['return_airport_name'] ? '' : 'disabled' }}
-                                            >
-                                            <div id="returnList"></div>
+                                            <div class="w-100 position-relative stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
+                                                <label for="to-stop-airportRQ" class="mt-3">To Stop Airport</label>
+                                                <input type="text"
+                                                    class="form-control to-stop w-100"
+                                                    placeholder="To Stop Airport"
+                                                    aria-describedby="to-stop-point"
+                                                    name="toStopPoint"
+                                                    autocomplete="off"
+                                                    value="{{ $params['to_stop_airport_name'] }}"
+                                                    id="to-stop-airportRQ" {{ $params['to_stop_airport_name'] ? '' : 'disabled' }}
+                                                >
+                                                <div id="toStopList"></div>
+                                            </div>
+                                            
+                                            <div class="w-100 position-relative return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
+                                                <label for="to-return-airportRQ" class="mt-3">To Return Airport</label>
+                                                <input type="text"
+                                                    class="form-control to-return w-100"
+                                                    placeholder="To Return Airport"
+                                                    aria-describedby="to-return-airport"
+                                                    name="toReturnPoint"
+                                                    autocomplete="off"
+                                                    value="{{ $params['to_return_airport_name'] ? $params['to_return_airport_name'] : $params['start_airport_name'] }}"
+                                                    id="to-return-airportRQ" {{ $params['to_return_airport_name'] ? '' : 'disabled' }}
+                                                >
+                                                <div id="toReturnList"></div>
+                                            </div>
 
-                                            <button type="button" id="add-return-button">{{ $params['return_airport_name'] ? 'remove return' : 'add return' }}</button>
+                                            <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
                                         </div>
                                     </div>
 
@@ -125,9 +159,20 @@
                                         <div class="input-group input-style">
                                             <label for="flightDateRQ">Arrival Date</label>
                                             <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['departure_at'] }}" id="flightDateRQ">
-                                        </div>
 
+                                            <div class="stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
+                                                <label for="stopFlightDateRQ" class="mt-3">Stop Date</label>
+                                                <input type="text" class="form-control" name="stopFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['stop_at'] }}" {{ $params['stop_at'] ? '' : 'disabled' }} id="stopFlightDateRQ">
+                                            </div>
+                                            
+                                            <div class="return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
+                                                <label for="returnFlightDateRQ" class="mt-3">Return Date</label>
+                                                <input type="text" class="form-control" name="returnFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['return_at'] }}" {{ $params['return_at'] ? '' : 'disabled' }} id="returnFlightDateRQ">
+                                            </div>
+                                            
+                                        </div>
                                     </div>
+                                    
                                     <div class="mb-3 mt-2 pl-0 ml-3 pass-field pf-request">
                                         <div class="input-group input-style">
                                             <label for="aircraftRQ">Preffered Aircraft</label>
@@ -144,8 +189,7 @@
                                                 </div>
                                                 <div id="aircraftList-one"></div>
                                             </div>
-                                            
-                                            
+
                                             <div class="additional-air-two mt-3 {{ $params['aircraft_two'] ? '' : 'display-none' }}" id="additional-air-two-block">
                                                 <div class="d-flex">
                                                     <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_two" name="aircraft_two" autocomplete="off" value="{{ $params['aircraft_two'] }}" id="aircraftRQ-two">
@@ -254,11 +298,24 @@
 
         $(function() {
 
-            $('input[name="flightDate"]').daterangepicker({
+            $('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
             });
+            //$('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').val('');
+
+            @if($params['departure_at'] === "")
+                $('input[name="flightDate"]').val('');
+            @endif
+            
+            @if($params['stop_at'] === "")
+                $('input[name="stopFlightDate"]').val('');
+            @endif
+            
+            @if($params['return_at'] === "")
+                $('input[name="returnFlightDate"]').val('');
+            @endif
 
             $('input.from').keyup(function(){
                 var query = $(this).val();
@@ -335,7 +392,7 @@
             });
 
 
-            $('input.stop').keyup(function(){
+            $('input.from-stop').keyup(function(){
                 var query = $(this).val();
                 //alert(query);
                 if(query != '' && query.length >= 3){
@@ -359,21 +416,21 @@
                                 }
                             });
                             output += '</ul>';
-                            $('#stopList').fadeIn();
-                            $('#stopList').html(output);
+                            $('#fromStopList').fadeIn();
+                            $('#fromStopList').html(output);
                         }
                     });
                 }
             });
 
-            $(document).on('click', '#stopList li', function(e){
+            $(document).on('click', '#fromStopList li', function(e){
                 e.preventDefault();
-                $('input.stop').val($(this).text());
-                $('#stopList').fadeOut();
+                $('input.from-stop').val($(this).text());
+                $('#fromStopList').fadeOut();
             });
 
             
-            $('input.return').keyup(function(){
+            $('input.to-stop').keyup(function(){
                 var query = $(this).val();
                 if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
@@ -396,20 +453,94 @@
                                 }
                             });
                             output += '</ul>';
-                            $('#returnList').fadeIn();
-                            $('#returnList').html(output);
+                            $('#toStopList').fadeIn();
+                            $('#toStopList').html(output);
                         }
                     });
                 }
             });
 
-            $(document).on('click', '#returnList li', function(e){
+            $(document).on('click', '#toStopList li', function(e){
                 e.preventDefault();
-                $('input.return').val($(this).text());
-                $('#returnList').fadeOut();
+                $('input.to-stop').val($(this).text());
+                $('#toStopList').fadeOut();
             });
 
+
+            $('input.from-return').keyup(function(){
+                var query = $(this).val();
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#fromReturnList').fadeIn();
+                            $('#fromReturnList').html(output);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#fromReturnList li', function(e){
+                e.preventDefault();
+                $('input.from-return').val($(this).text());
+                $('#fromReturnList').fadeOut();
+            });
             
+
+            $('input.to-return').keyup(function(){
+                var query = $(this).val();
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                }
+                            });
+                            output += '</ul>';
+                            $('#toReturnList').fadeIn();
+                            $('#toReturnList').html(output);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#toReturnList li', function(e){
+                e.preventDefault();
+                $('input.to-return').val($(this).text());
+                $('#toReturnList').fadeOut();
+            });
+            
+
             $('input#aircraftRQ').keyup(function(){
                 var query = $(this).val();
                 if(query != '' && query.length >= 3){
@@ -509,6 +640,12 @@
                 $('#stopList').fadeOut();
                 $('#returnList').fadeOut();
                 $('#aircraftList').fadeOut();
+                $('#fromStopList').fadeOut();
+                $('#toStopList').fadeOut();
+                $('#fromReturnList').fadeOut();
+                $('#toReturnList').fadeOut();
+                $('#aircraftList-one').fadeOut();
+                $('#aircraftList-two').fadeOut();
             });
 
 
@@ -518,30 +655,59 @@
                 $('.form-body input[name="endPoint"]').val($(this).data("to"));
             });
             
+            if($(".stop-airpor-row").css("display") == "block"){
+                $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', false);
+            }else{
+                $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
+            }
+            
             $('#add-stop-button').click(function(e){
                 e.preventDefault();
                 $(this).text($(this).text() == "add stop"?"remove stop":"add stop");
-                $('#stop-airportRQ').toggle();
+                $('.stop-airpor-row').toggle();
 
-                if($('#stop-airportRQ').prop('disabled')){
-                    $('#stop-airportRQ').prop('disabled', false);
+                if($(".stop-airpor-row").css("display") == "block"){
+                    $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', false);
                 }else{
-                    $('#stop-airportRQ').prop('disabled', true);
+                    $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
                 }
-
+                
+                /*
+                if($('#from-stop-airportRQ').prop('disabled') || $('#to-stop-airportRQ').prop('disabled') || $('#stopFlightDateRQ').prop('disabled')){
+                    $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', false);
+                }else{
+                    $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
+                }
+                */
             });
+            
+            
+            if($(".return-airpor-row").css("display") == "block"){
+                $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', false);
+            }else{
+                $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', true);
+            }
             
             $('#add-return-button').click(function(e){
                 e.preventDefault();
                 $(this).text($(this).text() == "add return"?"remove return":"add return");
-                $('#return-airportRQ').toggle();
-                
-                if($('#return-airportRQ').prop('disabled')){
-                    $('#return-airportRQ').prop('disabled', false);
+                $('.return-airpor-row').toggle();
+
+                if($(".return-airpor-row").css("display") == "block"){
+                    $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', false);
                 }else{
-                    $('#return-airportRQ').prop('disabled', true);
+                    $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', true);
                 }
                 
+                /*
+                if($('#from-return-airportRQ').prop('disabled') == true || $('#to-return-airportRQ').prop('disabled') == true || $('#returnFlightDateRQ').prop('disabled') == true){
+                    alert('ok');
+                    $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', false);
+                }else{
+                    alert('no');
+                    $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', true);
+                }
+                */
             });
 
             
@@ -579,10 +745,8 @@
                 }
   
             });
-            
-            
-            
-            
+
+
             $('#additional-air-one-button').click(function(e){
                 e.preventDefault();
                 $('#additional-air-one-block').show();

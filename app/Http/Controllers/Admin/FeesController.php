@@ -60,6 +60,7 @@ class FeesController extends Controller
         $fees->item = $request->input('item');
         $fees->amount = $request->input('amount');
         $fees->type = $request->input('type');
+        $fees->sall = $request->input('sall')?$request->input('sall'):0;
         $fees->active = $request->input('active');
 
         $fees->save();
@@ -116,6 +117,7 @@ class FeesController extends Controller
         $fees->item = $request->input('item');
         $fees->amount = $request->input('amount');
         $fees->type = $request->input('type');
+        $fees->sall = $request->input('sall')?$request->input('sall'):0;
         $fees->active = $request->input('active');
 
         $fees->save();

@@ -47,6 +47,7 @@
                                         <th class="align-middle">Amount</th>
                                         <th class="align-middle">Type</th>
                                         <th class="align-middle">Active</th>
+                                        <th class="align-middle">Sall</th>
                                         <th class="align-middle">Created at</th>
                                         <th class="align-middle"></th>
                                     </tr>
@@ -59,7 +60,8 @@
                                             <td class="align-middle">{{ $fees->item }}</td>
                                             <td class="align-middle">{{ $fees->amount }}</td>
                                             <td class="align-middle">{{ $fees->type }}</td>
-                                            <td class="align-middle">{{ $fees->active == 1 ? 'True' : 'False' }}</td>
+                                            <td class="align-middle {{ $fees->active ? 'text-success' : 'text-danger' }}">{{ $fees->active ? 'Yes' : 'No' }}</td>
+                                            <td class="align-middle {{ $fees->sall ? 'text-success' : 'text-danger' }}">{{ $fees->sall ? 'Yes' : 'No' }}</td>
                                            
                                             <td class="align-middle">{{ $fees->created_at->format('d.m.Y H:i') }}</td>
                                             <td class="align-middle text-right">

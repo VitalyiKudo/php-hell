@@ -91,12 +91,7 @@
         <div class="row mt-3">
             <div class="offset-lg-2 offset-xl-2 col-sm-12 col-md-12 col-lg-10 col-xl-7">
                 <div class="info-succeed-block">
-                    
-                    
-                    
-                    
-                    
-                    
+
                     <div class="card-body">
                         <div class="card-inner-body pl-4">
                             <div class="custom-flight-page">
@@ -107,12 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    
-                    
-                    
+
                 </div>
             </div>
         </div>

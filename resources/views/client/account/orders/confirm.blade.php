@@ -98,13 +98,16 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <tr>
+                                <td>Price:</td>
+                                <td>&#36;{{ number_format($price, 2, '.', ' ') }}</td>
+                            </tr>
                             @if($feeses)
                                 @foreach ($feeses as $fees)
                                     @if($fees->active == 1)
                                         <tr>
                                             <td>{{ $fees->item }}:</td>
-                                            <td>{{ $fees->type }}{{ number_format($fees->amount, 2, '.', ' ') }}</td>
+                                            <td>{{ $fees->sall ? '-' : '+' }} {{ $fees->type }}{{ number_format($fees->amount, 2, '.', ' ') }}</td>
                                         </tr>
                                     @endif
                                 @endforeach

@@ -261,9 +261,27 @@ class SearchController extends Controller
         $endCity = $this->findCity($request->input('endPoint'));
         $params['start_airport_name'] = $startCity ? $startCity : $request->input('startPoint');
         $params['end_airport_name'] = $endCity ? $endCity : $request->input('endPoint');
-        $params['stop_airport_name'] = $request->input('stopPoint');
-        $params['return_airport_name'] = $request->input('returnPoint');
-        $params['departure_at'] = Carbon::parse($request->input('departure_at'))->format('m/d/Y');
+        
+        
+        $params['from_stop_airport_name'] = $request->input('fromStopPoint');
+        $params['to_stop_airport_name'] = $request->input('toStopPoint');
+        $params['from_return_airport_name'] = $request->input('fromReturnPoint');
+        $params['to_return_airport_name'] = $request->input('toReturnPoint');
+        
+        
+        
+        $params['departure_at'] = $request->input('flightDate') ? Carbon::parse($request->input('flightDate'))->format('m/d/Y') : '';
+        //$params['departure_at'] = $request->input('departure_at');
+        
+        
+        $params['stop_at'] = $request->input('stopFlightDate') ? Carbon::parse($request->input('stopFlightDate'))->format('m/d/Y') : '';
+        $params['return_at'] = $request->input('returnFlightDate') ? Carbon::parse($request->input('returnFlightDate'))->format('m/d/Y') : '';
+        
+        //echo $params['stop_at'];
+        
+        //echo $params['return_at'];
+
+        
         $params['result_id'] = $request->input('result_id');
         $params['pax'] = $request->input('pax');
         $params['flight_model'] = $request->input('flight_model');
@@ -291,14 +309,20 @@ class SearchController extends Controller
             $comment .= $request->input('aircraft_two') ? "Preffered third aircraft: " . $request->input('aircraft_two') . ";\r\n" : "";
             $comment .= $request->input('stopPoint') ? "Stop airport: " . $request->input('stopPoint') . ";\r\n" : "" ;
             $comment .= $request->input('returnPoint') ? "Return airport: " . $request->input('returnPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('fromStopPoint') ? "From Stop Airport: " . $request->input('fromStopPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('toStopPoint') ? "To Stop Airport: " . $request->input('toStopPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('stopFlightDate') ? "Stop Date: " . $request->input('stopFlightDate') . ";\r\n" : "" ;
+            $comment .= $request->input('fromReturnPoint') ? "From Return Airport: " . $request->input('fromReturnPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('toReturnPoint') ? "To Return Airport: " . $request->input('toReturnPoint') . ";\r\n" : "" ;
+            $comment .= $request->input('returnFlightDate') ? "Return Date: " . $request->input('returnFlightDate') . ";\r\n" : "" ;
             $comment .= $request->input('pets') ? "Pets: " . $request->input('pets') . ";\r\n" : "" ;
             $comment .= $request->input('bags') ? "Bags: ".$request->input('bags').";\r\n" : "" ;
             $comment .= $request->input('lbags') ? "Large baggage: ".$request->input('lbags').";\r\n" : "" ;
             $comment .= $request->input('wifi') ? "Wi-Fi: ".$request->input('wifi').";\r\n" : "" ;
             $comment .= $request->input('lavatory') ? "Lavatory: ".$request->input('lavatory').";\r\n" : "" ;
             $comment .= $request->input('disabilities') ? "People with disabilities: ".$request->input('disabilities').";\r\n" : "" ;
-            $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;
-
+            $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;  
+   
             $search = new Order;
             $search->user_id = Auth::user()->id;
             $search->order_status_id = 5;
@@ -330,7 +354,7 @@ class SearchController extends Controller
                 $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
-            
+
             //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
             return redirect()->route('client.search.requestQuoteSuccess', $search->id);
         } else {

@@ -34,7 +34,7 @@
                                 <dd>{{ $fees->type }}</dd>
 
                                 <dt>Active</dt>
-                                <dd>{{ old('active', $fees->active) == 1 ? 'True' : 'False' }}</dd>
+                                <dd>{{ old('active', $fees->active) == 1 ? 'Yes' : 'No' }}</dd>
                                 
                             </dl>
                             

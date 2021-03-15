@@ -104,7 +104,7 @@
             }
         }
     }
-    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two, #stop-airportRQ, #return-airportRQ {
+    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ, #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two, #from-stop-airportRQ, #from-return-airportRQ, #to-stop-airportRQ, #return-airportRQ, #to-return-airportRQ {
         width: auto;
         height: 45px;
         border: 1px solid rgba(41, 74, 122, 0.4);
@@ -116,13 +116,15 @@
     .display-none {
         display: none;
     }
-    #stop-airportRQ, #return-airportRQ {
+    #from-stop-airportRQ, #from-return-airportRQ, #to-stop-airportRQ, #return-airportRQ, #to-return-airportRQ {
+        //background: url("/images/flight_down.png") no-repeat 95% center;
         //display: none;
         margin: {
-            top: 10px;
+            //bottom: 10px;
         }
     }
-    #stop-airportRQ {
+    #from-stop-airportRQ, #from-return-airportRQ {
+        background: url("/images/flight_up.png") no-repeat 95% center;
         border-radius: 6px 0px 0px 6px;
     }
     
@@ -146,7 +148,8 @@
         outline: none;
     }
     
-    #return-airportRQ {
+    #return-airportRQ, #to-stop-airportRQ, #to-return-airportRQ {
+        background: url("/images/flight_down.png") no-repeat 95% center;
         border-radius: 0px 6px 6px 0px;
         margin-left: -1px;
     }
@@ -187,18 +190,23 @@
     }
     #departure-airportRQ {
         border-radius: 6px 0px 0px 6px;
-        background: url("/images/flight_up.png") no-repeat 95% center, url("/images/MIA.png") no-repeat 80% center;
+        background: url("/images/flight_up.png") no-repeat 95% center;
     }
     #arrival-airportRQ {
-        background: url("/images/flight_down.png") no-repeat 95% center, url("/images/SAT.png") no-repeat 80% center;
+        background: url("/images/flight_down.png") no-repeat 95% center;
         margin: {
             left: -1px !important;
         }
     }
-    #flightDateRQ {
+    #flightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ {
         background: url("/images/callender_reqest.png") no-repeat 95% center;
         border-radius: 6px;
         width: 100% !important;
+    }
+    #stopFlightDateRQ, #returnFlightDateRQ {
+        margin: {
+            //top: 10px;
+        }
     }
     .pass-field {
         margin-left: 30px !important;
@@ -313,10 +321,13 @@
                     right: 10px;
                 }
                 margin: {
+                    top: 8px;
                     bottom: 0;
                 }
+                /*
                 position: relative;
                 bottom: -25px;
+                */
                 span {
                     color: #526D94;
                 }
@@ -336,9 +347,9 @@
         top: 70px;
     }
     
-    #stopList {
+    #stopList, #fromStopList, #toStopList, #fromReturnList {
         position: absolute;
-        top: 125px;
+        top: 100%;
         left: 0px;
         display: block;
         z-index: 3001 !important;
@@ -364,6 +375,34 @@
         }
     }
     
+    #fromReturnList, #toReturnList {
+        position: absolute;
+        top: 100%;
+        left: 0px;
+        display: block;
+        z-index: 3001 !important;
+
+        .dropdown-menu {
+            min-width: 16rem !important;
+            display: block;
+            position: absolute;
+            padding: 1rem 1.5rem;
+
+            a {
+                &:link, &:visited {
+                    color: #25383C;
+                    display: block;
+                    padding: 3px 0;
+                }
+
+                &:hover, &:active {
+                    text-decoration: none;
+                    color: #000000;
+                }
+            }
+        }
+    }
+
     #returnList {
         position: absolute;
         top: 125px;

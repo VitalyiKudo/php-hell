@@ -767,6 +767,7 @@
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                autoUpdateInput: false
             });
 
             /*

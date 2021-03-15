@@ -157,19 +157,37 @@ class OrderController extends Controller
         }
 
         
-        $total_price = $price;
-
+        $total_price = (float)$price;
+        
         foreach($feeses as $fees){
             
-            if($fees->active == 1){
+            if($fees->active){
+
+                if($fees->sall){
+                    if($fees->type == "$"){
+                        $total_price -= $fees->amount;
+                    } else {
+                        $total_price -= $price * ($fees->amount / 100 );
+                    }
+                }else{
+                    if($fees->type == "$"){
+                        $total_price += $fees->amount;
+                    } else {
+                        $total_price += $price * ($fees->amount / 100 );
+                    }
+                }
+
+                /*
                 if($fees->type == "$"){
                     $total_price += $fees->amount;
                 } else {
                     $total_price += $price * ($fees->amount / 100 );
                 }
+                */
                 
             }
         }
+        
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'time', 'user', 'start_airport_name', 'end_airport_name', 'departure_at', 'pax', 'feeses', 'total_price'));
     }
     
@@ -230,16 +248,33 @@ class OrderController extends Controller
 
         foreach($feeses as $fees){
             
-            if($fees->active == 1){
+            if($fees->active){
+                
+                if($fees->sall){
+                    if($fees->type == "$"){
+                        $total_price -= $fees->amount;
+                    } else {
+                        $total_price -= $price * ($fees->amount / 100 );
+                    }
+                }else{
+                    if($fees->type == "$"){
+                        $total_price += $fees->amount;
+                    } else {
+                        $total_price += $price * ($fees->amount / 100 );
+                    }
+                }
+                
+                /*
                 if($fees->type == "$"){
                     $total_price += $fees->amount;
                 } else {
                     $total_price += $price * ($fees->amount / 100 );
                 }
+                */
                 
             }
         }
-        
+
         $messages = NULL;
         $cart_errors = [];
         
@@ -272,110 +307,6 @@ class OrderController extends Controller
             if ($validator->fails()){
                 $messages = $validator->messages(); 
             } else {
-                /*
-                $comment = "";
-                $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
-                $comment .= $request->input('first_name') ? "First Name: " . $request->input('first_name') . ";\r\n" : "" ;
-                $comment .= $request->input('last_name') ? "Last Name: " . $request->input('last_name') . ";\r\n" : "" ;
-                $comment .= $request->input('birth_date') ? "Birth Date: " . $request->input('birth_date') . ";\r\n" : "" ;
-                $comment .= $request->input('gender') ? "Gender: " . $request->input('gender') . ";\r\n" : "" ;
-                $comment .= $request->input('title') ? "Title: ".$request->input('title').";\r\n" : "" ;
-                $comment .= $request->input('is_accepted') ? "I agree with Cancellation policy: Yes;\r\n" : "" ;
-
-                $order = new Order;
-                $order->user_id = $user->id;
-                $order->order_status_id = 2;
-                $order->search_result_id = $search_id;
-                $order->comment = $comment;
-
-                $order->billing_address = '';
-                $order->billing_country = '';
-                $order->billing_city = '';
-                $order->billing_postcode = '';
-
-                $order->price = $total_price;
-                $order->type = $search_type;
-                $order->is_accepted = (bool)$request->input('is_accepted');
-                $saved = $order->save();
-                */
-
-                /*
-                 * Mailing start
-                 */
-                /*
-                Mail::send([], [], function ($message) {
-                    $user = Auth::user();
-                    $message->from('quote@jetonset.com', 'JetOnset team');
-                    //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
-                    $message->to($user->email)->subject("We have received your request");
-                    $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
-                });
-
-                $airport_list = [];
-                $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
-                foreach($airport_items as $airport_item){
-                    if($airport_item->icao){
-                        $airport_list[] = $airport_item->icao;
-                    }
-                }
-                $airport_list = array_unique($airport_list);
-
-
-                $operator_list = [];
-                $airlines = Airline::where('category', $request->input('type'))->whereIn('homebase', $airport_list)->get();
-
-                foreach($airlines as $airline){
-                    $operator_list[] = $airline->operator;
-                }
-                $operator_list = array_unique($operator_list);
-
-
-                $emails = [];
-                $operators = Operator::whereIn('name', $operator_list)->get();
-                foreach($operators as $operator){
-                    if ($operator->email == trim($operator->email) && strpos($operator->email, ' ') !== false) {
-                        $mail_list = explode(" ", $operator->email);
-                        foreach($mail_list as $mail){
-                            $emails[] = trim($mail);
-                        }
-                        $mail_list = [];
-                    } else if(strstr($operator->email, PHP_EOL)) {
-                        $mail_list = explode(PHP_EOL, $operator->email);
-                        foreach($mail_list as $mail){
-                            $emails[] = trim($mail);
-                        }
-                        $mail_list = [];
-                    } else {
-                        $emails[] = trim($operator->email);
-                    }
-                }
-
-                $emails = array_unique($emails);
-
-                $airports = [
-                    'start_city' => $request->input('start_airport_name'),
-                    'end_city' => $request->input('end_airport_name'),
-                ];
-
-                $date = $request->input('departure_at');
-
-                foreach($emails as $email){
-                    Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
-                        $user = Auth::user();
-                        $message->from($user->email, 'JetOnset team');
-                        //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
-                        $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
-                        //$message->to($user->email)->subject("We have received your request");
-                        $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('type')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
-                    });
-                }
-                */
-                /*
-                 * Mailing end
-                 */
-                
-                
-                //if($saved){
 
                 $nonce = $request->input('nonce');
                 if (!is_null($nonce)) {
@@ -386,8 +317,6 @@ class OrderController extends Controller
                     $money->setAmount($total_price);
                     $money->setCurrency('USD');
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
-
-                    //$create_payment_request->setReferenceId($order->id);
 
                     try {
                         $response = $payments_api->createPayment($create_payment_request);
@@ -419,7 +348,7 @@ class OrderController extends Controller
 
                             $order = new Order;
                             $order->user_id = $user->id;
-                            $order->order_status_id = 3;
+                            $order->order_status_id = 5;
                             $order->search_result_id = $search_id;
                             $order->comment = $comment;
 
@@ -436,7 +365,7 @@ class OrderController extends Controller
                             /*
                             * Mailing start
                             */
-                            /*
+                            
                             Mail::send([], [], function ($message) {
                                 $user = Auth::user();
                                 $message->from('quote@jetonset.com', 'JetOnset team');
@@ -503,7 +432,7 @@ class OrderController extends Controller
                                     $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('type')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
-                            */
+                            
                            /*
                             * Mailing end
                             */
@@ -536,10 +465,7 @@ class OrderController extends Controller
                     }
 
                 }
-
-
-                //}
-                
+ 
 
             }
 

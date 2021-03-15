@@ -16380,11 +16380,16 @@ sup {
 .container-request-quote #departure-airportRQ,
 .container-request-quote #arrival-airportRQ,
 .container-request-quote #flightDateRQ,
+.container-request-quote #stopFlightDateRQ,
+.container-request-quote #returnFlightDateRQ,
 .container-request-quote #aircraftRQ,
 .container-request-quote #aircraftRQ-one,
 .container-request-quote #aircraftRQ-two,
-.container-request-quote #stop-airportRQ,
-.container-request-quote #return-airportRQ {
+.container-request-quote #from-stop-airportRQ,
+.container-request-quote #from-return-airportRQ,
+.container-request-quote #to-stop-airportRQ,
+.container-request-quote #return-airportRQ,
+.container-request-quote #to-return-airportRQ {
   width: auto;
   height: 45px;
   border: 1px solid rgba(41, 74, 122, 0.4);
@@ -16393,11 +16398,16 @@ sup {
 .container-request-quote #departure-airportRQ::-webkit-input-placeholder,
 .container-request-quote #arrival-airportRQ::-webkit-input-placeholder,
 .container-request-quote #flightDateRQ::-webkit-input-placeholder,
+.container-request-quote #stopFlightDateRQ::-webkit-input-placeholder,
+.container-request-quote #returnFlightDateRQ::-webkit-input-placeholder,
 .container-request-quote #aircraftRQ::-webkit-input-placeholder,
 .container-request-quote #aircraftRQ-one::-webkit-input-placeholder,
 .container-request-quote #aircraftRQ-two::-webkit-input-placeholder,
-.container-request-quote #stop-airportRQ::-webkit-input-placeholder,
-.container-request-quote #return-airportRQ::-webkit-input-placeholder {
+.container-request-quote #from-stop-airportRQ::-webkit-input-placeholder,
+.container-request-quote #from-return-airportRQ::-webkit-input-placeholder,
+.container-request-quote #to-stop-airportRQ::-webkit-input-placeholder,
+.container-request-quote #return-airportRQ::-webkit-input-placeholder,
+.container-request-quote #to-return-airportRQ::-webkit-input-placeholder {
   color: #9A9B9B;
   text-transform: uppercase;
 }
@@ -16405,11 +16415,16 @@ sup {
 .container-request-quote #departure-airportRQ:-ms-input-placeholder,
 .container-request-quote #arrival-airportRQ:-ms-input-placeholder,
 .container-request-quote #flightDateRQ:-ms-input-placeholder,
+.container-request-quote #stopFlightDateRQ:-ms-input-placeholder,
+.container-request-quote #returnFlightDateRQ:-ms-input-placeholder,
 .container-request-quote #aircraftRQ:-ms-input-placeholder,
 .container-request-quote #aircraftRQ-one:-ms-input-placeholder,
 .container-request-quote #aircraftRQ-two:-ms-input-placeholder,
-.container-request-quote #stop-airportRQ:-ms-input-placeholder,
-.container-request-quote #return-airportRQ:-ms-input-placeholder {
+.container-request-quote #from-stop-airportRQ:-ms-input-placeholder,
+.container-request-quote #from-return-airportRQ:-ms-input-placeholder,
+.container-request-quote #to-stop-airportRQ:-ms-input-placeholder,
+.container-request-quote #return-airportRQ:-ms-input-placeholder,
+.container-request-quote #to-return-airportRQ:-ms-input-placeholder {
   color: #9A9B9B;
   text-transform: uppercase;
 }
@@ -16417,11 +16432,16 @@ sup {
 .container-request-quote #departure-airportRQ::-ms-input-placeholder,
 .container-request-quote #arrival-airportRQ::-ms-input-placeholder,
 .container-request-quote #flightDateRQ::-ms-input-placeholder,
+.container-request-quote #stopFlightDateRQ::-ms-input-placeholder,
+.container-request-quote #returnFlightDateRQ::-ms-input-placeholder,
 .container-request-quote #aircraftRQ::-ms-input-placeholder,
 .container-request-quote #aircraftRQ-one::-ms-input-placeholder,
 .container-request-quote #aircraftRQ-two::-ms-input-placeholder,
-.container-request-quote #stop-airportRQ::-ms-input-placeholder,
-.container-request-quote #return-airportRQ::-ms-input-placeholder {
+.container-request-quote #from-stop-airportRQ::-ms-input-placeholder,
+.container-request-quote #from-return-airportRQ::-ms-input-placeholder,
+.container-request-quote #to-stop-airportRQ::-ms-input-placeholder,
+.container-request-quote #return-airportRQ::-ms-input-placeholder,
+.container-request-quote #to-return-airportRQ::-ms-input-placeholder {
   color: #9A9B9B;
   text-transform: uppercase;
 }
@@ -16429,11 +16449,16 @@ sup {
 .container-request-quote #departure-airportRQ::placeholder,
 .container-request-quote #arrival-airportRQ::placeholder,
 .container-request-quote #flightDateRQ::placeholder,
+.container-request-quote #stopFlightDateRQ::placeholder,
+.container-request-quote #returnFlightDateRQ::placeholder,
 .container-request-quote #aircraftRQ::placeholder,
 .container-request-quote #aircraftRQ-one::placeholder,
 .container-request-quote #aircraftRQ-two::placeholder,
-.container-request-quote #stop-airportRQ::placeholder,
-.container-request-quote #return-airportRQ::placeholder {
+.container-request-quote #from-stop-airportRQ::placeholder,
+.container-request-quote #from-return-airportRQ::placeholder,
+.container-request-quote #to-stop-airportRQ::placeholder,
+.container-request-quote #return-airportRQ::placeholder,
+.container-request-quote #to-return-airportRQ::placeholder {
   color: #9A9B9B;
   text-transform: uppercase;
 }
@@ -16442,12 +16467,9 @@ sup {
   display: none;
 }
 
-.container-request-quote #stop-airportRQ,
-.container-request-quote #return-airportRQ {
-  margin-top: 10px;
-}
-
-.container-request-quote #stop-airportRQ {
+.container-request-quote #from-stop-airportRQ,
+.container-request-quote #from-return-airportRQ {
+  background: url("/images/flight_up.png") no-repeat 95% center;
   border-radius: 6px 0px 0px 6px;
 }
 
@@ -16471,7 +16493,10 @@ sup {
   outline: none;
 }
 
-.container-request-quote #return-airportRQ {
+.container-request-quote #return-airportRQ,
+.container-request-quote #to-stop-airportRQ,
+.container-request-quote #to-return-airportRQ {
+  background: url("/images/flight_down.png") no-repeat 95% center;
   border-radius: 0px 6px 6px 0px;
   margin-left: -1px;
 }
@@ -16517,15 +16542,19 @@ sup {
 
 .container-request-quote #departure-airportRQ {
   border-radius: 6px 0px 0px 6px;
-  background: url("/images/flight_up.png") no-repeat 95% center, url("/images/MIA.png") no-repeat 80% center;
+  background: url("/images/flight_up.png") no-repeat 95% center;
 }
 
 .container-request-quote #arrival-airportRQ {
-  background: url("/images/flight_down.png") no-repeat 95% center, url("/images/SAT.png") no-repeat 80% center;
+  background: url("/images/flight_down.png") no-repeat 95% center;
   margin-left: -1px !important;
 }
 
-.container-request-quote #flightDateRQ {
+.container-request-quote #flightDateRQ,
+.container-request-quote #stopFlightDateRQ,
+.container-request-quote #returnFlightDateRQ,
+.container-request-quote #stopFlightDateRQ,
+.container-request-quote #returnFlightDateRQ {
   background: url("/images/callender_reqest.png") no-repeat 95% center;
   border-radius: 6px;
   width: 100% !important;
@@ -16658,9 +16687,12 @@ sup {
   height: 30px;
   padding-left: 30px;
   padding-right: 10px;
+  margin-top: 8px;
   margin-bottom: 0;
+  /*
   position: relative;
   bottom: -25px;
+  */
 }
 
 .container-request-quote .request-quote-block div p span {
@@ -16683,15 +16715,21 @@ sup {
   top: 70px;
 }
 
-.container-request-quote #stopList {
+.container-request-quote #stopList,
+.container-request-quote #fromStopList,
+.container-request-quote #toStopList,
+.container-request-quote #fromReturnList {
   position: absolute;
-  top: 125px;
+  top: 100%;
   left: 0px;
   display: block;
   z-index: 3001 !important;
 }
 
-.container-request-quote #stopList .dropdown-menu {
+.container-request-quote #stopList .dropdown-menu,
+.container-request-quote #fromStopList .dropdown-menu,
+.container-request-quote #toStopList .dropdown-menu,
+.container-request-quote #fromReturnList .dropdown-menu {
   min-width: 16rem !important;
   display: block;
   position: absolute;
@@ -16699,14 +16737,60 @@ sup {
 }
 
 .container-request-quote #stopList .dropdown-menu a:link,
-.container-request-quote #stopList .dropdown-menu a:visited {
+.container-request-quote #stopList .dropdown-menu a:visited,
+.container-request-quote #fromStopList .dropdown-menu a:link,
+.container-request-quote #fromStopList .dropdown-menu a:visited,
+.container-request-quote #toStopList .dropdown-menu a:link,
+.container-request-quote #toStopList .dropdown-menu a:visited,
+.container-request-quote #fromReturnList .dropdown-menu a:link,
+.container-request-quote #fromReturnList .dropdown-menu a:visited {
   color: #25383C;
   display: block;
   padding: 3px 0;
 }
 
 .container-request-quote #stopList .dropdown-menu a:hover,
-.container-request-quote #stopList .dropdown-menu a:active {
+.container-request-quote #stopList .dropdown-menu a:active,
+.container-request-quote #fromStopList .dropdown-menu a:hover,
+.container-request-quote #fromStopList .dropdown-menu a:active,
+.container-request-quote #toStopList .dropdown-menu a:hover,
+.container-request-quote #toStopList .dropdown-menu a:active,
+.container-request-quote #fromReturnList .dropdown-menu a:hover,
+.container-request-quote #fromReturnList .dropdown-menu a:active {
+  text-decoration: none;
+  color: #000000;
+}
+
+.container-request-quote #fromReturnList,
+.container-request-quote #toReturnList {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  display: block;
+  z-index: 3001 !important;
+}
+
+.container-request-quote #fromReturnList .dropdown-menu,
+.container-request-quote #toReturnList .dropdown-menu {
+  min-width: 16rem !important;
+  display: block;
+  position: absolute;
+  padding: 1rem 1.5rem;
+}
+
+.container-request-quote #fromReturnList .dropdown-menu a:link,
+.container-request-quote #fromReturnList .dropdown-menu a:visited,
+.container-request-quote #toReturnList .dropdown-menu a:link,
+.container-request-quote #toReturnList .dropdown-menu a:visited {
+  color: #25383C;
+  display: block;
+  padding: 3px 0;
+}
+
+.container-request-quote #fromReturnList .dropdown-menu a:hover,
+.container-request-quote #fromReturnList .dropdown-menu a:active,
+.container-request-quote #toReturnList .dropdown-menu a:hover,
+.container-request-quote #toReturnList .dropdown-menu a:active {
   text-decoration: none;
   color: #000000;
 }

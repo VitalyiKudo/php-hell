@@ -65,6 +65,11 @@
                             </select>
                         </div>
                         
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="sall" value="1" id="sall">
+                            <label for="sall">Sall</label>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
