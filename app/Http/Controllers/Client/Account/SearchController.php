@@ -250,48 +250,26 @@ class SearchController extends Controller
                                 ->reverse();
         
         $searchResult = Search::where('user_id', Auth::user()->id)->latest()->first();
-        
-        //echo Carbon::parse($searchResult->departure_at)->format('m/d/Y');
-        
-        //echo "<pre>";
-        //print_r($searchResult);
-        //echo "</pre>";
 
         $startCity = $this->findCity($request->input('startPoint'));
         $endCity = $this->findCity($request->input('endPoint'));
         $params['start_airport_name'] = $startCity ? $startCity : $request->input('startPoint');
         $params['end_airport_name'] = $endCity ? $endCity : $request->input('endPoint');
-        
-        
         $params['from_stop_airport_name'] = $request->input('fromStopPoint');
         $params['to_stop_airport_name'] = $request->input('toStopPoint');
         $params['from_return_airport_name'] = $request->input('fromReturnPoint');
         $params['to_return_airport_name'] = $request->input('toReturnPoint');
-        
-        
-        
-        $params['departure_at'] = $request->input('flightDate') ? Carbon::parse($request->input('flightDate'))->format('m/d/Y') : '';
-        //$params['departure_at'] = $request->input('departure_at');
-        
-        
+        $params['departure_at'] = $request->input('flightDate') ? Carbon::parse($request->input('flightDate'))->format('m/d/Y') : Carbon::parse($request->input('departure_at'))->format('m/d/Y');
         $params['stop_at'] = $request->input('stopFlightDate') ? Carbon::parse($request->input('stopFlightDate'))->format('m/d/Y') : '';
         $params['return_at'] = $request->input('returnFlightDate') ? Carbon::parse($request->input('returnFlightDate'))->format('m/d/Y') : '';
-        
-        //echo $params['stop_at'];
-        
-        //echo $params['return_at'];
-
-        
         $params['result_id'] = $request->input('result_id');
         $params['pax'] = $request->input('pax');
         $params['flight_model'] = $request->input('flight_model');
         $params['comment'] = $request->input('comment');
         $params['previous'] = url()->previous();
         $params['aircraft'] = $request->input('aircraft');
-        
         $params['aircraft_one'] = $request->input('aircraft_one');
         $params['aircraft_two'] = $request->input('aircraft_two');
-        
         $params['pets'] = $request->input('pets');
         $params['bags'] = $request->input('bags');
         $params['lbags'] = $request->input('lbags');
@@ -322,7 +300,7 @@ class SearchController extends Controller
             $comment .= $request->input('lavatory') ? "Lavatory: ".$request->input('lavatory').";\r\n" : "" ;
             $comment .= $request->input('disabilities') ? "People with disabilities: ".$request->input('disabilities').";\r\n" : "" ;
             $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;  
-   
+            
             $search = new Order;
             $search->user_id = Auth::user()->id;
             $search->order_status_id = 5;
