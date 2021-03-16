@@ -36,6 +36,9 @@
                                 <dt>Active</dt>
                                 <dd>{{ old('active', $fees->active) == 1 ? 'Yes' : 'No' }}</dd>
                                 
+                                <dt>Discount</dt>
+                                <dd>{{ old('sall', $fees->sall) == 1 ? 'Yes' : 'No' }}</dd>
+                                
                             </dl>
                             
                         </div>

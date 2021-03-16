@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 mb-3 container-request-top-quote">
                 
-                <a href="{{ URL::previous() }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
+                <a href="{{ $pervis_search_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 
             </div>
         </div>

@@ -42,7 +42,7 @@
 
                         <div class="form-group">
                             <label for="amount">Amount</label>
-                            <input type="number" step="any" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" name="amount" value="{{ old('amount', $fees->amount) }}">
+                            <input type="number" min="0" step="any" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" name="amount" value="{{ old('amount', $fees->amount) }}">
 
                             @if ($errors->has('amount'))
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                         
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="sall" value="1" id="sall" {{ old('sall', $fees->sall) == 1 ? 'checked':'' }} >
-                            <label for="sall">Sall</label>
+                            <label for="sall">Discount</label>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save changes</button>

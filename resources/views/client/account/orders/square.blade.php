@@ -81,7 +81,7 @@
         <div class="row mt-3">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-                <a href="{{ URL::previous() }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
+                <a href="{{ $pervis_confirm_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 <!--
                 <a href="{{ Request::path() }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 <a onclick="window.history.back();" class="btn btn-light back_arrow">Back to JET TYPE</a>

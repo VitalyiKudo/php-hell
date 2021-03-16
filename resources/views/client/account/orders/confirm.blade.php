@@ -72,7 +72,7 @@
         <div class="row mt-3">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-                <a href="{{ URL::previous() }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
+                <a href="{{ $pervis_search_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
             </div>
 
             <div class="d-none d-sm-none d-md-none d-lg-block col-lg-9 col-lg-10 col-xl-7">

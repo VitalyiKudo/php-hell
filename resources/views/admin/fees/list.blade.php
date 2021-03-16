@@ -34,8 +34,8 @@
         <div class="col-md-12" id="fetch-list">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Pricing</h5>
-                    <h6 class="card-subtitle mb-3 text-muted">The list of pricings</h6>
+                    <h5 class="card-title">Additional Fees</h5>
+                    <h6 class="card-subtitle mb-3 text-muted">The list of fees</h6>
                     
                     @if ($feeses->isNotEmpty())
                         <div class="table-responsive">
@@ -47,7 +47,7 @@
                                         <th class="align-middle">Amount</th>
                                         <th class="align-middle">Type</th>
                                         <th class="align-middle">Active</th>
-                                        <th class="align-middle">Sall</th>
+                                        <th class="align-middle">Discount</th>
                                         <th class="align-middle">Created at</th>
                                         <th class="align-middle"></th>
                                     </tr>

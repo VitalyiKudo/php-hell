@@ -17,6 +17,7 @@ use Mail;
 use App\Models\Pricing;
 use Auth;
 use DB;
+use Session;
 
 
 class SearchController extends Controller
@@ -28,9 +29,15 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
+        
+        //echo url()->full();
+        
+        Session::put('pervis_search_url', url()->full());
+        
+        //echo Session::get('pervis_search_url');
+        
         $startCity = $this->findCity($request->startPoint);
         $endCity = $this->findCity($request->endPoint);
-        
         
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
@@ -243,6 +250,8 @@ class SearchController extends Controller
         */
         //return response()->json([]);
         
+        $pervis_search_url = Session::get('pervis_search_url');
+
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
                                 ->orderBy('id', 'desc')
                                 ->take(4)
@@ -280,7 +289,7 @@ class SearchController extends Controller
 
         $comment = "";
         
-        if($request->input('page_name') == "reqest-page" && strlen($params['start_airport_name']) > 0 && strlen($params['end_airport_name']) > 0 && strlen($params['departure_at']) > 0 && $params['pax'] > 0){
+        if($request->isMethod('get') && $request->input('page_name') == "reqest-page" && strlen($params['start_airport_name']) > 0 && strlen($params['end_airport_name']) > 0 && strlen($params['departure_at']) > 0 && $params['pax'] > 0){
             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
             $comment .= $request->input('aircraft') ? "Preffered aircraft: " . $request->input('aircraft') . ";\r\n" : "" ;
             $comment .= $request->input('aircraft_one') ? "Preffered second aircraft: " . $request->input('aircraft_one') . ";\r\n" : "";
@@ -313,7 +322,8 @@ class SearchController extends Controller
             
             Mail::send([], [], function ($message) use ($search_id) {
                 $user = Auth::user();
-                $message->from('quote@jetonset.com', 'JetOnset team');
+                $message->from('hitman@humanit.pro', 'JetOnset team');
+                //$message->from('quote@jetonset.com', 'JetOnset team');
                 //$message->to('ju.odarjuk@gmail.com')->subject("Your request for quote on JetOnset # {$search_id}");
                 $message->to($user->email)->subject("Your request for quote on JetOnset # {$search_id}");
                 $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
@@ -329,14 +339,15 @@ class SearchController extends Controller
                 $request_details = $comment ? "\r\n\r\nRequest details: \r\n" . $comment . "\r\n" : "";
                 $user = Auth::user();
                 $message->from($user->email, 'JetOnset team');
-                $message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
+                //$message->to('quote@jetonset.com')->subject("We have request for you #{$request->input('result_id')}");
+                $message->to('hitman@humanit.pro')->subject("We have request for you #{$request->input('result_id')}");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
 
             //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
             return redirect()->route('client.search.requestQuoteSuccess', $search->id);
         } else {
-            return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
+            return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params', 'pervis_search_url'));
         }
         
         //echo $request->input('returnPoint');

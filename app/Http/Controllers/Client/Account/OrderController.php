@@ -117,6 +117,10 @@ class OrderController extends Controller
         
         //echo \Request::route()->getName();
         //Fees
+        
+        $pervis_search_url = Session::get('pervis_search_url');
+        Session::put('pervis_confirm_url', url()->full());
+        
         $feeses = Fees::all();
         
         $user = Auth::user();
@@ -188,11 +192,26 @@ class OrderController extends Controller
             }
         }
         
-        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'pricing', 'price', 'time', 'user', 'start_airport_name', 'end_airport_name', 'departure_at', 'pax', 'feeses', 'total_price'));
+        return view('client.account.orders.confirm', 
+                compact('search_id', 
+                        'search_type', 
+                        'pricing', 
+                        'price', 
+                        'time', 
+                        'user', 
+                        'start_airport_name', 
+                        'end_airport_name', 
+                        'departure_at', 
+                        'pax', 
+                        'feeses', 
+                        'total_price', 
+                        'pervis_search_url'
+                ));
     }
     
     public function square(Request $request)
     {
+        $pervis_confirm_url = Session::get('pervis_confirm_url');
         
         $dotenv = Dotenv::create(base_path());
         $dotenv->load();
@@ -504,7 +523,8 @@ class OrderController extends Controller
                 'total_price',
                 'params',
                 'request_method',
-                'cart_errors'
+                'cart_errors',
+                'pervis_confirm_url'
             )
         );
 
