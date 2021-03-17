@@ -153,7 +153,10 @@
         border-radius: 0px 6px 6px 0px;
         margin-left: -1px;
     }
-    #add-stop-button, #add-return-button {
+    #add-stop-button-bottom {
+        display: none;
+    }
+    #add-stop-button, #add-return-button, #add-stop-button-bottom {
         border: 1px solid rgba(#2A60AE,0.3);
         background-color: #FFFFFF;
         border-radius: 6px;
@@ -175,16 +178,26 @@
         color: #2A60AE;
         transition: color 0.25s;
     }
-    #add-stop-button:hover, #add-return-button:hover {
+    #add-stop-button:hover, #add-return-button:hover, #add-stop-button-bottom:hover {
         color: rgba(#2A60AE, 0.8);
         transition: color 0.25s;
     }
-    #add-stop-button:focus, #add-return-button:focus {
+    #add-stop-button:focus, #add-return-button:focus, #add-stop-button-bottom:focus {
         outline: none;
     }
-    #add-stop-button {
+    #add-stop-button, #add-stop-button-bottom {
         background: url("/images/plus_request.png") no-repeat 10% center;
     }
+    
+    @media (max-width: 570px) {
+        #add-stop-button-bottom {
+            display: block;
+        }
+        #add-stop-button {
+            display: none;
+        }
+    }
+    
     #add-return-button {
         background: url("/images/arrow_request.png") no-repeat 10% center;
     }

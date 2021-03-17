@@ -390,7 +390,7 @@ class OrderController extends Controller
                                 $message->from('quote@jetonset.com', 'JetOnset team');
                                 //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
                                 $message->to($user->email)->subject("We have received your request");
-                                $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
+                                $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your payment and our manager will contact you to discuss all your flight details in the shortest possible time.\n\nBest regards,\nJetOnset team.");
                             });
 
                             $airport_list = [];

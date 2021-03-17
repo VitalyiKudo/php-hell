@@ -151,7 +151,11 @@
                                                 <div id="toReturnList"></div>
                                             </div>
 
-                                            <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
+                                            <div class="d-flex justify-content-center w-100">
+                                                <button type="button" class="mt-3" id="add-stop-button-bottom">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
+                                                <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
+                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -661,7 +665,7 @@
                 $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
             }
             
-            $('#add-stop-button').click(function(e){
+            $('#add-stop-button, #add-stop-button-bottom').click(function(e){
                 e.preventDefault();
                 $(this).text($(this).text() == "add stop"?"remove stop":"add stop");
                 $('.stop-airpor-row').toggle();

@@ -16501,8 +16501,13 @@ sup {
   margin-left: -1px;
 }
 
+.container-request-quote #add-stop-button-bottom {
+  display: none;
+}
+
 .container-request-quote #add-stop-button,
-.container-request-quote #add-return-button {
+.container-request-quote #add-return-button,
+.container-request-quote #add-stop-button-bottom {
   border: 1px solid rgba(42, 96, 174, 0.3);
   background-color: #FFFFFF;
   border-radius: 6px;
@@ -16522,18 +16527,31 @@ sup {
 }
 
 .container-request-quote #add-stop-button:hover,
-.container-request-quote #add-return-button:hover {
+.container-request-quote #add-return-button:hover,
+.container-request-quote #add-stop-button-bottom:hover {
   color: rgba(42, 96, 174, 0.8);
   transition: color 0.25s;
 }
 
 .container-request-quote #add-stop-button:focus,
-.container-request-quote #add-return-button:focus {
+.container-request-quote #add-return-button:focus,
+.container-request-quote #add-stop-button-bottom:focus {
   outline: none;
 }
 
-.container-request-quote #add-stop-button {
+.container-request-quote #add-stop-button,
+.container-request-quote #add-stop-button-bottom {
   background: url("/images/plus_request.png") no-repeat 10% center;
+}
+
+@media (max-width: 570px) {
+  .container-request-quote #add-stop-button-bottom {
+    display: block;
+  }
+
+  .container-request-quote #add-stop-button {
+    display: none;
+  }
 }
 
 .container-request-quote #add-return-button {
