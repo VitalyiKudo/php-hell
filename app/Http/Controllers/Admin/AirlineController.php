@@ -60,12 +60,12 @@ class AirlineController extends Controller
         $airline = new Airline;
 
         $airline->type = $request->input('type');
-        $airline->reg_number = $request->input('reg_number');
-        $airline->category = $request->input('category');
-        $airline->homebase = $request->input('homebase');
-        $airline->max_pax = $request->input('max_pax');
-        $airline->yom = $request->input('yom');
-        $airline->operator = $request->input('operator');
+        $airline->reg_number = $request->input('reg_number') ?? "";
+        $airline->category = $request->input('category') ?? "";
+        $airline->homebase = $request->input('homebase') ?? "";
+        $airline->max_pax = $request->input('max_pax') ?? 0;
+        $airline->yom = $request->input('yom') ?? 0;
+        $airline->operator = $request->input('operator') ?? "";
 
         $airline->save();
 
@@ -127,13 +127,12 @@ class AirlineController extends Controller
     public function update(UpdateAirlineRequest $request, Airline $airline)
     {
         $airline->type = $request->input('type');
-        $airline->reg_number = $request->input('reg_number');
-        $airline->category = $request->input('category');
-        $airline->homebase = $request->input('homebase');
-        $airline->max_pax = $request->input('max_pax');
-        $airline->yom = $request->input('yom');
-        $airline->operator = $request->input('operator');
-
+        $airline->reg_number = $request->input('reg_number') ?? "";
+        $airline->category = $request->input('category') ?? "";
+        $airline->homebase = $request->input('homebase') ?? "";
+        $airline->max_pax = $request->input('max_pax') ?? 0;
+        $airline->yom = $request->input('yom') ?? 0;
+        $airline->operator = $request->input('operator') ?? "";
         $airline->save();
 
         return redirect()

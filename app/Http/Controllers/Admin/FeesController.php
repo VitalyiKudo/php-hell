@@ -58,10 +58,10 @@ class FeesController extends Controller
         $fees = new Fees;
 
         $fees->item = $request->input('item');
-        $fees->amount = $request->input('amount');
+        $fees->amount = $request->input('amount') ?? 0;
         $fees->type = $request->input('type');
-        $fees->sall = $request->input('sall')?$request->input('sall'):0;
-        $fees->active = $request->input('active');
+        $fees->sall = $request->input('sall') ?? 0;
+        $fees->active = $request->input('active') ?? 1;
 
         $fees->save();
 
@@ -115,10 +115,10 @@ class FeesController extends Controller
         $fees = Fees::find($id);
         
         $fees->item = $request->input('item');
-        $fees->amount = $request->input('amount');
+        $fees->amount = $request->input('amount') ?? 0;
         $fees->type = $request->input('type');
         $fees->sall = $request->input('sall')?$request->input('sall'):0;
-        $fees->active = $request->input('active');
+        $fees->active = $request->input('active') ?? 1;
 
         $fees->save();
 

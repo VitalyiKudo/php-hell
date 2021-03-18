@@ -58,11 +58,15 @@ class PricingController extends Controller
      */
     public function store(StorePricingRequest $request)
     {
+        
+        //echo $request->input('time_turbo');
+        //exit();
+        
         $pricing = new Pricing;
 
         $pricing->departure = $request->input('departure');
         $pricing->arrival = $request->input('arrival');
-        $pricing->time_turbo = $request->input('time_turbo');
+        $pricing->time_turbo = $request->input('time_turbo') ?? "";
         $pricing->price_turbo = $request->input('price_turbo');
         $pricing->time_light = $request->input('time_light');
         $pricing->price_light = $request->input('price_light');
@@ -136,7 +140,7 @@ class PricingController extends Controller
     {
         $pricing->departure = $request->input('departure');
         $pricing->arrival = $request->input('arrival');
-        $pricing->time_turbo = $request->input('time_turbo');
+        $pricing->time_turbo = $request->input('time_turbo') ?? "";
         $pricing->price_turbo = $request->input('price_turbo');
         $pricing->time_light = $request->input('time_light');
         $pricing->price_light = $request->input('price_light');

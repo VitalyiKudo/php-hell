@@ -60,12 +60,12 @@ class OperatorController extends Controller
         $operator = new Operator;
 
         $operator->name = $request->input('name');
-        $operator->web_site = $request->input('web_site');
-        $operator->email = $request->input('email');
-        $operator->phone = $request->input('phone');
-        $operator->mobile = $request->input('mobile');
-        $operator->fax = $request->input('fax');
-        $operator->address = $request->input('address');
+        $operator->web_site = $request->input('web_site') ?? "";
+        $operator->email = $request->input('email') ?? "";
+        $operator->phone = $request->input('phone') ?? "";
+        $operator->mobile = $request->input('mobile') ?? "";
+        $operator->fax = $request->input('fax') ?? "";
+        $operator->address = $request->input('address') ?? "";
 
         $operator->save();
 
@@ -127,12 +127,12 @@ class OperatorController extends Controller
     public function update(UpdateOperatorRequest $request, Operator $operator)
     {
         $operator->name = $request->input('name');
-        $operator->web_site = $request->input('web_site');
-        $operator->email = $request->input('email');
-        $operator->phone = $request->input('phone');
-        $operator->mobile = $request->input('mobile');
-        $operator->fax = $request->input('fax');
-        $operator->address = $request->input('address');
+        $operator->web_site = $request->input('web_site') ?? "";
+        $operator->email = $request->input('email') ?? "";
+        $operator->phone = $request->input('phone') ?? "";
+        $operator->mobile = $request->input('mobile') ?? "";
+        $operator->fax = $request->input('fax') ?? "";
+        $operator->address = $request->input('address') ?? "";
 
         $operator->save();
 

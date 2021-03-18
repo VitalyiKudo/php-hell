@@ -63,9 +63,9 @@ class AirportController extends Controller
         $airport->country_id = $request->input('country_id');
         $airport->iata = $request->input('iata') ?? "";
         $airport->icao = $request->input('icao') ?? "";
-        $airport->latitude = $request->input('latitude');
-        $airport->longitude = $request->input('longitude');
-        $airport->timezone = $request->input('timezone');
+        $airport->latitude = $request->input('latitude') ?? 0;
+        $airport->longitude = $request->input('longitude') ?? 0;
+        $airport->timezone = $request->input('timezone') ?? "";
 
         $airport->save();
 
@@ -214,11 +214,10 @@ class AirportController extends Controller
         $airport->city = $request->input('city');
         $airport->country_id = $request->input('country_id');
         $airport->iata = $request->input('iata') ?? "";
-        $airport->icao = $request->input('icao');
-        $airport->latitude = $request->input('latitude');
-        $airport->longitude = $request->input('longitude');
-        $airport->timezone = $request->input('timezone');
-
+        $airport->icao = $request->input('icao') ?? "";
+        $airport->latitude = $request->input('latitude') ?? 0;
+        $airport->longitude = $request->input('longitude') ?? 0;
+        $airport->timezone = $request->input('timezone') ?? "";
         $airport->save();
 
         return redirect()
