@@ -394,7 +394,7 @@ class OrderController extends Controller
                             });
 
                             $airport_list = [];
-                            $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
+                            $airport_items = Airport::whereIn('city', [$start_airport_name, $end_airport_name])->get();
                             foreach($airport_items as $airport_item){
                                 if($airport_item->icao){
                                     $airport_list[] = $airport_item->icao;
@@ -402,18 +402,19 @@ class OrderController extends Controller
                             }
                             $airport_list = array_unique($airport_list);
 
-
                             $operator_list = [];
-                            $airlines = Airline::where('category', $request->input('type'))->whereIn('homebase', $airport_list)->get();
+                            $airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
+                            //$airlines = Airline::where('category', $search_type)->get();
 
                             foreach($airlines as $airline){
                                 $operator_list[] = $airline->operator;
                             }
                             $operator_list = array_unique($operator_list);
 
-
                             $emails = [];
                             $operators = Operator::whereIn('name', $operator_list)->get();
+                            
+
                             foreach($operators as $operator){
                                 if ($operator->email == trim($operator->email) && strpos($operator->email, ' ') !== false) {
                                     $mail_list = explode(" ", $operator->email);
@@ -433,14 +434,16 @@ class OrderController extends Controller
                             }
 
                             $emails = array_unique($emails);
-
+                            
                             $airports = [
-                                'start_city' => $request->input('start_airport_name'),
-                                'end_city' => $request->input('end_airport_name'),
+                                'start_city' => $start_airport_name,
+                                'end_city' => $end_airport_name,
+                                'pax' => $pax,
+                                'type' => $search_type,
                             ];
 
-                            $date = $request->input('departure_at');
-
+                            $date = $departure_at;
+                            
                             foreach($emails as $email){
                                 Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                                     $user = Auth::user();
@@ -448,7 +451,7 @@ class OrderController extends Controller
                                     //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
                                     $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
                                     //$message->to($user->email)->subject("We have received your request");
-                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('type')) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people for " . ucfirst($airports['type']) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
                             
@@ -456,7 +459,10 @@ class OrderController extends Controller
                             * Mailing end
                             */
 
+                            
                             return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
+                            
+                            
                             /*
                              echo $response->referenceId;
                             $createPaymentResponse = $response->getResult();

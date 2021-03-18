@@ -61,8 +61,8 @@ class AirportController extends Controller
         $airport->name = $request->input('name');
         $airport->city = $request->input('city');
         $airport->country_id = $request->input('country_id');
-        $airport->iata = $request->input('iata');
-        $airport->icao = $request->input('icao');
+        $airport->iata = $request->input('iata') ?? "";
+        $airport->icao = $request->input('icao') ?? "";
         $airport->latitude = $request->input('latitude');
         $airport->longitude = $request->input('longitude');
         $airport->timezone = $request->input('timezone');
@@ -213,7 +213,7 @@ class AirportController extends Controller
         $airport->name = $request->input('name');
         $airport->city = $request->input('city');
         $airport->country_id = $request->input('country_id');
-        $airport->iata = $request->input('iata');
+        $airport->iata = $request->input('iata') ?? "";
         $airport->icao = $request->input('icao');
         $airport->latitude = $request->input('latitude');
         $airport->longitude = $request->input('longitude');
