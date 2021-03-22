@@ -14700,56 +14700,118 @@ sup {
 }
 
 .card-body .card-body-details {
-  list-style-type: none;
-  padding: 0;
-  margin: 15px 0;
   display: flex;
+  flex-direction: row-reverse;
 }
 
-.card-body .card-body-details li {
+.card-body .card-body-details .flight-time {
   display: flex;
-  justify-content: space-between;
-  margin-right: 5%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 25%;
+  margin-top: 15px;
 }
 
-.card-body .card-body-details li .card-details-info {
-  display: flex;
-  flex-direction: column;
+@media (max-width: 776px) {
+  .card-body .card-body-details .flight-time {
+    min-width: 33%;
+  }
 }
 
-.card-body .card-body-details li img {
+.card-body .card-body-details .flight-time img {
   margin-right: 5px;
 }
 
-.card-body .card-body-details li .card-details-info span:first-child {
+.card-body .card-body-details .flight-time .card-details-info-time {
+  display: flex;
+  flex-direction: column;
   font-family: Roboto;
-  font-size: 24px;
-  line-height: 28px;
+}
+
+.card-body .card-body-details .flight-time .card-details-info-time span:first-child {
+  font-size: 20px;
+  line-height: 24px;
   margin-bottom: 5px;
 }
 
-.card-body .card-body-details li .card-details-info span:last-child {
-  font-family: Roboto;
+.card-body .card-body-details .flight-time .card-details-info-time span:last-child {
   font-style: normal;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   color: #373737;
   opacity: 0.8;
 }
 
-.card-body .card-body-details li:nth-child(1) .card-details-info span:first-child {
+.card-body .card-body-details ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 75%;
+}
+
+@media (max-width: 776px) {
+  .card-body .card-body-details ul {
+    min-width: 66%;
+  }
+}
+
+.card-body .card-body-details ul li {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+  margin-right: 3%;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 776px) {
+  .card-body .card-body-details ul li {
+    width: 47%;
+  }
+}
+
+.card-body .card-body-details ul li .card-details-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body .card-body-details ul li img {
+  margin-right: 5px;
+}
+
+.card-body .card-body-details ul li .card-details-info span {
   color: #373737;
 }
 
-.card-body .card-body-details li:nth-child(2) .card-details-info span:first-child {
+.card-body .card-body-details ul li .card-details-info span:first-child {
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 5px;
   font-weight: 300;
+}
+
+.card-body .card-body-details ul li .card-details-info span:last-child {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+  color: #373737;
+  opacity: 0.8;
+}
+
+.card-body .card-body-details ul li:nth-child(1) .card-details-info span:first-child {
+  font-weight: 400;
   color: #373737;
 }
 
-.card-body .card-body-details li:nth-child(3) .card-details-info span:first-child {
-  font-weight: 300;
-  color: #2B4B7A;
+.card-body .card-body-details ul li:nth-child(2) .card-details-info span:first-child {
+  font-weight: 400;
+  color: #373737;
 }
 
 #departureList {
@@ -16200,12 +16262,25 @@ sup {
   padding: 0 15px;
   color: #2A60AE;
   outline: none;
-  /*
-  padding: {
-      left: 15px;
-      right: 15px;
-  }
-  */
+  min-width: 48px;
+}
+
+.preff-air-remove {
+  background-color: #FFFFFF;
+  border: 1px solid #FF0000;
+  color: #FF0000;
+  display: inline-block;
+  border-radius: 6px;
+  font-size: 28px;
+  margin-left: 15px;
+  padding: 0 15px;
+  outline: none !important;
+  min-width: 48px;
+}
+
+.preff-air-remove:hover,
+.preff-air:hover {
+  outline: none !important;
 }
 
 .form-control::-webkit-input-placeholder,
@@ -16481,15 +16556,11 @@ sup {
   position: relative;
 }
 
-.container-request-quote .preff-air-last {
-  visibility: hidden;
-}
-
 .container-request-quote .preff-air-with-additional {
   border: 1px solid #FFF;
   background: no-repeat url("/images/check-circle.png") center center;
   text-indent: -9999px;
-  min-width: 50px;
+  min-width: 48px;
   outline: none;
 }
 
@@ -16526,6 +16597,32 @@ sup {
   transition: color 0.25s;
 }
 
+.container-request-quote #add-aircraft-button {
+  border: 1px solid rgba(42, 96, 174, 0.3);
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-right: auto;
+  padding-top: 6px;
+  padding-left: 32px;
+  padding-right: 10px;
+  padding-bottom: 6px;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #2A60AE;
+  transition: color 0.25s;
+  background: url("/images/plus_request.png") no-repeat 10% center;
+  display: none;
+}
+
+.container-request-quote #add-aircraft-button:hover {
+  color: rgba(42, 96, 174, 0.8);
+  transition: color 0.25s;
+  outline: none !important;
+}
+
 .container-request-quote #add-stop-button:hover,
 .container-request-quote #add-return-button:hover,
 .container-request-quote #add-stop-button-bottom:hover {
@@ -16535,7 +16632,8 @@ sup {
 
 .container-request-quote #add-stop-button:focus,
 .container-request-quote #add-return-button:focus,
-.container-request-quote #add-stop-button-bottom:focus {
+.container-request-quote #add-stop-button-bottom:focus,
+.container-request-quote #add-aircraft-button:focus {
   outline: none;
 }
 

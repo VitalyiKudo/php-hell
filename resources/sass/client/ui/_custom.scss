@@ -54,58 +54,130 @@
 }
 
 .card-body .card-body-details {
-  list-style-type: none;
-  padding: 0;
-  margin: 15px 0;
-  display: flex;
-
-  li {
     display: flex;
-    justify-content: space-between;
-    margin-right: 5%;
+    flex-direction: row-reverse;
+    
+    .flight-time {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-width: 25%;
+        margin: {
+            top: 15px;
+        }
+        @media (max-width: 776px) {
+            min-width: 33%;
+        }
+        
+        img {
+            margin-right: 5px;
+        }
+        
+        .card-details-info-time {
+            display: flex;
+            flex-direction: column;
+            font-family: Roboto;
 
-    .card-details-info {
-      display: flex;
-      flex-direction: column;
+            span {
+                &:first-child {
+                    font-size: 20px;
+                    line-height: 24px;
+                    margin-bottom: 5px;
+                }
+
+                &:last-child {
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #373737;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: {
+            top: 15px;
+            bottom: 0;
+        }
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 75%;
+        
+        @media (max-width: 776px) {
+            min-width: 66%;
+        }
+        
+        li {
+            display: flex;
+            justify-content: flex-start;
+            width: 30%;
+            //box-sizing: padding-box;
+            padding: {
+                //right: 3%;
+                //bottom: 5px;
+            }
+            margin: {
+                right: 3%;
+                bottom: 15px;
+            }
+            
+            @media (max-width: 776px) {
+                width: 47%;
+            }
+            
+            .card-details-info {
+              display: flex;
+              flex-direction: column;
+            }
+
+            img {
+              margin-right: 5px;
+            }
+
+            .card-details-info span {
+                color: #373737;
+                
+                &:first-child {
+                    font-family: Roboto;
+                    font-size: 20px;
+                    line-height: 24px;
+                    margin-bottom: 5px;
+                    font-weight: 300;
+                }
+
+                &:last-child {
+                    font-family: Roboto;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #373737;
+                    opacity: 0.8;
+                }
+            }
+
+            &:nth-child(1) .card-details-info span:first-child {
+                font-weight: 400;
+                color: #373737;
+            }
+
+            &:nth-child(2) .card-details-info span:first-child {
+                font-weight: 400;
+                color: #373737;
+            }
+
+            &:nth-child(3) .card-details-info span:first-child {
+                //font-weight: 300;
+                //color: #2B4B7A;
+            }
+        }
     }
 
-    img {
-      margin-right: 5px;
-    }
-
-    .card-details-info span {
-      &:first-child {
-        font-family: Roboto;
-        font-size: 24px;
-        line-height: 28px;
-        margin-bottom: 5px;
-      }
-
-      &:last-child {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 16px;
-        line-height: 19px;
-        color: #373737;
-        opacity: 0.8;
-      }
-    }
-
-    &:nth-child(1) .card-details-info span:first-child {
-      color: #373737;
-    }
-
-    &:nth-child(2) .card-details-info span:first-child {
-      font-weight: 300;
-      color: #373737;
-    }
-
-    &:nth-child(3) .card-details-info span:first-child {
-      font-weight: 300;
-      color: #2B4B7A;
-    }
-  }
 }
 
 #departureList {
@@ -1556,12 +1628,26 @@
     padding: 0 15px;
     color: #2A60AE;
     outline: none;
-    /*
-    padding: {
+    min-width: 48px;
+}
+
+.preff-air-remove {
+    background-color: #FFFFFF;
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    display: inline-block;
+    border-radius: 6px;
+    font-size: 28px;
+    margin: {
         left: 15px;
-        right: 15px;
     }
-    */
+    padding: 0 15px;
+    outline: none !important;
+    min-width: 48px;
+}
+
+.preff-air-remove:hover, .preff-air:hover {
+    outline: none !important;
 }
 
 .form-control {

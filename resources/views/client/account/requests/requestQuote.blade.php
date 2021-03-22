@@ -189,7 +189,7 @@
                                             <div class="additional-air-one mt-3 {{ $params['aircraft_one'] ? '' : 'display-none' }}" id="additional-air-one-block">
                                                 <div class="d-flex">
                                                     <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_one" name="aircraft_one" autocomplete="off" value="{{ $params['aircraft_one'] }}" id="aircraftRQ-one">
-                                                    <button type="button" class="preff-air" id="additional-air-two-button">+</button>
+                                                    <button type="button" class="preff-air-remove">-</button>
                                                 </div>
                                                 <div id="aircraftList-one"></div>
                                             </div>
@@ -197,11 +197,11 @@
                                             <div class="additional-air-two mt-3 {{ $params['aircraft_two'] ? '' : 'display-none' }}" id="additional-air-two-block">
                                                 <div class="d-flex">
                                                     <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_two" name="aircraft_two" autocomplete="off" value="{{ $params['aircraft_two'] }}" id="aircraftRQ-two">
-                                                    <button type="button" class="preff-air preff-air-last">+</button>
+                                                    <button type="button" class="preff-air-remove">-</button>
                                                 </div>
                                                 <div id="aircraftList-two"></div>
                                             </div>
-
+                                            <button type="button" id="add-aircraft-button" class="mt-3">Add Aircraft</button>
                                         </div>
                                     </div>
 
@@ -755,12 +755,29 @@
                 e.preventDefault();
                 $('#additional-air-one-block').show();
                 $(this).addClass('preff-air-with-additional');
+                $('#add-aircraft-button').show();
             });
             
             
-            $('#additional-air-two-button').click(function(e){
+            $('#add-aircraft-button').click(function(e){
                 e.preventDefault();
-                $('#additional-air-two-block').show();
+                
+                if($('#additional-air-one-block').css('display') == 'none'){
+                    $('#additional-air-one-block').show();
+                }else if($('#additional-air-two-block').css('display') == 'none'){
+                    $('#additional-air-two-block').show();
+                }
+                
+                //$('#additional-air-two-block').show();
+                //$('#additional-air-one-block').show();
+                
+            });
+            
+            
+            $('.preff-air-remove').click(function(e){
+                e.preventDefault();
+                $(this).parent('div').parent('div').hide();
+                //$('#additional-air-two-block').show();
             });
             
 

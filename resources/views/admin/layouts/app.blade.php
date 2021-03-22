@@ -45,11 +45,11 @@
                             <li class="nav-item {{ Request::is('manage/searches*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.searches.index') }}">{{ __('Searches') }}</a>
                             </li>
-
+                            <!--
                             <li class="nav-item {{ Request::is('manage/services*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.services.index') }}">{{ __('Services') }}</a>
                             </li>
-
+                            -->
                             <li class="nav-item {{ Request::is('manage/users*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
                             </li>

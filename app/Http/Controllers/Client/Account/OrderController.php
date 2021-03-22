@@ -367,7 +367,7 @@ class OrderController extends Controller
 
                             $order = new Order;
                             $order->user_id = $user->id;
-                            $order->order_status_id = 5;
+                            $order->order_status_id = 7;
                             $order->search_result_id = $search_id;
                             $order->comment = $comment;
 

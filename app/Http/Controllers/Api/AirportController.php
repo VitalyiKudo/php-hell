@@ -24,6 +24,7 @@ class AirportController extends Controller
             ->where(function ($query) use ($keyword) {
                 $query->where('name', 'like', "{$keyword}%")
                     ->orWhere('city', 'like', "{$keyword}%")
+                    ->orWhere('city', 'like', str_replace("-", " ", $keyword)."%")
                     ->orWhere('iata', 'like', "{$keyword}%")
                     ->orWhere('icao', 'like', "{$keyword}%")
                     ->orWhereHas('country', function ($query) use ($keyword) {
@@ -34,6 +35,7 @@ class AirportController extends Controller
             ->get();
 
         //return AirportResource::collection($airports);
+        
         return response()->json($airports);
     }
     

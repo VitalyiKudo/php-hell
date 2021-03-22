@@ -135,16 +135,12 @@
     #additional-air-two-block {
         position: relative;
     }
-    
-    .preff-air-last {
-        visibility: hidden;
-    }
-    
+
     .preff-air-with-additional {
         border: 1px solid #FFF;
         background: no-repeat url("/images/check-circle.png") center center ;
         text-indent: -9999px;
-        min-width: 50px;
+        min-width: 48px;
         outline: none;
     }
     
@@ -178,11 +174,39 @@
         color: #2A60AE;
         transition: color 0.25s;
     }
+    #add-aircraft-button {
+        border: 1px solid rgba(#2A60AE,0.3);
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        margin: {
+            top: 10px;
+            right: auto;
+        };
+        padding: {
+            top: 6px;
+            left: 32px; 
+            right: 10px;
+            bottom: 6px;
+        };
+        font-family: 'Roboto';
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #2A60AE;
+        transition: color 0.25s;
+        background: url("/images/plus_request.png") no-repeat 10% center;
+        display: none;
+    }
+    #add-aircraft-button:hover {
+        color: rgba(#2A60AE, 0.8);
+        transition: color 0.25s;
+        outline: none !important;
+    }
     #add-stop-button:hover, #add-return-button:hover, #add-stop-button-bottom:hover {
         color: rgba(#2A60AE, 0.8);
         transition: color 0.25s;
     }
-    #add-stop-button:focus, #add-return-button:focus, #add-stop-button-bottom:focus {
+    #add-stop-button:focus, #add-return-button:focus, #add-stop-button-bottom:focus, #add-aircraft-button:focus {
         outline: none;
     }
     #add-stop-button, #add-stop-button-bottom {

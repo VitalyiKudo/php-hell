@@ -18,6 +18,7 @@ class OrderStatusesTableSeeder extends Seeder
             'awaiting_payment' => 'Awaiting for payment',
             'completed' => 'Completed',
             'cancelled' => 'Cancelled',
+            'paid' => 'Paid',
         ];
 
         foreach ($data as $code => $name) {

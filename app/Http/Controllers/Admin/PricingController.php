@@ -187,7 +187,6 @@ class PricingController extends Controller
     }
 
     public function getAutocompleteCities(Request $request){
-        
         if($request->get('query')){
             $query = $request->get('query');
             $data = Airport::where('city','like',$query.'%')->groupBy("city")->get();
