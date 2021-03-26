@@ -188,7 +188,7 @@
 
                                             <div class="additional-air-one mt-3 {{ $params['aircraft_one'] ? '' : 'display-none' }}" id="additional-air-one-block">
                                                 <div class="d-flex">
-                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_one" name="aircraft_one" autocomplete="off" value="{{ $params['aircraft_one'] }}" id="aircraftRQ-one">
+                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_one" name="aircraft_one" autocomplete="off" value="{{ $params['aircraft_one'] }}" {{ $params['aircraft_one'] ? '' : 'disabled' }} id="aircraftRQ-one">
                                                     <button type="button" class="preff-air-remove">-</button>
                                                 </div>
                                                 <div id="aircraftList-one"></div>
@@ -196,7 +196,7 @@
 
                                             <div class="additional-air-two mt-3 {{ $params['aircraft_two'] ? '' : 'display-none' }}" id="additional-air-two-block">
                                                 <div class="d-flex">
-                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_two" name="aircraft_two" autocomplete="off" value="{{ $params['aircraft_two'] }}" id="aircraftRQ-two">
+                                                    <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_two" name="aircraft_two" autocomplete="off" value="{{ $params['aircraft_two'] }}" {{ $params['aircraft_two'] ? '' : 'disabled' }} id="aircraftRQ-two">
                                                     <button type="button" class="preff-air-remove">-</button>
                                                 </div>
                                                 <div id="aircraftList-two"></div>
@@ -723,7 +723,6 @@
 
 
             $('#request_quote').submit(function(e){
-
                 var start_point = $(this).find('input[name="startPoint"]').val();
                 var end_point = $(this).find('input[name="endPoint"]').val();
                 var flight_date = $(this).find('input[name="flightDate"]').val();
@@ -747,39 +746,44 @@
                     }
                     e.preventDefault();
                 }
-  
             });
 
 
             $('#additional-air-one-button').click(function(e){
                 e.preventDefault();
                 $('#additional-air-one-block').show();
+                $('#additional-air-one-block #aircraftRQ-one').prop('disabled', false);
                 $(this).addClass('preff-air-with-additional');
                 $('#add-aircraft-button').show();
             });
-            
-            
+
+
+            if($('#additional-air-one-button').hasClass('preff-air-with-additional')){
+                $('#add-aircraft-button').show();
+            }
+
+
             $('#add-aircraft-button').click(function(e){
                 e.preventDefault();
                 
                 if($('#additional-air-one-block').css('display') == 'none'){
                     $('#additional-air-one-block').show();
+                    $('#additional-air-one-block #aircraftRQ-one').prop('disabled', false);
                 }else if($('#additional-air-two-block').css('display') == 'none'){
                     $('#additional-air-two-block').show();
+                    $('#additional-air-two-block #aircraftRQ-two').prop('disabled', false);
                 }
-                
                 //$('#additional-air-two-block').show();
                 //$('#additional-air-one-block').show();
-                
             });
-            
-            
+
+
             $('.preff-air-remove').click(function(e){
                 e.preventDefault();
                 $(this).parent('div').parent('div').hide();
+                $(this).prev('input').prop('disabled', true);
                 //$('#additional-air-two-block').show();
             });
-            
 
         });
     </script>

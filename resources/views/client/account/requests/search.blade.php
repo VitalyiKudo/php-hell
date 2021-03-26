@@ -615,7 +615,7 @@
 
                 @else
 
-                    <p class="not-found-message">We do not have such a flight, make a request e quote</p>
+                    <p class="not-found-message">We do not have such a flight, make a request a quote</p>
 
                 @endif
 

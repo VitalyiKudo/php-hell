@@ -319,7 +319,7 @@ class SearchController extends Controller
             $search->save();
 
             $search_id = $search->id;
-
+            
             Mail::send([], [], function ($message) use ($search_id) {
                 $user = Auth::user();
                 $message->from('hitman@humanit.pro', 'JetOnset team');
@@ -343,7 +343,7 @@ class SearchController extends Controller
                 $message->to('hitman@humanit.pro')->subject("We have request for you #{$request->input('result_id')}");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
-
+            
             //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params', 'pervis_search_url'));
             return redirect()->route('client.search.requestQuoteSuccess', $search->id);
         } else {
