@@ -33,8 +33,23 @@
                             @endforeach
                         </ol>
                     </nav>
+                    @elseif (count($lastSessionSearchResults))
+                    <nav aria-label="breadcrumb" class="row search-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
+                            @foreach ($lastSessionSearchResults as $lastSessionSearch)
+                            <li class="breadcrumb-item">
+                                <a href="#" data-from="{{ $lastSessionSearch['start_airport_name'] }}" data-to="{{ $lastSessionSearch['end_airport_name'] }}">
+                                    <span class="search-item-first">{{ $lastSessionSearch['start_airport_name '] }}</span>
+                                    <span class="search-item-second">{{ $lastSessionSearch['end_airport_name'] }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ol>
+                    </nav>
                     @endif
 
+                    
                     <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
 
                         @csrf

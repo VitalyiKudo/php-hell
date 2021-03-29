@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pricing;
+use App\Models\Search;
+use Carbon\Carbon;
 use \Validator;
 use Session;
 use DB;
@@ -18,7 +20,116 @@ class FlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    
     public function index(Request $request)
+    {
+        //echo url()->full();
+        Session::put('pervis_search_url', url()->full());
+        
+        if(!session()->has('session_token_id')) {
+            Session::put('session_token_id', md5(microtime() . 'salt' . time()));
+        }
+
+        $session_id = Session::get('session_token_id');
+        
+        //echo Session::get('pervis_search_url');
+        
+        $startCity = $this->findCity($request->startPoint);
+        $endCity = $this->findCity($request->endPoint);
+        
+        $startCityCoordinates = $this->findCoordinates($request->startPoint);
+        $endCityCoordinates = $this->findCoordinates($request->endPoint);
+        
+        if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
+            $params["startCityLat"] = $startCityCoordinates['lat'];
+            $params["startCityLng"] = $startCityCoordinates['lng'];
+            $params["endCityLat"] = $endCityCoordinates['lat'];
+            $params["endCityLng"] = $endCityCoordinates['lng'];
+            $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
+            $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
+        }
+
+        //echo $params["startCityLng"];
+      
+        $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
+        $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
+        $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
+        $params["passengers"] = $request->passengers;
+        $params["userId"] = Auth::check() ? Auth::user()->id : 0;
+        
+        $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
+        
+        if($searchResults){
+            $params["result_id"] = $searchResults->id;
+        } else {
+            $params["result_id"] = 0;
+        }
+        
+        
+        $lastSearchSessionResults = [
+            'start_airport_name' => $params["startPointName"],
+            'end_airport_name' => $params["endPointnName"],
+        ];
+        
+        
+        $lastSessionSearchResults = [];
+        if(Auth::check()){
+            $lastSearchResults = Search::where('user_id', Auth::user()->id)
+                                ->orderBy('id', 'desc')
+                                ->take(4)
+                                ->get()
+                                ->reverse();
+        }else{
+            session()->push('last.search', $lastSearchSessionResults);
+            $input = Session::get('last.search');
+            $output = array_slice($input, -4);
+            $lastSessionSearchResults = $output;
+            
+            $lastSearchResults = [];
+        }
+
+        //$session_id = Session::getId();
+        //echo $session_id;
+        
+        $search = new Search;
+        $search->result_id = $params["result_id"];
+        $search->user_id = Auth::check() ? Auth::user()->id : NULL;
+        $search->session_id = $session_id;
+        $search->start_airport_name = $params["startPointName"];
+        $search->end_airport_name = $params["endPointnName"];
+        $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
+        $search->pax = $request->passengers > 0 ? $request->passengers : 0;
+        $search->save();
+        
+        $params["searchId"] = $search->id;
+        
+        $validator = Validator::make(
+            [
+                'startPoint' => $params["startPointName"],
+                'endPoint' => $params["endPointnName"],
+                'flightDate' => $params["flightDate"],
+                'passengers' => $params["passengers"],
+            ],
+            [
+                'startPoint' => 'required|max:255',
+                'endPoint' => 'required|max:255',
+                'flightDate' => 'required|date',
+                'passengers' => 'required|numeric',
+            ]
+        );
+
+
+        $messages = NULL;
+        if ($validator->fails()){
+            $messages = $validator->messages();
+        }
+
+        return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults', 'lastSessionSearchResults'));
+    }
+    
+    
+    public function old_index(Request $request)
     {
         Session::put('pervis_search_url', url()->full());
         
@@ -80,11 +191,35 @@ class FlightController extends Controller
         
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
         
-        echo "<pre>";
+        //echo "<pre>";
         //print_r($lastSearchMiddle);
         //print_r($lastSearchResult);
-        print_r(Session::get('last_search_results'));
-        echo "</pre>";
+        //print_r(Session::get('last_search_results'));
+        //echo "</pre>";
+        
+        
+        
+        
+        
+        
+        //$session_id = Session::getId();
+        //echo $session_id;
+        
+        
+        
+        
+        $search = new Search;
+        $search->result_id = $params["result_id"];
+        $search->user_id = NULL;
+        $search->start_airport_name = $params["startPointName"];
+        $search->end_airport_name = $params["endPointnName"];
+        $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
+        $search->pax = $request->passengers > 0 ? $request->passengers : 0;
+        $search->save();
+        
+        
+        
+        
         
         
         //Session::forget('last_search_results');

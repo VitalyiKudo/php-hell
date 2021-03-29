@@ -118,6 +118,18 @@ class OrderController extends Controller
         //echo \Request::route()->getName();
         //Fees
         
+        $session_id = Session::get('session_token_id');
+        //echo $session_id;
+        
+        $search_updates = Search::where('session_id', $session_id)->get();
+        if($search_updates){
+            foreach ($search_updates as $search_update) {
+                $search_update->user_id = Auth::user()->id;
+                $search_update->save();
+            }
+        }
+        
+        
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
         

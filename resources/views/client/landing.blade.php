@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="offset-md-1 col-md-8">
-                <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
+                <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
                     @csrf
                     <div class="row form-body">
                         <div class="col-lg-10 mb-2 mt-4 home-title">

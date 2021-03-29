@@ -251,7 +251,31 @@ class SearchController extends Controller
         //return response()->json([]);
         
         $pervis_search_url = Session::get('pervis_search_url');
+        
+        //$session_id = Session::getId();
+        //echo $session_id;
 
+        
+        $session_id = Session::get('session_token_id');
+        //echo $session_id;
+        
+        $search_updates = Search::where('session_id', $session_id)->get();
+        if($search_updates){
+            foreach ($search_updates as $search_update) {
+                $search_update->user_id = Auth::user()->id;
+                $search_update->save();
+            }
+        }
+        
+
+        //$search_update->user_id = Auth::user()->id;
+        //$search_update->update(['user_id' => Auth::user()->id]);
+        
+        //echo "<pre>";
+        //print_r($search_update);
+        //echo "</pre>";
+
+        
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
                                 ->orderBy('id', 'desc')
                                 ->take(4)
