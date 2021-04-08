@@ -70,8 +70,8 @@
 
                                         <!-- <span class="badge badge-pill badge-{{ $order->status->style }}">{{ $order->status->name }}</span> -->
                                     </td>
-                                    <td class="align-middle">{{ number_format($order->price, 2, '.', ' ') }} &euro;</td>
-                                    <td class="align-middle">{{ $order->created_at->format('d.m.Y H:i') }}</td>
+                                    <td class="align-middle">{{ number_format($order->price, 2, '.', ' ') }} &dollar;</td>
+                                    <td class="align-middle">{{ $order->created_at->format('m-d-Y H:i') }}</td>
                                     
                                     <td class="align-middle text-right">
                                     <!-- {{ route('admin.orders.edit', $order->id) }} -->

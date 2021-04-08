@@ -41,7 +41,7 @@
                                             <a href="{{ route('admin.users.show', $search->user->id) }}">{{ $search->user->full_name }}</a>
                                         @endif
                                     </td>
-                                    <td>{{ $search->created_at->format('d.m.Y H:i') }}</td>
+                                    <td>{{ $search->created_at->format('m-d-Y H:i') }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('admin.searches.show', $search->id) }}" class="btn btn-secondary btn-sm">
                                             View

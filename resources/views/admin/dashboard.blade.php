@@ -22,7 +22,7 @@
 
                 <div class="card bg-dark text-white text-center">
                     <div class="card-body">
-                        <h1 class="card-text mb-0">{{ number_format($earningsAmount, 2, '.', ' ') }} &euro;</h1>
+                        <h1 class="card-text mb-0">{{ number_format($earningsAmount, 2, '.', ' ') }} &dollar;</h1>
                         <p class="card-text text-muted">earnings</p>
                     </div>
                 </div>

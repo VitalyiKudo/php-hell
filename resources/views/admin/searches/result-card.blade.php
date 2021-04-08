@@ -14,7 +14,7 @@
             <dd>{{ $search->pax }}</dd>
 
             <dt>Date</dt>
-            <dd>{{ Carbon\Carbon::parse($search->departure_at)->format('d.m.Y') }}</dd>
+            <dd>{{ Carbon\Carbon::parse($search->departure_at)->format('m-d-Y') }}</dd>
 
         </dl>
     </div>

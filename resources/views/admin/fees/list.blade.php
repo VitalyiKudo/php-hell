@@ -63,7 +63,7 @@
                                             <td class="align-middle {{ $fees->active ? 'text-success' : 'text-danger' }}">{{ $fees->active ? 'Yes' : 'No' }}</td>
                                             <td class="align-middle {{ $fees->sall ? 'text-success' : 'text-danger' }}">{{ $fees->sall ? 'Yes' : 'No' }}</td>
                                            
-                                            <td class="align-middle">{{ $fees->created_at->format('d.m.Y H:i') }}</td>
+                                            <td class="align-middle">{{ $fees->created_at->format('m-d-Y H:i') }}</td>
                                             <td class="align-middle text-right">
                                                 <a href="{{ route('admin.fees.edit', $fees->id) }}" class="btn btn-secondary btn-sm">
                                                     Edit

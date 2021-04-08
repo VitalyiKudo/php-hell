@@ -25,7 +25,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $searches = Search::with('user')->withCount('results')->paginate(25);
+        $searches = Search::with('user')->withCount('results')->orderBy('id', 'desc')->paginate(25);
 
         return view('admin.searches.list', compact('searches'));
     }

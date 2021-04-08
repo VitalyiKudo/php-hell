@@ -71,7 +71,7 @@
                                             <td class="align-middle">{{ $loop->iteration }}</td>
                                             <td class="align-middle">{{ $airline->type }}</td>
                                             <td class="align-middle">{{ $airline->reg_number }}</td>
-                                            <td class="align-middle">{{ $airline->created_at->format('d.m.Y H:i') }}</td>
+                                            <td class="align-middle">{{ $airline->created_at->format('m-d-Y H:i') }}</td>
                                             <td class="align-middle text-right">
                                                 <a href="{{ route('admin.airlines.edit', $airline->id) }}" class="btn btn-secondary btn-sm">
                                                     Edit

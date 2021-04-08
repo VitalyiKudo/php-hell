@@ -27,13 +27,13 @@
 
                                 <td class="align-middle">{{ $price->departure }}</td>
                                 <td class="align-middle">{{ $price->arrival }}</td>
-                                <td class="align-middle">{{ number_format($price->price_turbo, 2, '.', ' ') }} &euro;</td>
+                                <td class="align-middle">{{ number_format($price->price_turbo, 2, '.', ' ') }} &dollar;</td>
 
-                                <td class="align-middle">{{ number_format($price->price_light, 2, '.', ' ') }} &euro;</td>
-                                <td class="align-middle">{{ number_format($price->price_medium, 2, '.', ' ') }} &euro;</td>
-                                <td class="align-middle">{{ number_format($price->price_heavy, 2, '.', ' ') }} &euro;</td>
+                                <td class="align-middle">{{ number_format($price->price_light, 2, '.', ' ') }} &dollar;</td>
+                                <td class="align-middle">{{ number_format($price->price_medium, 2, '.', ' ') }} &dollar;</td>
+                                <td class="align-middle">{{ number_format($price->price_heavy, 2, '.', ' ') }} &dollar;</td>
 
-                                <td class="align-middle">{{ Carbon\Carbon::parse($price->created_at)->format('d.m.Y H:i') }}</td>
+                                <td class="align-middle">{{ Carbon\Carbon::parse($price->created_at)->format('m-d-Y H:i') }}</td>
                                 <td class="align-middle text-right">
                                     <a href="{{ route('admin.pricing.edit', $price->id) }}" class="btn btn-secondary btn-sm">
                                         Edit

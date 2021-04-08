@@ -71,10 +71,10 @@
                         </dd>
 
                         <dt>Price</dt>
-                        <dd>{{ number_format($order->price, 2, '.', ' ') }} &euro;</dd>
+                        <dd>{{ number_format($order->price, 2, '.', ' ') }} &dollar;</dd>
 
                         <dt>Created at</dt>
-                        <dd class="mb-0">{{ $order->created_at->format('d.m.Y G:h') }}</dd>
+                        <dd class="mb-0">{{ $order->created_at->format('m-d-Y G:h') }}</dd>
                         
                     </dl>
                 </div>

@@ -55,7 +55,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->full_name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->created_at->format('d.m.Y H:i') }}</td>
+                                        <td>{{ $user->created_at->format('m-d-Y H:i') }}</td>
                                         <td class="text-right">
                                             <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-secondary btn-sm">
                                                 Edit

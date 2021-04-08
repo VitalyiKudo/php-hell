@@ -34,16 +34,16 @@
                                 <dd>{{ $pricing->time }}</dd>
 
                                 <dt>Price Turbo</dt>
-                                <dd>{{ number_format($pricing->price_turbo, 2, '.', ' ') }} &euro;</dd>
+                                <dd>{{ number_format($pricing->price_turbo, 2, '.', ' ') }} &dollar;</dd>
 
                                 <dt>Price Light</dt>
-                                <dd>{{ number_format($pricing->price_light, 2, '.', ' ') }} &euro;</dd>
+                                <dd>{{ number_format($pricing->price_light, 2, '.', ' ') }} &dollar;</dd>
                                 
                                 <dt>Price Medium</dt>
-                                <dd>{{ number_format($pricing->price_medium, 2, '.', ' ') }} &euro;</dd>
+                                <dd>{{ number_format($pricing->price_medium, 2, '.', ' ') }} &dollar;</dd>
 
                                 <dt>Price Heavy</dt>
-                                <dd>{{ number_format($pricing->price_heavy, 2, '.', ' ') }} &euro;</dd>
+                                <dd>{{ number_format($pricing->price_heavy, 2, '.', ' ') }} &dollar;</dd>
                             </dl>
                             
                         </div>

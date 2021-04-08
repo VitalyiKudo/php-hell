@@ -40,7 +40,7 @@
                         <dd>{{ $search->search_id }}</dd>
 
                         <dt>Searched at</dt>
-                        <dd class="mb-0">{{ $search->created_at->format('d.m.Y G:h') }}</dd>
+                        <dd class="mb-0">{{ $search->created_at->format('m-d-Y G:h') }}</dd>
                     </dl>
                 </div>
             </div>

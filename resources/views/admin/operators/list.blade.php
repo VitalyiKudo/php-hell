@@ -69,7 +69,7 @@
                                             <td class="align-middle">{{ $loop->iteration }}</td>
                                             <td class="align-middle">{{ $operator->name }}</td>
                                             <td class="align-middle">{{ $operator->web_site }}</td>
-                                            <td class="align-middle">{{ $operator->created_at->format('d.m.Y H:i') }}</td>
+                                            <td class="align-middle">{{ $operator->created_at->format('m-d-Y H:i') }}</td>
                                             <td class="align-middle text-right">
                                                 <a href="{{ route('admin.operators.edit', $operator->id) }}" class="btn btn-secondary btn-sm">
                                                     Edit
