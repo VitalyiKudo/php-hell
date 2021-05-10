@@ -74,7 +74,6 @@ class OrderController extends Controller
         $user = User::find($order->user_id);
         $pricing = Pricing::find($search->result_id);
         $operator = Operator::find($order->operator_id);
-
         return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
     }
 

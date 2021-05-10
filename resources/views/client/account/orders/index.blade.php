@@ -8,84 +8,120 @@
 
 <div class="container order-page">
     <div class="row">
-        <div class="col-lg-4">
-            <h2 class="mb-4 left-order-title">Order</h2>
-            <div class="left-order">
-                <p class="mb-3">Sort search request by</p>
-                
-                <p class="dropdown-label mb-0">Status</p>
-                <select class="selectpicker mb-3" data-width="100%">
-                    <option>Upcoming</option>
-                    <option>Upcoming</option>
-                    <option>Upcoming</option>
-                </select>
 
-                <p class="dropdown-label mb-0">Area</p>
-                <select class="selectpicker mb-3" data-width="100%">
-                    <option>America</option>
-                    <option>America</option>
-                    <option>America</option>
-                </select>
-
-                <p class="dropdown-label mb-0">Date</p>
-                <div class="calendar mb-0"></div>
-            </div>
-        </div>
-
-        <div class="col-xl-7 offset-xl-1 col-lg-8 right-order">
+        <div class="offset-xl-2 col-xl-10 col-lg-10 right-order">
             <h2 class="mb-5">Overview of your orders</h2>
 
-            <p class="card-title"><span>3</span> results are available</p>
+            <p class="card-title"><span>{{ $orders->total() }}</span> results are available</p>
 
             @foreach ($orders as $order)
-                <div class="card mb-4">
+                <div class="card mb-4 order-card">
                     <div class="card-body">
                         <div class="row align-items-center">
                             
-                            @if ($order->status->code === 'completed')
-                                <div class="col-md-auto green-box"></div>
-                            @elseif ($order->status->code === 'cancelled')
-                                <div class="col-md-auto red-box"></div>
-                            @elseif ($order->status->code === 'awaiting_payment')
-                                <div class="col-md-auto yellow-box"></div>
-                            @else
-                            <div class="col-md-auto"></div>
-                            @endif
-                            
-                            <?php /* ?>
-                            <div class="col-md-3 icao">
-                                {{ $order->search_result->search->start_airport->icao }}-{{ $order->search_result->search->end_airport->icao }}
-                                <br>
-                                <small>{{ $order->status->name }}</small>
+                            <div class="col-6 col-sm-6 col-md-6 order-number">Order № {{ $order->order_id }}</div>
+                            <div class="col-6 col-sm-6 col-md-6 text-right">Status: <span class="status-{{ $order->code }}">{{ removeBottomSlash($order->code) }}</span></div>
+                            <div class="col-12 col-sm-12 col-md-12 order-block-title">route &amp; AIRCRAFT</div>
+                            <div class="col-12 col-sm-12 col-md-12"><hr></div>
+                            <div class="col-12 col-sm-12 col-md-4 pr-0">
+                                <div class="silver-info mt-3">From Airport</div>
+                                <div class="order-start-airport mb-3 mt-1">{{ $order->start_airport_name }}</div>
+                                <div class="silver-info">departure date <span>{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</span></div>
                             </div>
-                            <div class="col-md-2 country text-center">{{ $order->search_result->search->end_airport->country->name }}</div>
-                            <?php */ ?>
-                            
-                            
-                            <div class="col-md-3 icao">
-                                {{ $order->searches->start_airport_name }}-{{ $order->searches->end_airport_name }}
-                                <br>
-                                <small>{{ $order->status->name }}</small>
+                            <div class="col-12 col-sm-12 col-md-4 pl-0">
+                                <div class="silver-info mt-3">To Airport</div>
+                                <div class="order-finish-airport mb-3 mt-1">{{ $order->end_airport_name }}</div>
+                                <div class="silver-info">arrival date <span>{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</span></div>
                             </div>
-                            
-                            
-                            
-                            <div class="col-md-2 country text-center">Pax: {{ $order->searches->pax }}</div>
+                            <div class="d-none d-sm-none d-md-block col-md-2"></div>
+                            <div class="col-12 col-sm-12 col-md-2">
+                                <div class="silver-info mt-3">Price</div>
+                                <div class="order-price-field mb-3 mt-1">{{ $order->price }} &euro;</div>
+                                <div class="silver-info">&nbsp;</div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-12 options-wrapper">
+
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-8 mt-4 order-block-title">PASSENGERS &amp; baGGAGE</div>
+                                    <div class="col-4 col-sm-4 col-md-4 mt-4 order-block-title d-none d-sm-none d-md-block">extra</div>
+                                    <div class="col-12 col-sm-12 col-md-12"><hr></div>
+                                    
+                                    <div class="col-6 col-sm-6 col-md-4">
+                                        <p><span class="silver-info">Passengers:</span> {{ $order->pax }}</p>
+                                        <p><span class="silver-info">PETS:</span> {{ createAdditionalDataArray($order->comment, 'pets') ?: '-' }}</p>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4">
+                                        <p><span class="silver-info">bagS:</span> {{ createAdditionalDataArray($order->comment, 'bags') ?: '-' }}</p>
+                                        <p><span class="silver-info">large baggage:</span> {{ createAdditionalDataArray($order->comment, 'large_baggage') ?: '-' }}</p>
+                                    </div>
+                                    
+                                    <div class="col-12 col-sm-12 col-md-12 mt-4 order-block-title d-sm-block d-md-none">extra</div>
+                                    <div class="col-12 col-sm-12 col-md-12 d-sm-block d-md-none"><hr></div>
+
+                                    <div class="col-12 col-sm-12 col-md-4">
+                                        <p><span class="silver-info">extra options:</span> 
+                                        {{ createAdditionalDataArrayRewerse($order->comment, ['Wi-Fi', 'Lavatory', 'People with disabilities', 'Catering']) ?: '-' }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-12 mt-3 order-block-title">AIRCRAFT &amp; flight operator</div>
+                                    <div class="col-12 col-sm-12 col-md-12"><hr></div>
+
+                                    <div class="col-6 col-sm-6 col-md-4">
+                                        <p><span class="silver-info">Type</span></p>
+                                        <p>{{ $order->type ?: '-' }}</p>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4">
+                                        <p><span class="silver-info">aircraft</span></p>
+                                        <p>{{ createAdditionalDataArray($order->comment, 'preffered_aircraft') ?: '-' }}</p>
+                                        <p>{{ createAdditionalDataArray($order->comment, 'preffered_second_aircraft') }}</p>
+                                        <p>{{ createAdditionalDataArray($order->comment, 'preffered_third_aircraft') }}</p>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4">
+                                        <p><span class="silver-info">flight operator</span></p>
+                                        <p>{{ $order->name ?: '-' }}</p>
+                                    </div>
+                                    
+
+                                    <div class="col-12 col-sm-12 col-md-12"><hr></div>
+                                    <div class="col-12 col-sm-12 col-md-12">
+                                        <p><span class="silver-info">comment:</span> {{ createAdditionalDataArray($order->comment, 'comment') ?: '-' }}</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                             
-                            
-                            <div class="col-md-2 date">{{ $order->created_at->format('d/m/Y') }}</div>
-                            <div class="col-md-2 price">EUR {{ number_format($order->price, 2, '.', ',') }}</div>
-                            <div class="col-md-2 book">
-                                <a href="{{ route('client.orders.booking', $order->id) }}" class="btn">Book now</a>
+                            <div class="col-12 col-sm-12 col-md-12 text-right">
+                                <a href="#" class="order-show-more">show more</a>
                             </div>
-                            <div class="col-md-auto arrow">▼</div>
+
                         </div>
                     </div>
                 </div>
             @endforeach
+            
+            {{ $orders->links() }}
         </div>
     </div>
 </div>
 @endsection
 
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', '.order-show-more', function(e){
+                e.preventDefault();
+                $(this).parent('div').parent('div').find('.options-wrapper').slideToggle(function(){
+                    $(this).parent('div').find('.order-show-more').toggleClass('arrow-direction');
+                    
+                });
+            });
+        });
+    </script>
+@endpush

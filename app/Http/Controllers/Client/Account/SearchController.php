@@ -340,6 +340,7 @@ class SearchController extends Controller
             $search->search_result_id = $searchResult->id;
             $search->comment = $comment;
             $search->type = $params['flight_model'];
+            $search->book_status = 0;
             $search->save();
 
             $search_id = $search->id;

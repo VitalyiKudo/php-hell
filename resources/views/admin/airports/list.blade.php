@@ -68,7 +68,7 @@
                                 <tbody>
                                     @foreach ($airports as $airport)
                                         <tr>
-                                            <td class="align-middle">{{ $loop->iteration }}</td>
+                                            <td class="align-middle">{{ $loop->iteration + $airports->firstItem() - 1 }}</td>
                                             <td class="align-middle">{{ $airport->name }}</td>
                                             <td class="align-middle">{{ $airport->city }}</td>
                                             <td class="align-middle">{{ $airport->iata }}</td>

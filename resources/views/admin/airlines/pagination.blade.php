@@ -19,7 +19,7 @@
                     <tbody>
                         @foreach ($airlines as $airline)
                             <tr>
-                                <td class="align-middle">{{ $loop->iteration }}</td>
+                                <td class="align-middle">{{ $loop->iteration + $airlines->firstItem() - 1 }}</td>
                                 <td class="align-middle">{{ $airline->type }}</td>
                                 <td class="align-middle">{{ $airline->reg_number }}</td>
                                 <td class="align-middle">{{ Carbon\Carbon::parse($airline->created_at)->format('m-d-Y H:i') }}</td>

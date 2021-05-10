@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Pricing;
 use App\Models\Country;
 use App\Models\Airport;
+use App\Models\Operator;
 use Illuminate\Http\Request;
 use App\Imports\PricingImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -195,6 +196,22 @@ class PricingController extends Controller
             foreach($data as $row)
             {
                 $output .= '<li><a href="#">'.$row->city.'</a></li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+
+    }
+    
+    public function getAutocompleteOperators(Request $request){
+        if($request->get('query')){
+            $query = $request->get('query');
+            $data = Operator::where('name','like',$query.'%')->groupBy("name")->get();
+              
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            foreach($data as $row)
+            {
+                $output .= '<li><a href="#">'.$row->name.'</a></li>';
             }
             $output .= '</ul>';
             echo $output;

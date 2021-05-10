@@ -52,7 +52,7 @@
                             <tbody>
                                 @foreach ($administrators as $administrator)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration + $administrators->firstItem() - 1 }}</td>
                                         <td>{{ $administrator->name }}</td>
                                         <td>{{ $administrator->email }}</td>
                                         <td>{{ $administrator->created_at->format('m-d-Y H:i') }}</td>

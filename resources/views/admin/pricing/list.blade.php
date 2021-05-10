@@ -74,7 +74,7 @@
                                 <tbody>
                                     @foreach ($pricing as $price)
                                         <tr>
-                                            <td class="align-middle">{{ $loop->iteration }}</td>
+                                            <td class="align-middle">{{ $loop->iteration + $pricing->firstItem() - 1 }}</td>
                                             <td class="align-middle">{{ $price->departure }}</td>
                                             <td class="align-middle">{{ $price->arrival }}</td>
                                             <td class="align-middle">{{ number_format($price->price_turbo, 2, '.', ' ') }} &dollar;</td>

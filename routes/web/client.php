@@ -78,9 +78,12 @@ Route::namespace('Account')->group(function () {
     Route::get('/orders/{order}/booking', 'OrderController@booking')->name('orders.booking');
     Route::post('/orders/{order}/booking', 'OrderController@payment')->name('orders.payment');
     Route::get('/orders/{search}/confirm/{type}', 'OrderController@confirm')->name('orders.confirm');
+    Route::get('/orders/{search}/confirm', 'OrderController@requestConfirm')->name('orders.request_confirm');
     Route::match(['GET', 'POST'], '/orders/{search}/square/{type}', 'OrderController@square')->name('orders.square');
+    Route::match(['GET', 'POST'], '/orders/{search}/square', 'OrderController@requestSquare')->name('orders.request_square');
     //Route::get('/orders/confirm/', 'OrderController@confirm')->name('orders.confirm');
     Route::get('/orders/{order_id}/succeed/{type}', 'OrderController@succeed')->name('orders.succeed');
+    Route::get('/orders/{order_id}/succeed', 'OrderController@request_succeed')->name('orders.request_succeed');
     Route::get('/orders/{order_id}/complete', 'OrderController@checkoutComplete')->name('orders.complete');
     //Route::match(['GET', 'POST'], '/orders/{search}/checkout/{type}', 'OrderController@checkout')->name('orders.checkout');
     

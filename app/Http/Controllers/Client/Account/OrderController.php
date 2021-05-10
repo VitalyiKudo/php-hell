@@ -26,6 +26,7 @@ use Square\Models\Money;
 use Square\Models\CreatePaymentRequest;
 use Square\Exceptions\ApiException;
 use Square\SquareClient;
+use DB;
 
 
 class OrderController extends Controller
@@ -47,9 +48,31 @@ class OrderController extends Controller
      */
     public function index()
     {
+        /*
         $user = Auth::user();
         $orders = $user->orders()->orderBy('id', 'desc')->get();
-
+        $requests = DB::table('searches')
+                ->where(['searches.user_id' => Auth::id(), 'orders.book_status' => 0])
+                ->Join('orders', 'searches.id', '=', 'orders.search_result_id')
+                ->orderBy('searches.id', 'desc')
+                ->paginate(25);
+        */
+        
+        //$operator = Operator::find($order->operator_id);
+        
+        $orders = DB::table('orders')
+                ->select('*', 'orders.id as order_id')
+                ->where([
+                    'orders.user_id' => Auth::id(),
+                    'orders.book_status' => 1
+                ])
+                ->join('searches', 'searches.id', '=', 'orders.search_result_id')
+                ->join('order_statuses', 'order_statuses.id', '=', 'orders.order_status_id')
+                ->leftJoin('operators', 'operators.id', '=', 'orders.operator_id')
+                ->orderBy('orders.id', 'desc')
+                ->paginate(25);
+        
+        
         return view('client.account.orders.index', compact('orders'));
     }
 
@@ -220,7 +243,7 @@ class OrderController extends Controller
                         'pervis_search_url'
                 ));
     }
-    
+
     public function square(Request $request)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url');
@@ -391,6 +414,7 @@ class OrderController extends Controller
                             $order->price = $total_price;
                             $order->type = $search_type;
                             $order->is_accepted = (bool)$request->input('is_accepted');
+                            $order->book_status = 1;
                             $order->save();
 
                             /*
@@ -549,6 +573,402 @@ class OrderController extends Controller
     }
     
     
+    public function requestConfirm(Request $request)
+    {
+        $session_id = Session::get('session_token_id');
+        $search_updates = Search::where('session_id', $session_id)->get();
+        if($search_updates){
+            foreach ($search_updates as $search_update) {
+                $search_update->user_id = Auth::user()->id;
+                $search_update->save();
+            }
+        }
+        
+        
+        $pervis_search_url = Session::get('pervis_search_url');
+        Session::put('pervis_confirm_url', url()->full());
+
+        
+        $feeses = Fees::all();
+        
+        $user = Auth::user();
+        $search_id = $request->route('search');
+        $search_type = $request->route('type');
+
+        
+        $search = Search::find($search_id);
+        $order = Order::where('search_result_id', $search_id)->first();
+        
+        
+        //echo $order->order_status_id;
+        //echo $order->price;
+  
+        if($order->order_status_id != 2 || $order->price <= 0){
+            //return redirect()->back();
+            return redirect($pervis_search_url);
+        }
+
+        $start_airport_name = $search->start_airport_name;
+        $end_airport_name = $search->end_airport_name;
+        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
+        $pax = $search->pax;
+
+        $pricing = Pricing::find($search->result_id);
+
+        
+        $price = $order->price;
+        $time = "00:00";
+
+        
+        $total_price = (float)$price;
+        
+        foreach($feeses as $fees){
+            
+            if($fees->active){
+
+                if($fees->sall){
+                    if($fees->type == "$"){
+                        $total_price -= $fees->amount;
+                    } else {
+                        $total_price -= $price * ($fees->amount / 100 );
+                    }
+                }else{
+                    if($fees->type == "$"){
+                        $total_price += $fees->amount;
+                    } else {
+                        $total_price += $price * ($fees->amount / 100 );
+                    }
+                }
+
+            }
+        }
+        
+        return view('client.account.orders.request_confirm', 
+                compact('search_id', 
+                        'search_type', 
+                        'pricing', 
+                        'price', 
+                        'time', 
+                        'user', 
+                        'start_airport_name', 
+                        'end_airport_name', 
+                        'departure_at', 
+                        'pax', 
+                        'feeses', 
+                        'total_price', 
+                        'pervis_search_url'
+                ));
+    }
+
+    
+    public function requestSquare(Request $request)
+    {
+        $pervis_confirm_url = Session::get('pervis_confirm_url');
+        
+        $dotenv = Dotenv::create(base_path());
+        $dotenv->load();
+        
+        $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
+        
+        $applicationId = getenv($upper_case_environment.'_APP_ID');
+        $locationId = getenv($upper_case_environment.'_LOCATION_ID');
+        
+        $environment = $_ENV["ENVIRONMENT"];
+        $access_token =  getenv($upper_case_environment.'_ACCESS_TOKEN');
+        
+        $client = new SquareClient([
+            'accessToken' => $access_token,
+            'environment' => getenv('ENVIRONMENT')
+        ]);
+
+        
+        $feeses = Fees::all();
+        
+        $user = Auth::user();
+        $search_id = $request->route('search');
+        $search_type = "";
+
+        $search = Search::find($search_id);
+        $order = Order::where('search_result_id', $search_id)->first();
+
+        if($order->order_status_id != 2 || $order->price <= 0){
+            //return redirect()->back();
+            return redirect($pervis_confirm_url);
+        }
+        
+        $start_airport_name = $search->start_airport_name;
+        $end_airport_name = $search->end_airport_name;
+        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
+        $pax = $search->pax;
+
+        $pricing = Pricing::find($search->result_id);
+
+        $price = $order->price;
+        $time = "00:00";
+        
+        $total_price = $price;
+
+        foreach($feeses as $fees){
+            
+            if($fees->active){
+                
+                if($fees->sall){
+                    if($fees->type == "$"){
+                        $total_price -= $fees->amount;
+                    } else {
+                        $total_price -= $price * ($fees->amount / 100 );
+                    }
+                }else{
+                    if($fees->type == "$"){
+                        $total_price += $fees->amount;
+                    } else {
+                        $total_price += $price * ($fees->amount / 100 );
+                    }
+                }
+                
+                /*
+                if($fees->type == "$"){
+                    $total_price += $fees->amount;
+                } else {
+                    $total_price += $price * ($fees->amount / 100 );
+                }
+                */
+                
+            }
+        }
+
+        $messages = NULL;
+        $cart_errors = [];
+        
+        $request_method = 'get';
+        
+        if ($request->isMethod('post')){
+            
+            $request_method = 'post';    
+
+
+            $validator = Validator::make(
+                [
+                    'first_name' => $request->input('first_name'),
+                    'last_name' => $request->input('last_name'),
+                    'birth_date' => $request->input('birth_date'),
+                    'gender' => $request->input('gender'),
+                    'title' => $request->input('title'),
+                    'comment' => $request->input('comment'),
+                    'is_accepted' => $request->input('is_accepted'),
+                ],
+                [
+                    'first_name' => 'required|max:255',
+                    'last_name' => 'required|max:255',
+                    'birth_date' => 'required|max:255',
+                    'is_accepted' => 'required',
+                ]
+            );
+
+            
+            if ($validator->fails()){
+                $messages = $validator->messages(); 
+            } else {
+
+                $nonce = $request->input('nonce');
+                if (!is_null($nonce)) {
+
+                    $payments_api = $client->getPaymentsApi();
+
+                    $money = new Money();
+                    $money->setAmount($total_price);
+                    $money->setCurrency('USD');
+                    $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
+
+                    try {
+                        $response = $payments_api->createPayment($create_payment_request);
+                        // If there was an error with the request we will
+                        // print them to the browser screen here
+                        if ($response->isError()) {
+                            //echo 'Api response has Errors';
+                            $errors = $response->getErrors();
+                            //echo '<ul>';
+                            foreach ($errors as $error) {
+                                //echo '<li>❌ ' . $error->getDetail() . '</li>';
+                                $cart_errors[] = $error->getDetail();
+                            }
+                            //echo '</ul>';
+                            //exit();
+
+                        }
+                        if ($response->isSuccess()) {
+                            //Order::where('id', $order->id)->update(['order_status_id' => 3]);
+
+                            $comment = "";
+                            $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
+                            $comment .= $request->input('first_name') ? "First Name: " . $request->input('first_name') . ";\r\n" : "" ;
+                            $comment .= $request->input('last_name') ? "Last Name: " . $request->input('last_name') . ";\r\n" : "" ;
+                            $comment .= $request->input('birth_date') ? "Birth Date: " . $request->input('birth_date') . ";\r\n" : "" ;
+                            $comment .= $request->input('gender') ? "Gender: " . $request->input('gender') . ";\r\n" : "" ;
+                            $comment .= $request->input('title') ? "Title: ".$request->input('title').";\r\n" : "" ;
+                            $comment .= $request->input('is_accepted') ? "I agree with Cancellation policy: Yes;\r\n" : "" ;
+
+                            $order = Order::find($order->id);
+                            $order->user_id = $user->id;
+                            $order->order_status_id = 7;
+                            //$order->search_result_id = $search_id;
+                            $order->comment = $order->comment ."\r\n". $comment;
+
+                            $order->billing_address = '';
+                            $order->billing_country = '';
+                            $order->billing_city = '';
+                            $order->billing_postcode = '';
+
+                            $order->price = $total_price;
+                            //$order->type = $search_type;
+                            $order->is_accepted = (bool)$request->input('is_accepted');
+                            $order->book_status = 1;
+                            $order->save();
+
+                            /*
+                            * Mailing start
+                            */
+                            
+                            Mail::send([], [], function ($message) {
+                                $user = Auth::user();
+                                $message->from('quote@jetonset.com', 'JetOnset team');
+                                //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                                $message->to($user->email)->subject("We have received your request");
+                                $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your payment and our manager will contact you to discuss all your flight details in the shortest possible time.\n\nBest regards,\nJetOnset team.");
+                            });
+
+                            $airport_list = [];
+                            $airport_items = Airport::whereIn('city', [$start_airport_name, $end_airport_name])->get();
+                            foreach($airport_items as $airport_item){
+                                if($airport_item->icao){
+                                    $airport_list[] = $airport_item->icao;
+                                }
+                            }
+                            $airport_list = array_unique($airport_list);
+
+                            $operator_list = [];
+                            $airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
+                            //$airlines = Airline::where('category', $search_type)->get();
+
+                            foreach($airlines as $airline){
+                                $operator_list[] = $airline->operator;
+                            }
+                            $operator_list = array_unique($operator_list);
+
+                            $emails = [];
+                            $operators = Operator::whereIn('name', $operator_list)->get();
+                            
+
+                            foreach($operators as $operator){
+                                if ($operator->email == trim($operator->email) && strpos($operator->email, ' ') !== false) {
+                                    $mail_list = explode(" ", $operator->email);
+                                    foreach($mail_list as $mail){
+                                        $emails[] = trim($mail);
+                                    }
+                                    $mail_list = [];
+                                } else if(strstr($operator->email, PHP_EOL)) {
+                                    $mail_list = explode(PHP_EOL, $operator->email);
+                                    foreach($mail_list as $mail){
+                                        $emails[] = trim($mail);
+                                    }
+                                    $mail_list = [];
+                                } else {
+                                    $emails[] = trim($operator->email);
+                                }
+                            }
+
+                            $emails = array_unique($emails);
+                            
+                            $airports = [
+                                'start_city' => $start_airport_name,
+                                'end_city' => $end_airport_name,
+                                'pax' => $pax,
+                                'type' => $search_type,
+                            ];
+
+                            $date = $departure_at;
+                            
+                            foreach($emails as $email){
+                                Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
+                                    $user = Auth::user();
+                                    $message->from($user->email, 'JetOnset team');
+                                    //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                                    $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
+                                    //$message->to($user->email)->subject("We have received your request");
+                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people for " . ucfirst($airports['type']) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                                });
+                            }
+                            
+                           /*
+                            * Mailing end
+                            */
+
+                            
+                            return redirect()->route('client.orders.request_succeed', $order->id);
+
+                        }
+                        
+                    } catch (ApiException $e) {
+                        /*
+                        echo 'Caught exception!<br/>';
+                        echo('<strong>Response body:</strong><br/>');
+                        echo '<pre>'; var_dump($e->getResponseBody()); echo '</pre>';
+                        echo '<br/><strong>Context:</strong><br/>';
+                        echo '<pre>'; var_dump($e->getContext()); echo '</pre>';
+                        exit();
+                        */
+                    }
+
+                }
+ 
+
+            }
+
+        }
+        
+
+        $params = [
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'birth_date' => $request->input('birth_date'),
+            'gender' => $request->input('gender'),
+            'title' => $request->input('title'),
+            'comments' => $request->input('comments'),
+            'is_accepted' => $request->input('is_accepted'),
+        ];
+        
+
+        return view('client.account.orders.request_square', 
+            compact(
+                'messages', 
+                'upper_case_environment', 
+                'environment', 
+                'applicationId', 
+                'locationId', 
+                'search_id', 
+                'search_type', 
+                'pricing', 
+                'price', 
+                'time', 
+                'user', 
+                'start_airport_name', 
+                'end_airport_name', 
+                'departure_at', 
+                'pax', 
+                'feeses', 
+                'total_price',
+                'params',
+                'request_method',
+                'cart_errors',
+                'pervis_confirm_url'
+            )
+        );
+
+    }
+    
+    
+    
+    
     public function succeed(Request $request)
     {
         $order_id = $request->route('order_id');
@@ -570,6 +990,18 @@ class OrderController extends Controller
         }
 
         return view('client.account.orders.succeed', compact('order_id', 'order', 'search', 'search_type', 'time', 'pricing'));
+    }
+    
+    
+    public function request_succeed(Request $request)
+    {
+        $order_id = $request->route('order_id');
+        $search_type = $request->route('type');
+        $order = Order::Find($order_id);
+        $search = Search::Find($order->search_result_id);
+        $time = "00:00";
+
+        return view('client.account.orders.request_succeed', compact('order_id', 'order', 'search', 'search_type', 'time'));
     }
     
 
@@ -617,6 +1049,7 @@ class OrderController extends Controller
             $order->billing_postcode = $request->input('billing_postcode');
             $order->type = $request->input('type');
             $order->is_accepted = (bool)$request->input('is_accepted');
+            $order->book_status = 1;
             $order->save();
 
             Mail::send([], [], function ($message) {

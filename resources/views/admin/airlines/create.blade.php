@@ -35,7 +35,7 @@
                                 </span>
                             @endif
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="reg_number">Reg. number</label>
                             <input type="text" class="form-control{{ $errors->has('reg_number') ? ' is-invalid' : '' }}" id="reg_number" name="reg_number" value="{{ old('reg_number') }}">
@@ -49,6 +49,19 @@
                         
                         <div class="form-group">
                             <label for="category">Category</label>
+
+                            <select name="category" id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}">
+                                <option value=""> --- Nothing selected --- </option>
+                                <option value="turbo" {{ old('category') == 'turbo' ? 'selected':'' }}>Turbo</option>
+                                <option value="light" {{ old('category') == 'light' ? 'selected':'' }}>Light</option>
+                                <option value="medium" {{ old('category') == 'medium' ? 'selected':'' }}>Medium</option>
+                                <option value="heavy" {{ old('category') == 'heavy' ? 'selected':'' }}>Heavy</option>
+                            </select>
+                        </div>
+                        
+                        <!--
+                        <div class="form-group">
+                            <label for="category">Category</label>
                             <input type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" id="category" name="category" value="{{ old('category') }}">
 
                             @if ($errors->has('category'))
@@ -57,6 +70,7 @@
                                 </span>
                             @endif
                         </div>
+                        -->
                         
                         <div class="form-group">
                             <label for="homebase">Homebase</label>
@@ -93,7 +107,8 @@
                         
                         <div class="form-group">
                             <label for="operator">Operator</label>
-                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" value="{{ old('operator') }}">
+                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" autocomplete="off" value="{{ old('operator') }}">
+                            <div id="arrivalCityList" style="position: relative;"></div>
 
                             @if ($errors->has('operator'))
                                 <span class="invalid-feedback" role="alert">
@@ -109,4 +124,33 @@
         </div>
     </div>
 </div>
+
+<script type="application/javascript">
+    $(document).ready(function(){
+
+        $('#operator').keyup(function(){ 
+            var query = $(this).val();
+            if(query != ''){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('admin.api.operators') }}",
+                    method:"POST",
+                    data:{query:query, _token:_token},
+                    success:function(data){
+                        $('#arrivalCityList').fadeIn();  
+                        $('#arrivalCityList').html(data);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#arrivalCityList li', function(e){
+            e.preventDefault();
+            $('#operator').val($(this).text());  
+            $('#arrivalCityList').fadeOut();
+        });
+
+   });
+</script>
+
 @endsection

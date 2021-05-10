@@ -66,7 +66,7 @@
                                 <tbody>
                                     @foreach ($operators as $operator)
                                         <tr>
-                                            <td class="align-middle">{{ $loop->iteration }}</td>
+                                            <td class="align-middle">{{ $loop->iteration + $operators->firstItem() - 1 }}</td>
                                             <td class="align-middle">{{ $operator->name }}</td>
                                             <td class="align-middle">{{ $operator->web_site }}</td>
                                             <td class="align-middle">{{ $operator->created_at->format('m-d-Y H:i') }}</td>

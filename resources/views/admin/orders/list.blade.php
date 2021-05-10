@@ -44,7 +44,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td class="align-middle">#{{ $order->id }}</td>
+                                    <td class="align-middle">#{{ $loop->iteration + $orders->firstItem() - 1 }}</td>
                                     <td class="align-middle">
                                         @if (! is_null($order->user))
                                             <a href="{{ route('admin.users.show', $order->user->id) }}">{{ $order->user->full_name }}</a>

@@ -53,7 +53,7 @@
 
         @media (min-width: 992px) {
             margin-top: 0;
-            padding-left: 15px;
+            padding-left: 75px;
             padding-right: calc((100% - 960px) / 2 + 30px);
         }
         
@@ -179,6 +179,177 @@
             border-radius: 0.5rem;
             box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
         }
+        
+        .request-card {
+            background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
+            opacity: 0.9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+            border-radius: 8px;
+            margin-bottom: 2rem !important;
+            
+            img {
+                //margin-left: -50%;
+            }
+        }
+        
+        .request-number {
+            display: inline-block;
+            border: 2px solid #2B4060;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+        }
+        
+        .order-card {
+            background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
+            opacity: 0.9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+            border-radius: 8px;
+            margin-bottom: 2rem !important;
+            
+            .order-number {
+                font-weight: 500;
+                font-size: 22px;
+                text-transform: uppercase;
+                color: #294A7A;
+                opacity: 0.8
+            }
+            
+            .text-right {
+                font-size: 16px;
+                text-transform: uppercase;
+                color: #294A7A;
+                opacity: 0.8;
+                
+                .status-paid {
+                    color: #3490dc;
+                }
+                .status-on_hold {
+                    color: #6c757d;
+                }
+                .status-awaiting_payment {
+                    color: #ffed4a;
+                }
+                .status-completed {
+                    color: #38c172;
+                }
+                .status-cancelled {
+                    color: #e3342f;
+                }
+                .status-in_process, .status-in_progress {
+                    color: #3490dc;
+                }
+            }
+            
+            .order-block-title {
+                text-transform: uppercase;
+                font-family: "Lato", sans-serif;
+                font-weight: 300;
+                font-size: 24px;
+                color: #2B4B7A;
+                opacity: 0.7;
+                margin: {
+                    top: 10px;
+                    bottom: 5px;
+                }
+            }
+            
+            hr {
+                margin: 0 -15px 15px;
+            }
+            
+            .silver-info {
+                text-transform: uppercase;
+                
+                span {
+                    color: #373737;
+                    margin-left: 15px;
+                }
+            }
+            
+            .order-start-airport, .order-finish-airport {
+                border: 1px solid rgba(41, 74, 122, 0.4);
+                font-size: 16px;
+                color: #373737;
+                text-transform: uppercase;
+                padding: 8px 16px;
+            }
+            
+            .order-start-airport {
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+            }
+            
+            .order-finish-airport {
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+                margin-left: -1px;
+            }
+            
+            @media (max-width: 766px) {
+                .order-start-airport, .order-finish-airport {
+                    border-radius: 6px;
+                }
+                .pr-0 {
+                    padding-right: 15px !important;
+                }
+                .pl-0 {
+                    padding-left: 15px !important;
+                }
+            }
+            
+            .order-price-field {
+                padding: 6px 14px 6px 0;
+                font-weight: bold;
+                font-size: 20px;
+                color: #373737;
+                text-transform: uppercase;
+            }
+            
+            .order-show-more:link, .order-show-more:visited {
+                color: #2A60AE;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                padding: {
+                    right: 30px;
+                }
+                background: url('/images/order_bottom_arrow.svg') no-repeat right center;
+                text-decoration: none;
+            }
+            
+            .order-show-more:hover, .order-show-more:active {
+                opacity: 0.8;
+            }
+            
+            .arrow-direction {
+                background: url('/images/order_top_arrow.svg') no-repeat right center !important;
+            }
+            
+            .options-wrapper {
+                display: none;
+                
+                p {
+                    font-size: 12px;
+                    color: #373737;
+                    margin-bottom: 0.75rem;
+                }
+            }
+        }
+        
+        .center-bold {
+            font-weight: bold;
+            font-size: 18px;
+            color: #373737;
+        }
+        
+        .silver-info {
+            color: #A5A5A5;
+            font-size: 12px;
+        }
 
         .card-body {
             padding: 0.75rem 2rem;
@@ -228,12 +399,35 @@
             }
         
             .btn {
-            text-transform: uppercase;
-            color:#ffffff;
-            background-color: #113961;
-            font-size: 0.5rem;
-            border-radius: 0.2rem;
+                /*
+                text-transform: uppercase;
+                color:#ffffff;
+                background-color: #113961;
+                font-size: 0.5rem;
+                border-radius: 0.2rem;
+                */
+                color: #ffffff;
+                background: url("/images/book_now.svg") no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+                opacity: 0.8;
+                border-radius: 6px;
+                padding: 0.5rem 2rem 0.5rem 3.5rem;
+                text-transform: capitalize;
+                /*text-transform: uppercase;*/
+                min-width: 170px;
             }
+            
+            .isDisabled {
+                background-color: #EAEDF0;
+                color: #294A7A;
+                cursor: not-allowed;
+                padding: 0.5rem 2rem;
+                border-radius: 6px;
+                opacity: 0.8;
+                text-transform: capitalize;
+                text-decoration: none;
+                font-size: 1rem;
+            }
+            
         }
 
         .arrow {

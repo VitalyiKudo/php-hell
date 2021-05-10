@@ -31,7 +31,7 @@ class AirportController extends Controller
                         $query->where('name', 'like', "%{$keyword}%");
                     });
             })
-            ->limit(10)
+            //->limit(10)
             ->get();
 
         //return AirportResource::collection($airports);

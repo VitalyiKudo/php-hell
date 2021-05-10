@@ -47,7 +47,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Square/autoload.php"
+            "app/Square/autoload.php",
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {

@@ -56,7 +56,7 @@
                                 <tbody>
                                     @foreach ($feeses as $fees)
                                         <tr>
-                                            <td class="align-middle">{{ $loop->iteration }}</td>
+                                            <td class="align-middle">{{ $loop->iteration + $feeses->firstItem() - 1 }}</td>
                                             <td class="align-middle">{{ $fees->item }}</td>
                                             <td class="align-middle">{{ $fees->amount }}</td>
                                             <td class="align-middle">{{ $fees->type }}</td>

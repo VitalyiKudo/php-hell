@@ -32,14 +32,14 @@
                         <div class="form-group">
                             <label for="type">Type</label>
                             <input type="text" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" id="type" name="type" value="{{ old('type', $airline->type) }}" required>
-
+                            
                             @if ($errors->has('type'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('type') }}</strong>
                                 </span>
                             @endif
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="reg_number">Reg. number</label>
                             <input type="text" class="form-control{{ $errors->has('reg_number') ? ' is-invalid' : '' }}" id="reg_number" name="reg_number" value="{{ old('reg_number', $airline->reg_number) }}">
@@ -50,7 +50,20 @@
                                 </span>
                             @endif
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="type">Category</label>
 
+                            <select name="category" id="type" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}">
+                                <option value=""> --- Nothing selected --- </option>
+                                <option value="turbo" {{ old('category', $airline->category) == 'turbo' ? 'selected':'' }}>Turbo</option>
+                                <option value="light" {{ old('category', $airline->category) == 'light' ? 'selected':'' }}>Light</option>
+                                <option value="medium" {{ old('category', $airline->category) == 'medium' ? 'selected':'' }}>Medium</option>
+                                <option value="heavy" {{ old('category', $airline->category) == 'heavy' ? 'selected':'' }}>Heavy</option>
+                            </select>
+                        </div>
+                        
+                        <!--
                         <div class="form-group">
                             <label for="category">Category</label>
                             <input type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" id="category" name="category" value="{{ old('category', $airline->category) }}">
@@ -61,7 +74,8 @@
                                 </span>
                             @endif
                         </div>
-
+                        -->
+                        
                         <div class="form-group">
                             <label for="homebase">Homebase</label>
                             <input type="text" class="form-control{{ $errors->has('homebase') ? ' is-invalid' : '' }}" id="homebase" name="homebase" value="{{ old('homebase', $airline->homebase) }}">
@@ -97,8 +111,9 @@
                         
                         <div class="form-group">
                             <label for="operator">Operator</label>
-                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" value="{{ old('operator', $airline->operator) }}">
-
+                            <input type="text" class="form-control{{ $errors->has('operator') ? ' is-invalid' : '' }}" id="operator" name="operator" value="{{ old('operator', $airline->operator) }}" autocomplete="off">
+                            <div id="arrivalCityList" style="position: relative;"></div>
+                            
                             @if ($errors->has('operator'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('operator') }}</strong>
@@ -132,4 +147,33 @@
         </div>
     </div>
 </div>
+
+<script type="application/javascript">
+    $(document).ready(function(){
+
+        $('#operator').keyup(function(){ 
+            var query = $(this).val();
+            if(query != ''){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('admin.api.operators') }}",
+                    method:"POST",
+                    data:{query:query, _token:_token},
+                    success:function(data){
+                        $('#arrivalCityList').fadeIn();  
+                        $('#arrivalCityList').html(data);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#arrivalCityList li', function(e){
+            e.preventDefault();
+            $('#operator').val($(this).text());  
+            $('#arrivalCityList').fadeOut();
+        });
+
+   });
+</script>
+
 @endsection

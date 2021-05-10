@@ -58,7 +58,6 @@ class AirlineController extends Controller
     public function store(StoreAirlineRequest $request)
     {
         $airline = new Airline;
-
         $airline->type = $request->input('type');
         $airline->reg_number = $request->input('reg_number') ?? "";
         $airline->category = $request->input('category') ?? "";
@@ -66,7 +65,6 @@ class AirlineController extends Controller
         $airline->max_pax = $request->input('max_pax') ?? 0;
         $airline->yom = $request->input('yom') ?? 0;
         $airline->operator = $request->input('operator') ?? "";
-
         $airline->save();
 
         return redirect()

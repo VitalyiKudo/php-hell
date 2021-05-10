@@ -150,6 +150,10 @@
                       </ul>
                     </div><br />
                 @endif
+                
+                
+                <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                
 
                 @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0))
 
@@ -262,7 +266,7 @@
                                 </div>
 
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn book-now">Book now</a>
+                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn book-now">Book now</a>
                                 </div>
 
                             </div>
@@ -380,7 +384,7 @@
                                 </div>
  
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
+                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.request_confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
                                 </div>
 
                             </div>
@@ -498,7 +502,7 @@
                                 </div>
 
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
+                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
                                 </div>
 
                             </div>
@@ -619,7 +623,7 @@
                                 </div>
 
                                 <div class="book">
-                                    <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
+                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
                                 </div>
 
                             </div>
@@ -644,7 +648,7 @@
                                 <div>Custom flight search</div>
                                 <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
                             </div>
-                            <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                            <!--<form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">-->
                                 @csrf
 
                                 <div class="form-row">
@@ -688,11 +692,17 @@
                                 <div class="text-right pull-right">
                                     <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
                                 </div>
-                            </form>
+                            <!--</form>-->
                         </div>
 
                     </div>
                 </div>
+                
+                
+                
+                </form>
+                
+                
 
                 <div class="pb-5"></div>
 

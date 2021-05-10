@@ -12,6 +12,15 @@
             right: 12%;
         }
         
+        @media (max-width: 1605px) {
+            padding-left: 14%;
+        }
+        
+        @media (max-width: 1400px) {
+            padding-left: 6%;
+            padding-right: 6%;
+        }
+        
         @media (max-width: 850px) {
             padding-left: 10%;
             padding-right: 10%;
@@ -147,6 +156,14 @@
     border-top: 1px solid #EFF5F9;
     background-color: #EFF5F9;
     padding-left: 21%;
+    
+    @media (max-width: 1605px) {
+        padding-left: 14%;
+    }
+    
+    @media (max-width: 1400px) {
+        padding-left: 6%;
+    }
     
     @media (max-width: 992px) {
         padding-left: 0;

@@ -40,6 +40,14 @@ class Search extends Model
     }
 
     /**
+     * Get all of the orders for the user.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'id', 'search_result_id');
+    }
+    
+    /**
      * Get all of the results for the search.
      */
     public function results()

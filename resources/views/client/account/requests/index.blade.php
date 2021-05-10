@@ -8,6 +8,8 @@
 
 <div class="container request-page">
     <div class="row">
+        
+        <!--
         <div class="col-lg-4">
             <h2 class="mb-4 left-request-title">Requests</h2>
             <div class="left-request">
@@ -31,28 +33,98 @@
                 <div class="calendar mb-0"></div>
             </div>
         </div>
+        -->
 
-        <div class="col-xl-7 offset-xl-1 col-lg-8 right-request">
+        <div class="offset-xl-2 col-xl-10 col-lg-10 right-request">
             <h2 class="mb-5">Overview of your requests</h2>
 
-            <p class="card-title"><span>{{ $requests->count() }}</span> results are available</p>
+            <p class="card-title mb-5"><span>{{ $requests->total() }}</span> results are available</p>
 
             @foreach ($requests as $request)
-                <div class="card mb-4">
+                <div class="card mb-4 request-card">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <div class="col-md-4 country">{{ $request->start_airport_name }} - {{ $request->end_airport_name }}</div>
-                            <div class="col-md-2 icao">Pax: {{ $request->pax }}</div>
-                            <div class="col-md-2 date">{{ $request->created_at->format('d/m/Y') }}</div>
-
-                            <div class="col-md-2 book">
-                                <a href="#" class="btn">Request again</a>
+                            <div class="col-1 col-sm-1 col-md-1"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
+                            <div class="col-5 col-sm-5 col-md-2">
+                                <div class="silver-info mb-2">From Airport</div>
+                                <div class="center-bold">{{ $request->start_airport_name }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('d/m/Y') }}</div>
                             </div>
-                            <div class="col-md-auto arrow">▼</div>
+                            <div class="col-1 col-sm-1 col-md-1">
+                                <img src="/images/plan-icon.svg" alt="plan icon">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-2">
+                                <div class="silver-info mb-2">To Airport</div>
+                                <div class="center-bold">{{ $request->end_airport_name }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('d/m/Y') }}</div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <div class="d-block d-sm-block d-md-none mt-4"></div>
+                                <div class="silver-info mb-2">PASS.</div>
+                                <div class="center-bold">{{ $request->pax }}</div>
+                                <div class="silver-info">&nbsp;</div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <div class="d-block d-sm-block d-md-none mt-4"></div>
+                                <div class="silver-info mb-2">Price (Incl. taxes)</div>
+                                <div class="center-bold">{{ $request->price }}</div>
+                                <div class="silver-info">&nbsp;</div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-2 book">
+                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }}">Book now</a>
+                            </div>
                         </div>
+                        
+                        @if (createAdditionalDataArray($request->comment, 'from_stop_airport') || createAdditionalDataArray($request->comment, 'to_stop_airport'))
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-1 col-sm-1 col-md-1"></div>
+                            <div class="col-5 col-sm-5 col-md-2 country">
+                                <div class="silver-info mb-2">FROM STOP AIRPORT</div>
+                                <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'from_stop_airport') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('d/m/Y') }}</div>
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1"></div>
+                            <div class="col-5 col-sm-5 col-md-2 country">
+                                <div class="silver-info mb-2">TO STOP AIRPORT</div>
+                                <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_stop_airport') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('d/m/Y') }}</div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-2"></div>
+                            <div class="col-6 col-sm-6 col-md-2"></div>
+                            <div class="col-12 col-sm-12 col-md-2 book"></div>
+                        </div>
+                        @endif
+                        
+                        @if (createAdditionalDataArray($request->comment, 'from_return_airport') || createAdditionalDataArray($request->comment, 'to_return_airport'))
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-1 col-sm-1 col-md-1"></div>
+                            <div class="col-5 col-sm-5 col-md-2">
+                                <div class="silver-info mb-2">FROM RETURN AIRPORT</div>
+                                <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'from_return_airport') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('d/m/Y') }}</div>
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1">
+                                <img src="/images/plan-icon-return.svg" alt="plan icon">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-2">
+                                <div class="silver-info mb-2">TO RETURN AIRPORT</div>
+                                <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_return_airport') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('d/m/Y') }}</div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-2"></div>
+                            <div class="col-6 col-sm-6 col-md-2"></div>
+                            <div class="col-12 col-sm-12 col-md-2 book"></div>
+                        </div>
+                        @endif
+                        
                     </div>
                 </div>
             @endforeach
+            
+            {{ $requests->links() }}
+            
         </div>
     </div>
 </div>

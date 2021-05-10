@@ -192,6 +192,8 @@
     display: block;
     position: absolute;
     padding: 1rem 1.5rem;
+    overflow-y: scroll;
+    max-height: 500px;
 
     a {
       &:link, &:visited {
@@ -220,6 +222,8 @@
         display: block;
         position: absolute;
         padding: 1rem 1.5rem;
+        overflow-y: scroll;
+        max-height: 500px;
 
         a {
             &:link, &:visited {
@@ -1152,7 +1156,7 @@
   .card {
     border-color: transparent;
     border-radius: 0.5rem;
-    box-shadow: 8px 8px 15px 4px rgba(75, 58, 58, 0.15);
+    box-shadow: 12px 8px 15px 4px rgba(75, 58, 58, 0.15);
     border: none;
   }
 
@@ -1160,6 +1164,7 @@
     display: flex;
     padding: 0;
   }
+
 }
 
 #request_quote {
@@ -1427,6 +1432,14 @@
   opacity: 0.8;
   border-radius: 6px;
   padding: 0.5rem 2rem 0.5rem 3.5rem;
+}
+
+.rquest-best-price {
+    background-color: #EAEDF0;
+    border-radius: 6px;
+    color: #294A7A !important;
+    margin-right: 12px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .custom-flight {
