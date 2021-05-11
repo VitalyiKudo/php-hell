@@ -13706,6 +13706,19 @@ sup {
   margin-left: 8px !important;
 }
 
+ul.dashed {
+  list-style-type: none;
+}
+
+ul.dashed > li {
+  text-indent: -5px;
+}
+
+ul.dashed > li:before {
+  content: "- ";
+  text-indent: -5px;
+}
+
 .questions .card {
   border-radius: 0.4rem;
   border: 1px solid rgba(42, 96, 174, 0.4);
