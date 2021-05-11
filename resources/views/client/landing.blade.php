@@ -553,6 +553,11 @@
                                         lookup[city] = 1;
                                         output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
                                     }
+                                    var area = obj.area;
+                                    if (!(area in lookup)) {
+                                        lookup[area] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
+                                    }
                                 }
                             });
                             output += '</ul>';
@@ -588,6 +593,11 @@
                                     if (!(city in lookup)) {
                                         lookup[city] = 1;
                                         output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                    }
+                                    var area = obj.area;
+                                    if (!(area in lookup)) {
+                                        lookup[area] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
                                     }
                                 }
                             });

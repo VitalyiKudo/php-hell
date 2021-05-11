@@ -29,13 +29,8 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        
-        //echo url()->full();
-        
         Session::put('pervis_search_url', url()->full());
-        
-        //echo Session::get('pervis_search_url');
-        
+
         $startCity = $this->findCity($request->startPoint);
         $endCity = $this->findCity($request->endPoint);
         
@@ -50,8 +45,6 @@ class SearchController extends Controller
             $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
         }
-
-        //echo $params["startCityLng"];
       
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
         $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
@@ -249,7 +242,7 @@ class SearchController extends Controller
         }
         */
         //return response()->json([]);
-        
+
         $pervis_search_url = Session::get('pervis_search_url');
         
         //$session_id = Session::getId();

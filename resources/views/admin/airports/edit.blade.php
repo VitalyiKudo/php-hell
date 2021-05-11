@@ -115,6 +115,17 @@
                                 </span>
                             @endif
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="area">Area</label>
+                            <input type="text" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" id="area" name="area" value="{{ old('area', $airport->area) }}">
+
+                            @if ($errors->has('area'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('area') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>

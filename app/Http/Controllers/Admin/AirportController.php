@@ -66,6 +66,7 @@ class AirportController extends Controller
         $airport->latitude = $request->input('latitude') ?? 0;
         $airport->longitude = $request->input('longitude') ?? 0;
         $airport->timezone = $request->input('timezone') ?? "";
+        $airport->area = $request->input('area');
 
         $airport->save();
 
@@ -218,6 +219,7 @@ class AirportController extends Controller
         $airport->latitude = $request->input('latitude') ?? 0;
         $airport->longitude = $request->input('longitude') ?? 0;
         $airport->timezone = $request->input('timezone') ?? "";
+        $airport->area = $request->input('area');
         $airport->save();
 
         return redirect()
@@ -254,6 +256,7 @@ class AirportController extends Controller
                 ->orWhere('latitude', 'like', '%'.$query.'%')
                 ->orWhere('longitude', 'like', '%'.$query.'%')
                 ->orWhere('timezone', 'like', '%'.$query.'%')
+                ->orWhere('area', 'like', '%'.$query.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(25);
             return view('admin.airports.pagination', compact('airports'))->render();

@@ -40,6 +40,7 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::post('api/airports','PricingController@getAutocompleteAirports')->name('api.airports');
     Route::post('api/cities','PricingController@getAutocompleteCities')->name('api.cities');
+    Route::post('api/areas','PricingController@getAutocompleteAreas')->name('api.areas');
     Route::post('api/operators','PricingController@getAutocompleteOperators')->name('api.operators');
     Route::get('/airport/search','AirportController@search')->name('airport.search');
     Route::get('/airline/search','AirlineController@search')->name('airline.search');

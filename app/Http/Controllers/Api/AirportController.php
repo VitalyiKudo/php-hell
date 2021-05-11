@@ -27,6 +27,7 @@ class AirportController extends Controller
                     ->orWhere('city', 'like', str_replace("-", " ", $keyword)."%")
                     ->orWhere('iata', 'like', "{$keyword}%")
                     ->orWhere('icao', 'like', "{$keyword}%")
+                    ->orWhere('area', 'like', "{$keyword}%")
                     ->orWhereHas('country', function ($query) use ($keyword) {
                         $query->where('name', 'like', "%{$keyword}%");
                     });

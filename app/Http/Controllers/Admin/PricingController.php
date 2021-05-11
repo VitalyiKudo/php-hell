@@ -203,6 +203,22 @@ class PricingController extends Controller
 
     }
     
+    public function getAutocompleteAreas(Request $request){
+        if($request->get('query')){
+            $query = $request->get('query');
+            $data = Airport::where('area','like',$query.'%')->groupBy("city")->get();
+              
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            foreach($data as $row)
+            {
+                $output .= '<li><a href="#">'.$row->area.'</a></li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+
+    }
+    
     public function getAutocompleteOperators(Request $request){
         if($request->get('query')){
             $query = $request->get('query');
