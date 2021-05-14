@@ -207,7 +207,7 @@
                                     </div>
                                     <div>
                                         <span class="flight-price">&#36;{{ number_format($searchResults->price_turbo, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                        <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
 
@@ -325,7 +325,7 @@
                                     </div>
                                     <div>
                                         <span class="flight-price">&#36;{{ number_format($searchResults->price_light, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                        <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
 
@@ -443,7 +443,7 @@
                                     </div>
                                     <div>
                                         <span class="flight-price">&#36;{{ number_format($searchResults->price_medium, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                        <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
                                 
@@ -563,7 +563,7 @@
                                     </div>
                                     <div>
                                         <span class="flight-price">&#36;{{ number_format($searchResults->price_heavy, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Price (Incl. taxes)</span>
+                                        <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
                                 
