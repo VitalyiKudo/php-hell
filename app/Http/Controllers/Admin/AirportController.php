@@ -155,6 +155,7 @@ class AirportController extends Controller
                             'latitude' => (float)$airport_data[4],
                             'longitude' => (float)$airport_data[5],
                             'timezone' => '',
+                            'area' => (string)$airport_data[18],
                             'updated_at' => $now,
                             'created_at' => $now
                         ];
