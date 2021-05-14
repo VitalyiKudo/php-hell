@@ -554,7 +554,7 @@
                                         output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
                                     }
                                     var area = obj.area;
-                                    if (!(area in lookup)) {
+                                    if (!(area in lookup) && area !== null) {
                                         lookup[area] = 1;
                                         output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
                                     }
@@ -595,7 +595,7 @@
                                         output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
                                     }
                                     var area = obj.area;
-                                    if (!(area in lookup)) {
+                                    if (!(area in lookup) && area !== null) {
                                         lookup[area] = 1;
                                         output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
                                     }
