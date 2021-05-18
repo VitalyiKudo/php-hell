@@ -153,14 +153,14 @@ Profile
                     <div class="form-group mb-5">
                         <div class="checkbox" style="margin-left: 20px;">
                             <label class="form-check-label" data-toggle="collapse" data-target="#billingAddressDiffer" aria-expanded="false" aria-controls="billingAddressDiffer">
-                                <input type="checkbox" class="form-check-input" {{ $user->has_billing_address ? 'checked' : '' }}>My billing aadress differ from mailing aadress
+                                <input type="checkbox" class="form-check-input" {{ $user->has_billing_address ? 'checked' : '' }}>My billing address differ from mailing address
                             </label>
                         </div>
                     </div>
 
                     <div id="billingAddressDiffer" aria-expanded="false" class="collapse{{ $user->has_billing_address ? ' show' : '' }}">
                         <div class="form-group mb-5">
-                            <label for="billing_address">{{ __('Billing aadress') }}</label>
+                            <label for="billing_address">{{ __('Billing address') }}</label>
                             <input id="billing_address" type="text" class="form-control{{ $errors->has('billing_address') ? ' is-invalid' : '' }}" name="billing_address" value="{{ old('billing_address', $user->billing_address) }}">
                         
                             @if ($errors->has('billing_address'))

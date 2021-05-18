@@ -34,6 +34,9 @@ Route::get('/blog', function () {
 Route::get('/terms-conditions', function () {
     return view('client.terms-conditions');
 });
+Route::get('/privacy-policy', function () {
+    return view('client.privacy-policy');
+});
 Route::get('/listing-search', function () {
     return view('client.listing-search');
 });

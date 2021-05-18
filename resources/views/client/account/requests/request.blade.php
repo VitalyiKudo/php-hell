@@ -384,7 +384,7 @@
                                 </div>
  
                                 <div class="book">
-                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.request_confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
+                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
                                 </div>
 
                             </div>

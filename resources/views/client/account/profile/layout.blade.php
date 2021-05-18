@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-4">
             <h2 class="right-profile-title mb-4">@yield('profile-title')</h2>
-
+            
             <ul class="nav nav-pills flex-column right-profile-nav">
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile') ? ' active' : '' }}" href="{{ route('client.profile') }}">Personal information</a>
@@ -18,6 +18,7 @@
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/payment*') ? ' active' : '' }}" href="{{ route('client.profile.payment.index') }}">Payment method</a>
                 </li>
+                {{--
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/companions*') ? ' active' : '' }}" href="{{ route('client.profile.companions.list') }}">Companions</a>
                 </li>
@@ -26,7 +27,6 @@
                     <a class="nav-link{{ Request::is('profile/quote*') ? ' active' : '' }} nav-link-last" href="{{ route('client.profile.quote.index') }}">Quotes</a>
                 </li>
                 
-                {{-- 
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('profile/orders') ? ' active' : '' }}" href="{{ route('client.profile.orders.index') }}">Orders</a>
                 </li>

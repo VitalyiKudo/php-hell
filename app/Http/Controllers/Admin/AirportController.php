@@ -136,15 +136,23 @@ class AirportController extends Controller
             $rows = [];
             $airport_records = [];
             $now = Carbon::now();
+            $delimiter = ",";
             
             while(!feof($data)){
-                $rows[] = fgetcsv($data);
+                if (strpos($column[0], ",") !== false) {
+                    $delimiter = ",";
+                } elseif (strpos($column[0], ";") !== false) {
+                    $delimiter = ";";
+                }
+
+                $rows[] = fgetcsv($data, null, $delimiter);
             }
-            
+
             foreach(array_chunk($rows, 500) as $row) {
                 foreach($row as $val) {
                     $airport_data = $val;
                     if(is_array($airport_data) && count($airport_data) >= 10 && $airport_data[2] != "closed" && $airport_data[2] != "heliport"){
+
                         $airport_records[] = [
                             'source_id' => (int)$airport_data[0],
                             'name' => (string)$airport_data[3],

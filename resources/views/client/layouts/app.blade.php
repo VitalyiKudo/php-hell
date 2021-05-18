@@ -223,7 +223,7 @@
                     </div>
                     <div class="col-12 col-lg-4 order-2 mb-3">
                         <div class="row privacy-terms mb-0">                       
-                            <a href="#" class="footer-privacy-text mb-0">Privacy Policy</a>
+                            <a href="/privacy-policy" class="footer-privacy-text mb-0">Privacy Policy</a>
                             <a href="/terms-conditions" class="footer-privacy-text mb-0">Terms & Conditions</a>
                         </div>
                     </div>            

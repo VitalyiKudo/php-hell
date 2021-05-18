@@ -35,7 +35,7 @@
         </div>
         -->
 
-        <div class="offset-xl-2 col-xl-10 col-lg-10 right-request">
+        <div class="offset-xl-2 offset-lg-2    col-xl-10 col-lg-10    right-request">
             <h2 class="mb-5">Overview of your requests</h2>
 
             <p class="card-title mb-5"><span>{{ $requests->total() }}</span> results are available</p>
@@ -58,9 +58,9 @@
                                 <div class="center-bold">{{ $request->end_airport_name }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('d/m/Y') }}</div>
                             </div>
-                            <div class="col-6 col-sm-6 col-md-2">
+                            <div class="col-6 col-sm-6 col-md-1">
                                 <div class="d-block d-sm-block d-md-none mt-4"></div>
-                                <div class="silver-info mb-2">PASS.</div>
+                                <div class="silver-info mb-1">PASS.</div>
                                 <div class="center-bold">{{ $request->pax }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
@@ -70,8 +70,8 @@
                                 <div class="center-bold">{{ $request->price }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-2 book">
-                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }}">Book now</a>
+                            <div class="col-12 col-sm-12 col-md-3 book">
+                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }} justify-content-end">Book now</a>
                             </div>
                         </div>
                         
@@ -90,9 +90,9 @@
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_stop_airport') }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('d/m/Y') }}</div>
                             </div>
+                            <div class="col-6 col-sm-6 col-md-1"></div>
                             <div class="col-6 col-sm-6 col-md-2"></div>
-                            <div class="col-6 col-sm-6 col-md-2"></div>
-                            <div class="col-12 col-sm-12 col-md-2 book"></div>
+                            <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
                         
@@ -113,9 +113,9 @@
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_return_airport') }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('d/m/Y') }}</div>
                             </div>
+                            <div class="col-6 col-sm-6 col-md-1"></div>
                             <div class="col-6 col-sm-6 col-md-2"></div>
-                            <div class="col-6 col-sm-6 col-md-2"></div>
-                            <div class="col-12 col-sm-12 col-md-2 book"></div>
+                            <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
                         

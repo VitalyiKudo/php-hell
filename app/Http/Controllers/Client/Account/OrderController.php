@@ -598,13 +598,8 @@ class OrderController extends Controller
         
         $search = Search::find($search_id);
         $order = Order::where('search_result_id', $search_id)->first();
-        
-        
-        //echo $order->order_status_id;
-        //echo $order->price;
   
         if($order->order_status_id != 2 || $order->price <= 0){
-            //return redirect()->back();
             return redirect($pervis_search_url);
         }
 
