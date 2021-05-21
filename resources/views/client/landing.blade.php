@@ -545,7 +545,7 @@
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
                             $.each(data, function(idx, obj) {
-                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {
                                     var city = obj.city;
@@ -586,7 +586,7 @@
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
                             $.each(data, function(idx, obj) {
-                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
+                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {
                                     var city = obj.city;

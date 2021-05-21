@@ -40,6 +40,8 @@ Put this code in ib the end of your .env file
     SANDBOX_ACCESS_TOKEN=EAAAEHzxmth3iuW-fWM4upgTseZlRFBfz9qz9ZKADmOSAi1EQ9hMR-cw-_Lxvky1
     SANDBOX_APP_ID=sandbox-sq0idb-T-6f2DihhYklkBSzSNpcvA
 
+Set SMTP settings in to your .env file
+
 Make your storage folder writable
 
     sudo chown -R 777 /path/to/your/project/storage
