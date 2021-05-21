@@ -26,7 +26,7 @@ Generate a new application key
 
     php artisan key:generate
 
-Put this code in ib the end of your .env file
+Put this code in to the end of your .env file
 
     # Square
     ENVIRONMENT=sandbox
