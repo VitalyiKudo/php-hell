@@ -9,12 +9,12 @@ $factory->define(App\Models\Search::class, function (Faker $faker) {
         'user_id' => function () use ($faker) {
             return $faker->boolean ? User::inRandomOrder()->first()->id : null;
         },
-        'result_id' => $faker->numerify('asearch-########'),
-        'start_airport_id' => function () {
-            return Airport::inRandomOrder()->first()->id;
+        'result_id' => 0,
+        'start_airport_name' => function () {
+            return Airport::inRandomOrder()->first()->name;
         },
-        'end_airport_id' => function () {
-            return Airport::inRandomOrder()->first()->id;
+        'end_airport_name' => function () {
+            return Airport::inRandomOrder()->first()->name;
         },
         'departure_at' => $faker->datetime(),
         'pax' => $faker->randomDigitNotNull,
