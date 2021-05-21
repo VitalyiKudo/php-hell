@@ -12,7 +12,7 @@ Clone the repository into a specific folder on your local server
 
 Switch to the repo folder
 
-    cd purevoyance-backend-v2/
+    cd Code/
 
 Install all the dependencies using composer
 
@@ -22,9 +22,12 @@ Copy the example env file and make the required configuration changes in the .en
 
     cp .env.example .env
 
-Put this code in your .env file
+Generate a new application key
 
-    ```
+    php artisan key:generate
+
+Put this code in ib the end of your .env file
+
     # Square
     ENVIRONMENT=sandbox
 
@@ -36,7 +39,6 @@ Put this code in your .env file
     # Sandbox credentials
     SANDBOX_ACCESS_TOKEN=EAAAEHzxmth3iuW-fWM4upgTseZlRFBfz9qz9ZKADmOSAi1EQ9hMR-cw-_Lxvky1
     SANDBOX_APP_ID=sandbox-sq0idb-T-6f2DihhYklkBSzSNpcvA
-    ```
 
 Make your storage folder writable
 

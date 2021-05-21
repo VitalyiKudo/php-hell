@@ -16,9 +16,9 @@ class CreateSearchesTable extends Migration
         Schema::create('searches', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string('result_id');
-            $table->integer('start_airport_id')->unsigned();
-            $table->integer('end_airport_id')->unsigned();
+            $table->integer('result_id')->unsigned();
+            $table->string('start_airport_name')->nullable();
+            $table->string('end_airport_name')->nullable();
             $table->timestamp('departure_at')->nullable();
             $table->integer('pax')->default(1);
             $table->text('comment')->nullable();
@@ -26,8 +26,6 @@ class CreateSearchesTable extends Migration
 
             // Foreign keys
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('start_airport_id')->references('id')->on('airports')->onDelete('cascade');
-            $table->foreign('end_airport_id')->references('id')->on('airports')->onDelete('cascade');
         });
     }
 

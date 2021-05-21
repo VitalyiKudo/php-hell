@@ -18,7 +18,7 @@ class CreateFeesTable extends Migration
             $table->string('item');
             $table->decimal('amount', 11, 4)->unsigned();
             $table->char('type', 3);
-            $table->float('active');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

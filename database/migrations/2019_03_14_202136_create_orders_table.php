@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             // Foreign keys
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
-            $table->foreign('search_result_id')->references('id')->on('search_results')->onDelete('cascade');
+            $table->foreign('search_result_id')->references('id')->on('searches')->onDelete('cascade');
         });
     }
 
