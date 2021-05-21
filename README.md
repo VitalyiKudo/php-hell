@@ -1,4 +1,4 @@
-# NexSource Jet On Set V2 (NSP)
+# NexSource JetOnSet V2 (NSJ)
 
 This project runs with Laravel Framework version 5.8.38
 
