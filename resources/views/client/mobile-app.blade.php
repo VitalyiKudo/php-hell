@@ -48,7 +48,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <img src="/images/person.webp" loading="lazy" class="" alt="...">
+                        <img src="/images/consirge.webp" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-6">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

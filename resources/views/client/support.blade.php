@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clientEmail">Email</label>
-                                <input id="clientEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', (isset(Auth::user()->email)) ? Auth::user()->email : '') }}" placeholder="mail@example@.com" required>
+                                <input id="clientEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', (isset(Auth::user()->email)) ? Auth::user()->email : '') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +138,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="operatorEmail">Email</label>
-                                <input id="operatorEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="mail@example@.com" required>
+                                <input id="operatorEmail" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -286,7 +286,7 @@
             <div class="col-10 offset-1 col-lg-6 offset-lg-3">
                 <div class="row align-items-center visit-card">
                     <div class="col-lg-5">
-                        <img src="/images/person.webp" loading="lazy" class="" alt="...">
+                        <img src="/images/consirge.webp" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-7">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>

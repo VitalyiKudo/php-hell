@@ -189,14 +189,6 @@
                         <h5 class="column-title text-uppercase">Join our newsletter</h5>
                         <p class="mb-3">Receive the latest reviews, offers and more</p>
                         <subscribe></subscribe>
-                        <div class="row">
-                            <div class="col">
-                                <img src="/images/iOS-logo.webp" loading="lazy" class="card-img-top" alt="...">
-                            </div>
-                            <div class="col">
-                                <img src="/images/Android-logo.webp" loading="lazy" class="card-img-top" alt="...">
-                            </div> 
-                        </div>       
                     </div>
                 </div>
 

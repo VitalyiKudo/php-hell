@@ -229,14 +229,7 @@
     </div>
     <div class="container download-container">
         <div class="row">
-            <div class="col-12 col-md-auto ios">
-                <img src="/images/iOS-logo.webp" loading="lazy" class="download-img" alt="...">
-                <p class="download-text">Download Now for iOS</p>
-            </div>
-            <div class="col-12 col-md-auto android">
-                <img src="/images/Android-logo.webp" loading="lazy" class="download-img" alt="...">
-                <p class="download-text">Download Now for Android</p>
-            </div>
+                <p class="text-width mb-0">Will be available soon!</p>
         </div>
     </div>
 </div>
@@ -390,25 +383,6 @@
                                     <p class="mb-0"><strong>Flight Auctions</strong> - If your schedule is flexible; there are discounted prices for sale available for you.</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq2" role="button" aria-expanded="false" aria-controls="collapseFaq2">How Much Does Private Charter Jet Cost?
-                        <i class="down"></i>
-                        </a>
-                        <div class="collapse" id="collapseFaq2">
-                            <div class="row col-md-12 pos-full">
-                                <div class="col-md-1 line-border mt-3">
-                                    <svg width="3" height="80" viewBox="0 0 3 364" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.1" width="10" height="364" fill="#4c4d4c"/>
-                                    </svg>
-                                </div>
-                                <div class="col-md-11 position">
-                                    <p class="mt-3 mb-0">JetOnset looks into its over 1700 available jets on the dates you are placing your reservation, and we ensure you get the lowest price possible. If you find another jet flight for less than we offer you, we will match the price and give you a 5% discount, if it is the same jet type, and the same travel route at the same time and date as yours.</p>
-                                </div>
-                                </div>
                         </div>
                     </div>
                 </div>
