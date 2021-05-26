@@ -71,7 +71,9 @@
                                 <div class="silver-info">&nbsp;</div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-3 book">
-                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }} justify-content-end">Book now</a>
+                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }} justify-content-end">
+                                {{($request->price > 0 && $request->order_status_id == 2) ? "Book now" : "In progress"}}
+                                </a>
                             </div>
                         </div>
                         
