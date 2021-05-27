@@ -67,7 +67,7 @@
                             <div class="col-6 col-sm-6 col-md-2">
                                 <div class="d-block d-sm-block d-md-none mt-4"></div>
                                 <div class="silver-info mb-2">Price (Incl. taxes)</div>
-                                <div class="center-bold">{{ $request->price }}</div>
+                                <div class="center-bold">${{ number_format($request->price,2) }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-3 book">
