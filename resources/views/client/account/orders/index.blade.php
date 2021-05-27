@@ -36,7 +36,7 @@
                             <div class="d-none d-sm-none d-md-block col-md-2"></div>
                             <div class="col-12 col-sm-12 col-md-2">
                                 <div class="silver-info mt-3">Price</div>
-                                <div class="order-price-field mb-3 mt-1">{{ $order->price }} &euro;</div>
+                                <div class="order-price-field mb-3 mt-1">&#36; {{ $order->price }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
 
