@@ -48,7 +48,7 @@
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">From Airport</div>
                                 <div class="center-bold">{{ $request->start_airport_name }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-1 col-sm-1 col-md-1">
                                 <img src="/images/plan-icon.svg" alt="plan icon">
@@ -56,7 +56,7 @@
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">To Airport</div>
                                 <div class="center-bold">{{ $request->end_airport_name }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-6 col-sm-6 col-md-1">
                                 <div class="d-block d-sm-block d-md-none mt-4"></div>
@@ -84,13 +84,13 @@
                             <div class="col-5 col-sm-5 col-md-2 country">
                                 <div class="silver-info mb-2">FROM STOP AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'from_stop_airport') }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-1 col-sm-1 col-md-1"></div>
                             <div class="col-5 col-sm-5 col-md-2 country">
                                 <div class="silver-info mb-2">TO STOP AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_stop_airport') }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-6 col-sm-6 col-md-1"></div>
                             <div class="col-6 col-sm-6 col-md-2"></div>
@@ -105,7 +105,7 @@
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">FROM RETURN AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'from_return_airport') }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-1 col-sm-1 col-md-1">
                                 <img src="/images/plan-icon-return.svg" alt="plan icon">
@@ -113,7 +113,7 @@
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">TO RETURN AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_return_airport') }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('d/m/Y') }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'return_date'))->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-6 col-sm-6 col-md-1"></div>
                             <div class="col-6 col-sm-6 col-md-2"></div>
