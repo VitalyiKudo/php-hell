@@ -223,13 +223,9 @@
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
                 <p><strong>All Private Jets in your pocket</strong></p>
-                <p class="text-width mb-0">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
-            </div>
-        </div>
-    </div>
-    <div class="container download-container">
-        <div class="row">
+                <p class="text-width mb-5">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
                 <p class="text-width mb-0">Will be available soon!</p>
+            </div>
         </div>
     </div>
 </div>

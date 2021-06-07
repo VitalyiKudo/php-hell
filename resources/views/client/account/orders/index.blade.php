@@ -26,12 +26,12 @@
                             <div class="col-12 col-sm-12 col-md-4 pr-0">
                                 <div class="silver-info mt-3">From Airport</div>
                                 <div class="order-start-airport mb-3 mt-1">{{ $order->start_airport_name }}</div>
-                                <div class="silver-info">departure date <span>{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</span></div>
+                                <div class="silver-info">departure date <span>{{ Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</span></div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 pl-0">
                                 <div class="silver-info mt-3">To Airport</div>
                                 <div class="order-finish-airport mb-3 mt-1">{{ $order->end_airport_name }}</div>
-                                <div class="silver-info">arrival date <span>{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</span></div>
+                                <div class="silver-info">arrival date <span>{{ Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</span></div>
                             </div>
                             <div class="d-none d-sm-none d-md-block col-md-2"></div>
                             <div class="col-12 col-sm-12 col-md-2">

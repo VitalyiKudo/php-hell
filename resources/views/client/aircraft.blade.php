@@ -25,16 +25,16 @@
             <div class="col planes-block">
                 <ul class="nav nav-tabs new-nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active active-link link-txt" id="vip-airliner-tab" data-toggle="tab" href="#vip-airliner" role="tab" aria-controls="vip-airliner" aria-selected="true">VIP airliner</a>
+                        <a class="nav-link link-txt" id="heavy-jets-tab" data-toggle="tab" href="#heavy-jets" role="tab" aria-controls="heavy-jets" aria-selected="false">Heavy Jet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-txt" id="ultra-long-range-jets-tab" data-toggle="tab" href="#ultra-long-range-jets" role="tab" aria-controls="ultra-long-range-jets" aria-selected="false">Ultra Long Range Jet</a>
+                        <a class="nav-link link-txt" id="mid-size-jets-tab" data-toggle="tab" href="#mid-size-jets" role="tab" aria-controls="mid-size-jets" aria-selected="false">Mid-size Jet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-txt" id="super-mid-size-jets-tab" data-toggle="tab" href="#super-mid-size-jets" role="tab" aria-controls="super-mid-size-jets" aria-selected="false">Super Mid-size Jet</a>
+                        <a class="nav-link link-txt" id="light-jets-tab" data-toggle="tab" href="#light-jets" role="tab" aria-controls="light-jets" aria-selected="false">Light Jet</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-txt" id="entry-level-jet-tab" data-toggle="tab" href="#entry-level-jet" role="tab" aria-controls="entry-level-jet" aria-selected="false">Entry-level jet</a>
+                    <li class="nav-item turbopop">
+                        <a class="nav-link last-nav-link link-txt" id="turbopop-tab" data-toggle="tab" href="#turbopop" role="tab" aria-controls="turbopop" aria-selected="false">Turbo Prop</a>
                     </li>
                 </ul>
             </div>
