@@ -583,8 +583,7 @@ class OrderController extends Controller
                 $search_update->save();
             }
         }
-        
-        
+
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
 
@@ -610,7 +609,6 @@ class OrderController extends Controller
 
         $pricing = Pricing::find($search->result_id);
 
-        
         $price = $order->price;
         $time = "00:00";
 

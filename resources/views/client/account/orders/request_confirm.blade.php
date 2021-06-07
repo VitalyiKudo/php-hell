@@ -44,11 +44,11 @@
                 <div class="row header-book-cities">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->departure }}</p>
+                        <p>{{ $start_airport_name }}</p>
                     </div>
                     
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->arrival }}</p>
+                        <p>{{ $end_airport_name }}</p>
                     </div>
 
                 </div>
