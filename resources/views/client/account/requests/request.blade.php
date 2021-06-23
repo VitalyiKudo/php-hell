@@ -223,14 +223,14 @@
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
                                             <div class="card-details-info">
-                                                <span>6+</span>
+                                                <span>1-12</span>
                                                 <span>Passengers:</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>6-12</span>
+                                                <span>28 cu ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -251,20 +251,22 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>1200nm</span>
+                                                <span>2614 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>360mph</span>
+                                                <span>360 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-
+                                
+                                <span class="span-airplane">Piper Cheyenne 4, Pilatus PC12, Merlin 3B, King air 90, King air 350, King air 200, TBM 850, Cessna caravan 2.</span>
+                                
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn book-now">Book now</a>
                                 </div>
@@ -341,14 +343,14 @@
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
                                             <div class="card-details-info">
-                                                <span>5+</span>
+                                                <span>1-8</span>
                                                 <span>Passengers:</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>6-10</span>
+                                                <span>45 cu ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -369,20 +371,22 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>2300nm</span>
+                                                <span>3704 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>490mph</span>
+                                                <span>534 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
  
+                                <span class="span-airplane">Phenom 300, Phenom 100, Sabreliner 40, Nextant 400, Learjet 45, Learjet 36a, Learjet 35, Learjet 31, Hawker 400, Falcon 10/100, Eclipse 500, Citation v encore, Citation 5, Citation ultra, Citation mustang, Citation 1, Citation CJ4, Citation CJ3, Citation bravo, Cessna CJ2, Beechcraft 400 XP.</span>
+
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
                                 </div>
@@ -459,14 +463,14 @@
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
                                             <div class="card-details-info">
-                                                <span>7+</span>
+                                                <span>1-11</span>
                                                 <span>Passengers:</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>6-12</span>
+                                                <span>125 cu ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -487,19 +491,21 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>3500nm</span>
+                                                <span>3912 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>540mph</span>
+                                                <span>603 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+
+                                <span class="span-airplane">Challenger 300, Citation excel, Citation 3, Citation latitude, Citation sovereign, Citation 7, Citation 10, Falcon 20, Falcon 50, G150 Astra, Gulfstream G200, Hawker 100, Hawker 800, Learjet 55, Learjet 60, Legacy 450, Sebreliner 75, Westwind 2.</span>
 
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
@@ -580,14 +586,14 @@
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
                                             <div class="card-details-info">
-                                                <span>10+</span>
+                                                <span>1-16</span>
                                                 <span>Passengers:</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>8-30</span>
+                                                <span>226 cu ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -608,19 +614,21 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>4800nm</span>
+                                                <span>8000 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>590mph</span>
+                                                <span>562 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+
+                                <span class="span-airplane">Hawker 4000, Legacy 600, Gulfstream 5, Gulfstream 4, Gulfstream G450, Global 6000, Falcon 900, Falcon 7X, Falcon 2000, Embraer lineage 1000, Challenger 605, Challenger 604, Challenger 601.</span>
 
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
