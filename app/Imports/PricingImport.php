@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\RemembersRowNumber;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Carbon\Carbon;
 
 class PricingImport implements ToModel, WithStartRow, WithBatchInserts, WithChunkReading
 {
@@ -29,13 +30,13 @@ class PricingImport implements ToModel, WithStartRow, WithBatchInserts, WithChun
             //'arrival' => (string)str_replace('-', ' ', $row[2]),
             'departure' => (string)$row[1],
             'arrival' => (string)$row[2],
-            'time_turbo' => $row[3]?Date::excelToDateTimeObject($row[3])->format('h:i'):'',
+            'time_turbo' => $row[3] ? $this->transformDateTime($row[3], 'h:i') : '',
             'price_turbo' => (int)$row[4],
-            'time_light' => $row[5]?Date::excelToDateTimeObject($row[5])->format('h:i'):'',
+            'time_light' => $row[5] ? $this->transformDateTime($row[5], 'h:i') : '',
             'price_light' => (int)$row[6],
-            'time_medium' => $row[7]?Date::excelToDateTimeObject($row[7])->format('h:i'):'',
+            'time_medium' => $row[7] ? $this->transformDateTime($row[7], 'h:i') : '',
             'price_medium' => (int)$row[8],
-            'time_heavy' => $row[9]?Date::excelToDateTimeObject($row[9])->format('h:i'):'',
+            'time_heavy' => $row[9] ? $this->transformDateTime($row[9], 'h:i') : '',
             'price_heavy' => (int)$row[10],
         ]);
     }
@@ -53,5 +54,15 @@ class PricingImport implements ToModel, WithStartRow, WithBatchInserts, WithChun
     public function chunkSize(): int
     {
         return 1000;
+    }
+    
+    private function transformDateTime(string $value, string $format = 'h:i')
+    {
+        try {
+            return Carbon::instance(Date::excelToDateTimeObject($value))->format($format);
+        } catch (\ErrorException $e) {
+            //return Carbon::createFromFormat($format, $value);
+            return "";
+        }
     }
 }
