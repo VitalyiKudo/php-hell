@@ -233,7 +233,11 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-2">
+        <p>
+        JetOnset is a team of IT and automation enthusiasts. We believe that the natural development of any industry should lead it towards greater transparency, industrial efficiency, and user-friendliness. Services must become easier and more accessible to more people to capture the opportunity only available at scale.
+        The platform we are creating will significantly change the rules of the game for all market participants in the direction of maximizing its efficiency. It will cover several of the most important aspects of the private aviation market. Intermediary services in booking flights Recruitment and registration of aircrews Interaction between aircraft operators FBO Online analytics
+        </p>
+            <!-- <div class="col-md-12 mb-2">
                 <h2>About JetOnset's Charter for Private Jets</h2>
             </div>
             <div class="col-md-6">
@@ -251,7 +255,7 @@
                     <a href="{{ url('about') }}" class="learn-more">More about JetOnset Co.</a>
                 </div>
 
-            </div>
+            </div> -->
 
 
         </div>
