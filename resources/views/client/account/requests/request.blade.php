@@ -230,8 +230,9 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>28 cub ft</span>
+                                                <span>28</span>
                                                 <span>Max bags</span>
+                                                <span>Cubic feet</span>
                                             </div>
                                         </li>
                                         <li>
