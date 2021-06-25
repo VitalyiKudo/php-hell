@@ -15120,12 +15120,12 @@ ul.dashed > li:before {
 }
 
 .card-body .card-body-details ul li:nth-child(1) .card-details-info span:first-child {
-  font-weight: 400;
+  font-weight: 300;
   color: #373737;
 }
 
 .card-body .card-body-details ul li:nth-child(2) .card-details-info span:first-child {
-  font-weight: 400;
+  font-weight: 300;
   color: #373737;
 }
 
