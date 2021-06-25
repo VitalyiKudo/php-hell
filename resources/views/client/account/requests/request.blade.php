@@ -230,7 +230,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>28 cu ft</span>
+                                                <span>28 cubic ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -251,7 +251,7 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>2614 mph</span>
+                                                <span>2500 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
@@ -350,7 +350,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>45 cu ft</span>
+                                                <span>45 cubic feet</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -371,7 +371,7 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>3704 mph</span>
+                                                <span>3700 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
@@ -470,7 +470,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>125 cu ft</span>
+                                                <span>125 cubic feet</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -491,7 +491,7 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>3912 mph</span>
+                                                <span>4000 mph</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
@@ -593,7 +593,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>226 cu ft</span>
+                                                <span>226 cubic feet</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
