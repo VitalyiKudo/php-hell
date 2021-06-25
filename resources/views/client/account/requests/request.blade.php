@@ -230,7 +230,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>28 cubic ft</span>
+                                                <span>28 cub ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -350,7 +350,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>45 cubic feet</span>
+                                                <span>45 cub ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -385,7 +385,7 @@
                                     </ul>
                                 </div>
  
-                                <span class="span-airplane">Phenom 300, Phenom 100, Sabreliner 40, Nextant 400, Learjet 45, Learjet 36a, Learjet 35, Learjet 31, Hawker 400, Falcon 10/100, Eclipse 500, Citation v encore, Citation 5, Citation ultra, Citation mustang, Citation 1, Citation CJ4, Citation CJ3, Citation bravo, Cessna CJ2, Beechcraft 400 XP.</span>
+                                <span class="span-airplane">Phenom 300, Sabreliner 40, Nextant 400, Learjet 45, Learjet 35, Hawker 400, Falcon 10/100, Eclipse 500, Citation 5, Cessna CJ2, Beechcraft 400 XP.</span>
 
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
@@ -470,7 +470,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>125 cubic feet</span>
+                                                <span>125 cub ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -505,7 +505,7 @@
                                     </ul>
                                 </div>
 
-                                <span class="span-airplane">Challenger 300, Citation excel, Citation 3, Citation latitude, Citation sovereign, Citation 7, Citation 10, Falcon 20, Falcon 50, G150 Astra, Gulfstream G200, Hawker 100, Hawker 800, Learjet 55, Learjet 60, Legacy 450, Sebreliner 75, Westwind 2.</span>
+                                <span class="span-airplane">Challenger 300, Citation 3, Citation 7, Citation 10, Falcon 20, Falcon 50, G150 Astra, Gulfstream G200, Hawker 800, Learjet 60, Legacy 450, Sebreliner 75, Westwind 2.</span>
 
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
@@ -593,7 +593,7 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>226 cubic feet</span>
+                                                <span>226 cub ft</span>
                                                 <span>Max bags</span>
                                             </div>
                                         </li>
@@ -628,7 +628,7 @@
                                     </ul>
                                 </div>
 
-                                <span class="span-airplane">Hawker 4000, Legacy 600, Gulfstream 5, Gulfstream 4, Gulfstream G450, Global 6000, Falcon 900, Falcon 7X, Falcon 2000, Embraer lineage 1000, Challenger 605, Challenger 604, Challenger 601.</span>
+                                <span class="span-airplane">Hawker 4000, Legacy 600, Gulfstream 5, Gulfstream G450, Global 6000, Falcon 900, Falcon 7X, Falcon 2000, Embraer lineage 1000, Challenger 605</span>
 
                                 <div class="book">
                                     <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
