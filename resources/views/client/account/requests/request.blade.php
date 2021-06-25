@@ -351,8 +351,9 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>45 cub ft</span>
+                                                <span>45</span>
                                                 <span>Max bags</span>
+                                                <span>Cubic feet</span>
                                             </div>
                                         </li>
                                         <li>
@@ -471,8 +472,9 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>125 cub ft</span>
+                                                <span>125</span>
                                                 <span>Max bags</span>
+                                                <span>Cubic feet</span>
                                             </div>
                                         </li>
                                         <li>
@@ -594,8 +596,9 @@
                                         <li>
                                             <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>226 cub ft</span>
+                                                <span>226</span>
                                                 <span>Max bags</span>
+                                                <span>Cubic feet</span>
                                             </div>
                                         </li>
                                         <li>
