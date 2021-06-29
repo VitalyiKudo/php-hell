@@ -219,7 +219,7 @@
                                 <tr>
                                     <td class="txt1"><span class='sub-text'>Passengers</span> </td>
                                     <td class="txt3"><span class='sub-text'>Max Bags</span></td>
-
+                                    <td class="txt4"><span class='sub-text'>Cruise speed</span></td>
                                     <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                 </tr>
                             </table>
