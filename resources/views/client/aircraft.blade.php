@@ -198,16 +198,21 @@
                             <table class="plane-details">
                                 <tr>
                                     <td class="table-portion txt1">
-                                        <span class='main-text'>4-8</span>
+                                        <span class='main-text'>1-16</span>
                                     </td>
                                     <td class="table-portion txt3">
-                                        <span class='main-text'>25-428</span>
+                                        <span class='main-text'>226</span>
                                         <span class="scale">ft<sup>3</sup></span>
                                     </td>
 
                                     <td class="table-portion2 txt2">
-                                        <span class='main-text'>2130-3729</span>
-                                        <span class="scale">km</span>
+                                        <span class='main-text'>8000</span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                    
+                                    td class="table-portion2 txt4">
+                                        <span class='main-text'>562</span>
+                                        <span class="scale">mph</span>
                                     </td>
                                 </tr>
 
@@ -230,15 +235,21 @@
                         <div class="container">
                             <div class="row plane-listing">
                                 <div class="col-sm-4">
-                                    <p> Citation Mustang</p>
-                                    <p> Citation S / II</p>
-                                    <p> Citation Ultra</p>
-                                    <p> Citation V</p>
+                                    <p> Hawker 4000</p>
+                                    <p> Legacy 600</p>
+                                    <p> Gulfstream 5</p>
+                                    <p> Gulfstream 4</p>
+                                    <p> Gulfstream G450</p>
+                                    <p> Global 6000</p>
+                                    <p> Falcon 900</p>
                                 </div>
                                 <div class="col-sm-4">
-                                    <p> Citation Hawker 400XP</p>
-                                    <p> Honda Jet</p>
-                                    <p> Learjet 35A</p>
+                                    <p> Falcon 7X</p>
+                                    <p> Falcon 2000</p>
+                                    <p> Embraer lineage 1000</p>
+                                    <p> Challenger 605</p>
+                                    <p> Challenger 604</p>
+                                    <p> Challenger 601</p>
                                 </div>
 
                             </div>
