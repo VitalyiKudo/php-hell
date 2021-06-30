@@ -210,7 +210,7 @@
                                         <span class="scale">mph</span>
                                     </td>
                                     
-                                    td class="table-portion2 txt4">
+                                    <td class="table-portion2 txt4">
                                         <span class='main-text'>562</span>
                                         <span class="scale">mph</span>
                                     </td>
