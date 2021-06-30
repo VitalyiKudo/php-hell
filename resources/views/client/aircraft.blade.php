@@ -343,22 +343,26 @@
                             <table class="plane-details">
                                 <tr>
                                     <td class="table-portion txt1">
-                                        <span class='main-text'> 6-8</span>
+                                        <span class='main-text'> 1-11</span>
                                     </td>
                                     <td class="table-portion txt3">
-                                        <span class='main-text'>50-77</span>
+                                        <span class='main-text'>125</span>
                                         <span class="scale">ft<sup>3</sup></span>
                                     </td>
                                     <td class="table-portion2 txt2">
-                                        <span class='main-text'>2434-4010</span>
-                                        <span class="scale">km</span>
+                                        <span class='main-text'>4000</span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                    <td class="table-portion2 txt4">
+                                        <span class='main-text'>603</span>
+                                        <span class="scale">mph</span>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="txt1"><span class='sub-text'>Passengers</span> </td>
                                     <td class="txt3"><span class='sub-text'>Max Bags</span></td>
-
+                                    <td class="txt4"><span class='sub-text'>Cruise speed</span></td>
                                     <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                 </tr>
                             </table>
@@ -374,13 +378,26 @@
                         <div class="container">
                             <div class="row plane-listing">
                                 <div class="col-sm-4">
-                                    <p> Learjet 40 / XR</p>
-                                    <p> Learjet 45 / XR</p>
-                                    <p> Learjet 55</p>
+                                    <p> Challenger 300</p>
+                                    <p> Citation excel</p>
+                                    <p> Citation 3</p>
+                                    <p> Citation latitude</p>
+                                    <p> Citation sovereign</p>
+                                    <p> Citation 7</p>
+                                    <p> Citation 10</p>
+                                    <p> Falcon 20</p>
+                                    <p> Falcon 50</p>
                                 </div>
                                 <div class="col-sm-4">
-                                    <p> Phenom 300</p>
-                                    <p> Premier I (Premier IA)</p>
+                                    <p> G150 Astra</p>
+                                    <p> Gulfstream G200</p>
+                                    <p> Hawker 100</p>
+                                    <p> Hawker 800</p>
+                                    <p> Learjet 55</p>
+                                    <p> Learjet 60</p>
+                                    <p> Legacy 450</p>
+                                    <p> Sebreliner 75</p>
+                                    <p> Westwind 2</p>
                                 </div>
 
                             </div>
@@ -407,21 +424,26 @@
                             <table class="plane-details">
                                 <tr>
                                     <td class="table-portion txt1">
-                                        <span class='main-text'> 5-7</span>
+                                        <span class='main-text'> 1-8</span>
                                     </td>
                                     <td class="table-portion txt3">
-                                        <span class='main-text'>45-64</span>
+                                        <span class='main-text'>45</span>
                                         <span class="scale">ft<sup>3</sup></span>
                                     </td>
                                     <td class="table-portion2 txt2">
-                                        <span class='main-text'>2048-3223 </span>
-                                        <span class="scale">km</span>
+                                        <span class='main-text'>2700 </span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                    <td class="table-portion2 txt4">
+                                        <span class='main-text'>534</span>
+                                        <span class="scale">mph</span>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="txt1"><span class='sub-text'>Passengers</span> </td>
                                     <td class="txt3"><span class='sub-text'>Max Bags</span></td>
+                                    <td class="txt4"><span class='sub-text'>Cruise speed</span></td>
                                     <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                 </tr>
                             </table>
@@ -438,11 +460,28 @@
                         <div class="container">
                             <div class="row plane-listing">
                                 <div class="col-sm-4">
-                                    <p> Citation II / IISP</p>
-                                    <p> Citation Jet (Cessna 525 CitationJet)</p>
+                                    <p> Phenom 300</p>
+                                    <p> Phenom 100</p>
+                                    <p> Sabreliner 40</p>
+                                    <p> Learjet 45</p>
+                                    <p> Learjet 36a</p>
+                                    <p> Learjet 35</p>
+                                    <p> Learjet 31</p>
+                                    <p> Hawker 400</p>
+                                    <p> Falcon 10/100</p>
+                                    <p> Eclipse 500</p>
                                 </div>
                                 <div class="col-sm-4">
-                                    <p> Citation M2</p>
+                                    <p> Citation v encore</p>
+                                    <p> Citation 5</p>
+                                    <p> Citation ultra</p>
+                                    <p> Citation mustang</p>
+                                    <p> Citation 1</p>
+                                    <p> Citation CJ4</p>
+                                    <p> Citation CJ3</p>
+                                    <p> Citation bravo</p>
+                                    <p> Cessna CJ2</p>
+                                    <p> Beechcraft 400 XP</p>
                                 </div>
 
                             </div>
@@ -528,21 +567,26 @@
                             <table class="plane-details">
                                 <tr>
                                     <td class="table-portion txt1">
-                                        <span class='main-text'> 6-8</span>
+                                        <span class='main-text'> 1-12</span>
                                     </td>
                                     <td class="table-portion txt3">
-                                        <span class='main-text'>50-78</span>
+                                        <span class='main-text'>28</span>
                                         <span class="scale">ft<sup>3</sup></span>
                                     </td>
                                     <td class="table-portion2 txt2">
-                                        <span class='main-text'>2434-4010</span>
-                                        <span class="scale">km</span>
+                                        <span class='main-text'>2500</span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                    <td class="table-portion2 txt4">
+                                        <span class='main-text'>360</span>
+                                        <span class="scale">mph</span>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="txt1"><span class='sub-text'>Passengers</span> </td>
                                     <td class="txt3"><span class='sub-text'>Max Bags</span></td>
+                                    <td class="txt4"><span class='sub-text'>Cruise speed</span></td>
                                     <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                 </tr>
                             </table>
@@ -557,14 +601,17 @@
                         <div class="container">
                             <div class="row plane-listing">
                                 <div class="col-sm-4">
-                                    <p> Learjet 40 / XR</p>
-                                    <p> Learjet 45 / XR</p>
-                                    <p> Learjet 55</p>
+                                    <p> Piper Cheyenne 4</p>
+                                    <p> Pilatus PC12</p>
+                                    <p> Merlin 3B</p>
+                                    <p> King air 90</p>
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <p> Phenom 300</p>
-                                    <p> Premier I</p>
+                                    <p> King air 350</p>
+                                    <p> King air 200</p>
+                                    <p> TBM 850</p>
+                                    <p> Cessna caravan 2</p>
                                 </div>
 
                             </div>
