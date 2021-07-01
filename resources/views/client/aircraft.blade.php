@@ -48,7 +48,7 @@
                         <div class="size-width">
                             <img class="d-block plane-pos" loading="lazy" src="/images/aircrafts/jet_types_8.png" alt="First slide">
                         </div>
-                        <div class="size-width">
+                        <!-- <div class="size-width">
                             <p class="plane-tab upcase">VIP Airliner</p>
                             <p class="mb-0 plane-tab-2">There are many good reasons why this class is called VIP Airliner, and that’s because they truly live up to their name. These jets have been designed for VIP’s from the ground up. Featuring a private bedroom, customized styling for all interiors, these planes are often used by Sports Teams and celebrities alike.
                                 <span class="extra_text">They can take you and your company anywhere you need to go, with a carrying capacity of over 100 passengers. They can travel 7,500 miles, unlocking limitless destinations for your next corporate retreat or your next concert hall. These are the crown jewels of the Airbus and Boeing Aircraft lines, and are truly something to behold.</span>
@@ -78,6 +78,44 @@
                                     <td class="txt1"><span class='sub-text'>Passengers</span> </td>
                                     <td class="txt3"><span class='sub-text'>Max Bags</span></td>
 
+                                    <td class="txt2"><span class='sub-text'>Max Range</span></td>
+                                </tr>
+                            </table>
+                        </div> -->
+                        <div class="size-width">
+                            <p class="mb-0 plane-tab upcase">Heavy Jet</p>
+                            <p class="mb-0 plane-tab-2">The Heavy Jets are getting closer in appearance to large commercial aircraft, and can hold a capacity of 18 passengers. These are complete with the luxurious amenities often found on commercial airliners as well as a potential 10 hour duration capacity of flight.
+                                <span class="extra_text"> These are the most common planes used for intercontinental flights due to their 4,000 mile range and are a favorite among the elite.</span></p>
+                            <div class="rd-more-section">
+
+                            </div>
+
+
+                            <table class="plane-details">
+                                <tr>
+                                    <td class="table-portion txt1">
+                                        <span class='main-text'>1-16</span>
+                                    </td>
+                                    <td class="table-portion txt3">
+                                        <span class='main-text'>226</span>
+                                        <span class="scale">ft<sup>3</sup></span>
+                                    </td>
+
+                                    <td class="table-portion2 txt2">
+                                        <span class='main-text'>8000</span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                    
+                                    <td class="table-portion2 txt4">
+                                        <span class='main-text'>562</span>
+                                        <span class="scale">mph</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="txt1"><span class='sub-text'>Passengers</span> </td>
+                                    <td class="txt3"><span class='sub-text'>Max Bags</span></td>
+                                    <td class="txt4"><span class='sub-text'>Cruise speed</span></td>
                                     <td class="txt2"><span class='sub-text'>Max Range</span></td>
                                 </tr>
                             </table>
