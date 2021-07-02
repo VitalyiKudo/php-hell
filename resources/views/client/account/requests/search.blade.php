@@ -971,7 +971,18 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            $.each(data, function(idx, obj) {
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+                            
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name && x.city, data);
+
+                            $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {
