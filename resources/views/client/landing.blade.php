@@ -527,7 +527,7 @@
                                 });
                             }
                             
-                            var withoutDuplicates = removeDuplicatesBy(x => x.name && x.city, data);
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
