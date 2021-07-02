@@ -344,7 +344,7 @@
                             
                             var withoutDuplicates = removeDuplicatesBy(x => x.name && x.city, data);
 
-                            $.each(data, function(idx, obj) {
+                            $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {
