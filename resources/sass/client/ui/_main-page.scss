@@ -368,6 +368,11 @@
     background-position: bottom right;
     background-size: 19rem;
 
+    @media (max-width: 576px) {
+        padding-bottom: 0;
+        background-image: none !important;
+    }
+
     @media (min-width: 576px) {
         padding-bottom: 20rem;
         background-size: 27rem;

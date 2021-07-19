@@ -12339,6 +12339,13 @@ h3 {
   background-size: 19rem;
 }
 
+@media (max-width: 576px) {
+  .main-get-mobile {
+    padding-bottom: 0;
+    background-image: none !important;
+  }
+}
+
 @media (min-width: 576px) {
   .main-get-mobile {
     padding-bottom: 20rem;
@@ -13590,6 +13597,14 @@ sup {
   border-radius: 1rem 0 0 1rem;
 }
 
+@media (max-width: 576px) {
+  .testimonials {
+    height: 280px;
+    padding-bottom: 0 !important;
+    background-image: none !important;
+  }
+}
+
 @media (min-width: 992px) {
   .testimonials {
     height: 570px;
@@ -13629,6 +13644,12 @@ sup {
 
 .testimonials-landing {
   padding-top: 6rem !important;
+}
+
+@media (max-width: 576px) {
+  .testimonials-landing {
+    padding-top: 1rem !important;
+  }
 }
 
 .testimonials-landing .carousel-item {
@@ -14884,6 +14905,14 @@ ul.dashed > li:before {
   color: #999999;
 }
 
+.order-page .right-order .span-airplane,
+.order-page .right-request .span-airplane,
+.request-page .right-order .span-airplane,
+.request-page .right-request .span-airplane {
+  font-size: 10px;
+  line-height: 15px;
+}
+
 .order-page .right-order .book,
 .order-page .right-request .book,
 .request-page .right-order .book,
@@ -15120,12 +15149,12 @@ ul.dashed > li:before {
 }
 
 .card-body .card-body-details ul li:nth-child(1) .card-details-info span:first-child {
-  font-weight: 300;
+  font-weight: 400;
   color: #373737;
 }
 
 .card-body .card-body-details ul li:nth-child(2) .card-details-info span:first-child {
-  font-weight: 300;
+  font-weight: 400;
   color: #373737;
 }
 
@@ -16050,12 +16079,19 @@ ul.dashed > li:before {
 }
 
 .service-fancy-p {
-  left: -30px;
+  left: 0px;
 }
 
 @media (min-width: 768px) {
   .service-fancy-p {
+    left: -30px;
     border-radius: 1rem 1rem 1rem 1rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-fancy-separator {
+    display: none;
   }
 }
 
@@ -16679,6 +16715,39 @@ ul.dashed > li:before {
 
   .book-page-nav a {
     color: #2B4060 !important;
+  }
+}
+
+@media (max-width: 578px) {
+  .size-width {
+    width: 100% !important;
+  }
+
+  .notif-delimiter {
+    display: none;
+  }
+
+  .text-padding {
+    padding: 0px 0px 0px 0px;
+  }
+
+  .txt-pos3 {
+    padding: 10rem 0px 0px 0;
+  }
+
+  .bg-plane,
+  .bg-plane2,
+  .bg-plane3,
+  .bg-plane4 {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .plane-pos,
+  .plane-pos2 {
+    width: inherit !important;
   }
 }
 

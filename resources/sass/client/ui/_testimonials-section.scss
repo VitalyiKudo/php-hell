@@ -17,6 +17,12 @@
     background-size: cover;
     border-radius: 1rem 0 0 1rem;
 
+    @media (max-width: 576px) {
+        height: 280px;
+        padding-bottom: 0 !important;
+        background-image: none !important;
+    }
+
 
     @media (min-width: 992px) {
         height:570px;
@@ -51,6 +57,9 @@
 
 .testimonials-landing {
     padding-top: 6rem !important;
+    @media (max-width: 576px){
+        padding-top: 1rem !important;
+    }
 
     .carousel-item {
         min-height: 0 !important;
