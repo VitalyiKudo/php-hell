@@ -17565,7 +17565,7 @@ ul.dashed > li:before {
   font-family: Capoon PERSONAL USE;
   font-style: normal;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 22px;
   line-height: 27px;
   align-self: flex-end;
@@ -17588,7 +17588,7 @@ ul.dashed > li:before {
   font-size: 20px;
   line-height: 23px;
   text-align: right;
-  color: #C6DDFF;
+  color: #c6ddff;
 }
 
 .header-page-image-booking-two .container-fluid .booking-row-right div p span {
@@ -17598,14 +17598,14 @@ ul.dashed > li:before {
   font-size: 26px;
   line-height: 30px;
   text-align: right;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .header-page-image-booking-two .header-book-class {
   font-weight: 300;
   font-size: 20px;
   line-height: 23px;
-  color: #C6DDFF;
+  color: #c6ddff;
 }
 
 .header-page-image-booking-two .header-book-class span {
@@ -17613,14 +17613,14 @@ ul.dashed > li:before {
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-  color: #C6DDFF;
+  color: #c6ddff;
 }
 
 .header-page-image-booking-two .text-center {
   font-weight: 500;
   font-size: 16px;
   text-transform: uppercase;
-  color: #C6DDFF;
+  color: #c6ddff;
 }
 
 .header-page-image-booking-two .header-book-time {
@@ -17637,17 +17637,17 @@ ul.dashed > li:before {
   top: 15px;
   left: 6px;
   width: 98%;
-  border-bottom: 1px dashed #C6DDFF;
+  border-bottom: 1px dashed #c6ddff;
   z-index: 1;
 }
 
 .header-page-image-booking-two .header-book-time span {
   display: inline-block;
-  background: url(/images/clock.png) no-repeat 10px center, linear-gradient(180deg, #C6DDFF 0%, rgba(198, 221, 255, 0.81) 100%);
+  background: url(/images/clock.png) no-repeat 10px center, linear-gradient(180deg, #c6ddff 0%, rgba(198, 221, 255, 0.81) 100%);
   border-radius: 30px;
   font-weight: 500;
   font-size: 16px;
-  color: #2A60AE;
+  color: #2a60ae;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 30px;
@@ -17661,7 +17661,7 @@ ul.dashed > li:before {
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .header-page-image-booking-two .header-book-cities div:first-child p {
@@ -17673,8 +17673,8 @@ ul.dashed > li:before {
 }
 
 .booking-bg {
-  border-top: 1px solid #EFF5F9;
-  background-color: #EFF5F9;
+  border-top: 1px solid #eff5f9;
+  background-color: #eff5f9;
   padding-left: 21%;
 }
 
@@ -17707,20 +17707,20 @@ ul.dashed > li:before {
 .booking-bg .booking-breadbranch li {
   display: inline-block;
   text-transform: uppercase;
-  color: #D3D9DC;
+  color: #d3d9dc;
   background: url(/images/booking_arrow.png) no-repeat right center;
   margin-bottom: 15px;
   padding-right: 25px;
 }
 
 .booking-bg .booking-breadbranch li span {
-  background-color: #D3D9DC;
+  background-color: #d3d9dc;
   display: inline-block;
   text-align: center;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 5px;
 }
 
@@ -17729,19 +17729,19 @@ ul.dashed > li:before {
 }
 
 .booking-bg .booking-breadbranch .booking-last {
-  color: #788EAD;
+  color: #788ead;
 }
 
 .booking-bg .booking-breadbranch .booking-last span {
-  background-color: #788EAD;
+  background-color: #788ead;
 }
 
 .booking-bg .booking-breadbranch .booking-active {
-  color: #D1AF9D;
+  color: #d1af9d;
 }
 
 .booking-bg .booking-breadbranch .booking-active span {
-  background-color: #D1AF9D;
+  background-color: #d1af9d;
 }
 
 .booking-bg .details-block {
@@ -17764,11 +17764,11 @@ ul.dashed > li:before {
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #2B4B7A;
+  color: #2b4b7a;
 }
 
 .booking-bg .details-block table.table tbody tr:nth-child(odd) {
-  background-color: #E5ECF1;
+  background-color: #e5ecf1;
 }
 
 .booking-bg .details-block table.table tbody tr td {
@@ -17789,7 +17789,7 @@ ul.dashed > li:before {
 }
 
 .booking-bg .details-block table.table tbody .total {
-  border-bottom: 2px solid #DBE4EC;
+  border-bottom: 2px solid #dbe4ec;
 }
 
 .booking-bg .details-block table.table tbody .total td {
@@ -17803,7 +17803,12 @@ ul.dashed > li:before {
 
 .booking-bg .details-block table.table tbody .total td:last-child {
   font-size: 28px;
-  color: #2A60AE;
+  color: #2a60ae;
+}
+
+.booking-bg .details-block table.table tbody .total-div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .booking-bg .details-block table.table tbody .pay-button-block {
@@ -17820,11 +17825,11 @@ ul.dashed > li:before {
 .booking-bg .details-block table.table tbody .pay-button-block .pay-button:visited:visited {
   margin-top: 25px;
   display: inline-block;
-  background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+  background: url(/images/arrow_pay.png) no-repeat 20px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375e97 0.01%, #294a7a 29.69%);
   opacity: 0.8;
   border-radius: 6px;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
   font-size: 16px;
   padding-top: 0;
@@ -17858,7 +17863,7 @@ ul.dashed > li:before {
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #2B4B7A;
+  color: #2b4b7a;
   opacity: 0.7;
   border-bottom: 2px solid rgba(43, 75, 122, 0.2);
   padding-left: 15px;
@@ -17929,7 +17934,7 @@ ul.dashed > li:before {
 }
 
 .booking-bg .info-square-block form #birth_date {
-  background: #FFF url(/images/callender_booking.png) no-repeat 93% center;
+  background: #fff url(/images/callender_booking.png) no-repeat 93% center;
 }
 
 .booking-bg .info-succeed-block {
@@ -17971,7 +17976,7 @@ ul.dashed > li:before {
 .booking-bg .info-succeed-block .card-body {
   margin-top: 16px;
   margin-bottom: 21px;
-  background: linear-gradient(180deg, #FFFFFF 83.07%, #f7f9f9 100%);
+  background: linear-gradient(180deg, #ffffff 83.07%, #f7f9f9 100%);
 }
 
 .booking-bg .info-succeed-block .card-body .custom-flight-page {
@@ -17998,12 +18003,12 @@ ul.dashed > li:before {
 }
 
 .booking-bg .info-succeed-block .card-body .custom-flight-page p span {
-  color: #5198FF;
+  color: #5198ff;
 }
 
 .booking-bg .info-succeed-block .card-body .custom-flight-page a:link,
 .booking-bg .info-succeed-block .card-body .custom-flight-page a:visited {
-  color: #294A7A;
+  color: #294a7a;
   border: 1px solid rgba(42, 96, 174, 0.3);
   border-radius: 6px;
   display: inline-block;
@@ -18037,6 +18042,6 @@ ul.dashed > li:before {
 }
 
 .booking-bg .info-succeed-block .card-body .custom-flight-page .succeed-order span {
-  color: #5198FF;
+  color: #5198ff;
 }
 
