@@ -13,7 +13,7 @@
             <div class="offset-md-1 col-md-8">
                 <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
                     @csrf
-                    <div class="row form-body">
+                    <div class="row form-body form-search-mobile">
                         <div class="col-lg-10 mb-2 mt-4 home-title">
                             <h1>Fly different today: Search your private jet</h1>
                         </div>
@@ -61,11 +61,11 @@
                         </div>
                         <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                             <div class="input-group input-style">
+                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                     <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
-                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
 
                             </div>
                         </div>
@@ -81,7 +81,7 @@
 </div>
 <div class="section mouse-top">
     <div class="container">
-        <div class="row">
+        <div class="row scroll-down-fix">
             <div class="col-12 mb-5 ml-5">
                 <div class="col-5 float-left">
                     <a href="#how-it-works">
@@ -233,7 +233,7 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-        <p>
+        <p class="text-fix-JetOnSet">
         JetOnset is a team of IT and automation enthusiasts. We believe that the natural development of any industry should lead it towards greater transparency, industrial efficiency, and user-friendliness. Services must become easier and more accessible to more people to capture the opportunity only available at scale.
         The platform we are creating will significantly change the rules of the game for all market participants in the direction of maximizing its efficiency. It will cover several of the most important aspects of the private aviation market. Intermediary services in booking flights Recruitment and registration of aircrews Interaction between aircraft operators FBO Online analytics
         </p>

@@ -52,7 +52,7 @@
                     <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
 
                         @csrf
-                        <div class="row form-body mt-5">
+                        <div class="row form-body form-search-mobile mt-5">
                             <div class="col-lg-10 mb-2 mt-4 home-title">
                                 <h1>Fly different today: Search your private jet</h1>
                             </div>
@@ -102,11 +102,11 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
                                 </div>
                             </div>
 
