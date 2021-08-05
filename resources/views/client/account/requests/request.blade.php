@@ -212,13 +212,6 @@
                                 </div>
 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_turbo }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -260,6 +253,13 @@
                                             <div class="card-details-info">
                                                 <span>360 mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_turbo }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -330,13 +330,6 @@
                                 </div>
 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_light }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -378,6 +371,13 @@
                                             <div class="card-details-info">
                                                 <span>534 mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_light }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -448,13 +448,6 @@
                                 </div>
                                 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_medium }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -496,6 +489,13 @@
                                             <div class="card-details-info">
                                                 <span>603 mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_medium }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -569,13 +569,6 @@
                                 
                                 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_heavy }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -617,6 +610,13 @@
                                             <div class="card-details-info">
                                                 <span>562 mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_heavy }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
