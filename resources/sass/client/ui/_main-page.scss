@@ -190,7 +190,7 @@
 }
 
 .form-body {
-    position: absolute !important;
+    position: relative !important;
     background: linear-gradient(180deg, #ffffff 83.07%, rgba(255, 255, 255, 0.84) 100%);
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2);
@@ -510,6 +510,7 @@
 @media (max-width: 565px) {
     .form-search-mobile {
         max-width: 100%;
+        margin: 0;
     }
     .text-pos {
         left: -10px;

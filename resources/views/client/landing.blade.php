@@ -10,7 +10,7 @@
 <div class="section main-search">
     <div class="container">
         <div class="row">
-            <div class="offset-md-1 col-md-8">
+            <div class="offset-md-1">
                 <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
                     @csrf
                     <div class="row form-body form-search-mobile">
