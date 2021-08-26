@@ -907,9 +907,7 @@
             });
 
             var nowDate = new Date();
-            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-            var maxLimitDate = new Date(nowDate.getFullYear() + 1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-            var minDateForSecondPicker;
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
             $('input[name="flightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
