@@ -260,13 +260,17 @@
 
 @push('scripts')
     <script type="text/javascript">
-
+        var nowDate = new Date();
+        var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+        var maxLimitDate = new Date(nowDate.getFullYear() + 1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+        var minDateForSecondPicker;
         $(function() { 
 
             $('input[name="birth_date"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                minDate: today,
             });
             
             $('input[name="birth_date"]').val('');
