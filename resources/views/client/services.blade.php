@@ -24,7 +24,7 @@
                 <h5 class="services-h2">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 img-align">
+                    <div class="col-md-1 pr-md-0 img-align service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
@@ -43,7 +43,7 @@
                 <p class="services-p color-white">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
+                    <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">
@@ -60,7 +60,7 @@
                 <p class="services-p color-white">Do you want to move a priceless or prized possession? From multi-million dollar luxury custom cars to archeological artifacts and relics of art from the past - there is no safer way to relocate them than with a private chartered jet.</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
+                    <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
@@ -79,7 +79,7 @@
                 <p class="services-p color-white">With the rise of medical tourism as a better alternative for certain individuals in certain situations, JetOnset can maximize your comfort and experience on the way to or from your treatment!</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
+                    <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">

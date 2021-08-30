@@ -53,7 +53,7 @@
                     <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
 
                         @csrf
-                        <div class="row form-body mt-5">
+                        <div class="row form-body form-search-mobile mt-5">
                             <div class="col-lg-10 mb-2 mt-4 home-title">
                                 <h1>Fly different today: Search your private jet</h1>
                             </div>
@@ -103,11 +103,11 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
                                 </div>
                             </div>
 
@@ -209,13 +209,6 @@
                                 </div>
 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_turbo }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -257,6 +250,13 @@
                                             <div class="card-details-info">
                                                 <span>360mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_turbo }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -327,13 +327,6 @@
                                 </div>
 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_light }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -375,6 +368,13 @@
                                             <div class="card-details-info">
                                                 <span>490mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_light }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -445,13 +445,6 @@
                                 </div>
                                 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_medium }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -493,6 +486,13 @@
                                             <div class="card-details-info">
                                                 <span>540mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_medium }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -566,13 +566,6 @@
                                 
                                 
                                 <div class="card-body-details">
-                                    <div class="flight-time">
-                                        <img src="{{ asset('images/time.svg') }}" alt="time">
-                                        <div class="card-details-info-time">
-                                            <span>{{ $searchResults->time_heavy }}</span>
-                                            <span>Flight Time:</span>
-                                        </div>
-                                    </div>
                                     <ul>
                                         <li>
                                             <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
@@ -614,6 +607,13 @@
                                             <div class="card-details-info">
                                                 <span>590mph</span>
                                                 <span>Max Speed</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('images/time.svg') }}" alt="time">
+                                            <div class="card-details-info">
+                                                <span>{{ $searchResults->time_heavy }}</span>
+                                                <span>Flight Time: </span>
                                             </div>
                                         </li>
                                     </ul>
@@ -897,11 +897,16 @@
                 $('.hover_bkgr_fricc').hide();
             });
 
+            var nowDate = new Date();
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+            var maxLimitDate = new Date(nowDate.getFullYear() + 1, nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+            var minDateForSecondPicker;
             $('input[name="flightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
-                autoUpdateInput: false
+                autoUpdateInput: false,
+                minDate: today,
             });
 
             /*
@@ -971,7 +976,18 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            $.each(data, function(idx, obj) {
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+                            
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                            $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {

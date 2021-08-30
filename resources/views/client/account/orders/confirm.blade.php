@@ -114,8 +114,12 @@
                             @endif
 
                             <tr class="total">
-                                <td>Total:</td>
-                                <td>&#36;{{ number_format($total_price, 2, '.', ' ') }}</td>
+                                <th colspan="2">
+                                    <div class="total-div">
+                                        <div>Total:</div>
+                                        <div>&#36;{{ number_format($total_price, 2, '.', ' ') }}</div>
+                                    </div>
+                                </th>
                             </tr>
                             <tr class="pay-button-block">
                                 <td colspan="2">

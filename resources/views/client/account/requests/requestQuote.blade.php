@@ -299,13 +299,15 @@
 @push('scripts')
     
     <script type="text/javascript">
-
+        var nowDate = new Date();
+        var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
         $(function() {
 
             $('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                minDate: today,
             });
             //$('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').val('');
 
@@ -333,7 +335,18 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            $.each(data, function(idx, obj) {
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+                            
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                            $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {

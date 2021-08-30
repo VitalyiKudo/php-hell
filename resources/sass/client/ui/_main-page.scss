@@ -3,7 +3,7 @@
 //
 
 .main-search {
-    margin-top: -8.5rem;
+    // margin-top: -8.5rem;
     padding-top: 10rem;
     font-family: $main-font-family;
 
@@ -16,12 +16,12 @@
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
-        height:510px;
+        height: 510px;
     }
 
     @media (min-width: 1600px) {
         padding-top: 15rem;
-        background-image: url("/images/main-wallpaper.png") ;
+        background-image: url("/images/main-wallpaper.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -29,7 +29,7 @@
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
-        height:650px;
+        height: 650px;
     }
     @media (min-width: 992px) {
         .col-lg-1 {
@@ -70,12 +70,12 @@
     }
 
     .input-group-text {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         border: 1px solid #ededed;
         border-left: none;
         border-radius: 0 0.2rem 0.2rem 0 !important;
         padding: 0.2rem 0.4rem;
-        border-right:none
+        border-right: none;
     }
 
     .icon-img {
@@ -113,14 +113,14 @@
         width: 100%;
         height: 2.75rem;
         font-size: 0.9rem;
-        color: #C6DDFF;
+        color: #c6ddff;
         background-color: $blue;
         border: 1px solid $blue;
         border-radius: 0.2rem;
     }
 
     .scroll-mouse2 {
-        margin-top:8rem !important;
+        margin-top: 8rem !important;
     }
 
     .scroll-button {
@@ -160,8 +160,6 @@
             border-radius: 6px 0px 0px 6px;
             color: #373737;
         }
-
-
     }
 
     @media (min-width: 992px) {
@@ -188,19 +186,18 @@
             border-radius: 6px 0px 0px 6px;
             color: #373737;
         }
-
     }
 }
 
-    .form-body {
-        position: absolute;    
-        background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
-        opacity: 0.9;
-        border: 1px solid rgba(42, 96, 174, 0.2);
-        box-sizing: border-box;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-        border-radius: 8px;
-    }
+.form-body {
+    position: relative !important;
+    background: linear-gradient(180deg, #ffffff 83.07%, rgba(255, 255, 255, 0.84) 100%);
+    opacity: 0.9;
+    border: 1px solid rgba(42, 96, 174, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
 
 .main-works {
     padding-top: 4rem;
@@ -230,7 +227,7 @@
     .devider2 {
         display: flex;
         margin-top: -2rem !important;
-     }
+    }
 
     @media (min-width: 992px) {
         .col-lg-1 {
@@ -246,7 +243,6 @@
     .card-img-top {
         width: 50%;
         margin: auto;
-
     }
 
     .card {
@@ -263,11 +259,10 @@
         //left: 320px;
         //top: 1098px;
 
-        background: linear-gradient(180deg, #FFFFFF 45.14%, #EDF5FB 118.75%);
+        background: linear-gradient(180deg, #ffffff 45.14%, #edf5fb 118.75%);
         opacity: 0.9;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
         border-radius: 32px;
-
 
         @media (min-width: 1200px) {
             min-height: 8rem !important;
@@ -283,13 +278,12 @@
         //border-radius: 0.4rem;
         /* Rectangle 21 */
 
-        background: linear-gradient(180deg, #FFFFFF 45.14%, #EDF5FB 118.75%);
+        background: linear-gradient(180deg, #ffffff 45.14%, #edf5fb 118.75%);
         opacity: 0.9;
         border: 2px solid rgba(202, 157, 134, 0.5);
         box-sizing: border-box;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
         border-radius: 32px;
-
     }
 
     .card-body {
@@ -317,12 +311,12 @@
         padding-bottom: 4rem;
     }
 
-    .luxury-travel-image  {
+    .luxury-travel-image {
         background-position: left !important;
         background-image: url("/images/luxury-travel-photo.jpg");
     }
 
-    .corporate-travel-image  {
+    .corporate-travel-image {
         background-image: url("/images/corporate-travel-photo.jpg");
     }
 
@@ -334,14 +328,14 @@
         }
 
         a {
-           display: block;
-           text-align: center;
-           padding: 0.35rem 1.5rem;
-           color: $white;
-           background-color: $headings-color;
-           border: 1px solid $headings-color;
-           border-radius: 0.2rem;
-           cursor: pointer;
+            display: block;
+            text-align: center;
+            padding: 0.35rem 1.5rem;
+            color: $white;
+            background-color: $headings-color;
+            border: 1px solid $headings-color;
+            border-radius: 0.2rem;
+            cursor: pointer;
         }
 
         a:hover {
@@ -367,6 +361,11 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 19rem;
+
+    @media (max-width: 576px) {
+        padding-bottom: 0;
+        background-image: none !important;
+    }
 
     @media (min-width: 576px) {
         padding-bottom: 20rem;
@@ -432,32 +431,30 @@
 .learn-more {
     display: block;
     text-align: center !important;
-    color: #FFFFFF !important;
-    padding:10px;
-    text-decoration:none !important;
+    color: #ffffff !important;
+    padding: 10px;
+    text-decoration: none !important;
 
-
-    background: linear-gradient(180deg, #CA9D86 0%, #B58267 29.69%);
+    background: linear-gradient(180deg, #ca9d86 0%, #b58267 29.69%);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-
 }
 
 .see-more {
     padding: 7px 50px !important;
-    background: linear-gradient(180deg, #CA9D86 0%, #B58267 29.69%);
+    background: linear-gradient(180deg, #ca9d86 0%, #b58267 29.69%);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
 }
-.card-text-h{
+.card-text-h {
     padding-top: 0rem;
     margin: 0rem;
     font-size: 1rem;
     text-align: center;
     font-weight: 600;
-    margin-top:10px;
+    margin-top: 10px;
 }
-.card-text-p{
+.card-text-p {
     padding-top: 0rem;
     font-size: 1rem;
     text-align: center;
@@ -467,14 +464,13 @@
     width: 87.5%;
 }
 .visit-card {
-    background: linear-gradient(180deg, #FFFFFF 45.14%, #EDF5FB 118.75%) repeat;
+    background: linear-gradient(180deg, #ffffff 45.14%, #edf5fb 118.75%) repeat;
     opacity: 0.9;
     border: 1px solid rgba(42, 96, 174, 0.2) !important;
     box-sizing: border-box;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: 16px;
     color: #000000;
-
 }
 
 .visit-card a {
@@ -482,11 +478,10 @@
 }
 .service-headline {
     margin-left: 55px;
-
 }
 .scroll-arrow {
-    margin-top:50px;
-    margin-left:20px;
+    margin-top: 50px;
+    margin-left: 20px;
     opacity: 0.7;
 }
 
@@ -498,7 +493,7 @@
     opacity: 0.7;
 }
 .bd-input {
-    border-left:none !important;
+    border-left: none !important;
 }
 
 ::placeholder {
@@ -506,4 +501,21 @@
 }
 .mouse-top {
     margin-top: 6rem;
+}
+
+.scroll-down-fix {
+    overflow: hidden;
+}
+
+@media (max-width: 565px) {
+    .form-search-mobile {
+        max-width: 100%;
+        margin: 0;
+    }
+    .text-pos {
+        left: -10px;
+    }
+    .text-fix-JetOnSet {
+        margin: 0 15px !important;
+    }
 }

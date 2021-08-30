@@ -10,10 +10,10 @@
 <div class="section main-search">
     <div class="container">
         <div class="row">
-            <div class="offset-md-1 col-md-8">
+            <div class="offset-md-1">
                 <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
                     @csrf
-                    <div class="row form-body">
+                    <div class="row form-body form-search-mobile">
                         <div class="col-lg-10 mb-2 mt-4 home-title">
                             <h1>Fly different today: Search your private jet</h1>
                         </div>
@@ -61,11 +61,11 @@
                         </div>
                         <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                             <div class="input-group input-style">
+                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                     <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
                                 </div>
-                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
 
                             </div>
                         </div>
@@ -81,7 +81,7 @@
 </div>
 <div class="section mouse-top">
     <div class="container">
-        <div class="row">
+        <div class="row scroll-down-fix">
             <div class="col-12 mb-5 ml-5">
                 <div class="col-5 float-left">
                     <a href="#how-it-works">
@@ -176,7 +176,7 @@
                 <h5 class="services-h2 ">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
+                    <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-10 service-fancy-p">
@@ -198,7 +198,7 @@
                 <p class="services-p color-white">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0">
+                    <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
                     <div class="col-md-11 service-fancy-p">
@@ -233,7 +233,7 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-        <p>
+        <p class="text-fix-JetOnSet">
         JetOnset is a team of IT and automation enthusiasts. We believe that the natural development of any industry should lead it towards greater transparency, industrial efficiency, and user-friendliness. Services must become easier and more accessible to more people to capture the opportunity only available at scale.
         The platform we are creating will significantly change the rules of the game for all market participants in the direction of maximizing its efficiency. It will cover several of the most important aspects of the private aviation market. Intermediary services in booking flights Recruitment and registration of aircrews Interaction between aircraft operators FBO Online analytics
         </p>
@@ -490,6 +490,8 @@
 
 @push('scripts')
     <script type="text/javascript">
+        var nowDate = new Date();
+        var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
 
         $(function() {
 
@@ -501,6 +503,7 @@
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                minDate: today,
             });
             $('input[name="flightDate"]').val('');
             $('input[name="flightDate"]').attr("placeholder","Date & Time");
@@ -518,7 +521,18 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            $.each(data, function(idx, obj) {
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+                            
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                            $.each(withoutDuplicates, function(idx, obj) {
                                 if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
                                     output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
                                 } else {
