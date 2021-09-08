@@ -372,6 +372,8 @@ class OrderController extends Controller
                     $money->setCurrency('USD');
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
+                    exit($total_price);
+
                     try {
                         $response = $payments_api->createPayment($create_payment_request);
                         // If there was an error with the request we will
@@ -771,6 +773,7 @@ class OrderController extends Controller
                     $money = new Money();
                     $money->setAmount($total_price);
                     $money->setCurrency('USD');
+
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
                     try {
