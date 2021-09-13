@@ -255,7 +255,7 @@ class OrderController extends Controller
         
         $applicationId = getenv($upper_case_environment.'_APP_ID');
         $locationId = getenv($upper_case_environment.'_LOCATION_ID');
-        
+
         $environment = $_ENV["ENVIRONMENT"];
         $access_token =  getenv($upper_case_environment.'_ACCESS_TOKEN');
         
@@ -771,6 +771,7 @@ class OrderController extends Controller
                     $money = new Money();
                     $money->setAmount($total_price);
                     $money->setCurrency('USD');
+
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
                     try {
