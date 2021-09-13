@@ -503,7 +503,7 @@
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
-                minDate: today,
+                isInvalidDate: (e) => new Date(e) < today
             });
             $('input[name="flightDate"]').val('');
             $('input[name="flightDate"]').attr("placeholder","Date & Time");
@@ -617,7 +617,9 @@
                 var flight_date = $(this).find('input[name="flightDate"]').val();
                 var passengers = $(this).find('input[name="passengers"]').val();
                 var html_message = '<span class="search-error">This field is required.</span>';
-                
+                var nowDate = new Date();
+                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
+
                 if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
                     $('.search-error').remove();
                     
@@ -629,6 +631,9 @@
                     }
                     if(flight_date.length <= 0){
                         $(this).find('input[name="flightDate"]').parent('div').append(html_message);
+                    }
+                    if(flight_date.length && new Date(flight_date) < today){
+                        $(this).find('input[name="flightDate"]').parent('div').append('<span class="search-error">Error.</span>');
                     }
                     if(passengers.length <= 0){
                         $(this).find('input[name="passengers"]').parent('div').append(html_message);
