@@ -368,7 +368,7 @@ class OrderController extends Controller
                     $payments_api = $client->getPaymentsApi();
 
                     $money = new Money();
-                    $money->setAmount($total_price);
+                    $money->setAmount($total_price*100);
                     $money->setCurrency('USD');
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
@@ -769,7 +769,7 @@ class OrderController extends Controller
                     $payments_api = $client->getPaymentsApi();
 
                     $money = new Money();
-                    $money->setAmount($total_price);
+                    $money->setAmount($total_price*100);
                     $money->setCurrency('USD');
 
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
