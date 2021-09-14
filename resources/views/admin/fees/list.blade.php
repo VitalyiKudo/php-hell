@@ -58,7 +58,7 @@
                                         <tr>
                                             <td class="align-middle">{{ $loop->iteration + $feeses->firstItem() - 1 }}</td>
                                             <td class="align-middle">{{ $fees->item }}</td>
-                                            <td class="align-middle">{{ $fees->amount }}</td>
+                                            <td class="align-middle">{{ round($fees->amount, 2) }}</td>
                                             <td class="align-middle">{{ $fees->type }}</td>
                                             <td class="align-middle {{ $fees->active ? 'text-success' : 'text-danger' }}">{{ $fees->active ? 'Yes' : 'No' }}</td>
                                             <td class="align-middle {{ $fees->sall ? 'text-success' : 'text-danger' }}">{{ $fees->sall ? 'Yes' : 'No' }}</td>
