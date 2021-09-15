@@ -15398,7 +15398,7 @@ ul.dashed > li:before {
 
 @media (min-width: 992px) {
   .main-search {
-    padding-top: 15rem;
+    padding-top: 33rem;
     background-image: url("/images/main-wallpaper.webp");
     background-repeat: no-repeat;
     background-position: center;
@@ -15412,7 +15412,7 @@ ul.dashed > li:before {
 
 @media (min-width: 992px) {
   .main-search {
-    padding-top: 15rem;
+    padding-top: 33rem;
     background-image: url("/images/main-wallpaper.png");
     background-repeat: no-repeat;
     background-position: center;
