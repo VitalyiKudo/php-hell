@@ -306,6 +306,13 @@
   }
 }
 
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 3rem 1rem;
+    position: relative !important;
+  }
+}
+
 @media (min-width: 992px) {
   .custom-navbar {
     padding: 3rem 1rem;
@@ -325,7 +332,6 @@
 
 .custom-navbar {
   padding: 3rem 1rem;
-  position: absolute !important;
 
   .logo-img {
     width: 150px;
