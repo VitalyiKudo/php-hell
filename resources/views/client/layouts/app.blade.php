@@ -195,7 +195,7 @@
 
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-4 order-3 mb-lg-3">
-                        <p class="footer-copyright-text mb-0">Copyright © 2020 JetOnset Co.. All rights reserved.</p>
+                        <p class="footer-copyright-text mb-0">Copyright © 2022 JetOnset Co.. All rights reserved.</p>
                     </div>
 
                     <div class="col-12 col-lg-4 order-1 mb-3">
