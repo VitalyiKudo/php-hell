@@ -11652,6 +11652,7 @@ h3 {
 
 .custom-navbar {
   padding: 3rem 1rem;
+  position: absolute !important;
 }
 
 .custom-navbar .navbar-brand {
@@ -15315,6 +15316,7 @@ ul.dashed > li:before {
 @media (min-width: 992px) {
   .custom-navbar {
     padding: 3rem 1rem;
+    position: absolute !important;
   }
 }
 
@@ -15330,6 +15332,7 @@ ul.dashed > li:before {
 
 .custom-navbar {
   padding: 3rem 1rem;
+  position: absolute !important;
 }
 
 .custom-navbar .logo-img {
