@@ -633,7 +633,7 @@
                         $(this).find('input[name="flightDate"]').parent('div').append(html_message);
                     }
                     if(flight_date.length && new Date(flight_date) < today){
-                        $(this).find('input[name="flightDate"]').parent('div').append('<span class="search-error">Error.</span>');
+                        $(this).find('input[name="flightDate"]').parent('div').append('<span class="search-error">Choose another date</span>');
                     }
                     if(passengers.length <= 0){
                         $(this).find('input[name="passengers"]').parent('div').append(html_message);
