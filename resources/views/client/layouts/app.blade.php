@@ -182,7 +182,8 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
                         <h5 class="column-title text-uppercase">Contact</h5>
                         <p class="mb-3">If you have any questions or concerns, don't hesitate to reach out to us today! We'are happy to help!</p>
-                        <a href="mailto:info@jetonset.com"><p class="mb-3"><i class="fas fa-envelope mr-3"></i>info@jetonset.com</p></a>        
+                        <a href="mailto:info@jetonset.com"><p class="mb-3"><i class="fas fa-envelope mr-3"></i>info@jetonset.com</p></a>
+                        <p class="mb-3">JetOnset does not own or operate aircraft. All flights are operated by FAA Certified Part 135 air carriers. Carriers providing service for JetOnset clients must meet both FAA requirements and additional JetOnset standards.</p>
                     </div>
 
                     <div class="col-12 col-md-6 col-lg-4 mb-5">
@@ -194,7 +195,7 @@
 
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-4 order-3 mb-lg-3">
-                        <p class="footer-copyright-text mb-0">Copyright © 2020 JetOnset Co.. All rights reserved.</p>
+                        <p class="footer-copyright-text mb-0">Copyright © 2022 JetOnset Co.. All rights reserved.</p>
                     </div>
 
                     <div class="col-12 col-lg-4 order-1 mb-3">
