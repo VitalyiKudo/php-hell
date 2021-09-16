@@ -368,7 +368,7 @@ class OrderController extends Controller
                     $payments_api = $client->getPaymentsApi();
 
                     $money = new Money();
-                    $money->setAmount($total_price*100);
+                    $money->setAmount($total_price);
                     $money->setCurrency('USD');
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
@@ -390,8 +390,14 @@ class OrderController extends Controller
                         }
                         if ($response->isSuccess()) {
                             //Order::where('id', $order->id)->update(['order_status_id' => 3]);
+
                             $payment = $response->getResult()->getPayment();
                             $payment_id = $payment->getId();
+                            
+                            echo "<pre>";
+                            print_r($payment);
+                            echo "</pre>";
+                            exit();
 
                             $comment = "";
                             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
