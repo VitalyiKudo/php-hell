@@ -332,7 +332,7 @@ class OrderController extends Controller
         $messages = NULL;
         $cart_errors = [];
         
-        $request_method = 'get';
+        $request_method = 'get'; 
         
         if ($request->isMethod('post')){
             
@@ -356,7 +356,6 @@ class OrderController extends Controller
                     'is_accepted' => 'required',
                 ]
             );
-
             
             if ($validator->fails()){
                 $messages = $validator->messages(); 
@@ -366,7 +365,7 @@ class OrderController extends Controller
                 if (!is_null($nonce)) {
 
                     $payments_api = $client->getPaymentsApi();
-
+                    
                     $money = new Money();
                     $money->setAmount($total_price);
                     $money->setCurrency('USD');
@@ -388,16 +387,12 @@ class OrderController extends Controller
                             //exit();
 
                         }
+                        
                         if ($response->isSuccess()) {
                             //Order::where('id', $order->id)->update(['order_status_id' => 3]);
 
                             $payment = $response->getResult()->getPayment();
                             $payment_id = $payment->getId();
-                            
-                            echo "<pre>";
-                            print_r($payment);
-                            echo "</pre>";
-                            exit();
 
                             $comment = "";
                             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
@@ -743,7 +738,7 @@ class OrderController extends Controller
         $cart_errors = [];
         
         $request_method = 'get';
-        
+
         if ($request->isMethod('post')){
             
             $request_method = 'post';    
@@ -803,11 +798,6 @@ class OrderController extends Controller
                             //Order::where('id', $order->id)->update(['order_status_id' => 3]);
                             $payment = $response->getResult()->getPayment();
                             $payment_id = $payment->getId();
-                            
-                            echo "<pre>";
-                            print_r($payment);
-                            echo "</pre>";
-                            exit();
 
                             $comment = "";
                             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;

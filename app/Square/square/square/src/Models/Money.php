@@ -33,7 +33,7 @@ class Money implements \JsonSerializable
      * in cents. Monetary amounts can be positive or negative. See the specific
      * field description to determine the meaning of the sign in a particular case.
      */
-    public function getAmount(): ?int
+    public function getAmount(): ?float
     {
         return $this->amount;
     }
@@ -48,7 +48,7 @@ class Money implements \JsonSerializable
      *
      * @maps amount
      */
-    public function setAmount(?int $amount): void
+    public function setAmount(?float $amount): void
     {
         $this->amount = $amount;
     }
