@@ -11652,6 +11652,7 @@ h3 {
 
 .custom-navbar {
   padding: 3rem 1rem;
+  position: absolute !important;
 }
 
 .custom-navbar .navbar-brand {
@@ -15312,9 +15313,17 @@ ul.dashed > li:before {
   color: #000000;
 }
 
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 3rem 1rem;
+    position: relative !important;
+  }
+}
+
 @media (min-width: 992px) {
   .custom-navbar {
     padding: 3rem 1rem;
+    position: absolute !important;
   }
 }
 
@@ -15395,7 +15404,7 @@ ul.dashed > li:before {
 
 @media (min-width: 992px) {
   .main-search {
-    padding-top: 15rem;
+    padding-top: 24rem;
     background-image: url("/images/main-wallpaper.webp");
     background-repeat: no-repeat;
     background-position: center;
@@ -15409,7 +15418,7 @@ ul.dashed > li:before {
 
 @media (min-width: 992px) {
   .main-search {
-    padding-top: 15rem;
+    padding-top: 24rem;
     background-image: url("/images/main-wallpaper.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -15423,6 +15432,7 @@ ul.dashed > li:before {
 
 @media (min-width: 1600px) {
   .main-search {
+    padding-top: 33rem;
     background-image: url("/images/main-wallpaper.webp");
     height: 650px;
   }

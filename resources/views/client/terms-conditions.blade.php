@@ -11,51 +11,358 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="mb-3">Privacy Policy JetOnset.</h2>
-                <p class="mb-3">All information described in this Privacy Policy is processed by JetOnset, Inc. ("JetOnset", "we", "us", or "our") as a data controller. This Privacy Policy describes our practices related to the use, storage, and disclosure of personal information we collect from or about you when you interact with us in the course of our providing air charter transportation services, ancillary services, or other services provided by us, including when you use our website Jetonset.com ("Website") or our JetOnset App ("App"). This Privacy Policy also describes our processing of the personal data of individuals representing our business customers and suppliers.</p>
-                <p class="mb-3"><strong>JetOnset reserves the right to modify this Privacy Policy at any time and without prior notice.</strong> We will post any changes to our Website. This Privacy Policy is not a contract and does not create any contractual rights or obligations.</p>
-                
+                <h2 class="mb-3">Terms & Conditions.</h2>
+                <p class="mb-3">
+                    Client hereby engages JetOnset to act as its broker to solicit bids and arrange for the
+                    charter services described on the Charter Itinerary (to which these Standard Terms &
+                    Conditions are annexed) on behalf of Client from third party certified air carriers
+                    operating under Part 135 or 121 or foreign equivalent; and Client agrees to pay all
+                    monies due for the arrangement and provision of such services.
+                </p>
                 <ol>
-                    <li><strong>How to contact us.</strong> If you have any questions or comments regarding this Privacy Policy or any complaints about our adherence to it, please contact our Data Protection Officer, at Privacy@jetonset.com or contact our Customer Care Center by mail. We adhere to applicable notification requirements and reporting obligations to supervising authorities and/or data subjects regarding violations of this Privacy Policy as required by law. The substance and time frames applicable to these remedies are set forth in applicable laws.</li>
-                    <li><strong>What information do we collect and when.</strong> Information related to a flight booking or purchase of our products or services, whether provided online, over the phone, emails or in person. Your name and title, date of birth, your national ID in certain circumstances, home address, phone number and email address, your billing and transaction information such as, credit/debit card type and number(s), corporate forms of payment and related data including associated billing address, expiration date(s) and security code(s).</li>
-                    <li><strong>How do we use your information.</strong> To provide you with our services, assistance with booking, to confirm your travel arrangements and remind you about incomplete bookings. Take your payment and make any refunds or credits and send any confirmations. Manage and administer our services and business including performing our record-keeping requirements. Maintain the operational availability and reliability of our IT systems with infrastructure backups and testing. To confirm your identity and to prevent fraud. To improve our products and services. To send you marketing communications and offers. To share it with TSA for safety questions.</li>
-                    <li><strong>Legal requirements.</strong> We may also use your personal information where this is necessary to comply with a reasonable request by a law enforcement or regulatory authority, body or agency, or in the defense of legal claims.</li>
-                    <li><strong>Cookies.</strong> When you use our services, you may receive cookies or other similar technologies from us. We use them to determine that we give you a high quality experience on our services. We also use cookies to show you advertising that is relevant to you. There are four types of cookies used on our Services:
-                        <ul class="dashed">
-                            <li><i>Essential cookies.</i> They enable you to use our Services. These cookies are essential to enable you to browse our Services and use certain features. Without them some activities cannot be provided. These cookies also help keep our Services safe and secure.</li>
-                            <li><i>Preference cookies.</i> These cookies store information such as your JetOnset login data and website preferences. Without these cookies, our Services may not be able to remember certain choices you've previously made or personalize your browsing experience by providing you with relevant information. These cookies can also be used to recognize your device so that you do not have to provide the same information more than once.</li>
-                            <li><i>Performance cookies.</i> These cookies collect information about how you use our Services such as which pages you visit regularly. These cookies are used to provide you with a high-quality experience by doing things such as tracking page load, site response times, and error messages.</li>
-                            <li><i>Content / Advertising cookies.</i> These cookies gather information about your use of our Services so we may improve your experience and provide you with more relevant content and advertising. They are also used to gather feedback on customer satisfaction through surveys. They remember that you've visited our Services and help us understand usage of our Services. Some of these cookies are from third parties that collect information about users of our Services (as described below under “Information collected by third parties on our Services”) in order to provide advertising (on our Services and elsewhere) based on users’ online activities (so-called "interest-based advertising") on our Services and elsewhere online. The third parties involved in interest-based advertising collect internet browsing information (e.g., websites visited, time of visit) across different websites and over time, and they may use the information they collect on our Services to provide you ads (from us and other companies) across the internet.</li>
+                    <li>
+                        <strong>RESERVATIONS & CANCELLATIONS</strong>
+                        <ul>
+                            <li>
+                                All requests for services are subject to acceptance by JetOnset. Your Charter
+                                Itinerary will be delivered by fax or e-mail from JetOnset providing a confirmation
+                                number, the estimated price quote, specific date(s) and departure time, flight
+                                segments arranged on your behalf, aircraft type and other requests specified by
+                                you when booking your flight; the Charter Itinerary is subject to change and
+                                JetOnset will not be responsible, monetarily or otherwise, for any such change in
+                                the Charter Itinerary. You will be requested to sign and return a copy of the
+                                Charter Itinerary signifying confirmation both of its contents and consent to these
+                                Standard Terms & Conditions.
+                            </li>
+                            <li>
+                                Client agrees to provide a complete passenger manifest for each flight segment
+                                prior to departure, and understands that each passenger must carry valid
+                                government-issued photo identification. In the event that any personal
+                                identification and/or security information is invalid, all liability for government
+                                issued fines is the Clients responsibility. Client also understands that any errors
+                                or inconsistencies in the passenger manifest may cause departure delays.
+                            </li>
+                        </ul>
+                        <ol>
+                            <li>
+                                Slots: Some high-traffic airports assign mandatory “slots” to inbound and
+                                outbound aircraft. JetOnset will make every effort to acquire the slots for the
+                                requested departure / arrival time. However, the actual departure / arrival time
+                                will be subject to available time slots
+                            </li>
+                            <li>
+                                If the client wishes to cancel any Flight(s) after confirmation of the related
+                                Agreement, the following rates will be paid immediately by the client to JetOnset
+                                as agreed compensation for such cancellation:
+                            </li>
+                        </ol>
+                            <p>
+                                25% of the Charter Price if cancelled within 14 days of the scheduled departure
+                                date/time as set out in a Charter Contract.
+                            </p>
+                            <p>
+                                100% of the Charter Price if cancelled within 10 days of the scheduled departure
+                                date/time as set out in a Charter Contract.  
+                            </p>
+                            <p>
+                                ALL ONE WAY CHARTER RESERVATIONS, INCLUDING EMPTY LEG, MULTI-LEG
+                                ONE WAYS ARE NON-CANCELLABLE AND NON REFUNDABLE AT TIME OF
+                                BOOKING.
+                            </p>
+                        
+                        <!-- <ul>
+                            <li>
+
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul> -->
+                    </li>
+                    <li>
+                        <strong>PRICE QUOTES:</strong>
+                        <p>The cost estimate provided to Client for each specific Charter, is subject to the following:</p>
+                        <ul>
+                            <li>
+                                Domestic and international flights may be subject to the federal excise tax and
+                                federal departure tax, respectively. JetOnset will add the applicable tax, using the
+                                current rate, to each charter invoice, and Client will pay such amounts.
+                            </li>
+                            <li>
+                                Client understands that the cost estimate provided by JetOnset will include
+                                estimates for certain cost items. Client will pay the actual amount of applicable
+                                taxes, over-flight permits, landing charges, catering costs, flight phone, customs
+                                fees, crew trip expenses, and similar out-of-pocket expenses relating to the
+                                services provided should these amounts differ from the original cost estimate.  
+                            </li>
+                            <li>
+                                If a deviation from the original itinerary is requested by Client and agreed to by
+                                JetOnset or necessitated by Client’s actions, then the amount owed by Client to
+                                JetOnset may differ from the original cost estimate.  
+                            </li>
+                            <li>
+                                Liability for Damages: Client shall be held liable for any and all damages to the
+                                aircraft and property of Carrier, which was caused by Client or Client’s guests.
+                            </li>
+                        </ul>
+                        <br/>
+                        <ol>
+                            <li>
+                                Additional Fees may follow as some vendors send bills weeks after services are
+                                rendered (i.e. international fees, customs fees, deicing, catering, hangar, facility
+                                overtime fees, and/or flite phone charges) **All flights with animals onboard are
+                                subject to a $350 aircraft cleaning fee**      
+                            </li>
+                            <li>
+                                The Charter Price is based on aviation fuel costs calculated on the Booking Date.
+                                If, for any reason whatsoever there shall be any increase in the cost of aviation
+                                fuel between the Booking Date and the date of operation of any Flight, then the
+                                Charterer shall, if so required by the Carrier, pay JetOnset on demand such
+                                amount as shall fully compensate the Carrier for such increase in costs.
+                            </li>
+                            <li>
+                                Payment
+                                <p>
+                                    The payment for each charter flight shall be due upon confirmation of each charter;
+                                    payments must be received in order to confirm each flight as JetOnset cannot
+                                    guarantee the availability of the agreed upon aircraft until payment has been received.
+                                    At the discretion of JetOnset, credit cards may be accepted for payment of charges andsuch payments will be subject to a 5% additional fee. Additional payment terms may be
+                                    arranged and agreed upon by JetOnset and Client which shall be listed in the Charter
+                                    Quote for each specific flight.
+                                </p>
+                            </li> 
+                            <li>
+                                Costs and Expenses
+                                <p>
+                                    The Charter Quote for each specific trip shall set forth the charter price and any
+                                    associated costs and expenses for each unique charter. Client shall be
+                                    responsible for additional charges incurred by JetOnset in the provision of the
+                                    services described in this Agreement and Client may be billed separately for the
+                                    same or such costs and expenses may be added to the Charter Quote pricing (if
+                                    known at the time the Charter Quote is executed); such additional costs and
+                                    expenses shall include, without limitation, catering costs, ground transportation
+                                    costs, flight phone costs, de-icing costs, fuel surcharges, crew expenses, air
+                                    space navigation fees, weather service fees, international fees and such other
+                                    costs and expenses as are incidental to charter services. Client further agrees
+                                    that it shall be responsible for all sales, use, VAT, stamp, FET, transfer, segment
+                                    fees and other similar taxes, fees, duties and penalties that may be imposed by
+                                    any federal, state, county, local, foreign or other governmental authority as a
+                                    result of the flights and services provided in connection with this Agreement
+                                    (“Taxes”). Client shall defend, indemnify and hold JetOnset harmless against any
+                                    such Taxes which are the obligation of Client hereunder. The obligations of Client
+                                    under this Section shall survive the termination of this Agreement.
+                                </p>
+                            </li> 
+                            <li>
+                                Unless agreed in advance of the Flight, WiFi charges are not included within the
+                                Charter Price. Any charges by the Carrier for WiFi used, that was not included in
+                                the Charter Agreement will be passed onto the client to be paid on receipt of
+                                invoice.
+                            </li> 
+                        </ol>
+                    </li>
+                    <li>
+                        <strong>ACKNOWLEDGMENT OF OPERATIONS:</strong>
+                        <ul>
+                            <li>
+                                Client acknowledges that JetOnset is acting solely as a broker and is not an air
+                                carrier and is not operating the flights Client authorizes JetOnset to book on
+                                Client’s behalf. The air charter suppliers have sole responsibility, liability and
+                                control of all aspects of the aircraft charter services provided to you, including
+                                without limitation, aircraft availability and pricing, the commencement and
+                                termination of scheduled flights, the operation, regulation condition and safety of
+                                the flight, passengers, baggage and cargo and other people and events
+                                associated with your air travel, such as crew performance and catering service
+                            </li>
+                            <li>
+                                These Standard Terms and Conditions shall apply to and be incorporated in the
+                                contract between JetOnset and the Client for the supply of the services
+                                hereunder and shall be in substitution for any oral arrangements made between
+                                the Client and JetOnset and shall prevail over any inconsistent terms or
+                                conditions contained in or referred to in correspondence or elsewhere or implied
+                                by trade custom or practice or course of dealing.
+                            </li>
+                            <li>
+                                JetOnset has entered into this agreement acting only to seek, procure and
+                                co-ordinate the scheduled flight and shall use reasonable commercial endeavors
+                                to complete in accordance with the Charter Itinerary the journey or journeys
+                                therein specified but shall be entitled to depart from the Charter Itinerary if in its
+                                opinion in good faith such departure is necessary and any additional expenses
+                                (including the fees and charges referred to herein) shall be borne by the Client
+                            </li>
+                            <li>
+                                JetOnset is not an air carrier nor does it own any aircraft. JetOnset does not have
+                                authority from the DOT, FAA or any other government agency to operate any
+                                aircraft, nor is JetOnset engaged in the business of maintaining, owning,
+                                repairing, or evaluating the physical condition of any aircraft. JetOnset is solely in
+                                the business of brokering aircraft on behalf of our clients. JetOnset shall not
+                                accept and hereby excludes any and all liability whatsoever for wounding bodily
+                                injury or delay of the Client or for loss, delay of or damage to their baggage or of
+                                loss, delay of or damage to cargo whether or not occasioned by the negligence
+                                of JetOnset, its employees servants or agents. JetOnset takes no responsibility
+                                whatsoever for any costs arising after the arrival, scheduled or delayed, at the
+                                destination. 
+                            </li>
                         </ul>
                     </li>
-                    <li><strong>Information collected by third parties on our Services.</strong> Some of the content, advertising, and functionality on our Services may be provided by third parties, including third parties that are not affiliated with us. As noted above, these third parties may collect or receive technical information about your use of our Services, including through the use of cookies, pixel tags, web beacons, and other technologies, and this information may be collected over time and combined with information collected on different websites and online services. Some third parties collect information about users of our Services in order to provide interest-based advertising (on our Services and elsewhere, including across browsers and devices, also known as cross-device linking). This may include anonymized or de-identified information about you, such as travel destinations that you search for while using our Services. These third parties may use the information they collect on our Services to make predictions about your interests in order to provide you ads (from us and other companies) across the internet (for example, travel products and services that are available at a destination you searched for online). Some of these third parties may participate in an industry organization that gives users the opportunity to opt out of receiving ads that are tailored based on online activities. We may use Adobe Analytics or Google Analytics to aggregate and analyze data about your use of our Services.</li>
-                    <li><strong>Minors.</strong> JetOnset does not knowingly collect personal information from children under the age of 13. If a child under 13 has provided us with personal information without parental or guardian consent, the parent or guardian may contact us by emailing us at privacy@jetonset.com. We will remove the information and unsubscribe the child from any of our electronic marketing lists.</li>
-                    <li><strong>Information for California residents.</strong> Under the California Consumer Privacy Act of 2018 (“CCPA”): as a California resident you can request the following information about how we collected and used your personal information, - the categories of personal information that we collected, - the categories of sources from which we collected personal information, - the business or commercial purpose for collecting personal information, - the categories of third parties with whom we share personal information, - whether we have disclosed your personal information for a business purpose, and if so, the categories of personal information received by each category of third party recipient. You can request a copy of the personal information that we collected about you during the past 12 months. You can request that we delete the personal information that we collected from you. You are entitled to exercise the rights described above free from descrimination in the form of any unlawful denial of service, increase in the price of service, or suggestion that you may be penalized for exercising your rights. We do not sell your personal information to third parties, however, like many companies online, we use services provided by Google, Facebook, Adobe and others that help deliver interest-based ads to you as described in the section above entitled interest-based advertising. You can opt out of use of your personal information for interest-based advertising by emailing us at privacy@jetonset.com.</li>
+                    <li>
+                        <strong>SAFETY OF OPERATION:</strong>
+                        <p>
+                            Without limitation, you acknowledge and agree that the air charter suppliers and/or their
+                            pilots will be solely responsible for all decisions regarding safety determinations with
+                            respect to the commencement, operation and termination of flights. FORCE MAJEURE:
+                            JetOnset will not be deemed to be in breach of its obligations hereunder or have any
+                            liability for any delay, cancellation or damage arising in whole or in part from any act of
+                            God, act of nature, acts of civil or military authority, strike or labor dispute, mechanical
+                            failure, lack of essential supplies or parts or for any cause beyond the direct control of
+                            JetOnset or the carrier.
+                        </p>
+                    </li>
                     
-                    <li><strong>Information for European users.</strong> Except as otherwise specified, references to “personal information” in this Privacy Policy are equivalent to “personal data” governed by European data protection legislation. JetOnset Inc is the controller of your personal information covered by this Privacy Policy for purposes of the European data protection legislation. You may contact us at privacy@jetonset.com. European data protection laws give you certain rights regarding your personal information. If you are located in Europe you may ask us to take the following actions in relation to your personal information that we hold:
-                        <ul class="dashed">
-                            <li><strong>Access.</strong> Provide you with information about our processing of your personal information and give you access to your personal information.</li>
-                            <li><strong>Correct.</strong> Update or correct inaccuracies in your personal information.</li>
-                            <li><strong>Delete.</strong> Delete your personal information.</li>
-                            <li><strong>Transfer.</strong> Transfer a machine‐readable copy of your personal information to you or a third party of your choice.</li>
-                            
-                            <li><strong>Restrict.</strong> Restrict the processing of your personal information.</li>
-                            <li><strong>Object.</strong> Object to our reliance on our legitimate interests as the basis of our processing of your personal information that impacts your rights.</li>
+
+                    <li>
+                        <strong>Information collected by third parties on our Services.</strong> 
+                        <ul>
+                            <li>
+                                Neither the air charter suppliers nor JetOnset shall have liability or responsibility
+                                for delay, cancellation or failure to furnish any service to be provided to you when
+                                caused by mechanical difficulty, weather conditions, acts of god, war, civil
+                                commotion, strikes or labor disputes, government regulation, law, rule or
+                                authority, or any causes beyond their reasonable respective control
+                            </li>
+                            <li>
+                                You assume all liability and responsibility for your safety, schedule, baggage,
+                                cargo, business and personal activities and financial ramifications associated
+                                with your air reservations and travel arranged by us and performed by the air
+                                charter suppliers;
+                            </li>
+                            <li>
+                                You, your agents, guests or passengers or any employees, if applicable, shall not
+                                engage in any act or possess any substance or allow cargo to contain any
+                                substance which may result in the seizure or forfeiture, or unsafe operation of the
+                                aircraft used in the charter contracted for you by us;
+                            </li>
+                            <li>
+                                JetOnset makes no representations or warranties of any kind, either express or
+                                implied, as to any matter limited to, implied warranties of fitness for a particular
+                                purpose, merchantability or otherwise
+                            </li>
+                            <li>
+                                If the Client’s journey involves an ultimate destination or stop in a country other
+                                than the country of departure, the Warsaw Convention may be applicable and the
+                                Convention governs and in most cases limits the liability of the Carrier for death
+                                or personal injury and for loss of or damage to baggage.
+                            </li>
+                            <li>
+                                You shall indemnify and hold harmless JetOnset, its affiliates and all of their
+                                officers, directors, employees, legal representatives and other agents,
+                                successors and assigns (the “indemnified parties”) from and against any and all
+                                liabilities, losses, damages, penalties, costs and expenses on account of any
+                                claim, suit, action, demand, proceeding or anything of a similar nature made or
+                                brought against any of the indemnified parties as a result of the services
+                                performed hereunder on your behalf.
+                            </li>
+                            <li>
+                                IN NO EVENT WILL JETONSET BE LIABLE FOR ANY TYPE OF INDIRECT,
+                                INCIDENTAL OR CONSEQUENTIAL DAMAGES, WHETHER ARISING IN
+                                CONTRACT OR IN TORT, EXCEEDING THE FEES EARNED BY JETONSET
+                                FOR THE FLIGHT IN QUESTION. CLIENT WILL INDEMNIFY AND HOLD
+                                JETONSET HARMLESS AGAINST ANY LOSS, DAMAGE OR EXPENSE
+                                INCURRED BY JETONSET BY REASON OF ANY ACTION OR OMISSION OF
+                                CLIENT, ITS EMPLOYEES, AGENTS AND GUESTS. FURTHERMORE, CLIENT
+                                AGREES TO PAY FOR ANY DAMAGE TO THE CHARTER AIRCRAFT
+                                CAUSED BY CLIENT, OR ANY EMPLOYEE OR GUEST OF CLIENT, NORMAL
+                                WEAR AND TEAR EXCLUDED.
+                            </li>
+                            <li>
+                                This Agreement shall be subject to the laws of the State of Florida and all legal
+                                actions between the parties on or related to this Agreement shall be brought only
+                                in the State of Florida, County of Miami-Dade. Each party consents to the
+                                jurisdiction of the courts of Miami-Dade County, Florida.
+                            </li>
+                            <li>
+                                Limitation of Liability: JetOnset shall not be held liable for loss, injury, damage,
+                                delay or cancellation caused by or resulting from any act of God, economic or
+                                political sanctions, quarantine, failure or refusal on the part of any governmental
+                                agency to grant or issue approvals, clearance, permits or operating authority,
+                                rights or civil commotion, military emergency, war or war hazards, fuel shortages,
+                                weather conditions, mechanical breakdown, strikes or labor problems, or
+                                occurrences of similar or dissimilar nature which through no fault of JetOnset
+                                shall prevent, delay or interrupt the furnishing or operation or performance of
+                                such transportation.
+                            </li>
                         </ul>
-                        You may submit these requests by email to privacy@jetonset.com. We may request specific information from you to help us confirm your identity and process your request. Applicable law may require or permit us to decline your request. If we decline your request, we will tell you why, subject to legal restrictions. If you would like to submit a complaint about our use of your personal information or our response to your requests regarding your personal information, you may contact us at privacy@jetonset.com or submit a complaint to the data protection regulator in your jurisdiction.
                     </li>
-                    <li><strong>Information security.</strong> Information Security is important to JetOnset. We have established appropriate physical, electronic, and managerial safeguards to protect the information we collect in accordance with our Privacy Policy. These safeguards are regularly reviewed to protect against unauthorized access, disclosure, and improper use of your information, and to maintain the accuracy and integrity of that data. In the event of a data breach, we adhere to data breach notification requirements and incident reporting obligations to supervising authorities and/or data subjects, as required by applicable laws. The substance and time frames applicable to these remedies are set forth in applicable laws.</li>
+                    <p>
+                        In the event of any such occurrence, JetOnset will use commercially reasonable efforts
+                        to provide other aircraft to meet Client’s scheduled flight. JetOnset shall not be
+                        responsible or liable for the transportation of passengers who fail to report at the
+                        specified Fixed Based Operator (FBO) at the departure airport, at the departure time of
+                        the flight, or who are, through no fault of JetOnset, not aboard at the time of departure.
+                        If one or more members of one group fail to so report or board, Carrier may depart as
+                        scheduled and Carrier and/or JetOnset shall in no way be responsible for or to Client or
+                        such individual for any damages and JetOnset shall be deemed to have completed its
+                        contractual obligation to Client. JetOnset 
+                    </p>
+                    <p>
+                        SHALL NOT BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY
+                        OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY (A) CONSEQUENTIAL,
+                        INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, EXEMPLARY OR RELIANCE
+                        DAMAGES; (B) AMOUNTS IN EXCESS OF THE PRICE PAID FOR A PARTICULAR
+                        FLIGHT; OR (C) MATTER BEYOND ITS REASONABLE CONTROL.
+                    </p>
+                    <p>
+                        JetOnset shall not have, nor assume any responsibility or liability to Client for activities
+                        performed by Carrier. Carrier shall be solely responsible for all claims arising out of any
+                        and all occurrences, accidents or incidents that occur on or in connection with the
+                        aircraft operated by Carrier, including, without limitation, all personal injuries, property
+                        damage or death. JetOnset is not responsible for any wrongful, or negligent act or
+                        omission by Carrier or its personnel and is not responsible for any personal injury,
+                        property damage, accident, delay, inconvenience, or change in itinerary that may occur.
+                    </p>
+                    <p>
+                        These limitations shall apply notwithstanding the failure of the essential purpose of any
+                        limited remedy. Client agrees that Client shall indemnify, defend, and hold harmless
+                        JetOnset and JetOnset officers, directors, agents and employees, and each of them
+                        (collectively the “Indemnitee(s)”) from and against all claims, suits, actions, judgments,
+                        fines, penalties, damages, losses and liabilities, including, but not limited to third party
+                        claims and reasonable attorneys’ fees, costs of litigation, and other expenses relating
+                        thereto, including the cost of establishing the right of indemnification under this
+                        Agreement, which arise out of or are in connection with activities associated with this
+                        Agreement, which are made, asserted, assessed, or accrued against any Indemnitee by
+                        reason of injury or death to any person or the loss or damage to any real or personal
+                        property. The foregoing indemnities shall not apply to the extent of any gross negligence
+                        or willful misconduct of any Indemnitee.
+                    </p>
+                    <li><strong>REGULATIONS:</strong>
+                        <ul>
+                            <li>
+                                This Agreement is subject to all applicable governmental laws, rules, regulations,
+                                approvals and certifications in effect from time to time including, but not limited to,
+                                those promulgated by the FAA, which now or hereafter may be imposed or
+                                required.
+                            </li>
+                            <li>
+                                This Agreement is governed by the law of the State of Florida. The illegality or
+                                non-validity of any paragraph, clause or provision contained or referred to in this
+                                Agreement shall not affect or invalidate any other paragraph or provision hereof.
+                                It is understood and agreed that this Agreement contains the entire agreement of
+                                the parties with respect to the subject matter hereof. No terms or provisions of
+                                this Agreement may be changed except by written instrument signed by both
+                                parties.
+                            </li>
+                            <li>
+                                You assume all liability and responsibility for your safety, schedule, baggage,
+                                cargo, business and personal activities and financial ramifications associated
+                                with your air reservations and travel arranged by us and performed by the air
+                                charter suppliers;
+                            </li>
+                        </ul>
+                    </li>
+                    <p>
+                        I hereby agree and accept these terms and conditions.
+                    </p>
                 </ol>
-                
-                
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="font-weight-bold mb-0">Term one of the document</p>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="font-weight-bold mb-0">Term two of the document</p>
-                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
     </div>
