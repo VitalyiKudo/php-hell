@@ -390,6 +390,8 @@ class OrderController extends Controller
                         }
                         if ($response->isSuccess()) {
                             //Order::where('id', $order->id)->update(['order_status_id' => 3]);
+                            $payment = $response->getResult()->getPayment();
+                            $payment_id = $payment->getId();
 
                             $comment = "";
                             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
@@ -413,6 +415,7 @@ class OrderController extends Controller
 
                             $order->price = $total_price;
                             $order->type = $search_type;
+                            $order->payment_id = $payment_id;
                             $order->is_accepted = (bool)$request->input('is_accepted');
                             $order->book_status = 1;
                             $order->save();

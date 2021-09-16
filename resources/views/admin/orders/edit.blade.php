@@ -116,6 +116,9 @@
                     <dl class="mb-0">
                         <dt>ID</dt>
                         <dd>{{ $order->id }}</dd>
+                        
+                        <dt>Payment ID</dt>
+                        <dd>{{ $order->payment_id }}</dd>
 
                         <dt>Status</dt>
                         <dd>
