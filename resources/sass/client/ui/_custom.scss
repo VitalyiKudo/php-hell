@@ -313,10 +313,10 @@
   }
 }
 
-@media (min-width: 992px) {
-  .custom-navbar {
-    padding: 3rem 1rem;
-    position: absolute !important;
+@media (min-width: 990px) {
+  .fix-content {
+    top: -140px;
+    position: relative;
   }
 }
 

@@ -11652,7 +11652,7 @@ h3 {
 
 .custom-navbar {
   padding: 3rem 1rem;
-  position: absolute !important;
+  position: relative !important;
 }
 
 .custom-navbar .navbar-brand {
@@ -12502,10 +12502,6 @@ h3 {
 
 ::placeholder {
   color: #373737;
-}
-
-.mouse-top {
-  margin-top: 6rem;
 }
 
 .scroll-down-fix {
@@ -15320,10 +15316,10 @@ ul.dashed > li:before {
   }
 }
 
-@media (min-width: 992px) {
-  .custom-navbar {
-    padding: 3rem 1rem;
-    position: absolute !important;
+@media (min-width: 990px) {
+  .fix-content {
+    top: -140px;
+    position: relative;
   }
 }
 
