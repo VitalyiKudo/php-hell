@@ -560,7 +560,7 @@
 
             $('input#aircraftRQ').keyup(function(){
                 var query = $(this).val();
-                if(query != '' && query.length >= 3){
+                // if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/types",
@@ -579,7 +579,7 @@
                             $('#aircraftList').html(output);
                         }
                     });
-                }
+                // }
             });
 
             $(document).on('click', '#aircraftList li', function(e){
@@ -591,7 +591,7 @@
             
             $('input#aircraftRQ-one').keyup(function(){
                 var query = $(this).val();
-                if(query != '' && query.length >= 3){
+                // if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/types",
@@ -610,7 +610,7 @@
                             $('#aircraftList-one').html(output);
                         }
                     });
-                }
+                // }
             });
 
             $(document).on('click', '#aircraftList-one li', function(e){
@@ -622,7 +622,7 @@
             
             $('input#aircraftRQ-two').keyup(function(){
                 var query = $(this).val();
-                if(query != '' && query.length >= 3){
+                // if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/types",
@@ -641,7 +641,7 @@
                             $('#aircraftList-two').html(output);
                         }
                     });
-                }
+                // }
             });
 
             $(document).on('click', '#aircraftList-two li', function(e){
