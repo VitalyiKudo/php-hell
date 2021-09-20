@@ -582,6 +582,30 @@
                 // }
             });
 
+            $('input#aircraftRQ').focus(function(){
+                var query = $(this).val();
+                // if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/types",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.type !== null && obj.type.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.type + '</a></li>';
+                                }
+                            });
+                            output += '</ul>';
+                            $('#aircraftList').fadeIn();
+                            $('#aircraftList').html(output);
+                        }
+                    });
+                // }
+            });
+
             $(document).on('click', '#aircraftList li', function(e){
                 e.preventDefault();
                 $('input#aircraftRQ').val($(this).text());
@@ -613,6 +637,30 @@
                 // }
             });
 
+            $('input#aircraftRQ-one').focus(function(){
+                var query = $(this).val();
+                // if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/types",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.type !== null && obj.type.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.type + '</a></li>';
+                                }
+                            });
+                            output += '</ul>';
+                            $('#aircraftList-one').fadeIn();
+                            $('#aircraftList-one').html(output);
+                        }
+                    });
+                // }
+            });
+
             $(document).on('click', '#aircraftList-one li', function(e){
                 e.preventDefault();
                 $('input#aircraftRQ-one').val($(this).text());
@@ -621,6 +669,30 @@
 
             
             $('input#aircraftRQ-two').keyup(function(){
+                var query = $(this).val();
+                // if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/types",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            $.each(data, function(idx, obj) {
+                                if (obj.type !== null && obj.type.toLowerCase().includes(query.toLowerCase())) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.type + '</a></li>';
+                                }
+                            });
+                            output += '</ul>';
+                            $('#aircraftList-two').fadeIn();
+                            $('#aircraftList-two').html(output);
+                        }
+                    });
+                // }
+            });
+
+            $('input#aircraftRQ-two').focus(function(){
                 var query = $(this).val();
                 // if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
