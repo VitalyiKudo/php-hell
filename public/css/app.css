@@ -16517,6 +16517,7 @@ ul.dashed > li:before {
   position: relative;
   width: 1025px;
   margin-left: -55px;
+  height: 50px;
 }
 
 .search-breadcrumb .breadcrumb {
