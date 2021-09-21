@@ -46,7 +46,7 @@ class AirportController extends Controller
         
         
         $airlines = Airline::where('type', 'like', "{$keyword}%")
-                ->limit(10)
+                ->limit(10000)
                 ->groupBy('type')
                 ->get();
 
