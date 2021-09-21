@@ -155,7 +155,7 @@
                 <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
                 
 
-                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0))
+                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0) and strtotime(date('m/d/Y')) < strtotime($params['flightDate']))
 
                     @if($searchResults->price_turbo > 0)
                     <div class="card mb-4">
@@ -633,7 +633,7 @@
 
                 @else
 
-                    <p class="not-found-message">We do not have such a flight, make a request a quote</p>
+                    <p class="not-found-message">We do not have such a flight, make a request a quote </p>
 
                 @endif
 
