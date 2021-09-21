@@ -143,7 +143,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="birth_date">Birth date*</label>
-                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $request_method == 'post' ? $params['birth_date'] : $user->date_of_birth }}" placeholder="date">
+                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $params['birth_date'] }}" placeholder="date">
                                     @if ($messages && $messages->has('birth_date'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $messages->first('birth_date') }}</strong>
