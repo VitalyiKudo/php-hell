@@ -564,6 +564,7 @@
 
             $('input.to').keyup(function(){ 
                 var query = $(this).val();
+
                 if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
@@ -573,25 +574,33 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+                            
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                                $.each(withoutDuplicates, function(idx, obj) {
-                                    if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                        output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                    } else {
-                                        var city = obj.city;
-                                        if (!(city in lookup)) {
-                                            lookup[city] = 1;
-                                            output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                        }
-                                        var area = obj.area;
-                                        if (!(area in lookup) && area !== null) {
-                                            lookup[area] = 1;
-                                            output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                        }
+                            $.each(withoutDuplicates, function(idx, obj) {
+                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                } else {
+                                    var city = obj.city;
+                                    if (!(city in lookup)) {
+                                        lookup[city] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
                                     }
-                                });
+                                    var area = obj.area;
+                                    if (!(area in lookup) && area !== null) {
+                                        lookup[area] = 1;
+                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
+                                    }
+                                }
+                            });
                             output += '</ul>';
                             $('#arrivalList').fadeIn();  
                             $('#arrivalList').html(output);
