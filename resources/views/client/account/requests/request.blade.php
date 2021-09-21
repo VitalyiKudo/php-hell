@@ -686,7 +686,7 @@
                                 <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
                                 <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
                                 <!-- <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at"> -->
-                                <input type="text" name="departure_at" placeholder="Date&Time" autocomplete="off" d="departure_at">
+                                <input type="text" name="departure_at" placeholder="Date&Time" autocomplete="off" id="departure_at">
                                 <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
                                 <input type="hidden" name="page_name" value="search-page">
 
