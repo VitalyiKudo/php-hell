@@ -5288,7 +5288,6 @@ input[type=button].btn-block {
 }
 
 .navbar-brand {
-  z-index: 1;
   display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
@@ -15260,6 +15259,8 @@ ul.dashed > li:before {
   left: 0px;
   display: block;
   z-index: 3001 !important;
+  height: 250px;
+  overflow: auto;
 }
 
 #aircraftList-one .dropdown-menu {
@@ -15288,6 +15289,8 @@ ul.dashed > li:before {
   left: 0px;
   display: block;
   z-index: 3001 !important;
+  height: 250px;
+  overflow: auto;
 }
 
 #aircraftList-two .dropdown-menu {
@@ -16816,7 +16819,7 @@ ul.dashed > li:before {
 }
 
 .header-page-image-request-quote {
-  background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
+  background: linear-gradient(237.92deg, #2b4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
   max-height: 250px;
 }
 
@@ -16825,7 +16828,7 @@ ul.dashed > li:before {
   background: no-repeat 10% center rgba(172, 183, 197, 0.2) url("/images/rq_back_arrow.png") !important;
   border: none;
   border-radius: 6px;
-  color: #2A60AE;
+  color: #2a60ae;
   padding: 0.5rem 1.5rem 0.5rem 3rem;
   text-transform: uppercase;
 }
@@ -16836,7 +16839,7 @@ ul.dashed > li:before {
 }
 
 .request-quote-page {
-  background-color: #EFF5F9;
+  background-color: #eff5f9;
 }
 
 .container-request-top-quote {
@@ -16865,7 +16868,7 @@ ul.dashed > li:before {
   font-size: 22px;
   line-height: 27px;
   text-transform: uppercase;
-  color: #294A7A;
+  color: #294a7a;
   opacity: 0.8;
 }
 
@@ -16874,7 +16877,7 @@ ul.dashed > li:before {
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #2B4B7A;
+  color: #2b4b7a;
   opacity: 0.7;
   font-style: normal;
   font-weight: 300;
@@ -16902,7 +16905,7 @@ ul.dashed > li:before {
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #2B4B7A;
+  color: #2b4b7a;
   opacity: 0.7;
   font-style: normal;
   font-weight: 300;
@@ -16943,7 +16946,7 @@ ul.dashed > li:before {
 .container-request-quote #to-stop-airportRQ::-webkit-input-placeholder,
 .container-request-quote #return-airportRQ::-webkit-input-placeholder,
 .container-request-quote #to-return-airportRQ::-webkit-input-placeholder {
-  color: #9A9B9B;
+  color: #9a9b9b;
   text-transform: uppercase;
 }
 
@@ -16960,7 +16963,7 @@ ul.dashed > li:before {
 .container-request-quote #to-stop-airportRQ:-ms-input-placeholder,
 .container-request-quote #return-airportRQ:-ms-input-placeholder,
 .container-request-quote #to-return-airportRQ:-ms-input-placeholder {
-  color: #9A9B9B;
+  color: #9a9b9b;
   text-transform: uppercase;
 }
 
@@ -16977,7 +16980,7 @@ ul.dashed > li:before {
 .container-request-quote #to-stop-airportRQ::-ms-input-placeholder,
 .container-request-quote #return-airportRQ::-ms-input-placeholder,
 .container-request-quote #to-return-airportRQ::-ms-input-placeholder {
-  color: #9A9B9B;
+  color: #9a9b9b;
   text-transform: uppercase;
 }
 
@@ -16994,7 +16997,7 @@ ul.dashed > li:before {
 .container-request-quote #to-stop-airportRQ::placeholder,
 .container-request-quote #return-airportRQ::placeholder,
 .container-request-quote #to-return-airportRQ::placeholder {
-  color: #9A9B9B;
+  color: #9a9b9b;
   text-transform: uppercase;
 }
 
@@ -17017,7 +17020,7 @@ ul.dashed > li:before {
 }
 
 .container-request-quote .preff-air-with-additional {
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   background: no-repeat url("/images/check-circle.png") center center;
   text-indent: -9999px;
   min-width: 48px;
@@ -17040,7 +17043,7 @@ ul.dashed > li:before {
 .container-request-quote #add-return-button,
 .container-request-quote #add-stop-button-bottom {
   border: 1px solid rgba(42, 96, 174, 0.3);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 6px;
   margin-top: 10px;
   margin-left: auto;
@@ -17053,13 +17056,13 @@ ul.dashed > li:before {
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
-  color: #2A60AE;
+  color: #2a60ae;
   transition: color 0.25s;
 }
 
 .container-request-quote #add-aircraft-button {
   border: 1px solid rgba(42, 96, 174, 0.3);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 6px;
   margin-top: 10px;
   margin-right: auto;
@@ -17071,7 +17074,7 @@ ul.dashed > li:before {
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
-  color: #2A60AE;
+  color: #2a60ae;
   transition: color 0.25s;
   background: url("/images/plus_request.png") no-repeat 10% center;
   display: none;
@@ -17175,7 +17178,7 @@ ul.dashed > li:before {
 .container-request-quote #request_quote input[type=text]:focus,
 .container-request-quote #request_quote input[type=number]:focus {
   box-shadow: 0px 0px 0px 1px #5198ff !important;
-  border: 1px solid #5198FF;
+  border: 1px solid #5198ff;
 }
 
 .container-request-quote #passengers {
@@ -17218,8 +17221,8 @@ ul.dashed > li:before {
 }
 
 .container-request-quote .request-quote-block input {
-  border: 1px solid #E6E8ED;
-  background-color: #E6E8ED;
+  border: 1px solid #e6e8ed;
+  background-color: #e6e8ed;
   height: 45px;
   width: 40%;
 }
@@ -17242,12 +17245,12 @@ ul.dashed > li:before {
 }
 
 .container-request-quote .request-quote-block div .request-quote-submit-page {
-  background: url(/images/request_send.png) no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+  background: url(/images/request_send.png) no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375e97 0.01%, #294a7a 29.69%);
   opacity: 0.8;
   border-radius: 6px;
   padding: 0.5rem 2rem 0.5rem 3.5rem;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   transition: opacity 0.2s;
 }
 
@@ -17257,7 +17260,7 @@ ul.dashed > li:before {
 }
 
 .container-request-quote .request-quote-block div p {
-  color: #98A7BA;
+  color: #98a7ba;
   background: url(/images/ClockCircle.png) no-repeat left center;
   line-height: 30px;
   height: 30px;
@@ -17272,7 +17275,7 @@ ul.dashed > li:before {
 }
 
 .container-request-quote .request-quote-block div p span {
-  color: #526D94;
+  color: #526d94;
 }
 
 @media (max-width: 800px) {
@@ -17320,7 +17323,7 @@ ul.dashed > li:before {
 .container-request-quote #toStopList .dropdown-menu a:visited,
 .container-request-quote #fromReturnList .dropdown-menu a:link,
 .container-request-quote #fromReturnList .dropdown-menu a:visited {
-  color: #25383C;
+  color: #25383c;
   display: block;
   padding: 3px 0;
 }
@@ -17358,7 +17361,7 @@ ul.dashed > li:before {
 .container-request-quote #fromReturnList .dropdown-menu a:visited,
 .container-request-quote #toReturnList .dropdown-menu a:link,
 .container-request-quote #toReturnList .dropdown-menu a:visited {
-  color: #25383C;
+  color: #25383c;
   display: block;
   padding: 3px 0;
 }
@@ -17388,7 +17391,7 @@ ul.dashed > li:before {
 
 .container-request-quote #returnList .dropdown-menu a:link,
 .container-request-quote #returnList .dropdown-menu a:visited {
-  color: #25383C;
+  color: #25383c;
   display: block;
   padding: 3px 0;
 }
@@ -17405,8 +17408,6 @@ ul.dashed > li:before {
   left: 0px;
   display: block;
   z-index: 3001 !important;
-  height: 250px;
-  overflow: auto;
 }
 
 .container-request-quote #aircraftList .dropdown-menu {
@@ -17420,7 +17421,7 @@ ul.dashed > li:before {
 
 .container-request-quote #aircraftList .dropdown-menu a:link,
 .container-request-quote #aircraftList .dropdown-menu a:visited {
-  color: #25383C;
+  color: #25383c;
   display: block;
   padding: 3px 0;
 }
@@ -17438,7 +17439,7 @@ ul.dashed > li:before {
 }
 
 .request-search-page-success {
-  background-color: #EFF5F9;
+  background-color: #eff5f9;
 }
 
 .request-search-page-success .card {
@@ -17478,7 +17479,7 @@ ul.dashed > li:before {
 .request-search-page-success .card .card-body {
   margin-top: 16px;
   margin-bottom: 22px;
-  background: linear-gradient(180deg, #FFFFFF 83.07%, #f7f9f9 100%);
+  background: linear-gradient(180deg, #ffffff 83.07%, #f7f9f9 100%);
 }
 
 .request-search-page-success .card .card-body .custom-flight-page {
@@ -17505,12 +17506,12 @@ ul.dashed > li:before {
 }
 
 .request-search-page-success .card .card-body .custom-flight-page p span {
-  color: #5198FF;
+  color: #5198ff;
 }
 
 .request-search-page-success .card .card-body .custom-flight-page a:link,
 .request-search-page-success .card .card-body .custom-flight-page a:visited {
-  color: #294A7A;
+  color: #294a7a;
   border: 1px solid rgba(42, 96, 174, 0.3);
   border-radius: 6px;
   display: inline-block;

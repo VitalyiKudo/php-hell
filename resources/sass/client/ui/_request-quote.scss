@@ -1,37 +1,39 @@
 .header-page-image-request-quote {
-  background: linear-gradient(237.92deg, #2B4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
-  max-height: 250px;
+    background: linear-gradient(237.92deg, #2b4060 30.06%, rgba(55, 94, 151, 0.9) 64.08%);
+    max-height: 250px;
 }
 
 .back_arrow {
-  &:link, &:visited {
-    background: no-repeat 10% center rgba(172, 183, 197, 0.2) url("/images/rq_back_arrow.png") !important;
-    border: none;
-    border-radius: 6px;
-    color: #2A60AE;
-    padding: 0.5rem 1.5rem 0.5rem 3rem;
-    text-transform: uppercase;
-  }
+    &:link,
+    &:visited {
+        background: no-repeat 10% center rgba(172, 183, 197, 0.2) url("/images/rq_back_arrow.png") !important;
+        border: none;
+        border-radius: 6px;
+        color: #2a60ae;
+        padding: 0.5rem 1.5rem 0.5rem 3rem;
+        text-transform: uppercase;
+    }
 
-  &:hover, &:active {
-    background: no-repeat 10% center rgba(172, 183, 197, 0.5) url("/images/rq_back_arrow.png") !important;
-  }
+    &:hover,
+    &:active {
+        background: no-repeat 10% center rgba(172, 183, 197, 0.5) url("/images/rq_back_arrow.png") !important;
+    }
 }
 
 .request-quote-page {
-  background-color: #EFF5F9;
+    background-color: #eff5f9;
 }
 
 .container-request-top-quote {
-  max-width: 1140px;
-  margin: auto;
-  margin-top: 15px;
+    max-width: 1140px;
+    margin: auto;
+    margin-top: 15px;
 }
 
 .container-request-quote {
     max-width: 1140px;
     margin: auto;
-    
+
     .form-group .col-sm-3 {
         @media (max-width: 570px) {
             padding-left: 0.25rem !important;
@@ -47,16 +49,16 @@
             font-size: 22px;
             line-height: 27px;
             text-transform: uppercase;
-            color: #294A7A;
+            color: #294a7a;
             opacity: 0.8;
         }
 
         p {
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
             font-size: 24px;
             line-height: 28px;
             text-transform: uppercase;
-            color: #2B4B7A;
+            color: #2b4b7a;
             opacity: 0.7;
             font-style: normal;
             font-weight: 300;
@@ -69,11 +71,11 @@
                 left: -10px;
                 right: -10px;
             }
-            border-bottom: 1px solid rgba(#2B4B7A, 0.2);
+            border-bottom: 1px solid rgba(#2b4b7a, 0.2);
         }
     }
     .custom-flight-bottom {
-        border-bottom: 1px solid rgba(#2B4B7A, 0.2);
+        border-bottom: 1px solid rgba(#2b4b7a, 0.2);
         display: flex;
         margin: {
             left: -10px;
@@ -86,11 +88,11 @@
             right: 10px;
         }
         p {
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
             font-size: 24px;
             line-height: 28px;
             text-transform: uppercase;
-            color: #2B4B7A;
+            color: #2b4b7a;
             opacity: 0.7;
             font-style: normal;
             font-weight: 300;
@@ -104,47 +106,66 @@
             }
         }
     }
-    #departure-airportRQ, #arrival-airportRQ, #flightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ, #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two, #from-stop-airportRQ, #from-return-airportRQ, #to-stop-airportRQ, #return-airportRQ, #to-return-airportRQ {
+    #departure-airportRQ,
+    #arrival-airportRQ,
+    #flightDateRQ,
+    #stopFlightDateRQ,
+    #returnFlightDateRQ,
+    #aircraftRQ,
+    #aircraftRQ-one,
+    #aircraftRQ-two,
+    #from-stop-airportRQ,
+    #from-return-airportRQ,
+    #to-stop-airportRQ,
+    #return-airportRQ,
+    #to-return-airportRQ {
         width: auto;
         height: 45px;
         border: 1px solid rgba(41, 74, 122, 0.4);
         &::placeholder {
-            color: #9A9B9B;
+            color: #9a9b9b;
             text-transform: uppercase;
         }
     }
     .display-none {
         display: none;
     }
-    #from-stop-airportRQ, #from-return-airportRQ, #to-stop-airportRQ, #return-airportRQ, #to-return-airportRQ {
+    #from-stop-airportRQ,
+    #from-return-airportRQ,
+    #to-stop-airportRQ,
+    #return-airportRQ,
+    #to-return-airportRQ {
         //background: url("/images/flight_down.png") no-repeat 95% center;
         //display: none;
         margin: {
             //bottom: 10px;
         }
     }
-    #from-stop-airportRQ, #from-return-airportRQ {
+    #from-stop-airportRQ,
+    #from-return-airportRQ {
         background: url("/images/flight_up.png") no-repeat 95% center;
         border-radius: 6px 0px 0px 6px;
     }
-    
+
     #additional-air-one-block {
         position: relative;
     }
-    
+
     #additional-air-two-block {
         position: relative;
     }
 
     .preff-air-with-additional {
-        border: 1px solid #FFF;
-        background: no-repeat url("/images/check-circle.png") center center ;
+        border: 1px solid #fff;
+        background: no-repeat url("/images/check-circle.png") center center;
         text-indent: -9999px;
         min-width: 48px;
         outline: none;
     }
-    
-    #return-airportRQ, #to-stop-airportRQ, #to-return-airportRQ {
+
+    #return-airportRQ,
+    #to-stop-airportRQ,
+    #to-return-airportRQ {
         background: url("/images/flight_down.png") no-repeat 95% center;
         border-radius: 0px 6px 6px 0px;
         margin-left: -1px;
@@ -152,67 +173,75 @@
     #add-stop-button-bottom {
         display: none;
     }
-    #add-stop-button, #add-return-button, #add-stop-button-bottom {
-        border: 1px solid rgba(#2A60AE,0.3);
-        background-color: #FFFFFF;
+    #add-stop-button,
+    #add-return-button,
+    #add-stop-button-bottom {
+        border: 1px solid rgba(#2a60ae, 0.3);
+        background-color: #ffffff;
         border-radius: 6px;
         margin: {
             top: 10px;
             left: auto;
             right: auto;
-        };
+        }
         padding: {
             top: 6px;
             left: 34px;
             right: 12px;
             bottom: 6px;
-        };
-        font-family: 'Roboto';
+        }
+        font-family: "Roboto";
         font-weight: bold;
         font-size: 14px;
         text-transform: uppercase;
-        color: #2A60AE;
+        color: #2a60ae;
         transition: color 0.25s;
     }
     #add-aircraft-button {
-        border: 1px solid rgba(#2A60AE,0.3);
-        background-color: #FFFFFF;
+        border: 1px solid rgba(#2a60ae, 0.3);
+        background-color: #ffffff;
         border-radius: 6px;
         margin: {
             top: 10px;
             right: auto;
-        };
+        }
         padding: {
             top: 6px;
-            left: 32px; 
+            left: 32px;
             right: 10px;
             bottom: 6px;
-        };
-        font-family: 'Roboto';
+        }
+        font-family: "Roboto";
         font-weight: bold;
         font-size: 14px;
         text-transform: uppercase;
-        color: #2A60AE;
+        color: #2a60ae;
         transition: color 0.25s;
         background: url("/images/plus_request.png") no-repeat 10% center;
         display: none;
     }
     #add-aircraft-button:hover {
-        color: rgba(#2A60AE, 0.8);
+        color: rgba(#2a60ae, 0.8);
         transition: color 0.25s;
         outline: none !important;
     }
-    #add-stop-button:hover, #add-return-button:hover, #add-stop-button-bottom:hover {
-        color: rgba(#2A60AE, 0.8);
+    #add-stop-button:hover,
+    #add-return-button:hover,
+    #add-stop-button-bottom:hover {
+        color: rgba(#2a60ae, 0.8);
         transition: color 0.25s;
     }
-    #add-stop-button:focus, #add-return-button:focus, #add-stop-button-bottom:focus, #add-aircraft-button:focus {
+    #add-stop-button:focus,
+    #add-return-button:focus,
+    #add-stop-button-bottom:focus,
+    #add-aircraft-button:focus {
         outline: none;
     }
-    #add-stop-button, #add-stop-button-bottom {
+    #add-stop-button,
+    #add-stop-button-bottom {
         background: url("/images/plus_request.png") no-repeat 10% center;
     }
-    
+
     @media (max-width: 570px) {
         #add-stop-button-bottom {
             display: block;
@@ -221,7 +250,7 @@
             display: none;
         }
     }
-    
+
     #add-return-button {
         background: url("/images/arrow_request.png") no-repeat 10% center;
     }
@@ -235,12 +264,17 @@
             left: -1px !important;
         }
     }
-    #flightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ, #stopFlightDateRQ, #returnFlightDateRQ {
+    #flightDateRQ,
+    #stopFlightDateRQ,
+    #returnFlightDateRQ,
+    #stopFlightDateRQ,
+    #returnFlightDateRQ {
         background: url("/images/callender_reqest.png") no-repeat 95% center;
         border-radius: 6px;
         width: 100% !important;
     }
-    #stopFlightDateRQ, #returnFlightDateRQ {
+    #stopFlightDateRQ,
+    #returnFlightDateRQ {
         margin: {
             //top: 10px;
         }
@@ -251,7 +285,9 @@
             margin-left: 15px !important;
         }
     }
-    #aircraftRQ, #aircraftRQ-one, #aircraftRQ-two {
+    #aircraftRQ,
+    #aircraftRQ-one,
+    #aircraftRQ-two {
         border-radius: 6px;
         background: url("/images/arrow_bottom.png") no-repeat 94% center;
         width: 100% !important;
@@ -260,8 +296,9 @@
         border-radius: 0px 6px 6px 0px;
     }
     #request_quote {
-        label, .extra-title {
-            font-family: 'Roboto', sans-serif;
+        label,
+        .extra-title {
+            font-family: "Roboto", sans-serif;
             font-style: normal;
             font-weight: 300;
             font-size: 14px;
@@ -275,9 +312,10 @@
                 }
             }
         }
-        input[type=text]:focus, input[type=number]:focus {
-            box-shadow: 0px 0px 0px 1px rgba(#5198FF, 1) !important;
-            border: 1px solid #5198FF;
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            box-shadow: 0px 0px 0px 1px rgba(#5198ff, 1) !important;
+            border: 1px solid #5198ff;
         }
     }
     #passengers {
@@ -313,18 +351,17 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        
+
         @media (max-width: 800px) {
             flex-direction: column;
         }
 
-        
         input {
-            border: 1px solid #E6E8ED;
-            background-color: #E6E8ED;
+            border: 1px solid #e6e8ed;
+            background-color: #e6e8ed;
             height: 45px;
             width: 40%;
-            
+
             @media (max-width: 800px) {
                 width: 100%;
                 margin-bottom: 15px;
@@ -336,12 +373,13 @@
                 flex-direction: column-reverse;
             }
             .request-quote-submit-page {
-                background: url(/images/request_send.png) no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
+                background: url(/images/request_send.png) no-repeat 30px center,
+                    linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375e97 0.01%, #294a7a 29.69%);
                 opacity: 0.8;
                 border-radius: 6px;
                 padding: 0.5rem 2rem 0.5rem 3.5rem;
                 border: none;
-                color: #FFFFFF;
+                color: #ffffff;
                 transition: opacity 0.2s;
                 &:hover {
                     opacity: 0.7;
@@ -349,7 +387,7 @@
                 }
             }
             p {
-                color: #98A7BA;
+                color: #98a7ba;
                 background: url(/images/ClockCircle.png) no-repeat left center;
                 line-height: 30px;
                 height: 30px;
@@ -366,7 +404,7 @@
                 bottom: -25px;
                 */
                 span {
-                    color: #526D94;
+                    color: #526d94;
                 }
                 @media (max-width: 800px) {
                     flex-direction: column-reverse;
@@ -375,7 +413,6 @@
                 }
             }
         }
-        
     }
     #departureList {
         top: 70px;
@@ -383,8 +420,11 @@
     #arrivalList {
         top: 70px;
     }
-    
-    #stopList, #fromStopList, #toStopList, #fromReturnList {
+
+    #stopList,
+    #fromStopList,
+    #toStopList,
+    #fromReturnList {
         position: absolute;
         top: 100%;
         left: 0px;
@@ -398,21 +438,24 @@
             padding: 1rem 1.5rem;
 
             a {
-                &:link, &:visited {
-                    color: #25383C;
+                &:link,
+                &:visited {
+                    color: #25383c;
                     display: block;
                     padding: 3px 0;
                 }
 
-                &:hover, &:active {
+                &:hover,
+                &:active {
                     text-decoration: none;
                     color: #000000;
                 }
             }
         }
     }
-    
-    #fromReturnList, #toReturnList {
+
+    #fromReturnList,
+    #toReturnList {
         position: absolute;
         top: 100%;
         left: 0px;
@@ -426,13 +469,15 @@
             padding: 1rem 1.5rem;
 
             a {
-                &:link, &:visited {
-                    color: #25383C;
+                &:link,
+                &:visited {
+                    color: #25383c;
                     display: block;
                     padding: 3px 0;
                 }
 
-                &:hover, &:active {
+                &:hover,
+                &:active {
                     text-decoration: none;
                     color: #000000;
                 }
@@ -454,20 +499,22 @@
             padding: 1rem 1.5rem;
 
             a {
-                &:link, &:visited {
-                    color: #25383C;
+                &:link,
+                &:visited {
+                    color: #25383c;
                     display: block;
                     padding: 3px 0;
                 }
 
-                &:hover, &:active {
+                &:hover,
+                &:active {
                     text-decoration: none;
                     color: #000000;
                 }
             }
         }
     }
-    
+
     #aircraftList {
         position: absolute;
         top: 70px;
@@ -480,32 +527,35 @@
             display: block;
             position: absolute;
             padding: 1rem 1.5rem;
+            height: 250px;
+            overflow: auto;
 
             a {
-                &:link, &:visited {
-                    color: #25383C;
+                &:link,
+                &:visited {
+                    color: #25383c;
                     display: block;
                     padding: 3px 0;
                 }
 
-                &:hover, &:active {
+                &:hover,
+                &:active {
                     text-decoration: none;
                     color: #000000;
                 }
             }
         }
     }
-    
+
     .input-group {
         @media (max-width: 992px) {
             flex-direction: column;
         }
     }
-
 }
 
 .request-search-page-success {
-    background-color: #EFF5F9;
+    background-color: #eff5f9;
     .card {
         max-width: 644px;
         margin: {
@@ -516,12 +566,14 @@
         border-color: transparent;
         border-radius: 0;
         border: none;
-        background: 2px top repeat-x url(/images/bg_top_perforation.png), 2px bottom repeat-x url(/images/bg_bottom_perforation.png);
+        background: 2px top repeat-x url(/images/bg_top_perforation.png),
+            2px bottom repeat-x url(/images/bg_bottom_perforation.png);
         position: relative;
         z-index: 2;
         overflow: visible;
-        
-        &:before, &:after {
+
+        &:before,
+        &:after {
             content: "";
             height: calc(100% - 20px);
             position: absolute;
@@ -531,11 +583,11 @@
         }
 
         &:before {
-            box-shadow: -2px 0px 6px rgba(#CCC, 1);
+            box-shadow: -2px 0px 6px rgba(#ccc, 1);
             left: 0px;
         }
         &:after {
-            box-shadow: 2px 0px 6px rgba(#CCC, 1);
+            box-shadow: 2px 0px 6px rgba(#ccc, 1);
             right: 0px;
         }
 
@@ -544,7 +596,7 @@
                 top: 16px;
                 bottom: 22px;
             }
-            background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(#F7F9F9, 1) 100%);
+            background: linear-gradient(180deg, #ffffff 83.07%, rgba(#f7f9f9, 1) 100%);
             .custom-flight-page {
                 text-align: center;
                 div {
@@ -564,18 +616,19 @@
                     color: #373737;
                     margin-top: 15px;
                     span {
-                        color: #5198FF;
+                        color: #5198ff;
                     }
                 }
-                a:link, a:visited {
-                    color: #294A7A;
-                    border: 1px solid rgba(#2A60AE, 0.3);
+                a:link,
+                a:visited {
+                    color: #294a7a;
+                    border: 1px solid rgba(#2a60ae, 0.3);
                     border-radius: 6px;
                     display: inline-block;
                     font-size: 18px;
                     line-height: 21px;
                     background: url(/images/key.png) no-repeat 15px center;
-                    
+
                     margin: {
                         top: 30px;
                         left: auto;
@@ -587,15 +640,15 @@
                         left: 50px;
                         right: 20px;
                     }
-                    transition: opacity 0.20s;
+                    transition: opacity 0.2s;
                 }
-                a:hover, a:active {
+                a:hover,
+                a:active {
                     text-decoration: none;
                     opacity: 0.8;
-                    transition: opacity 0.20s;
+                    transition: opacity 0.2s;
                 }
             }
         }
     }
-    
 }

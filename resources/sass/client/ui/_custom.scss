@@ -252,6 +252,8 @@
   left: 0px;
   display: block;
   z-index: 3001 !important;
+  height: 250px;
+  overflow: auto;
 
   .dropdown-menu {
     min-width: 16rem !important;
@@ -282,6 +284,8 @@
   left: 0px;
   display: block;
   z-index: 3001 !important;
+  height: 250px;
+  overflow: auto;
 
   .dropdown-menu {
     min-width: 16rem !important;
