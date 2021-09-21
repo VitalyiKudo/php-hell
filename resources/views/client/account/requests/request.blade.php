@@ -685,8 +685,7 @@
                                 <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
                                 <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
                                 <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
-                                <!-- <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at"> -->
-                                <input type="text" name="departure_at" placeholder="Date&Time" autocomplete="off" id="departure_at">
+                                <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                                 <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
                                 <input type="hidden" name="page_name" value="search-page">
 
@@ -907,15 +906,15 @@
                 $('.hover_bkgr_fricc').hide();
             });
 
-            // var nowDate = new Date();
-            // var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
+            var nowDate = new Date();
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
             $('input[name="flightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                autoUpdateInput: false,
+                minDate: today,
             });
-            $('input[name="flightDate"]').val('');
-            $('input[name="flightDate"]').attr("placeholder","Date & Time");
 
             /*
             $('#request_quote').submit(function(e){
