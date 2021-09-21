@@ -573,22 +573,25 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            $.each(data, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
+                                        output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
+                                    } else {
+                                        var city = obj.city;
+                                        if (!(city in lookup)) {
+                                            lookup[city] = 1;
+                                            output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
+                                        }
+                                        var area = obj.area;
+                                        if (!(area in lookup) && area !== null) {
+                                            lookup[area] = 1;
+                                            output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
+                                        }
                                     }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                                });
                             output += '</ul>';
                             $('#arrivalList').fadeIn();  
                             $('#arrivalList').html(output);
