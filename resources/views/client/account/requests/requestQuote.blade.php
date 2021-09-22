@@ -299,15 +299,15 @@
 @push('scripts')
     
     <script type="text/javascript">
-        // var nowDate = new Date();
-        // var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2, 0, 0, 0, 0);
+        var nowDate = new Date();
+        var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
         $(function() {
 
             $('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
-                // minDate: today,
+                isInvalidDate: (e) => new Date(e) < today
             });
             //$('input[name="flightDate"], input[name="stopFlightDate"], input[name="returnFlightDate"]').val('');
 
