@@ -435,6 +435,7 @@ class OrderController extends Controller
 
                             $airport_list = [];
                             $airport_items = Airport::whereIn('city', [$start_airport_name, $end_airport_name])->get();
+                            //$airport_items = Airport::whereIn('city', [$start_airport_name])->get();
                             foreach($airport_items as $airport_item){
                                 if($airport_item->icao){
                                     $airport_list[] = $airport_item->icao;
@@ -443,8 +444,8 @@ class OrderController extends Controller
                             $airport_list = array_unique($airport_list);
 
                             $operator_list = [];
-                            $airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
-                            //$airlines = Airline::where('category', $search_type)->get();
+                            //$airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
+                            $airlines = Airline::whereIn('homebase', $airport_list)->get();
 
                             foreach($airlines as $airline){
                                 $operator_list[] = $airline->operator;
@@ -488,10 +489,10 @@ class OrderController extends Controller
                                 Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                                     $user = Auth::user();
                                     $message->from($user->email, 'JetOnset team');
-                                    //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                                    //$message->to('zyoga13@gmail.com')->subject("We have request for you!");
                                     $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
                                     //$message->to($user->email)->subject("We have received your request");
-                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people for " . ucfirst($airports['type']) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
+                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
                             
