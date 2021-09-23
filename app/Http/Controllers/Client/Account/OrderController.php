@@ -445,7 +445,7 @@ class OrderController extends Controller
 
                             $operator_list = [];
                             //$airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
-                            $airlines = Airline::whereIn('homebase', $airport_list)->get();
+                            $airlines = Airline::where('homebase', $airport_list)->get();
 
                             foreach($airlines as $airline){
                                 $operator_list[] = $airline->operator;
