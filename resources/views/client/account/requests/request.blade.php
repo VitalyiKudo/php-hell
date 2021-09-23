@@ -155,7 +155,7 @@
                 <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
                 
 
-                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0) and strtotime(date('m/d/Y')) < strtotime($params['flightDate']))
+                @if($searchResults and ($searchResults->price_turbo > 0 or $searchResults->price_light > 0 or $searchResults->price_medium > 0 or $searchResults->price_heavy > 0) and strtotime(date('m/d/Y',strtotime("+1 day"))) < strtotime($params['flightDate']))
 
                     @if($searchResults->price_turbo > 0)
                     <div class="card mb-4">
