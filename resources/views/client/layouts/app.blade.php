@@ -42,7 +42,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" rel="stylesheet" type="text/css">
-    
+
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!--<link href="{{ asset('css/custom.css') }}" rel="stylesheet">-->
@@ -71,7 +71,7 @@
 
                 <div class="collapse navbar-collapse navbar-style @yield('book_page')" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -119,13 +119,13 @@
                         @guest()
                             <li class="nav-item item-position border-lg-right margin-lg-left ">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
-                                
+
                                     <img src="/images/sg.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="..."></span>
-                                
+
                                     {{ __('Sign Up') }}
-                                    
+
                                 </a>
-                                  
+
                             </li>
                             <li class="nav-item">
                                 <svg width="1" height="50" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,9 +133,9 @@
                                 </svg>
                             </li>
                             <li class="nav-item item-position">
-                            
+
                                 <a class="nav-link" href="{{ route('client.login') }}">
-                                    
+
                                     <img src="/images/key.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="...">
                                     {{ __('Log In') }}</a>
                             </li>
@@ -156,11 +156,11 @@
                 </div>
             </div>
         </nav>
-        
+
         <main>
             @yield('content')
         </main>
-        
+
         <div class="footer">
             <div class="container">
                 <div class="row">
@@ -218,29 +218,29 @@
                             </div>
                             <div class="col-auto">
                                 <a href="https://www.pinterest.com/4jetonset/" target="_blank"><img src="/images/pinest-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 order-2 mb-3">
-                        <div class="row privacy-terms mb-0">                       
+                        <div class="row privacy-terms mb-0">
                             <a href="/privacy-policy" class="footer-privacy-text mb-0">Privacy Policy</a>
                             <a href="/terms-conditions" class="footer-privacy-text mb-0">Terms & Conditions</a>
                         </div>
-                    </div>            
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="{{ mix('js/app.js') }}"></script>
-    
-    
-    
 
-    
+    <script src="{{ mix('js/app.js') }}"></script>
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map"></script>
-    
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

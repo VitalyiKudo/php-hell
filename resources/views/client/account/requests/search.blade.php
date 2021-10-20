@@ -49,7 +49,7 @@
                     </nav>
                     @endif
 
-                    
+
                     <form action="{{ route('client.search.index') }}" method="GET" id="main-search-form">
 
                         @csrf
@@ -379,7 +379,7 @@
                                         </li>
                                     </ul>
                                 </div>
- 
+
                                 <div class="book">
                                     <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
                                 </div>
@@ -443,7 +443,7 @@
                                         <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card-body-details">
                                     <ul>
                                         <li>
@@ -528,7 +528,7 @@
                                     <div>
                                         <img src="{{ asset('images/search_galery/heavy/HEAVY-4.webp') }}" alt="HEAVY-4">
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="heavy-gallery-nav">
@@ -547,7 +547,7 @@
                                     <div>
                                         <img src="{{ asset('images/search_galery/heavy/HEAVY-4.webp') }}" alt="HEAVY-4">
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -563,8 +563,8 @@
                                         <span class="flight-price-desc">Book now price</span>
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="card-body-details">
                                     <ul>
                                         <li>
@@ -711,6 +711,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script type="text/javascript">
         @if( isset($params['biggerLat']) && isset($params['biggerLng']) && isset($params['startCityLat']) && isset($params['startCityLng']) && isset($params['endCityLat']) && isset($params['endCityLng']) )
@@ -947,7 +948,7 @@
                     $('.invalid-feedback').remove();
                     $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
                 }
-                
+
             });
             */
 
@@ -983,7 +984,7 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             $.each(withoutDuplicates, function(idx, obj) {
@@ -999,7 +1000,7 @@
                             });
                             output += '</ul>';
                             $('#departureList').fadeIn();
-                            $('#departureList').html(output);
+                            $('#departureList').html(output).mark(query);
                         }
                     });
                 }
@@ -1012,7 +1013,7 @@
             });
 
 
-            $('input.to').keyup(function(){ 
+            $('input.to').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -1032,28 +1033,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
                             output += '</ul>';
-                            $('#arrivalList').fadeIn();  
-                            $('#arrivalList').html(output);
+                            $('#arrivalList').fadeIn();
+                            $('#arrivalList').html(output).mark(query);
                         }
                     });
                 }
@@ -1077,7 +1070,7 @@
                 $('#arrivalList').fadeOut();
             });
 
-            
+
             $('#main-search-form').submit(function(e){
 
                 var start_point = $(this).find('input[name="startPoint"]').val();

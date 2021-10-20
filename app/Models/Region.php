@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Region extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     /**
      * The attributes that are mass assignable.
      *
@@ -13,9 +14,9 @@ class Country extends Model
      */
     protected $fillable = [
         'name',
+        'region_id',
         'country_id',
-        'iso2',
-        'iso3',
+        'code',
     ];
 
     /**
@@ -28,9 +29,9 @@ class Country extends Model
     /**
      * Get the country of the airport.
      */
-    public function region()
+    public function country()
     {
-        return $this->hasMany('App\Models\Region', 'country_id', 'country_id');
+        return $this->belongsTo('App\Models\Country', 'country_id', 'country_id');
     }
 
     /**
@@ -38,7 +39,7 @@ class Country extends Model
      */
     public function airport()
     {
-        return $this->hasMany('App\Models\Airport', 'country_id', 'country_id');
+        return $this->belongsTo(Airport::class, ['country_id', 'region_id'], ['country_id', 'region_id']);
     }
-
 }
+
