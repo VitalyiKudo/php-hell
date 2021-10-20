@@ -13,27 +13,48 @@ class AirportsTableSeeder extends Seeder
      */
     public function run()
     {
-        // $url = 'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat';
-
-        if (($handle = fopen(storage_path('app/airports.dat'), 'r')) !== FALSE) {
-            while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-                $airport = Airport::firstOrNew(['source_id' => $data[0]]);
-
-                $country = Country::where('name', $data[3])->first();
-
-                $airport->name = $data[1];
-                $airport->city = $data[2];
-                $airport->country()->associate($country);
-                $airport->iata = ($data[4] !== '\N') ? $data[4] : null;
-                $airport->icao = ($data[5] !== '\N') ? $data[5] : null;
-                $airport->latitude = $data[6];
-                $airport->longitude = $data[7];
-                $airport->timezone = $data[11];
-
-                $airport->save();
+        // Old $url = 'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat';
+        // New local Airports_final_02_06_Alex.csv
+        $header = NULL;
+        $data = array();
+        if (($handle = fopen(storage_path('app/Airports_final_02_06_Alex.csv'), 'r')) !== FALSE) {
+            while (($row = fgetcsv($handle, 1000, ';')) !== false) {
+                if (!$header) {
+                    $header = $row;
+                } else {
+                    $data[] = array_combine($header, $row);
+                }
             }
-
             fclose($handle);
+        }
+
+        if (!empty($data)) {
+            try {
+                foreach ($data as $value) {
+
+                    $airport = Airport::firstOrNew(['icao' => $value['ident']]);
+                    $country = \App\Models\Country::firstOrCreate(['country_id' => $value['iso_country']]);
+                    $regionJob = trim(substr($value['iso_region'], strpos($value['iso_region'], "-") + 1));
+                    $region = \App\Models\Region::firstOrCreate(['country_id' => $value['iso_country'], 'region_id' => $regionJob]);
+
+                    $airport->name = $value['name'];
+                    $airport->city = $value['municipality'];
+                    $airport->country()->associate($country->country_id);
+                    $airport->region()->associate($region->region_id);
+                    $airport->continent_id = ($value['continent'] !== '\N') ? $value['continent'] : null;
+                    $airport->iata = ($value['iata_code'] !== '\N') ? $value['iata_code'] : null;
+                    $airport->icao = $value['ident'];
+                    $airport->latitude = $value['latitude_deg'];
+                    $airport->longitude = $value['longitude_deg'];
+                    #$airport->timezone = $value[11];
+
+                    $airport->save();
+                }
+            } catch (Exception $e) {
+                report($e);
+
+                return false;
+            }
         }
     }
 }

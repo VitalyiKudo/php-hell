@@ -31,19 +31,19 @@
                     </nav>
                     @endif
 
-                    
+
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container-fluid request-search-page request-quote-page">
-        
+
         <div class="row">
             <div class="col-xl-12 col-lg-12 mb-3 container-request-top-quote">
-                
+
                 <a href="{{ $pervis_search_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
-                
+
             </div>
         </div>
 
@@ -91,7 +91,7 @@
                                                 >
                                                 <div id="fromStopList"></div>
                                             </div>
-                                            
+
                                             <div class="w-100 position-relative return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
                                                 <label for="from-return-airportRQ" class="mt-3">From Return Airport</label>
                                                 <input type="text"
@@ -136,7 +136,7 @@
                                                 >
                                                 <div id="toStopList"></div>
                                             </div>
-                                            
+
                                             <div class="w-100 position-relative return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
                                                 <label for="to-return-airportRQ" class="mt-3">To Return Airport</label>
                                                 <input type="text"
@@ -155,7 +155,7 @@
                                                 <button type="button" class="mt-3" id="add-stop-button-bottom">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
                                                 <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -168,15 +168,15 @@
                                                 <label for="stopFlightDateRQ" class="mt-3">Stop Date</label>
                                                 <input type="text" class="form-control" name="stopFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['stop_at'] }}" {{ $params['stop_at'] ? '' : 'disabled' }} id="stopFlightDateRQ">
                                             </div>
-                                            
+
                                             <div class="return-airpor-row {{ ( $params['from_return_airport_name'] or $params['to_return_airport_name'] or $params['return_at'] ) ? '' : 'display-none' }}">
                                                 <label for="returnFlightDateRQ" class="mt-3">Return Date</label>
                                                 <input type="text" class="form-control" name="returnFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['return_at'] }}" {{ $params['return_at'] ? '' : 'disabled' }} id="returnFlightDateRQ">
                                             </div>
-                                            
+
                                         </div>
                                     </div>
-                                    
+
                                     <div class="mb-3 mt-2 pl-0 ml-3 pass-field pf-request">
                                         <div class="input-group input-style">
                                             <label for="aircraftRQ">Preffered Aircraft</label>
@@ -209,16 +209,16 @@
                                     <input type="hidden" name="flight_model" value="{{ $params['flight_model'] }}">
 
                                 </div>
-                                
+
                                 <div class="custom-flight-bottom form-row">
                                     <p class="form-group col-sm-12 col-md-12 col-lg-6 col-xl-6">PASSENGERS & baGGAGE</p>
                                     <p class="form-group col-sm-12 col-md-12 col-lg-6 col-xl-6">extra</p>
                                 </div>
-                                
+
                                 <div class="row">
-                                    
+
                                     <div class="form-group col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        
+
                                         <div class="row">
                                             <div class="col-sm-3 pr-2">
                                                 <label for="passengers">Passengers</label>
@@ -245,14 +245,14 @@
                                         <div class="row">
                                             <p class="extra-title">extra options</p>
                                         </div>
-                                        
+
                                         <div class="row extra-block">
                                             <div class="form-check form-check-inline">
-                                                <input type="checkbox" class="form-check-input" aria-describedby="wifi" name="wifi" autocomplete="off" value="yes" {{ ($params['wifi'] == 'yes' ? ' checked' : '') }} id="wifi"> 
+                                                <input type="checkbox" class="form-check-input" aria-describedby="wifi" name="wifi" autocomplete="off" value="yes" {{ ($params['wifi'] == 'yes' ? ' checked' : '') }} id="wifi">
                                                 <label class="form-check-label" for="wifi">Wi-Fi</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input type="checkbox" class="form-check-input" aria-describedby="lavatory" name="lavatory" autocomplete="off" value="yes" {{ ($params['lavatory'] == 'yes' ? ' checked' : '') }} id="lavatory">  
+                                                <input type="checkbox" class="form-check-input" aria-describedby="lavatory" name="lavatory" autocomplete="off" value="yes" {{ ($params['lavatory'] == 'yes' ? ' checked' : '') }} id="lavatory">
                                                 <label class="form-check-label" for="lavatory">Lavatory</label>
                                             </div>
                                             <div class="form-check form-check-inline">
@@ -263,12 +263,12 @@
                                                 <input type="checkbox" class="form-check-input" aria-describedby="catering" name="catering" autocomplete="off" value="yes" {{ ($params['catering'] == 'yes' ? ' checked' : '') }} id="catering">
                                                 <label class="form-check-label" for="catering">Catering</label>
                                             </div>
-                                            
+
                                             <input type="hidden" name="page_name" value="reqest-page">
-                                        
+
                                         </div>
                                     </div>
- 
+
                                 </div>
 
 
@@ -281,7 +281,7 @@
                                 </div>
                             </form>
 
-                            
+
                         </div>
 
                     </div>
@@ -297,7 +297,7 @@
 
 
 @push('scripts')
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
     <script type="text/javascript">
         var nowDate = new Date();
         var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
@@ -314,11 +314,11 @@
             @if($params['departure_at'] === "")
                 $('input[name="flightDate"]').val('');
             @endif
-            
+
             @if($params['stop_at'] === "")
                 $('input[name="stopFlightDate"]').val('');
             @endif
-            
+
             @if($params['return_at'] === "")
                 $('input[name="returnFlightDate"]').val('');
             @endif
@@ -343,7 +343,7 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             $.each(withoutDuplicates, function(idx, obj) {
@@ -372,7 +372,7 @@
             });
 
 
-            $('input.to').keyup(function(){ 
+            $('input.to').keyup(function(){
                 var query = $(this).val();
                 if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
@@ -391,28 +391,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
                             output += '</ul>';
-                            $('#arrivalList').fadeIn();  
-                            $('#arrivalList').html(output);
+                            $('#arrivalList').fadeIn();
+                            $('#arrivalList').html(output).mark(query);
                         }
                     });
                 }
@@ -462,8 +454,8 @@
                 $('#fromStopList').fadeOut();
             });
 
-            
-            $('input.to-stop').keyup(function(){ 
+
+            $('input.to-stop').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -483,28 +475,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
                             output += '</ul>';
                             $('#toStopList').fadeIn();
-                            $('#toStopList').html(output);
+                            $('#toStopList').html(output).mark(query);
                         }
                     });
                 }
@@ -552,9 +536,9 @@
                 $('input.from-return').val($(this).text());
                 $('#fromReturnList').fadeOut();
             });
-            
 
-            $('input.to-return').keyup(function(){ 
+
+            $('input.to-return').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -574,28 +558,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
                             output += '</ul>';
                             $('#toReturnList').fadeIn();
-                            $('#toReturnList').html(output);
+                            $('#toReturnList').html(output).mark(query);
                         }
                     });
                 }
@@ -606,7 +582,7 @@
                 $('input.to-return').val($(this).text());
                 $('#toReturnList').fadeOut();
             });
-            
+
 
             $('input#aircraftRQ').keyup(function(){
                 var query = $(this).val();
@@ -661,8 +637,8 @@
                 $('input#aircraftRQ').val($(this).text());
                 $('#aircraftList').fadeOut();
             });
-            
-            
+
+
             $('input#aircraftRQ-one').keyup(function(){
                 var query = $(this).val();
                 // if(query != '' && query.length >= 3){
@@ -717,7 +693,7 @@
                 $('#aircraftList-one').fadeOut();
             });
 
-            
+
             $('input#aircraftRQ-two').keyup(function(){
                 var query = $(this).val();
                 // if(query != '' && query.length >= 3){
@@ -771,7 +747,7 @@
                 $('input#aircraftRQ-two').val($(this).text());
                 $('#aircraftList-two').fadeOut();
             });
-            
+
 
             $('body').on('click', function(){
                 $('#departureList').fadeOut();
@@ -793,13 +769,13 @@
                 $('.form-body input[name="startPoint"]').val($(this).data("from"));
                 $('.form-body input[name="endPoint"]').val($(this).data("to"));
             });
-            
+
             if($(".stop-airpor-row").css("display") == "block"){
                 $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', false);
             }else{
                 $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
             }
-            
+
             $('#add-stop-button, #add-stop-button-bottom').click(function(e){
                 e.preventDefault();
                 $(this).text($(this).text() == "add stop"?"remove stop":"add stop");
@@ -810,7 +786,7 @@
                 }else{
                     $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', true);
                 }
-                
+
                 /*
                 if($('#from-stop-airportRQ').prop('disabled') || $('#to-stop-airportRQ').prop('disabled') || $('#stopFlightDateRQ').prop('disabled')){
                     $('#from-stop-airportRQ, #to-stop-airportRQ, #stopFlightDateRQ').prop('disabled', false);
@@ -819,14 +795,14 @@
                 }
                 */
             });
-            
-            
+
+
             if($(".return-airpor-row").css("display") == "block"){
                 $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', false);
             }else{
                 $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', true);
             }
-            
+
             $('#add-return-button').click(function(e){
                 e.preventDefault();
                 $(this).text($(this).text() == "add return"?"remove return":"add return");
@@ -837,7 +813,7 @@
                 }else{
                     $('#from-return-airportRQ, #to-return-airportRQ, #returnFlightDateRQ').prop('disabled', true);
                 }
-                
+
                 /*
                 if($('#from-return-airportRQ').prop('disabled') == true || $('#to-return-airportRQ').prop('disabled') == true || $('#returnFlightDateRQ').prop('disabled') == true){
                     alert('ok');
@@ -849,7 +825,7 @@
                 */
             });
 
-            
+
             $('.search-breadcrumb a').click(function(e){
                 e.preventDefault();
                 $('#request_quote input[name="startPoint"]').val($(this).data("from"));
@@ -866,7 +842,7 @@
 
                 if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
                     $('.search-error').remove();
-                    
+
                     if(start_point.length <= 0){
                         $(this).find('input[name="startPoint"]').parent('div').append(html_message);
                     }
@@ -900,7 +876,7 @@
 
             $('#add-aircraft-button').click(function(e){
                 e.preventDefault();
-                
+
                 if($('#additional-air-one-block').css('display') == 'none'){
                     $('#additional-air-one-block').show();
                     $('#additional-air-one-block #aircraftRQ-one').prop('disabled', false);

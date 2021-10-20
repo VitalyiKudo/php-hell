@@ -15192,7 +15192,7 @@ ul.dashed > li:before {
   font-weight: 400;
   color: #373737;
 }
-
+/*
 #departureList {
   position: absolute;
   top: 44px;
@@ -15312,7 +15312,7 @@ ul.dashed > li:before {
   text-decoration: none;
   color: #000000;
 }
-
+*/
 @media (max-width: 992px) {
   .custom-navbar {
     z-index: 999;
@@ -18061,5 +18061,191 @@ ul.dashed > li:before {
 
 .booking-bg .info-succeed-block .card-body .custom-flight-page .succeed-order span {
   color: #5198ff;
+}
+
+#departureList [hidden],
+#arrivalList [hidden] {
+    display: none;
+}
+
+#departureList .visually-hidden,
+#arrivalList .visually-hidden {
+    position: absolute;
+    clip: rect(0, 0, 0, 0)
+}
+/*
+#departureList,
+#arrivalList {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    display: block;
+    z-index: 3001 !important;
+}
+*/
+#departureList,
+#arrivalList,
+#departureList>input,
+#arrivalList>input {
+    display: block;
+}
+
+#departureList>ul,
+#arrivalList>ul {
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    min-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    font-size: .875rem;
+    top: 2.5rem
+}
+
+#departureList>ul li:before,
+#arrivalList>ul li:before {
+    content: "";
+    position: absolute;
+    left: 0
+}
+
+@media print,
+screen and (min-width:48.0625em) {
+    #departureList>ul,
+    #arrivalList>ul {
+        width: 150%
+    }
+}
+
+#departureList>ul:empty,
+#arrivalList>ul:empty {
+    display: none
+}
+
+#departureList>ul,
+#arrivalList>ul {
+    border-radius: .3125rem;
+    margin: .2em 0 0;
+    background-color: hsla(216, 37%, 38%, .9);
+    background-image: linear-gradient(to bottom right, #fff, hsla(216, 37%, 38%, .8));
+    border: 1px solid #667698;
+    box-shadow: .05em .2em .6em rgba(0, 0, 0, .2);
+    text-shadow: none
+}
+
+@supports (transform:scale(0)) {
+    #departureList>ul,
+    #arrivalList>ul {
+        transition: .3s cubic-bezier(.4, .2, .5, 1.4);
+        transform-origin: 1.43em -.43em
+    }
+    #departureList>ul:empty,
+    #arrivalList>ul:empty,
+    #departureList>ul[hidden],
+    #arrivalList>ul[hidden] {
+        opacity: 0;
+        transform: scale(0);
+        display: block;
+        transition-timing-function: ease
+    }
+}
+
+#departureList>ul:before,
+#arrivalList>ul:before {
+    content: "";
+    position: absolute;
+    top: -.47em;
+    left: 1em;
+    width: 0;
+    height: 0;
+    padding: .4em;
+    background: hsla(216, 37%, 38%, .5);
+    border: inherit;
+    border-right: 0;
+    border-bottom: 0;
+    transform: rotate(45deg);
+    z-index: -1
+}
+
+#departureList>ul>li,
+#arrivalList>ul>li {
+    position: relative;
+    padding: .2em .5em;
+    cursor: pointer;
+    color: #afafb1
+}
+
+#departureList>ul>li:nth-of-type(odd),
+#arrivalList>ul>li:nth-of-type(odd) {
+    background-color: #fff
+}
+
+#departureList>ul>li:nth-of-type(even),
+#arrivalList>ul>li:nth-of-type(even) {
+    background-color: #e9eaef
+}
+
+#departureList>ul>li:first-child,
+#arrivalList>ul>li:first-child {
+    border-radius: .25rem .25rem 0 0
+}
+
+#departureList>ul>li:last-child,
+#arrivalList>ul>li:last-child {
+    border-radius: 0 0 .25rem .25rem
+}
+#departureList>ul>li:only-child,
+#arrivalList>ul>li:only-child {
+    border-radius: .25rem  .25rem  .25rem .25rem
+}
+
+#departureList>ul>li:hover,
+#arrivalList>ul>li:hover,
+#departureList>ul>li[aria-selected=true],
+#arrivalList>ul>li[aria-selected=true] {
+    background-color: #0a2669;
+    color: #fff;
+}
+#departureList>ul>li>a,
+#arrivalList>ul>li>a{
+    display: block;
+
+}#departureList>ul>li>a:hover,
+#arrivalList>ul>li>a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+
+#departureList mark,
+#arrivalList mark {
+    background-color: transparent;
+    font-weight: 700;
+    color: #2463bd
+}
+
+#departureList li:hover mark,
+#arrivalList li:hover mark {
+    background-color: transparent;
+    color: #fff
+}
+
+#departureList li[aria-selected=true] mark,
+#arrivalList li[aria-selected=true] mark {
+    background-color: transparent;
+    color: #fff
+}
+
+.empty-leg-widget-container #departureList ul,
+.empty-leg-widget-container #arrivalList ul,
+.mini-quote-tabs-container #departureList ul,
+.mini-quote-tabs-container #arrivalList ul {
+    max-height: 240px;
+    overflow-y: scroll
 }
 

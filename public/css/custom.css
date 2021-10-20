@@ -106,15 +106,15 @@
 
 #departureList {
     position: absolute;
-    top: 44px; 
-    left: 0px; 
+    top: 44px;
+    left: 0px;
     display: block;
     z-index: 3001 !important;
 }
 
 #departureList .dropdown-menu {
     min-width: 16rem !important;
-    display: block; 
+    display: block;
     position: absolute;
     padding: 1rem 1.5rem;
 }
@@ -131,15 +131,15 @@
 
 #arrivalList {
     position: absolute;
-    top: 44px; 
-    left: 0px; 
+    top: 44px;
+    left: 0px;
     display: block;
     z-index: 3001 !important;
 }
 
 #arrivalList .dropdown-menu {
     min-width: 16rem !important;
-    display: block; 
+    display: block;
     position: absolute;
     padding: 1rem 1.5rem;
     /*z-index: 999999;*/
@@ -341,7 +341,7 @@
     box-shadow: revert;
     border-radius: revert;
   }
-  
+
   .main-search-page .col-lg-1 {
     flex: 0 0 6%;
     max-width: 6%;
@@ -459,7 +459,7 @@
   .butn-search {
     width: revert;
   }
-  
+
   .main-search-page .scroll-button {
     margin: 1rem auto 0;
   }
@@ -492,7 +492,7 @@
     display: revert;
   }
 
-  .center { 
+  .center {
     margin-top: revert;
     display: revert;
     margin-left: revert;
@@ -884,7 +884,7 @@
   }
 
   .bg-plane4 {
-    background-image: url("/images/aircrafts/jet_background1-2.webp"); 
+    background-image: url("/images/aircrafts/jet_background1-2.webp");
   }
 }
 
@@ -1063,7 +1063,7 @@
   .services-right {
     margin-left: calc((100% - 540px) / 2 + 15px);
     /*margin-left: calc((100% - 1140px) / 2 + 65px);*/
-    
+
   }
 }
 
@@ -1204,7 +1204,7 @@
 
 .request-search-page .book .btn {
     color: #ffffff;
-    
+
 }
 .request-search-page .book {
     justify-content: flex-end;
@@ -1408,7 +1408,7 @@
 .book-now {
     background: url("/images/book_now.svg") no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375E97 0.01%, #294A7A 29.69%);
     opacity: 0.8;
-    border-radius: 6px; 
+    border-radius: 6px;
     padding: 0.5rem 2rem 0.5rem 3.5rem;
 }
 

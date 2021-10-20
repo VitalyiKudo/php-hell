@@ -69,7 +69,7 @@
 
                             </div>
                         </div>
-                        
+
                         <div class="form-container-1 mt-2 ml-3 butn-search">
                             <button type="submit" class="btn">Search Jet</button>
                         </div>
@@ -489,6 +489,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
     <script type="text/javascript">
         var nowDate = new Date();
         var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
@@ -507,9 +508,9 @@
             });
             $('input[name="flightDate"]').val('');
             $('input[name="flightDate"]').attr("placeholder","Date & Time");
-            
-            
-            $('input.from').keyup(function(){ 
+
+
+            $('input.from').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -529,28 +530,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
                             output += '</ul>';
-                            $('#departureList').fadeIn();  
-                            $('#departureList').html(output);
+                            $('#departureList').fadeIn();
+                            $('#departureList').html(output).mark(query);
                         }
                     });
                 }
@@ -562,7 +555,7 @@
                 $('#departureList').fadeOut();
             });
 
-            $('input.to').keyup(function(){ 
+            $('input.to').keyup(function(){
                 var query = $(this).val();
 
                 if(query != '' && query.length >= 3){
@@ -582,28 +575,20 @@
                                     return isNew;
                                 });
                             }
-                            
+
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name !== null && obj.iata !== null && (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase()))) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                    var area = obj.area;
-                                    if (!(area in lookup) && area !== null) {
-                                        lookup[area] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.area + '</a></li>';
-                                    }
-                                }
-                            });
-                            output += '</ul>';
-                            $('#arrivalList').fadeIn();  
-                            $('#arrivalList').html(output);
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
+                                output += '</ul>';
+                            $('#arrivalList').fadeIn();
+                            $('#arrivalList').html(output).mark(query);
                         }
                     });
                 }
@@ -614,8 +599,8 @@
                 $('input.to').val($(this).text());
                 $('#arrivalList').fadeOut();
             });
-            
-            
+
+
             $('body').on('click', function(){
                 $('#departureList').fadeOut();
                 $('#arrivalList').fadeOut();
@@ -634,7 +619,7 @@
 
                 if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
                     $('.search-error').remove();
-                    
+
                     if(start_point.length <= 0){
                         $(this).find('input[name="startPoint"]').parent('div').append(html_message);
                     }
@@ -653,8 +638,8 @@
                     e.preventDefault();
                 }
             });
-            
-            
+
+
         });
     </script>
 

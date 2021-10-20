@@ -16,11 +16,12 @@ class CountriesTableSeeder extends Seeder
         $countries = (new Countries())->all();
 
         foreach ($countries as $value) {
-            $country = Country::firstOrNew(['a2' => $value->cca2]);
+            $country = Country::firstOrNew(['iso2' => $value->cca2]);
 
             $country->name = $value->name->common;
-            $country->a2 = $value->cca2;
-            $country->a3 = $value->cca3;
+            $country->country_id = $value->cca2;
+            $country->iso2 = $value->cca2;
+            $country->iso3 = $value->cca3;
 
             $country->save();
         }
