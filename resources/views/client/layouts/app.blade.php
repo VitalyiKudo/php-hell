@@ -29,7 +29,14 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/cb8c197ec4.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'UA-209752116-1');
+    </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap" rel="stylesheet" type="text/css">

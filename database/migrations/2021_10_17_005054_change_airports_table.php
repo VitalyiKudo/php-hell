@@ -59,6 +59,7 @@ class ChangeAirportsTable extends Migration
             $table->decimal('latitude', 11, 8)->nullable(false)->change();
             $table->decimal('longitude', 11, 8)->nullable(false)->change();
             $table->string('timezone')->nullable(false)->change();
+
             $table->integer('country_id')->unsigned()->nullable()->after('city');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });

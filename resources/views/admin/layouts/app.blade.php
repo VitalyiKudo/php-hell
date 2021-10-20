@@ -21,7 +21,14 @@
 
     <!-- Styles -->
     <link type="text/css" href="{{ mix('css/admin.css') }}" rel="stylesheet">
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-209752116-1');
+    </script>
 </head>
 <body>
     <div id="app">

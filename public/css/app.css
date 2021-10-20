@@ -16375,10 +16375,6 @@ ul.dashed > li:before {
   z-index: 1 !important;
 }
 
-.form-body {
-  z-index: 3000 !important;
-}
-
 .hover_bkgr_fricc {
   background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
