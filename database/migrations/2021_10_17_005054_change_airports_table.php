@@ -25,7 +25,10 @@ class ChangeAirportsTable extends Migration
             $table->string('region_id', 10)->after('country_id');
             $table->string('continent_id', 2)->after('region_id');
             $table->index(['name', 'city']);
-            $table->string('icao', 12)->unique()->change();
+            $table->decimal('latitude', 11, 8)->nullable()->change();
+            $table->decimal('longitude', 11, 8)->nullable()->change();
+            $table->string('timezone')->nullable()->change();
+            $table->string('icao', 12)->nullable()->unique()->change();
             $table->foreign('country_id')->references('country_id')->on('countries')->onDelete('cascade');
             $table->foreign('region_id')->references('region_id')->on('regions')->onDelete('cascade');
         });
@@ -53,6 +56,9 @@ class ChangeAirportsTable extends Migration
             $table->string('icao', 4)->nullable()->change();
             $table->string('source_id')->nullable();
             $table->string('area', 255)->nullable();
+            $table->decimal('latitude', 11, 8)->nullable(false)->change();
+            $table->decimal('longitude', 11, 8)->nullable(false)->change();
+            $table->string('timezone')->nullable(false)->change();
             $table->integer('country_id')->unsigned()->nullable()->after('city');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });

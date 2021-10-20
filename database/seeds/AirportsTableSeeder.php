@@ -2,6 +2,7 @@
 
 use App\Models\Airport;
 use App\Models\Country;
+use App\Models\Region;
 use Illuminate\Database\Seeder;
 
 class AirportsTableSeeder extends Seeder
@@ -49,6 +50,7 @@ class AirportsTableSeeder extends Seeder
                     #$airport->timezone = $value[11];
 
                     $airport->save();
+
                 }
             } catch (Exception $e) {
                 report($e);

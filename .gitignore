@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+!/public/storage/app/Airports_final_02_06_Alex.csv
 /storage/*.key
 /vendor
 .env

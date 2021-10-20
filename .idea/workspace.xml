@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AirportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AirportController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Airport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Airport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Country.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_17_005054_change_airports_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_17_005054_change_airports_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/AirportsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/AirportsTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/CountriesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CountriesTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
@@ -317,7 +318,7 @@
       <workItem from="1634572151467" duration="9253000" />
       <workItem from="1634640688686" duration="15313000" />
       <workItem from="1634668022500" duration="18108000" />
-      <workItem from="1634725597307" duration="8396000" />
+      <workItem from="1634725597307" duration="10794000" />
     </task>
     <servers />
   </component>
