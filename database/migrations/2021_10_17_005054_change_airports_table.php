@@ -28,7 +28,8 @@ class ChangeAirportsTable extends Migration
             $table->decimal('latitude', 11, 8)->nullable()->change();
             $table->decimal('longitude', 11, 8)->nullable()->change();
             $table->string('timezone')->nullable()->change();
-            $table->string('icao', 12)->nullable(false)->unique()->change();
+            $table->string('icao', 12)->nullable(false)->change();
+            $table->unique(['icao']);
             $table->foreign('country_id')->references('country_id')->on('countries')->onDelete('cascade');
             $table->foreign('region_id')->references('region_id')->on('regions')->onDelete('cascade');
         });

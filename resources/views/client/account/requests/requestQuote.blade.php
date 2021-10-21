@@ -396,7 +396,7 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
                                 });
                             }
                             else {
@@ -480,7 +480,7 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
                                 });
                             }
                             else {
@@ -563,7 +563,7 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region.name + ', ' + obj.country.name + '</a></li>';
+                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
                                 });
                             }
                             else {

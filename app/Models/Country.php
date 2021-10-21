@@ -30,7 +30,7 @@ class Country extends Model
      */
     public function region()
     {
-        return $this->hasMany('App\Models\Region', 'country_id', 'country_id');
+        #return $this->belongsTo(Region::class, 'country_id', 'country_id');
     }
 
     /**
@@ -38,7 +38,7 @@ class Country extends Model
      */
     public function airport()
     {
-        return $this->hasMany('App\Models\Airport', 'country_id', 'country_id');
+        return $this->belongsTo(Airport::class, 'country_id', 'country_id');
     }
 
 }

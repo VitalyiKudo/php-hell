@@ -34,9 +34,9 @@ class AirportsTableSeeder extends Seeder
                 foreach ($data as $value) {
 
                     $airport = Airport::firstOrNew(['icao' => $value['ident']]);
-                    $country = \App\Models\Country::firstOrCreate(['country_id' => $value['iso_country']]);
+                    $country = Country::firstOrCreate(['country_id' => $value['iso_country']]);
                     $regionJob = trim(substr($value['iso_region'], strpos($value['iso_region'], "-") + 1));
-                    $region = \App\Models\Region::firstOrCreate(['country_id' => $value['iso_country'], 'region_id' => $regionJob]);
+                    $region = Region::firstOrCreate(['country_id' => $value['iso_country'], 'region_id' => $regionJob]);
 
                     $airport->name = $value['name'];
                     $airport->city = $value['municipality'];

@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Country;
-use App\Models\Region;
 
 class Airport extends Model
 {
@@ -32,7 +30,7 @@ class Airport extends Model
      */
     public function country()
     {
-        return $this->hasOne(Country::class, 'country_id', 'country_id');
+        return $this->belongsTo(Country::class, 'country_id', 'country_id');
     }
 
     /**
@@ -40,6 +38,14 @@ class Airport extends Model
      */
     public function region()
     {
-        return $this->hasOne(Region::class, ['country_id', 'region_id'], ['country_id', 'region_id']);
+        return $this->belongsTo(Region::class, 'region_id', 'region_id')->where('country_id', $this->country_id);
+    }
+
+    /**
+     * Get the region of the airport.
+     */
+    public function regionCountry()
+    {
+        return $this->belongsTo(Region::class, ['country_id', 'region_id'], ['country_id', 'region_id']);
     }
 }

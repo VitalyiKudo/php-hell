@@ -21,7 +21,7 @@ class AirportController extends Controller
     {
         $keyword = $request->input('query');
 
-        $airports = Airport::with('country', 'region')
+        $airports = Airport::with('country', 'regionCountry')
             ->where(function ($query) use ($keyword) {
                 $query->where('name', 'like', "{$keyword}%")
                     ->orWhere('city', 'like', "{$keyword}%")
@@ -29,7 +29,7 @@ class AirportController extends Controller
 #                    ->orWhere('iata', 'like', "{$keyword}%")
                     ->orWhere('icao', 'like', "{$keyword}%")
                     //  search country
-                    ->orWhereHas('region', function ($query) use ($keyword) {
+                    ->orWhereHas('regionCountry', function ($query) use ($keyword) {
                         $query->where('name', 'like', "%{$keyword}%");
                     });
                 /*  search country
