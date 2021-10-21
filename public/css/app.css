@@ -1396,7 +1396,7 @@ small,
 
 mark,
 .mark {
-  padding: 0.2em;
+/*  padding: 0.2em;*/
   background-color: #fcf8e3;
 }
 
@@ -11976,6 +11976,8 @@ h3 {
 .main-search {
   padding-top: 10rem;
   font-family: "Roboto", sans-serif !important;
+    position: relative;
+    z-index: 10;
 }
 
 @media (min-width: 992px) {
@@ -18221,20 +18223,20 @@ screen and (min-width:48.0625em) {
 #departureList mark,
 #arrivalList mark {
     background-color: transparent;
-    font-weight: 700;
-    color: #2463bd
+    font-weight: 900;
+    color: #698fc6
 }
 
 #departureList li:hover mark,
 #arrivalList li:hover mark {
     background-color: transparent;
-    color: #fff
+    color: #698fc6
 }
 
 #departureList li[aria-selected=true] mark,
 #arrivalList li[aria-selected=true] mark {
     background-color: transparent;
-    color: #fff
+    color: #698fc6
 }
 
 .empty-leg-widget-container #departureList ul,
