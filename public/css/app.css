@@ -16516,6 +16516,7 @@ ul.dashed > li:before {
   width: 1025px;
   margin-left: -55px;
   height: 50px;
+    margin-bottom: 70px;
 }
 
 .search-breadcrumb .breadcrumb {
@@ -18134,7 +18135,9 @@ screen and (min-width:48.0625em) {
     background-image: linear-gradient(to bottom right, #fff, hsla(216, 37%, 38%, .8));
     border: 1px solid #667698;
     box-shadow: .05em .2em .6em rgba(0, 0, 0, .2);
-    text-shadow: none
+    text-shadow: none;
+    max-height: 305px;
+    overflow-y:auto;
 }
 
 @supports (transform:scale(0)) {
@@ -18246,4 +18249,3 @@ screen and (min-width:48.0625em) {
     max-height: 240px;
     overflow-y: scroll
 }
-

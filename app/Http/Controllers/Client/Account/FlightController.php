@@ -20,24 +20,24 @@ class FlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    
+
+
     public function index(Request $request)
     {
         Session::put('pervis_search_url', url()->full());
-        
+
         if(!session()->has('session_token_id')) {
             Session::put('session_token_id', md5(microtime() . 'salt' . time()));
         }
 
         $session_id = Session::get('session_token_id');
-        
+
         $startCity = $this->findCity($request->startPoint);
         $endCity = $this->findCity($request->endPoint);
-        
+
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
-        
+
         if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
             $params["startCityLat"] = $startCityCoordinates['lat'];
             $params["startCityLng"] = $startCityCoordinates['lng'];
@@ -45,31 +45,31 @@ class FlightController extends Controller
             $params["endCityLng"] = $endCityCoordinates['lng'];
             $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
-        }  
-      
+        }
+
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
         $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::check() ? Auth::user()->id : 0;
-        
+
         $citiesList = [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity];
-        
+
         $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", $citiesList)->first();
-        
+
         if($searchResults){
             $params["result_id"] = $searchResults->id;
         } else {
             $params["result_id"] = 0;
         }
-        
-        
+
+
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],
             'end_airport_name' => $params["endPointnName"],
         ];
-        
-        
+
+
         $lastSessionSearchResults = [];
         if(Auth::check()){
             $lastSearchResults = Search::where('user_id', Auth::user()->id)
@@ -82,10 +82,10 @@ class FlightController extends Controller
             $input = Session::get('last.search');
             $output = array_slice($input, -4);
             $lastSessionSearchResults = $output;
-            
+
             $lastSearchResults = [];
         }
-        
+
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
@@ -95,9 +95,9 @@ class FlightController extends Controller
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
-        
+
         $params["searchId"] = $search->id;
-        
+
         $validator = Validator::make(
             [
                 'startPoint' => $params["startPointName"],
@@ -120,20 +120,20 @@ class FlightController extends Controller
 
         return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults', 'lastSessionSearchResults'));
     }
-    
-    
+
+
     public function old_index(Request $request)
     {
         Session::put('pervis_search_url', url()->full());
-        
+
         //echo Session::get('pervis_search_url');
-        
+
         $startCity = $this->findCity($request->startPoint);
         $endCity = $this->findCity($request->endPoint);
-        
+
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
-        
+
         if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
             $params["startCityLat"] = $startCityCoordinates['lat'];
             $params["startCityLng"] = $startCityCoordinates['lng'];
@@ -144,63 +144,63 @@ class FlightController extends Controller
         }
 
         //echo $params["startCityLng"];
-      
+
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
         $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
-        
-        
-        
-        
+
+
+
+
         $params["userId"] = 0;
-        
-        
-        
-        
-        
+
+
+
+
+
         $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
-        
+
         if($searchResults){
             $params["result_id"] = $searchResults->id;
         } else {
             $params["result_id"] = 0;
         }
 
-        
+
         $lastSearchResults = [];
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
         //$lastSearchResult[] = Session::get('last_search_results');
-        
+
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
-        
+
         $lastSearchMiddleItem = [];
         //$lastSearchMiddleItem = Session::get('last_search_results');
         $lastSearchMiddle = array_push($lastSearchMiddleItem, ['start_airport_name' => 'test', 'end_airport_name' => 'test']);
         Session::put('last_search_results', $lastSearchMiddle);
 
-        
+
         //$lastSearchResult[] = ['start_airport_name' => 'test', 'end_airport_name' => 'test'];
-        
+
         //echo "<pre>";
         //print_r($lastSearchMiddle);
         //print_r($lastSearchResult);
         //print_r(Session::get('last_search_results'));
         //echo "</pre>";
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         //$session_id = Session::getId();
         //echo $session_id;
-        
-        
-        
-        
+
+
+
+
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = NULL;
@@ -209,23 +209,23 @@ class FlightController extends Controller
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         //Session::forget('last_search_results');
-        
+
         /*
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
                                 ->orderBy('id', 'desc')
                                 ->take(4)
                                 ->get()
                                 ->reverse();
-        
-        
-        
+
+
+
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::user()->id;
@@ -235,14 +235,14 @@ class FlightController extends Controller
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
         */
-        
-        
-        
-        
+
+
+
+
         //$params["searchId"] = $search->id;
         $params["searchId"] = 0;
-        
-        
+
+
         $validator = Validator::make(
             [
                 'startPoint' => $params["startPointName"],
@@ -265,7 +265,7 @@ class FlightController extends Controller
 
         return view('client.account.requests.search', compact('searchResults', 'params', 'messages', 'lastSearchResults'));
     }
-    
+
     public function findCity($query) {
         $airport = DB::table('airports')
                 ->where('name', $query)
@@ -274,14 +274,11 @@ class FlightController extends Controller
                 ->orWhere('city', $query)
                 ->orWhere('city', str_replace('-', ' ', $query))
                 ->orWhere('city', str_replace('.', '', $query))
-                ->orWhere('area', $query)
-                //->orWhere('area', str_replace('-', ' ', $query))
-                //->orWhere('area', str_replace('.', '', $query))
                 ->first();
 
         return is_object($airport) ? $airport->city : '';
     }
-    
+
     public function findCoordinates($query) {
         $airport = DB::table('airports')
                 ->where('name', $query)

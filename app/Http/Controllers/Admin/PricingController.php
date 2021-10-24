@@ -59,10 +59,10 @@ class PricingController extends Controller
      */
     public function store(StorePricingRequest $request)
     {
-        
+
         //echo $request->input('time_turbo');
         //exit();
-        
+
         $pricing = new Pricing;
 
         $pricing->departure = $request->input('departure');
@@ -82,7 +82,7 @@ class PricingController extends Controller
             ->route('admin.pricing.index')
             ->with('status', 'The pricing was successfully created.');
     }
-    
+
     /**
      * Store data from excel file.
      *
@@ -90,10 +90,10 @@ class PricingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function import() 
+    public function import()
     {
         $status = "Excel file was not uploaded";
-        
+
         if(request()->file('file') && request()->file('file')->extension() == 'xlsx'){
             Pricing::whereNotNull('id')->delete();
             Excel::import(new PricingImport, request()->file('file'));
@@ -176,7 +176,7 @@ class PricingController extends Controller
         if($request->get('query')){
             $query = $request->get('query');
             $data = Airport::where('name','like',$query.'%')->get();
-              
+
             $output = '<ul class="dropdown-menu" style="display:block; position:absolute"">';
             foreach($data as $row)
             {
@@ -194,7 +194,7 @@ class PricingController extends Controller
                     ->orWhere('city', 'like', str_replace("-", " ", $query)."%")
                     ->groupBy("city")
                     ->get();
-              
+
             $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
             foreach($data as $row)
             {
@@ -205,28 +205,28 @@ class PricingController extends Controller
         }
 
     }
-    
+
     public function getAutocompleteAreas(Request $request){
         if($request->get('query')){
             $query = $request->get('query');
-            $data = Airport::where('area','like',$query.'%')->groupBy("city")->get();
-              
+            $data = Airport::where('region_id','like',$query.'%')->groupBy("city")->get();
+
             $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
             foreach($data as $row)
             {
-                $output .= '<li><a href="#">'.$row->area.'</a></li>';
+                $output .= '<li><a href="#">'.$row->region_id.'</a></li>';
             }
             $output .= '</ul>';
             echo $output;
         }
 
     }
-    
+
     public function getAutocompleteOperators(Request $request){
         if($request->get('query')){
             $query = $request->get('query');
             $data = Operator::where('name','like',$query.'%')->groupBy("name")->get();
-              
+
             $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
             foreach($data as $row)
             {
@@ -237,7 +237,7 @@ class PricingController extends Controller
         }
 
     }
-    
+
     public function search(Request $request)
     {
         if($request->ajax())
@@ -261,5 +261,5 @@ class PricingController extends Controller
         }
     }
 
-    
+
 }
