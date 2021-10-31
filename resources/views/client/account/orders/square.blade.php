@@ -4,7 +4,7 @@
     <title>Jet Booking | Step 3</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    
+
     <script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://js.squareup.com/v2/paymentform" : "https://js.squareupsandbox.com/v2/paymentform" }}"></script>
     <script type="text/javascript">
         window.applicationId = "{{ $applicationId }}";
@@ -24,7 +24,7 @@
 <div class="section main-search-page header-page-image-booking-two">
     <div class="container-fluid">
         <div class="row">
-            
+
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-left">
                 <p class="booking-row-left">ORDER PAYMENT:</p>
             </div>
@@ -41,7 +41,7 @@
                     </div>
 
                 </div>
-                
+
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
@@ -49,21 +49,21 @@
                     </div>
 
                 </div>
-                
+
                 <div class="row header-book-cities">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         <p>{{ $pricing->departure }}</p>
                     </div>
-                    
+
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         <p>{{ $pricing->arrival }}</p>
                     </div>
 
                 </div>
-                
+
             </div>
-            
+
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-row-right">
                 <div>
                     <p>Including taxes</p>
@@ -97,13 +97,13 @@
                 </ul>
 
             </div>
-            
-            
+
+
         </div>
 
         <div class="row mt-3">
             <div class="offset-lg-2 offset-xl-2 col-sm-12 col-md-12 col-lg-10 col-xl-7">
-                
+
                 <div class="info-square-block sq-payment-form">
 
                     <div id="sq-walletbox">
@@ -143,7 +143,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="birth_date">Birth date*</label>
-                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $params['birth_date'] }}" placeholder="date">
+                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $request_method == 'post' ? $params['birth_date'] : old('date_of_birth', optional($user->date_of_birth)->format('m/d/Y'))}}" placeholder="date">
                                     @if ($messages && $messages->has('birth_date'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $messages->first('birth_date') }}</strong>
@@ -249,7 +249,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 
@@ -261,14 +261,14 @@
 @push('scripts')
     <script type="text/javascript">
 
-        $(function() { 
+        $(function() {
             $('input[name="birth_date"]').daterangepicker({
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
             });
-            
-            $('input[name="birth_date"]').val('');
+
+            //$('input[name="birth_date"]').val('');
             //$('input[name="flightDate"]').attr("placeholder","Date & Time");
 
         });

@@ -646,482 +646,524 @@
                         <div class="card-inner-body pl-4">
                             <div class="custom-flight">
                                 <div>Custom flight search</div>
-                                <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
-                            </div>
-                            <!--<form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">-->
-                                @csrf
+                           <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
+                       </div>
+                       <!--<form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">-->
+                           @csrf
 
-                                <div class="form-row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="flight_model">Flight model:</label>
-                                        <select name="flight_model" class="form-control" id="flight_model">
-                                            <option value="">--- Nothing selected ---</option>
-                                            <option value="turbo">Turbo</option>
-                                            <option value="light">Light</option>
-                                            <option value="medium">Medium</option>
-                                            <option value="heavy">Heavy</option>
-                                        </select>
-                                    </div>
+                           <div class="form-row">
+                               <div class="form-group col-sm-6">
+                                   <label for="flight_model">Flight model:</label>
+                                   <select name="flight_model" class="form-control" id="flight_model">
+                                       <option value="">--- Nothing selected ---</option>
+                                       <option value="turbo">Turbo</option>
+                                       <option value="light">Light</option>
+                                       <option value="medium">Medium</option>
+                                       <option value="heavy">Heavy</option>
+                                   </select>
+                               </div>
 
-                                    <div class="form-group col-sm-3">
-                                        <label for="passengers">Passengers</label>
-                                        <input type="number" min="1" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers" class="form-control">
-                                    </div>
+                               <div class="form-group col-sm-3">
+                                   <label for="passengers">Passengers</label>
+                                   <input type="number" min="1" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers" class="form-control">
+                               </div>
 
-                                    <div class="form-group col-sm-3">
-                                        <label for="bags">Bags</label>
-                                        <input type="number" min="1" aria-describedby="bags" name="bags" autocomplete="off" id="bags" class="form-control">
-                                    </div>
+                               <div class="form-group col-sm-3">
+                                   <label for="bags">Bags</label>
+                                   <input type="number" min="1" aria-describedby="bags" name="bags" autocomplete="off" id="bags" class="form-control">
+                               </div>
 
-                                    <!--
-                                    <div class="form-group col-sm-6">
-                                        <label for="comment">Comment</label>
-                                        <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
-                                    </div>
-                                    -->
-                                </div>
+                               <!--
+                               <div class="form-group col-sm-6">
+                                   <label for="comment">Comment</label>
+                                   <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
+                               </div>
+                               -->
+                           </div>
 
-                                <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
-                                <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
-                                <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
-                                <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
-                                <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
-                                <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
-                                <input type="hidden" name="page_name" value="search-page">
+                           <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
+                           <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
+                           <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
+                           <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
+                           <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
+                           <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
+                           <input type="hidden" name="page_name" value="search-page">
 
-                                <div class="text-right pull-right">
-                                    <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
-                                </div>
-                            <!--</form>-->
-                        </div>
+                           <div class="text-right pull-right">
+                               <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
+                           </div>
+                       <!--</form>-->
+                   </div>
 
-                    </div>
-                </div>
-
-
-
-                </form>
+               </div>
+           </div>
 
 
 
-                <div class="pb-5"></div>
+           </form>
 
-            </div>
-        </div>
-    </div>
+
+
+           <div class="pb-5"></div>
+
+       </div>
+   </div>
+</div>
 
 <div class="hover_bkgr_fricc">
-    <span class="helper"></span>
-    <div>
-        <div class="popupCloseButton">&times;</div>
-        <p>Thank you!<br />We will send email soon.</p>
+<span class="helper"></span>
+<div>
+   <div class="popupCloseButton">&times;</div>
+   <p>Thank you!<br />We will send email soon.</p>
+</div>
+</div>
+
+<div class="modal fade" id="T-C" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms&Conditions</h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
-    <script src="{{ asset('js/slick.min.js') }}"></script>
-    <script type="text/javascript">
-        @if( isset($params['biggerLat']) && isset($params['biggerLng']) && isset($params['startCityLat']) && isset($params['startCityLng']) && isset($params['endCityLat']) && isset($params['endCityLng']) )
-            function initMap() {
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 5,
-                    center: { lat: {{ $params['biggerLat'] }}, lng: {{ $params['biggerLng'] }} },
-                    mapTypeId: "terrain",
-                });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+<script src="{{ asset('js/slick.min.js') }}"></script>
+<script type="text/javascript">
+   @if( isset($params['biggerLat']) && isset($params['biggerLng']) && isset($params['startCityLat']) && isset($params['startCityLng']) && isset($params['endCityLat']) && isset($params['endCityLng']) )
+       function initMap() {
+           const map = new google.maps.Map(document.getElementById("map"), {
+               zoom: 5,
+               center: { lat: {{ $params['biggerLat'] }}, lng: {{ $params['biggerLng'] }} },
+               mapTypeId: "terrain",
+           });
 
 
-                var LatLngList = new Array (new google.maps.LatLng ( {{ $params['startCityLat'] }}, {{ $params['startCityLng'] }}), new google.maps.LatLng ( {{ $params['endCityLat'] }}, {{ $params['endCityLng'] }} ));
-                //  Create a new viewpoint bound
-                var bounds = new google.maps.LatLngBounds ();
-                //  Go through each...
-                for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
-                  //  And increase the bounds to take this point
-                  bounds.extend (LatLngList[i]);
-                }
-                //  Fit these bounds to the map
-                map.fitBounds(bounds);
+           var LatLngList = new Array (new google.maps.LatLng ( {{ $params['startCityLat'] }}, {{ $params['startCityLng'] }}), new google.maps.LatLng ( {{ $params['endCityLat'] }}, {{ $params['endCityLng'] }} ));
+           //  Create a new viewpoint bound
+           var bounds = new google.maps.LatLngBounds ();
+           //  Go through each...
+           for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+             //  And increase the bounds to take this point
+             bounds.extend (LatLngList[i]);
+           }
+           //  Fit these bounds to the map
+           map.fitBounds(bounds);
 
 
-                // Define a symbol using a predefined path (an arrow)
-                // supplied by the Google Maps JavaScript API.
-                const lineSymbol = {
-                  path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-                };
-                // Create the polyline and add the symbol via the 'icons' property.
-                const line = new google.maps.Polyline({
-                  path: [
-                    { lat: {{ $params['startCityLat'] }}, lng: {{ $params['startCityLng'] }} },
-                    { lat: {{ $params['endCityLat'] }}, lng: {{ $params['endCityLng'] }} }
-                  ],
-                  icons: [
-                    {
-                      icon: lineSymbol,
-                      offset: "100%"
-                    }
-                  ],
-                  map: map,
-                  strokeColor: "#1479BF",
-                  draggable: true,
-                  geodesic: true,
-                });
-            }
-        @endif
+           // Define a symbol using a predefined path (an arrow)
+           // supplied by the Google Maps JavaScript API.
+           const lineSymbol = {
+             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+           };
+           // Create the polyline and add the symbol via the 'icons' property.
+           const line = new google.maps.Polyline({
+             path: [
+               { lat: {{ $params['startCityLat'] }}, lng: {{ $params['startCityLng'] }} },
+               { lat: {{ $params['endCityLat'] }}, lng: {{ $params['endCityLng'] }} }
+             ],
+             icons: [
+               {
+                 icon: lineSymbol,
+                 offset: "100%"
+               }
+             ],
+             map: map,
+             strokeColor: "#1479BF",
+             draggable: true,
+             geodesic: true,
+           });
+       }
+   @endif
 
 
-        $( "#show-hide-map" ).click(function(e) {
-            e.preventDefault();
-            if(parseFloat($(".map-section").height()) == 0){
-                $("#show-hide-map").find('span.caret').removeClass('caret-down').addClass('caret-up');
-                $( ".map-section" ).animate({
-                    height: "500px",
-                }, 300);
-            }else{
-                $("#show-hide-map").find('span.caret').removeClass('caret-up').addClass('caret-down');
-                $( ".map-section" ).animate({
-                    height: "0px",
-                }, 300);
-            }
-        });
+   $( "#show-hide-map" ).click(function(e) {
+       e.preventDefault();
+       if(parseFloat($(".map-section").height()) == 0){
+           $("#show-hide-map").find('span.caret').removeClass('caret-down').addClass('caret-up');
+           $( ".map-section" ).animate({
+               height: "500px",
+           }, 300);
+       }else{
+           $("#show-hide-map").find('span.caret').removeClass('caret-up').addClass('caret-down');
+           $( ".map-section" ).animate({
+               height: "0px",
+           }, 300);
+       }
+   });
 
 
-        $(function() {
+   $(function() {
 
-            $('.turbo-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.turbo-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
+       $('.turbo-gallery-for').slick({
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           arrows: true,
+           fade: true,
+           dots: false,
+           asNavFor: '.turbo-gallery-nav',
+           autoplay: false,
+           adaptiveHeight: true,
+       });
 
-            $('.turbo-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.turbo-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
+       $('.turbo-gallery-nav').slick({
+           slidesToShow: 5,
+           slidesToScroll: 5,
+           asNavFor: '.turbo-gallery-for',
+           dots: false,
+           centerMode: true,
+           centerPadding: '130px',
+           focusOnSelect: true,
+           arrows: false,
+           autoplay: false,
+       });
 
-            $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.light-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.light-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.light-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.light-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.light-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
+       $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
+           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+       });
 
 
-            $('.medium-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.medium-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
+       $('.light-gallery-for').slick({
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           arrows: true,
+           fade: true,
+           dots: false,
+           asNavFor: '.light-gallery-nav',
+           autoplay: false,
+           adaptiveHeight: true,
+       });
 
-            $('.medium-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.medium-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
+       $('.light-gallery-nav').slick({
+           slidesToShow: 5,
+           slidesToScroll: 5,
+           asNavFor: '.light-gallery-for',
+           dots: false,
+           centerMode: true,
+           centerPadding: '130px',
+           focusOnSelect: true,
+           arrows: false,
+           autoplay: false,
+       });
 
-            $('.medium-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.heavy-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.heavy-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.heavy-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.heavy-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
+       $('.light-gallery-for').on('click', '.slick-arrow', function(){
+           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+       });
 
 
-            $('.hover_bkgr_fricc').click(function(){
-                $('.hover_bkgr_fricc').hide();
-            });
-            $('.popupCloseButton').click(function(){
-                $('.hover_bkgr_fricc').hide();
-            });
+       $('.medium-gallery-for').slick({
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           arrows: true,
+           fade: true,
+           dots: false,
+           asNavFor: '.medium-gallery-nav',
+           autoplay: false,
+           adaptiveHeight: true,
+       });
 
-            var nowDate = new Date();
-            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-            $('input[name="flightDate"]').daterangepicker({
-                opens: 'left',
-                keepEmptyValues: true,
-                singleDatePicker: true,
-                autoUpdateInput: false,
-                isInvalidDate: (e) => new Date(e) < today
-            });
+       $('.medium-gallery-nav').slick({
+           slidesToShow: 5,
+           slidesToScroll: 5,
+           asNavFor: '.medium-gallery-for',
+           dots: false,
+           centerMode: true,
+           centerPadding: '130px',
+           focusOnSelect: true,
+           arrows: false,
+           autoplay: false,
+       });
 
-            /*
-            $('#request_quote').submit(function(e){
-                e.preventDefault();
-                var flight_model = $('#flight_model').val();
-                var result_id = $('#result_id').val();
-                var user_id = $('#user_id').val();
-                var comment = $('#comment').val();
-                var start_airport_name = $('#start_airport_name').val();
-                var end_airport_name = $('#end_airport_name').val();
-                var pax = $('#pax').val();
-                var _token = $('input[name="_token"]').val();
-
-                if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
-                    $('#flight_model').removeClass('is-invalid');
-                    $('.invalid-feedback').remove();
-                    $('.hover_bkgr_fricc').show();
-                    $.ajax({
-                        url: "{{ route('client.search.requestQuote') }}",
-                        type:"POST",
-                        data:{
-                            _token:_token,
-                            flight_model: flight_model,
-                            result_id: result_id,
-                            user_id: user_id,
-                            comment: comment,
-                            start_airport_name: start_airport_name,
-                            end_airport_name: end_airport_name,
-                            pax: pax
-                        },
-                        success:function(response){
-                            //$('.hover_bkgr_fricc').show();
-                            console.log(response);
-                        },
-                    });
-                } else {
-                    $('#flight_model').removeClass('is-invalid');
-                    $('.invalid-feedback').remove();
-                    $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
-                }
-
-            });
-            */
-
-            /*
-            $('#request_quote').submit(function(e){
-                var flight_model = $('#flight_model').val();
-                if(flight_model.length <= 0){
-                    e.preventDefault();
-                    $('#flight_model').removeClass('is-invalid');
-                    $('.invalid-feedback').remove();
-                    $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
-                }
-            });
-            */
-
-            $('input.from').keyup(function(){
-                var query = $(this).val();
-
-                if(query != '' && query.length >= 2){
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: "/api/airports",
-                        method: "GET",
-                        data: {query:query, _token:_token},
-                        success: function(data){
-                            var lookup = {};
-                            var output = '<ul class="dropdown-menu">';
-                            function removeDuplicatesBy(keyFn, array) {
-                                var mySet = new Set();
-                                return array.filter(function(x) {
-                                    var key = keyFn(x), isNew = !mySet.has(key);
-                                    if (isNew) mySet.add(key);
-                                    return isNew;
-                                });
-                            }
-
-                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
-                            if (data.length !== 0){
-                                $.each(withoutDuplicates, function(idx, obj) {
-
-                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
-
-                                    output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                        '</a></li>';
-                                });
-                            }
-                            else {
-                                output += '<li>No matches found</li>';
-                            }
-                            output += '</ul>';
-                            $('#departureList').fadeIn();
-                            $('#departureList').html(output).mark(query);
-                        }
-                    });
-                }
-            });
-
-            $(document).on('click', '#departureList li', function(e){
-                e.preventDefault();
-                $('input.from').val($(this).text());
-                $('#departureList').fadeOut();
-            });
+       $('.medium-gallery-for').on('click', '.slick-arrow', function(){
+           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+       });
 
 
-            $('input.to').keyup(function(){
-                var query = $(this).val();
+       $('.heavy-gallery-for').slick({
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           arrows: true,
+           fade: true,
+           dots: false,
+           asNavFor: '.heavy-gallery-nav',
+           autoplay: false,
+           adaptiveHeight: true,
+       });
 
-                if(query != '' && query.length >= 2){
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: "/api/airports",
-                        method: "GET",
-                        data: {query:query, _token:_token},
-                        success: function(data){
-                            var lookup = {};
-                            var output = '<ul class="dropdown-menu">';
-                            function removeDuplicatesBy(keyFn, array) {
-                                var mySet = new Set();
-                                return array.filter(function(x) {
-                                    var key = keyFn(x), isNew = !mySet.has(key);
-                                    if (isNew) mySet.add(key);
-                                    return isNew;
-                                });
-                            }
+       $('.heavy-gallery-nav').slick({
+           slidesToShow: 5,
+           slidesToScroll: 5,
+           asNavFor: '.heavy-gallery-for',
+           dots: false,
+           centerMode: true,
+           centerPadding: '130px',
+           focusOnSelect: true,
+           arrows: false,
+           autoplay: false,
+       });
 
-                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
-                            if (data.length !== 0){
-                                $.each(withoutDuplicates, function(idx, obj) {
-
-                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
-
-                                    output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                        '</a></li>';
-                                });
-                            }
-                            else {
-                                output += '<li>No matches found</li>';
-                            }
-                            output += '</ul>';
-                            $('#arrivalList').fadeIn();
-                            $('#arrivalList').html(output).mark(query);
-                        }
-                    });
-                }
-            });
-
-            $(document).on('click', '#arrivalList li', function(e){
-                e.preventDefault();
-                $('input.to').val($(this).text());
-                $('#arrivalList').fadeOut();
-            });
-
-            $('.search-breadcrumb a').click(function(e){
-                e.preventDefault();
-                $('.form-body input[name="startPoint"]').val($(this).data("from"));
-                $('.form-body input[name="endPoint"]').val($(this).data("to"));
-            });
+       $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
+           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+       });
 
 
-            $('body').on('click', function(){
-                $('#departureList').fadeOut();
-                $('#arrivalList').fadeOut();
-            });
+       $('.hover_bkgr_fricc').click(function(){
+           $('.hover_bkgr_fricc').hide();
+       });
+       $('.popupCloseButton').click(function(){
+           $('.hover_bkgr_fricc').hide();
+       });
+
+       var nowDate = new Date();
+       var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+       $('input[name="flightDate"]').daterangepicker({
+           opens: 'left',
+           keepEmptyValues: true,
+           singleDatePicker: true,
+           autoUpdateInput: true,
+           isInvalidDate: (e) => new Date(e) < today
+       });
+
+       /*
+       $('#request_quote').submit(function(e){
+           e.preventDefault();
+           var flight_model = $('#flight_model').val();
+           var result_id = $('#result_id').val();
+           var user_id = $('#user_id').val();
+           var comment = $('#comment').val();
+           var start_airport_name = $('#start_airport_name').val();
+           var end_airport_name = $('#end_airport_name').val();
+           var pax = $('#pax').val();
+           var _token = $('input[name="_token"]').val();
+
+           if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
+               $('#flight_model').removeClass('is-invalid');
+               $('.invalid-feedback').remove();
+               $('.hover_bkgr_fricc').show();
+               $.ajax({
+                   url: "{{ route('client.search.requestQuote') }}",
+                   type:"POST",
+                   data:{
+                       _token:_token,
+                       flight_model: flight_model,
+                       result_id: result_id,
+                       user_id: user_id,
+                       comment: comment,
+                       start_airport_name: start_airport_name,
+                       end_airport_name: end_airport_name,
+                       pax: pax
+                   },
+                   success:function(response){
+                       //$('.hover_bkgr_fricc').show();
+                       console.log(response);
+                   },
+               });
+           } else {
+               $('#flight_model').removeClass('is-invalid');
+               $('.invalid-feedback').remove();
+               $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
+           }
+
+       });
+       */
+
+       /*
+       $('#request_quote').submit(function(e){
+           var flight_model = $('#flight_model').val();
+           if(flight_model.length <= 0){
+               e.preventDefault();
+               $('#flight_model').removeClass('is-invalid');
+               $('.invalid-feedback').remove();
+               $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
+           }
+       });
+       */
+
+       $('input.from').keyup(function(){
+           var query = $(this).val();
+
+           if(query != '' && query.length >= 2){
+               var _token = $('input[name="_token"]').val();
+               $.ajax({
+                   url: "/api/airports",
+                   method: "GET",
+                   data: {query:query, _token:_token},
+                   success: function(data){
+                       var lookup = {};
+                       var output = '<ul class="dropdown-menu">';
+                       function removeDuplicatesBy(keyFn, array) {
+                           var mySet = new Set();
+                           return array.filter(function(x) {
+                               var key = keyFn(x), isNew = !mySet.has(key);
+                               if (isNew) mySet.add(key);
+                               return isNew;
+                           });
+                       }
+
+                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                       if (data.length !== 0){
+                           $.each(withoutDuplicates, function(idx, obj) {
+
+                               var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                               var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                               var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                               output += '<li><a href="' + obj.id + '">' +
+                                   '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                   '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                   '</a></li>';
+                           });
+                       }
+                       else {
+                           output += '<li>No matches found</li>';
+                       }
+                       output += '</ul>';
+                       $('#departureList').fadeIn();
+                       $('#departureList').html(output).mark(query);
+                   }
+               });
+           }
+       });
+
+       $(document).on('click', '#departureList li', function(e){
+           e.preventDefault();
+           $('input.from').val($(this).find('span:first').text());
+           $('#departureList').fadeOut();
+       });
 
 
-            $('#main-search-form').submit(function(e){
+       $('input.to').keyup(function(){
+           var query = $(this).val();
 
-                var start_point = $(this).find('input[name="startPoint"]').val();
-                var end_point = $(this).find('input[name="endPoint"]').val();
-                var flight_date = $(this).find('input[name="flightDate"]').val();
-                var passengers = $(this).find('input[name="passengers"]').val();
-                var html_message = '<span class="search-error">This field is required.</span>';
+           if(query != '' && query.length >= 2){
+               var _token = $('input[name="_token"]').val();
+               $.ajax({
+                   url: "/api/airports",
+                   method: "GET",
+                   data: {query:query, _token:_token},
+                   success: function(data){
+                       var lookup = {};
+                       var output = '<ul class="dropdown-menu">';
+                       function removeDuplicatesBy(keyFn, array) {
+                           var mySet = new Set();
+                           return array.filter(function(x) {
+                               var key = keyFn(x), isNew = !mySet.has(key);
+                               if (isNew) mySet.add(key);
+                               return isNew;
+                           });
+                       }
 
-                if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
-                    $('.search-error').remove();
+                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
-                    if(start_point.length <= 0){
-                        $(this).find('input[name="startPoint"]').parent('div').append(html_message);
-                    }
-                    if(end_point.length <= 0){
-                        $(this).find('input[name="endPoint"]').parent('div').append(html_message);
-                    }
-                    if(flight_date.length <= 0){
-                        $(this).find('input[name="flightDate"]').parent('div').append(html_message);
-                    }
-                    if(passengers.length <= 0){
-                        $(this).find('input[name="passengers"]').parent('div').append(html_message);
-                    }
-                    e.preventDefault();
-                }
-            });
+                       if (data.length !== 0){
+                           $.each(withoutDuplicates, function(idx, obj) {
+
+                               var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                               var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                               var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                               output += '<li><a href="' + obj.id + '">' +
+                                   '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                   '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                   '</a></li>';
+                           });
+                       }
+                       else {
+                           output += '<li>No matches found</li>';
+                       }
+                       output += '</ul>';
+                       $('#arrivalList').fadeIn();
+                       $('#arrivalList').html(output).mark(query);
+                   }
+               });
+           }
+       });
+
+       $(document).on('click', '#arrivalList li', function(e){
+           e.preventDefault();
+           $('input.to').val($(this).find('span:first').text());
+           $('#arrivalList').fadeOut();
+       });
+
+       $('.search-breadcrumb a').click(function(e){
+           e.preventDefault();
+           $('.form-body input[name="startPoint"]').val($(this).data("from"));
+           $('.form-body input[name="endPoint"]').val($(this).data("to"));
+       });
 
 
+       $('body').on('click', function(){
+           $('#departureList').fadeOut();
+           $('#arrivalList').fadeOut();
+       });
 
-        });
-    </script>
+
+       $('#main-search-form').submit(function(e){
+
+           var start_point = $(this).find('input[name="startPoint"]').val();
+           var end_point = $(this).find('input[name="endPoint"]').val();
+           var flight_date = $(this).find('input[name="flightDate"]').val();
+           var passengers = $(this).find('input[name="passengers"]').val();
+           var html_message = '<span class="search-error">This field is required.</span>';
+
+           if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
+               $('.search-error').remove();
+
+               if(start_point.length <= 0){
+                   $(this).find('input[name="startPoint"]').parent('div').append(html_message);
+               }
+               if(end_point.length <= 0){
+                   $(this).find('input[name="endPoint"]').parent('div').append(html_message);
+               }
+               if(flight_date.length <= 0){
+                   $(this).find('input[name="flightDate"]').parent('div').append(html_message);
+               }
+               if(passengers.length <= 0){
+                   $(this).find('input[name="passengers"]').parent('div').append(html_message);
+               }
+               e.preventDefault();
+           }
+       });
+
+       var tc = '{{$status}}';
+       if (tc === 'notAge') {
+           $('.modal-body').append('<p>If you are under 18 years old you cannot make an order.</p><p>We apologize for inconvenience.</p>');
+           $('.rquest-best-price').attr('disabled', true);
+           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
+               e.preventDefault();
+               $('#T-C').modal('show');
+           });
+           $('#T-C').modal('show');
+       }
+       else if (tc === 'notFilledAge') {
+           $('.modal-body').append('<p>Не заполнена ДР!</p>');
+           $('.rquest-best-price').attr('disabled', true);
+           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function (e) {
+               e.preventDefault();
+               $('#T-C').modal('show');
+           });
+           $('#T-C').modal('show');
+       }
+           else if (tc === 'notAuthorized') {
+           $('.modal-body').append('<p>Не Авторизован!</p>');
+           $('.rquest-best-price').attr('disabled', true);
+           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
+               e.preventDefault();
+               $('#T-C').modal('show');
+           });
+           $('#T-C').modal('show');
+       };
+
+   });
+</script>
 
 @endpush

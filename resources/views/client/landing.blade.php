@@ -541,7 +541,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -559,7 +559,7 @@
 
             $(document).on('click', '#departureList li', function(e){
                 e.preventDefault();
-                $('input.from').val($(this).text());
+                $('input.from').val($(this).find('span:first').text());
                 $('#departureList').fadeOut();
             });
 
@@ -594,7 +594,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -612,7 +612,7 @@
 
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
-                $('input.to').val($(this).text());
+                $('input.to').val($(this).find('span:first').text());
                 $('#arrivalList').fadeOut();
             });
 

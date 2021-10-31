@@ -15,7 +15,7 @@
 <div class="section main-search-page header-page-image-booking-two">
     <div class="container-fluid">
         <div class="row">
-            
+
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-left">
                 <p class="booking-row-left">ORDER PAYMENT:</p>
             </div>
@@ -32,7 +32,7 @@
                     </div>
 
                 </div>
-                
+
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
@@ -40,21 +40,21 @@
                     </div>
 
                 </div>
-                
+
                 <div class="row header-book-cities">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         <p>{{ $pricing->departure }}</p>
                     </div>
-                    
+
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         <p>{{ $pricing->arrival }}</p>
                     </div>
 
                 </div>
-                
+
             </div>
-            
+
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-row-right">
                 <div>
                     <p>Including taxes</p>
@@ -84,8 +84,8 @@
                 </ul>
 
             </div>
-            
-            
+
+
         </div>
 
         <div class="row mt-3">
@@ -136,5 +136,34 @@
 
 </div>
 
+<div class="modal fade" id="ToS" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms of service</h5>
+            </div>
+            <div class="modal-body">
+                <p>The flight quote listed above is an estimate and is not guaranteed.</p>
+                <p>After we receive your request an Aviation Advisor will contact you to discuss any special requirements and provide you with a final flight price and payment options, at which time you can choose to confirm the booking. For the avoidance of doubt this is a fully cancelable request and you will incur no charges prior to finalizing the booking.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.pay-button').click(function(e){
+            e.preventDefault();
+            $('#ToS').modal('show');
+            $('#ToS button').click(function(){
+                location.href =$('.pay-button').attr('href');
+            });
+        });
+    });
+</script>
+@endpush

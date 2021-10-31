@@ -354,7 +354,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -372,7 +372,7 @@
 
             $(document).on('click', '#departureList li', function(e){
                 e.preventDefault();
-                $('input.from').val($(this).text());
+                $('input.from').val($(this).find('span:first').text());
                 $('#departureList').fadeOut();
             });
 
@@ -407,7 +407,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -425,7 +425,7 @@
 
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
-                $('input.to').val($(this).text());
+                $('input.to').val($(this).find('span:first').text());
                 $('#arrivalList').fadeOut();
             });
 
@@ -499,7 +499,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -517,7 +517,7 @@
 
             $(document).on('click', '#toStopList li', function(e){
                 e.preventDefault();
-                $('input.to-stop').val($(this).text());
+                $('input.to-stop').val($(this).find('span:first').text());
                 $('#toStopList').fadeOut();
             });
 
@@ -590,7 +590,7 @@
                                     var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
 
                                     output += '<li><a href="' + obj.id + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span:>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
                                 });
@@ -608,7 +608,7 @@
 
             $(document).on('click', '#toReturnList li', function(e){
                 e.preventDefault();
-                $('input.to-return').val($(this).text());
+                $('input.to-return').val($(this).find('span:first').text());
                 $('#toReturnList').fadeOut();
             });
 
