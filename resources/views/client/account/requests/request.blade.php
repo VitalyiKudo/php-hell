@@ -1145,15 +1145,15 @@
            $('#T-C').modal('show');
        }
        else if (tc === 'notFilledAge') {
-           $('.modal-body').append('<p>Не заполнена ДР!</p>');
+           $('.modal-body').append('<p>Please fill up your date of birth in the profile.</p>');
            $('.rquest-best-price').attr('disabled', true);
            $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function (e) {
                e.preventDefault();
                $('#T-C').modal('show');
            });
            $('#T-C').modal('show');
-       }
-           else if (tc === 'notAuthorized') {
+       };
+         /*  else if (tc === 'notAuthorized') {
            $('.modal-body').append('<p>Не Авторизован!</p>');
            $('.rquest-best-price').attr('disabled', true);
            $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
@@ -1161,7 +1161,7 @@
                $('#T-C').modal('show');
            });
            $('#T-C').modal('show');
-       };
+       };*/
 
    });
 </script>
