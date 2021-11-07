@@ -28,7 +28,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Scripts -->
-    <script src="https://kit.fontawesome.com/cb8c197ec4.js"></script>
+    <!-- script src="https://kit.fontawesome.com/cb8c197ec4.js"></script -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
