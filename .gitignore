@@ -1,10 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
-!/public/storage/app/Airports_final_02_06_Alex.csv
-!/public/storage/app/airlines.csv
-!/public/storage/app/pricings.csv
 /storage/*.key
+!/storage/app/Airports_final_02_06_Alex.csv
+!/storage/app/airlines.csv
+!/storage/app/pricings.csv
 /vendor
 .env
 .phpunit.result.cache
