@@ -2,9 +2,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-!/storage/app/Airports_final_02_06_Alex.csv
-!/storage/app/airlines.csv
-!/storage/app/pricings.csv
 /vendor
 .env
 .phpunit.result.cache
