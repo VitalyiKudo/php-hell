@@ -7893,6 +7893,7 @@ button.bg-dark:focus {
 
 .d-block {
   display: block !important;
+    width: 100%;
 }
 
 .d-table {
@@ -13176,10 +13177,14 @@ sup {
   padding: 0 10px;
 }
 
-.div-plane-details-colums {
+.div-plane-details-colums  {
   margin: 0 10px;
   display: flex;
   flex-direction: column;
+}
+.div-plane-details-colums > span,
+.div-plane-details-colums > div > span {
+    color: #000 !important;
 }
 
 .fixed-row {
@@ -16796,6 +16801,7 @@ ul.dashed > li:before {
     flex-direction: column;
     align-content: center;
     justify-content: center;
+      background-image: url("/images/aircrafts/jet_background7-8.webp");
   }
 
   .plane-pos,

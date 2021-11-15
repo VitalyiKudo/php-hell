@@ -23,6 +23,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/images/meta/favicon-96x96.webp">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/meta/favicon-16x16.webp">
     <link rel="manifest" href="/images/meta/manifest.json">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/meta/ms-icon-144x144.webp">
     <meta name="theme-color" content="#ffffff">

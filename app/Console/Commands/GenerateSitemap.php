@@ -34,15 +34,16 @@ class GenerateSitemap extends Command
         SitemapGenerator::create(config('app.url'))
             ->getSitemap()
             ->add(Url::create('/')->setPriority(0.9))
-            ->add(Url::create('/services')->setPriority(0.8))
+            ->add(Url::create('/services')->setPriority(0.9))
             ->add(Url::create('/aircraft')->setPriority(0.8))
-            ->add(Url::create('/about')->setPriority(0.8))
-            ->add(Url::create('/support')->setPriority(0.8))
-            ->add(Url::create('/register')->setPriority(0.8))
-            ->add(Url::create('/login')->setPriority(0.8))
+            ->add(Url::create('/about')->setPriority(0.5))
+            ->add(Url::create('/support')->setPriority(0.2))
+            ->add(Url::create('/register')->setPriority(0.5))
+            ->add(Url::create('/login')->setPriority(0.9))
             ->add(Url::create('/aircraft')->setPriority(0.8))
-            ->add(Url::create('/JetOnset')->setPriority(0.8))
-            ->add(Url::create('/terms-conditions')->setPriority(0.8))
+            ->add(Url::create('/JetOnset')->setPriority(0.1))
+            ->add(Url::create('/terms-conditions')->setPriority(0.2))
+            ->add(Url::create('/password/reset')->setPriority(0.2))
             ->writeToFile(public_path('sitemap.xml'));
 
         return 'Sitemap generated';
