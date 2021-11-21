@@ -9,22 +9,13 @@ use Spatie\RobotsMiddleware\RobotsMiddleware;
 class BlockRobotsMiddleware extends RobotsMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
-        return $next($request);
-    }
-
-    /**
      * @return string|bool
      */
     protected function shouldIndex(Request $request)
     {
+        if (config('app.env') === 'production') {
+            return 'all';
+        }
         return 'noindex';
     }
 }
