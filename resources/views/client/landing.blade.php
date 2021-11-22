@@ -513,7 +513,7 @@
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 3){
+                if(query != '' && query.length >= 2){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -535,7 +535,15 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
+
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                                    output += '<li><a href="' + obj.id + '">' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                        '</a></li>';
                                 });
                             }
                             else {
@@ -551,14 +559,14 @@
 
             $(document).on('click', '#departureList li', function(e){
                 e.preventDefault();
-                $('input.from').val($(this).text());
+                $('input.from').val($(this).find('span:first').text());
                 $('#departureList').fadeOut();
             });
 
             $('input.to').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 3){
+                if(query != '' && query.length >= 2){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -580,13 +588,21 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
+
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                                    output += '<li><a href="' + obj.id + '">' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                        '</a></li>';
                                 });
                             }
                             else {
                                 output += '<li>No matches found</li>';
                             }
-                                output += '</ul>';
+                            output += '</ul>';
                             $('#arrivalList').fadeIn();
                             $('#arrivalList').html(output).mark(query);
                         }
@@ -596,7 +612,7 @@
 
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
-                $('input.to').val($(this).text());
+                $('input.to').val($(this).find('span:first').text());
                 $('#arrivalList').fadeOut();
             });
 

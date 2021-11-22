@@ -33,7 +33,7 @@ class AirportController extends Controller
     public function index()
     {
         $airports = Airport::paginate(25);
-        
+
         return view('admin.airports.list', compact('airports'));
     }
 
@@ -66,7 +66,7 @@ class AirportController extends Controller
         $airport->latitude = $request->input('latitude') ?? 0;
         $airport->longitude = $request->input('longitude') ?? 0;
         $airport->timezone = $request->input('timezone') ?? "";
-        $airport->area = $request->input('area');
+        $airport->region_id = $request->input('region_id');
 
         $airport->save();
 
@@ -74,8 +74,8 @@ class AirportController extends Controller
             ->route('admin.airports.index')
             ->with('status', 'The airport was successfully created.');
     }
-    
-    
+
+
     /**
      * Store data from csv file.
      *
@@ -86,7 +86,7 @@ class AirportController extends Controller
     {
         ini_set('max_execution_time', 8000000);
         Airport::whereNotNull('id')->delete();
-        
+
         $data = file_get_contents("http://ourairports.com/data/airports.csv");
         $rows = explode("\n",$data);
         $airport_records = [];
@@ -119,25 +119,25 @@ class AirportController extends Controller
             ->route('admin.airports.index')
             ->with('status', 'The database was successfully updated.');
     }
-    
-    
-    
-    public function import() 
+
+
+
+    public function import()
     {
         ini_set('max_execution_time', 8000000);
         Airport::whereNotNull('id')->delete();
-        
+
         $status = "CSV file was not uploaded";
-        
+
         if(request()->file('file') && request()->file('file')->getClientOriginalExtension() == 'csv'){
-            
+
             $data = fopen(request()->file('file'), "r");
             $column = fgetcsv($data);
             $rows = [];
             $airport_records = [];
             $now = Carbon::now();
             $delimiter = ",";
-            
+
             while(!feof($data)){
                 if (strpos($column[0], ",") !== false) {
                     $delimiter = ",";
@@ -172,11 +172,11 @@ class AirportController extends Controller
                 Airport::insert($airport_records);
                 $airport_records = [];
             }
-            
+
             $status = "The database was successfully updated.";
-            
+
         }
-        
+
         return redirect()
             ->route('admin.airports.index')
             ->with('status', $status);
@@ -204,9 +204,9 @@ class AirportController extends Controller
      */
     public function edit(Airport $airport)
     {
-        
+
         $countries = Country::all();
-        
+
         return view('admin.airports.edit', compact('airport', 'countries'));
     }
 
@@ -228,7 +228,7 @@ class AirportController extends Controller
         $airport->latitude = $request->input('latitude') ?? 0;
         $airport->longitude = $request->input('longitude') ?? 0;
         $airport->timezone = $request->input('timezone') ?? "";
-        $airport->area = $request->input('area');
+        $airport->region_id = $request->input('region_id');
         $airport->save();
 
         return redirect()
@@ -250,14 +250,14 @@ class AirportController extends Controller
             ->route('admin.airports.index')
             ->with('status', 'The airport was successfully deleted.');
     }
-    
+
     public function search(Request $request)
     {
         if($request->ajax())
         {
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $airports = DB::table('airports') 
+            $airports = DB::table('airports')
                 ->where('name', 'like', '%'.$query.'%')
                 ->orWhere('city', 'like', '%'.$query.'%')
                 ->orWhere('iata', 'like', '%'.$query.'%')

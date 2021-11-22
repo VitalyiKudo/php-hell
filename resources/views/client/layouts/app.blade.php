@@ -23,12 +23,13 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/images/meta/favicon-96x96.webp">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/meta/favicon-16x16.webp">
     <link rel="manifest" href="/images/meta/manifest.json">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/meta/ms-icon-144x144.webp">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Scripts -->
-    <script src="https://kit.fontawesome.com/cb8c197ec4.js"></script>
+    <!-- script src="https://kit.fontawesome.com/cb8c197ec4.js"></script -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -41,7 +42,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" type="text/css">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -239,7 +240,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map" type="application/octet-stream"></script>
 
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>

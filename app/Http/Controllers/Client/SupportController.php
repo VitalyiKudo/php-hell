@@ -36,7 +36,7 @@ class SupportController extends Controller
             'company' => 'sometimes|nullable|string',
             'message' => 'required|string|min:8',
         ]);
-        
+
 
         $status = Helpdeskeddy::createTicket([
             'title' => 'Support request from website',
@@ -67,7 +67,7 @@ class SupportController extends Controller
             'company' => 'sometimes|nullable|string',
             'message' => 'required|string|min:8',
         ]);
-        
+
 
         $status = Helpdeskeddy::createTicket([
             'title' => 'Operator request from website',

@@ -34,7 +34,7 @@ Route::get('/blog', function () {
 Route::get('/terms-conditions', function () {
     return view('client.terms-conditions');
 });
-Route::get('/privacy-policy', function () {
+Route::get('/JetOnset', function () {
     return view('client.privacy-policy');
 });
 Route::get('/listing-search', function () {
@@ -45,6 +45,9 @@ Route::get('/support', 'SupportController@index')->name('support');
 Route::post('/support/client', 'SupportController@client')->name('support.client');
 Route::post('/support/operator', 'SupportController@operator')->name('support.operator');
 Route::post('/subscribed', 'SupportController@subscribe')->name('subscribed');
+
+/* Sitemap */
+Route::get('/sitemap', 'SitemapController@index');
 
 Auth::routes();
 
@@ -68,7 +71,7 @@ Route::namespace('Account')->group(function () {
     Route::get('/profile/companion/{id}/edit', 'Profile\CompanionController@edit')->name('profile.companion.edit');
     Route::get('/profile/companion/{id}/delete', 'Profile\CompanionController@destroy')->name('profile.companion.delete');
     Route::put('/profile/companion/update', 'Profile\CompanionController@update')->name('profile.companion.update');
-    
+
     Route::get('/profile/quote', 'Profile\QuoteController@index')->name('profile.quote.index');
     //Route::put('/profile/quote', 'Profile\QuoteController@update')->name('profile.quote.update');
     //Route::delete('/profile/quote', 'Profile\QuoteController@destroy')->name('profile.quote.destroy');
@@ -89,7 +92,7 @@ Route::namespace('Account')->group(function () {
     Route::get('/orders/{order_id}/succeed', 'OrderController@request_succeed')->name('orders.request_succeed');
     Route::get('/orders/{order_id}/complete', 'OrderController@checkoutComplete')->name('orders.complete');
     //Route::match(['GET', 'POST'], '/orders/{search}/checkout/{type}', 'OrderController@checkout')->name('orders.checkout');
-    
+
     //Flights search
     Route::get('/flights/search', 'SearchController@index')->name('search.index');
     Route::get('/search/flight', 'FlightController@index')->name('flight.index');
@@ -98,6 +101,7 @@ Route::namespace('Account')->group(function () {
     Route::get('/flights/quote', 'SearchController@requestQuote')->name('search.requestQuote');
     Route::get('/flights/quote/{order_id}/success', 'SearchController@requestQuoteSuccess')->name('search.requestQuoteSuccess');
     Route::get('/flights/success', 'SearchController@createQuote')->name('search.createQuote');
-    
+
     Route::get('/flights/sendMail', 'SearchController@sendMail')->name('search.sendMail');
+
 });

@@ -908,7 +908,6 @@
                 autoUpdateInput: false,
                 isInvalidDate: (e) => new Date(e) < today
             });
-
             /*
             $('#request_quote').submit(function(e){
                 e.preventDefault();
@@ -926,7 +925,7 @@
                     $('.invalid-feedback').remove();
                     $('.hover_bkgr_fricc').show();
                     $.ajax({
-                        url: "{{ route('client.search.requestQuote') }}",
+                        url: "{{-- route('client.search.requestQuote') --}}",
                         type:"POST",
                         data:{
                             _token:_token,
@@ -967,56 +966,7 @@
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 3){
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: "/api/airports",
-                        method: "GET",
-                        data: {query:query, _token:_token},
-                        success: function(data){
-                            var lookup = {};
-                            var output = '<ul class="dropdown-menu">';
-                            function removeDuplicatesBy(keyFn, array) {
-                                var mySet = new Set();
-                                return array.filter(function(x) {
-                                    var key = keyFn(x), isNew = !mySet.has(key);
-                                    if (isNew) mySet.add(key);
-                                    return isNew;
-                                });
-                            }
-
-                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
-                            $.each(withoutDuplicates, function(idx, obj) {
-                                if (obj.name.toLowerCase().includes(query.toLowerCase()) || obj.iata.toLowerCase().includes(query.toLowerCase())) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.name + '</a></li>';
-                                } else {
-                                    var city = obj.city;
-                                    if (!(city in lookup)) {
-                                        lookup[city] = 1;
-                                        output += '<li><a href="' + obj.id + '">' + obj.city + '</a></li>';
-                                    }
-                                }
-                            });
-                            output += '</ul>';
-                            $('#departureList').fadeIn();
-                            $('#departureList').html(output).mark(query);
-                        }
-                    });
-                }
-            });
-
-            $(document).on('click', '#departureList li', function(e){
-                e.preventDefault();
-                $('input.from').val($(this).text());
-                $('#departureList').fadeOut();
-            });
-
-
-            $('input.to').keyup(function(){
-                var query = $(this).val();
-
-                if(query != '' && query.length >= 3){
+                if(query != '' && query.length >= 2){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -1038,7 +988,69 @@
 
                             if (data.length !== 0){
                                 $.each(withoutDuplicates, function(idx, obj) {
-                                    output += '<li><a href="' + obj.id + '">' + obj.icao + ':' + obj.iata+ ', ' + obj.name + ', ' + obj.region_country.name + ', ' + obj.country.name + '</a></li>';
+
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                                    output += '<li><a href="' + obj.id + '">' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                        '</a></li>';
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
+                            output += '</ul>';
+                            $('#departureList').fadeIn();
+                            $('#departureList').html(output).mark(query);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#departureList li', function(e){
+                e.preventDefault();
+                $('input.from').val($(this).find('span:first').text());
+                $('#departureList').fadeOut();
+            });
+
+
+            $('input.to').keyup(function(){
+                var query = $(this).val();
+
+                if(query != '' && query.length >= 2){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+                            var lookup = {};
+                            var output = '<ul class="dropdown-menu">';
+                            function removeDuplicatesBy(keyFn, array) {
+                                var mySet = new Set();
+                                return array.filter(function(x) {
+                                    var key = keyFn(x), isNew = !mySet.has(key);
+                                    if (isNew) mySet.add(key);
+                                    return isNew;
+                                });
+                            }
+
+                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
+
+                            if (data.length !== 0){
+                                $.each(withoutDuplicates, function(idx, obj) {
+
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+
+                                    output += '<li><a href="' + obj.id + '">' +
+                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
+                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
+                                        '</a></li>';
                                 });
                             }
                             else {
@@ -1054,7 +1066,7 @@
 
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
-                $('input.to').val($(this).text());
+                $('input.to').val($(this).find('span:first').text());
                 $('#arrivalList').fadeOut();
             });
 
