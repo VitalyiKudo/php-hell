@@ -37,6 +37,6 @@ class CreatePricingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pricing');
+        Schema::dropIfExists('pricings');
     }
 }
