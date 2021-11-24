@@ -42,7 +42,7 @@ class AirportsTableSeeder extends Seeder
                     $airport->city = $value['municipality'];
                     $airport->country()->associate($country->country_id);
                     $airport->region()->associate($region->region_id);
-                    $airport->continent_id = ($value['continent'] !== '\N') ? $value['continent'] : null;
+                    $airport->continent_id = ($value['continent'] !== '\N') ? $value['continent'] : 'NA';
                     $airport->iata = ($value['iata_code'] !== '\N') ? $value['iata_code'] : null;
                     $airport->icao = $value['ident'];
                     $airport->latitude = $value['latitude_deg'];
