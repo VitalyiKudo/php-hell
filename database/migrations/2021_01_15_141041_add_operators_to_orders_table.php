@@ -27,7 +27,7 @@ class AddOperatorsToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('operator_id');
+            //$table->dropColumn('operator_id');
         });
     }
 }
