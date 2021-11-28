@@ -13172,7 +13172,7 @@ sup {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width: 96%;
   justify-content: space-between;
   padding: 0 10px;
 }
@@ -16790,7 +16790,7 @@ ul.dashed > li:before {
   }
 
   .txt-pos3 {
-    padding: 10rem 0px 0px 0;
+    padding: 1rem 0px 0px 0;
   }
 
   .bg-plane,
@@ -16802,6 +16802,7 @@ ul.dashed > li:before {
     align-content: center;
     justify-content: center;
       background-image: url("/images/aircrafts/jet_background7-8.webp");
+      padding-top: 2rem;
   }
 
   .plane-pos,
