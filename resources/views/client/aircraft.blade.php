@@ -103,15 +103,15 @@
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
-                                        <span class='main-text'>8000</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>562</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Max Range</span>
                                     <div>
-                                        <span class='main-text'>562</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>8000</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                             </div>
@@ -244,15 +244,15 @@
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
-                                        <span class='main-text'>8000</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>562</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Max Range</span>
                                     <div>
-                                        <span class='main-text'>562</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>8000</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                             </div>
@@ -386,15 +386,15 @@
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
-                                        <span class='main-text'>4000</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>603</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Max Range</span>
                                     <div>
-                                        <span class='main-text'>603</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>4000</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                             </div>
@@ -468,15 +468,15 @@
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
-                                        <span class='main-text'>2700</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>534</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Max Range</span>
                                     <div>
-                                        <span class='main-text'>534</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>2700</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                             </div>
@@ -591,7 +591,7 @@
                         </div>
                         <div class="size-width">
                             <p class="mb-0 plane-tab upcase">Turbo prop</p>
-                            <p class="mb-0 plane-tab-2">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 mph.
+                            <p class="mb-0 plane-tab-2">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 miles.
                                 <span class="extra_text"> They are the most cost-efficient option and are often used for flights with an approximate duration of two hours and can land at both short runways as well as major airports.</span></p>
                             <div class="rd-more-section">
 
@@ -611,15 +611,15 @@
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
-                                        <span class='main-text'>2500</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>360</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
                                     <span class='sub-text'>Max Range</span>
                                     <div>
-                                        <span class='main-text'>360</span>
-                                        <span class="scale">mph</span>
+                                        <span class='main-text'>2500</span>
+                                        <span class="scale">miles</span>
                                     </div>
                                 </div>
                             </div>
@@ -666,7 +666,7 @@
                 <div class="row fixed-row">
                     <div class="col">
                         <p class="mb-0 plane-tab upcase">Turbopop</p>
-                        <p class="mb-0">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 mph. They are the most cost-efficient option and are often used for flights with an approximate duration of two hours and can land at both short runways as well as major airports.</p>
+                        <p class="mb-0">Turboprops are the smallest class of jets and they are the most efficient plane for low altitude flights and typically operate below 450 miles. They are the most cost-efficient option and are often used for flights with an approximate duration of two hours and can land at both short runways as well as major airports.</p>
                     </div>
                 </div>
                 <div class="row align-items-center pt-4 pb-4">

@@ -1,8 +1,8 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 /* Slider */
 .slick-loading .slick-list
 {
-    background: #fff url('../ajax-loader.gif') center center no-repeat;
+    background: #fff url('/images/ajax-loader.gif') center center no-repeat;
 }
 
 /* Icons */
@@ -26,8 +26,8 @@
     /*top: 50%;
     top: calc(50% - 10px);*/
     top: calc(50% - 5px);
-    
-    
+
+
     display: block;
 
     width: 33px;
@@ -120,7 +120,7 @@
     content: '←';
 }
 
-/* Dots 
+/* Dots
 .slick-dotted.slick-slider
 {
     margin-bottom: 30px;
