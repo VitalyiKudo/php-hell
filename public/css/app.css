@@ -13173,7 +13173,7 @@ sup {
     grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
   width: 96%;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 10px 20px 10px;
 }
 
 .div-plane-details-colums  {
@@ -13185,7 +13185,7 @@ sup {
 .div-plane-details-colums > div,
 .div-plane-details-colums > div > span {
     color: #000 !important;
-    text-align: left !important;
+    text-align: center !important;
 }
 
 .fixed-row {
