@@ -13169,9 +13169,8 @@ sup {
 }
 
 .div-plane-details {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
   width: 96%;
   justify-content: space-between;
   padding: 0 10px;
@@ -13183,8 +13182,10 @@ sup {
   flex-direction: column;
 }
 .div-plane-details-colums > span,
+.div-plane-details-colums > div,
 .div-plane-details-colums > div > span {
     color: #000 !important;
+    text-align: left !important;
 }
 
 .fixed-row {
