@@ -18,8 +18,6 @@ class RedirectTrailingSlash
     {
         if (preg_match('/.+\/$/', $request->getRequestUri()))
         {
-            #return redirect()->to(rtrim($request->getRequestUri(), '/'), 301);
-            #return redirect(rtrim($request->getRequestUri(), '/'), 301);
             return Redirect::to(rtrim($request->getRequestUri(), '/'), 301);
         }
 

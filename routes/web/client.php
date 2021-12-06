@@ -28,18 +28,21 @@ Route::get('/mobile-app', function () {
 Route::get('/about', function () {
     return view('client.about');
 });
-Route::get('/blog', function () {
+/*Route::get('/blog', function () {
     return view('client.blog');
-});
+});*/
 Route::get('/terms-conditions', function () {
     return view('client.terms-conditions');
 });
-Route::get('/JetOnset', function () {
+Route::get('/privacy-policy', function () {
     return view('client.privacy-policy');
 });
 Route::get('/listing-search', function () {
     return view('client.listing-search');
 });
+
+Route::permanentRedirect('/JetOnset', '/privacy-policy');
+Route::permanentRedirect('/blog', 'https://blog.' . parse_url(config('app.url'), PHP_URL_HOST));
 
 Route::get('/support', 'SupportController@index')->name('support');
 Route::post('/support/client', 'SupportController@client')->name('support.client');

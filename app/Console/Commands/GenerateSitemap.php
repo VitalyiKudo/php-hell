@@ -41,7 +41,7 @@ class GenerateSitemap extends Command
             ->add(Url::create('/register')->setPriority(0.5))
             ->add(Url::create('/login')->setPriority(0.9))
             ->add(Url::create('/aircraft')->setPriority(0.8))
-            ->add(Url::create('/JetOnset')->setPriority(0.1))
+            ->add(Url::create('/privacy-policy')->setPriority(0.1))
             ->add(Url::create('/terms-conditions')->setPriority(0.2))
             ->add(Url::create('/password/reset')->setPriority(0.2))
             ->writeToFile(public_path('sitemap.xml'));

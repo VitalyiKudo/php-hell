@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -64,23 +64,23 @@
                             <li class="nav-item {{ Request::is('manage/administrators*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.administrators.index') }}">{{ __('Administrators') }}</a>
                             </li>
-                            
+
                             <li class="nav-item {{ Request::is('manage/airports*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.airports.index') }}">{{ __('Airports') }}</a>
                             </li>
-                            
+
                             <li class="nav-item {{ Request::is('manage/airlines*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.airlines.index') }}">{{ __('Fleet') }}</a>
                             </li>
-                            
+
                             <li class="nav-item {{ Request::is('manage/operators*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.operators.index') }}">{{ __('Operators') }}</a>
                             </li>
-                            
+
                             <li class="nav-item {{ Request::is('manage/pricing*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.pricing.index') }}">{{ __('Pricing') }}</a>
                             </li>
-                            
+
                             <li class="nav-item {{ Request::is('manage/fees*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('admin.fees.index') }}">{{ __('Additional Fees') }}</a>
                             </li>

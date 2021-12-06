@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
   <head>
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Jetonset</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
@@ -34,7 +34,7 @@
                         <a href="jetonset.com">
                             <img style="width:160px; height:70px"src="https://jetonset.com/images/svg/logo.svg" loading="lazy" alt="">
                         </a>
-                      <br>  
+                      <br>
                         <p></p>
                         <p>Your order status has been updated by jetonset administrator. </p>
                         <p><strong></strong></p>
