@@ -46,8 +46,8 @@ class PricingsTableSeeder extends Seeder
                     $price->price_medium = $value['price_medium'];
                     $price->time_heavy = $value['time_heavy'];
                     $price->price_heavy = $value['price_heavy'];
-                    $price->departure()->associate($departureId->geonameid);
-                    $price->arrival()->associate($arrivalId->geonameid);
+                    $price->departureCity()->associate($departureId->geonameid);
+                    $price->arrivalCity()->associate($arrivalId->geonameid);
 
                     $price->save();
                 }

@@ -53,7 +53,7 @@ class City extends Model
      */
     public function region()
     {
-        return $this->hasMany(Region::class, 'iso_region', 'region_id')->where('country_id', $this->country_id);
+        return $this->belongsTo(Region::class, 'iso_region', 'region_id')->where('country_id', $this->country_id);
     }
 
     /**
@@ -61,7 +61,7 @@ class City extends Model
      */
     public function regionCountry()
     {
-        return $this->hasMany(Region::class, ['iso_country', 'iso_region'], ['country_id', 'region_id']);
+        return $this->belongsTo(Region::class, ['iso_country', 'iso_region'], ['country_id', 'region_id']);
     }
 
     /**

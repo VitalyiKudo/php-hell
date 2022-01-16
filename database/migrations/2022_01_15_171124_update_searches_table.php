@@ -16,7 +16,7 @@ class UpdateSearchesTable extends Migration
     {
         if ( City::count() < 1 )
         {
-            DB::table('cities')->insert(array('geonameid' => 0));
+            DB::table('cities')->insert(array(['geonameid' => 0, 'iso_region' => 'X02~', 'iso_country' => 'AQ']));
         }
 
         Schema::table('searches', function (Blueprint $table) {
