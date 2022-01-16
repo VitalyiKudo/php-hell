@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\City;
 
 class UpdateSearchesTable extends Migration
 {
@@ -13,6 +14,11 @@ class UpdateSearchesTable extends Migration
      */
     public function up()
     {
+        if ( City::count() < 1 )
+        {
+            DB::table('cities')->insert(array('geonameid' => 0));
+        }
+
         Schema::table('searches', function (Blueprint $table) {
             $table->integer('departure_geoId')->default(0)->after('start_airport_name');
             $table->integer('arrival_geoId')->default(0)->after('end_airport_name');
