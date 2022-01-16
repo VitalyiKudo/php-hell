@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pricing;
 use App\Models\Search;
+use App\Models\City;
 use Carbon\Carbon;
 use \Validator;
 use Session;
@@ -31,9 +32,14 @@ class FlightController extends Controller
         }
 
         $session_id = Session::get('session_token_id');
+#var_dump($request);
+        #$startPointName = $this->findCity($request->startPoint);
+        #$endPointName = $this->findCity($request->endPoint);
+        $startPointName = $request->startPointName;
+        $endPointName = $request->endPointName;
 
-        $startCity = $this->findCity($request->startPoint);
-        $endCity = $this->findCity($request->endPoint);
+        $startCity = $request->startPoint;
+        $endCity = $request->endPoint;
 
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
@@ -47,15 +53,22 @@ class FlightController extends Controller
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
         }
 
-        $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
-        $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
+        $params["startPoint"] = $startCity ? $startCity : 0;
+        $params["endPoint"] = $endCity ? $endCity : 0;
+        $params["startPointName"] = $startPointName ? $startPointName : '';
+        $params["endPointName"] = $endPointName ? $endPointName : '';
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::check() ? Auth::user()->id : 0;
 
-        $citiesList = [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity];
+        #$citiesList = [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity];
 
-        $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", $citiesList)->first();
+        #$searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", $citiesList)->first();
+
+        $searchResults =  Pricing::with('departureCity', 'arrivalCity')
+        ->where('departure_geoId', '=', $startCity)
+            ->where('arrival_geoId', '=', $endCity)
+            ->first();
 
         if($searchResults){
             $params["result_id"] = $searchResults->id;
@@ -66,7 +79,7 @@ class FlightController extends Controller
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],
-            'end_airport_name' => $params["endPointnName"],
+            'end_airport_name' => $params["endPointName"],
         ];
 
 
@@ -91,7 +104,9 @@ class FlightController extends Controller
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
         $search->session_id = $session_id;
         $search->start_airport_name = $params["startPointName"];
-        $search->end_airport_name = $params["endPointnName"];
+        $search->end_airport_name = $params["endPointName"];
+        $search->departure_geoId = $params["startPoint"];
+        $search->arrival_geoId = $params["endPoint"];
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
@@ -100,14 +115,18 @@ class FlightController extends Controller
 
         $validator = Validator::make(
             [
-                'startPoint' => $params["startPointName"],
-                'endPoint' => $params["endPointnName"],
+                'startPoint' => $params["startPoint"],
+                'endPoint' => $params["endPoint"],
+                'startPointName' => $params["startPointName"],
+                'endPointName' => $params["endPointName"],
                 'flightDate' => $params["flightDate"],
                 'passengers' => $params["passengers"],
             ],
             [
-                'startPoint' => 'required|max:255',
-                'endPoint' => 'required|max:255',
+                'startPoint' => 'required|numeric',
+                'endPoint' => 'required|numeric',
+                'startPointName' => 'required|max:255',
+                'endPointName' => 'required|max:255',
                 'flightDate' => 'required|date',
                 'passengers' => 'required|numeric',
             ]
@@ -141,8 +160,8 @@ class FlightController extends Controller
 
         //echo Session::get('pervis_search_url');
 
-        $startCity = $this->findCity($request->startPoint);
-        $endCity = $this->findCity($request->endPoint);
+        $startCity = $this->findAirport($request->startId);
+        $endCity = $this->findAirport($request->endId);
 
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
@@ -159,20 +178,15 @@ class FlightController extends Controller
         //echo $params["startCityLng"];
 
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
-        $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
+        $params["endPointName"] = $endCity ? $endCity : $request->endPoint;
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
 
-
-
-
         $params["userId"] = 0;
 
+        #$searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
 
-
-
-
-        $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
+        $searchResults =  Pricing::where('departure_geoId', '=', $startCity)->where('arrival_geoId', '=', $endCity)->first();
 
         if($searchResults){
             $params["result_id"] = $searchResults->id;
@@ -218,7 +232,7 @@ class FlightController extends Controller
         $search->result_id = $params["result_id"];
         $search->user_id = NULL;
         $search->start_airport_name = $params["startPointName"];
-        $search->end_airport_name = $params["endPointnName"];
+        $search->end_airport_name = $params["endPointName"];
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
@@ -243,7 +257,7 @@ class FlightController extends Controller
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::user()->id;
         $search->start_airport_name = $params["startPointName"];
-        $search->end_airport_name = $params["endPointnName"];
+        $search->end_airport_name = $params["endPointName"];
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
@@ -259,7 +273,7 @@ class FlightController extends Controller
         $validator = Validator::make(
             [
                 'startPoint' => $params["startPointName"],
-                'endPoint' => $params["endPointnName"],
+                'endPoint' => $params["endPointName"],
                 'flightDate' => $params["flightDate"],
                 'passengers' => $params["passengers"],
             ],
@@ -280,16 +294,19 @@ class FlightController extends Controller
     }
 
     public function findCity($query) {
-        $airport = DB::table('airports')
-                ->where('name', $query)
-                ->orWhere('name', str_replace('-', ' ', $query))
-                ->orWhere('name', str_replace('.', '', $query))
-                ->orWhere('city', $query)
-                ->orWhere('city', str_replace('-', ' ', $query))
-                ->orWhere('city', str_replace('.', '', $query))
+        $city = DB::table('cities')
+                ->where('geonameid', $query)
                 ->first();
 
-        return is_object($airport) ? $airport->city : '';
+        return is_object($city) ? $city->name : '';
+    }
+
+    public function findAirport($query) {
+        $airport = DB::table('airports')
+                ->where('id', $query)
+                ->first();
+
+        return is_object($airport) ? $airport->name : '';
     }
 
     public function findCoordinates($query) {

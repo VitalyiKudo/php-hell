@@ -990,10 +990,10 @@
                                 $.each(withoutDuplicates, function(idx, obj) {
 
                                     var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+                                    var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
 
-                                    output += '<li><a href="' + obj.id + '">' +
+                                    output += '<li><a href="' + obj.geonameid + '">' +
                                         '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
@@ -1013,6 +1013,7 @@
             $(document).on('click', '#departureList li', function(e){
                 e.preventDefault();
                 $('input.from').val($(this).find('span:first').text());
+                $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
                 $('#departureList').fadeOut();
             });
 
@@ -1044,10 +1045,10 @@
                                 $.each(withoutDuplicates, function(idx, obj) {
 
                                     var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                                    var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                                    var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+                                    var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
 
-                                    output += '<li><a href="' + obj.id + '">' +
+                                    output += '<li><a href="' + obj.geonameid + '">' +
                                         '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                         '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                         '</a></li>';
@@ -1067,6 +1068,7 @@
             $(document).on('click', '#arrivalList li', function(e){
                 e.preventDefault();
                 $('input.to').val($(this).find('span:first').text());
+                $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
                 $('#arrivalList').fadeOut();
             });
 

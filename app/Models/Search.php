@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\City;
 
 class Search extends Model
 {
@@ -13,6 +14,7 @@ class Search extends Model
      */
     protected $fillable = [
         'search_id',
+        ''
     ];
 
     /**
@@ -40,13 +42,29 @@ class Search extends Model
     }
 
     /**
+     * Get the start city of the search.
+     */
+    public function departureCity()
+    {
+        return $this->belongsTo(City::class, 'start_airport_id');
+    }
+
+    /**
+     * Get the end city of the search.
+     */
+    public function arrivalCity()
+    {
+        return $this->belongsTo(City::class, 'end_airport_id');
+    }
+
+    /**
      * Get all of the orders for the user.
      */
     public function orders()
     {
         return $this->hasMany('App\Models\Order', 'id', 'search_result_id');
     }
-    
+
     /**
      * Get all of the results for the search.
      */

@@ -15,37 +15,74 @@ class Airport extends Model
     protected $fillable = [
         'name',
         'city',
-        'country_id',
-        'region_id',
-        'continent_id',
+        'iso_country',
+        'iso_region',
         'iata',
         'icao',
         'latitude',
         'longitude',
-        'altitude',
     ];
 
     /**
-     * Get the country of the airport.
+     * Get the country of the city.
      */
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id', 'country_id');
+        return $this->belongsTo(Country::class, 'iso_country', 'country_id');
     }
 
     /**
-     * Get the region of the airport.
+     * Get the region of the city.
      */
     public function region()
     {
-        return $this->belongsTo(Region::class, 'region_id', 'region_id')->where('country_id', $this->country_id);
+        return $this->hasOneThrough(Region::class, City::class);
+    }
+
+    public function regionsHasMany()
+    {
+        return $this->hasManyThrough(
+            Region::class,
+            City::class,
+            'geonameid', // city for airport
+            ['country_id', 'region_id'], // region for city
+            'geoNameIdCity', // Local airport for city
+            ['iso_country', 'iso_region'] // Local city for region
+        );
+    }
+
+    public function regionsBelongs()
+    {
+        return $this->belongsToMany(
+            Region::class,
+            City::class,
+            'geonameid', // city for airport
+            'iso_region', // region for city
+            'geoNameIdCity', // Local airport for city
+            'region_id' // Local city for region
+        );
+    }
+    /**
+     * Get the airport of the city.
+     */
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'geoNameIdCity', 'geonameid');
     }
 
     /**
-     * Get the region of the airport.
+     * Get the airport of the city.
+     */
+    public function cityFull()
+    {
+        return $this->belongsTo(City::class, ['geoNameIdCity', 'iso_country', 'geoNameIdCity'], ['geonameid', 'iso_country', 'iso_region']);
+    }
+
+    /**
+     * Get the region of the city.
      */
     public function regionCountry()
     {
-        return $this->belongsTo(Region::class, ['country_id', 'region_id'], ['country_id', 'region_id']);
+        return $this->belongsTo(Region::class, ['iso_country', 'iso_region'], ['country_id', 'region_id']);
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
 use App\Models\Airport;
-use App\Models\Country;
-use App\Models\Region;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class AirportsTableSeeder extends Seeder
@@ -15,10 +14,10 @@ class AirportsTableSeeder extends Seeder
     public function run()
     {
         // Old $url = 'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat';
-        // New local Airports_final_02_06_Alex.csv
+        // New local airports_202201102355.csv
         $header = NULL;
         $data = array();
-        if (($handle = fopen(storage_path('app/Airports_final_02_06_Alex.csv'), 'r')) !== FALSE) {
+        if (($handle = fopen(storage_path('app/airports_202201102355.csv'), 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, 1000, ';')) !== false) {
                 if (!$header) {
                     $header = $row;
@@ -33,24 +32,23 @@ class AirportsTableSeeder extends Seeder
             try {
                 foreach ($data as $value) {
 
-                    $airport = Airport::firstOrNew(['icao' => $value['ident']]);
-                    $country = Country::firstOrCreate(['country_id' => $value['iso_country']]);
-                    $regionJob = trim(substr($value['iso_region'], strpos($value['iso_region'], "-") + 1));
-                    $region = Region::firstOrCreate(['country_id' => $value['iso_country'], 'region_id' => $regionJob]);
+                    $airport = Airport::firstOrNew(['icao' => $value['icao']]);
+                    $city = City::firstOrNew(['geonameid'=>$value['geoNameIdCity']]);
 
                     $airport->name = $value['name'];
-                    $airport->city = $value['municipality'];
-                    $airport->country()->associate($country->country_id);
-                    $airport->region()->associate($region->region_id);
-                    $airport->continent_id = ($value['continent'] !== '\N') ? $value['continent'] : 'NA';
-                    $airport->iata = ($value['iata_code'] !== '\N') ? $value['iata_code'] : null;
-                    $airport->icao = $value['ident'];
-                    $airport->latitude = $value['latitude_deg'];
-                    $airport->longitude = $value['longitude_deg'];
-                    #$airport->timezone = $value[11];
+                    $airport->type = $value['type'];
+                    $airport->city = $value['city'];
+                    $airport->geonameid = $value['geonameid'];
+                    $airport->iso_region = $value['iso_region'];
+                    $airport->iso_country = $value['iso_country'];
+                    $airport->city()->associate($city->geonameid);
+                    $airport->iata = $value['iata'];
+                    $airport->icao = $value['icao'];
+                    $airport->latitude = $value['latitude'];
+                    $airport->longitude = $value['longitude'];
+                    $airport->timezone = $value['timezone'];
 
                     $airport->save();
-
                 }
             } catch (Exception $e) {
                 report($e);

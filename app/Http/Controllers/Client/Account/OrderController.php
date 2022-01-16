@@ -434,7 +434,7 @@ class OrderController extends Controller
                             });
 
                             $airport_list = [];
-                            $airport_items = Airport::whereIn('city', [$start_airport_name, $end_airport_name])->get();
+                            $airport_items = Airport::whereIn('name', [$start_airport_name, $end_airport_name])->get();
                             //$airport_items = Airport::whereIn('city', [$start_airport_name])->get();
                             foreach($airport_items as $airport_item){
                                 if($airport_item->icao){

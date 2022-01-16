@@ -74,6 +74,8 @@ class OrderController extends Controller
         $user = User::find($order->user_id);
         $pricing = Pricing::find($search->result_id);
         $operator = Operator::find($order->operator_id);
+        #var_dump($search);
+        #var_dump(compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
         return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
     }
 
@@ -111,7 +113,7 @@ class OrderController extends Controller
             $m->from('support@jetonset.com', 'JetOnSet');
             $m->to($order->user->email)->subject('Order status Updated');
         });
-        
+
         return redirect()->back()->with('status', 'The order was successfully updated.');
     }
 
@@ -134,7 +136,7 @@ class OrderController extends Controller
      */
     public function orderAccepted(Request $request) {
         $data = Order::where('id', $request->order_id)->first();
-        
+
         $data->is_accepted = $request->input('accept');
         $data->save();
 

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\City;
+
 
 class Pricing extends Model
 {
@@ -24,6 +26,23 @@ class Pricing extends Model
         'price_medium',
         'time_heavy',
         'price_heavy',
+        'departure_geoId',
+        'arrival_geoId',
     ];
 
+    /**
+     * Get the departure of the city.
+     */
+    public function departureCity()
+    {
+        return $this->belongsTo(City::class, 'departure_geoId', 'geonameid');
+    }
+
+    /**
+     * Get the arrival of the city.
+     */
+    public function arrivalCity()
+    {
+        return $this->belongsTo(City::class, 'arrival_geoId', 'geonameid');
+    }
 }

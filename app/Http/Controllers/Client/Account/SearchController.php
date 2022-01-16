@@ -6,6 +6,7 @@ use App\Models\Airport;
 use App\Models\Search;
 use App\Models\Airline;
 use App\Models\Operator;
+use App\Models\City;
 use Illuminate\Http\Request;
 use \Validator;
 use App\Http\Controllers\Controller;
@@ -33,10 +34,10 @@ class SearchController extends Controller
 
         $startCity = $this->findCity($request->startPoint);
         $endCity = $this->findCity($request->endPoint);
-        
+
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
-        
+
         if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
             $params["startCityLat"] = $startCityCoordinates['lat'];
             $params["startCityLng"] = $startCityCoordinates['lng'];
@@ -45,15 +46,17 @@ class SearchController extends Controller
             $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
         }
-      
+
         $params["startPointName"] = $startCity ? $startCity : $request->startPoint;
         $params["endPointnName"] = $endCity ? $endCity : $request->endPoint;
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::user()->id;
-        
-        $searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
-        
+
+        #$searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity])->first();
+
+        $searchResults =  Pricing::where('departure_geoId', '=', $startCity)->where('arrival_geoId', '=', $endCity)->first();
+
         if($searchResults){
             $params["result_id"] = $searchResults->id;
         } else {
@@ -65,7 +68,7 @@ class SearchController extends Controller
                                 ->take(4)
                                 ->get()
                                 ->reverse();
-        
+
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::user()->id;
@@ -74,9 +77,9 @@ class SearchController extends Controller
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
-        
+
         $params["searchId"] = $search->id;
-        
+
         $validator = Validator::make(
             [
                 'startPoint' => $params["startPointName"],
@@ -99,7 +102,7 @@ class SearchController extends Controller
 
         return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults'));
     }
-    
+
     public function findAirport($keyword) {
         $airport = Airport::where('name', $keyword)
                 ->orWhere('name', str_replace('-', ' ', $keyword))
@@ -108,24 +111,18 @@ class SearchController extends Controller
                 ->orWhere('city', str_replace('-', ' ', $keyword))
                 ->orWhere('city', str_replace('.', '', $keyword))
                 ->first();
-        
+
         return $airport->id;
     }
-    
-    public function findCity($query) {
-        $airport = DB::table('airports')
-                ->where('name', $query)
-                ->orWhere('name', str_replace('-', ' ', $query))
-                ->orWhere('name', str_replace('.', '', $query))
-                ->orWhere('city', $query)
-                ->orWhere('city', str_replace('-', ' ', $query))
-                ->orWhere('city', str_replace('.', '', $query))
-                ->first();
 
-        return is_object($airport) ? $airport->city : '';
+    public function findCity($query) {
+        $city = DB::table('cities')
+            ->where('geonameid', $query)
+            ->first();
+
+        return is_object($city) ? $city->name : '';
     }
-    
-    
+
     public function findCoordinates($query) {
         $airport = DB::table('airports')
                 ->where('name', $query)
@@ -138,8 +135,8 @@ class SearchController extends Controller
 
         return is_object($airport) ? ['lat' => $airport->latitude, 'lng' => $airport->longitude] : NULL;
     }
- 
-    
+
+
     public function findCityByID($id) {
 
         $airport = Airport::find($id);
@@ -157,9 +154,9 @@ class SearchController extends Controller
         $search->comment = $request->input('comment');
         $search->type = $request->input('flight_model');
         $search->save();
-        
+
         $search_id = $search->id;
-        
+
         Mail::send([], [], function ($message) use ($search_id) {
             $user = Auth::user();
             $message->from('quote@jetonset.com', 'JetOnset team');
@@ -167,14 +164,14 @@ class SearchController extends Controller
             $message->to($user->email)->subject("We have received your request");
             $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your request and will send you the quote in the shortest possible time.\n\nBest regards,\nJetOnset team.");
         });
-        
+
 
         $date = Carbon::parse($request->input('departure_at'))->format('d F Y');
         $airports = [
             'start_city' => $request->input('start_airport_name'),
             'end_city' => $request->input('end_airport_name'),
         ];
-        
+
         Mail::send([], [], function ($message) use ($request, $date, $airports) {
             $user = Auth::user();
             $message->from($user->email, 'JetOnset team');
@@ -182,8 +179,8 @@ class SearchController extends Controller
             $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
         });
         */
-        
-        
+
+
         /* not needed
         $airport_list = [];
         $airport_items = Airport::whereIn('city', [$request->input('start_airport_name'), $request->input('end_airport_name')])->get();
@@ -227,9 +224,9 @@ class SearchController extends Controller
             'start_city' => $request->input('start_airport_name'),
             'end_city' => $request->input('end_airport_name'),
         ];
-        
+
         $emails = array_unique($emails);
-        
+
         foreach($emails as $email){
             Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                 $user = Auth::user();
@@ -244,14 +241,14 @@ class SearchController extends Controller
         //return response()->json([]);
 
         $pervis_search_url = Session::get('pervis_search_url');
-        
+
         //$session_id = Session::getId();
         //echo $session_id;
 
-        
+
         $session_id = Session::get('session_token_id');
         //echo $session_id;
-        
+
         $search_updates = Search::where('session_id', $session_id)->get();
         if($search_updates){
             foreach ($search_updates as $search_update) {
@@ -259,22 +256,22 @@ class SearchController extends Controller
                 $search_update->save();
             }
         }
-        
+
 
         //$search_update->user_id = Auth::user()->id;
         //$search_update->update(['user_id' => Auth::user()->id]);
-        
+
         //echo "<pre>";
         //print_r($search_update);
         //echo "</pre>";
 
-        
+
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
                                 ->orderBy('id', 'desc')
                                 ->take(4)
                                 ->get()
                                 ->reverse();
-        
+
         $searchResult = Search::where('user_id', Auth::user()->id)->latest()->first();
 
         $startCity = $this->findCity($request->input('startPoint'));
@@ -305,7 +302,7 @@ class SearchController extends Controller
         $params['catering'] = $request->input('catering');
 
         $comment = "";
-        
+
         if($request->isMethod('get') && $request->input('page_name') == "reqest-page" && strlen($params['start_airport_name']) > 0 && strlen($params['end_airport_name']) > 0 && strlen($params['departure_at']) > 0 && $params['pax'] > 0){
             $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
             $comment .= $request->input('aircraft') ? "Preffered aircraft: " . $request->input('aircraft') . ";\r\n" : "" ;
@@ -325,8 +322,8 @@ class SearchController extends Controller
             $comment .= $request->input('wifi') ? "Wi-Fi: ".$request->input('wifi').";\r\n" : "" ;
             $comment .= $request->input('lavatory') ? "Lavatory: ".$request->input('lavatory').";\r\n" : "" ;
             $comment .= $request->input('disabilities') ? "People with disabilities: ".$request->input('disabilities').";\r\n" : "" ;
-            $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;  
-            
+            $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;
+
             $search = new Order;
             $search->user_id = Auth::user()->id;
             $search->order_status_id = 5;
@@ -337,7 +334,7 @@ class SearchController extends Controller
             $search->save();
 
             $search_id = $search->id;
-            
+
             Mail::send([], [], function ($message) use ($search_id) {
                 $user = Auth::user();
                 $message->from('hitman@humanit.pro', 'JetOnset team');
@@ -361,13 +358,13 @@ class SearchController extends Controller
                 $message->to('hitman@humanit.pro')->subject("We have request for you #{$request->input('result_id')}");
                 $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$request->input('pax')} people for " . ucfirst($request->input('flight_model')) . " class of airplane.\n{$request->input('comment')} required. {$request_details}Best regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
             });
-            
+
             //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params', 'pervis_search_url'));
             return redirect()->route('client.search.requestQuoteSuccess', $search->id);
         } else {
             return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params', 'pervis_search_url'));
         }
-        
+
         //echo $request->input('returnPoint');
         //echo $request->input('catering');
         //echo $searchResult->start_airport_name." - ".$searchResult->end_airport_name." - ";
@@ -375,44 +372,44 @@ class SearchController extends Controller
         //echo $searchResult->result_id;
         //return view('client.account.requests.requestQuote', compact('lastSearchResults', 'searchResult', 'params'));
     }
-    
+
     public function createQuote(Request $request){
-        
+
         return view('client.account.requests.success');
     }
-    
-    
+
+
     public function requestQuoteSuccess(Request $request){
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
             ->orderBy('id', 'desc')
             ->take(4)
             ->get()
             ->reverse();
-        
+
         $params['reqest_number'] = $request->route('order_id');
-        
+
         //echo $params['reqest_number'];
-        
+
         return view('client.account.requests.requestQuoteSuccess', compact('lastSearchResults', 'params'));
     }
 
-    
-    
+
+
     public function sendMail(Request $request)
     {
         //Mail::to('ju.odarjuk@gmail.com')->send('Order status Updated');
-        
+
         Mail::send([], [], function ($message) {
             $message->from('ju.odarjuk@gmail.com', 'Laravel');
 
             $message->to('ju.odarjuk@gmail.com')->subject("Email Testing with Laravel");
-            
+
             $message->setBody("Dear ...\n\nWe have received your request and will send you the quote in the shortest possible time.\nFor details and status of your request please use the link:\nhttps://jetonset.com/requests\n\nBest regards,\nJetOnset team.");
         });
-        
+
         /*
         $data = ['name', 'Ripon Uddin Arman'];
-        
+
         Mail::send('client.emails.create_quote', $data, function ($message) {
             $message->from('ju.odarjuk@gmail.com', 'Laravel');
 
@@ -421,5 +418,5 @@ class SearchController extends Controller
         */
         return "ok";
     }
-    
+
 }

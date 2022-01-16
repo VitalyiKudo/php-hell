@@ -1,5 +1,6 @@
 <?php
 use App\Models\Pricing;
+use App\Models\City;
 
 use Illuminate\Database\Seeder;
 
@@ -12,10 +13,10 @@ class PricingsTableSeeder extends Seeder
      */
     public function run()
     {
-        // local pricings.csv
+        // local pricings_202201151410.csv
         $header = NULL;
         $data = array();
-        if (($handle = fopen(storage_path('app/pricings.csv'), 'r')) !== FALSE) {
+        if (($handle = fopen(storage_path('app/pricings_202201151410.csv'), 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, 1000, ';')) !== false) {
                 if (!$header) {
                     $header = $row;
@@ -31,6 +32,8 @@ class PricingsTableSeeder extends Seeder
                 foreach ($data as $value) {
 
                     $price = Pricing::firstOrNew(['departure' => $value['departure'], 'arrival' => $value['arrival']]);
+                    $departureId = City::firstOrNew(['geonameid'=>$value['departure_geoId']]);
+                    $arrivalId = City::firstOrNew(['geonameid'=>$value['arrival_geoId']]);
 
                     $price->source_id = $value['source_id'];
                     $price->departure = $value['departure'];
@@ -43,6 +46,8 @@ class PricingsTableSeeder extends Seeder
                     $price->price_medium = $value['price_medium'];
                     $price->time_heavy = $value['time_heavy'];
                     $price->price_heavy = $value['price_heavy'];
+                    $price->departure()->associate($departureId->geonameid);
+                    $price->arrival()->associate($arrivalId->geonameid);
 
                     $price->save();
                 }

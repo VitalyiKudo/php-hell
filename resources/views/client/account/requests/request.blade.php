@@ -62,10 +62,11 @@
                                         class="form-control from"
                                         placeholder="Departure Airport"
                                         aria-describedby="departure-airport"
-                                        name="startPoint"
+                                        name="startPointName"
                                         autocomplete="off"
                                         value="{{ $params['startPointName'] }}"
                                     >
+                                    <input type="hidden" name="startPoint" autocomplete="off" value="{{ $params['startPoint'] }}">
                                     <div id="departureList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="departure-airport">
@@ -79,10 +80,11 @@
                                         class="form-control to"
                                         placeholder="Arrival Airport"
                                         aria-describedby="arrival-airport"
-                                        name="endPoint"
+                                        name="endPointName"
                                         autocomplete="off"
-                                        value="{{ $params['endPointnName'] }}"
+                                        value="{{ $params['endPointName'] }}"
                                     >
+                                    <input type="hidden" name="endPoint" autocomplete="off" value="{{ $params['endPoint'] }}">
                                     <div id="arrivalList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="arrival-airport">
@@ -683,8 +685,10 @@
 
                            <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
                            <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
-                           <input type="hidden" name="startPoint" value="{{ $params['startPointName'] }}" id="start_airport_name">
-                           <input type="hidden" name="endPoint" value="{{ $params['endPointnName'] }}" id="end_airport_name">
+                           <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}" id="start_airport_name">
+                           <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}" id="end_airport_name">
+                            <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" id="start_airport_id">
+                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" id="end_airport_id">
                            <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                            <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
                            <input type="hidden" name="page_name" value="search-page">
@@ -1014,10 +1018,10 @@
                            $.each(withoutDuplicates, function(idx, obj) {
 
                                var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                               var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                               var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+                               var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                               var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
 
-                               output += '<li><a href="' + obj.id + '">' +
+                               output += '<li><a href="' + obj.geonameid + '">' +
                                    '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                    '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                    '</a></li>';
@@ -1037,6 +1041,7 @@
        $(document).on('click', '#departureList li', function(e){
            e.preventDefault();
            $('input.from').val($(this).find('span:first').text());
+           $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
            $('#departureList').fadeOut();
        });
 
@@ -1068,10 +1073,10 @@
                            $.each(withoutDuplicates, function(idx, obj) {
 
                                var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
-                               var region = (!$.isEmptyObject(obj.region_country.name)) ? obj.region_country.name + ', ' : '';
-                               var country = (!$.isEmptyObject(obj.country.name)) ? obj.country.name : '';
+                               var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                               var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
 
-                               output += '<li><a href="' + obj.id + '">' +
+                               output += '<li><a href="' + obj.geonameid + '">' +
                                    '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
                                    '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
                                    '</a></li>';
@@ -1091,13 +1096,14 @@
        $(document).on('click', '#arrivalList li', function(e){
            e.preventDefault();
            $('input.to').val($(this).find('span:first').text());
+           $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
            $('#arrivalList').fadeOut();
        });
 
        $('.search-breadcrumb a').click(function(e){
            e.preventDefault();
-           $('.form-body input[name="startPoint"]').val($(this).data("from"));
-           $('.form-body input[name="endPoint"]').val($(this).data("to"));
+           $('.form-body input[name="startPointName"]').val($(this).data("from"));
+           $('.form-body input[name="endPointName"]').val($(this).data("to"));
        });
 
 
@@ -1109,20 +1115,22 @@
 
        $('#main-search-form').submit(function(e){
 
-           var start_point = $(this).find('input[name="startPoint"]').val();
-           var end_point = $(this).find('input[name="endPoint"]').val();
+           var start_point_id = $(this).find('input[name="startPoint"]').val();
+           var end_point_id = $(this).find('input[name="endPoint"]').val();
+           var start_point_name = $(this).find('input[name="startPointName"]').val();
+           var end_point_name = $(this).find('input[name="endPointName"]').val();
            var flight_date = $(this).find('input[name="flightDate"]').val();
            var passengers = $(this).find('input[name="passengers"]').val();
            var html_message = '<span class="search-error">This field is required.</span>';
 
-           if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
+           if(start_point_name.length <= 0 || end_point_name.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
                $('.search-error').remove();
 
                if(start_point.length <= 0){
-                   $(this).find('input[name="startPoint"]').parent('div').append(html_message);
+                   $(this).find('input[name="startPointName"]').parent('div').append(html_message);
                }
                if(end_point.length <= 0){
-                   $(this).find('input[name="endPoint"]').parent('div').append(html_message);
+                   $(this).find('input[name="endPointName"]').parent('div').append(html_message);
                }
                if(flight_date.length <= 0){
                    $(this).find('input[name="flightDate"]').parent('div').append(html_message);
