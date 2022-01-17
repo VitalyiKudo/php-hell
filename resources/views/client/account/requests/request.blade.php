@@ -246,14 +246,14 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>2500 mph</span>
+                                                <span>2500 miles</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>360 mph</span>
+                                                <span>360 miles</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -364,14 +364,14 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>3700 mph</span>
+                                                <span>3700 miles</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>534 mph</span>
+                                                <span>534 miles</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -482,14 +482,14 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>4000 mph</span>
+                                                <span>4000 miles</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>603 mph</span>
+                                                <span>603 miles</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -603,14 +603,14 @@
                                         <li>
                                             <img src="{{ asset('images/range.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>8000 mph</span>
+                                                <span>8000 miles</span>
                                                 <span>Range</span>
                                             </div>
                                         </li>
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>562 mph</span>
+                                                <span>562 miles</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>

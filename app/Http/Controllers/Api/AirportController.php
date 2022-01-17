@@ -57,6 +57,8 @@ class AirportController extends Controller
                     ->leftJoin('countries AS co', 'r.country_id', '=', 'co.country_id')
                     ->select("c.geonameid", "a.icao", "a.name", "c.name as city", "r.name as region", "co.name as country")
                     ->where("a.name", "like", "%{$keyword}%")
+                    ->orWhere("a.icao", "like", "%{$keyword}%")
+                    ->orWhere("a.iata", "like", "%{$keyword}%")
                     ->where("a.geonameidcity", "<>", "0")
                     ->orWhere("c.name", "like", "%{$keyword}%")
                     ->orWhere("r.name", "like", "%{$keyword}%")
