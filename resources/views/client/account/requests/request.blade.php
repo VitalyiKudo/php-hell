@@ -253,7 +253,7 @@
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>360 miles</span>
+                                                <span>360 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -371,7 +371,7 @@
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>534 miles</span>
+                                                <span>534 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -489,7 +489,7 @@
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>603 miles</span>
+                                                <span>603 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
@@ -610,7 +610,7 @@
                                         <li>
                                             <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
                                             <div class="card-details-info">
-                                                <span>562 miles</span>
+                                                <span>562 mph</span>
                                                 <span>Max Speed</span>
                                             </div>
                                         </li>
