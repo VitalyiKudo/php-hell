@@ -209,7 +209,7 @@
                     <div class="col-12 col-lg-4 order-1 mb-3">
                         <div class="row mb-0 justify-content-center">
                             <div class="col-auto">
-                                <a href="https://www.facebook.com/jet.onset" target="_blank"><img src="/images/facebook-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
+                                <a href="https://www.facebook.com/JetOnset-107938548410959" target="_blank"><img src="/images/facebook-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                             <div class="col-auto">
                                 <a href="https://www.instagram.com/jetonset/" target="_blank"><img src="/images/instagram-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
@@ -219,6 +219,9 @@
                             </div>
                             <div class="col-auto">
                                 <a href="https://www.pinterest.com/4jetonset/" target="_blank"><img src="/images/pinest-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="https://jetonset.tumblr.com/" target="_blank"><img src="/images/tumblr-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                         </div>
                     </div>
