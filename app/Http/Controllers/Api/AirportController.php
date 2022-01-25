@@ -47,6 +47,11 @@ class AirportController extends Controller
             ->get();
 */
 
+        $sortCountries = ['US' => 1,];
+        $rawAirportSql = '(CASE ' . collect($sortCountries)->map(function($airport, $country){
+                return "WHEN r.country_id = '{$country}' THEN {$airport}";
+            })->implode(' ') . ' ELSE 9999 END) ASC';
+
         $airports = DB::table('airports AS a')
                     ->leftJoin('cities AS c', 'a.geoNameIdCity', '=', 'c.geonameid')
                     ->leftJoin('regions AS r', function ($join) {
@@ -63,8 +68,12 @@ class AirportController extends Controller
                     ->orWhere("c.name", "like", "%{$keyword}%")
                     ->orWhere("r.name", "like", "%{$keyword}%")
             ->limit(1000)
+            ->orderByRaw($rawAirportSql)
             ->get();
         #->toSql();
+
+
+
 
         //return AirportResource::collection($airports);
         return response()->json($airports);
