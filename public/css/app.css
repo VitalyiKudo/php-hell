@@ -18187,9 +18187,42 @@ screen and (min-width:48.0625em) {
 #departureList>ul>li,
 #arrivalList>ul>li {
     position: relative;
-    padding: .2em .5em;
+    padding: .50em 5% .50em 12%;
     cursor: pointer;
     color: #afafb1
+}
+
+#departureList>ul>div,
+#arrivalList>ul>div {
+    padding: .50em 5%;
+}
+
+#departureList>ul>div span:first-of-type ,
+#arrivalList>ul>div span:first-of-type  {
+    font-weight: bold;
+}
+
+#departureList>ul>div span:nth-child(2),
+#arrivalList>ul>div span:nth-child(2)  {
+    float: right;
+}
+
+#departureList>ul>li>a>div:first-of-type,
+#arrivalList>ul>li>a>div:first-of-type {
+    display: block;
+}
+
+#departureList>ul>li>a>div>span:first-of-type,
+#arrivalList>ul>li>a>div>span:first-of-type {
+    width: 60%;
+    display: inline-block;
+}
+
+#departureList>ul>li>a>div>span:nth-child(2),
+#arrivalList>ul>li>a>div>span:nth-child(2) {
+    float: right;
+    width: 20%;
+    margin-right: 5%;
 }
 
 #departureList>ul>li:nth-of-type(odd),

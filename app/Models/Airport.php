@@ -15,6 +15,7 @@ class Airport extends Model
     protected $fillable = [
         'name',
         'city',
+        'geoNameIdCity',
         'iso_country',
         'iso_region',
         'iata',
@@ -36,7 +37,7 @@ class Airport extends Model
      */
     public function region()
     {
-        return $this->hasOneThrough(Region::class, City::class);
+        return $this->hasOneThrough(Region::class, City::class, );
     }
 
     public function regionsHasMany()
@@ -45,7 +46,7 @@ class Airport extends Model
             Region::class,
             City::class,
             'geonameid', // city for airport
-            ['country_id', 'region_id'], // region for city
+            ['iso_country', 'iso_region'], // region for city
             'geoNameIdCity', // Local airport for city
             ['iso_country', 'iso_region'] // Local city for region
         );

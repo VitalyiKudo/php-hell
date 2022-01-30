@@ -65,12 +65,11 @@ class City extends Model
     }
 
     /**
-     * Get the region of the city.
+     * Get the airport of the city.
      */
     public function airport()
     {
         return $this->hasMany(Airport::class, 'geoNameIdCity', 'geonameid');
-        #return $this->hasMany('App\Post');
     }
 
     public function region13()

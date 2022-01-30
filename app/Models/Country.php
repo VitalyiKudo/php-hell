@@ -26,11 +26,18 @@ class Country extends Model
     public $timestamps = false;
 
     /**
-     * Get the country of the airport.
+     * Get the country of the region.
      */
     public function region()
     {
         #return $this->belongsTo(Region::class, 'country_id', 'country_id');
+    }
+    /**
+     * Get the country of the city.
+     */
+    public function city()
+    {
+        return $this->hasMany(City::class, 'country_id', 'iso_country');
     }
 
     /**
@@ -38,7 +45,7 @@ class Country extends Model
      */
     public function airport()
     {
-        return $this->belongsTo(Airport::class, 'country_id', 'country_id');
+        #return $this->belongsTo(Airport::class, 'country_id', 'country_id');
     }
 
 }
