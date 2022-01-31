@@ -1,0 +1,469 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Jet on Set API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/search/flight": {
+            "get": {
+                "tags": [
+                    "Flight"
+                ],
+                "summary": "Display list of flights",
+                "description": "Flights Page",
+                "operationId": "a7ff28b8338bf306a55d8b36108c9463",
+                "parameters": [
+                    {
+                        "name": "startPointName",
+                        "in": "query",
+                        "description": "Start Airport",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "endPointName",
+                        "in": "query",
+                        "description": "End Airport",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "flightDate",
+                        "in": "query",
+                        "description": "Date of flight",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "passengers",
+                        "in": "query",
+                        "description": "Count of passengers",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "startPoint",
+                        "in": "query",
+                        "description": "Departure geoId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "endPoint",
+                        "in": "query",
+                        "description": "Arrival geoId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "List of Orders",
+                "operationId": "102c1bbd971a51ae4b38753c9d92fd70",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile/account": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Display current User data.",
+                "description": "User data Page",
+                "operationId": "3b7669a21106dcc0fc95a2afb8ed5620",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update the specified resource in storage.",
+                "description": "Update user data",
+                "operationId": "b608ed5c0da964d36bbbc3b5a36fa182",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ihamzehald@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Destroy the specified resource in storage.",
+                "description": "User destroy",
+                "operationId": "4876eaad1de6e7acb6100a0d448d71f7",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile/account/login": {
+            "put": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update the specified resource in storage.",
+                "description": "User login",
+                "operationId": "da5d84ba5deb0f988bb6de86be0d600a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ihamzehald@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/profile/account/register": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Create a new user instance after a valid registration.",
+                "description": "User register",
+                "operationId": "56477b20e88036a71c9df41a9644dd86",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First Name",
+                                        "type": "string",
+                                        "example": "first name"
+                                    },
+                                    "last_name": {
+                                        "description": "Last Name",
+                                        "type": "string",
+                                        "example": "last name"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ihamzehald@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "User password confirmation",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    },
+                                    "privacy": {
+                                        "description": "Privacy",
+                                        "type": "boolean",
+                                        "example": "true"
+                                    },
+                                    "terms": {
+                                        "description": "Terms",
+                                        "type": "boolean",
+                                        "example": "true"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/profile/account/refresh": {
+            "put": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update the specified resource in storage.",
+                "description": "User refresh",
+                "operationId": "f9b3fcc30dfb26e056ac8270478f99ed",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "Personal Information"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "User data Page",
+                "operationId": "522a0d81bcd0708b222a1efda64e34f1",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Personal Information"
+                ],
+                "summary": "Update the specified resource in storage.",
+                "description": "Update profile data",
+                "operationId": "a796577534095369929ad6f3e6fea1dc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First Name",
+                                        "type": "string",
+                                        "example": "first name"
+                                    },
+                                    "last_name": {
+                                        "description": "Last Name",
+                                        "type": "string",
+                                        "example": "last name"
+                                    },
+                                    "phone_number": {
+                                        "description": "Phone Number",
+                                        "type": "string",
+                                        "example": "+44444444444"
+                                    },
+                                    "date_of_birth": {
+                                        "description": "Date of birth",
+                                        "type": "string",
+                                        "example": "11/12/1986"
+                                    },
+                                    "address": {
+                                        "description": "Address",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    },
+                                    "country": {
+                                        "description": "Country",
+                                        "type": "string",
+                                        "example": "USA"
+                                    },
+                                    "city": {
+                                        "description": "City",
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "postcode": {
+                                        "description": "Postcode",
+                                        "type": "string",
+                                        "example": "333333333"
+                                    },
+                                    "billing_address": {
+                                        "description": "Billing Address",
+                                        "type": "string",
+                                        "example": "Address"
+                                    },
+                                    "billing_country": {
+                                        "description": "Billing Country",
+                                        "type": "string",
+                                        "example": "Country"
+                                    },
+                                    "billing_city": {
+                                        "description": "Billing City",
+                                        "type": "string",
+                                        "example": "City"
+                                    },
+                                    "billing_state": {
+                                        "description": "Billing State",
+                                        "type": "string",
+                                        "example": "State"
+                                    },
+                                    "billing_postcode": {
+                                        "description": "Billing Postcode",
+                                        "type": "string",
+                                        "example": "Postcode"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/requests": {
+            "get": {
+                "tags": [
+                    "Request Quote"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "User data Page",
+                "operationId": "4f400835601b4fc170b104df83849a87",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/airports": {
+            "get": {
+                "tags": [
+                    "Airport"
+                ],
+                "summary": "Get the airports list.",
+                "description": "Airports List Page",
+                "operationId": "4cf67b3ae84f7386d1fc6743a1d1a82f",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Name of Airport",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

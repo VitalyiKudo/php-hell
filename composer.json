@@ -12,6 +12,7 @@
         "authorizenet/authorizenet": "^2.0",
         "awobaz/compoships": "^2.1",
         "aws/aws-sdk-php": "~3.0",
+        "darkaonline/l5-swagger": "5.8.*",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",

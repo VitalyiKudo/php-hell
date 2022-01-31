@@ -65,7 +65,7 @@ class FlightController extends Controller
 
         #$searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", $citiesList)->first();
 
-        $searchResults =  Pricing::with('departureCity', 'arrivalCity')
+        $searchResults = Pricing::with('departureCity', 'arrivalCity')
         ->where('departure_geoId', '=', $startCity)
             ->where('arrival_geoId', '=', $endCity)
             ->first();

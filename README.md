@@ -54,6 +54,18 @@ Run the database seeder
 
     php artisan db:seed
 
+You can publish L5-Swagger's config and view files into your project by running:
+    
+    php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+
+    php artisan l5-swagger:generate
+
+You can access your documentation at /api/documentation endpoint.
+
+***Note*** : You must run the last command again to update the documentation
+
+    php artisan l5-swagger:generate
+
 Start the local development server
 
     php artisan serve

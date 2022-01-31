@@ -45,12 +45,18 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'clients',
+            'hash' => true,
+        ],
+        /*
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
+            'hash' => true,
         ],
+        */
     ],
 
     /*
@@ -80,11 +86,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        /*
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
+        */
     ],
 
     /*

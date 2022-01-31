@@ -178,7 +178,8 @@ return [
         App\Providers\Helpdeskeddy\HelpdeskeddyServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        L5Swagger\L5SwaggerServiceProvider::class,
+        
     ],
 
     /*
