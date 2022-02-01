@@ -13174,6 +13174,7 @@ sup {
   width: 96%;
   justify-content: space-between;
   padding: 0 10px;
+    margin-bottom: 20px;
 }
 
 .div-plane-details-colums  {
@@ -15973,6 +15974,13 @@ ul.dashed > li:before {
   }
 }
 
+@media (max-width: 992px) {
+    .aircraft-planes, .row {
+        padding: revert !important;
+        margin-right: revert;
+    }
+}
+
 @media (max-width: 576px) {
   .size-width {
     padding: revert;
@@ -16787,7 +16795,7 @@ ul.dashed > li:before {
   }
 }
 
-@media (max-width: 578px) {
+@media (max-width: 992px) {
   .size-width {
     width: 100% !important;
   }
@@ -16814,6 +16822,7 @@ ul.dashed > li:before {
     justify-content: center;
       background-image: url("/images/aircrafts/jet_background7-8.webp");
       padding-top: 2rem;
+      background-size: cover;
   }
 
   .plane-pos,
