@@ -15977,7 +15977,6 @@ ul.dashed > li:before {
 @media (max-width: 992px) {
     .aircraft-planes, .row {
         padding: revert !important;
-        margin-right: revert;
     }
 }
 
