@@ -77,6 +77,8 @@ class FlightController extends Controller
     public function index(Request $request)
     {
         Session::put('pervis_search_url', url()->full());
+        $pervis_search_url = Session::get('pervis_search_url');
+        //print_r($pervis_search_url);
 
         if(!session()->has('session_token_id')) {
             Session::put('session_token_id', md5(microtime() . 'salt' . time()));
@@ -200,7 +202,8 @@ class FlightController extends Controller
             'messages' => $messages, 
             'lastSearch_results' => $lastSearchResults, 
             'last_session_search_results' => $lastSessionSearchResults, 
-            'status' => $status
+            'status' => $status,
+            'pervis_search_url' => $pervis_search_url,
         ]);
     }
 

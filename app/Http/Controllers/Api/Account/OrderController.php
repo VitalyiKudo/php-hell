@@ -129,6 +129,45 @@ class OrderController extends Controller
 
         return redirect()->route('client.orders.booking', $order->id);
     }
+    
+    /**
+     * 
+     * @OA\Get(
+     *     path="/api/orders/{search}/confirm/{type}",
+     *     description="Order step #2",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\Parameter(
+     *         name="type",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         explode=false,
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="string",
+     *                 enum = {"turbo", "light", "medium", "heavy"},
+     *                 default="turbo",
+     *             )
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     */
 
     public function confirm(Request $request)
     {
@@ -218,6 +257,196 @@ class OrderController extends Controller
         ]);
     }
 
+
+    /**
+     * 
+     * @OA\Get(
+     *     path="/api/orders/{search}/square/{type}",
+     *     description="Order step #3",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\Parameter(
+     *         name="type",
+     *         description="",
+     *         in="path",
+     *         required=true,
+     *         explode=false,
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="string",
+     *                 enum = {"turbo", "light", "medium", "heavy"},
+     *                 default="turbo",
+     *             )
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     * 
+     * @OA\Post(
+     *     path="/api/orders/{search}/square/{type}",
+     *     description="Order step #3",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\Parameter(
+     *         name="type",
+     *         description="",
+     *         in="path",
+     *         required=true,
+     *         explode=false,
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="string",
+     *                 enum = {"turbo", "light", "medium", "heavy"},
+     *                 default="turbo",
+     *             )
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *       required=true,
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                   property="first_name",
+     *                   description="First Name",
+     *                   type="string",
+     *                   example="first name"
+     *               ),
+     *               @OA\Property(
+     *                   property="last_name",
+     *                   description="Last Name",
+     *                   type="string",
+     *                   example="last name"
+     *               ),
+     *               @OA\Property(
+     *                   property="birth_date",
+     *                   description="Birth_date",
+     *                   type="string",
+     *                   example="11/10/1986"
+     *               ),
+     *               @OA\Property(
+     *                   property="is_accepted",
+     *                   description="Is accepted",
+     *                   type="boolean",
+     *                   example="true"
+     *               ),
+     *               @OA\Property(
+     *                   property="gender",
+     *                   description="Gender",
+     *                   type="string",
+     *                   example="gender"
+     *               ),
+     *               @OA\Property(
+     *                   property="title",
+     *                   description="Title",
+     *                   type="string",
+     *                   example="title"
+     *               ),
+     *               @OA\Property(
+     *                   property="comment",
+     *                   description="Comment",
+     *                   type="string",
+     *                   example="comment"
+     *               ),
+     *               @OA\Property(
+     *                   property="nonce",
+     *                   description="Is accepted",
+     *                   type="string",
+     *                   example="GDG574SD57DGSDGSG"
+     *               ),
+     *           )
+     *        )
+     *     ),
+     *     @OA\RequestBody(
+     *       required=false,
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                   property="first_name",
+     *                   description="First Name",
+     *                   type="string",
+     *                   example="first name"
+     *               ),
+     *               @OA\Property(
+     *                   property="last_name",
+     *                   description="Last Name",
+     *                   type="string",
+     *                   example="last name"
+     *               ),
+     *               @OA\Property(
+     *                   property="birth_date",
+     *                   description="Birth_date",
+     *                   type="string",
+     *                   example="11/10/1986"
+     *               ),
+     *               @OA\Property(
+     *                   property="is_accepted",
+     *                   description="Is accepted",
+     *                   type="boolean",
+     *                   example="true"
+     *               ),
+     *               @OA\Property(
+     *                   property="gender",
+     *                   description="Gender",
+     *                   type="string",
+     *                   example="gender"
+     *               ),
+     *               @OA\Property(
+     *                   property="title",
+     *                   description="Title",
+     *                   type="string",
+     *                   example="title"
+     *               ),
+     *               @OA\Property(
+     *                   property="comment",
+     *                   description="Comment",
+     *                   type="string",
+     *                   example="comment"
+     *               ),
+     *               @OA\Property(
+     *                   property="nonce",
+     *                   description="Is accepted",
+     *                   type="string",
+     *                   example="GDG574SD57DGSDGSG"
+     *               ),
+     *           )
+     *        )
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     */
+    
     public function square(Request $request)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url');
@@ -466,8 +695,16 @@ class OrderController extends Controller
                             * Mailing end
                             */
 
-
-                            return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
+                            return response()->json([
+                                'order_id' => $order->id, 
+                                'order' => Order::Find($order->id), 
+                                'search' => Search::Find($order->search_result_id), 
+                                'search_type' => $search_type, 
+                                'time' => $time, 
+                                'pricing' => $pricing,
+                            ]);
+                            
+                            //return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
 
                         }
                         /*
@@ -493,7 +730,6 @@ class OrderController extends Controller
 
         }
 
-
         $params = [
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -503,36 +739,57 @@ class OrderController extends Controller
             'comments' => $request->input('comments'),
             'is_accepted' => $request->input('is_accepted'),
         ];
-
-        return view('client.account.orders.square',
-            compact(
-                'messages',
-                'upper_case_environment',
-                'environment',
-                'applicationId',
-                'locationId',
-                'search_id',
-                'search_type',
-                'pricing',
-                'price',
-                'time',
-                'user',
-                'start_airport_name',
-                'end_airport_name',
-                'departure_at',
-                'pax',
-                'feeses',
-                'total_price',
-                'params',
-                'request_method',
-                'cart_errors',
-                'pervis_confirm_url'
-            )
-        );
+        
+        return response()->json([
+            'messages' => $messages,
+            'upper_case_environment' => $upper_case_environment,
+            'environment' => $environment,
+            'applicationId' => $applicationId,
+            'locationId' => $locationId,
+            'search_id' => $search_id,
+            'search_type' => $search_type,
+            'pricing' => $pricing,
+            'price' => $price,
+            'time' => $time,
+            'user' => $user,
+            'start_airport_name' => $start_airport_name,
+            'end_airport_name' => $end_airport_name,
+            'departure_at' => $departure_at,
+            'pax' => $pax,
+            'feeses' => $feeses,
+            'total_price' => $total_price,
+            'params' => $params,
+            'request_method' => $request_method,
+            'cart_errors' => $cart_errors,
+            'pervis_confirm_url' => $pervis_confirm_url,
+        ]);
 
     }
 
-
+    /**
+     * 
+     * @OA\Get(
+     *     path="/api/orders/{search}/confirm",
+     *     description="Order step #2",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     */
+    
     public function requestConfirm(Request $request)
     {
         $session_id = Session::get('session_token_id');
@@ -546,7 +803,6 @@ class OrderController extends Controller
 
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
-
 
         $feeses = Fees::all();
 
@@ -595,28 +851,188 @@ class OrderController extends Controller
 
             }
         }
-
-        return view('client.account.orders.request_confirm',
-                compact('search_id',
-                        'search_type',
-                        'pricing',
-                        'price',
-                        'time',
-                        'user',
-                        'start_airport_name',
-                        'end_airport_name',
-                        'departure_at',
-                        'pax',
-                        'feeses',
-                        'total_price',
-                        'pervis_search_url'
-                ));
+        
+        return response()->json([
+            'search_id' => $search_id,
+            'search_type' => $search_type,
+            'pricing' => $pricing,
+            'price' => $price,
+            'time' => $time,
+            'user' => $user,
+            'start_airport_name' => $start_airport_name,
+            'end_airport_name' => $end_airport_name,
+            'departure_at' => $departure_at,
+            'pax' => $pax,
+            'feeses' => $feeses,
+            'total_price' => $total_price,
+            'pervis_search_url' => $pervis_search_url,
+        ]);
+        
     }
 
+    /**
+     * 
+     * @OA\Get(
+     *     path="/api/orders/{search}/square",
+     *     description="Step #3",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     * 
+     * @OA\Post(
+     *     path="/api/orders/{search}/square",
+     *     description="Step #3",
+     *     tags={"Orders"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="search",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         ) 
+     *     ),
+     *     @OA\RequestBody(
+     *       required=true,
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                   property="first_name",
+     *                   description="First Name",
+     *                   type="string",
+     *                   example="first name"
+     *               ),
+     *               @OA\Property(
+     *                   property="last_name",
+     *                   description="Last Name",
+     *                   type="string",
+     *                   example="last name"
+     *               ),
+     *               @OA\Property(
+     *                   property="birth_date",
+     *                   description="Birth_date",
+     *                   type="string",
+     *                   example="11/10/1986"
+     *               ),
+     *               @OA\Property(
+     *                   property="is_accepted",
+     *                   description="Is accepted",
+     *                   type="boolean",
+     *                   example="true"
+     *               ),
+     *               @OA\Property(
+     *                   property="gender",
+     *                   description="Gender",
+     *                   type="string",
+     *                   example="gender"
+     *               ),
+     *               @OA\Property(
+     *                   property="title",
+     *                   description="Title",
+     *                   type="string",
+     *                   example="title"
+     *               ),
+     *               @OA\Property(
+     *                   property="comment",
+     *                   description="Comment",
+     *                   type="string",
+     *                   example="comment"
+     *               ),
+     *               @OA\Property(
+     *                   property="nonce",
+     *                   description="Is accepted",
+     *                   type="string",
+     *                   example="GDG574SD57DGSDGSG"
+     *               ),
+     *           )
+     *        )
+     *     ),
+     *     @OA\RequestBody(
+     *       required=false,
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                   property="first_name",
+     *                   description="First Name",
+     *                   type="string",
+     *                   example="first name"
+     *               ),
+     *               @OA\Property(
+     *                   property="last_name",
+     *                   description="Last Name",
+     *                   type="string",
+     *                   example="last name"
+     *               ),
+     *               @OA\Property(
+     *                   property="birth_date",
+     *                   description="Birth_date",
+     *                   type="string",
+     *                   example="11/10/1986"
+     *               ),
+     *               @OA\Property(
+     *                   property="is_accepted",
+     *                   description="Is accepted",
+     *                   type="boolean",
+     *                   example="true"
+     *               ),
+     *               @OA\Property(
+     *                   property="gender",
+     *                   description="Gender",
+     *                   type="string",
+     *                   example="gender"
+     *               ),
+     *               @OA\Property(
+     *                   property="title",
+     *                   description="Title",
+     *                   type="string",
+     *                   example="title"
+     *               ),
+     *               @OA\Property(
+     *                   property="comment",
+     *                   description="Comment",
+     *                   type="string",
+     *                   example="comment"
+     *               ),
+     *               @OA\Property(
+     *                   property="nonce",
+     *                   description="Is accepted",
+     *                   type="string",
+     *                   example="GDG574SD57DGSDGSG"
+     *               ),
+     *           )
+     *        )
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     */
 
     public function requestSquare(Request $request)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url');
+        $post_form_url = url()->full();
 
         $dotenv = Dotenv::create(base_path());
         $dotenv->load();
@@ -645,8 +1061,11 @@ class OrderController extends Controller
         $order = Order::where('search_result_id', $search_id)->first();
 
         if($order->order_status_id != 2 || $order->price <= 0){
-            //return redirect()->back();
-            return redirect($pervis_confirm_url);
+            //return redirect($pervis_confirm_url);
+            return response()->json([
+                'message' => 'Your order status is not in process or order price equal 0. You must return to the previous url.',
+                'pervis_confirm_url' => $pervis_confirm_url,
+            ], 302);
         }
 
         $start_airport_name = $search->start_airport_name;
@@ -714,7 +1133,7 @@ class OrderController extends Controller
             if ($validator->fails()){
                 $messages = $validator->messages();
             } else {
-
+                
                 $nonce = $request->input('nonce');
                 if (!is_null($nonce)) {
 
@@ -727,23 +1146,19 @@ class OrderController extends Controller
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
                     try {
+                        
                         $response = $payments_api->createPayment($create_payment_request);
-                        // If there was an error with the request we will
-                        // print them to the browser screen here
+                        
                         if ($response->isError()) {
-                            //echo 'Api response has Errors';
                             $errors = $response->getErrors();
-                            //echo '<ul>';
                             foreach ($errors as $error) {
-                                //echo '<li>❌ ' . $error->getDetail() . '</li>';
                                 $cart_errors[] = $error->getDetail();
                             }
-                            //echo '</ul>';
-                            //exit();
+                            
 
                         }
                         if ($response->isSuccess()) {
-                            //Order::where('id', $order->id)->update(['order_status_id' => 3]);
+                            
                             $payment = $response->getResult()->getPayment();
                             $payment_id = $payment->getId();
 
@@ -759,7 +1174,6 @@ class OrderController extends Controller
                             $order = Order::find($order->id);
                             $order->user_id = $user->id;
                             $order->order_status_id = 7;
-                            //$order->search_result_id = $search_id;
                             $order->comment = $order->comment ."\r\n". $comment;
 
                             $order->billing_address = '';
@@ -769,7 +1183,6 @@ class OrderController extends Controller
 
                             $order->price = $total_price;
                             $order->payment_id = $payment_id;
-                            //$order->type = $search_type;
                             $order->is_accepted = (bool)$request->input('is_accepted');
                             $order->book_status = 1;
                             $order->save();
@@ -797,7 +1210,6 @@ class OrderController extends Controller
 
                             $operator_list = [];
                             $airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
-                            //$airlines = Airline::where('category', $search_type)->get();
 
                             foreach($airlines as $airline){
                                 $operator_list[] = $airline->operator;
@@ -841,9 +1253,9 @@ class OrderController extends Controller
                                 Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                                     $user = Auth::user();
                                     $message->from($user->email, 'JetOnset team');
-                                    //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
+                                    
                                     $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
-                                    //$message->to($user->email)->subject("We have received your request");
+                                    
                                     $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people for " . ucfirst($airports['type']) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
@@ -852,9 +1264,21 @@ class OrderController extends Controller
                             * Mailing end
                             */
 
-
-                            return redirect()->route('client.orders.request_succeed', $order->id);
-
+                            /*
+                            $order_id = $order->id;
+                            $orders = Order::Find($order_id);
+                            $search = Search::Find($order->search_result_id);
+                            $time = "00:00";
+                            */
+                            
+                            return response()->json([
+                                'order_id' => $order->id, 
+                                'order' => $order, 
+                                'search' => Search::Find($order->search_result_id), 
+                                'time' => "00:00",
+                            ]);
+                            
+                            //return redirect()->route('client.orders.request_succeed', $order->id);
                         }
 
                     } catch (ApiException $e) {
@@ -886,37 +1310,34 @@ class OrderController extends Controller
             'is_accepted' => $request->input('is_accepted'),
         ];
 
-
-        return view('client.account.orders.request_square',
-            compact(
-                'messages',
-                'upper_case_environment',
-                'environment',
-                'applicationId',
-                'locationId',
-                'search_id',
-                'search_type',
-                'pricing',
-                'price',
-                'time',
-                'user',
-                'start_airport_name',
-                'end_airport_name',
-                'departure_at',
-                'pax',
-                'feeses',
-                'total_price',
-                'params',
-                'request_method',
-                'cart_errors',
-                'pervis_confirm_url'
-            )
-        );
-
+        
+        return response()->json([
+            'search_id' => $search_id,
+            'messages' => $messages,
+            'upper_case_environment' => $upper_case_environment,
+            'environment' => $environment,
+            'applicationId' => $applicationId,
+            'locationId' => $locationId,
+            'search_id' => $search_id,
+            'search_type' => $search_type,
+            'pricing' => $pricing,
+            'price' => $price,
+            'time' => $time,
+            'user' => $user,
+            'start_airport_name' => $start_airport_name,
+            'end_airport_name' => $end_airport_name,
+            'departure_at' => $departure_at,
+            'pax' => $pax,
+            'feeses' => $feeses,
+            'total_price' => $total_price,
+            'params' => $params,
+            'request_method' => $request_method,
+            'cart_errors' => $cart_errors,
+            'pervis_confirm_url' => $pervis_confirm_url,
+            'post_form_url' => $post_form_url,
+        ]);
+        
     }
-
-
-
 
     public function succeed(Request $request)
     {

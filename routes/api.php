@@ -51,4 +51,9 @@ Route::get('search/flight', 'Account\FlightController@index');
 // Order
 Route::get('orders', 'Account\OrderController@index');
 Route::get('orders/{search}/confirm/{type}', 'Account\OrderController@confirm');
+Route::get('orders/{search}/square/{type}', 'Account\OrderController@square');
+Route::post('orders/{search}/square/{type}', 'Account\OrderController@square');
+Route::get('orders/{search}/confirm', 'Account\OrderController@requestConfirm');
+Route::get('orders/{search}/square', 'Account\OrderController@requestSquare');
+Route::post('orders/{search}/square', 'Account\OrderController@requestSquare');
 

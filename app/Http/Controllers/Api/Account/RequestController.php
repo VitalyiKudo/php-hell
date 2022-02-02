@@ -40,6 +40,7 @@ class RequestController extends Controller
     public function index()
     {
         Session::put('pervis_search_url', url()->full());
+        $pervis_search_url = Session::get('pervis_search_url');
 
         $requests = DB::table('searches')
                 ->where(['searches.user_id' => Auth::id(), 'orders.book_status' => 0])
@@ -48,7 +49,8 @@ class RequestController extends Controller
                 ->paginate(25);
 
         return response()->json([
-            'requests' => $requests
+            'requests' => $requests,
+            'pervis_search_url' => $pervis_search_url,
         ]);
     }
 

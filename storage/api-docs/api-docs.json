@@ -96,6 +96,346 @@
                 ]
             }
         },
+        "/api/orders/{search}/confirm/{type}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Order step #2",
+                "operationId": "7f7ebe0fe120a855b5e9360eae59ee52",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "default": "turbo",
+                                "enum": [
+                                    "turbo",
+                                    "light",
+                                    "medium",
+                                    "heavy"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{search}/square/{type}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Order step #3",
+                "operationId": "ce5c2348b7988868afef8e6c4b83c26f",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "default": "turbo",
+                                "enum": [
+                                    "turbo",
+                                    "light",
+                                    "medium",
+                                    "heavy"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Order step #3",
+                "operationId": "5be2a2be77fbc3c1e76cb334752fc197",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "default": "turbo",
+                                "enum": [
+                                    "turbo",
+                                    "light",
+                                    "medium",
+                                    "heavy"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First Name",
+                                        "type": "string",
+                                        "example": "first name"
+                                    },
+                                    "last_name": {
+                                        "description": "Last Name",
+                                        "type": "string",
+                                        "example": "last name"
+                                    },
+                                    "birth_date": {
+                                        "description": "Birth_date",
+                                        "type": "string",
+                                        "example": "11/10/1986"
+                                    },
+                                    "is_accepted": {
+                                        "description": "Is accepted",
+                                        "type": "boolean",
+                                        "example": "true"
+                                    },
+                                    "gender": {
+                                        "description": "Gender",
+                                        "type": "string",
+                                        "example": "gender"
+                                    },
+                                    "title": {
+                                        "description": "Title",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "comment": {
+                                        "description": "Comment",
+                                        "type": "string",
+                                        "example": "comment"
+                                    },
+                                    "nonce": {
+                                        "description": "Is accepted",
+                                        "type": "string",
+                                        "example": "GDG574SD57DGSDGSG"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{search}/confirm": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Order step #2",
+                "operationId": "be3a9cf0059d2796f810cc531ddce4a1",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{search}/square": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Step #3",
+                "operationId": "56d68bc2ceefc1aa40551d2c81898b75",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "description": "Step #3",
+                "operationId": "210e1a8f4bcdaec6cd77a260c3dbeb00",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First Name",
+                                        "type": "string",
+                                        "example": "first name"
+                                    },
+                                    "last_name": {
+                                        "description": "Last Name",
+                                        "type": "string",
+                                        "example": "last name"
+                                    },
+                                    "birth_date": {
+                                        "description": "Birth_date",
+                                        "type": "string",
+                                        "example": "11/10/1986"
+                                    },
+                                    "is_accepted": {
+                                        "description": "Is accepted",
+                                        "type": "boolean",
+                                        "example": "true"
+                                    },
+                                    "gender": {
+                                        "description": "Gender",
+                                        "type": "string",
+                                        "example": "gender"
+                                    },
+                                    "title": {
+                                        "description": "Title",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "comment": {
+                                        "description": "Comment",
+                                        "type": "string",
+                                        "example": "comment"
+                                    },
+                                    "nonce": {
+                                        "description": "Is accepted",
+                                        "type": "string",
+                                        "example": "GDG574SD57DGSDGSG"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/profile/account": {
             "get": {
                 "tags": [
