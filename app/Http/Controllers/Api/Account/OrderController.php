@@ -132,6 +132,8 @@ class OrderController extends Controller
     
     /**
      * 
+     * Order step #2
+     * 
      * @OA\Get(
      *     path="/api/orders/{search}/confirm/{type}",
      *     description="Order step #2",
@@ -260,6 +262,8 @@ class OrderController extends Controller
 
     /**
      * 
+     * Order step #3
+     * 
      * @OA\Get(
      *     path="/api/orders/{search}/square/{type}",
      *     description="Order step #3",
@@ -295,6 +299,7 @@ class OrderController extends Controller
      *     )
      * )
      * 
+     * Order step #3
      * 
      * @OA\Post(
      *     path="/api/orders/{search}/square/{type}",
@@ -768,6 +773,8 @@ class OrderController extends Controller
 
     /**
      * 
+     * Order step #2
+     * 
      * @OA\Get(
      *     path="/api/orders/{search}/confirm",
      *     description="Order step #2",
@@ -876,9 +883,11 @@ class OrderController extends Controller
 
     /**
      * 
+     * Order step #3
+     * 
      * @OA\Get(
      *     path="/api/orders/{search}/square",
-     *     description="Step #3",
+     *     description="Order step #3",
      *     tags={"Orders"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -896,6 +905,7 @@ class OrderController extends Controller
      *     )
      * )
      * 
+     * Order step #3
      * 
      * @OA\Post(
      *     path="/api/orders/{search}/square",
