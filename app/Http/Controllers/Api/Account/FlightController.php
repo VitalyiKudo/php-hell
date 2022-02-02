@@ -76,8 +76,8 @@ class FlightController extends Controller
 
     public function index(Request $request)
     {
-        Session::put('pervis_search_url', url()->full());
-        $pervis_search_url = Session::get('pervis_search_url');
+        Session::put('pervis_search_url_api', url()->full());
+        $pervis_search_url = Session::get('pervis_search_url_api');
         //print_r($pervis_search_url);
 
         if(!session()->has('session_token_id')) {

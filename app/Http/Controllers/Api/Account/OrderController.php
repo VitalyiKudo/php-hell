@@ -182,8 +182,8 @@ class OrderController extends Controller
         }
 
 
-        $pervis_search_url = Session::get('pervis_search_url');
-        Session::put('pervis_confirm_url', url()->full());
+        $pervis_search_url = Session::get('pervis_search_url_api');
+        Session::put('pervis_confirm_url_api', url()->full());
 
         $feeses = Fees::all();
 
@@ -449,7 +449,7 @@ class OrderController extends Controller
     
     public function square(Request $request)
     {
-        $pervis_confirm_url = Session::get('pervis_confirm_url');
+        $pervis_confirm_url = Session::get('pervis_confirm_url_api');
 
         $dotenv = Dotenv::create(base_path());
         $dotenv->load();
@@ -801,7 +801,7 @@ class OrderController extends Controller
             }
         }
 
-        $pervis_search_url = Session::get('pervis_search_url');
+        $pervis_search_url = Session::get('pervis_search_url_api');
         Session::put('pervis_confirm_url', url()->full());
 
         $feeses = Fees::all();
@@ -815,7 +815,11 @@ class OrderController extends Controller
         $order = Order::where('search_result_id', $search_id)->first();
 
         if($order->order_status_id != 2 || $order->price <= 0){
-            return redirect($pervis_search_url);
+            //return redirect($pervis_search_url);
+            return response()->json([
+                'message' => 'Your order status is not in process or order price equal 0. You must return to the previous url.',
+                'pervis_confirm_url' => $pervis_confirm_url,
+            ], 302);
         }
 
         $start_airport_name = $search->start_airport_name;
@@ -1031,7 +1035,7 @@ class OrderController extends Controller
 
     public function requestSquare(Request $request)
     {
-        $pervis_confirm_url = Session::get('pervis_confirm_url');
+        $pervis_confirm_url = Session::get('pervis_confirm_url_api');
         $post_form_url = url()->full();
 
         $dotenv = Dotenv::create(base_path());

@@ -39,8 +39,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-        Session::put('pervis_search_url', url()->full());
-        $pervis_search_url = Session::get('pervis_search_url');
+        Session::put('pervis_search_url_api', url()->full());
+        $pervis_search_url = Session::get('pervis_search_url_api');
 
         $requests = DB::table('searches')
                 ->where(['searches.user_id' => Auth::id(), 'orders.book_status' => 0])
