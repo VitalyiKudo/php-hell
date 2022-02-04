@@ -192,7 +192,7 @@
             <div class="col-md-6 services-image luxury-travel-image"></div>
         </div>
     </div>
-    <div class="container services2 services-fullwidth">
+    <div class="container services services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image corporate-travel-image"></div>
             <div class="col-md-6 services-text">
@@ -363,16 +363,15 @@
                 <h2 class="mb-3">Frequent "Flyer" Questions</h2>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What is Private Jet Charter?
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What is private jet charter?
                         <i class="down"></i>
                         </a>
                         <div class="collapse" id="collapseFaq1">
                             <div class="row col-md-12 pos-full">
                                 <div class="col-md-1 line-border">
-                                    <svg width="3" height="270" viewBox="0 0 3 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.1" width="3" height="364" fill="#4c4d4c"/>
                                     </svg>
-
                                 </div>
 
                                 <div class="col-md-11 position">
@@ -390,13 +389,13 @@
                 </div>
                 <div class="card mb-3">
                         <div class="card-body">
-                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq3" role="button" aria-expanded="false" aria-controls="collapseFaq3">Where To Charter A Private Jet?
+                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq3" role="button" aria-expanded="false" aria-controls="collapseFaq3">Where to charter a private jet?
                             <i class="down"></i>
                             </a>
                             <div class="collapse" id="collapseFaq3">
                             <div class="row col-md-12 pos-full">
                                     <div class="col-md-1 line-border mt-3">
-                                        <svg width="5" height="50" viewBox="0 0 3 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect opacity="0.1" width="10" height="364" fill="#4c4d4c"/>
                                         </svg>
                                     </div>
@@ -409,13 +408,13 @@
                 </div>
                 <div class="card mb-3">
                         <div class="card-body">
-                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq4" role="button" aria-expanded="false" aria-controls="collapseFaq4">Why Charter A Private Jet?
+                            <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq4" role="button" aria-expanded="false" aria-controls="collapseFaq4">Why charter a private jet?
                             <i class="down"></i>
                             </a>
                             <div class="collapse" id="collapseFaq4">
                                 <div class="row col-md-12 pos-full">
                                     <div class="col-md-1 line-border mt-4">
-                                        <svg width="5" height="60" viewBox="0 0 3 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect opacity="0.1" width="10" height="364" fill="#4c4d4c"/>
                                         </svg>
                                     </div>
@@ -429,13 +428,13 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq5" role="button" aria-expanded="false" aria-controls="collapseFaq5">How Long To Charter A Private Jet?
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq5" role="button" aria-expanded="false" aria-controls="collapseFaq5">How long to charter a private jet?
                         <i class="down"></i>
                         </a>
                         <div class="collapse" id="collapseFaq5">
                             <div class="row col-md-12 pos-full">
                                 <div class="col-md-1 line-border mt-4">
-                                    <svg width="5" height="40" viewBox="0 0 3 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.1" width="10" height="364" fill="#4c4d4c"/>
                                     </svg>
                                 </div>
@@ -449,13 +448,17 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq6" role="button" aria-expanded="false" aria-controls="collapseFaq6">Can I Charter A Private Jet?
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq6" role="button" aria-expanded="false" aria-controls="collapseFaq6">Can i charter a private jet?
                         <i class="down"></i>
                         </a>
                         <div class="collapse" id="collapseFaq6">
-                            <div class="row">
-
-                                <div class="col-md-12 ">
+                            <div class="row col-md-12 pos-full">
+                                <div class="col-md-1 line-border">
+                                    <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.1" width="3" height="364" fill="#4c4d4c"/>
+                                    </svg>
+                                </div>
+                                <div class="col-md-11 position">
                                     <p class="mt-3 mb-0">As long as you aren’t on a No-Fly List and have the funds available to pay for the service, you absolutely can!</p>
                                 </div>
                             </div>

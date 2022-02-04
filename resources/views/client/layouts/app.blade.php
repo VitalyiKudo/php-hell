@@ -129,7 +129,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <svg width="1" height="50" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <line opacity="0.1" x1="0.5" x2="0.5" y2="68" stroke="#2B4060"/>
                                 </svg>
                             </li>
@@ -190,7 +190,9 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
                         <h5 class="column-title text-uppercase">Contact</h5>
                         <p class="mb-3">If you have any questions or concerns, don't hesitate to reach out to us today! We'are happy to help!</p>
-                        <a href="mailto:info@jetonset.com"><p class="mb-3"><i class="fas fa-envelope mr-3"></i>info@jetonset.com</p></a>
+                        <a href="mailto:info@jetonset.com"><p class="mb-3">
+                                <i class="fas fa-envelope mr-3"><img loading="lazy" src="/images/jetonset-envelope.svg" alt="" width="12" height="12"></i>
+                                info@jetonset.com</p></a>
                         <p class="mb-3">JetOnset does not own or operate aircraft. All flights are operated by FAA Certified Part 135 air carriers. Carriers providing service for JetOnset clients must meet both FAA requirements and additional JetOnset standards.</p>
                     </div>
 
