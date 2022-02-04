@@ -455,6 +455,7 @@ class OrderController extends Controller
     public function square(Request $request)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url_api');
+        $post_form_url = url()->full();
 
         $dotenv = Dotenv::create(base_path());
         $dotenv->load();
@@ -767,6 +768,7 @@ class OrderController extends Controller
             'request_method' => $request_method,
             'cart_errors' => $cart_errors,
             'pervis_confirm_url' => $pervis_confirm_url,
+            'post_form_url' => $post_form_url,
         ]);
 
     }
