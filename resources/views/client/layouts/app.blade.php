@@ -129,7 +129,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 1 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <line opacity="0.1" x1="0.5" x2="0.5" y2="68" stroke="#2B4060"/>
                                 </svg>
                             </li>
@@ -200,6 +200,20 @@
                         <h5 class="column-title text-uppercase">Join our newsletter</h5>
                         <p class="mb-3">Receive the latest reviews, offers and more</p>
                         <subscribe></subscribe>
+
+
+                            <div class="row logo-app">
+                                <div>
+                                    <img src="/images/iOS-logo.webp" class="logo-ios" loading="lazy" alt="...">
+                                    <!--p class="download-text">Download Now for iOS</p-->
+                                </div>
+                                <div>
+                                    <img src="/images/Android-logo.webp" class="logo-android" loading="lazy" alt="...">
+                                    <!--p class="download-text">Download Now for Android</p-->
+                                </div>
+                            </div>
+
+
                     </div>
                 </div>
 
