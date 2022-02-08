@@ -76,11 +76,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item item-position">
-                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
-                        </li>
 
                         @guest()
+                            <li class="nav-item item-position">
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
+                            </li>
+
                             <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ url('services') }}">{{ __('Services') }}</a>
                             </li>
@@ -100,25 +101,35 @@
                                 <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/">{{ __('Blog') }}</a>
                             </li>
                         @else
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
+                            </li>
+
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('profile*') ? 'active' : '' }}" href="{{ route('client.profile') }}">{{ __('Profile') }}</a>
                             </li>
 
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('requests') ? 'active' : '' }}" href="{{ route('client.requests.index') }}">{{ __('Requests') }}</a>
                             </li>
 
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('orders') ? 'active' : '' }}" href="{{ route('client.orders.index') }}">{{ __('Orders') }}</a>
                             </li>
+
+                            <li class="nav-item item-position auth-navbar">
+                                <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
+                            </li>
+
                         @endguest
 
-                        <li class="nav-item item-position">
-                            <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
-                        </li>
-
                         @guest()
-                            <li class="nav-item item-position border-lg-right margin-lg-left ">
+
+                                <li class="nav-item item-position">
+                                    <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
+                                </li>
+
+                                <li class="nav-item item-position border-lg-right margin-lg-left ">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
 
                                     <img src="/images/sg.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="..."></span>
@@ -141,7 +152,7 @@
                                     {{ __('Log In') }}</a>
                             </li>
                         @else
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link" href="{{ route('client.logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

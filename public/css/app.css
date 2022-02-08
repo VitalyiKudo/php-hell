@@ -11696,6 +11696,11 @@ h3 {
     margin-top: 13px;
 }
 
+.auth-navbar {
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
 .custom-navbar .navbar-nav .nav-link,
 .custom-navbar .navbar-nav .nav-link,
 .custom-navbar .navbar-nav .nav-link:hover {
@@ -17918,7 +17923,7 @@ ul.dashed > li:before {
 
     .col-md-11 {
         flex: 0 0 91.6666666667%;
-        max-width: 88%;
+        max-width: 87%;
     }
 
     .main-works {
