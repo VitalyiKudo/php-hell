@@ -13660,7 +13660,7 @@ sup {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .testimonials, .private-booker-image {
         border-radius: revert !important;
     }
@@ -15333,7 +15333,7 @@ ul.dashed > li:before {
   color: #000000;
 }
 */
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .custom-navbar {
         z-index: 2001;
         padding: 3rem 1rem;
@@ -15979,7 +15979,7 @@ ul.dashed > li:before {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .aircraft-planes {
         padding: revert !important;
         margin-right: revert;
@@ -16150,7 +16150,7 @@ ul.dashed > li:before {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .services-right {
         border-radius: revert;
         margin-left: 0;
@@ -16604,7 +16604,7 @@ ul.dashed > li:before {
     border-bottom: none;
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .breadcrumb-item .search-item-first,
     .breadcrumb-item .search-item-second,
     .breadcrumb-item .search-title {
@@ -16794,7 +16794,7 @@ ul.dashed > li:before {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .book-page-nav {
         background: white !important;
     }
@@ -16804,7 +16804,7 @@ ul.dashed > li:before {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .size-width {
         width: 100% !important;
     }
@@ -17477,7 +17477,7 @@ ul.dashed > li:before {
     color: #000000;
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .container-request-quote .input-group {
         flex-direction: column;
     }
@@ -17609,7 +17609,7 @@ ul.dashed > li:before {
     }
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .header-page-image-booking-two .container-fluid {
         padding-left: 10%;
         padding-right: 10%;
@@ -17899,7 +17899,7 @@ ul.dashed > li:before {
     padding-left: 8%;
 }
 
-@media (max-width: 1081px) {
+@media (max-width: 992px) {
     .booking-bg .info-square-block {
         padding-left: 0;
     }
@@ -17918,7 +17918,7 @@ ul.dashed > li:before {
 
     .col-md-1 {
         flex: 0 0 8.3333333333%;
-        max-width: 8.3333333333%;
+        max-width: 8%;
     }
 
     .col-md-11 {
