@@ -16835,7 +16835,7 @@ ul.dashed > li:before {
         width: inherit !important;
     }
     .div-plane-details {
-        grid-template-columns: repeat(auto-fill,minmax(150px, 1fr)) !important;
+        grid-template-columns: repeat(auto-fill,minmax(145px, 1fr)) !important;
     }
 }
 
@@ -17918,7 +17918,7 @@ ul.dashed > li:before {
 
     .col-md-11 {
         flex: 0 0 91.6666666667%;
-        max-width: 88.5%;
+        max-width: 88%;
     }
 
     .main-works {
