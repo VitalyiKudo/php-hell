@@ -18268,8 +18268,8 @@ ul.dashed > li:before {
 
     #departureList > ul > div span:nth-child(2),
     #arrivalList > ul > div span:nth-child(2) {
-        /* float: right; */
-        display: inline-flex;
+        /* float: right; 
+        display: inline-flex;*/
         justify-content: space-between;
         text-align: right;
         width: 50%;
