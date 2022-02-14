@@ -37,7 +37,7 @@ class Airport extends Model
      */
     public function region()
     {
-        return $this->hasOneThrough(Region::class, City::class, );
+        return $this->hasOneThrough(Region::class, City::class);
     }
 
     public function regionsHasMany()
@@ -85,5 +85,13 @@ class Airport extends Model
     public function regionCountry()
     {
         return $this->belongsTo(Region::class, ['iso_country', 'iso_region'], ['country_id', 'region_id']);
+    }
+
+    /**
+     * Get the airportAreas of the airport.
+     */
+    public function airportAreas()
+    {
+        return $this->hasMany(AirportAreas::class, 'icao', 'icao');
     }
 }

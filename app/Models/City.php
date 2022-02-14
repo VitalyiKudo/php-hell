@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Airport;
 use App\Models\Region;
+use App\Models\AirportAreas;
 use App\Models\Country;
 
 class City extends Model
@@ -72,15 +73,12 @@ class City extends Model
         return $this->hasMany(Airport::class, 'geoNameIdCity', 'geonameid');
     }
 
-    public function region13()
+    /**
+     * Get the airportAreas of the city.
+     */
+    public function airportAreas()
     {
-        return $this->hasOneThrough(
-            Region::class,
-            City::class,
-            'country_id', // city for airport
-            'region_id', // region for city
-            'iso_country', // Local airport for city
-            'iso_region' // Local city for region
-        );
+        return $this->hasMany(airportAreas::class, 'geoNameIdCity', 'geonameid');
     }
+
 }

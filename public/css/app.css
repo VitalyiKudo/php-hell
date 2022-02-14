@@ -18256,16 +18256,23 @@ ul.dashed > li:before {
     #departureList > ul > div,
     #arrivalList > ul > div {
         padding: .50em 5%;
+        display: flex;
     }
 
     #departureList > ul > div span:first-of-type,
     #arrivalList > ul > div span:first-of-type {
         font-weight: bold;
+        display: inline-flex;
+        width: 50%;
     }
 
     #departureList > ul > div span:nth-child(2),
     #arrivalList > ul > div span:nth-child(2) {
-        float: right;
+        /* float: right; */
+        display: inline-flex;
+        justify-content: space-between;
+        text-align: right;
+        width: 50%;
     }
 
     #departureList > ul > li > a > div:first-of-type,
