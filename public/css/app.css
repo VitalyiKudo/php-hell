@@ -4204,6 +4204,7 @@ input[type=button].btn-block {
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
+    overflow-x: hidden;
 }
 
 .dropdown-menu-left {
@@ -18268,7 +18269,7 @@ ul.dashed > li:before {
 
     #departureList > ul > div span:nth-child(2),
     #arrivalList > ul > div span:nth-child(2) {
-        /* float: right; 
+        /* float: right;
         display: inline-flex;*/
         justify-content: space-between;
         text-align: right;

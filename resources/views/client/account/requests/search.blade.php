@@ -966,7 +966,7 @@
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -1027,7 +1027,7 @@
             $('input.to').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",

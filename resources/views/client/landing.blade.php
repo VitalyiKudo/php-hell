@@ -27,6 +27,7 @@
                                     autocomplete="off"
                                 >
                                 <input type="hidden" name="startPoint" autocomplete="off" value="">
+                                <input type="hidden" name="startAirport" autocomplete="off" value="">
                                 <div id="departureList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="departure-airport">
@@ -44,6 +45,7 @@
                                     autocomplete="off"
                                 >
                                 <input type="hidden" name="endPoint" autocomplete="off" value="">
+                                <input type="hidden" name="endAirport" autocomplete="off" value="">
                                 <div id="arrivalList"></div>
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="arrival-airport">
@@ -518,7 +520,7 @@
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -552,7 +554,7 @@
                                     $.each(objAirport, function(k, val) {
                                         var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
                                         output += '<li><a href="' + obj.id + '">' +
-                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span>' + val.icao + iata + '</span>' + '</div>' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
                                             '</a></li>';
                                     });
 
@@ -573,13 +575,14 @@
                 e.preventDefault();
                 $('input.from').val($(this).find('span:first').text());
                 $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
+                $('input[name="startAirport"]').val($(this).find('icao:first').text());
                 $('#departureList').fadeOut();
             });
 
             $('input.to').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -612,7 +615,7 @@
                                     $.each(objAirport, function(k, val) {
                                         var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
                                         output += '<li><a href="' + obj.id + '">' +
-                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span>' + val.icao + iata + '</span>' + '</div>' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
                                             '</a></li>';
                                     });
 
@@ -633,6 +636,7 @@
                 e.preventDefault();
                 $('input.to').val($(this).find('span:first').text());
                 $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
+                $('input[name="endAirport"]').val($(this).find('icao:first').text());
                 $('#arrivalList').fadeOut();
             });
 
