@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Validator;
 use App\User;
+use Carbon\Carbon;
 
 class AccountController extends Controller
 {
@@ -89,8 +90,10 @@ class AccountController extends Controller
      */
     public function update(Request $request)
     {
+        $user = Auth::user();
+
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'required|string|min:6',
         ]);
         
@@ -98,7 +101,7 @@ class AccountController extends Controller
             return response()->json($validator->errors(), 422);
         }
         
-        $user = Auth::user();
+        //$user = Auth::user();
 
         if ($request->input('email')) {
             $user->email = $request->input('email');
@@ -219,6 +222,80 @@ class AccountController extends Controller
      *                   type="string",
      *                   example="larapoints123"
      *               ),
+     * 
+     *               @OA\Property(
+     *                   property="phone_number",
+     *                   description="Phone Number",
+     *                   type="string",
+     *                   example="+44444444444"
+     *               ),
+     *               @OA\Property(
+     *                   property="date_of_birth",
+     *                   description="Date of birth",
+     *                   type="string",
+     *                   example="11/12/1986"
+     *               ),
+     *               @OA\Property(
+     *                   property="address",
+     *                   description="Address",
+     *                   type="string",
+     *                   example="larapoints123"
+     *               ),
+     *               @OA\Property(
+     *                   property="country",
+     *                   description="Country",
+     *                   type="string",
+     *                   example="USA"
+     *               ),
+     *               @OA\Property(
+     *                   property="city",
+     *                   description="City",
+     *                   type="string",
+     *                   example="New York"
+     *               ),
+     *               @OA\Property(
+     *                   property="state",
+     *                   description="State",
+     *                   type="string",
+     *                   example="California"
+     *               ),
+     *               @OA\Property(
+     *                   property="postcode",
+     *                   description="Postcode",
+     *                   type="string",
+     *                   example="333333333"
+     *               ),
+     *               @OA\Property(
+     *                   property="billing_address",
+     *                   description="Billing Address",
+     *                   type="string",
+     *                   example="Address"
+     *               ),
+     *               @OA\Property(
+     *                   property="billing_country",
+     *                   description="Billing Country",
+     *                   type="string",
+     *                   example="Country"
+     *               ),
+     *               @OA\Property(
+     *                   property="billing_city",
+     *                   description="Billing City",
+     *                   type="string",
+     *                   example="City"
+     *               ),
+     *               @OA\Property(
+     *                   property="billing_state",
+     *                   description="Billing State",
+     *                   type="string",
+     *                   example="State"
+     *               ),
+     *               @OA\Property(
+     *                   property="billing_postcode",
+     *                   description="Billing Postcode",
+     *                   type="string",
+     *                   example="Postcode"
+     *               ),
+     * 
      *               @OA\Property(
      *                   property="privacy",
      *                   description="Privacy",
@@ -248,6 +325,21 @@ class AccountController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'phone_number' => 'sometimes|nullable|string',
+            'date_of_birth' => 'sometimes|nullable|date_format:m/d/Y',
+
+            'address' => 'sometimes|nullable|string',
+            'country' => 'sometimes|nullable|string',
+            'city' => 'sometimes|nullable|string',
+            'state' => 'sometimes|nullable|string',
+            'postcode' => 'sometimes|nullable|string',
+
+            'billing_address' => 'sometimes|nullable|string',
+            'billing_country' => 'sometimes|nullable|string',
+            'billing_city' => 'sometimes|nullable|string',
+            'billing_state' => 'sometimes|nullable|string',
+            'billing_postcode' => 'sometimes|nullable|string',
+     
             'privacy' => 'accepted',
             'terms' => 'accepted',
         ]);
@@ -256,15 +348,40 @@ class AccountController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $user = User::create([
+        $data = [
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            
+            'phone_number' => $request->input('phone_number'),
+            'address' => $request->input('address'),
+            'country' => $request->input('country'),
+            'city' => $request->input('city'),
+            'state' => $request->input('state'),
+            'postcode' => $request->input('postcode'),
+
+            'billing_address' => $request->input('billing_address'),
+            'billing_country' => $request->input('billing_country'),
+            'billing_city' => $request->input('billing_city'),
+            'billing_state' => $request->input('billing_state'),
+            'billing_postcode' => $request->input('billing_postcode'),
+            
             'api_token' => Str::random(60),
-        ]);
+        ];
         
-        return response()->json($user);
+        if ($request->has('date_of_birth')) {
+            $data['date_of_birth'] = $request->filled('date_of_birth') ? Carbon::createFromFormat('m/d/Y', $request->input('date_of_birth')) : null;
+        }
+        
+        $user = User::create($data);
+        
+        $token = Str::random(60);
+        $user->forceFill([
+            'api_token' => hash('sha256', $token),
+        ])->save();
+        
+        return response()->json(['user' => $user, 'token' => $token]);
     }
     
     /**

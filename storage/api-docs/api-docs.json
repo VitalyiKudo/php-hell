@@ -594,6 +594,66 @@
                                         "type": "string",
                                         "example": "larapoints123"
                                     },
+                                    "phone_number": {
+                                        "description": "Phone Number",
+                                        "type": "string",
+                                        "example": "+44444444444"
+                                    },
+                                    "date_of_birth": {
+                                        "description": "Date of birth",
+                                        "type": "string",
+                                        "example": "11/12/1986"
+                                    },
+                                    "address": {
+                                        "description": "Address",
+                                        "type": "string",
+                                        "example": "larapoints123"
+                                    },
+                                    "country": {
+                                        "description": "Country",
+                                        "type": "string",
+                                        "example": "USA"
+                                    },
+                                    "city": {
+                                        "description": "City",
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "state": {
+                                        "description": "State",
+                                        "type": "string",
+                                        "example": "California"
+                                    },
+                                    "postcode": {
+                                        "description": "Postcode",
+                                        "type": "string",
+                                        "example": "333333333"
+                                    },
+                                    "billing_address": {
+                                        "description": "Billing Address",
+                                        "type": "string",
+                                        "example": "Address"
+                                    },
+                                    "billing_country": {
+                                        "description": "Billing Country",
+                                        "type": "string",
+                                        "example": "Country"
+                                    },
+                                    "billing_city": {
+                                        "description": "Billing City",
+                                        "type": "string",
+                                        "example": "City"
+                                    },
+                                    "billing_state": {
+                                        "description": "Billing State",
+                                        "type": "string",
+                                        "example": "State"
+                                    },
+                                    "billing_postcode": {
+                                        "description": "Billing Postcode",
+                                        "type": "string",
+                                        "example": "Postcode"
+                                    },
                                     "privacy": {
                                         "description": "Privacy",
                                         "type": "boolean",
@@ -679,6 +739,11 @@
                                         "type": "string",
                                         "example": "last name"
                                     },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ihamzehald@gmail.com"
+                                    },
                                     "phone_number": {
                                         "description": "Phone Number",
                                         "type": "string",
@@ -703,6 +768,11 @@
                                         "description": "City",
                                         "type": "string",
                                         "example": "New York"
+                                    },
+                                    "state": {
+                                        "description": "State",
+                                        "type": "string",
+                                        "example": "California"
                                     },
                                     "postcode": {
                                         "description": "Postcode",

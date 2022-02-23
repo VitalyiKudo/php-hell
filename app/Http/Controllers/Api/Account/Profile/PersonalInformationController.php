@@ -77,6 +77,12 @@ class PersonalInformationController extends Controller
      *                   example="last name"
      *               ),
      *               @OA\Property(
+     *                   property="email",
+     *                   description="User email",
+     *                   type="string",
+     *                   example="ihamzehald@gmail.com"
+     *               ),
+     *               @OA\Property(
      *                   property="phone_number",
      *                   description="Phone Number",
      *                   type="string",
@@ -105,6 +111,12 @@ class PersonalInformationController extends Controller
      *                   description="City",
      *                   type="string",
      *                   example="New York"
+     *               ),
+     *               @OA\Property(
+     *                   property="state",
+     *                   description="State",
+     *                   type="string",
+     *                   example="California"
      *               ),
      *               @OA\Property(
      *                   property="postcode",
@@ -154,9 +166,12 @@ class PersonalInformationController extends Controller
      */
     public function update(Request $request)
     {
+        $user = Auth::user();
+        
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'phone_number' => 'sometimes|nullable|string',
             'date_of_birth' => 'sometimes|nullable|date_format:m/d/Y',
 
@@ -176,8 +191,6 @@ class PersonalInformationController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        
-        $user = Auth::user();
 
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
