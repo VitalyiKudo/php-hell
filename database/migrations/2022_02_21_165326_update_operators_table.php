@@ -17,7 +17,7 @@ class UpdateOperatorsTable extends Migration
         Schema::create('operators', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email', 255)->unique();
-            #$table->string('email_other', 255)->nullable();
+            $table->string('email_other', 255)->nullable();
             $table->string('name', 255)->index();
             $table->boolean('active')->index()->default(0);
             $table->string('web_site', 255)->nullable();
