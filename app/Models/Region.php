@@ -4,6 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Region
+ *
+ * @property int $id
+ * @property string $region_id
+ * @property string $country_id
+ * @property string|null $name
+ * @property string $code
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $city
+ * @property-read int|null $city_count
+ * @property-read \App\Models\Country $country
+ * @method static \Illuminate\Database\Eloquent\Builder|Region newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereRegionId($value)
+ * @mixin \Eloquent
+ */
 class Region extends Model
 {
     use \Awobaz\Compoships\Compoships;

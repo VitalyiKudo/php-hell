@@ -8,6 +8,45 @@ use App\Models\Region;
 use App\Models\AirportAreas;
 use App\Models\Country;
 
+/**
+ * App\Models\City
+ *
+ * @property int $geonameid
+ * @property string|null $name
+ * @property string|null $asciiname
+ * @property string|null $alternatenames
+ * @property string|null $iso_region
+ * @property string|null $iso_countryOld
+ * @property string|null $iso_country
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @property string|null $timezone
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|Airport[] $airport
+ * @property-read int|null $airport_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|AirportAreas[] $airportAreas
+ * @property-read int|null $airport_areas_count
+ * @property-read Country|null $country
+ * @property-read Region|null $region
+ * @property-read Region|null $regionCountry
+ * @method static \Illuminate\Database\Eloquent\Builder|City newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|City newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|City query()
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereAlternatenames($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereAsciiname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereGeonameid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereIsoCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereIsoCountryOld($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereIsoRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereTimezone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|City whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class City extends Model
 {
     use \Awobaz\Compoships\Compoships;
@@ -78,7 +117,15 @@ class City extends Model
      */
     public function airportAreas()
     {
-        return $this->hasMany(airportAreas::class, 'geoNameIdCity', 'geonameid');
+        return $this->hasMany(AirportAreas::class, 'geoNameIdCity', 'geonameid');
+    }
+
+    /**
+     * Get the operators of the city.
+     */
+    public function operatorCities()
+    {
+        return $this->hasMany(OperatorCities::class, 'geoNameIdCity', 'geonameid');
     }
 
 }

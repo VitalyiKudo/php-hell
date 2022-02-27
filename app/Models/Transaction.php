@@ -4,6 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Transaction
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $order_id
+ * @property bool $is_success
+ * @property string|null $transaction_id
+ * @property float $amount
+ * @property string|null $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Order $order
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereIsSuccess($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereTransactionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Transaction extends Model
 {
     /**
@@ -33,7 +61,7 @@ class Transaction extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**

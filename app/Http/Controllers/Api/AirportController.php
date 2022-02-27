@@ -27,21 +27,9 @@ class AirportController extends Controller
     public function getAirportsList(Request $request)
     {
         $keyword = $request->input('query');
-#        try {
-        /* Search Model -> obj *
+
+        /* Search Airports -> obj *
                $airports = Airport::with('city', 'city.regionCountry', 'city.country', 'airportAreas.city')
-                  /** ->select(
-                       "city.country.name as country",
-                       "city.geonameid",
-                       "airport.icao",
-                       "airport.iata",
-                       "airport.name",
-                       "city.name as city",
-                       "city.regionCountry.name as region",
-                       "co.iso2 as iso_country",
-                       "airportAreas.city.geoNameIdCity as areaid"
-                   #"an.name as area"
-                   )*
                     ->where(function ($query) use ($keyword) {
                         $query->where('name', 'like', "{$keyword}%")
                             #->orWhere('city', 'like', "{$keyword}%")
@@ -70,116 +58,8 @@ class AirportController extends Controller
                     ->limit(10)
                     ->get();#;
                     #->groupBy('airportAreas.geoNameIdCity')
-                    #->toArray();
-                    #->toSql();
-                    #->groupBy([function($item) { return $item->country->name; },
-                                  #function($item) { return $item->city;}]);
-                */
-        /*
-        $cities = City::with('airportAreas', 'airport')
-            /*->addSelect(
-            "city.country.name as country",
-            "city.geonameid",
-            "airport.icao",
-            "airport.iata",
-            "airport.name",
-            "city.name as city",
-            "city.regionCountry.name as region",
-            "co.iso2 as iso_country",
-            "airportAreas.city.geoNameIdCity as areaid"
-            #"an.name as area"
-            )*
-            ->where(function ($query) use ($keyword) {
-                $query->where('name', 'like', "{$keyword}%")
-                    //  search airports
-                    ->orWhereHas('airport', function ($query) use ($keyword) {
-                        $query->where('name', 'like', "%{$keyword}%")
-                            ->orWhere('iata', 'like', "{$keyword}%")
-                            ->orWhere('icao', 'like', "{$keyword}%");
-                    })
-                    ->orWhereHas('airport.airportAreas', function ($query) use ($keyword) {
-                        $query->where('name', 'like', "%{$keyword}%")
-                            ->orWhere('iata', 'like', "{$keyword}%")
-                            ->orWhere('icao', 'like', "{$keyword}%");
-                    })
-                    ->orWhereHas('regionCountry', function ($query) use ($keyword) {
-                        $query->where('name', 'like', "%{$keyword}%");
-                    });
-            })
-            ->limit(10)
-            ->get()#;
+*/
 
-            ->toArray();
-            #->toSql();
-        */
-#dd($airports->groupBy($airports->airportAreas->name));
-#dd($cities);
-        /*
-                $cities = DB::table('airports AS a')
-                    ->select(
-                        "co.name as country",
-                        "c.geonameid",
-                        "a.icao",
-                        "a.iata",
-                        "a.name",
-                        "c.name as city",
-                        "r.name as region",
-                        "co.iso2 as iso_country",
-                        "ar.geoNameIdCity as areaid"
-                        #"an.name as area"
-                    )
-                    ->leftJoin('cities AS c', 'a.geoNameIdCity', '=', 'c.geonameid')
-                    ->leftJoin('regions AS r', function ($join) {
-                        $join->on('c.iso_region', '=', 'r.region_id')
-                            ->on('c.iso_country', '=', 'r.country_id')
-                            ->on('a.geoNameIdCity', '=', 'c.geonameid');
-                    })
-                    ->leftJoin('countries AS co', 'r.country_id', '=', 'co.country_id')
-                    ->leftJoin('airport_areas AS ar', 'c.geonameid', '=', 'ar.geoNameIdCity')
-                    ->leftJoin('airports AS an', 'ar.icao', '=', 'an.icao')
-                    ->where("a.name", "like", "%{$keyword}%")
-                    ->orWhere("a.icao", "like", "%{$keyword}%")
-                    ->orWhere("a.iata", "like", "%{$keyword}%")
-                    ->where("a.geonameidcity", "<>", "0")
-                    ->orWhere("c.name", "like", "%{$keyword}%")
-                    ->orWhere("r.name", "like", "%{$keyword}%")
-                    #->orWhere("an.name", "like", "%{$keyword}%")
-                    ->limit(100)
-                    ->orderByRaw($this->sortCity())
-                    ->orderByRaw($this->sortCountry())
-                    ->orderBy('co.name')
-                    #->get()
-                    #->groupBy('areaid', 'geonameid')
-                    ->groupBy('geonameid')
-                    #->toArray();
-                    ->toSql();
-                }
-                catch (ModelNotFoundException $ex) {
-                    report($ex);
-                }
-                dd($cities);
-                $i = 0;
-                $res = [];
-                if(!empty($cities)) {
-                    foreach ($cities as $item=>$city) {
-                        foreach ($city as $key=>$value) {
-                            if (empty($res[$i]['city'])) $res[$i]['city'] = $value->city;
-                            if (empty($res[$i]['id'])) $res[$i]['id'] = $value->geonameid;
-                            if (empty($res[$i]['region'])) $res[$i]['region'] = $value->region;
-                            if (empty($res[$i]['country'])) $res[$i]['country'] = $value->country;
-
-                            if (empty($res[$i]['areaid'])) $res[$i]['areaid'] = $value->areaid;
-                            if (empty($res[$i]['area'])) $res[$i]['area'] = $value->area;
-
-                            $res[$i]['airport'][$key]['name'] = $value->name;
-                            $res[$i]['airport'][$key]['icao'] = $value->icao;
-                            $res[$i]['airport'][$key]['iata'] = ($value->iata !== 'noV') ? $value->iata : '';
-                        }
-                        $i++;
-                    }
-                }
-                dd($res);
-        */
         try {
             $airports = DB::table('airports AS a')
                 #->select('a.geoNameIdCity', 'an.geoNameIdCity as area')
@@ -189,22 +69,13 @@ class AirportController extends Controller
                 ->orWhere("a.icao", "like", "%{$keyword}%")
                 ->orWhere("a.iata", "like", "%{$keyword}%")
                 ->where("a.geonameidcity", "<>", "0")
-                #->limit(10)
-                #->groupBy(DB::raw('(case when an.geoNameIdCity is null then a.geoNameIdCity else an.geoNameIdCity end)'))
                 ->get()
                 ->groupBy('geonameid');
-                #->groupBy(DB::raw('case when area is null then geonameidcity else area end'))
-            #->toArray();
-            #->toSql();
-            #dd($airports);
             $cities = DB::table('cities AS c')
                 ->select('geonameid')
                 ->where("c.name", "like", "%{$keyword}%")
-                #->limit(10)
                 ->get()
                 ->groupBy('geonameid');
-            #->toArray();
-            #->toSql();
             $regions = DB::table('regions AS r')
                 ->select('c.geonameid', 'r.name as region')
                 ->join('cities AS c', function ($join) {
@@ -212,37 +83,19 @@ class AirportController extends Controller
                         ->on('c.iso_country', '=', 'r.country_id');
                 })
                 ->where("r.name", "like", "%{$keyword}%")
-                #->limit(10)
                 ->get()
                 ->groupBy('geonameid');
-            #->toArray();
-            #->toSql();
         } catch (ModelNotFoundException $ex) {
             report($ex);
         }
-        /*var_dump($airports);
-        var_dump($cities);
-        var_dump($regions);*/
-        #$c = new Collection;
-        #$res = $c->union($airports->all())->union($cities->all())->union($regions->all());
+
         $res = $airports->union($cities->all())->union($regions->all());
         $geonameid = $res->keys();
-        #var_dump($airports);
-        #var_dump($geonameid);
-#dd($geonameid);
+
         $result = [];
         $i = 0;
         if ($res->isNotEmpty()) {
             $data = DB::table('cities AS c')
-                /*->select("co.name as country",
-                                 "c.geonameid",
-                                 "a.icao",
-                                 "a.iata",
-                                 "a.name",
-                                 "c.name as city",
-                                 "r.name as region",
-                                 "co.iso2 as iso_country",
-                                 "ar.geoNameIdCity as areaid")*/
                 ->selectRaw('IF(ar.geoNameIdCity is null, a.geoNameIdCity, ar.geoNameIdCity) as geonameid, co.name as country, a.icao, a.iata, a.name, c.name as city, r.name as region, co.iso2 as iso_country, ar.geoNameIdCity as areaid')
                 ->leftJoin('countries AS co', 'c.iso_country', '=', 'co.country_id')
                 ->leftJoin('regions AS r', function ($join) {
@@ -259,11 +112,11 @@ class AirportController extends Controller
                 ->where('a.geoNameIdCity', '<>', 0)
                 ->orderByRaw($this->sortCity())
                 ->orderByRaw($this->sortCountry())
-                #->limit(10)
+                ->orderBy('co.name')
                 ->get()
                 ->unique('icao')
                 ->groupBy('geonameid');
-#dd($data);
+
             foreach ($data as $item=>$city) {
                 foreach ($city as $key=>$value) {
                     if (empty($result[$i]['city'])) $result[$i]['city'] = $value->city;
@@ -282,14 +135,16 @@ class AirportController extends Controller
             }
 
         }
-    #dd($result);
-
 
         //return AirportResource::collection($airports);
         return response()->json($result);
-        #return json_encode($res);;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getTypesList(Request $request)
     {
         $keyword = $request->input('query');
@@ -303,6 +158,9 @@ class AirportController extends Controller
         return response()->json($airlines);
     }
 
+    /**
+     * @return string
+     */
     protected function sortCountry(){
         $sortCountries = ['US' => 1,];
         $rawCountrySql = '(CASE ' . collect($sortCountries)->map(function($airport, $country){
@@ -311,6 +169,9 @@ class AirportController extends Controller
         return $rawCountrySql;
     }
 
+    /**
+     * @return string
+     */
     protected function sortCity(){
         $sortCities = [
             5128581 => 1, #    'New York'

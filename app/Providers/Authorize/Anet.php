@@ -2,7 +2,7 @@
 
 namespace App\Providers\Authorize;
 
-use App\User;
+use App\Models\User;
 use net\authorize\api\contract\v1\PaymentType;
 use net\authorize\api\constants\ANetEnvironment;
 use net\authorize\api\contract\v1\CreditCardType;
@@ -72,7 +72,7 @@ class Anet
     /**
      * Create a new customer profile in the Authorize.Net.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function createCustomerProfile(User $user)
@@ -104,7 +104,7 @@ class Anet
     /**
      * Update an existing customer profile in the Authorize.Net.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return bool
      */
     public function updateCustomerProfile(User $user)
@@ -256,7 +256,7 @@ class Anet
     /**
      * Create a new customer profile in the Authorize.Net.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return \net\authorize\api\contract\v1\CustomerAddressType
      */
     public function getCustomerAddress(User $user)
