@@ -427,17 +427,18 @@ class OrderController extends Controller
                             $order->is_accepted = (bool)$request->input('is_accepted');
                             $order->book_status = 1;
                             $order->save();
+                            $id_order = $order->id;
 
                             /*
                             * Mailing start
                             */
 
-                            Mail::send([], [], function ($message) {
+                            Mail::send([], [], function ($message) use ($id_order)  {
                                 $user = Auth::user();
                                 $message->from('quote@jetonset.com', 'JetOnset team');
                                 //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
-                                $message->to($user->email)->subject("We have received your request");
-                                $message->setBody("Dear {$user->first_name} {$user->last_name}\n\nWe have received your payment and our manager will contact you to discuss all your flight details in the shortest possible time.\n\nBest regards,\nJetOnset team.");
+                                $message->to($user->email)->subject("We have received your request #{$id_order}");
+                                $message->setBody("Dear {$user->first_name} {$user->last_name},\n\nWe have received your payment. Our manager will contact you to discuss your flight details in the shortest time possible.\n\nBest regards,\nJetOnset Team");
                             });
 
 /* Old Search
@@ -483,15 +484,8 @@ class OrderController extends Controller
                             }
 
                             $emails = array_unique($emails);
-        $start_airport_name
-        $end_airport_name
-        $departure_geoId
-        $arrival_geoId
 */
-                            #dd($start_airport_name);
-                            #dd($end_airport_name);
-                            #dd($departure_geoId);
-                            #dd($arrival_geoId);
+// New Search
                             $states = Airport::with('airportAreas', 'city')
                                 ->where(function ($query) use ($start_airport_name, $end_airport_name, $departure_geoId, $arrival_geoId) {
                                     $query->whereIn('icao', [$start_airport_name, $end_airport_name])
@@ -507,28 +501,13 @@ class OrderController extends Controller
                                              return $item['iso_region'];
                                          },
                                      ], $preserveKeys = true);
-                                #->keys();
                             $operators_city = collect();
                             $data_mail = collect();
-                            #dd($states);
                             if (!empty($states)) {
                                 foreach ($states as $country => $data) {
                                     foreach ($data as $region => $val) {
                                         if (($region !== 'null')) {
                                             $data_mail[$region] = $country;
-/*
-                                            $cities = City::with('OperatorCities')
-                                                ->where(function ($query) use ($region, $country) {
-                                                    $query->where('iso_region', $region)
-                                                        ->where('iso_country', $country)
-                                                        ->whereHas('OperatorCities.operatorRegion', function ($query) use ($region, $country) {
-                                                            $query->where('iso_region', $region)
-                                                                ->where('iso_country', $country);
-                                                        });
-                                                })
-                                                #->get();
-                                                ->toSql();
-                                            */
                                             $cities = DB::table('cities AS c')
                                                 ->selectRaw('c.geonameid, o.geoNameIdCity, c.name as city, c.iso_region, c.iso_country')
                                                 ->rightJoin('operator_cities AS o', 'c.geonameid', '=', 'o.geoNameIdCity')
@@ -549,59 +528,57 @@ class OrderController extends Controller
                                     ->where('o.active', '=', 1)
                                     ->groupBy('o.email')
                                     ->get();
-                                    #->toArray();
-                                    #->groupBy('email');
-                                #$data_mail = $data_mail->unique('email');
-
-
                             }
-                            #dd($data_mail);
-                            #dd($operators_city->keys());
-                            $i = 1;
-                            #foreach ($data_mail as $mail => $data){
-                                #Log::info('User failed to login.', ['id' => $user->id]);
-                                echo'<pre>';
+
+                            if (!empty($data_mail)) {
+                                $airports = [
+                                    'start_city' => $this->findCity($departure_geoId),
+                                    'end_city' => $this->findCity($arrival_geoId),
+                                    'pax' => $pax,
+                                    'type' => $search_type,
+                                ];
+                                $date = $departure_at;
+
                                 foreach ($data_mail as $val) {
-                                    #var_dump($val->city);
-                                    try {
-                                        #echo("$i - $mail - ".$val->city." - ".$val->iso_region." - ".$val->iso_country."-- \n");
-                                        echo("$i - $val->email - ".$val->city." - ".$val->iso_region." - ".$val->iso_country."\n");
-                                        $i++;
+                                    $emails = [];
+
+                                    if ($val->email == trim($val->email) && strpos($val->email, ' ') !== false) {
+                                        $mail_list = explode(" ", $val->email);
+                                        foreach($mail_list as $mail){
+                                            $emails[] = trim($mail);
+                                        }
+                                        $mail_list = [];
+                                    } else if(strstr($val->email, PHP_EOL)) {
+                                        $mail_list = explode(PHP_EOL, $val->email);
+                                        foreach($mail_list as $mail){
+                                            $emails[] = trim($mail);
+                                        }
+                                        $mail_list = [];
+                                    } else {
+                                        $emails[] = trim($val->email);
                                     }
-                                    catch (Exception $e) {
 
+                                    $emails = array_unique($emails);
+
+                                    try {
+                                        foreach($emails as $email) {
+                                            Mail::send([], [], function ($message) use ($email, $request, $date, $airports, $id_order) {
+                                                $user = Auth::user();
+                                                $message->from($user->email, 'JetOnset team');
+                                                $message->to($email)->subject(
+                                                    "We have request for you #{$id_order}"
+                                                );
+                                                $message->setBody(
+                                                    "Hello!\n\nCan you send me a quote for a flight from {$airports['start_city']->city}, {$airports['start_city']->region} to {$airports['end_city']->city}, {$airports['end_city']->region} on {$date} for {$airports['pax']} person.\n\nBest regards,\nJetOnset\n"
+                                                );
+                                            });
+                                        }
+                                    } catch (Exception $e) {
                                         report($e);
-
                                         return false;
                                     }
                                 }
-                                echo'</pre>';
-                            #}
-
-
-                            dd($data_mail);
-
-                            $airports = [
-                                'start_city' => $start_airport_name,
-                                'end_city' => $end_airport_name,
-                                'pax' => $pax,
-                                'type' => $search_type,
-                            ];
-
-                            $date = $departure_at;
-
-/*
-                            foreach($emails as $email){
-                                Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
-                                    $user = Auth::user();
-                                    $message->from($user->email, 'JetOnset team');
-                                    #$message->to('serg.gitas@gmail.com')->subject("We have request for you!");
-                                    $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
-                                    //$message->to($user->email)->subject("We have received your request");
-                                    $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
-                                });
                             }
-*/
                            /*
                             * Mailing end
                             */
@@ -1261,5 +1238,22 @@ class OrderController extends Controller
         return redirect()->back()->with('status', 'The order was successfully updated.');
     }
 
+    /**
+     * @param $query
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|object|null
+     */
+    private function findCity($query) {
+        $city = DB::table('cities as c')
+            ->selectRaw('c.name as city, r.name as region')
+            ->join('regions AS r', function ($join) {
+                $join->on('c.iso_region', '=', 'r.region_id')
+                    ->on('c.iso_country', '=', 'r.country_id');
+            })
+            ->where('c.geonameid', $query)
+            ->first();
+
+        return $city;
+    }
 
 }
