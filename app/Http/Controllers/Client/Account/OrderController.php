@@ -12,7 +12,8 @@ use App\Models\Airline;
 use App\Models\Operator;
 use App\Models\OperatorCities;
 use App\Models\Fees;
-use Mail;
+#use Mail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Transaction;
 use App\Models\Search;
 use App\Models\Pricing;
@@ -32,7 +33,7 @@ use Square\Models\CreatePaymentRequest;
 use Square\Exceptions\ApiException;
 use Square\SquareClient;
 #use DB;
-
+use App\Jobs\SendEmailOperator;
 
 class OrderController extends Controller
 {
@@ -531,54 +532,24 @@ class OrderController extends Controller
                             }
 
                             if (!empty($data_mail)) {
-                                $airports = [
+
+                                $emails = ['emails' => $data_mail];
+
+                                $airports = [ 'airports' => [
                                     'start_city' => $this->findCity($departure_geoId),
                                     'end_city' => $this->findCity($arrival_geoId),
                                     'pax' => $pax,
-                                    'type' => $search_type,
+                                    'type' => $search_type]
                                 ];
-                                $date = $departure_at;
+                                $date = ['date' => $departure_at];
+                                $order_id = ['order_id' => $order->id];
 
-                                foreach ($data_mail as $val) {
-                                    $emails = [];
+                                $data_emails = array_merge($emails, $date, $airports, $order_id);
 
-                                    if ($val->email == trim($val->email) && strpos($val->email, ' ') !== false) {
-                                        $mail_list = explode(" ", $val->email);
-                                        foreach($mail_list as $mail){
-                                            $emails[] = trim($mail);
-                                        }
-                                        $mail_list = [];
-                                    } else if(strstr($val->email, PHP_EOL)) {
-                                        $mail_list = explode(PHP_EOL, $val->email);
-                                        foreach($mail_list as $mail){
-                                            $emails[] = trim($mail);
-                                        }
-                                        $mail_list = [];
-                                    } else {
-                                        $emails[] = trim($val->email);
-                                    }
+                                dispatch(new SendEmailOperator((object)$data_emails));#->onQueue('emailOperator');
 
-                                    $emails = array_unique($emails);
-
-                                    try {
-                                        foreach($emails as $email) {
-                                            Mail::send([], [], function ($message) use ($email, $request, $date, $airports, $id_order) {
-                                                $user = Auth::user();
-                                                $message->from($user->email, 'JetOnset team');
-                                                $message->to($email)->subject(
-                                                    "We have request for you #{$id_order}"
-                                                );
-                                                $message->setBody(
-                                                    "Hello!\n\nCan you send me a quote for a flight from {$airports['start_city']->city}, {$airports['start_city']->region} to {$airports['end_city']->city}, {$airports['end_city']->region} on {$date} for {$airports['pax']} person.\n\nBest regards,\nJetOnset\n"
-                                                );
-                                            });
-                                        }
-                                    } catch (Exception $e) {
-                                        report($e);
-                                        return false;
-                                    }
-                                }
                             }
+
                            /*
                             * Mailing end
                             */
