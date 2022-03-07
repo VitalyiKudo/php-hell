@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        #Barryvdh\Debugbar\ServiceProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,7 +234,8 @@ return [
         'Helpdeskeddy' => App\Providers\Helpdeskeddy\Facades\Helpdeskeddy::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Carbon' => Carbon\Carbon::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
     ],
 
 ];
