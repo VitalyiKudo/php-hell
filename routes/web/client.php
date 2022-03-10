@@ -108,3 +108,8 @@ Route::namespace('Account')->group(function () {
     Route::get('/flights/sendMail', 'SearchController@sendMail')->name('search.sendMail');
 
 });
+
+Route::get('/chats','ChatsController@index');
+Route::get('/chat/{room_id}','ChatsController@getRoom')->name('chats.getRoom');
+Route::get('/messages/{room_id}','ChatsController@fetchMessages');
+Route::post('/messages','ChatsController@sendMessages');

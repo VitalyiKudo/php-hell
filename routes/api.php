@@ -29,6 +29,7 @@ Route::get('profile/account', 'Account\Profile\AccountController@index');
 Route::put('profile/account', 'Account\Profile\AccountController@update');
 Route::delete('profile/account', 'Account\Profile\AccountController@destroy');
 Route::put('profile/account/login', 'Account\Profile\AccountController@login');
+Route::put('profile/account/admin_login', 'Account\Profile\AccountController@admin_login');
 Route::post('profile/account/register', 'Account\Profile\AccountController@register');
 Route::put('profile/account/refresh', 'Account\Profile\AccountController@refresh');
 
@@ -56,4 +57,11 @@ Route::post('orders/{search}/square/{type}', 'Account\OrderController@square');
 Route::get('orders/{search}/confirm', 'Account\OrderController@requestConfirm');
 Route::get('orders/{search}/square', 'Account\OrderController@requestSquare');
 Route::post('orders/{search}/square', 'Account\OrderController@requestSquare');
+
+
+Route::get('chats','ChatsController@index');
+Route::get('chat/{room_id}','ChatsController@getRoom')->name('chats.getRoom');
+Route::get('messages/{room_id}','ChatsController@fetchMessages');
+Route::post('messages','ChatsController@sendMessages');
+
 

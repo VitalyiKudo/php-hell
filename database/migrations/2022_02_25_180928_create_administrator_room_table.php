@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddApiTokenUsersTable extends Migration
+class CreateAdministratorRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class AddApiTokenUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function ($table) {
-            $table->string('api_token', 80)->after('password')
-                ->unique()
-                ->nullable()
-                ->default(null);
+        Schema::create('administrator_room', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('room_id')->unsigned();
+            $table->integer('administrator_id')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -28,8 +28,6 @@ class AddApiTokenUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function ($table) {
-            $table->dropColumn('api_token');
-        });
+        Schema::dropIfExists('administrator_room');
     }
 }

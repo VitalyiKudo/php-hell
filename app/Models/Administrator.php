@@ -29,4 +29,12 @@ class Administrator extends Authenticatable
         'password',
         'remember_token',
     ];
+    
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+    
+    public function rooms(){
+        return $this->belongsToMany(Room::class);
+    }
 }

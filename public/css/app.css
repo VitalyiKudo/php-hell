@@ -1396,7 +1396,7 @@ small,
 
 mark,
 .mark {
-/*  padding: 0.2em;*/
+  padding: 0.2em;
   background-color: #fcf8e3;
 }
 
@@ -6862,7 +6862,7 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 1050;
   display: none;
   width: 100%;
   height: 100%;
@@ -7893,7 +7893,6 @@ button.bg-dark:focus {
 
 .d-block {
   display: block !important;
-    width: 100%;
 }
 
 .d-table {
@@ -11977,8 +11976,6 @@ h3 {
 .main-search {
   padding-top: 10rem;
   font-family: "Roboto", sans-serif !important;
-    position: relative;
-    z-index: 10;
 }
 
 @media (min-width: 992px) {
@@ -13169,23 +13166,18 @@ sup {
 }
 
 .div-plane-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
-  width: 96%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
   justify-content: space-between;
-  padding: 0 10px 20px 10px;
+  padding: 0 10px;
 }
 
-.div-plane-details-colums  {
+.div-plane-details-colums {
   margin: 0 10px;
   display: flex;
   flex-direction: column;
-}
-.div-plane-details-colums > span,
-.div-plane-details-colums > div,
-.div-plane-details-colums > div > span {
-    color: #000 !important;
-    text-align: center !important;
 }
 
 .fixed-row {
@@ -15200,7 +15192,7 @@ ul.dashed > li:before {
   font-weight: 400;
   color: #373737;
 }
-/*
+
 #departureList {
   position: absolute;
   top: 44px;
@@ -15320,10 +15312,10 @@ ul.dashed > li:before {
   text-decoration: none;
   color: #000000;
 }
-*/
+
 @media (max-width: 992px) {
   .custom-navbar {
-    z-index: 2001;
+    z-index: 999;
     padding: 3rem 1rem;
     position: relative !important;
   }
@@ -15338,7 +15330,7 @@ ul.dashed > li:before {
 
 @media (max-width: 767.98px) {
   .custom-navbar {
-    z-index: 2001;
+    z-index: 999;
     padding: 1rem 1rem;
     background: none;
     border: none;
@@ -15348,7 +15340,7 @@ ul.dashed > li:before {
 }
 
 .custom-navbar {
-  z-index: 2001;
+  z-index: 999;
   padding: 3rem 1rem;
 }
 
@@ -15705,8 +15697,6 @@ ul.dashed > li:before {
 
 .main-search-page .form-body {
   top: 120px;
-    position: relative;
-    z-index: 2000;
 }
 
 @media (min-width: 1600px) {
@@ -16524,7 +16514,6 @@ ul.dashed > li:before {
   width: 1025px;
   margin-left: -55px;
   height: 50px;
-    margin-bottom: 70px;
 }
 
 .search-breadcrumb .breadcrumb {
@@ -16791,7 +16780,7 @@ ul.dashed > li:before {
   }
 
   .txt-pos3 {
-    padding: 1rem 0px 0px 0;
+    padding: 10rem 0px 0px 0;
   }
 
   .bg-plane,
@@ -16802,8 +16791,6 @@ ul.dashed > li:before {
     flex-direction: column;
     align-content: center;
     justify-content: center;
-      background-image: url("/images/aircrafts/jet_background7-8.webp");
-      padding-top: 2rem;
   }
 
   .plane-pos,
@@ -18072,201 +18059,3 @@ ul.dashed > li:before {
   color: #5198ff;
 }
 
-#departureList [hidden],
-#arrivalList [hidden] {
-    display: none;
-}
-
-#departureList .visually-hidden,
-#arrivalList .visually-hidden {
-    position: absolute;
-    clip: rect(0, 0, 0, 0)
-}
-/*
-#departureList,
-#arrivalList {
-    position: absolute;
-    top: 10px;
-    left: 0px;
-    display: block;
-    z-index: 3001 !important;
-}
-*/
-#departureList,
-#arrivalList,
-#departureList>input,
-#arrivalList>input {
-    display: block;
-}
-
-#departureList>ul,
-#arrivalList>ul {
-    display: block;
-    position: absolute;
-    left: 0;
-    z-index: 1;
-    min-width: 300px;
-    width: 100%;
-    box-sizing: border-box;
-    list-style: none;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    background: #fff;
-    font-size: .875rem;
-    top: 2.5rem
-}
-
-#departureList>ul li:before,
-#arrivalList>ul li:before {
-    content: "";
-    position: absolute;
-    left: 0
-}
-
-@media print,
-screen and (min-width:48.0625em) {
-    #departureList>ul,
-    #arrivalList>ul {
-        width: 150%
-    }
-}
-
-#departureList>ul:empty,
-#arrivalList>ul:empty {
-    display: none
-}
-
-#departureList>ul,
-#arrivalList>ul {
-    border-radius: .3125rem;
-    margin: .2em 0 0;
-    background-color: hsla(216, 37%, 38%, .9);
-    background-image: linear-gradient(to bottom right, #fff, hsla(216, 37%, 38%, .8));
-    border: 1px solid #667698;
-    box-shadow: .05em .2em .6em rgba(0, 0, 0, .2);
-    text-shadow: none;
-    max-height: 305px;
-    overflow-y:auto;
-}
-
-@supports (transform:scale(0)) {
-    #departureList>ul,
-    #arrivalList>ul {
-        transition: .3s cubic-bezier(.4, .2, .5, 1.4);
-        transform-origin: 1.43em -.43em
-    }
-    #departureList>ul:empty,
-    #arrivalList>ul:empty,
-    #departureList>ul[hidden],
-    #arrivalList>ul[hidden] {
-        opacity: 0;
-        transform: scale(0);
-        display: block;
-        transition-timing-function: ease
-    }
-}
-
-#departureList>ul:before,
-#arrivalList>ul:before {
-    content: "";
-    position: absolute;
-    top: -.47em;
-    left: 1em;
-    width: 0;
-    height: 0;
-    padding: .4em;
-    background: hsla(216, 37%, 38%, .5);
-    border: inherit;
-    border-right: 0;
-    border-bottom: 0;
-    transform: rotate(45deg);
-    z-index: -1
-}
-
-#departureList>ul>li,
-#arrivalList>ul>li {
-    position: relative;
-    padding: .2em .5em;
-    cursor: pointer;
-    color: #afafb1
-}
-
-#departureList>ul>li:nth-of-type(odd),
-#arrivalList>ul>li:nth-of-type(odd) {
-    background-color: #fff
-}
-
-#departureList>ul>li:nth-of-type(even),
-#arrivalList>ul>li:nth-of-type(even) {
-    background-color: #e9eaef
-}
-
-#departureList>ul>li:first-child,
-#arrivalList>ul>li:first-child {
-    border-radius: .25rem .25rem 0 0
-}
-
-#departureList>ul>li:last-child,
-#arrivalList>ul>li:last-child {
-    border-radius: 0 0 .25rem .25rem
-}
-#departureList>ul>li:only-child,
-#arrivalList>ul>li:only-child {
-    border-radius: .25rem  .25rem  .25rem .25rem
-}
-
-#departureList>ul>li:hover,
-#arrivalList>ul>li:hover,
-#departureList>ul>li[aria-selected=true],
-#arrivalList>ul>li[aria-selected=true] {
-    background-color: #0a2669;
-    color: #fff;
-}
-#departureList>ul>li>a,
-#arrivalList>ul>li>a{
-    display: block;
-
-}#departureList>ul>li>a:hover,
-#arrivalList>ul>li>a:hover{
-    color: #fff;
-    text-decoration: none;
-}
-
-#departureList mark,
-#arrivalList mark {
-    background-color: transparent;
-    font-weight: 900;
-    color: #698fc6
-}
-
-#departureList li:hover mark,
-#arrivalList li:hover mark {
-    background-color: transparent;
-    color: #698fc6
-}
-
-#departureList li[aria-selected=true] mark,
-#arrivalList li[aria-selected=true] mark {
-    background-color: transparent;
-    color: #698fc6
-}
-
-.empty-leg-widget-container #departureList ul,
-.empty-leg-widget-container #arrivalList ul,
-.mini-quote-tabs-container #departureList ul,
-.mini-quote-tabs-container #arrivalList ul {
-    max-height: 240px;
-    overflow-y: scroll
-}
-
-.btn-default {
-    width: 100% !important;
-    height: 2.75rem !important;
-    font-size: 0.9rem !important;
-    color: #c6ddff !important;
-    background-color: #2b4b7a !important;
-    border: 1px solid #2b4b7a !important;
-    border-radius: 0.2rem !important;
-    text-transform: uppercase !important;
-}

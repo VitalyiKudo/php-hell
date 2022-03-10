@@ -20,7 +20,7 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['login', 'register']);
+        $this->middleware('auth:api,api_admin')->except(['login', 'register', 'admin_login']);
     }
 
     /**
@@ -174,6 +174,62 @@ class AccountController extends Controller
         }
         
         return $this->createNewToken(auth()->user());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\Client\UpdateAccount  $request
+     * @return \Illuminate\Http\Response
+     * 
+     * @OA\Put(
+     *     path="/api/profile/account/admin_login",
+     *     description="Administrator login",
+     *     tags={"Account"},
+     *     @OA\RequestBody(
+     *       required=true,
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               type="object",
+     *               @OA\Property(
+     *                   property="email",
+     *                   description="Administrator email",
+     *                   type="string",
+     *                   example="ihamzehald@gmail.com"
+     *               ),
+     *               @OA\Property(
+     *                   property="password",
+     *                   description="Administrator password",
+     *                   type="string",
+     *                   example="larapoints123"
+     *               ),
+     *           )
+     *        )
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
+     */
+    public function admin_login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        
+        if (! $user = auth()->guard('admin')->attempt($validator->validated())) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        return $this->createNewToken(auth()->guard('admin')->user());
     }
 
     /**

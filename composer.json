@@ -12,6 +12,7 @@
         "authorizenet/authorizenet": "^2.0",
         "awobaz/compoships": "^2.1",
         "aws/aws-sdk-php": "~3.0",
+        "beyondcode/laravel-websockets": "*",
         "darkaonline/l5-swagger": "5.8.*",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
@@ -22,6 +23,7 @@
         "maatwebsite/excel": "^3.1",
         "pragmarx/countries": "^0.5.9",
         "propaganistas/laravel-phone": "^4.1",
+        "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-robots-middleware": "^1.2",
         "spatie/laravel-sitemap": "^5.8"
     },

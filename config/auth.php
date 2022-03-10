@@ -50,6 +50,11 @@ return [
             'provider' => 'clients',
             'hash' => true,
         ],
+        'api_admin' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+            'hash' => true,
+        ],
         /*
         'api' => [
             'driver' => 'token',

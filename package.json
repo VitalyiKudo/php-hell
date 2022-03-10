@@ -28,7 +28,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "laravel-echo": "^1.11.3",
+        "pusher-js": "^7.0.6",
         "vue-bootstrap-typeahead": "0.2.6",
+        "vue-chat-scroll": "^1.4.0",
         "vue2-daterange-picker": "^0.4.4",
         "webpack": "^4.41.5"
     }

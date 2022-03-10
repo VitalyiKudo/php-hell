@@ -108,4 +108,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Transaction');
     }
+    
+    public function messages(){
+        return $this->hasMany('App\Models\Message');
+    }
+    
+    public function rooms(){
+        return $this->hasMany('App\Models\Room');
+    }
 }
