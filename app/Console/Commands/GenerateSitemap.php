@@ -43,7 +43,8 @@ class GenerateSitemap extends Command
             ->hasCrawled(function (Url $url) {
 
                 // Set priority
-                $url->setPriority(0.9);
+                #$url->setPriority(0.9);
+                if (empty($url->segment(1))) { $url->setPriority(1); }
                 if (Str::contains($url->segment(1), ['services', 'login'])) { $url->setPriority(0.9); }
                 if (Str::contains($url->segment(1), 'aircraft')) { $url->setPriority(0.8); }
                 if (Str::contains($url->segment(1), ['about', 'register'])) { $url->setPriority(0.5); }
