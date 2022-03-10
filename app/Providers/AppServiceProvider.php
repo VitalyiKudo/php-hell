@@ -38,6 +38,9 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(IdeHelperServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
+        else {
+            $this->app->register(\HTMLMin\HTMLMin\HTMLMinServiceProvider::class);
+        }
     }
 
     /**

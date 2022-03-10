@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         #Barryvdh\Debugbar\ServiceProvider::class,
-        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+        #HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
         /*
          * Application Service Providers...
          */

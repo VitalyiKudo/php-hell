@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
-use Psr\Http\Message\UriInterface;
 use Spatie\Crawler\Crawler;
+use Illuminate\Support\Str;
 
 class GenerateSitemap extends Command
 {
@@ -30,21 +30,36 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        // modify this to your own needs
-        SitemapGenerator::create(config('app.url'))
-            ->getSitemap()
-            ->add(Url::create('/')->setPriority(0.9))
-            ->add(Url::create('/services')->setPriority(0.9))
-            ->add(Url::create('/aircraft')->setPriority(0.8))
-            ->add(Url::create('/about')->setPriority(0.5))
-            ->add(Url::create('/support')->setPriority(0.2))
-            ->add(Url::create('/register')->setPriority(0.5))
-            ->add(Url::create('/login')->setPriority(0.9))
-            ->add(Url::create('/aircraft')->setPriority(0.8))
-            ->add(Url::create('/privacy-policy')->setPriority(0.1))
-            ->add(Url::create('/terms-conditions')->setPriority(0.2))
-            ->add(Url::create('/password/reset')->setPriority(0.2))
-            ->writeToFile(public_path('sitemap.xml'));
+        $generator = SitemapGenerator::create(config('app.url'))
+            #->maxTagsPerSitemap(10000)
+            ->configureCrawler(function (Crawler $crawler) {
+                $crawler
+                    ->setUserAgent(config('app.name').'/'.app()->version())
+                    ->setDelayBetweenRequests(150)
+                    ->setParseableMimeTypes(['text/html'])
+                    ->ignoreRobots();
+            })
+
+            ->hasCrawled(function (Url $url) {
+
+                // Set priority
+                $url->setPriority(0.9);
+                if (Str::contains($url->segment(1), ['services', 'login'])) { $url->setPriority(0.9); }
+                if (Str::contains($url->segment(1), 'aircraft')) { $url->setPriority(0.8); }
+                if (Str::contains($url->segment(1), ['about', 'register'])) { $url->setPriority(0.5); }
+                if (Str::contains($url->segment(1), ['terms-conditions', 'password', 'support'])) { $url->setPriority(0.2); }
+                if (Str::contains($url->segment(1), 'privacy-policy')) { $url->setPriority(0.1); }
+
+                // Fix urls with trailing slash
+                if (Str::endsWith($url->url, '/')) {
+                    $url->url = rtrim($url->url, '/');
+                    return $url;
+                }
+
+                return $url;
+            });
+
+        $generator->writeToFile(public_path('sitemap.xml'));
 
         return 'Sitemap generated';
     }

@@ -27,7 +27,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('sitemap:generate')->daily();
-        $schedule->command('telescope:prune')->daily();
+        if ($this->app->environment() === 'local') {
+            $schedule->command('telescope:prune')->daily();
+        }
     }
 
     /**
