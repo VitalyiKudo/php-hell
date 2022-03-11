@@ -19,4 +19,4 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-mix.minify(['public/css/app.css', 'public/js/app.js']);
+mix.minify(['public/css/app.css', 'public/js/app.js', 'public/css/admin.css']);

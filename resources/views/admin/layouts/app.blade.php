@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.min.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link type="text/css" href="{{ mix('css/admin.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ mix('css/admin.min.css') }}" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209752116-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
