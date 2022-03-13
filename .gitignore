@@ -19,6 +19,8 @@ yarn-error.log
 /nbproject
 /.idea
 .idea
+/.php-cs-fixer.dist.php
+/.php-cs-fixer.cache
 # IDE helper meta-files
 /_ide_helper.php
 /.phpstorm.meta.php

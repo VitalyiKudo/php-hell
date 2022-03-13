@@ -120,7 +120,8 @@ class AirportController extends Controller
             foreach ($data as $item=>$city) {
                 foreach ($city as $key=>$value) {
                     if (empty($result[$i]['city'])) $result[$i]['city'] = $value->city;
-                    if (empty($result[$i]['id'])) $result[$i]['id'] = $value->geonameid;
+                    #if (empty($result[$i]['id'])) $result[$i]['id'] = $value->geonameid;
+                    if (empty($result[$i]['id'])) $result[$i]['id'] = (empty($value->areaid)) ? $value->geonameid : $value->areaid;
                     if (empty($result[$i]['region'])) $result[$i]['region'] = $value->region;
                     if (empty($result[$i]['country'])) $result[$i]['country'] = $value->country;
 
@@ -151,9 +152,9 @@ class AirportController extends Controller
 
 
         $airlines = Airline::where('type', 'like', "{$keyword}%")
-                ->limit(10000)
-                ->groupBy('type')
-                ->get();
+            ->limit(10000)
+            ->groupBy('type')
+            ->get();
 
         return response()->json($airlines);
     }
