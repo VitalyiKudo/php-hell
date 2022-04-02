@@ -88,7 +88,7 @@ class EmptyLegController extends Controller
             'geoNameIdCity_departure' => $request->input('geoNameIdCityDeparture'),
             'icao_arrival' => $request->input('icaoArrival'),
             'geoNameIdCity_arrival' => $request->input('geoNameIdCityArrival'),
-            'operator' => $request->input('operator'),
+            'operator' => $request->input('operatorEmail'),
             'type_plane' => $request->input('typePlane'),
             'price' => $request->input('price'),
             'date_departure' => $request->input('dateDeparture')
