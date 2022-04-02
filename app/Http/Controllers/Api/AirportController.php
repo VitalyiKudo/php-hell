@@ -7,7 +7,7 @@ use App\Models\Airport;
 use App\Models\Country;
 use App\Models\Region;
 use App\Models\City;
-use App\Models\AirportAreas;
+use App\Models\AirportArea;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Airport as AirportResource;

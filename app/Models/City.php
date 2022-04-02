@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Airport;
 use App\Models\Region;
-use App\Models\AirportAreas;
+use App\Models\AirportArea;
 use App\Models\Country;
 
 /**
@@ -117,7 +117,7 @@ class City extends Model
      */
     public function airportAreas()
     {
-        return $this->hasMany(AirportAreas::class, 'geoNameIdCity', 'geonameid');
+        return $this->hasMany(AirportArea::class, 'geoNameIdCity', 'geonameid');
     }
 
     /**
@@ -125,7 +125,7 @@ class City extends Model
      */
     public function operatorCities()
     {
-        return $this->hasMany(OperatorCities::class, 'geoNameIdCity', 'geonameid');
+        return $this->hasMany(OperatorCity::class, 'geoNameIdCity', 'geonameid');
     }
 
 }

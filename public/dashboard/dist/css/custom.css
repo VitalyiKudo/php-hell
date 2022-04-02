@@ -1,0 +1,24 @@
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    background-color: transparent;
+    border: none !important;
+    margin: -7px -11px;
+    opacity: 0.78;
+}
+.select2-container {
+    height: max-content !important;
+}
+/* remove X from locked tag */
+.locked-tag .select2-selection__choice__remove {
+    display: none!important;
+}
+
+/* I suggest to hide  all selected tags from drop down list */
+.select2-results__option[aria-selected="true"] {
+    display: none;
+}
+
+.color-placeholder {
+    color: #999;
+    opacity: 0.9;
+}

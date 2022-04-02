@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Operator
@@ -40,20 +41,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Operator extends Model
 {
+    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'source_id',
         'name',
         'web_site',
         'email',
+        'email_other',
         'phone',
         'mobile',
         'fax',
         'address',
+        'active',
     ];
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
 }

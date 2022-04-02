@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Models\City;
 
 /**
  * App\Models\Airport
@@ -51,6 +54,7 @@ use Illuminate\Database\Eloquent\Model;
 class Airport extends Model
 {
     use \Awobaz\Compoships\Compoships;
+    #use SoftDeletes;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -88,7 +92,7 @@ class Airport extends Model
      */
     public function region()
     {
-        return $this->hasOneThrough(Region::class, City::class);
+        #return $this->hasOneThrough(Region::class, City::class);
     }
 
     /**
@@ -102,9 +106,9 @@ class Airport extends Model
     /**
      * Get the airport of the city.
      */
-    public function cityFull()
+    public function cities()
     {
-        return $this->belongsTo(City::class, ['geoNameIdCity', 'iso_country', 'geoNameIdCity'], ['geonameid', 'iso_country', 'iso_region']);
+        return $this->belongsTo(City::class, ['geoNameIdCity'], ['geonameid']);
     }
 
     /**
@@ -120,6 +124,6 @@ class Airport extends Model
      */
     public function airportAreas()
     {
-        return $this->hasMany(AirportAreas::class, 'icao', 'icao');
+        return $this->hasMany(AirportArea::class, 'icao', 'icao');
     }
 }
