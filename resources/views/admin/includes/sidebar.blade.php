@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.operators.index') }}" class="nav-link {{ Request::is('manage/operators*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.operators.index') }}" class="nav-link {{ Request::is('manage/operators*') ? 'active' : '' }}" style="color: green">
                         <i class="nav-icon fas fa-map-marker"></i>
                         <p>
                             {{ __('Operators') }}
@@ -115,7 +115,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.emptyLegs.index') }}" class="nav-link {{ Request::is('manage/emptyLegs*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.emptyLegs.index') }}" class="nav-link {{ Request::is('manage/emptyLegs*') ? 'active' : '' }}" style="color: green">
                         <i class="nav-icon fas fa-fire"></i>
                         <p>
                             {{ __('Empty Legs') }}
