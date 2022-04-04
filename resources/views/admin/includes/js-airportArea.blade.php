@@ -324,7 +324,7 @@
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#emptyLegs').DataTable({
+        $('#airportAreas').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -335,7 +335,9 @@
         });
 
         $(function(){
-            $('#emptyLegs span').tooltip();
+            $('[data-toggle="tooltip"]').tooltip({
+                placement: 'left'
+            });
         });
 
     });

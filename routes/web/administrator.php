@@ -57,4 +57,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('emptyLeg/ajaxSearchAirport', 'EmptyLegController@ajaxSearchAirport')->name('emptyLeg.ajaxSearchAirport');
     Route::resource('emptyLegs', 'EmptyLegController');
 
+    // AirportArea
+    Route::get('airportArea/search','AirportAreaController@search')->name('airportArea.search');
+    Route::post('airportArea/import', 'AirportAreaController@import')->name('airportArea.import');
+    Route::post('airportArea/ajaxSearchOperator', 'AirportAreaController@ajaxSearchOperator')->name('airportArea.ajaxSearchOperator');
+    Route::post('airportArea/ajaxSearchAirport', 'AirportAreaController@ajaxSearchAirport')->name('airportArea.ajaxSearchAirport');
+    Route::resource('airportAreas', 'AirportAreaController');
+
 });

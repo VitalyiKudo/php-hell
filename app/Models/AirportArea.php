@@ -55,4 +55,21 @@ class AirportArea extends Model
     {
         return $this->belongsTo(City::class, 'geoNameIdCity', 'geonameid');
     }
+
+    public function getAirportAreas()
+    {
+        return  $this->with('airport', 'city', 'city.regionCountry', 'city.country')
+            /*->withCount(['city.airport'])*/->get()->map(function ($res) {
+            return [
+                'id' => $res->id,
+                #'icao' => $res->icao,
+                'geoNameIdCity' => $res->geoNameIdCity,
+                #'airportName' => $res->airport->name,
+                #'airportCount' => $res->city->airport->airport_count,
+                'cityName' => $res->city->name,
+                'regionName' => $res->city->regionCountry->name,
+                'countryName' => $res->city->country->name,
+            ];
+        })->unique('geoNameIdCity')->values()->paginate(25);
+    }
 }

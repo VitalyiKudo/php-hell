@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">EmptyLegs</li>
+                    <li class="breadcrumb-item active" aria-current="page">AirportAreas</li>
                 </ol>
             </nav>
         </div>
@@ -21,7 +21,7 @@
                     <input type="file" name="file" class="form-control mr-3">
                     <button class="btn btn-success" onclick="return confirm('Are you sure that you want to update the database, but the old data will be lost?')">Import Data from Excel</button>
                 </form>
-                <a href="{{ route('admin.emptyLegs.create') --}}" class="btn btn-primary">Add new</a>
+                <a href="{{ route('admin.airportAreas.create') --}}" class="btn btn-primary">Add new</a>
             </div>
         </div>
     </div -->
@@ -49,43 +49,39 @@
             <div class="card mb-3">
                 <div class="card-body">
 
-                    <a href="{{ route('admin.emptyLegs.create') }}" class="btn btn-primary float-right">Add new</a>
-                    <h5>EmptyLegs</h5>
-                    <h6 class="card-subtitle mb-3 text-muted">The list of EmptyLegs</h6>
+                    <a href="{{ route('admin.airportAreas.create') }}" class="btn btn-primary float-right">Add new</a>
+                    <h5>AirportAreas</h5>
+                    <h6 class="card-subtitle mb-3 text-muted">The list of AirportAreas</h6>
 
-                    @if ($emptyLegs->isNotEmpty())
+                    @if ($airportAreas->isNotEmpty())
                         <div class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="emptyLegs" class="table table-bordered table-striped table-hover dataTable dtr-inline">
+                                    <table id="airportAreas" class="table table-bordered table-striped table-hover dataTable dtr-inline">
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Status</th>
-                                            <th>Departure Date</th>
-                                            <th>Departure Airport</th>
-                                            <th>Arrival Airport</th>
-                                            <th>Operator</th>
-                                            <th>Price</th>
+                                            <th>Area</th>
+                                            <th>Count Airport</th>
+                                            <th>State</th>
+                                            <th>Country</th>
                                             <th></th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach ($emptyLegs as $emptyLeg)
+                                        @foreach ($airportAreas as $key => $airportArea)
                                             <tr>
-                                                <td>{{ $emptyLeg['id'] }}</td>
-                                                <td><span class="badge{{ $emptyLeg['active'] === 1 ? ' bg-danger' :  ' bg-success' }}">{{ $emptyLeg['active'] === 1 ? 'Active' :  'Done' }}</span></td>
-                                                <td>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}</td>
-                                                <td><span data-toggle="tooltip" data-title="{{ $emptyLeg['airportDeparture'] }}">{{ $emptyLeg['icaoDeparture'] }}</span></td>
-                                                <td><span data-toggle="tooltip" title="{{ $emptyLeg['airportArrival'] }}">{{ $emptyLeg['icaoArrival'] }}</span></td>
-                                                <td><span data-toggle="tooltip" title="{{ $emptyLeg['operatorName'] }}">{{ $emptyLeg['operatorEmail'] }}</span></td>
-                                                <td>{{ $emptyLeg['price'] }}</td>
+                                                <td>{{ ++$key }}</td>
+                                                <td>{{ $airportArea['cityName'] }}</td>
+                                                <td></td>
+                                                <td>{{ $airportArea['regionName'] }}</td>
+                                                <td>{{ $airportArea['countryName'] }}</td>
                                                 <td class="text-right">
-                                                    <a href="{{ route('admin.emptyLegs.edit', $emptyLeg['id']) }}" class="btn btn-secondary btn-sm">
+                                                    <a href="{{ route('admin.airportAreas.edit', $airportArea['id']) }}" class="btn btn-secondary btn-sm">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ route('admin.emptyLegs.show', $emptyLeg['id']) }}" class="btn btn-secondary btn-sm">
+                                                    <a href="{{ route('admin.airportAreas.show', $airportArea['id']) }}" class="btn btn-secondary btn-sm">
                                                         View
                                                     </a>
                                                 </td>
@@ -99,18 +95,18 @@
                         </div>
                     @else
                         <div class="alert alert-primary mb-0">
-                            The list of emptyLegs is empty.
+                            The list of airportAreas is empty.
                         </div>
                     @endif
                 </div>
             </div>
 
-            {{ $emptyLegs->links() }}
+            {{ $airportAreas->links() }}
         </div>
         <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     </div>
 </div>
 
-@include('admin.includes.js-emptyLeg')
+@include('admin.includes.js-airportArea')
 
 @endsection
