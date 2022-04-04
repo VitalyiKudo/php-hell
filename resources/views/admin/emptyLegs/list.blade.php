@@ -77,9 +77,9 @@
                                                 <td>{{ $emptyLeg['id'] }}</td>
                                                 <td><span class="badge{{ $emptyLeg['active'] === 1 ? ' bg-danger' :  ' bg-success' }}">{{ $emptyLeg['active'] === 1 ? 'Active' :  'Done' }}</span></td>
                                                 <td>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}</td>
-                                                <td><span data-toggle="tooltip" data-title="{{ $emptyLeg['airportDeparture'] }}">{{ $emptyLeg['icaoDeparture'] }}</span></td>
-                                                <td><span data-toggle="tooltip" title="{{ $emptyLeg['airportArrival'] }}">{{ $emptyLeg['icaoArrival'] }}</span></td>
-                                                <td><span data-toggle="tooltip" title="{{ $emptyLeg['operatorName'] }}">{{ $emptyLeg['operatorEmail'] }}</span></td>
+                                                <td><span class="cursor-pointer" data-toggle="tooltip" data-title="{{ $emptyLeg['airportDeparture'] }}">{{ $emptyLeg['icaoDeparture'] }}</span></td>
+                                                <td><span class="cursor-pointer" data-toggle="tooltip" title="{{ $emptyLeg['airportArrival'] }}">{{ $emptyLeg['icaoArrival'] }}</span></td>
+                                                <td><span class="cursor-pointer" data-toggle="tooltip" title="{{ $emptyLeg['operatorName'] }}">{{ $emptyLeg['operatorEmail'] }}</span></td>
                                                 <td>{{ $emptyLeg['price'] }}</td>
                                                 <td class="text-right">
                                                     <a href="{{ route('admin.emptyLegs.edit', $emptyLeg['id']) }}" class="btn btn-secondary btn-sm">
