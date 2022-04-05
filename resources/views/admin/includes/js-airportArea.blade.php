@@ -326,12 +326,20 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#airportAreas').DataTable({
             "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "lengthChange": true,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "processing": true,
+            "lengthMenu": [5, 10, 25, 50, 75, 100],
+            "pageLength": 10,
+            "pagingType": "full_numbers",
+            dom: 'Qlfrtip',
+            searchBuilder: {
+                depthLimit: 2
+            }
         });
 
         $(function(){
@@ -339,6 +347,22 @@
                 placement: 'left'
             });
         });
+
+        function filterByDetailsExtNoAndInput(term) {
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    if ($(details[dataIndex]).find('.extNo').text() == term) return true;
+                    for (var i=0;i<data.length;i++) {
+                        if (data[i].toLowerCase().indexOf(term.toLowerCase())>=0) {
+                            return true
+                        }
+                    }
+                    return false;
+                }
+            )
+            table.draw();
+            $.fn.dataTable.ext.search.pop();
+        }
 
     });
 

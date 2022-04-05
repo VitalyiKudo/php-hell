@@ -59,10 +59,11 @@
                                 <div class="col-sm-12">
                                     <table id="airportAreas" class="table table-bordered table-striped table-hover dataTable dtr-inline">
                                         <thead>
+                                        <tr>{{ $airportAreas->links() }}</tr>
                                         <tr>
                                             <th>#</th>
                                             <th>Area</th>
-                                            <th>Count Airport</th>
+                                            <th>Count Airport Basic/Additional</th>
                                             <th>State</th>
                                             <th>Country</th>
                                             <th></th>
@@ -74,7 +75,7 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $airportArea['cityName'] }}</td>
-                                                <td></td>
+                                                <td>{{ $airportArea['cityAirportCount'] }}/{{ $airportArea['areaAirportCount'] }}</td>
                                                 <td>{{ $airportArea['regionName'] }}</td>
                                                 <td>{{ $airportArea['countryName'] }}</td>
                                                 <td class="text-right">
@@ -88,6 +89,7 @@
                                             </tr>
                                         @endforeach
                                         </tbody>
+                                        <tfooter><tr>{{ $airportAreas->links() }}</tr></tfooter>
                                     </table>
                                 </div>
                             </div>

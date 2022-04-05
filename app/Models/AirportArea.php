@@ -45,7 +45,23 @@ class AirportArea extends Model
      */
     public function airport()
     {
-        return $this->belongsTo(Airport::class, 'icao', 'icao');
+        return $this->hasMany(Airport::class, 'icao', 'icao');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function cityAirport()
+    {
+        return $this->hasMany(Airport::class, 'geoNameIdCity', 'geoNameIdCity');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function areaAirport()
+    {
+        return $this->hasMany(AirportArea::class, 'geoNameIdCity', 'geoNameIdCity');
     }
 
     /**
@@ -56,20 +72,36 @@ class AirportArea extends Model
         return $this->belongsTo(City::class, 'geoNameIdCity', 'geonameid');
     }
 
+    /**
+     * @return mixed
+     */
     public function getAirportAreas()
     {
-        return  $this->with('airport', 'city', 'city.regionCountry', 'city.country')
-            /*->withCount(['city.airport'])*/->get()->map(function ($res) {
-            return [
+        return  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
+        #$test =  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
+            ->withCount(['cityAirport', 'areaAirport'])#->toSql();
+            ->get()
+            ->map(function ($res) {
+            return [ #$res
                 'id' => $res->id,
                 #'icao' => $res->icao,
                 'geoNameIdCity' => $res->geoNameIdCity,
                 #'airportName' => $res->airport->name,
-                #'airportCount' => $res->city->airport->airport_count,
+                'cityAirportCount' => $res->city_airport_count,
+                'cityAirport' => $res->cityAirport,#->toArray(),
+                'areaAirportCount' => $res->area_airport_count - $res->city_airport_count,
+                #'areaAirport' => $res->areaAirport,
+                'areaAirport' => $res->areaAirport->diffKeys($res->cityAirport),#->toArray(),
                 'cityName' => $res->city->name,
                 'regionName' => $res->city->regionCountry->name,
                 'countryName' => $res->city->country->name,
             ];
-        })->unique('geoNameIdCity')->values()->paginate(25);
+        })
+            ->unique('geoNameIdCity')
+            ->values()
+            ->paginate(25);
+            #->first()
+            #->toArray();#->paginate(25);
+        #dd($test);
     }
 }

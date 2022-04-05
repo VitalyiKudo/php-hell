@@ -39,8 +39,9 @@ class AirportAreaController extends Controller
      */
     public function index(AirportArea $airportArea)
     {
+        #dd($airportArea->airport->all());
         $airportAreas = $airportArea->getAirportAreas();
-dd($airportAreas);
+#dd($airportAreas);
         return view('admin.airportAreas.list', compact('airportAreas'));
     }
 
