@@ -62,6 +62,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('airportArea/import', 'AirportAreaController@import')->name('airportArea.import');
     Route::post('airportArea/ajaxSearchOperator', 'AirportAreaController@ajaxSearchOperator')->name('airportArea.ajaxSearchOperator');
     Route::post('airportArea/ajaxSearchAirport', 'AirportAreaController@ajaxSearchAirport')->name('airportArea.ajaxSearchAirport');
+    #Route::get('airportArea/ajaxDataList', 'AirportAreaController@ajaxDataList')->name('airportArea.ajaxDataList');
     Route::resource('airportAreas', 'AirportAreaController');
 
 });

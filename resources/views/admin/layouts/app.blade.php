@@ -63,5 +63,6 @@
 
         {{-- include javascript files --}}
         {{-- @include('admin.includes.js') --}}
+        @stack('scripts')
     </body>
 </html>

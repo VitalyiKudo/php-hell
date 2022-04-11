@@ -27,6 +27,11 @@ use App\Models\City;
  * @method static \Illuminate\Database\Eloquent\Builder|AirportAreas whereSortBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AirportAreas whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read int|null $airport_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|AirportArea[] $areaAirport
+ * @property-read int|null $area_airport_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Airport[] $cityAirport
+ * @property-read int|null $city_airport_count
  */
 class AirportArea extends Model
 {
@@ -98,8 +103,8 @@ class AirportArea extends Model
             ];
         })
             ->unique('geoNameIdCity')
-            ->values()
-            ->paginate(25);
+            ->values();
+            #->paginate(25);
             #->first()
             #->toArray();#->paginate(25);
         #dd($test);

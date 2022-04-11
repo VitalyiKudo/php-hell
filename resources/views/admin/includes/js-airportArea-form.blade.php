@@ -28,7 +28,7 @@
             tags: false,
             placeholder:'Select a Operator',
             ajax: {
-                url: '{{ route('admin.emptyLeg.ajaxSearchOperator') }}',
+                url: '{{ route('admin.airportArea.ajaxSearchOperator') }}',
                 dataType: 'json',
                 type: 'post',
                 quietMillis: 50,
@@ -62,7 +62,7 @@
             tags: false,
             placeholder:'Select a Airport',
             ajax: {
-                url: '{{ route('admin.emptyLeg.ajaxSearchAirport') }}',
+                url: '{{ route('admin.airportArea.ajaxSearchAirport') }}',
                 dataType: 'json',
                 type: 'post',
                 quietMillis: 50,
@@ -107,7 +107,7 @@
             tags: false,
             placeholder:'Select a Airport',
             ajax: {
-                url: '{{ route('admin.emptyLeg.ajaxSearchAirport') }}',
+                url: '{{ route('admin.airportArea.ajaxSearchAirport') }}',
                 dataType: 'json',
                 type: 'post',
                 quietMillis: 50,
@@ -289,80 +289,6 @@
         $('#typePlane').on('change', function () {
             this.value == '' ? $(this).addClass('color-placeholder') : $(this).removeClass('color-placeholder')
         });
-
-        function fetch_data(page, query)
-        {
-            $.ajax({
-                url:"/manage/emptyLeg/search?page="+page+"&query="+query,
-                success:function(data)
-                {
-                    $('#fetch-list').html('');
-                    $('#fetch-list').html(data);
-                }
-            });
-        }
-
-        $(document).on('keyup', '#search', function(){
-            var query = $('#search').val();
-            var page = $('#hidden_page').val();
-            fetch_data(page, query);
-        });
-
-        /*$(document).on('click', '.pagination a', function(event){
-            event.preventDefault();
-            var page = $(this).attr('href').split('page=')[1];
-            $('#hidden_page').val(page);
-            var query = $('#search').val();
-
-            $('li').removeClass('active');
-            $(this).parent().addClass('active');
-            fetch_data(page, query);
-        });*/
-
-
-        $("#emptyLegs1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#airportAreas').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "processing": true,
-            "lengthMenu": [5, 10, 25, 50, 75, 100],
-            "pageLength": 10,
-            "pagingType": "full_numbers",
-            dom: 'Qlfrtip',
-            searchBuilder: {
-                depthLimit: 2
-            }
-        });
-
-        $(function(){
-            $('[data-toggle="tooltip"]').tooltip({
-                placement: 'left'
-            });
-        });
-
-        function filterByDetailsExtNoAndInput(term) {
-            $.fn.dataTable.ext.search.push(
-                function(settings, data, dataIndex) {
-                    if ($(details[dataIndex]).find('.extNo').text() == term) return true;
-                    for (var i=0;i<data.length;i++) {
-                        if (data[i].toLowerCase().indexOf(term.toLowerCase())>=0) {
-                            return true
-                        }
-                    }
-                    return false;
-                }
-            )
-            table.draw();
-            $.fn.dataTable.ext.search.pop();
-        }
 
     });
 

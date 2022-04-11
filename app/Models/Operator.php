@@ -38,6 +38,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $city
  * @method static \Illuminate\Database\Eloquent\Builder|Operator whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Operator whereState($value)
+ * @property string|null $email_other
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|Operator onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Operator whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Operator whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Operator whereEmailOther($value)
+ * @method static \Illuminate\Database\Query\Builder|Operator withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Operator withoutTrashed()
  */
 class Operator extends Model
 {

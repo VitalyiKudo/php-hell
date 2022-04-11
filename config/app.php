@@ -165,8 +165,15 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Yajra\DataTables\HtmlServiceProvider::class,
+        Yajra\DataTables\ButtonsServiceProvider::class,
+        Yajra\DataTables\EditorServiceProvider::class,
         #Barryvdh\Debugbar\ServiceProvider::class,
         #HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+
+        // Laravel IDE helper
+        #'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class',
         /*
          * Application Service Providers...
          */
@@ -236,6 +243,7 @@ return [
         'Carbon' => Carbon\Carbon::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

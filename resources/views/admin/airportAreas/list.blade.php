@@ -53,13 +53,16 @@
                     <h5>AirportAreas</h5>
                     <h6 class="card-subtitle mb-3 text-muted">The list of AirportAreas</h6>
 
-                    @if ($airportAreas->isNotEmpty())
+                    {{--@if ($airportAreas->isNotEmpty())--}}
                         <div class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="airportAreas" class="table table-bordered table-striped table-hover dataTable dtr-inline">
+
+                                    {!! $dataTable->table() !!}
+
+                                    {{--<table id="airportAreasY" class="table table-bordered table-striped table-hover dataTable dtr-inline">
                                         <thead>
-                                        <tr>{{ $airportAreas->links() }}</tr>
+                                        <tr>{{-- $airportAreas->links() }}</tr>
                                         <tr>
                                             <th>#</th>
                                             <th>Area</th>
@@ -71,7 +74,7 @@
                                         </thead>
 
                                         <tbody>
-                                        @foreach ($airportAreas as $key => $airportArea)
+                                        {{--@foreach ($airportAreas as $key => $airportArea)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $airportArea['cityName'] }}</td>
@@ -87,28 +90,40 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach }}
                                         </tbody>
-                                        <tfooter><tr>{{ $airportAreas->links() }}</tr></tfooter>
-                                    </table>
+                                        <tfoot><tr>{{-- $airportAreas->links() }}</tr></tfoot>
+                                    </table> --}}
                                 </div>
                             </div>
 
                         </div>
-                    @else
+                    {{--@else
                         <div class="alert alert-primary mb-0">
                             The list of airportAreas is empty.
                         </div>
-                    @endif
+                    @endif--}}
                 </div>
             </div>
 
-            {{ $airportAreas->links() }}
+            {{-- $airportAreas->links() --}}
         </div>
         <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     </div>
 </div>
 
-@include('admin.includes.js-airportArea')
+
+
+{{--@include('admin.includes.js-airportArea-list')--}}
 
 @endsection
+
+{{--@push('js')
+    //push the scripts
+    {!! $datatable->script() !!}
+@endpush--}}
+
+@push('scripts')
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    {!! $dataTable->scripts() !!}
+@endpush
