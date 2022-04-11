@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Search;
 use App\Models\Pricing;
 use App\Models\Operator;
-use App\User;
+use App\Models\User;
 
 
 class OrderController extends Controller

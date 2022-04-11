@@ -45,7 +45,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.min.css') }}" rel="stylesheet">
     <!--<link href="{{ asset('css/custom.css') }}" rel="stylesheet">-->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -76,11 +76,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item item-position">
-                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
-                        </li>
 
                         @guest()
+                            <li class="nav-item item-position">
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
+                            </li>
+
                             <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ url('services') }}">{{ __('Services') }}</a>
                             </li>
@@ -100,25 +101,35 @@
                                 <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="https://blog.jetonset.com/">{{ __('Blog') }}</a>
                             </li>
                         @else
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
+                            </li>
+
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('profile*') ? 'active' : '' }}" href="{{ route('client.profile') }}">{{ __('Profile') }}</a>
                             </li>
 
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('requests') ? 'active' : '' }}" href="{{ route('client.requests.index') }}">{{ __('Requests') }}</a>
                             </li>
 
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('orders') ? 'active' : '' }}" href="{{ route('client.orders.index') }}">{{ __('Orders') }}</a>
                             </li>
+
+                            <li class="nav-item item-position auth-navbar">
+                                <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
+                            </li>
+
                         @endguest
 
-                        <li class="nav-item item-position">
-                            <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
-                        </li>
-
                         @guest()
-                            <li class="nav-item item-position border-lg-right margin-lg-left ">
+
+                                <li class="nav-item item-position">
+                                    <a class="nav-link {{ Request::is('support') ? 'active' : '' }}" href="{{ url('support') }}">{{ __('Support') }}</a>
+                                </li>
+
+                                <li class="nav-item item-position border-lg-right margin-lg-left ">
                                 <a class="nav-link nav-item-custom-color" href="{{ route('client.register') }}">
 
                                     <img src="/images/sg.svg" loading="lazy" class="icon-img mr-1 sg-icon" alt="..."></span>
@@ -129,7 +140,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <svg width="1" height="50" viewBox="0 0 1 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="2px" height="100%" preserveAspectRatio="none" viewBox="0 0 1 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <line opacity="0.1" x1="0.5" x2="0.5" y2="68" stroke="#2B4060"/>
                                 </svg>
                             </li>
@@ -141,7 +152,7 @@
                                     {{ __('Log In') }}</a>
                             </li>
                         @else
-                            <li class="nav-item item-position">
+                            <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link" href="{{ route('client.logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -190,7 +201,9 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
                         <h5 class="column-title text-uppercase">Contact</h5>
                         <p class="mb-3">If you have any questions or concerns, don't hesitate to reach out to us today! We'are happy to help!</p>
-                        <a href="mailto:info@jetonset.com"><p class="mb-3"><i class="fas fa-envelope mr-3"></i>info@jetonset.com</p></a>
+                        <a href="mailto:info@jetonset.com"><p class="mb-3">
+                                <i class="fas fa-envelope mr-3"><img loading="lazy" src="/images/jetonset-envelope.svg" alt="" width="12" height="12"></i>
+                                info@jetonset.com</p></a>
                         <p class="mb-3">JetOnset does not own or operate aircraft. All flights are operated by FAA Certified Part 135 air carriers. Carriers providing service for JetOnset clients must meet both FAA requirements and additional JetOnset standards.</p>
                     </div>
 
@@ -198,6 +211,20 @@
                         <h5 class="column-title text-uppercase">Join our newsletter</h5>
                         <p class="mb-3">Receive the latest reviews, offers and more</p>
                         <subscribe></subscribe>
+
+
+                            <div class="row logo-app">
+                                <div>
+                                    <img src="/images/iOS-logo.webp" class="logo-ios" loading="lazy" alt="...">
+                                    <!--p class="download-text">Download Now for iOS</p-->
+                                </div>
+                                <div>
+                                    <img src="/images/Android-logo.webp" class="logo-android" loading="lazy" alt="...">
+                                    <!--p class="download-text">Download Now for Android</p-->
+                                </div>
+                            </div>
+
+
                     </div>
                 </div>
 
@@ -209,7 +236,7 @@
                     <div class="col-12 col-lg-4 order-1 mb-3">
                         <div class="row mb-0 justify-content-center">
                             <div class="col-auto">
-                                <a href="https://www.facebook.com/jet.onset" target="_blank"><img src="/images/facebook-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
+                                <a href="https://www.facebook.com/JetOnset-107938548410959" target="_blank"><img src="/images/facebook-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                             <div class="col-auto">
                                 <a href="https://www.instagram.com/jetonset/" target="_blank"><img src="/images/instagram-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
@@ -219,6 +246,9 @@
                             </div>
                             <div class="col-auto">
                                 <a href="https://www.pinterest.com/4jetonset/" target="_blank"><img src="/images/pinest-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="https://jetonset.tumblr.com/" target="_blank"><img src="/images/tumblr-icon.webp" loading="lazy" class="social-ico" alt="..."></a>
                             </div>
                         </div>
                     </div>
@@ -233,7 +263,7 @@
         </div>
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.min.js') }}"></script>
 
 
 

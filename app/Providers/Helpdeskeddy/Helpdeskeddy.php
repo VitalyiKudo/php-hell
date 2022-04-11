@@ -3,7 +3,7 @@
 namespace App\Providers\Helpdeskeddy;
 
 use Auth;
-use App\User;
+use App\Models\User;
 use GuzzleHttp\Client as HttpClient;
 
 class Helpdeskeddy

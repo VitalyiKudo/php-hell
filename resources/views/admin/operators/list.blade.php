@@ -11,7 +11,7 @@
             </nav>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-between mb-3">
@@ -34,7 +34,7 @@
             </div>
         </div>
     @endif
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="mb-4 mt-1">
@@ -47,9 +47,9 @@
         <div class="col-md-12" id="fetch-list">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Operators</h5>
+                    <h5>Operators</h5>
                     <h6 class="card-subtitle mb-3 text-muted">The list of Operators</h6>
-                    
+
                     @if ($operators->isNotEmpty())
                         <div class="table-responsive">
                             <table class="table table-hover table-vertical-middle mb-0">
@@ -118,7 +118,7 @@
             fetch_data(page, query);
         });
 
-        $(document).on('click', '.pagination a', function(event){
+        /*$(document).on('click', '.pagination a', function(event){
             event.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
             $('#hidden_page').val(page);
@@ -127,7 +127,7 @@
             $('li').removeClass('active');
             $(this).parent().addClass('active');
             fetch_data(page, query);
-        });
+        });*/
 
     });
 </script>

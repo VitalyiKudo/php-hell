@@ -67,6 +67,7 @@
                                         value="{{ $params['startPointName'] }}"
                                     >
                                     <input type="hidden" name="startPoint" autocomplete="off" value="{{ $params['startPoint'] }}">
+                                    <input type="hidden" name="startAirport" autocomplete="off" value="{{ $params['startAirport'] }}">
                                     <div id="departureList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="departure-airport">
@@ -85,6 +86,7 @@
                                         value="{{ $params['endPointName'] }}"
                                     >
                                     <input type="hidden" name="endPoint" autocomplete="off" value="{{ $params['endPoint'] }}">
+                                    <input type="hidden" name="endAirport" autocomplete="off" value="{{ $params['endAirport'] }}">
                                     <div id="arrivalList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="arrival-airport">
@@ -687,8 +689,10 @@
                            <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
                            <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}" id="start_airport_name">
                            <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}" id="end_airport_name">
-                            <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" id="start_airport_id">
-                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" id="end_airport_id">
+                            <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" id="start_city_id">
+                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" id="end_city_id">
+                            <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" id="start_airport_id">
+                            <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" id="end_airport_id">
                            <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
                            <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
                            <input type="hidden" name="page_name" value="search-page">
@@ -994,7 +998,7 @@
        $('input.from').keyup(function(){
            var query = $(this).val();
 
-           if(query != '' && query.length >= 2){
+           if(query != '' && query.length >= 3){
                var _token = $('input[name="_token"]').val();
                $.ajax({
                    url: "/api/airports",
@@ -1015,16 +1019,21 @@
                        var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                        if (data.length !== 0){
-                           $.each(withoutDuplicates, function(idx, obj) {
-
-                               var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                           $.each(data, function(idx, obj) {
+                               var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                               var objAirport = obj.airport;
 
-                               output += '<li><a href="' + obj.geonameid + '">' +
-                                   '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                   '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                   '</a></li>';
+                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
+
+                               $.each(objAirport, function(k, val) {
+                                   var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                   output += '<li><a href="' + obj.id + '">' +
+                                       '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
+                                       '</a></li>';
+                               });
+
                            });
                        }
                        else {
@@ -1042,6 +1051,7 @@
            e.preventDefault();
            $('input.from').val($(this).find('span:first').text());
            $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
+           $('input[name="startAirport"]').val($(this).find('icao:first').text());
            $('#departureList').fadeOut();
        });
 
@@ -1049,7 +1059,7 @@
        $('input.to').keyup(function(){
            var query = $(this).val();
 
-           if(query != '' && query.length >= 2){
+           if(query != '' && query.length >= 3){
                var _token = $('input[name="_token"]').val();
                $.ajax({
                    url: "/api/airports",
@@ -1070,16 +1080,21 @@
                        var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                        if (data.length !== 0){
-                           $.each(withoutDuplicates, function(idx, obj) {
-
-                               var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                           $.each(data, function(idx, obj) {
+                               var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                               var objAirport = obj.airport;
 
-                               output += '<li><a href="' + obj.geonameid + '">' +
-                                   '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                   '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                   '</a></li>';
+                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
+
+                               $.each(objAirport, function(k, val) {
+                                   var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                   output += '<li><a href="' + obj.id + '">' +
+                                       '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
+                                       '</a></li>';
+                               });
+
                            });
                        }
                        else {
@@ -1097,6 +1112,7 @@
            e.preventDefault();
            $('input.to').val($(this).find('span:first').text());
            $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
+           $('input[name="endAirport"]').val($(this).find('icao:first').text());
            $('#arrivalList').fadeOut();
        });
 

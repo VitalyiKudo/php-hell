@@ -104,7 +104,7 @@
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
                                         <span class='main-text'>562</span>
-                                        <span class="scale">miles</span>
+                                        <span class="scale">mph</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
@@ -245,7 +245,7 @@
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
                                         <span class='main-text'>562</span>
-                                        <span class="scale">miles</span>
+                                        <span class="scale">mph</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
@@ -387,7 +387,7 @@
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
                                         <span class='main-text'>603</span>
-                                        <span class="scale">miles</span>
+                                        <span class="scale">mph</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
@@ -469,7 +469,7 @@
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
                                         <span class='main-text'>534</span>
-                                        <span class="scale">miles</span>
+                                        <span class="scale">mph</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">
@@ -612,7 +612,7 @@
                                     <span class='sub-text'>Cruise speed</span>
                                     <div>
                                         <span class='main-text'>360</span>
-                                        <span class="scale">miles</span>
+                                        <span class="scale">mph</span>
                                     </div>
                                 </div>
                                 <div class="div-plane-details-colums">

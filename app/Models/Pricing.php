@@ -6,6 +6,48 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
 
 
+/**
+ * App\Models\Pricing
+ *
+ * @property int $id
+ * @property string|null $source_id
+ * @property string $departure
+ * @property int $departure_geoId
+ * @property string $arrival
+ * @property int $arrival_geoId
+ * @property string $time_turbo
+ * @property string|null $price_turbo
+ * @property string|null $time_light
+ * @property string|null $price_light
+ * @property string|null $time_medium
+ * @property string|null $price_medium
+ * @property string|null $time_heavy
+ * @property string|null $price_heavy
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read City $arrivalCity
+ * @property-read City $departureCity
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereArrival($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereArrivalGeoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereDeparture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereDepartureGeoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing wherePriceHeavy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing wherePriceLight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing wherePriceMedium($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing wherePriceTurbo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereSourceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereTimeHeavy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereTimeLight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereTimeMedium($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereTimeTurbo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pricing whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Pricing extends Model
 {
     /**

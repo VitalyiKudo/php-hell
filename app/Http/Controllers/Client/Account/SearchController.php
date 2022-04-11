@@ -64,10 +64,10 @@ class SearchController extends Controller
         }
 
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
-                                ->orderBy('id', 'desc')
-                                ->take(4)
-                                ->get()
-                                ->reverse();
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get()
+            ->reverse();
 
         $search = new Search;
         $search->result_id = $params["result_id"];
@@ -105,12 +105,12 @@ class SearchController extends Controller
 
     public function findAirport($keyword) {
         $airport = Airport::where('name', $keyword)
-                ->orWhere('name', str_replace('-', ' ', $keyword))
-                ->orWhere('name', str_replace('.', '', $keyword))
-                ->orWhere('city', $keyword)
-                ->orWhere('city', str_replace('-', ' ', $keyword))
-                ->orWhere('city', str_replace('.', '', $keyword))
-                ->first();
+            ->orWhere('name', str_replace('-', ' ', $keyword))
+            ->orWhere('name', str_replace('.', '', $keyword))
+            ->orWhere('city', $keyword)
+            ->orWhere('city', str_replace('-', ' ', $keyword))
+            ->orWhere('city', str_replace('.', '', $keyword))
+            ->first();
 
         return $airport->id;
     }
@@ -125,13 +125,13 @@ class SearchController extends Controller
 
     public function findCoordinates($query) {
         $airport = DB::table('airports')
-                ->where('name', $query)
-                ->orWhere('name', str_replace('-', ' ', $query))
-                ->orWhere('name', str_replace('.', '', $query))
-                ->orWhere('city', $query)
-                ->orWhere('city', str_replace('-', ' ', $query))
-                ->orWhere('city', str_replace('.', '', $query))
-                ->first();
+            ->where('name', $query)
+            ->orWhere('name', str_replace('-', ' ', $query))
+            ->orWhere('name', str_replace('.', '', $query))
+            ->orWhere('city', $query)
+            ->orWhere('city', str_replace('-', ' ', $query))
+            ->orWhere('city', str_replace('.', '', $query))
+            ->first();
 
         return is_object($airport) ? ['lat' => $airport->latitude, 'lng' => $airport->longitude] : NULL;
     }
@@ -267,10 +267,10 @@ class SearchController extends Controller
 
 
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
-                                ->orderBy('id', 'desc')
-                                ->take(4)
-                                ->get()
-                                ->reverse();
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get()
+            ->reverse();
 
         $searchResult = Search::where('user_id', Auth::user()->id)->latest()->first();
 

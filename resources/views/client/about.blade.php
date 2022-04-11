@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row text-padding">
             <div class="col">
-                <h1 class="mb-2 color-blue"> About JetOnset</h2>
+                <h1 class="mb-2 color-blue"> About JetOnset</h1>
                 <h2 class="mb-0 color-blue">Why Charter Jets with JetOnset?</h2>
             </div>
         </div>
@@ -35,12 +35,12 @@
         <div class="row">
             <div class="col-md-6 services-text">
                 <h2 class="services-h2 color-white">Sky Philosophy</h2>
-                <p class="services-p color-white">We believe the sky is sacred, and your time in it should be treated with respect. We aren't just a private jet charter company, we want your entire experience to and from to be as comfortable and hands-free as your time in the air. We can arrange personal Black class transportation to and from your plane.  </p> 
-                
+                <p class="services-p color-white">We believe the sky is sacred, and your time in it should be treated with respect. We aren't just a private jet charter company, we want your entire experience to and from to be as comfortable and hands-free as your time in the air. We can arrange personal Black class transportation to and from your plane.  </p>
+
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 notif-delimiter">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="200" viewBox="0 0 3 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect opacity="0.5" width="3" height="145" fill="#EFAE9F"/>
                         </svg>
 
@@ -54,7 +54,7 @@
             <div class="col-md-6 services-image sky-philosophy-image"></div>
         </div>
     </div>
-    <div class="container services2 services-fullwidth">
+    <div class="container services services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image artificial-technology-image"></div>
             <div class="col-md-6 services-text">
@@ -64,7 +64,7 @@
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 notif-delimiter">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect opacity="0.5" width="3" height="102" fill="#EFAE9F"/>
                         </svg>
 
@@ -85,7 +85,7 @@
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 notif-delimiter">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect opacity="0.5" width="3" height="78" fill="#EFAE9F"/>
                         </svg>
 
@@ -98,7 +98,7 @@
             <div class="col-md-6 services-image private-screening-image"></div>
         </div>
     </div>
-    <div class="container services2 services-fullwidth">
+    <div class="container services services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image private-booker-image"></div>
             <div class="col-md-6 services-text">
@@ -107,7 +107,7 @@
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 notif-delimiter">
                         <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="3" height="156" viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect opacity="0.5" width="3" height="103" fill="#EFAE9F"/>
                         </svg>
 

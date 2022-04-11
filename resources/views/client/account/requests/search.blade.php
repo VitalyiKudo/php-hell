@@ -966,7 +966,7 @@
             $('input.from').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -987,16 +987,22 @@
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             if (data.length !== 0){
-                                $.each(withoutDuplicates, function(idx, obj) {
-
-                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                $.each(data, function(idx, obj) {
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                     var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                     var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                                    var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
+                                    var objAirport = obj.airport;
 
-                                    output += '<li><a href="' + obj.geonameid + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                        '</a></li>';
+                                    output += '<div>' + '<span>' + city + ' ('+ area +')</span><span>' + region + country + '</span>' + '</div>';
+
+                                    $.each(objAirport, function(k, val) {
+                                        var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                        output += '<li><a href="' + obj.id + '">' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span>' + val.icao + iata + '</span>' + '</div>' +
+                                            '</a></li>';
+                                    });
+
                                 });
                             }
                             else {
@@ -1021,7 +1027,7 @@
             $('input.to').keyup(function(){
                 var query = $(this).val();
 
-                if(query != '' && query.length >= 2){
+                if(query != '' && query.length >= 3){
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
                         url: "/api/airports",
@@ -1042,16 +1048,22 @@
                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             if (data.length !== 0){
-                                $.each(withoutDuplicates, function(idx, obj) {
-
-                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city + ', ' : '';
+                                $.each(data, function(idx, obj) {
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                     var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                     var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                                    var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
+                                    var objAirport = obj.airport;
 
-                                    output += '<li><a href="' + obj.geonameid + '">' +
-                                        '<div>'+ '<span>'+ obj.name +'</span>' + '<span style="float: right">' + obj.icao + '</span>' + '</div>' +
-                                        '<div>'  + '<span>' + city + region + country + '</span>' + '</div>' +
-                                        '</a></li>';
+                                    output += '<div>' + '<span>' + city + ' ('+ area +')</span><span>' + region + country + '</span>' + '</div>';
+
+                                    $.each(objAirport, function(k, val) {
+                                        var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                        output += '<li><a href="' + obj.id + '">' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span>' + val.icao + iata + '</span>' + '</div>' +
+                                            '</a></li>';
+                                    });
+
                                 });
                             }
                             else {

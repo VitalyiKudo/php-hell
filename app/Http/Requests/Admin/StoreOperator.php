@@ -25,14 +25,14 @@ class StoreOperator extends FormRequest
     public function rules()
     {
         return [
-            'source_id' => 'numeric|max:255',
             'name' => 'required|string|max:255',
-            'web_site' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
+            'web_site' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'mobile' => 'nullable|string|max:255',
             'fax' => 'nullable|string|max:255',
             'address' => 'nullable|min:5',
+            'active' => 'required|numeric',
         ];
     }
 }

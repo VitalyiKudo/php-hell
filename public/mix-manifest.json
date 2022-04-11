@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/admin.css": "/css/admin.css"
+    "/css/app.min.css": "/css/app.min.css?id=9862db891afdf832f5d1dba9e5fe300a",
+    "/js/app.min.js": "/js/app.min.js?id=b73919e5e050d8e39f066714b89ebab6",
+    "/css/admin.min.css": "/css/admin.min.css?id=36750ffd35d3e88a5b46f88bdb3f7367"
 }

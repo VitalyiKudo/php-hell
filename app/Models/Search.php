@@ -5,6 +5,49 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
 
+/**
+ * App\Models\Search
+ *
+ * @property int $id
+ * @property int|null $user_id
+ * @property int $result_id
+ * @property string|null $start_airport_name
+ * @property int $departure_geoId
+ * @property string|null $end_airport_name
+ * @property int $arrival_geoId
+ * @property string|null $departure_at
+ * @property int $pax
+ * @property string|null $comment
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $session_id
+ * @property-read City $arrivalCity
+ * @property-read City $departureCity
+ * @property-read \App\Models\Airport $end_airport
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SearchResult[] $results
+ * @property-read int|null $results_count
+ * @property-read \App\Models\Airport $start_airport
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Search newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Search newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Search query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereArrivalGeoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereDepartureAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereDepartureGeoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereEndAirportName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search wherePax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereResultId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereSessionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereStartAirportName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Search whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Search extends Model
 {
     /**
@@ -23,7 +66,7 @@ class Search extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**

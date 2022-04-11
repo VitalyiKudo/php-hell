@@ -35,7 +35,7 @@
             <div class="col-md-6 services-image luxury-travel-image"></div>
         </div>
     </div>
-    <div class="container services2 services-fullwidth">
+    <div class="container services services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image corporate-travel-image"></div>
             <div class="col-md-6 services-text">
@@ -71,7 +71,7 @@
             <div class="col-md-6 services-image private-transportation-image"></div>
         </div>
     </div>
-    <div class="container services2 services-fullwidth">
+    <div class="container services services-fullwidth">
         <div class="row">
             <div class="col-md-6 services-image medical-tourism-image"></div>
             <div class="col-md-6 services-text">

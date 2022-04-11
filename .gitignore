@@ -2,9 +2,13 @@
 /public/hot
 /public/storage
 /public/robots.txt
+/public/sitemap.xml
 /storage/*.key
 /vendor
 .env
+/package-lock.json
+/composer.lock
+/yarn.lock
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -15,3 +19,14 @@ yarn-error.log
 /nbproject
 /.idea
 .idea
+/.php-cs-fixer.dist.php
+/.php-cs-fixer.cache
+# IDE helper meta-files
+/_ide_helper.php
+/.phpstorm.meta.php
+/_ide_helper_models.php
+# Telescope
+/config/telescope.php
+/app/Providers/TelescopeServiceProvider.php
+/public/vendor/*
+

@@ -8,6 +8,8 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Schema;
 use GuzzleHttp\Client;
+use Laravel\Telescope\TelescopeServiceProvider;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +31,16 @@ class AppServiceProvider extends ServiceProvider
                 'base_uri' => $baseUrl,
             ]);
         });
+
+        if ($this->app->environment() === 'local') {
+            #$this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
+        else {
+            $this->app->register(\HTMLMin\HTMLMin\HTMLMinServiceProvider::class);
+        }
     }
 
     /**

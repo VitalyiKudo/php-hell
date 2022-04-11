@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\Search;

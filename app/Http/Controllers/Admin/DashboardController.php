@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Search;
 use App\Http\Controllers\Controller;
