@@ -24,18 +24,18 @@ class RequestController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
+     *
      * @OA\Get(
      *     path="/api/requests",
      *     description="User data Page",
      *     tags={"Request Quote"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
     public function index()
     {

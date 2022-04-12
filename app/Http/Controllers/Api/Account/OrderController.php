@@ -45,18 +45,18 @@ class OrderController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
+     *
      * @OA\Get(
      *     path="/api/orders",
      *     description="List of Orders",
      *     tags={"Orders"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
     public function index()
     {
@@ -129,11 +129,11 @@ class OrderController extends Controller
 
         return redirect()->route('client.orders.booking', $order->id);
     }
-    
+
     /**
-     * 
+     *
      * Order step #2
-     * 
+     *
      * @OA\Get(
      *     path="/api/orders/{search}/confirm/{type}",
      *     description="Order step #2",
@@ -146,7 +146,7 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\Parameter(
      *         name="type",
@@ -161,14 +161,14 @@ class OrderController extends Controller
      *                 enum = {"turbo", "light", "medium", "heavy"},
      *                 default="turbo",
      *             )
-     *         ) 
+     *         )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
 
     public function confirm(Request $request)
@@ -197,7 +197,7 @@ class OrderController extends Controller
 
         $start_airport_name = $search->start_airport_name;
         $end_airport_name = $search->end_airport_name;
-        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
+        $departure_at = $search->departure_at;
         $pax = $search->pax;
 
         $pricing = Pricing::find($search->result_id);
@@ -241,13 +241,13 @@ class OrderController extends Controller
 
             }
         }
-        
+
         return response()->json([
-            'search_id' => $search_id, 
-            'search_type' => $search_type, 
-            'pricing' => $pricing, 
-            'price' => $price, 
-            'time' => $time, 
+            'search_id' => $search_id,
+            'search_type' => $search_type,
+            'pricing' => $pricing,
+            'price' => $price,
+            'time' => $time,
             'user' => $user,
             'start_airport_name' => $start_airport_name,
             'end_airport_name' => $end_airport_name,
@@ -261,9 +261,9 @@ class OrderController extends Controller
 
 
     /**
-     * 
+     *
      * Order step #3
-     * 
+     *
      * @OA\Get(
      *     path="/api/orders/{search}/square/{type}",
      *     description="Order step #3",
@@ -276,7 +276,7 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\Parameter(
      *         name="type",
@@ -291,16 +291,16 @@ class OrderController extends Controller
      *                 enum = {"turbo", "light", "medium", "heavy"},
      *                 default="turbo",
      *             )
-     *         ) 
+     *         )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      * Order step #3
-     * 
+     *
      * @OA\Post(
      *     path="/api/orders/{search}/square/{type}",
      *     description="Order step #3",
@@ -313,7 +313,7 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\Parameter(
      *         name="type",
@@ -445,13 +445,13 @@ class OrderController extends Controller
      *        )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
-    
+
     public function square(Request $request)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url_api');
@@ -702,14 +702,14 @@ class OrderController extends Controller
                             */
 
                             return response()->json([
-                                'order_id' => $order->id, 
-                                'order' => Order::Find($order->id), 
-                                'search' => Search::Find($order->search_result_id), 
-                                'search_type' => $search_type, 
-                                'time' => $time, 
+                                'order_id' => $order->id,
+                                'order' => Order::Find($order->id),
+                                'search' => Search::Find($order->search_result_id),
+                                'search_type' => $search_type,
+                                'time' => $time,
                                 'pricing' => $pricing,
                             ]);
-                            
+
                             //return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
 
                         }
@@ -745,7 +745,7 @@ class OrderController extends Controller
             'comments' => $request->input('comments'),
             'is_accepted' => $request->input('is_accepted'),
         ];
-        
+
         return response()->json([
             'messages' => $messages,
             'upper_case_environment' => $upper_case_environment,
@@ -774,9 +774,9 @@ class OrderController extends Controller
     }
 
     /**
-     * 
+     *
      * Order step #2
-     * 
+     *
      * @OA\Get(
      *     path="/api/orders/{search}/confirm",
      *     description="Order step #2",
@@ -789,16 +789,16 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
-    
+
     public function requestConfirm(Request $request)
     {
         $session_id = Session::get('session_token_id');
@@ -864,7 +864,7 @@ class OrderController extends Controller
 
             }
         }
-        
+
         return response()->json([
             'search_id' => $search_id,
             'search_type' => $search_type,
@@ -880,13 +880,13 @@ class OrderController extends Controller
             'total_price' => $total_price,
             'pervis_search_url' => $pervis_search_url,
         ]);
-        
+
     }
 
     /**
-     * 
+     *
      * Order step #3
-     * 
+     *
      * @OA\Get(
      *     path="/api/orders/{search}/square",
      *     description="Order step #3",
@@ -899,16 +899,16 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      * Order step #3
-     * 
+     *
      * @OA\Post(
      *     path="/api/orders/{search}/square",
      *     description="Step #3",
@@ -921,7 +921,7 @@ class OrderController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
-     *         ) 
+     *         )
      *     ),
      *     @OA\RequestBody(
      *       required=true,
@@ -1038,11 +1038,11 @@ class OrderController extends Controller
      *        )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
 
     public function requestSquare(Request $request)
@@ -1149,7 +1149,7 @@ class OrderController extends Controller
             if ($validator->fails()){
                 $messages = $validator->messages();
             } else {
-                
+
                 $nonce = $request->input('nonce');
                 if (!is_null($nonce)) {
 
@@ -1162,19 +1162,19 @@ class OrderController extends Controller
                     $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
 
                     try {
-                        
+
                         $response = $payments_api->createPayment($create_payment_request);
-                        
+
                         if ($response->isError()) {
                             $errors = $response->getErrors();
                             foreach ($errors as $error) {
                                 $cart_errors[] = $error->getDetail();
                             }
-                            
+
 
                         }
                         if ($response->isSuccess()) {
-                            
+
                             $payment = $response->getResult()->getPayment();
                             $payment_id = $payment->getId();
 
@@ -1269,9 +1269,9 @@ class OrderController extends Controller
                                 Mail::send([], [], function ($message) use ($email, $request, $date, $airports) {
                                     $user = Auth::user();
                                     $message->from($user->email, 'JetOnset team');
-                                    
+
                                     $message->to($email)->subject("We have request for you #{$request->input('search_result_id')}");
-                                    
+
                                     $message->setBody("Dear all!\n\nCan you send me the quote for a flight from {$airports['start_city']} to {$airports['end_city']} on {$date} for a company of {$airports['pax']} people for " . ucfirst($airports['type']) . " class of airplane.\n\nBest regards,\n{$user->first_name} {$user->last_name}\nJetOnset\n{$user->phone_number}");
                                 });
                             }
@@ -1286,14 +1286,14 @@ class OrderController extends Controller
                             $search = Search::Find($order->search_result_id);
                             $time = "00:00";
                             */
-                            
+
                             return response()->json([
-                                'order_id' => $order->id, 
-                                'order' => $order, 
-                                'search' => Search::Find($order->search_result_id), 
+                                'order_id' => $order->id,
+                                'order' => $order,
+                                'search' => Search::Find($order->search_result_id),
                                 'time' => "00:00",
                             ]);
-                            
+
                             //return redirect()->route('client.orders.request_succeed', $order->id);
                         }
 
@@ -1326,7 +1326,7 @@ class OrderController extends Controller
             'is_accepted' => $request->input('is_accepted'),
         ];
 
-        
+
         return response()->json([
             'search_id' => $search_id,
             'messages' => $messages,
@@ -1352,7 +1352,7 @@ class OrderController extends Controller
             'pervis_confirm_url' => $pervis_confirm_url,
             'post_form_url' => $post_form_url,
         ]);
-        
+
     }
 
     public function succeed(Request $request)
