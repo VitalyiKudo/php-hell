@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-###> doctrine/doctrine-bundle ###
+
   database:
     image: mysql:5.7
     environment:
@@ -13,6 +13,13 @@ services:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql:rw
+
+  mailer:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
 
 volumes:
   db-data:

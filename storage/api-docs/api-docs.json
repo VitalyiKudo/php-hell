@@ -746,6 +746,36 @@
                 ]
             }
         },
+        "/api/profile/account/forgot-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "description": "User forgot password.",
+                "operationId": "e290aedb914f7bba1ec8789f8327bad7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/profile": {
             "get": {
                 "tags": [

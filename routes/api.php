@@ -31,6 +31,7 @@ Route::delete('profile/account', 'Account\Profile\AccountController@destroy');
 Route::put('profile/account/login', 'Account\Profile\AccountController@login');
 Route::put('profile/account/admin_login', 'Account\Profile\AccountController@admin_login');
 Route::post('profile/account/register', 'Account\Profile\AccountController@register');
+Route::post('profile/account/forgot-password', 'Account\Profile\ForgotPasswordController@forgot');
 Route::put('profile/account/refresh', 'Account\Profile\AccountController@refresh');
 
 // Requests
