@@ -641,10 +641,22 @@
                                         "type": "string",
                                         "example": "11/12/1986"
                                     },
+                                    "gender": {
+                                        "type": "string",
+                                        "enum": [
+                                            "male",
+                                            "female",
+                                            "other"
+                                        ]
+                                    },
                                     "address": {
                                         "description": "Address",
                                         "type": "string",
                                         "example": "larapoints123"
+                                    },
+                                    "address_secondary": {
+                                        "type": "string",
+                                        "example": "larapoints 123"
                                     },
                                     "country": {
                                         "description": "Country",
@@ -791,10 +803,22 @@
                                         "type": "string",
                                         "example": "11/12/1986"
                                     },
+                                    "gender": {
+                                        "type": "string",
+                                        "enum": [
+                                            "male",
+                                            "female",
+                                            "other"
+                                        ]
+                                    },
                                     "address": {
                                         "description": "Address",
                                         "type": "string",
                                         "example": "larapoints123"
+                                    },
+                                    "address_secondary": {
+                                        "type": "string",
+                                        "example": "larapoints 123"
                                     },
                                     "country": {
                                         "description": "Country",

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Account\Profile;
 
-use App\UserCompanion;
-use App\User;
+use App\Models\UserCompanion;
+use App\Models\User;
 use Auth;
 use Hash;
 use Carbon\Carbon;
@@ -71,11 +71,11 @@ class CompanionController extends Controller
 
     public function list() {
         $userId = Auth::user()->id;
-        
-        $user = User::find($userId);    
-        
+
+        $user = User::find($userId);
+
         $companions = UserCompanion::where('user_id', $userId)->get();
-        
+
         return response()->json([
             'companion' => $companions,
             'user' => $user,

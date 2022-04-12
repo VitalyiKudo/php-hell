@@ -20,6 +20,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $date_of_birth
  * @property string|null $address
+ * @property string|null $gender
  * @property string|null $address_secondary
  * @property string|null $country
  * @property string|null $city
@@ -87,6 +88,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'gender',
         'email',
         'password',
         'address',

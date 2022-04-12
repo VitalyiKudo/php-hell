@@ -25,18 +25,18 @@ class PersonalInformationController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
+     *
      * @OA\Get(
      *     path="/api/profile",
      *     description="User data Page",
      *     tags={"Personal Information"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
     public function index()
     {
@@ -52,7 +52,7 @@ class PersonalInformationController extends Controller
      *
      * @param  \App\Http\Requests\Client\UpdatePersonalInfromation  $request
      * @return \Illuminate\Http\Response
-     * 
+     *
      * @OA\Put(
      *     path="/api/profile",
      *     description="Update profile data",
@@ -95,10 +95,20 @@ class PersonalInformationController extends Controller
      *                   example="11/12/1986"
      *               ),
      *               @OA\Property(
+     *                   property="gender",
+     *                   type="string",
+     *                   enum={"male", "female", "other"}
+     *               ),
+     *               @OA\Property(
      *                   property="address",
      *                   description="Address",
      *                   type="string",
      *                   example="larapoints123"
+     *               ),
+     *               @OA\Property(
+     *                   property="address_secondary",
+     *                   type="string",
+     *                   example="larapoints 123"
      *               ),
      *               @OA\Property(
      *                   property="country",
@@ -158,24 +168,26 @@ class PersonalInformationController extends Controller
      *        )
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
     public function update(Request $request)
     {
         $user = Auth::user();
-        
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'phone_number' => 'sometimes|nullable|string',
             'date_of_birth' => 'sometimes|nullable|date_format:m/d/Y',
+            'gender' => 'sometimes|nullable|string|in:male,female,other',
 
             'address' => 'sometimes|nullable|string',
+            'address_secondary' => 'sometimes|nullable|string',
             'country' => 'sometimes|nullable|string',
             'city' => 'sometimes|nullable|string',
             'state' => 'sometimes|nullable|string',
@@ -195,12 +207,14 @@ class PersonalInformationController extends Controller
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->phone_number = $request->input('phone_number');
+        $user->gender = $request->input('gender');
 
         if ($request->has('date_of_birth')) {
             $user->date_of_birth = $request->filled('date_of_birth') ? Carbon::createFromFormat('m/d/Y', $request->input('date_of_birth')) : null;
         }
 
         $user->address = $request->input('address');
+        $user->address_secondary = $request->input('address_secondary');
         $user->country = $request->input('country');
         $user->city = $request->input('city');
         $user->state = $request->input('state');
@@ -215,7 +229,7 @@ class PersonalInformationController extends Controller
         $user->save();
 
         $user->updateAuthorizeCustomer();
-        
+
         return response()->json([
             'user' => $user
         ]);
