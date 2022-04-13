@@ -25,29 +25,8 @@ class StoreAirportArea extends FormRequest
     public function rules()
     {
         return [
-            /*
-            'icaoDeparture' => 'required|string|max:12',
-            'geoNameIdCityDeparture' => 'nullable|numeric',
-            'icaoArrival' => 'required|string|max:12',
-            'geoNameIdCityArrival' => 'nullable|numeric',
-            'operatorEmail' => 'required|email|max:255l',
-            'typePlane' => 'required|string|max:20',
-            'price' => 'required|numeric',
-            'dateDeparture' => 'required|date|after:today',
-            'active' => 'nullable|numeric',*/
+            'areaAirport' => 'required|array',
+            'geoNameIdCity' => 'nullable|numeric',
         ];
-        /*
-
-
-      "icaoDeparture" => "SNOZ"
-      "geoNameIdCityDeparture" => "6317837"
-      "icaoArrival" => "OPMI"
-      "geoNameIdCityArrival" => "1170425"
-      "operatorEmail" => "test@test1.com"
-      "typePlane" => "plane_turbo"
-      "price" => "511.00"
-      "dateDeparture" => "2022-04-27"
-      "active" => "0"
-*/
     }
 }

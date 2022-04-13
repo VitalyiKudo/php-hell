@@ -165,10 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Yajra\DataTables\DataTablesServiceProvider::class,
-        Yajra\DataTables\HtmlServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class,
-        Yajra\DataTables\EditorServiceProvider::class,
         #Barryvdh\Debugbar\ServiceProvider::class,
         #HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 

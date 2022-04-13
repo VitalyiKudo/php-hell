@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">AirportAreas</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('Area Airports')}}</li>
                 </ol>
             </nav>
         </div>
@@ -49,9 +49,9 @@
             <div class="card mb-3">
                 <div class="card-body">
 
-                    <a href="{{ route('admin.airportAreas.create') }}" class="btn btn-primary float-right">Add new</a>
-                    <h5>AirportAreas</h5>
-                    <h6 class="card-subtitle mb-3 text-muted">The list of AirportAreas</h6>
+                    {{--<a href="{{ route('admin.airportAreas.create') }}" class="btn btn-primary float-right">Add new</a>--}}
+                    <h5>{{__('Area Airports')}}</h5>
+                    <h6 class="card-subtitle mb-3 text-muted">{{__('The list of Areas')}}</h6>
 
                     {{--@if ($airportAreas->isNotEmpty())--}}
                         <div class="dataTables_wrapper dt-bootstrap4">
@@ -117,11 +117,6 @@
 {{--@include('admin.includes.js-airportArea-list')--}}
 
 @endsection
-
-{{--@push('js')
-    //push the scripts
-    {!! $datatable->script() !!}
-@endpush--}}
 
 @push('scripts')
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>

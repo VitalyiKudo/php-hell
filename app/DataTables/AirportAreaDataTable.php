@@ -3,14 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\AirportArea;
-/*
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
-use Yajra\DataTables\Services\DataTable;
-*/
-use Illuminate\Http\Response;
 
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
@@ -18,26 +10,11 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
+use Yajra\DataTables\DataTables;
+
 class AirportAreaDataTable extends DataTable
 {
-    /*
-     * @param AirportArea $airportArea
-     *
-     * @return mixed
-     *
-    public function ajax($query, DataTables $dataTables)
-    {
-        return $dataTables
-            ->collection($query)
-            ->make(true);
-    }
-*/
-    /*
-     * Build DataTable class.
-     *
-     * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
-     */
+
     /**
      * Build DataTable class.
      *
@@ -45,42 +22,24 @@ class AirportAreaDataTable extends DataTable
      * @return  \Illuminate\Http\JsonResponse
      */
 
-    public function dataTable($query)
+    public function dataTable($query, DataTables $dataTables)
     {
-        #dd($query->toJson());
-        $res = dataTables()
-            ->collection($query)
-            ->addColumn('action', 'airport.action')
-            ->make(true);
-            #->toJson()
-            /*->addColumn('action', static function (AirportArea $customer) {
-                return "<a href='/customers/detail/{$customer->slug}' class='btn btn-success btn-sm w-100'>Detail</a>";
-            })*/
-            #);
-
-        #response = $res->toJson();
-        #dd($res);
-        #return $response;
-        return $this->$res;
+        return $dataTables->collection($query)->addColumn('action', function ($q) {
+            #dd($q['cityName']);
+            return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+        });
     }
 
-    /*
+    /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\AirportArea $model
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    /**
-     * @param AirportArea $model
+     * @param AirportArea $collect
      *
      * @return mixed
      */
-    public function query(AirportArea $model)
+    public function query(AirportArea $collect)
     {
-        #dd(datatables()->of($model)->toJson ());
-        #dd($model->getAirportAreas());
-        #return $this->applyScopes($model->getAirportAreas());
-        return $model->getAirportAreas();
+        return $collect->getAirportAreas();
     }
 
     /**
@@ -91,18 +50,22 @@ class AirportAreaDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('airportareas-table')
-                    ->columns($this->getColumns())
-                    #->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('airportAreas')
+            ->addTableClass('table table-bordered table-striped table-hover dataTable dtr-inline')
+            ->responsive(true)
+            ->columns($this->getColumns())
+            #->language( "//cdn.datatables.net/plug-ins/1.10.21/i18n/Russian.json" )
+            ->minifiedAjax()
+            ->pageLength(25)
+            ->dom('Bfrtip')
+            ->orderBy(0, 'asc')
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                #Button::make('reload')
+            );
     }
 
     /**
@@ -113,18 +76,14 @@ class AirportAreaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('#'),
-            Column::make('Area'),
-            Column::make('Count Airport Basic/Additional'),
-            Column::make('State'),
-            Column::make('Country'),
-            Column::make(''),
-        ];
+            Column::make('key')->title('#'),
+            Column::make('cityName')->title('Area'),
+            Column::make('cityAirportCount')->title('Count Basic'),
+            Column::make('areaAirportCount')->title('Count Additional'),
+            Column::make('regionName')->title('State'),
+            Column::make('countryName')->title('Country'),
+            Column::make('action')->title(''),
+            ];
     }
 
     /**

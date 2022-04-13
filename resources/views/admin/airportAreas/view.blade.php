@@ -7,9 +7,9 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.emptyLegs.index') }}">Empty Legs</a>
+                        <a href="{{ route('admin.airportAreas.index') }}">{{__('Areas Airports')}}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $airportArea['cityName'] }}</li>
                 </ol>
             </nav>
         </div>
@@ -18,39 +18,36 @@
         <div class="col-md-12">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3>View Empty Leg</h3>
-
+                    <h3>{{__('View Area')}}</h3>
                     <div class="card">
                         <div class="card-body">
 
                             <dl class="mb-0">
-                                <dt>Departure Date</dt>
-                                <dd>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}</dd>
+                                <dt>{{__('Area')}}</dt>
+                                <dd>{{ $airportArea['cityName'] }} {{ $airportArea['regionName'] }} {{ $airportArea['countryName'] }}</dd>
 
-                                <dt>Departure Airport</dt>
-                                <dd>{{ $emptyLeg['airportDeparture'] }}  ({{ $emptyLeg['icaoDeparture'] }})</dd>
+                                <dt>{{__('Airport Basic')}} ({{ $airportArea['cityAirportCount'] }})</dt>
+                                @forelse ($airportArea['cityAirport'] as $value)
+                                    <dd>{{ $value->icao }}/{{ $value->iata }} {{ $value->name }} </dd>
+                                @empty
+                                    <p>No city Airport</p>
+                                @endforelse
 
-                                <dt>Arrival Airport</dt>
-                                <dd>{{ $emptyLeg['airportArrival'] }}  ({{ $emptyLeg['icaoArrival'] }})</dd>
-
-                                <dt>Operator</dt>
-                                <dd>{{ $emptyLeg['operatorName'] }}  ({{ $emptyLeg['operatorEmail'] }})</dd>
-
-                                <dt>Price</dt>
-                                <dd>{{ $emptyLeg['price'] }}</dd>
-
-                                <dt>Status</dt>
-                                <dd>{{ $emptyLeg['active'] }}</dd>
+                                <dt>{{__('Airport Additional')}} ({{ $airportArea['areaAirportCount'] }})</dt>
+                                @forelse ($airportArea['areaAirport'] as $value)
+                                    @foreach($value->airport as $val)
+                                        <dd>{{ $val->icao }}/{{ $val->iata }} {{ $val->name }} ({{ $val->cities->name }}) </dd>
+                                    @endforeach
+                                @empty
+                                    <p>No area Airport</p>
+                                @endforelse
 
                             </dl>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 @endsection

@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Admin\StoreAirportArea as StoreAirportAreaRequest;
 use App\Http\Requests\Admin\UpdateAirportArea as UpdateAirportAreaRequest;
 
-use Yajra\Datatables\Datatables;
 use App\DataTables\AirportAreaDataTable;
-use App\TableModels\AirportAreasTable;
 
 use App\Models\AirportArea;
 
@@ -39,100 +37,18 @@ class AirportAreaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param AirportArea $airportArea
+     * @param AirportAreaDataTable $dataTable
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed|string
      */
-    public function index1()
+    public function index(AirportAreaDataTable $dataTable)
     {
-        #dd($request);
-
-        #$airportAreas = datatables($airportArea->getAirportAreas())->toJson();
-        #$airportAreas = $airportArea->getAirportAreas();#->toJson();
-        //$airportAreasJson = $airportAreas->toJson();
-        #$airportAreasJson = datatables($airportAreas)->toJson();
-        #$airportAreasJson = response()->json(datatables($airportAreas));
-        #$airportAreasJson = datatables()->of($airportAreas)->toJson ();
-#dd($airportAreas);
-#dd($airportAreasJson);
-        #return view('admin.airportAreas.list', compact('airportAreas'));
-        #return view('admin.airportAreas.list', compact('airportAreas'/*, 'airportAreasJson'*/));
-        return view('admin.airportAreas.list');
-    }
-
-    /**
-     * @param AirportAreaDataTable $dataTableAll
-     *
-     * @return mixed
-     */
-    public function index(AirportAreaDataTable $dataTable, AirportArea $airportArea)
-    {
-        #dd($dataTable);
-
-        #$airportAreas = datatables($airportArea->getAirportAreas())->toJson();
-        #$airportAreas = $airportArea->getAirportAreas();#->toJson();
-        //$airportAreasJson = $airportAreas->toJson();
-        #$airportAreasJson = datatables($airportAreas)->toJson();
-        #$airportAreasJson = response()->json(datatables($airportAreas));
-        #$airportAreasJson = datatables()->of($airportAreas)->toJson ();
-#dd($airportAreas);
-#dd($airportAreasJson);
-        #return view('admin.airportAreas.list', compact('airportAreas'));
-        #return view('admin.airportAreas.list', compact('airportAreas'/*, 'airportAreasJson'*/));
-        #return view('admin.airportAreas.list');
         try {
-            /*
-            $companies = Company::orderby('company_name', 'ASC')->get();
-            $contacts = Contact::orderby('name', 'ASC')->get();
-            $stautses = Status::orderby('status', 'ASC')->get();
-            return $quoteDataTable->render('quotes.index', array(
-                'companies' => $companies,
-                'statuses' => $stautses,
-                'contacts' => $contacts
-            ));response()->json(*/
-            #dd($airportAreas);
             return $dataTable->render('admin.airportAreas.list');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
 
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @param AirportArea $airportArea
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index2(AirportArea $airportArea)
-    {
-        $datatable = \DataTable::model(\App\Models\AirportArea::class)
-            ->tableModel(\App\TableModels\AirportAreasTable::class);
-
-        #return view('users.index')->with(compact('datatable'));
-        return view('admin.airportAreas.list')->with(compact('datatable'));
-    }
-
-    /**
-     * @param Request     $request
-     * @param AirportArea $airportArea
-     *
-     * @return void
-     */
-    public function ajaxDataList(Request $request, AirportArea $airportArea)
-    {
-        if ($request->ajax()) {
-            #$data = Student::latest()->get();
-            return Datatables::of($airportArea->getAirportAreas())
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="view btn btn-info btn-sm">View</a> <a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
     }
 
     /**
@@ -142,15 +58,14 @@ class AirportAreaController extends Controller
      */
     public function create()
     {
-        $typePlanes = Config::get('constants.TypePlane');
-
-        return view('admin.airportAreas.create', compact('typePlanes'));
+        return view('admin.airportAreas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\StoreAirportArea $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAirportAreaRequest $request, AirportArea $airportArea)
@@ -172,80 +87,59 @@ class AirportAreaController extends Controller
     }
 
     /**
-     * Store data from excel file.
+     * Display the specified resource.
      *
-     * @param  StoreAirportArea $request
-     * @return \Illuminate\Http\Response
+     * @param AirportArea $getArea
+     * @param          $geoNameIdCity
+     *
+     * @return Response
      */
-
-    public function import()
+    public function show(AirportArea $getArea, $geoNameIdCity)
     {
-        $status = "Excel file was not uploaded";
-        if (request()->file('file') && request()->file('file')->extension() == 'xlsx') {
-            AirportArea::whereNotNull('id')->delete();
-            Excel::import(new AirportAreaImport, request()->file('file'));
-            $status = "The database was successfully updated.";
-        }
+        $airportArea = $getArea->getAirportAreas()->where('geoNameIdCity', $geoNameIdCity)->at(0);
 
-        return redirect()
-            ->route('admin.airportAreas.index')
-            ->with('status', $status);
+        return view('admin.airportAreas.view', compact('airportArea'));
     }
 
     /**
      * Display the specified resource.
-     * @param AirportArea $airportArea
-     * @param          $id
+     *
+     * @param AirportArea $getArea
+     * @param          $geoNameIdCity
+     *
      * @return Response
      */
-    public function show(AirportArea $airportArea, $id)
+    public function edit(AirportArea $getArea, $geoNameIdCity)
     {
-        $airportArea = $airportArea->getAirportArea($id);
+        $airportArea = $getArea->getAirportAreas()->where('geoNameIdCity', $geoNameIdCity)->at(0);
+        $realAirportArea = $airportArea['areaAirport']->implode('icao', ',');
 
-        return view('admin.airportAreas.view', compact('AirportArea'));
+        return view('admin.airportAreas.edit', compact('airportArea', 'realAirportArea'));
     }
 
-    /**
-     * Display the specified resource.
-     * @param AirportArea $airportArea
-     * @param          $id
-     * @return Response
-     */
-    public function edit(AirportArea $airportArea, $id)
-    {
-        $airportArea = $airportArea->getAirportArea($id);
-
-        $typePlanes = Config::get('constants.TypePlane');
-
-        return view('admin.airportAreas.edit', compact('AirportArea', 'typePlanes'));
-    }
     /**
      * Update the specified resource in storage.
      *
      * @param UpdateAirportArea $request
      * @param AirportArea $airportArea
-     * @param $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateAirportAreaRequest $request, AirportArea $airportArea, $id)
+    public function update(UpdateAirportAreaRequest $request, AirportArea $airport)
     {
-        $airportArea->updateOrCreate(
-            ['id' => $id],
-            ['icao_departure' => $request->icaoDeparture,
-                'geoNameIdCity_departure' => $request->geoNameIdCityDeparture,
-                'icao_arrival' => $request->icaoArrival,
-                'geoNameIdCity_arrival' => $request->geoNameIdCityArrival,
-                'operator' => $request->operatorEmail,
-                'type_plane' => $request->typePlane,
-                'price' => $request->price,
-                'date_departure' => $request->dateDeparture,
-                'active' => $request->active
-            ]
-        );
+        $delAirport = collect(explode(',', $request->realAirportArea))->diff($request->areaAirport)->values();
+        $addAirport = collect($request->areaAirport)->diff(explode(',', $request->realAirportArea))->values();
+
+        $airport->whereIn('icao', $delAirport)->where('geoNameIdCity', $request->geoNameIdCity)->delete();
+
+        if ($addAirport->isNotEmpty()) {
+            foreach ($addAirport as $value) {
+                $airport->firstOrCreate(['icao' => $value, 'geoNameIdCity' => $request->geoNameIdCity]);
+            }
+        }
 
         return redirect()
-            ->route('admin.airportAreas.index', $id)
+            ->route('admin.airportAreas.index')
             ->with('status', 'The AirportArea was successfully updated.');
     }
 
@@ -335,11 +229,11 @@ class AirportAreaController extends Controller
             $res = collect([]);
             foreach ($city as $value) {
                 $res = $res->push([
-                                      'geonameid' => $value->geonameid,
-                                      'city' => !empty($value->name) ? $value->name : null,
-                                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                                      'country' => !empty($value->country->name) ? $value->country->name : null
-                                  ]);
+                      'geonameid' => $value->geonameid,
+                      'city' => !empty($value->name) ? $value->name : null,
+                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
+                      'country' => !empty($value->country->name) ? $value->country->name : null
+                  ]);
             }
         }
 
@@ -353,8 +247,9 @@ class AirportAreaController extends Controller
      */
     public function ajaxSearchAirport(Request $request)
     {
+        #dd($request);
         $airports = $this->SearchAirportNameLike($request->airport)
-            ->whereNotIn('geoNameIdCity', [0])
+            ->whereNotIn('geoNameIdCity', [0, (int)$request->geoNameIdCity])
             ->sortBy('name')
             ->sortBy('cities.name')
             ->sortBy('regionCountry.name')
@@ -367,14 +262,14 @@ class AirportAreaController extends Controller
             $res = collect([]);
             foreach ($airports as $value) {
                 $res = $res->push([
-                                      'icao' => $value->icao,
-                                      'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
-                                      'airport' => !empty($value->name) ? $value->name : null,
-                                      'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
-                                      'city' => !empty($value->cities->name) ? $value->cities->name : null,
-                                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                                      'country' => !empty($value->country->name) ? $value->country->name : null
-                                  ]);
+                  'icao' => $value->icao,
+                  'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
+                  'airport' => !empty($value->name) ? $value->name : null,
+                  'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
+                  'city' => !empty($value->cities->name) ? $value->cities->name : null,
+                  'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
+                  'country' => !empty($value->country->name) ? $value->country->name : null
+              ]);
             }
         }
 

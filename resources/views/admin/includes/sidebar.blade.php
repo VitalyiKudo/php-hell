@@ -124,7 +124,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.airportAreas.index') }}" class="nav-link {{ Request::is('manage/airportAreas*') ? 'active' : '' }}" style="color: green">
-                        <i class="nav-icon fas fa-fire"></i>
+                        <i class="nav-icon fas fa-globe"></i>
                         <p>
                             {{ __('Airport Areas') }}
                         </p>

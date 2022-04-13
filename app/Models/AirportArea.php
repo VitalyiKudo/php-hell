@@ -78,35 +78,67 @@ class AirportArea extends Model
     }
 
     /**
-     * @return mixed
+     * Get the areas
+     *
+     * @return AirportArea[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\AirportArea.with[]
      */
     public function getAirportAreas()
     {
-        return  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
-        #$test =  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
+        return  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport.cities')
             ->withCount(['cityAirport', 'areaAirport'])#->toSql();
             ->get()
-            ->map(function ($res) {
-            return [ #$res
+            ->unique('geoNameIdCity')
+            ->values()
+            ->map(function ($res, $key) {
+            return [
+                'key' => ++$key,
                 'id' => $res->id,
                 #'icao' => $res->icao,
                 'geoNameIdCity' => $res->geoNameIdCity,
                 #'airportName' => $res->airport->name,
                 'cityAirportCount' => $res->city_airport_count,
-                'cityAirport' => $res->cityAirport,#->toArray(),
+                'cityAirport' => $res->cityAirport->keyBy('icao'),
                 'areaAirportCount' => $res->area_airport_count - $res->city_airport_count,
-                #'areaAirport' => $res->areaAirport,
-                'areaAirport' => $res->areaAirport->diffKeys($res->cityAirport),#->toArray(),
+                #'areaAirportAll' => $res->areaAirport,
+                'areaAirport' => $res->areaAirport->keyBy('icao')->diffKeys($res->cityAirport->keyBy('icao')),
                 'cityName' => $res->city->name,
                 'regionName' => $res->city->regionCountry->name,
                 'countryName' => $res->city->country->name,
             ];
-        })
+        });
+    }
+
+    /**
+     *  Get the area
+     *
+     * @param $geoNameIdCity
+     *
+     * @return AirportArea[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public function getArea($geoNameIdCity)
+    {
+        return  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
+            ->withCount(['cityAirport', 'areaAirport'])
+            ->get()
             ->unique('geoNameIdCity')
-            ->values();
-            #->paginate(25);
-            #->first()
-            #->toArray();#->paginate(25);
-        #dd($test);
+            ->values()
+            ->map(function ($res, $key) {
+            return [
+                'key' => ++$key,
+                'id' => $res->id,
+                'icao' => $res->icao,
+                'iata' => $res->iata,
+                'geoNameIdCity' => $res->geoNameIdCity,
+                'airportName' => $res->airport->name,
+                'cityAirportCount' => $res->city_airport_count,
+                'cityAirport' => $res->cityAirport,
+                'airportCount' => $res->area_airport_count - $res->city_airport_count,
+                'areaAirport' => $res->areaAirport->diffKeys($res->cityAirport),
+                'cityName' => $res->city->name,
+                'regionName' => $res->city->regionCountry->name,
+                'countryName' => $res->city->country->name,
+            ];
+        })->where('geoNameIdCity', $geoNameIdCity);
+        # ->where('geoNameIdCity', $geoNameIdCity)
     }
 }

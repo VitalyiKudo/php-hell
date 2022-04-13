@@ -22,7 +22,6 @@
         "maatwebsite/excel": "^3.1",
         "pragmarx/countries": "^0.5.9",
         "propaganistas/laravel-phone": "^4.1",
-        "singlequote/laravel-datatables": "^3.1",
         "spatie/laravel-collection-macros": "^6.0",
         "spatie/laravel-robots-middleware": "^1.2",
         "spatie/laravel-sitemap": "^5.8",

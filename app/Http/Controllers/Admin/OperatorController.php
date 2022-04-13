@@ -178,7 +178,7 @@ class OperatorController extends Controller
         $city = collect($request->input('city'))->transform(function ($value) {
             return (int)$value;
         });
-        $city_del = $city_old->diff($city)->flip()->all();#->implode(', ');
+        $city_del = $city_old->diff($city)->flip()->all();
         $city_full = $city_old->merge($city)->unique()->flip()->map(function ($value, $key) use ($city_del) {
             return (array_key_exists($key, $city_del)) ? Config::get('constants.active.not-activated') : Config::get('constants.active.activated');
         });
