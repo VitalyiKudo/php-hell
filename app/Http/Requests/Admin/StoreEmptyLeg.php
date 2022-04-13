@@ -35,18 +35,5 @@ class StoreEmptyLeg extends FormRequest
             'dateDeparture' => 'required|date|after:today',
             'active' => 'nullable|numeric',
         ];
-        /*
-
-
-      "icaoDeparture" => "SNOZ"
-      "geoNameIdCityDeparture" => "6317837"
-      "icaoArrival" => "OPMI"
-      "geoNameIdCityArrival" => "1170425"
-      "operatorEmail" => "test@test1.com"
-      "typePlane" => "plane_turbo"
-      "price" => "511.00"
-      "dateDeparture" => "2022-04-27"
-      "active" => "0"
-*/
     }
 }

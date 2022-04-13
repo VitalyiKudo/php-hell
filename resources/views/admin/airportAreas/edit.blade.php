@@ -1,161 +1,103 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('admin.emptyLegs.index') }}">Empty Legs</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('admin.emptyLegs.edit', $emptyLeg['id']) }}">
-                            {!! $emptyLeg['dateDeparture']->format('m-d-Y') !!}
-                            ({{ $emptyLeg['operatorName'] }})
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                </ol>
-            </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.airportAreas.index') }}">Areas</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.airportAreas.edit', $airportArea['geoNameIdCity']) }}">
+                                {{ $airportArea['cityName'] }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})</h5>
-                    <h6 class="card-subtitle mb-3 text-muted">Edit Empty Leg</h6>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>{{ $airportArea['cityName'] }}</h5>
+                        <h6 class="card-subtitle mb-3 text-muted">Edit Area</h6>
 
-                    <form method="POST" action="{{ route('admin.emptyLegs.update', $emptyLeg['id']) }}" id="quickForm">
-                        @csrf
-                        @method('PUT')
+                        <form method="POST" action="{{ route('admin.airportAreas.update', $airportArea['geoNameIdCity']) }}" id="quickForm">
+                            @csrf
+                            @method('PUT')
 
-                        <div class="form-group" id="icaoDeparture-select2">
-                            <label for="icaoDeparture">{{__('Departure Airport')}}*</label>
-                            <select name="icaoDeparture" id="icaoDeparture" class="form-control{{ $errors->has('icaoDeparture') ? ' is-invalid' : '' }}" required>
-                                <option value={{ $emptyLeg['icaoDeparture'] }} selected>{{ $emptyLeg['icaoDeparture'] ? $emptyLeg['airportDeparture'] . ' ('. $emptyLeg['icaoDeparture'] . ')' : '' }}</option>
+                            <input type="hidden" id="geoNameIdCity" name="geoNameIdCity" value="{{ old('geoNameIdCity', $airportArea['geoNameIdCity']) }}">
 
-                            </select>
-                            <input type="hidden" id="geoNameIdCityDeparture" name="geoNameIdCityDeparture" value="{{ old('geoNameIdCityDeparture', $emptyLeg['geoNameIdCityDeparture']) }}">
+                            <div class="form-group" id="cityAirport-select2">
+                                <label for="cityAirport">{{__('City Airport')}}*</label>
+                                <select name="cityAirport[]" id="cityAirport" class="form-control{{ $errors->has('cityAirport') ? ' is-invalid' : '' }}" multiple required disabled>
+                                    @forelse ($airportArea['cityAirport'] as $value)
+                                        <option value={{ $value->icao }} selected>{{ $value->icao }}/{{ $value->iata }} {{ $value->name }}</option>
+                                    @empty
+                                        <option value="">Select a City Airport</option>
+                                    @endforelse
+                                </select>
 
-                            @if ($errors->has('icaoDeparture'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('icaoDeparture') }}</strong>
+                                @if ($errors->has('cityAirport'))
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('cityAirport') }}</strong>
                                 </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group" id="icaoArrival-select2">
-                            <label for="icaoArrival">{{__('Arrival Airport')}}*</label>
-                            <select name="icaoArrival" id="icaoArrival" class="form-control{{ $errors->has('icaoArrival') ? ' is-invalid' : '' }}" required>
-                                <option value={{ $emptyLeg['icaoArrival'] }} selected>{{ $emptyLeg['icaoArrival'] ? $emptyLeg['airportArrival'] . ' ('. $emptyLeg['icaoArrival'] . ')' : '' }}</option>
-
-                            </select>
-                            <input type="hidden" id="geoNameIdCityArrival" name="geoNameIdCityArrival" value="{{ old('geoNameIdCityArrival', $emptyLeg['geoNameIdCityArrival']) }}">
-
-                            @if ($errors->has('icaoArrival'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('icaoArrival') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group" id="operatorEmail-select2">
-                            <label for="operatorEmail">{{__('Operator')}}*</label>
-                            <select name="operatorEmail" id="operatorEmail" class="form-control{{ $errors->has('operatorEmail') ? ' is-invalid' : '' }}" required>
-                                <option value={{ $emptyLeg['operatorEmail'] }} selected>{{ $emptyLeg['operatorEmail'] ? $emptyLeg['operatorName'] . ' ('. $emptyLeg['operatorEmail'] . ')' : '' }}</option>
-                            </select>
-
-                            @if ($errors->has('operatorEmail'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('operatorEmail') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="typePlane">{{__('Plane Type')}}*</label>
-                            <select name="typePlane" id="typePlane" class="form-control{{ $errors->has('typePlane') ? ' is-invalid' : '' }}" required>
-                                @forelse ($typePlanes as $keyPlane => $valPlane)
-                                    <option value={{ $keyPlane }}{!! ($emptyLeg['typePlane'] === $keyPlane) ? ' selected' : '' !!}>{{ $valPlane }}</option>
-                                @empty
-                                    <p>No type Planes</p>
-                                @endforelse
-
-                            </select>
-
-                            @if ($errors->has('typePlane'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('typePlane') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="price">{{__('Price')}}*</label>
-                            <input type="number" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" id="price" name="price" value="{{ old('price', $emptyLeg['price']) }}" placeholder="Enter price">
-
-                            @if ($errors->has('price'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('price') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dateDeparture">{{__('Date')}}*</label>
-                            <input type="date" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{!! old('dateDeparture', $emptyLeg['dateDeparture']->format('Y-m-d') ) !!}">
-
-                            @if ($errors->has('dateDeparture'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('dateDeparture') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input type="hidden" name="active" value="0">
-                                <input type="checkbox" class="form-check-input" name="active" value="1" {{ ($emptyLeg['active'] === 1) ? 'checked' : '' }}>
-                                <label for="active">{{__('Active')}}</label>
+                                @endif
                             </div>
 
-                            @if ($errors->has('active'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('active') }}</strong>
+                            <div class="form-group" id="areaAirport-select2">
+                                <label for="areaAirport">{{__('Area Airport')}}*</label>
+                                <select name="areaAirport[]" id="areaAirport" class="form-control{{ $errors->has('areaAirport') ? ' is-invalid' : '' }}" multiple required>
+                                    @forelse ($airportArea['areaAirport'] as $value)
+                                        @foreach($value->airport as $val)
+                                            <option value={{ $val->icao }} selected>{{ $val->icao }}/{{ $val->iata }} {{ $val->name }} ({{ $val->cities->name }})</option>
+                                        @endforeach
+                                    @empty
+                                        <option value="">Select a Area Airport</option>
+                                    @endforelse
+                                </select>
+
+                                @if ($errors->has('areaAirport'))
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('areaAirport') }}</strong>
                                 </span>
-                            @endif
-                        </div>
+                                @endif
+                            </div>
 
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </form>
+                            <input type="hidden" id="realAirportArea" name="realAirportArea" value="{{ old('realAirportArea', $realAirportArea) }}">
+
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Delete Area</h5>
+
+                        <form method="POST" action="{{ route('admin.airportAreas.destroy', $airportArea['id']) }}">
+                            @csrf
+                            @method('DELETE')
+
+                            <p>Are you sure you want to delete this airportArea? This action cannot be undone.</p>
+
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this airportArea? This action cannot be undone.')">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5>Delete Empty Leg</h5>
-
-                    <form method="POST" action="{{ route('admin.emptyLegs.destroy', $emptyLeg['id']) }}">
-                        @csrf
-                        @method('DELETE')
-
-                        <p>Are you sure you want to delete this emptyLeg? This action cannot be undone.</p>
-
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this emptyLeg? This action cannot be undone.')">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@include('admin.includes.js-emptyLeg')
+    @include('admin.includes.js-airportArea-form')
 
 @endsection

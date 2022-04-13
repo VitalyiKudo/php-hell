@@ -24,6 +24,14 @@ use App\Models\City;
  * @method static \Illuminate\Database\Eloquent\Builder|OperatorCities whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperatorCities whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read City $operatorCity
+ * @method static \Illuminate\Database\Query\Builder|OperatorCity onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|OperatorCity whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OperatorCity whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|OperatorCity withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|OperatorCity withoutTrashed()
  */
 class OperatorCity extends Model
 {

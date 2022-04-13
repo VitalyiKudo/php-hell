@@ -46,6 +46,8 @@ use App\Models\Country;
  * @method static \Illuminate\Database\Eloquent\Builder|City whereTimezone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|City whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OperatorCity[] $operatorCities
+ * @property-read int|null $operator_cities_count
  */
 class City extends Model
 {

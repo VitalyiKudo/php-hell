@@ -60,8 +60,9 @@ Route::middleware('auth:admin')->group(function () {
     // AirportArea
     Route::get('airportArea/search','AirportAreaController@search')->name('airportArea.search');
     Route::post('airportArea/import', 'AirportAreaController@import')->name('airportArea.import');
-    Route::post('airportArea/ajaxSearchOperator', 'AirportAreaController@ajaxSearchOperator')->name('airportArea.ajaxSearchOperator');
+    Route::post('airportArea/ajaxSearchCity', 'AirportAreaController@ajaxSearchCity')->name('airportArea.ajaxSearchCity');
     Route::post('airportArea/ajaxSearchAirport', 'AirportAreaController@ajaxSearchAirport')->name('airportArea.ajaxSearchAirport');
+    #Route::get('airportArea/ajaxDataList', 'AirportAreaController@ajaxDataList')->name('airportArea.ajaxDataList');
     Route::resource('airportAreas', 'AirportAreaController');
 
 });

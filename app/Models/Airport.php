@@ -50,6 +50,7 @@ use App\Models\City;
  * @method static \Illuminate\Database\Eloquent\Builder|Airport whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Airport whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read City $cities
  */
 class Airport extends Model
 {

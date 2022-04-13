@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
+#use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\Admin\StoreAirportArea as StoreAirportAreaRequest;
+use App\Http\Requests\Admin\UpdateAirportArea as UpdateAirportAreaRequest;
+
+use App\DataTables\AirportAreaDataTable;
 
 use App\Models\AirportArea;
 
@@ -33,15 +37,18 @@ class AirportAreaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param AirportArea $airportArea
+     * @param AirportAreaDataTable $dataTable
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed|string
      */
-    public function index(AirportArea $airportArea)
+    public function index(AirportAreaDataTable $dataTable)
     {
-        $airportAreas = $airportArea->getAirportAreas();
-dd($airportAreas);
-        return view('admin.airportAreas.list', compact('airportAreas'));
+        try {
+            return $dataTable->render('admin.airportAreas.list');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
     }
 
     /**
@@ -51,20 +58,19 @@ dd($airportAreas);
      */
     public function create()
     {
-        $typePlanes = Config::get('constants.TypePlane');
-
-        return view('admin.emptyLegs.create', compact('typePlanes'));
+        return view('admin.airportAreas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\StoreEmptyLeg $request
+     * @param  \App\Http\Requests\Admin\StoreAirportArea $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEmptyLegRequest $request, EmptyLeg $emptyLeg)
+    public function store(StoreAirportAreaRequest $request, AirportArea $airportArea)
     {
-        $emptyLeg->create([
+        $airportArea->create([
                               'icao_departure' => $request->input('icaoDeparture'),
                               'geoNameIdCity_departure' => $request->input('geoNameIdCityDeparture'),
                               'icao_arrival' => $request->input('icaoArrival'),
@@ -76,101 +82,80 @@ dd($airportAreas);
                           ]);
 
         return redirect()
-            ->route('admin.emptyLegs.index')
-            ->with('status', 'The EmptyLeg was successfully created.');
+            ->route('admin.airportAreas.index')
+            ->with('status', 'The AirportArea was successfully created.');
     }
 
     /**
-     * Store data from excel file.
+     * Display the specified resource.
      *
-     * @param  StoreEmptyLeg $request
-     * @return \Illuminate\Http\Response
+     * @param AirportArea $getArea
+     * @param          $geoNameIdCity
+     *
+     * @return Response
      */
-
-    public function import()
+    public function show(AirportArea $getArea, $geoNameIdCity)
     {
-        $status = "Excel file was not uploaded";
-        if (request()->file('file') && request()->file('file')->extension() == 'xlsx') {
-            AirportArea::whereNotNull('id')->delete();
-            Excel::import(new EmptyLegImport, request()->file('file'));
-            $status = "The database was successfully updated.";
-        }
+        $airportArea = $getArea->getAirportAreas()->where('geoNameIdCity', $geoNameIdCity)->at(0);
 
-        return redirect()
-            ->route('admin.emptyLegs.index')
-            ->with('status', $status);
+        return view('admin.airportAreas.view', compact('airportArea'));
     }
 
     /**
      * Display the specified resource.
-     * @param EmptyLeg $emptyleg
-     * @param          $id
+     *
+     * @param AirportArea $getArea
+     * @param          $geoNameIdCity
+     *
      * @return Response
      */
-    public function show(EmptyLeg $emptyleg, $id)
+    public function edit(AirportArea $getArea, $geoNameIdCity)
     {
-        $emptyLeg = $emptyleg->getEmptyLeg($id);
+        $airportArea = $getArea->getAirportAreas()->where('geoNameIdCity', $geoNameIdCity)->at(0);
+        $realAirportArea = $airportArea['areaAirport']->implode('icao', ',');
 
-        return view('admin.emptyLegs.view', compact('emptyLeg'));
+        return view('admin.airportAreas.edit', compact('airportArea', 'realAirportArea'));
     }
 
-    /**
-     * Display the specified resource.
-     * @param EmptyLeg $emptyleg
-     * @param          $id
-     * @return Response
-     */
-    public function edit(EmptyLeg $emptyleg, $id)
-    {
-        $emptyLeg = $emptyleg->getEmptyLeg($id);
-
-        $typePlanes = Config::get('constants.TypePlane');
-
-        return view('admin.emptyLegs.edit', compact('emptyLeg', 'typePlanes'));
-    }
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateEmptyLeg $request
-     * @param EmptyLeg $emptyleg
-     * @param $id
+     * @param UpdateAirportArea $request
+     * @param AirportArea $airportArea
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateEmptyLegRequest $request, EmptyLeg $emptyleg, $id)
+    public function update(UpdateAirportAreaRequest $request, AirportArea $airport)
     {
-        $emptyleg->updateOrCreate(
-            ['id' => $id],
-            ['icao_departure' => $request->icaoDeparture,
-                'geoNameIdCity_departure' => $request->geoNameIdCityDeparture,
-                'icao_arrival' => $request->icaoArrival,
-                'geoNameIdCity_arrival' => $request->geoNameIdCityArrival,
-                'operator' => $request->operatorEmail,
-                'type_plane' => $request->typePlane,
-                'price' => $request->price,
-                'date_departure' => $request->dateDeparture,
-                'active' => $request->active
-            ]
-        );
+        $delAirport = collect(explode(',', $request->realAirportArea))->diff($request->areaAirport)->values();
+        $addAirport = collect($request->areaAirport)->diff(explode(',', $request->realAirportArea))->values();
+
+        $airport->whereIn('icao', $delAirport)->where('geoNameIdCity', $request->geoNameIdCity)->delete();
+
+        if ($addAirport->isNotEmpty()) {
+            foreach ($addAirport as $value) {
+                $airport->firstOrCreate(['icao' => $value, 'geoNameIdCity' => $request->geoNameIdCity]);
+            }
+        }
 
         return redirect()
-            ->route('admin.emptyLegs.index', $id)
-            ->with('status', 'The EmptyLeg was successfully updated.');
+            ->route('admin.airportAreas.index')
+            ->with('status', 'The AirportArea was successfully updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EmptyLeg  $emptyLeg
+     * @param  \App\Models\AirportArea  $airportArea
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EmptyLeg $emptyLeg)
+    public function destroy(AirportArea $airportArea)
     {
-        $emptyLeg->delete();
+        $airportArea->delete();
 
         return redirect()
-            ->route('admin.emptyLegs.index')
-            ->with('status', 'The EmptyLeg was successfully deleted.');
+            ->route('admin.airportAreas.index')
+            ->with('status', 'The AirportArea was successfully deleted.');
     }
 
     public function search(Request $request)
@@ -178,7 +163,7 @@ dd($airportAreas);
         if ($request->ajax()) {
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $emptyLegs = DB::table('empty_legs')
+            $airportAreas = DB::table('empty_legs')
                 ->whereNull('deleted_at')
                 ->where('name', 'like', '%'.$query.'%')
                 ->orWhere('web_site', 'like', '%'.$query.'%')
@@ -189,7 +174,7 @@ dd($airportAreas);
                 ->orWhere('address', 'like', '%'.$query.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(25);
-            return view('admin.emptyLegs.pagination', compact('emptyLegs'))->render();
+            return view('admin.airportAreas.pagination', compact('airportAreas'))->render();
         }
     }
 
@@ -244,11 +229,11 @@ dd($airportAreas);
             $res = collect([]);
             foreach ($city as $value) {
                 $res = $res->push([
-                                      'geonameid' => $value->geonameid,
-                                      'city' => !empty($value->name) ? $value->name : null,
-                                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                                      'country' => !empty($value->country->name) ? $value->country->name : null
-                                  ]);
+                      'geonameid' => $value->geonameid,
+                      'city' => !empty($value->name) ? $value->name : null,
+                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
+                      'country' => !empty($value->country->name) ? $value->country->name : null
+                  ]);
             }
         }
 
@@ -262,8 +247,9 @@ dd($airportAreas);
      */
     public function ajaxSearchAirport(Request $request)
     {
+        #dd($request);
         $airports = $this->SearchAirportNameLike($request->airport)
-            ->whereNotIn('geoNameIdCity', [0])
+            ->whereNotIn('geoNameIdCity', [0, (int)$request->geoNameIdCity])
             ->sortBy('name')
             ->sortBy('cities.name')
             ->sortBy('regionCountry.name')
@@ -276,14 +262,14 @@ dd($airportAreas);
             $res = collect([]);
             foreach ($airports as $value) {
                 $res = $res->push([
-                                      'icao' => $value->icao,
-                                      'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
-                                      'airport' => !empty($value->name) ? $value->name : null,
-                                      'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
-                                      'city' => !empty($value->cities->name) ? $value->cities->name : null,
-                                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                                      'country' => !empty($value->country->name) ? $value->country->name : null
-                                  ]);
+                  'icao' => $value->icao,
+                  'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
+                  'airport' => !empty($value->name) ? $value->name : null,
+                  'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
+                  'city' => !empty($value->cities->name) ? $value->cities->name : null,
+                  'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
+                  'country' => !empty($value->country->name) ? $value->country->name : null
+              ]);
             }
         }
 

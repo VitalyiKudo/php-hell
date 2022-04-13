@@ -167,6 +167,9 @@ return [
          */
         #Barryvdh\Debugbar\ServiceProvider::class,
         #HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+
+        // Laravel IDE helper
+        #'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class',
         /*
          * Application Service Providers...
          */
@@ -180,7 +183,7 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
-        
+
     ],
 
     /*
@@ -237,6 +240,7 @@ return [
         'Carbon' => Carbon\Carbon::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

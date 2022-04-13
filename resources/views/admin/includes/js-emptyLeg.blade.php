@@ -332,6 +332,11 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "bJQueryUI":true,
+            "bSort":false,
+            "bPaginate":true,
+            "sPaginationType":"full_numbers",
+            "iDisplayLength": 25
         });
 
         $(function(){

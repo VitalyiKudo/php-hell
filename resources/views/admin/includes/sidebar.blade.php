@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::is('manage') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::is('manage') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             {{ __('Dashboard') }}
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link {{ Request::is('manage/orders*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link {{ Request::is('manage/orders*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
                             {{ __('Orders') }}
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.searches.index') }}" class="nav-link {{ Request::is('manage/searches*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.searches.index') }}" class="nav-link {{ Request::is('manage/searches*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-search"></i>
                         <p>
                             {{ __('Searches') }}
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview {{ Request::is('manage/administrators*') || Request::is('manage/users*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('manage/administrators*') || Request::is('manage/users*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('manage/administrators*') || Request::is('manage/users*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             {{ __('Users') }}
@@ -58,7 +58,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.administrators.index') }}" class="nav-link {{ Request::is('manage/administrators*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.administrators.index') }}" class="nav-link {{ Request::is('manage/administrators*') ? 'active' : '' }}" style="color: indianred">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     {{ __('Administrators') }}
@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('manage/users*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('manage/users*') ? 'active' : '' }}" style="color: indianred">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     {{ __('Users') }}
@@ -75,7 +75,7 @@
                         </li>
                     </ul>
                 <li class="nav-item">
-                    <a href="{{ route('admin.airports.index') }}" class="nav-link {{ Request::is('manage/airports*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.airports.index') }}" class="nav-link {{ Request::is('manage/airports*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-plane-departure"></i>
                         <p>
                             {{ __('Airports') }}
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.airlines.index') }}" class="nav-link {{ Request::is('manage/airlines*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.airlines.index') }}" class="nav-link {{ Request::is('manage/airlines*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-plane"></i>
                         <p>
                             {{ __('Fleet') }}
@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ Request::is('manage/pricing*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ Request::is('manage/pricing*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-ticket-alt"></i>
                         <p>
                             {{ __('Pricing') }}
@@ -107,7 +107,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.fees.index') }}" class="nav-link {{ Request::is('manage/fees*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.fees.index') }}" class="nav-link {{ Request::is('manage/fees*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             {{ __('Additional Fees') }}
@@ -122,14 +122,14 @@
                         </p>
                     </a>
                 </li>
-                <!--li class="nav-item">
-                    <a href="{{-- route('admin.airportAreas.index') }}" class="nav-link {{ Request::is('manage/airportAreas*') ? 'active' : '' }}" style="color: green">
-                        <i class="nav-icon fas fa-fire"></i>
+                <li class="nav-item">
+                    <a href="{{ route('admin.airportAreas.index') }}" class="nav-link {{ Request::is('manage/airportAreas*') ? 'active' : '' }}" style="color: green">
+                        <i class="nav-icon fas fa-globe"></i>
                         <p>
-                            {{ __('Airport Areas') --}}
+                            {{ __('Airport Areas') }}
                         </p>
                     </a>
-                </li -->
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
