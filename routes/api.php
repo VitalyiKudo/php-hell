@@ -58,6 +58,7 @@ Route::post('orders/{search}/square/{type}', 'Account\OrderController@square');
 Route::get('orders/{search}/confirm', 'Account\OrderController@requestConfirm');
 Route::get('orders/{search}/square', 'Account\OrderController@requestSquare');
 Route::post('orders/{search}/square', 'Account\OrderController@requestSquare');
+Route::post('orders/custom', 'Account\CustomOrderController@index');
 
 
 Route::get('chats','ChatsController@index');

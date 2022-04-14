@@ -180,7 +180,8 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
-        
+
+        App\Providers\SerializerServiceProvider::class
     ],
 
     /*
