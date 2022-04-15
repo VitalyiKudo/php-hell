@@ -32,7 +32,7 @@
         "yajra/laravel-datatables-buttons": "^4.13",
         "yajra/laravel-datatables-html": "^4.41",
         "yajra/laravel-datatables-oracle": "~9.0",
-		"ext-json": "*"
+		"ext-json": "*",
         "symfony/property-access": "^5.4",
         "symfony/serializer": "^5.4"
     },
