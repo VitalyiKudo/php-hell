@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Airport;
 use App\Models\City;
-use App\Models\AirportAreas;
+use App\Models\AirportArea;
 
 class AirportAreasTableSeeder extends Seeder
 {
@@ -34,7 +34,7 @@ class AirportAreasTableSeeder extends Seeder
                 $i=0;
                 foreach ($data as $value) {
                     try {
-                        $area = AirportAreas::firstOrNew(['icao' => $value['icao'], 'geoNameIdCity' => $value['geoNameIdCity']]);
+                        $area = AirportArea::firstOrNew(['icao' => $value['icao'], 'geoNameIdCity' => $value['geoNameIdCity']]);
                         $airport = Airport::where('icao', '=', $value['icao'])->firstOrFail();
                         $city = City::where('geonameid', '=', $value['geoNameIdCity'])->firstOrFail();
                         $area->airport()->associate($airport->icao);
