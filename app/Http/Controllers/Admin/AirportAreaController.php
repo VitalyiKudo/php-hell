@@ -13,6 +13,7 @@ use App\Http\Requests\Admin\UpdateAirportArea as UpdateAirportAreaRequest;
 use App\DataTables\AirportAreaDataTable;
 
 use App\Models\AirportArea;
+use App\Models\Airport;
 
 use App\Http\Traits\SearchCityTrait;
 use App\Http\Traits\SearchAirportTrait;
@@ -56,7 +57,7 @@ class AirportAreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(AirportArea $getArea)
     {
         return view('admin.airportAreas.create');
     }
@@ -68,9 +69,9 @@ class AirportAreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAirportAreaRequest $request, AirportArea $airportArea)
+    public function store(StoreAirportAreaRequest $request, AirportArea $getArea)
     {
-        $airportArea->create([
+        $getArea->create([
                               'icao_departure' => $request->input('icaoDeparture'),
                               'geoNameIdCity_departure' => $request->input('geoNameIdCityDeparture'),
                               'icao_arrival' => $request->input('icaoArrival'),
@@ -125,16 +126,16 @@ class AirportAreaController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateAirportAreaRequest $request, AirportArea $airport)
+    public function update(UpdateAirportAreaRequest $request, AirportArea $getArea)
     {
         $delAirport = collect(explode(',', $request->realAirportArea))->diff($request->areaAirport)->values();
         $addAirport = collect($request->areaAirport)->diff(explode(',', $request->realAirportArea))->values();
 
-        $airport->whereIn('icao', $delAirport)->where('geoNameIdCity', $request->geoNameIdCity)->delete();
+        $getArea->whereIn('icao', $delAirport)->where('geoNameIdCity', $request->geoNameIdCity)->delete();
 
         if ($addAirport->isNotEmpty()) {
             foreach ($addAirport as $value) {
-                $airport->firstOrCreate(['icao' => $value, 'geoNameIdCity' => $request->geoNameIdCity]);
+                $getArea->firstOrCreate(['icao' => $value, 'geoNameIdCity' => $request->geoNameIdCity]);
             }
         }
 
@@ -149,9 +150,9 @@ class AirportAreaController extends Controller
      * @param  \App\Models\AirportArea  $airportArea
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AirportArea $airportArea)
+    public function destroy(AirportArea $getArea)
     {
-        $airportArea->delete();
+        $getArea->delete();
 
         return redirect()
             ->route('admin.airportAreas.index')
@@ -210,34 +211,28 @@ class AirportAreaController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request     $request
+     * @param AirportArea $getArea
      *
-     * @return false|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function ajaxSearchCity(Request $request)
+    public function ajaxSearchCity(Request $request, AirportArea $getArea)
     {
+        #dd($getArea->getAirportAreas()->pluck('geoNameIdCity'));
         $city = $this->SearchCityNameLike($request->city)
             ->whereNotIn('geonameid', [0])
+            ->whereNotIn('geonameid', $getArea->getAirportAreas()->pluck('geoNameIdCity'))
             ->sortBy('name')
             ->sortBy('regionCountry.name')
-            ->sortBy('country.name');
+            ->sortBy('country.name')
+            ->map(fn($value) => [
+                'geonameid' => $value->geonameid,
+                'city' => $value->name ?? null,
+                'region' => $value->regionCountry->name ?? null,
+                'country' => $value->country->name ?? null
+            ]);
 
-        if (empty($city)) {
-            return false;
-        }
-        else {
-            $res = collect([]);
-            foreach ($city as $value) {
-                $res = $res->push([
-                      'geonameid' => $value->geonameid,
-                      'city' => !empty($value->name) ? $value->name : null,
-                      'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                      'country' => !empty($value->country->name) ? $value->country->name : null
-                  ]);
-            }
-        }
-
-        return response()->json($res);
+        return response()->json($city);
     }
 
     /**
@@ -281,22 +276,28 @@ class AirportAreaController extends Controller
      *
      * @return false|\Illuminate\Http\JsonResponse
      */
-    public function ajaxSearchOperator(Request $request)
+    public function ajaxSearchCityAirports(Request $request, AirportArea $getAirport)
     {
-        $operators = $this->SearchOperatorNameLike($request->operatorEmail)
-            ->sortBy('email')
-            ->sortBy('name');
-
-        if (empty($operators)) {
-            return false;
-        }
-        else {
-            $data = $operators->map(function ($res) {
-                return ['email' => $res->email, 'name' => $res->name];
+        #dd($getAirport->getAirportAreas()->where('geoNameIdCity', 4164223)->toArray());
+        #$airport = $getAirport->getAirportAreas()->where('geoNameIdCity', $request->geoNameIdCity);
+        $airport = Airport::where('geoNameIdCity', $request->geoNameIdCity)
+            ->get()
+            ->map(function ($value) {
+                return [
+                    'icao' => $value->icao,
+                    'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
+                    'airport' => $value->name ?? null,
+                    'geoNameIdCity' => $value->geoNameIdCity ?? null,
+                    'city' => $value->cities->name ?? null,
+                    'region' => $value->regionCountry->name ?? null,
+                    'country' => $value->country->name ?? null,
+                ];
             });
-        }
+        #->toJson();
 
-        return response()->json($data);
+        #dd($airport);
+        return response()->json($airport);
+        #return $airport;
     }
 
     public function ajaxValidationStore(Request $request)

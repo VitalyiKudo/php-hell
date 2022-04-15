@@ -29,13 +29,39 @@
 
                         <div class="form-group" id="city-select2">
                             <label for="city">{{__('New Area')}}*</label>
-                            <select name="city[]" multiple id="city" class="form-control {{ $errors->has('city') ? ' is-invalid' : '' }}" required>
+                            <select name="city" id="city" class="form-control {{ $errors->has('city') ? ' is-invalid' : '' }}" required>
 
                             </select>
 
                             @if ($errors->has('city'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('city') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group" id="cityAirport-select2">
+                            <label for="cityAirport">{{__('Airports for Area')}}*</label>
+                            <select name="cityAirport[]" id="cityAirport" class="form-control {{ $errors->has('cityAirport') ? ' is-invalid' : '' }}" multiple required disabled>
+
+                            </select>
+
+                            @if ($errors->has('cityAirport'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('cityAirport') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group" id="areaAirport-select2">
+                            <label for="areaAirport">{{__('Airports for Area')}}*</label>
+                            <select name="areaAirport[]" multiple id="areaAirport" class="form-control {{ $errors->has('areaAirport') ? ' is-invalid' : '' }}" required>
+
+                            </select>
+
+                            @if ($errors->has('areaAirport'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('areaAirport') }}</strong>
                                 </span>
                             @endif
                         </div>

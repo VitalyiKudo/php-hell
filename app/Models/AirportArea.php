@@ -107,14 +107,14 @@ class AirportArea extends Model
             ];
         });
     }
-
+/*
     /**
      *  Get the area
      *
      * @param $geoNameIdCity
      *
      * @return AirportArea[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
-     */
+     *
     public function getArea($geoNameIdCity)
     {
         return  $this->with('city', 'city.regionCountry', 'city.country', 'cityAirport', 'areaAirport.airport')
@@ -141,4 +141,5 @@ class AirportArea extends Model
         })->where('geoNameIdCity', $geoNameIdCity);
         # ->where('geoNameIdCity', $geoNameIdCity)
     }
+    */
 }
