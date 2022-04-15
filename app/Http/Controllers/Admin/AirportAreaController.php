@@ -48,7 +48,6 @@ class AirportAreaController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
 
     /**
@@ -117,6 +116,20 @@ class AirportAreaController extends Controller
         return view('admin.airportAreas.edit', compact('airportArea', 'realAirportArea'));
     }
 
+    /**
+     * Display the specified resource.
+     * @param EmptyLeg $emptyleg
+     * @param          $id
+     * @return Response
+     */
+    public function edit(EmptyLeg $emptyleg, $id)
+    {
+        $emptyLeg = $emptyleg->getEmptyLeg($id);
+
+        $typePlanes = Config::get('constants.TypePlane');
+
+        return view('admin.emptyLegs.edit', compact('emptyLeg', 'typePlanes'));
+    }
     /**
      * Update the specified resource in storage.
      *

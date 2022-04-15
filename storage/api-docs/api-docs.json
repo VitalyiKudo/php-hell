@@ -5,6 +5,42 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/orders/custom": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "operationId": "89306a6a3a4cfe116bb323d1e04542bd",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CustomOrderCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not authorize"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/search/flight": {
             "get": {
                 "tags": [
@@ -1085,6 +1121,89 @@
         }
     },
     "components": {
+        "schemas": {
+            "CustomOrderCreate": {
+                "required": [
+                    "flightModel",
+                    "startPoint",
+                    "endPoint",
+                    "flightDate",
+                    "pax"
+                ],
+                "properties": {
+                    "flightModel": {
+                        "type": "string"
+                    },
+                    "startPoint": {
+                        "type": "string"
+                    },
+                    "endPoint": {
+                        "type": "string"
+                    },
+                    "flightDate": {
+                        "type": "string",
+                        "example": "04/12/2022"
+                    },
+                    "aircraft": {
+                        "type": "string"
+                    },
+                    "aircraftOne": {
+                        "type": "string"
+                    },
+                    "aircraftTwo": {
+                        "type": "string"
+                    },
+                    "fromStopPoint": {
+                        "type": "string"
+                    },
+                    "toStopPoint": {
+                        "type": "string"
+                    },
+                    "stopFlightDate": {
+                        "type": "string",
+                        "example": "04/12/2022"
+                    },
+                    "fromReturnPoint": {
+                        "type": "string"
+                    },
+                    "toReturnPoint": {
+                        "type": "string"
+                    },
+                    "returnFlightDate": {
+                        "type": "string",
+                        "example": "04/12/2022"
+                    },
+                    "pax": {
+                        "type": "integer"
+                    },
+                    "pets": {
+                        "type": "integer"
+                    },
+                    "bags": {
+                        "type": "integer"
+                    },
+                    "lbags": {
+                        "type": "integer"
+                    },
+                    "wifi": {
+                        "type": "boolean"
+                    },
+                    "lavatory": {
+                        "type": "boolean"
+                    },
+                    "disabilities": {
+                        "type": "boolean"
+                    },
+                    "catering": {
+                        "type": "boolean"
+                    },
+                    "comment": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

@@ -81,6 +81,21 @@ class Order extends Model
         'price' => 'float',
     ];
 
+    public static function new(int $userId, int $statusId, int $resultId, string $comment, string $type, int $bookStatus): self
+    {
+        $order = new self();
+        $order->user_id = $userId;
+        $order->order_status_id = $statusId;
+        $order->search_result_id = $resultId;
+        $order->comment = $comment;
+        $order->type = $type;
+        $order->book_status = $bookStatus;
+
+        $order->save();
+
+        return $order;
+    }
+
     /**
      * Get the user of the order.
      */

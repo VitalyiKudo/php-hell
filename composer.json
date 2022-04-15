@@ -33,7 +33,9 @@
         "yajra/laravel-datatables-html": "^4.41",
         "yajra/laravel-datatables-oracle": "~9.0",
 		"ext-json": "*"
-	},
+        "symfony/property-access": "^5.4",
+        "symfony/serializer": "^5.4"
+    },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2.3",
         "barryvdh/laravel-ide-helper": "^2.1",
