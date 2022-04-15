@@ -40,6 +40,8 @@ class UpdateSearchesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('searches', function (Blueprint $table) {
+            $table->dropForeign(['departure_geoId']);
+            $table->dropForeign(['arrival_geoId']);
             $table->dropColumn('departure_geoId');
             $table->dropColumn('arrival_geoId');
         });
