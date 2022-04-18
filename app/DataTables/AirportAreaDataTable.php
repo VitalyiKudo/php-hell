@@ -4,12 +4,9 @@ namespace App\DataTables;
 
 use App\Models\AirportArea;
 
-use Yajra\DataTables\DataTableAbstract;
-use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
-
 use Yajra\DataTables\DataTables;
 
 class AirportAreaDataTable extends DataTable
@@ -25,7 +22,7 @@ class AirportAreaDataTable extends DataTable
     public function dataTable($query, DataTables $dataTables)
     {
         return $dataTables->collection($query)->addColumn('action', function ($q) {
-            return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+            return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.route('admin.airportArea.delete', $q['geoNameIdCity']).'" class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this airportArea? This action cannot be undone.\')" data-method="delete" data-confirm="Are you sure to delete this inventory?">Delete</a>';
         });
     }
 
@@ -57,7 +54,7 @@ class AirportAreaDataTable extends DataTable
             ->minifiedAjax()
             ->pageLength(25)
             ->dom('Bfrtip')
-            ->orderBy(0, 'asc')
+            ->orderBy(1, 'asc')
             ->buttons(
                 Button::make('create'),
                 Button::make('export'),

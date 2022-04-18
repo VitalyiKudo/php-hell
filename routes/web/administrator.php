@@ -63,6 +63,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('airportArea/ajaxSearchCity', 'AirportAreaController@ajaxSearchCity')->name('airportArea.ajaxSearchCity');
     Route::post('airportArea/ajaxSearchAirport', 'AirportAreaController@ajaxSearchAirport')->name('airportArea.ajaxSearchAirport');
     Route::post('airportArea/ajaxSearchCityAirports', 'AirportAreaController@ajaxSearchCityAirports')->name('airportArea.ajaxSearchCityAirports');
+    Route::get('airportArea/delete/{id}', 'AirportAreaController@destroy')->name('airportArea.delete');
     Route::resource('airportAreas', 'AirportAreaController');
 
 });

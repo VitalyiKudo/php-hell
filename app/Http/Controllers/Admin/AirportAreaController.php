@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-#use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\Admin\StoreAirportArea as StoreAirportAreaRequest;
 use App\Http\Requests\Admin\UpdateAirportArea as UpdateAirportAreaRequest;
 
@@ -42,15 +39,13 @@ class AirportAreaController extends Controller
      *
      * @return mixed|string
      */
-    public function index(AirportAreaDataTable $dataTable, AirportArea $getArea)
+    public function index(AirportAreaDataTable $dataTable)
     {
         try {
-            #dd($getArea->getAirportAreas());
             return $dataTable->render('admin.airportAreas.list');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
 
     /**
@@ -142,11 +137,12 @@ class AirportAreaController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\AirportArea  $airportArea
+     * @param          $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AirportArea $getArea)
+    public function destroy(Request $request, AirportArea $getArea, $id)
     {
-        $getArea->delete();
+        $getArea->where('geoNameIdCity', $id)->delete();
 
         return redirect()
             ->route('admin.airportAreas.index')
@@ -186,45 +182,33 @@ class AirportAreaController extends Controller
     {
         $airports = $this->SearchAirportNameLike($request->airport)
             ->whereNotIn('geoNameIdCity', [0, (int)$request->geoNameIdCity])
+            ->map(fn($value) => [
+                    'icao' => $value->icao,
+                    'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
+                    'airport' => $value->name ?? null,
+                    'geoNameIdCity' =>  $value->geoNameIdCity ?? null,
+                    'city' => $value->cities->name ?? null,
+                    'region' => $value->regionCountry->name ?? null,
+                    'country' => $value->country->name ?? null
+                ])
             ->sortBy('name')
             ->sortBy('cities.name')
             ->sortBy('regionCountry.name')
             ->sortBy('country.name');
 
-        if (empty($airports)) {
-            return false;
-        }
-        else {
-            $res = collect([]);
-            foreach ($airports as $value) {
-                $res = $res->push([
-                  'icao' => $value->icao,
-                  'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
-                  'airport' => !empty($value->name) ? $value->name : null,
-                  'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
-                  'city' => !empty($value->cities->name) ? $value->cities->name : null,
-                  'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                  'country' => !empty($value->country->name) ? $value->country->name : null
-              ]);
-            }
-        }
-
-        return response()->json($res);
+        return response()->json($airports);
     }
 
     /**
      * @param Request $request
      *
-     * @return false|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function ajaxSearchCityAirports(Request $request, AirportArea $getAirport)
+    public function ajaxSearchCityAirports(Request $request)
     {
-        #dd($getAirport->getAirportAreas()->where('geoNameIdCity', 4164223)->toArray());
-        #$airport = $getAirport->getAirportAreas()->where('geoNameIdCity', $request->geoNameIdCity);
         $airport = Airport::where('geoNameIdCity', $request->geoNameIdCity)
             ->get()
-            ->map(function ($value) {
-                return [
+            ->map(fn($value) => [
                     'icao' => $value->icao,
                     'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
                     'airport' => $value->name ?? null,
@@ -232,27 +216,8 @@ class AirportAreaController extends Controller
                     'city' => $value->cities->name ?? null,
                     'region' => $value->regionCountry->name ?? null,
                     'country' => $value->country->name ?? null,
-                ];
-            });
-        #->toJson();
+                ]);
 
-        #dd($airport);
         return response()->json($airport);
-        #return $airport;
-    }
-
-    public function ajaxValidationStore(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'pswd' => 'required',
-            'email' => 'required|email',
-            'address' => 'required',
-        ]);
-
-        if ($validator->passes()) {
-            return response()->json(['success'=>'Added new records.']);
-        }
-
-        return response()->json(['error'=>$validator->errors()]);
     }
 }

@@ -23,7 +23,7 @@ class AirportController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * 
+     *
      * @OA\Get(
      *     path="/api/airports",
      *     description="Airports List Page",
@@ -36,11 +36,11 @@ class AirportController extends Controller
      *         @OA\Schema(type="string"),
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
     public function getAirportsList(Request $request)
     {
@@ -180,7 +180,7 @@ class AirportController extends Controller
     /**
      * @return string
      */
-    protected function sortCountry(){
+    public function sortCountry(){
         $sortCountries = ['US' => 1,];
         $rawCountrySql = '(CASE ' . collect($sortCountries)->map(function($airport, $country){
                 return "WHEN `co`.`iso2` = '{$country}' THEN {$airport}";
@@ -191,7 +191,7 @@ class AirportController extends Controller
     /**
      * @return string
      */
-    protected function sortCity(){
+    public function sortCity(){
         $sortCities = [
             5128581 => 1, #    'New York'
             4140998 => 2, #    'Washington'
