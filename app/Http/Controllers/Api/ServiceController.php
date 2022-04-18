@@ -14,6 +14,21 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    /**
+     * @OA\Info(title="Jet on Set API", version="0.1")
+     * 
+     * @OA\SecurityScheme(
+     *      securityScheme="bearerAuth",
+     *      in="header",
+     *      name="bearerAuth",
+     *      type="http",
+     *      scheme="bearer",
+     *      bearerFormat="JWT",
+     * )
+     * 
+     */
+    
     public function getServicesList()
     {
         $services = Service::all();

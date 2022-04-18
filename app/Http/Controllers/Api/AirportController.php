@@ -23,6 +23,24 @@ class AirportController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Get(
+     *     path="/api/airports",
+     *     description="Airports List Page",
+     *     tags={"Airport"},
+     *     @OA\Parameter(
+     *         description="Name of Airport",
+     *         in="query",
+     *         name="query",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *     ),
+     *     @OA\Response(
+     *         response=200, 
+     *         description="OK",
+     *     )
+     * )
+     * 
      */
     public function getAirportsList(Request $request)
     {

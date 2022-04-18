@@ -1,9 +1,12 @@
+!.gitignore
 /node_modules
 /public/hot
 /public/storage
 /public/robots.txt
 /public/sitemap.xml
 /storage/*.key
+/storage/*
+/storage/!.gitignore
 /vendor
 .env
 /package-lock.json

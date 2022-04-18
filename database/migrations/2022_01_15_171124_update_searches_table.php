@@ -14,6 +14,7 @@ class UpdateSearchesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         if ( City::count() < 1 )
         {
             DB::table('cities')->insert(array(['geonameid' => 0, 'iso_region' => 'X02~', 'iso_country' => 'AQ']));
@@ -27,6 +28,7 @@ class UpdateSearchesTable extends Migration
             $table->foreign('departure_geoId')->references('geonameid')->on('cities')->onDelete('cascade');
             $table->foreign('arrival_geoId')->references('geonameid')->on('cities')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

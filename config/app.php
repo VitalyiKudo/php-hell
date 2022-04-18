@@ -175,14 +175,16 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\Authorize\AuthorizeServiceProvider::class,
         App\Providers\Helpdeskeddy\HelpdeskeddyServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        L5Swagger\L5SwaggerServiceProvider::class,
+        
+        App\Providers\SerializerServiceProvider::class
     ],
 
     /*
