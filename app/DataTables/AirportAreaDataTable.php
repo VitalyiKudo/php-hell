@@ -25,7 +25,6 @@ class AirportAreaDataTable extends DataTable
     public function dataTable($query, DataTables $dataTables)
     {
         return $dataTables->collection($query)->addColumn('action', function ($q) {
-            #dd($q['cityName']);
             return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
         });
     }

@@ -55,7 +55,7 @@
                                 <select name="areaAirport[]" id="areaAirport" class="form-control{{ $errors->has('areaAirport') ? ' is-invalid' : '' }}" multiple required>
                                     @forelse ($airportArea['areaAirport'] as $value)
                                         @foreach($value->airport as $val)
-                                            <option value={{ $val->icao }} selected>{{ $val->icao }}/{{ $val->iata }} {{ $val->name }} ({{ $val->cities->name }})</option>
+                                            <option value={{ $val->icao }} selected>{{ $val->icao }}{{ ($val->iata !== 'noV') ? '/' . $val->iata . ' ' : ' '}} {{ $val->name }} ({{ $val->cities->name }})</option>
                                         @endforeach
                                     @empty
                                         <option value="">Select a Area Airport</option>

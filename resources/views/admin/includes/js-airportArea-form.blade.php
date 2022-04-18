@@ -66,103 +66,23 @@
                         };
                     }
                 }
-            }).on("change", function (e) {
-             //   console.log("change"); alert($(this).val());})
-            //$('#city').change(function() {
-                alert($(this).val());
-                $.post('{{ route('admin.airportArea.ajaxSearchCityAirports') }}', {geoNameIdCity: $(this).val(), _token: '{{ csrf_token() }}'}, function(data){
-                    //alert(data);
-                    /*data.map(function(item){
-                        return {value: item.Name, label: item.Name, id: item.id};
-                    });*/
-                    var res = $.map(data, function (val, item) {
+            }).on("change", function () {
+                    $.post('{{ route('admin.airportArea.ajaxSearchCityAirports') }}', {geoNameIdCity: $(this).val(), _token: '{{ csrf_token() }}'}, function(data){
+                        var res = '';
+                        res = $.map(data, function (val, item) {
                         var icao = val.icao;
-                        var iata = (!$.isEmptyObject(val.iata)) ? ' | ' + val.iata : '';
-                        var airport = (!$.isEmptyObject(val.airport)) ? val.airport + ', ' : '';
-                        var city = (!$.isEmptyObject(val.city)) ? val.city + ', ' : '';
-                        var region = (!$.isEmptyObject(val.region)) ? val.region + ', ' : '';
-                        var country = (!$.isEmptyObject(val.country)) ? val.country : '';
-                        var geoNameIdCity = ($(val.geoNameIdCity).length > 0) ? val.geoNameIdCity : '';
+                        var iata = (!$.isEmptyObject(val.iata) && val.iata !== 'noV') ? '/' + val.iata : '';
+                        var airport = (!$.isEmptyObject(val.airport)) ? ' ' + val.airport : '';
 
                         return {
                             id: val.icao,
-                            text: airport + ' (' + icao + iata + ') ' + city + ' ' + region + ' ' + country,
-                            geoid: geoNameIdCity
+                            text: icao + iata + airport,
+                            selected: true
                         };
                     })
-                    $('#cityAirport').val(null).trigger('change');
-                    console.log(JSON.stringify(res));
-                    var newOption = new Option(res.text, res.id, true, true);
-                    console.log(newOption);
-                    $('#cityAirport').append(newOption).trigger('change');
-
+                        $('#cityAirport').select2({data: res}).trigger('change');
                 });
-                city = $(this).val();
-                //addAirport($(this).val());
-
             });
-            var data = [{id: 1, text: 'Barn owl'}, {id: 2, text: 'Barn owl 2'}];
-            console.log(data);
-            var newOption = new Option(data.text, data.id, true, true);
-            console.log(newOption);
-            $('#cityAirport').append(newOption).trigger('change').trigger({
-                type: 'select2:select',
-                params: {
-                    data: data
-                }
-            });
-
-            /*$('#city').trigger('select2:select', function (e) {
-                console.log('select event');
-                alert('FUNC '+ $(this).val());
-                addAirport($(this).val());
-            });*/
-            //alert(city);
-            function addAirport1(city) {
-            //    alert('FUNC '+city);
-            $('#cityAirport').select2({
-                minimumInputLength: 1,
-                closeOnSelect: true,
-                tags: false,
-                    ajax: {
-                        url: '{{ route('admin.airportArea.ajaxSearchCityAirports') }}',
-                        dataType: 'json',
-                        type: 'post',
-                        quietMillis: 50,
-                        data: function (params) {
-                            var queryParameters = {
-                                airport: city,
-                                _token: '{{ csrf_token() }}',
-                                page: params.page
-                            };
-                            return queryParameters;
-                        },
-                        processResults: function (data, params) {
-                            params.page = params.page || 1;
-
-                            return {
-                                results: $.map(data, function (val, item) {
-                                    var icao = val.icao;
-                                    var iata = (!$.isEmptyObject(val.iata)) ? ' | ' + val.iata : '';
-                                    var airport = (!$.isEmptyObject(val.airport)) ? val.airport + ', ' : '';
-                                    var city = (!$.isEmptyObject(val.city)) ? val.city + ', ' : '';
-                                    var region = (!$.isEmptyObject(val.region)) ? val.region + ', ' : '';
-                                    var country = (!$.isEmptyObject(val.country)) ? val.country : '';
-                                    var geoNameIdCity = ($(val.geoNameIdCity).length > 0) ? val.geoNameIdCity : '';
-
-                                    return {
-                                        id: val.icao,
-                                        text: airport + ' (' + icao + iata + ') ' + city + ' ' + region + ' ' + country,
-                                        geoid: geoNameIdCity
-                                    };
-                                }),
-                                // if more then 30 items in dropdown, remaining set of items  will be show on numbered page link in dropdown control.
-                                pagination: {more: (params.page * 30) < data.length}
-                            };
-                        }
-                    }
-                });
-            }
 
             $('#areaAirport').select2({
                 minimumInputLength: 3,
@@ -189,8 +109,8 @@
                         return {
                             results: $.map(data, function (val, item) {
                                 var icao = val.icao;
-                                var iata = (!$.isEmptyObject(val.iata)) ? ' | ' + val.iata : '';
-                                var airport = (!$.isEmptyObject(val.airport)) ? val.airport + ', ' : '';
+                                var iata = (!$.isEmptyObject(val.iata) && val.iata !== 'noV') ? '/' + val.iata : '';
+                                var airport = (!$.isEmptyObject(val.airport)) ? val.airport + ' ' : '';
                                 var city = (!$.isEmptyObject(val.city)) ? val.city + ', ' : '';
                                 var region = (!$.isEmptyObject(val.region)) ? val.region + ', ' : '';
                                 var country = (!$.isEmptyObject(val.country)) ? val.country : '';
@@ -198,7 +118,7 @@
 
                                 return {
                                     id: val.icao,
-                                    text: airport + ' (' + icao + iata + ') ' + city + ' ' + region + ' ' + country,
+                                    text: airport + icao + iata + ' (' + city + ' ' + region + ' ' + country + ') ',
                                     geoid: geoNameIdCity
                                 };
                             }),

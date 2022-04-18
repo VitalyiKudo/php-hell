@@ -25,7 +25,7 @@
 
                     <form method="POST" action="{{ route('admin.airportAreas.store') }}" id="quickForm">
                         @csrf
-                        @method('PUT')
+                        @method('POST')
 
                         <div class="form-group" id="city-select2">
                             <label for="city">{{__('New Area')}}*</label>
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group" id="cityAirport-select2">
-                            <label for="cityAirport">{{__('Airports for Area')}}*</label>
+                            <label for="cityAirport">{{__('Airports for City')}}*</label>
                             <select name="cityAirport[]" id="cityAirport" class="form-control {{ $errors->has('cityAirport') ? ' is-invalid' : '' }}" multiple required disabled>
 
                             </select>

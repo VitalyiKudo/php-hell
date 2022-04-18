@@ -42,9 +42,10 @@ class AirportAreaController extends Controller
      *
      * @return mixed|string
      */
-    public function index(AirportAreaDataTable $dataTable)
+    public function index(AirportAreaDataTable $dataTable, AirportArea $getArea)
     {
         try {
+            #dd($getArea->getAirportAreas());
             return $dataTable->render('admin.airportAreas.list');
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -71,16 +72,9 @@ class AirportAreaController extends Controller
      */
     public function store(StoreAirportAreaRequest $request, AirportArea $getArea)
     {
-        $getArea->create([
-                              'icao_departure' => $request->input('icaoDeparture'),
-                              'geoNameIdCity_departure' => $request->input('geoNameIdCityDeparture'),
-                              'icao_arrival' => $request->input('icaoArrival'),
-                              'geoNameIdCity_arrival' => $request->input('geoNameIdCityArrival'),
-                              'operator' => $request->input('operatorEmail'),
-                              'type_plane' => $request->input('typePlane'),
-                              'price' => $request->input('price'),
-                              'date_departure' => $request->input('dateDeparture')
-                          ]);
+        foreach ($request->areaAirport as $value) {
+            $getArea->firstOrCreate(['icao' => $value, 'geoNameIdCity' => $request->city]);
+        }
 
         return redirect()
             ->route('admin.airportAreas.index')
@@ -159,57 +153,6 @@ class AirportAreaController extends Controller
             ->with('status', 'The AirportArea was successfully deleted.');
     }
 
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $query = $request->get('query');
-            $query = str_replace(" ", "%", $query);
-            $airportAreas = DB::table('empty_legs')
-                ->whereNull('deleted_at')
-                ->where('name', 'like', '%'.$query.'%')
-                ->orWhere('web_site', 'like', '%'.$query.'%')
-                ->orWhere('email', 'like', '%'.$query.'%')
-                ->orWhere('phone', 'like', '%'.$query.'%')
-                ->orWhere('mobile', 'like', '%'.$query.'%')
-                ->orWhere('fax', 'like', '%'.$query.'%')
-                ->orWhere('address', 'like', '%'.$query.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(25);
-            return view('admin.airportAreas.pagination', compact('airportAreas'))->render();
-        }
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function ajaxValidationEmail(Request $request)
-    {
-        $input = $request->only(['email']);
-
-        $request_data = [
-            'email' => 'required|email|unique:empty_legs,email',
-        ];
-
-        $validator = Validator::make($input, $request_data);
-
-        // json is null
-        if ($validator->fails()) {
-            $errors = json_decode(json_encode($validator->errors()), 1);
-            return response()->json([
-                                        'success' => false,
-                                        'message' => array_reduce($errors, 'array_merge', array()),
-                                    ]);
-        } else {
-            return response()->json([
-                                        'success' => true,
-                                        'message' => 'The email is available'
-                                    ]);
-        }
-        return false;
-    }
-
     /**
      * @param Request     $request
      * @param AirportArea $getArea
@@ -218,7 +161,6 @@ class AirportAreaController extends Controller
      */
     public function ajaxSearchCity(Request $request, AirportArea $getArea)
     {
-        #dd($getArea->getAirportAreas()->pluck('geoNameIdCity'));
         $city = $this->SearchCityNameLike($request->city)
             ->whereNotIn('geonameid', [0])
             ->whereNotIn('geonameid', $getArea->getAirportAreas()->pluck('geoNameIdCity'))
@@ -242,7 +184,6 @@ class AirportAreaController extends Controller
      */
     public function ajaxSearchAirport(Request $request)
     {
-        #dd($request);
         $airports = $this->SearchAirportNameLike($request->airport)
             ->whereNotIn('geoNameIdCity', [0, (int)$request->geoNameIdCity])
             ->sortBy('name')
