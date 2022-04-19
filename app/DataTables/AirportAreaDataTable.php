@@ -21,7 +21,8 @@ class AirportAreaDataTable extends DataTable
 
     public function dataTable($query, DataTables $dataTables)
     {
-        return $dataTables->collection($query)->addColumn('action', function ($q) {
+        return $dataTables->collection($query)
+            ->addColumn('action', function ($q) {
             return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.route('admin.airportArea.delete', $q['geoNameIdCity']).'" class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this airportArea? This action cannot be undone.\')" data-method="delete" data-confirm="Are you sure to delete this inventory?">Delete</a>';
         });
     }
@@ -50,11 +51,18 @@ class AirportAreaDataTable extends DataTable
             ->addTableClass('table table-bordered table-striped table-hover dataTable dtr-inline')
             ->responsive(true)
             ->columns($this->getColumns())
+            ->scrollY('45vh')
+            ->scrollCollapse(true)
+            #->info(true)
             #->language( "//cdn.datatables.net/plug-ins/1.10.21/i18n/Russian.json" )
             ->minifiedAjax()
             ->pageLength(25)
-            ->dom('Bfrtip')
-            ->orderBy(1, 'asc')
+            ->lengthMenu([[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
+            ->dom('Blfrtip')
+            #->orderBy(1, 'asc')
+            /*->parameters([
+                             'drawCallback' => 'function() { alert("Table Draw Callback") }',
+                         ])*/
             ->buttons(
                 Button::make('create'),
                 Button::make('export'),
