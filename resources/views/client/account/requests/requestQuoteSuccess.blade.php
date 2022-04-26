@@ -31,7 +31,7 @@
                     </nav>
                     @endif
 
-                    
+
                 </div>
             </div>
         </div>
@@ -54,9 +54,9 @@
                                 <p>Request number: <span>#{{ $params['reqest_number'] }}</span></p>
                                 <a href="{{ route('client.profile.account.index') }}">View in Cabinet</a>
                             </div>
-                            
 
-                            
+
+
                         </div>
 
                     </div>

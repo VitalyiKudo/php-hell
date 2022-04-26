@@ -39,13 +39,10 @@
 
                                 </div>
                             </div>
-
                         </div>
                 </div>
             </div>
-
         </div>
-        <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     </div>
 </div>
 
@@ -54,4 +51,11 @@
 @push('scripts')
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     {!! $dataTable->scripts() !!}
+    <script>
+        $(document).ready(function(){
+            $('#airportAreas').observe(function () {
+                $(this).find('span').tooltip(); // .addClass('form-control')
+            });
+        });
+    </script>
 @endpush

@@ -15092,6 +15092,63 @@ ul.dashed > li:before {
     color: #373737;
 }
 
+.type-info-legs {
+    display: grid;
+    text-align: left;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1px 10px;
+    justify-content: space-evenly;
+}
+
+.type-info-legs .flight-price {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    color: #373737;
+    line-height: 30px;
+}
+
+.type-info-legs .flight-price-desc {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #373737;
+}
+.type-info-legs span {
+    background-color: transparent;
+}
+
+.type-price-legs {
+    display: block;
+    text-align: left;
+}
+.type-price-legs {
+    display: block;
+    text-align: left;
+}
+
+.type-price-legs .flight-price {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    color: #373737;
+    line-height: 30px;
+}
+
+.type-price-legs .flight-price-desc {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #373737;
+}
+
 .card-body .card-body-details {
     display: flex;
     flex-direction: row-reverse;
@@ -15739,6 +15796,11 @@ ul.dashed > li:before {
         border-radius: 0;
         box-shadow: none;
     }
+}
+
+.header-min-height {
+    height: 130px !important;
+    margin-bottom: 1.5rem;
 }
 
 .main-works {

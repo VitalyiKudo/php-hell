@@ -69,8 +69,11 @@ class City extends Model
      *
      * @var string
      */
-    protected$primaryKey = 'geonameid';
+    protected $primaryKey = 'geonameid';
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'geonameid',
         'name',

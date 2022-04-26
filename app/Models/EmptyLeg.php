@@ -57,7 +57,7 @@ class EmptyLeg extends Model
      *
      * @var array
      */
-    protected $dates = ['date_departure'];
+    protected $dates = ['date_departure', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @var array
@@ -89,29 +89,54 @@ class EmptyLeg extends Model
     }
 
     /**
-     * @param $id
-     *
-     * @return mixed
+     * Get the departure of the city.
      */
-    public function getEmptyLeg($id)
+    public function departureCity()
     {
-        return  $this->where('id', $id)->with('operatorData', 'airportDeparture', 'airportArrival')->get()->map(function ($res) {
-            return [
-                'id' => $res->id,
-                'icaoDeparture' => $res->icao_departure,
-                'airportDeparture' => $res->airportDeparture->name,
-                'geoNameIdCityDeparture' => $res->airportDeparture->geoNameIdCity,
-                'icaoArrival' => $res->icao_arrival,
-                'airportArrival' => $res->airportArrival->name,
-                'geoNameIdCityArrival' => $res->airportArrival->geoNameIdCity,
-                'operatorEmail' => $res->operator,
-                'operatorName' => $res->operatorData->name,
-                'typePlane' => $res->type_plane,
-                'price' => $res->price,
-                'dateDeparture' => $res->date_departure,
-                'active' => $res->active
-            ];
-        })->at(0);
+        return $this->belongsTo(City::class, 'geoNameIdCity_departure', 'geonameid');
     }
 
+    /**
+     * Get the arrival of the city.
+     */
+    public function arrivalCity()
+    {
+        return $this->belongsTo(City::class, 'geoNameIdCity_arrival', 'geonameid');
+    }
+
+    /**
+     * @return EmptyLeg[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\EmptyLeg.with[]
+     */
+    public function getEmptyLegs()
+    {
+        return  $this->with('operatorData', 'airportDeparture', 'airportArrival')
+            ->get()
+            ->map(function ($value) {
+            return collect([
+                'id' => $value->id,
+                'icaoDeparture' => $value->icao_departure,
+                'airportDeparture' => $value->airportDeparture->name,
+                'geoNameIdCityDeparture' => $value->airportDeparture->geoNameIdCity,
+                'nameCityDeparture' => $value->departureCity->name,
+                'icaoArrival' => $value->icao_arrival,
+                'airportArrival' => $value->airportArrival->name,
+                'geoNameIdCityArrival' => $value->airportArrival->geoNameIdCity,
+                'nameCityArrival' => $value->arrivalCity->name,
+                'operatorEmail' => $value->operator,
+                'operatorName' => $value->operatorData->name,
+                'typePlane' => $value->type_plane,
+                'price' => $value->price,
+                'dateDeparture' => $value->date_departure,
+                'active' => $value->active
+            ]);
+        });
+    }
+
+    /**
+     * @return EmptyLeg[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\EmptyLeg.with[]
+     */
+    public function getEmptyLegsFull()
+    {
+        return  $this->with('operatorData', 'airportDeparture', 'airportArrival', 'departureCity', 'arrivalCity')->get();
+    }
 }

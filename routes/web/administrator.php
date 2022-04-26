@@ -51,15 +51,16 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('operators', 'OperatorController');
 
     // EmptyLeg
-    Route::get('emptyLeg/search','EmptyLegController@search')->name('emptyLeg.search');
-    Route::post('emptyLeg/import', 'EmptyLegController@import')->name('emptyLeg.import');
+    #Route::get('emptyLeg/search','EmptyLegController@search')->name('emptyLeg.search');
+    #Route::post('emptyLeg/import', 'EmptyLegController@import')->name('emptyLeg.import');
     Route::post('emptyLeg/ajaxSearchOperator', 'EmptyLegController@ajaxSearchOperator')->name('emptyLeg.ajaxSearchOperator');
     Route::post('emptyLeg/ajaxSearchAirport', 'EmptyLegController@ajaxSearchAirport')->name('emptyLeg.ajaxSearchAirport');
+    Route::get('emptyLeg/delete/{id}', 'EmptyLegController@destroy')->name('emptyLeg.delete');
     Route::resource('emptyLegs', 'EmptyLegController');
 
     // AirportArea
-    Route::get('airportArea/search','AirportAreaController@search')->name('airportArea.search');
-    Route::post('airportArea/import', 'AirportAreaController@import')->name('airportArea.import');
+    #Route::get('airportArea/search','AirportAreaController@search')->name('airportArea.search');
+    #Route::post('airportArea/import', 'AirportAreaController@import')->name('airportArea.import');
     Route::post('airportArea/ajaxSearchCity', 'AirportAreaController@ajaxSearchCity')->name('airportArea.ajaxSearchCity');
     Route::post('airportArea/ajaxSearchAirport', 'AirportAreaController@ajaxSearchAirport')->name('airportArea.ajaxSearchAirport');
     Route::post('airportArea/ajaxSearchCityAirports', 'AirportAreaController@ajaxSearchCityAirports')->name('airportArea.ajaxSearchCityAirports');

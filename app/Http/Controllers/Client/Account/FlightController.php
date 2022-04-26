@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Client\Account;
 
-use Auth;
-use App\Models\Order;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pricing;
-use App\Models\Search;
-use App\Models\City;
+use App\Http\Controllers\Controller;
+
+use Config;
+use Auth;
 use Carbon\Carbon;
 use \Validator;
 use Session;
 use DB;
+use Str;
+
+use App\Models\Order;
+use App\Models\Pricing;
+use App\Models\EmptyLeg;
+use App\Models\Search;
+use App\Models\City;
 
 class FlightController extends Controller
 {
@@ -23,7 +28,7 @@ class FlightController extends Controller
      */
 
 
-    public function index(Request $request)
+    public function index(Request $request, Pricing $pricing, EmptyLeg $emptyLeg)
     {
         Session::put('pervis_search_url', url()->full());
 
@@ -32,9 +37,7 @@ class FlightController extends Controller
         }
 
         $session_id = Session::get('session_token_id');
-#var_dump($request);
-        #$startPointName = $this->findCity($request->startPoint);
-        #$endPointName = $this->findCity($request->endPoint);
+
         $startPointName = $request->startPointName;
         $endPointName = $request->endPointName;
 
@@ -66,21 +69,35 @@ class FlightController extends Controller
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::check() ? Auth::user()->id : 0;
 
-        #$citiesList = [$startCity, $startCity, $startCity, $endCity, $endCity, $endCity];
+        $searchResults = collect(['pricing', 'emptyLeg']);
 
-        #$searchResults = Pricing::whereRaw("(`departure` like ? OR REPLACE(`departure`, '-', ' ') like ? OR REPLACE(`departure`, '.', '') like ?) AND (`arrival` like ? OR REPLACE(`arrival`, '-', ' ') like ? OR REPLACE(`arrival`, '.', '') like ?)", $citiesList)->first();
-
-        $searchResults = Pricing::with('departureCity', 'arrivalCity')
-        ->where('departure_geoId', '=', $startCity)
+        $searchResults->pricing = $pricing::with('departureCity', 'arrivalCity')
+            ->where('departure_geoId', '=', $startCity)
             ->where('arrival_geoId', '=', $endCity)
             ->first();
 
-        if($searchResults){
-            $params["result_id"] = $searchResults->id;
+        $searchResults->emptyLeg = $emptyLeg::with('departureCity', 'arrivalCity')
+            ->where('geoNameIdCity_departure', '=', $startCity)
+            ->where('geoNameIdCity_arrival', '=', $endCity)
+            ->whereDate('date_departure', '=', Carbon::parse($request->flightDate)->format('Y-m-d'))
+            ->where('active', '=', Config::get('constants.active.activated'))
+            ->get();
+/*
+        $searchResults->emptyLeg->type_plane->map(function ($item, $key) {
+                return Str::after($item, '_');
+            });
+ */
+        #dd($params);
+        #dd(Config::get('constants.plane'));
+#dd($searchResults->emptyLeg);
+#dd($searchResults->pricing->count()+$searchResults->emptyLeg->count());
+
+        if($searchResults->pricing){
+            $params["result_id"] = $searchResults->pricing->id;
         } else {
             $params["result_id"] = 0;
         }
-
+#dd($params["result_id"]);
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],

@@ -49,8 +49,11 @@ Route::post('/support/client', 'SupportController@client')->name('support.client
 Route::post('/support/operator', 'SupportController@operator')->name('support.operator');
 Route::post('/subscribed', 'SupportController@subscribe')->name('subscribed');
 
-/* Sitemap */
+/* SiteMap */
 Route::get('/sitemap', 'SitemapController@index');
+
+/* EmptyLegs */
+Route::get('/empty-leg', 'EmptyLegController@index');
 
 Auth::routes();
 

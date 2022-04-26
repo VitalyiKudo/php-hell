@@ -29,7 +29,7 @@ class StoreEmptyLeg extends FormRequest
             'geoNameIdCityDeparture' => 'nullable|numeric',
             'icaoArrival' => 'required|string|max:12',
             'geoNameIdCityArrival' => 'nullable|numeric',
-            'operatorEmail' => 'required|email|max:255l',
+            'operatorEmail' => 'required|email|max:255',
             'typePlane' => 'required|string|max:20',
             'price' => 'required|numeric',
             'dateDeparture' => 'required|date|after:today',

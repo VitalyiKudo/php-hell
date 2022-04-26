@@ -71,7 +71,7 @@
                             <select name="typePlane" id="typePlane" class="color-placeholder required form-control{{ $errors->has('typePlane') ? ' is-invalid' : '' }}" required>
                                 <option value="">Select a Plane Type</option>
                                 @forelse ($typePlanes as $keyPlane => $valPlane)
-                                    <option value={{ $keyPlane }}>{{ $valPlane }}</option>
+                                    <option value={{ $keyPlane }}>{{ $valPlane['type'] }}</option>
                                 @empty
                                     <p>No type Planes</p>
                                 @endforelse

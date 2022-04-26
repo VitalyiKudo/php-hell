@@ -530,16 +530,6 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            function removeDuplicatesBy(keyFn, array) {
-                                var mySet = new Set();
-                                return array.filter(function(x) {
-                                    var key = keyFn(x), isNew = !mySet.has(key);
-                                    if (isNew) mySet.add(key);
-                                    return isNew;
-                                });
-                            }
-
-                             var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             if (data.length !== 0){
                                 $.each(data, function(idx, obj) {
@@ -591,16 +581,6 @@
                         success: function(data){
                             var lookup = {};
                             var output = '<ul class="dropdown-menu">';
-                            function removeDuplicatesBy(keyFn, array) {
-                                var mySet = new Set();
-                                return array.filter(function(x) {
-                                    var key = keyFn(x), isNew = !mySet.has(key);
-                                    if (isNew) mySet.add(key);
-                                    return isNew;
-                                });
-                            }
-
-                            var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
 
                             if (data.length !== 0){
                                 $.each(data, function(idx, obj) {

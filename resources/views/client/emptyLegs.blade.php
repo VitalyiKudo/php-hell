@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 @section('meta')
     <title>Requests | JetOnset</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>
+{{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script> --}}
 
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
     <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
@@ -12,43 +12,14 @@
 
 @section('content')
 <div class="container header-page-image header-page-image-bg"></div>
-    <div class="section main-search-page">
-        <div class="container">
+    <div class="section main-search-page header-min-height">
+        {{--<div class="container">
             <div class="row">
 
                 <div class="offset-md-1 col-md-8">
 
 
-                    @if($lastSearchResults)
-                    <nav aria-label="breadcrumb" class="row search-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
-                            @foreach ($lastSearchResults as $lastSearch)
-                            <li class="breadcrumb-item">
-                                <a href="#" data-from="{{ $lastSearch->start_airport_name }}" data-to="{{ $lastSearch->end_airport_name }}">
-                                    <span class="search-item-first">{{ $lastSearch->start_airport_name }}</span>
-                                    <span class="search-item-second">{{ $lastSearch->end_airport_name }}</span>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ol>
-                    </nav>
-                    @elseif ($lastSessionSearchResults)
-                    <nav aria-label="breadcrumb" class="row search-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
-                            @foreach ($lastSessionSearchResults as $lastSessionSearch)
-                            <li class="breadcrumb-item">
-                                <a href="#" data-from="{{ $lastSessionSearch['start_airport_name'] }}" data-to="{{ $lastSessionSearch['end_airport_name'] }}">
-                                    <span class="search-item-first">{{ $lastSessionSearch['start_airport_name'] }}</span>
-                                    <span class="search-item-second">{{ $lastSessionSearch['end_airport_name'] }}</span>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ol>
-                    </nav>
-                    @endif
-
+{{--
                     <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
 
                         @csrf
@@ -119,11 +90,12 @@
                             </div>
                         </div>
                     </form>
+                    -}}
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
-
+{{--
     <div class="show-hide-map-outside-wrapper">
         <div class="container show-hide-map-wrapper mt-5 mb-3">
             <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
@@ -133,7 +105,7 @@
     <div class="section map-section">
         <div id="map"></div>
     </div>
-
+--}}
     {{--<div class="container header-page-image"></div>--}}
 
     <div class="container request-search-page">
@@ -144,7 +116,7 @@
 
             <div class="col-xl-12 col-lg-12 right-request">
                 <!--<h2 class="mb-5">Overview of your requests</h2>-->
-
+{{--
                 @if ($messages)
                     <div class="alert alert-danger">
                       <ul>
@@ -154,10 +126,11 @@
                       </ul>
                     </div><br />
                 @endif
+                --}}
 
                 <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
-
-                    @forelse ($searchResults->emptyLeg as $emptyLeg)
+{{-- dd($emptyLegs) --}}
+                    @forelse ($emptyLegs as $emptyLeg)
                         @php
                             $type = Str::after($emptyLeg->type_plane, '_');
                             $TYPE = Str::upper($type);
@@ -208,16 +181,27 @@
                                             <div class="type-price">
                                                 <div>
                                                     <span class="flight-type">{{__("$Type")}}</span>
-                                                    <span class="flight-dep-arr">{{ $emptyLeg->departureCity->name . ' - ' . $emptyLeg->arrivalCity->name }}</span>
+                                                    <span class="flight-dep-arr"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
                                                 </div>
                                                 <div>
-                                                    <span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>
+                                                    {{--<span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>--}}
+                                                    <span class="flight-price">{{ $emptyLeg->date_departure->format('d/m/Y') }}</span>
                                                     <span class="flight-price-desc">{{__('Book now price')}}</span>
                                                 </div>
                                             </div>
 
-                                            <div class="card-body-details">
-                                                  <ul>
+                                            <div class="type-info-legs">
+
+                                                <span class="flight-price-desc">{{__('From Airport')}}</span>
+                                                <span></span>
+                                                <span class="flight-price-desc">{{__('To Airport')}}</span>
+
+
+                                                <span class="flight-price">{{ $emptyLeg->departureCity->name}}</span>
+                                                <span></span>
+                                                <span class="flight-price">{{$emptyLeg->arrivalCity->name }}</span>
+
+                                                  {{--<ul>
                                                       @foreach( Config::get("constants.plane.type_plane.$emptyLeg->type_plane.feature_plane") as $key => $value)
                                                         <li>
                                                             <img src="{{ asset(Config::get("constants.plane.icons.$key")) }}" alt="{{ $key }}">
@@ -227,11 +211,16 @@
                                                             </div>
                                                         </li>
                                                       @endforeach
-                                                  </ul>
+                                                  </ul>--}}
                                             </div>
 
-                                            <div class="book">
-                                                <button type="submit" class="btn rquest-best-price">{{__('Request for a best price')}}</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], $type] ) }}" class="btn book-now">{{__('Book now')}}</a>
+                                            <div class="book" style="justify-content: space-between">
+                                                {{--<button type="submit" class="btn rquest-best-price">{{__('Request for a best price')}}</button>--}}
+                                                <div class="type-price-legs">
+                                                    <div class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</div>
+                                                    <div class="flight-price-desc">{{__('Price (Incl. taxes)')}}</div>
+                                                </div>
+                                                <a href="{{ route('client.orders.confirm', ['test', $type] ) }}" class="btn book-now">{{__('Book now')}}</a>
                                             </div>
 
                                         </div>
@@ -240,7 +229,7 @@
                     @empty
                         <div></div>
                     @endforelse
-
+{{--
 
                 @if($searchResults->pricing and ($searchResults->pricing->price_turbo > 0 or $searchResults->pricing->price_light > 0 or $searchResults->pricing->price_medium > 0 or $searchResults->pricing->price_heavy > 0) and strtotime(date('m/d/Y',strtotime("+1 day"))) < strtotime($params['flightDate']))
 
@@ -790,7 +779,7 @@
            </div>
 
 
-
+--}}
            </form>
 
 
@@ -826,451 +815,163 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
-<script src="{{ asset('js/slick.min.js') }}"></script>
-<script type="text/javascript">
-   @if( isset($params['biggerLat']) && isset($params['biggerLng']) && isset($params['startCityLat']) && isset($params['startCityLng']) && isset($params['endCityLat']) && isset($params['endCityLng']) )
-       function initMap() {
-           const map = new google.maps.Map(document.getElementById("map"), {
-               zoom: 5,
-               center: { lat: {{ $params['biggerLat'] }}, lng: {{ $params['biggerLng'] }} },
-               mapTypeId: "terrain",
-           });
+    <script src="{{ asset('js/slick.min.js') }}"></script>
+    <script type="text/javascript">
 
 
-           var LatLngList = new Array (new google.maps.LatLng ( {{ $params['startCityLat'] }}, {{ $params['startCityLng'] }}), new google.maps.LatLng ( {{ $params['endCityLat'] }}, {{ $params['endCityLng'] }} ));
-           //  Create a new viewpoint bound
-           var bounds = new google.maps.LatLngBounds ();
-           //  Go through each...
-           for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
-             //  And increase the bounds to take this point
-             bounds.extend (LatLngList[i]);
-           }
-           //  Fit these bounds to the map
-           map.fitBounds(bounds);
+
+        $(function() {
+
+            $('.turbo-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.turbo-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.turbo-gallery-nav').slick({
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                asNavFor: '.turbo-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
 
 
-           // Define a symbol using a predefined path (an arrow)
-           // supplied by the Google Maps JavaScript API.
-           const lineSymbol = {
-             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-           };
-           // Create the polyline and add the symbol via the 'icons' property.
-           const line = new google.maps.Polyline({
-             path: [
-               { lat: {{ $params['startCityLat'] }}, lng: {{ $params['startCityLng'] }} },
-               { lat: {{ $params['endCityLat'] }}, lng: {{ $params['endCityLng'] }} }
-             ],
-             icons: [
-               {
-                 icon: lineSymbol,
-                 offset: "100%"
-               }
-             ],
-             map: map,
-             strokeColor: "#1479BF",
-             draggable: true,
-             geodesic: true,
-           });
-       }
-   @endif
+            $('.light-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.light-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.light-gallery-nav').slick({
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                asNavFor: '.light-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.light-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
 
 
-   $( "#show-hide-map" ).click(function(e) {
-       e.preventDefault();
-       if(parseFloat($(".map-section").height()) == 0){
-           $("#show-hide-map").find('span.caret').removeClass('caret-down').addClass('caret-up');
-           $( ".map-section" ).animate({
-               height: "500px",
-           }, 300);
-       }else{
-           $("#show-hide-map").find('span.caret').removeClass('caret-up').addClass('caret-down');
-           $( ".map-section" ).animate({
-               height: "0px",
-           }, 300);
-       }
-   });
+            $('.medium-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.medium-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
+
+            $('.medium-gallery-nav').slick({
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                asNavFor: '.medium-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
+
+            $('.medium-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
 
 
-   $(function() {
+            $('.heavy-gallery-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: false,
+                asNavFor: '.heavy-gallery-nav',
+                autoplay: false,
+                adaptiveHeight: true,
+            });
 
-       $('.turbo-gallery-for').slick({
-           slidesToShow: 1,
-           slidesToScroll: 1,
-           arrows: true,
-           fade: true,
-           dots: false,
-           asNavFor: '.turbo-gallery-nav',
-           autoplay: false,
-           adaptiveHeight: true,
-       });
+            $('.heavy-gallery-nav').slick({
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                asNavFor: '.heavy-gallery-for',
+                dots: false,
+                centerMode: true,
+                centerPadding: '130px',
+                focusOnSelect: true,
+                arrows: false,
+                autoplay: false,
+            });
 
-       $('.turbo-gallery-nav').slick({
-           slidesToShow: 5,
-           slidesToScroll: 5,
-           asNavFor: '.turbo-gallery-for',
-           dots: false,
-           centerMode: true,
-           centerPadding: '130px',
-           focusOnSelect: true,
-           arrows: false,
-           autoplay: false,
-       });
-
-       $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
-           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-       });
+            $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
+                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
+            });
 
 
-       $('.light-gallery-for').slick({
-           slidesToShow: 1,
-           slidesToScroll: 1,
-           arrows: true,
-           fade: true,
-           dots: false,
-           asNavFor: '.light-gallery-nav',
-           autoplay: false,
-           adaptiveHeight: true,
-       });
+            $('.hover_bkgr_fricc').click(function(){
+                $('.hover_bkgr_fricc').hide();
+            });
+            $('.popupCloseButton').click(function(){
+                $('.hover_bkgr_fricc').hide();
+            });
 
-       $('.light-gallery-nav').slick({
-           slidesToShow: 5,
-           slidesToScroll: 5,
-           asNavFor: '.light-gallery-for',
-           dots: false,
-           centerMode: true,
-           centerPadding: '130px',
-           focusOnSelect: true,
-           arrows: false,
-           autoplay: false,
-       });
+/*
+            var tc = '{{--$status--}}';
+            if (tc === 'notAge') {
+                $('.modal-body').append('<p>If you are under 18 years old you cannot make an order.</p><p>We apologize for inconvenience.</p>');
+                $('.rquest-best-price').attr('disabled', true);
+                $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
+                    e.preventDefault();
+                    $('#T-C').modal('show');
+                });
+                $('#T-C').modal('show');
+            }
+            else if (tc === 'notFilledAge') {
+                $('.modal-body').append('<p>Please fill up your date of birth in the profile.</p>');
+                $('.rquest-best-price').attr('disabled', true);
+                $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function (e) {
+                    e.preventDefault();
+                    $('#T-C').modal('show');
+                });
+                $('#T-C').modal('show');
+            };
+            /*  else if (tc === 'notAuthorized') {
+              $('.modal-body').append('<p>Не Авторизован!</p>');
+              $('.rquest-best-price').attr('disabled', true);
+              $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
+                  e.preventDefault();
+                  $('#T-C').modal('show');
+              });
+              $('#T-C').modal('show');
+          };*/
 
-       $('.light-gallery-for').on('click', '.slick-arrow', function(){
-           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-       });
-
-
-       $('.medium-gallery-for').slick({
-           slidesToShow: 1,
-           slidesToScroll: 1,
-           arrows: true,
-           fade: true,
-           dots: false,
-           asNavFor: '.medium-gallery-nav',
-           autoplay: false,
-           adaptiveHeight: true,
-       });
-
-       $('.medium-gallery-nav').slick({
-           slidesToShow: 5,
-           slidesToScroll: 5,
-           asNavFor: '.medium-gallery-for',
-           dots: false,
-           centerMode: true,
-           centerPadding: '130px',
-           focusOnSelect: true,
-           arrows: false,
-           autoplay: false,
-       });
-
-       $('.medium-gallery-for').on('click', '.slick-arrow', function(){
-           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-       });
-
-
-       $('.heavy-gallery-for').slick({
-           slidesToShow: 1,
-           slidesToScroll: 1,
-           arrows: true,
-           fade: true,
-           dots: false,
-           asNavFor: '.heavy-gallery-nav',
-           autoplay: false,
-           adaptiveHeight: true,
-       });
-
-       $('.heavy-gallery-nav').slick({
-           slidesToShow: 5,
-           slidesToScroll: 5,
-           asNavFor: '.heavy-gallery-for',
-           dots: false,
-           centerMode: true,
-           centerPadding: '130px',
-           focusOnSelect: true,
-           arrows: false,
-           autoplay: false,
-       });
-
-       $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
-           $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-       });
-
-
-       $('.hover_bkgr_fricc').click(function(){
-           $('.hover_bkgr_fricc').hide();
-       });
-       $('.popupCloseButton').click(function(){
-           $('.hover_bkgr_fricc').hide();
-       });
-
-       var nowDate = new Date();
-       var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-       $('input[name="flightDate"]').daterangepicker({
-           opens: 'left',
-           keepEmptyValues: true,
-           singleDatePicker: true,
-           autoUpdateInput: true,
-           isInvalidDate: (e) => new Date(e) < today
-       });
-
-       /*
-       $('#request_quote').submit(function(e){
-           e.preventDefault();
-           var flight_model = $('#flight_model').val();
-           var result_id = $('#result_id').val();
-           var user_id = $('#user_id').val();
-           var comment = $('#comment').val();
-           var start_airport_name = $('#start_airport_name').val();
-           var end_airport_name = $('#end_airport_name').val();
-           var pax = $('#pax').val();
-           var _token = $('input[name="_token"]').val();
-
-           if(start_airport_name.length > 0 && end_airport_name.length > 0 && flight_model.length > 0){
-               $('#flight_model').removeClass('is-invalid');
-               $('.invalid-feedback').remove();
-               $('.hover_bkgr_fricc').show();
-               $.ajax({
-                   url: "{{ route('client.search.requestQuote') }}",
-                   type:"POST",
-                   data:{
-                       _token:_token,
-                       flight_model: flight_model,
-                       result_id: result_id,
-                       user_id: user_id,
-                       comment: comment,
-                       start_airport_name: start_airport_name,
-                       end_airport_name: end_airport_name,
-                       pax: pax
-                   },
-                   success:function(response){
-                       //$('.hover_bkgr_fricc').show();
-                       console.log(response);
-                   },
-               });
-           } else {
-               $('#flight_model').removeClass('is-invalid');
-               $('.invalid-feedback').remove();
-               $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
-           }
-
-       });
-       */
-
-       /*
-       $('#request_quote').submit(function(e){
-           var flight_model = $('#flight_model').val();
-           if(flight_model.length <= 0){
-               e.preventDefault();
-               $('#flight_model').removeClass('is-invalid');
-               $('.invalid-feedback').remove();
-               $('#flight_model').addClass('is-invalid').parent('div').append('<span class="invalid-feedback"><strong>The Preferred aircraft: field is required.</strong></span>');
-           }
-       });
-       */
-
-       $('input.from').keyup(function(){
-           var query = $(this).val();
-
-           if(query != '' && query.length >= 3){
-               var _token = $('input[name="_token"]').val();
-               $.ajax({
-                   url: "/api/airports",
-                   method: "GET",
-                   data: {query:query, _token:_token},
-                   success: function(data){
-                       var lookup = {};
-                       var output = '<ul class="dropdown-menu">';
-                       function removeDuplicatesBy(keyFn, array) {
-                           var mySet = new Set();
-                           return array.filter(function(x) {
-                               var key = keyFn(x), isNew = !mySet.has(key);
-                               if (isNew) mySet.add(key);
-                               return isNew;
-                           });
-                       }
-
-                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
-                       if (data.length !== 0){
-                           $.each(data, function(idx, obj) {
-                               var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
-                               var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
-                               var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
-                               var objAirport = obj.airport;
-
-                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
-
-                               $.each(objAirport, function(k, val) {
-                                   var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
-                                   output += '<li><a href="' + obj.id + '">' +
-                                       '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
-                                       '</a></li>';
-                               });
-
-                           });
-                       }
-                       else {
-                           output += '<li>No matches found</li>';
-                       }
-                       output += '</ul>';
-                       $('#departureList').fadeIn();
-                       $('#departureList').html(output).mark(query);
-                   }
-               });
-           }
-       });
-
-       $(document).on('click', '#departureList li', function(e){
-           e.preventDefault();
-           $('input.from').val($(this).find('span:first').text());
-           $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
-           $('input[name="startAirport"]').val($(this).find('icao:first').text());
-           $('#departureList').fadeOut();
-       });
-
-
-       $('input.to').keyup(function(){
-           var query = $(this).val();
-
-           if(query != '' && query.length >= 3){
-               var _token = $('input[name="_token"]').val();
-               $.ajax({
-                   url: "/api/airports",
-                   method: "GET",
-                   data: {query:query, _token:_token},
-                   success: function(data){
-                       var lookup = {};
-                       var output = '<ul class="dropdown-menu">';
-                       function removeDuplicatesBy(keyFn, array) {
-                           var mySet = new Set();
-                           return array.filter(function(x) {
-                               var key = keyFn(x), isNew = !mySet.has(key);
-                               if (isNew) mySet.add(key);
-                               return isNew;
-                           });
-                       }
-
-                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
-                       if (data.length !== 0){
-                           $.each(data, function(idx, obj) {
-                               var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
-                               var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
-                               var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
-                               var objAirport = obj.airport;
-
-                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
-
-                               $.each(objAirport, function(k, val) {
-                                   var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
-                                   output += '<li><a href="' + obj.id + '">' +
-                                       '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
-                                       '</a></li>';
-                               });
-
-                           });
-                       }
-                       else {
-                           output += '<li>No matches found</li>';
-                       }
-                       output += '</ul>';
-                       $('#arrivalList').fadeIn();
-                       $('#arrivalList').html(output).mark(query);
-                   }
-               });
-           }
-       });
-
-       $(document).on('click', '#arrivalList li', function(e){
-           e.preventDefault();
-           $('input.to').val($(this).find('span:first').text());
-           $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
-           $('input[name="endAirport"]').val($(this).find('icao:first').text());
-           $('#arrivalList').fadeOut();
-       });
-
-       $('.search-breadcrumb a').click(function(e){
-           e.preventDefault();
-           $('.form-body input[name="startPointName"]').val($(this).data("from"));
-           $('.form-body input[name="endPointName"]').val($(this).data("to"));
-       });
-
-
-       $('body').on('click', function(){
-           $('#departureList').fadeOut();
-           $('#arrivalList').fadeOut();
-       });
-
-
-       $('#main-search-form').submit(function(e){
-
-           var start_point_id = $(this).find('input[name="startPoint"]').val();
-           var end_point_id = $(this).find('input[name="endPoint"]').val();
-           var start_point_name = $(this).find('input[name="startPointName"]').val();
-           var end_point_name = $(this).find('input[name="endPointName"]').val();
-           var flight_date = $(this).find('input[name="flightDate"]').val();
-           var passengers = $(this).find('input[name="passengers"]').val();
-           var html_message = '<span class="search-error">This field is required.</span>';
-
-           if(start_point_name.length <= 0 || end_point_name.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
-               $('.search-error').remove();
-
-               if(start_point.length <= 0){
-                   $(this).find('input[name="startPointName"]').parent('div').append(html_message);
-               }
-               if(end_point.length <= 0){
-                   $(this).find('input[name="endPointName"]').parent('div').append(html_message);
-               }
-               if(flight_date.length <= 0){
-                   $(this).find('input[name="flightDate"]').parent('div').append(html_message);
-               }
-               if(passengers.length <= 0){
-                   $(this).find('input[name="passengers"]').parent('div').append(html_message);
-               }
-               e.preventDefault();
-           }
-       });
-
-       var tc = '{{$status}}';
-       if (tc === 'notAge') {
-           $('.modal-body').append('<p>If you are under 18 years old you cannot make an order.</p><p>We apologize for inconvenience.</p>');
-           $('.rquest-best-price').attr('disabled', true);
-           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
-               e.preventDefault();
-               $('#T-C').modal('show');
-           });
-           $('#T-C').modal('show');
-       }
-       else if (tc === 'notFilledAge') {
-           $('.modal-body').append('<p>Please fill up your date of birth in the profile.</p>');
-           $('.rquest-best-price').attr('disabled', true);
-           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function (e) {
-               e.preventDefault();
-               $('#T-C').modal('show');
-           });
-           $('#T-C').modal('show');
-       };
-         /*  else if (tc === 'notAuthorized') {
-           $('.modal-body').append('<p>Не Авторизован!</p>');
-           $('.rquest-best-price').attr('disabled', true);
-           $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
-               e.preventDefault();
-               $('#T-C').modal('show');
-           });
-           $('#T-C').modal('show');
-       };*/
-
-   });
-</script>
+        });
+    </script>
 
 @endpush

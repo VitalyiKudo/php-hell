@@ -55,7 +55,6 @@ class Pricing extends Model
      *
      * @var array
      */
-
     protected $fillable = [
         'source_id',
         'departure',

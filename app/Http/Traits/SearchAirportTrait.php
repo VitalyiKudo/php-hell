@@ -11,7 +11,7 @@ trait SearchAirportTrait {
      */
     public function SearchAirportNameLike($keyword)
     {
-        return Airport::with('cities', 'cities.regionCountry')
+        return Airport::with('cities', 'cities.regionCountry', 'cities.airportAreas')
             ->where(function ($query) use ($keyword) {
             $query->where('name', 'like', "{$keyword}%")
                 ->orWhere('iata', 'like', "{$keyword}%")

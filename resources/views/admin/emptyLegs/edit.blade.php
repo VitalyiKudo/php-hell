@@ -79,7 +79,7 @@
                             <label for="typePlane">{{__('Plane Type')}}*</label>
                             <select name="typePlane" id="typePlane" class="form-control{{ $errors->has('typePlane') ? ' is-invalid' : '' }}" required>
                                 @forelse ($typePlanes as $keyPlane => $valPlane)
-                                    <option value={{ $keyPlane }}{!! ($emptyLeg['typePlane'] === $keyPlane) ? ' selected' : '' !!}>{{ $valPlane }}</option>
+                                    <option value={{ $keyPlane }}{!! ($emptyLeg['typePlane'] === $keyPlane) ? ' selected' : '' !!}>{{ $valPlane['type'] }}</option>
                                 @empty
                                     <p>No type Planes</p>
                                 @endforelse

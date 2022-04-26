@@ -53,7 +53,7 @@ class AirportAreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(AirportArea $getArea)
+    public function create()
     {
         return view('admin.airportAreas.create');
     }

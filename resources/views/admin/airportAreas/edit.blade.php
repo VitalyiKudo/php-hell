@@ -7,14 +7,14 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.airportAreas.index') }}">Areas</a>
+                            <a href="{{ route('admin.airportAreas.index') }}">{{__('Areas')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('admin.airportAreas.edit', $airportArea['geoNameIdCity']) }}">
                                 {{ $airportArea['cityName'] }}
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{__('Edit')}}</li>
                     </ol>
                 </nav>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5>{{ $airportArea['cityName'] }}</h5>
-                        <h6 class="card-subtitle mb-3 text-muted">Edit Area</h6>
+                        <h6 class="card-subtitle mb-3 text-muted">{{__('Edit Area')}}</h6>
 
                         <form method="POST" action="{{ route('admin.airportAreas.update', $airportArea['geoNameIdCity']) }}" id="quickForm">
                             @csrf
@@ -39,7 +39,7 @@
                                     @forelse ($airportArea['cityAirport'] as $value)
                                         <option value={{ $value->icao }} selected>{{ $value->icao }}/{{ $value->iata }} {{ $value->name }}</option>
                                     @empty
-                                        <option value="">Select a City Airport</option>
+                                        <option value="">{{__('Select a City Airport')}}</option>
                                     @endforelse
                                 </select>
 
@@ -58,7 +58,7 @@
                                             <option value={{ $val->icao }} selected>{{ $val->icao }}{{ ($val->iata !== 'noV') ? '/' . $val->iata . ' ' : ' '}} {{ $val->name }} ({{ $val->cities->name }})</option>
                                         @endforeach
                                     @empty
-                                        <option value="">Select a Area Airport</option>
+                                        <option value="">{{__('Select a Area Airport')}}</option>
                                     @endforelse
                                 </select>
 
@@ -71,7 +71,7 @@
 
                             <input type="hidden" id="realAirportArea" name="realAirportArea" value="{{ old('realAirportArea', $realAirportArea) }}">
 
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">{{__('Save changes')}}</button>
                         </form>
                     </div>
                 </div>
@@ -82,15 +82,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5>Delete Area</h5>
+                        <h5>{{__('Delete Area')}}</h5>
 
                         <form method="POST" action="{{ route('admin.airportAreas.destroy', $airportArea['id']) }}">
                             @csrf
                             @method('DELETE')
 
-                            <p>Are you sure you want to delete this airportArea? This action cannot be undone.</p>
+                            <p>{{__('Are you sure you want to delete this airportArea? This action cannot be undone.')}}</p>
 
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this airportArea? This action cannot be undone.')">Delete</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('{{__('Are you sure you want to delete this airportArea? This action cannot be undone.')}}')">{{__('Delete')}}</button>
                         </form>
                     </div>
                 </div>
@@ -98,6 +98,6 @@
         </div>
     </div>
 
-    @include('admin.includes.js-airportArea-form')
+@include('admin.includes.js-airportArea-form')
 
 @endsection

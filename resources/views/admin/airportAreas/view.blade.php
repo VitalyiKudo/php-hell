@@ -28,7 +28,7 @@
 
                                 <dt>{{__('Airport Basic')}} ({{ $airportArea['cityAirportCount'] }})</dt>
                                 @forelse ($airportArea['cityAirport'] as $value)
-                                    <dd>{{ $value->icao }}/{{ $value->iata }} {{ $value->name }} </dd>
+                                    <dd>{{ $value->icao }}{{ (!empty($value->iata) && $value->iata !== 'noV') ? '/'.$value->iata : null }} {{ $value->name }} </dd>
                                 @empty
                                     <p>No city Airport</p>
                                 @endforelse
@@ -36,7 +36,7 @@
                                 <dt>{{__('Airport Additional')}} ({{ $airportArea['areaAirportCount'] }})</dt>
                                 @forelse ($airportArea['areaAirport'] as $value)
                                     @foreach($value->airport as $val)
-                                        <dd>{{ $val->icao }}/{{ $val->iata }} {{ $val->name }} ({{ $val->cities->name }}) </dd>
+                                        <dd>{{ $val->icao }}{{ (!empty($value->iata) && $value->iata !== 'noV') ? '/'.$value->iata : null }} {{ $val->name }} ({{ $val->cities->name }}) </dd>
                                     @endforeach
                                 @empty
                                     <p>No area Airport</p>

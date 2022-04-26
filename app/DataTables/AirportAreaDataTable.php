@@ -11,7 +11,6 @@ use Yajra\DataTables\DataTables;
 
 class AirportAreaDataTable extends DataTable
 {
-
     /**
      * Build DataTable class.
      *
@@ -25,6 +24,10 @@ class AirportAreaDataTable extends DataTable
             ->addColumn('action', function ($q) {
             return '<a href="'.route('admin.airportAreas.show', $q['geoNameIdCity']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.airportAreas.edit', $q['geoNameIdCity']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.route('admin.airportArea.delete', $q['geoNameIdCity']).'" class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this airportArea? This action cannot be undone.\')" data-method="delete" data-confirm="Are you sure to delete this inventory?">Delete</a>';
         });
+            /*->rawColumns(['cityName', 'action'])
+            ->editColumn('cityName', function($q) {
+                return '<span class="cursor-pointer" data-toggle="tooltip" data-title="' . $q['regionName'] . '">Hi ' . $q['geoNameIdCity'] . '!</span>';
+            });*/
     }
 
     /**
@@ -82,11 +85,11 @@ class AirportAreaDataTable extends DataTable
         return [
             Column::make('key')->title('#'),
             Column::make('cityName')->title('Area'),
-            Column::make('cityAirportCount')->title('Count Basic'),
-            Column::make('areaAirportCount')->title('Count Additional'),
+            Column::make('cityAirportCount')->title('Main'),
+            Column::make('areaAirportCount')->title('Satellite'),
             Column::make('regionName')->title('State'),
             Column::make('countryName')->title('Country'),
-            Column::make('action')->title(''),
+            Column::make('action')->title('')->orderable(false),
             ];
     }
 
