@@ -128,7 +128,7 @@
                 @endif
                 --}}
 
-                <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_empty_leg">
 {{-- dd($emptyLegs) --}}
                     @forelse ($emptyLegs as $emptyLeg)
                         @php
@@ -184,9 +184,8 @@
                                                     <span class="flight-dep-arr"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
                                                 </div>
                                                 <div>
-                                                    {{--<span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>--}}
                                                     <span class="flight-price">{{ $emptyLeg->date_departure->format('d/m/Y') }}</span>
-                                                    <span class="flight-price-desc">{{__('Book now price')}}</span>
+                                                    <span class="flight-price-desc text-right">{{__('Book now price')}}</span>
                                                 </div>
                                             </div>
 
@@ -194,12 +193,12 @@
 
                                                 <span class="flight-price-desc">{{__('From Airport')}}</span>
                                                 <span></span>
-                                                <span class="flight-price-desc">{{__('To Airport')}}</span>
+                                                <span class="flight-price-desc text-right">{{__('To Airport')}}</span>
 
 
                                                 <span class="flight-price">{{ $emptyLeg->departureCity->name}}</span>
                                                 <span></span>
-                                                <span class="flight-price">{{$emptyLeg->arrivalCity->name }}</span>
+                                                <span class="flight-price text-right">{{$emptyLeg->arrivalCity->name }}</span>
 
                                                   {{--<ul>
                                                       @foreach( Config::get("constants.plane.type_plane.$emptyLeg->type_plane.feature_plane") as $key => $value)
