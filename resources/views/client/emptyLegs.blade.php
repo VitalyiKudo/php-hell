@@ -940,8 +940,8 @@
                 $('.hover_bkgr_fricc').hide();
             });
 
-/*
-            var tc = '{{--$status--}}';
+
+            var tc = '{{$status}}';
             if (tc === 'notAge') {
                 $('.modal-body').append('<p>If you are under 18 years old you cannot make an order.</p><p>We apologize for inconvenience.</p>');
                 $('.rquest-best-price').attr('disabled', true);

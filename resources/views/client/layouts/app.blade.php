@@ -45,9 +45,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" type="text/css">
 
     <!-- Styles -->
-    <!--link href="{{ mix('css/app.min.css') }}" rel="stylesheet"-->
+    {{--<link href="{{ mix('css/app.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!--<link href="{{ asset('css/custom.css') }}" rel="stylesheet">-->
+    <!--<link href="{{-- asset('css/custom.css') --}}" rel="stylesheet">-->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>-->
@@ -84,6 +84,10 @@
                             </li>
 
                             <li class="nav-item item-position">
+                                <a class="nav-link {{ Request::is('empty-leg') ? 'active' : '' }}" href="{{ url('empty-leg') }}">{{ __('Empty Legs') }}</a>
+                            </li>
+
+                            <li class="nav-item item-position">
                                 <a class="nav-link {{ Request::is('services') ? 'active' : '' }}" href="{{ url('services') }}">{{ __('Services') }}</a>
                             </li>
 
@@ -104,6 +108,10 @@
                         @else
                             <li class="nav-item item-position auth-navbar">
                                 <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Book a flight') }}</a>
+                            </li>
+
+                            <li class="nav-item item-position auth-navbar">
+                                <a class="nav-link {{ Request::is('empty-leg') ? 'active' : '' }}" href="{{ url('empty-leg') }}">{{ __('Empty Legs') }}</a>
                             </li>
 
                             <li class="nav-item item-position auth-navbar">

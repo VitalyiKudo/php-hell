@@ -8,8 +8,11 @@ use App\Models\EmptyLeg;
 
 use Config;
 
+use App\Http\Traits\CheckAgeUserTrait;
+
 class EmptyLegController extends Controller
 {
+    use CheckAgeUserTrait;
     /**
      * Show the EmptyLeg page
      * @param EmptyLeg $emptyLeg
@@ -21,6 +24,8 @@ class EmptyLegController extends Controller
 
         $typePlanes = Config::get('constants.plane.type_plane');
 
-        return view('client.emptyLegs', compact('emptyLegs', 'typePlanes'));
+        $status = $this->CheckAge();
+
+        return view('client.emptyLegs', compact('emptyLegs', 'typePlanes', 'status'));
     }
 }

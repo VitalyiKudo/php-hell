@@ -50,7 +50,7 @@ class AirportController extends Controller
                     'area' => $value['area'],
                     'airport' => $value['airportFull']
                     ]
-                )->all()
+                )
             );
         }
         else {
