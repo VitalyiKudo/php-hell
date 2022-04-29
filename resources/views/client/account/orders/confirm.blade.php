@@ -9,7 +9,12 @@
 @section('book_page', 'book-page-nav')
 
 @section('content')
-
+    @php
+        $time_type = 'time_' . $search_type;
+        $priceType = 'price_' . $search_type;
+		$type = ($search_type === 'emptyLeg') ? Str::after($search->type_plane, '_') : $search_type;
+        $total_price = (is_object($search->price)) ? $search->price->$priceType : $search->price;
+    @endphp
 
 <div class="container header-page-image header-page-image-bg"></div>
 <div class="section main-search-page header-page-image-booking-two">
@@ -24,11 +29,11 @@
                 <div class="row">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-5 col-xl-5">
-                        <div class="header-book-class">Category: <span>{{ $search_type }} jet</span></div>
+                        <div class="header-book-class">Category: <span>{{ $type }} jet</span></div>
                     </div>
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 text-center">
-                        <img src="{{ asset('images/people.png') }}" alt="people" class="rounded"/> <span>{{ $pax }}</span>
+                        <img src="{{ asset('images/people.png') }}" alt="people" class="rounded"/> <span>{{ !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers") }}</span>
                     </div>
 
                 </div>
@@ -36,7 +41,7 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
-                        <div class="header-book-time"><span>{{ $time }}</span></div>
+                        <div class="header-book-time"><span>{{ !empty($search->price->$time_type) ? $search->price->$time_type : '-'}}</span></div>
                     </div>
 
                 </div>
@@ -44,11 +49,11 @@
                 <div class="row header-book-cities">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->departure }}</p>
+                        <p>{{ $search->departureCity->name }}</p>
                     </div>
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->arrival }}</p>
+                        <p>{{ $search->arrivalCity->name }}</p>
                     </div>
 
                 </div>
@@ -58,6 +63,9 @@
             <div class="d-none d-md-none d-lg-flex d-xl-flex col-md-3 col-xl-3 booking-row-right">
                 <div>
                     <p>Including taxes</p>
+                    @php
+
+                    @endphp
                     <p>TOTAL: <span> &#36;{{ number_format($total_price, 2, '.', ' ') }}</span></p>
                 </div>
             </div>
@@ -100,9 +108,9 @@
                         <tbody>
                             <tr>
                                 <td>Price:</td>
-                                <td>&#36;{{ number_format($price, 2, '.', ' ') }}</td>
+                                <td>&#36;{{ number_format($total_price, 2, '.', ' ') }}</td>
                             </tr>
-                            @if($feeses)
+                            @if(!empty($feeses))
                                 @foreach ($feeses as $fees)
                                     @if($fees->active == 1)
                                         <tr>

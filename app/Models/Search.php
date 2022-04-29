@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\City;
+
 
 /**
  * App\Models\Search
@@ -50,6 +50,7 @@ use App\Models\City;
  */
 class Search extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     /**
      * The attributes that are mass assignable.
      *
@@ -90,7 +91,7 @@ class Search extends Model
      */
     public function departureCity()
     {
-        return $this->belongsTo(City::class, 'start_airport_id');
+        return $this->belongsTo(City::class, 'departure_geoId', 'geonameid');
     }
 
     /**
@@ -98,7 +99,7 @@ class Search extends Model
      */
     public function arrivalCity()
     {
-        return $this->belongsTo(City::class, 'end_airport_id');
+        return $this->belongsTo(City::class, 'arrival_geoId', 'geonameid');
     }
 
     /**
@@ -115,5 +116,13 @@ class Search extends Model
     public function results()
     {
         return $this->hasMany('App\Models\SearchResult');
+    }
+
+    /**
+     * Get the price of the result.
+     */
+    public function price()
+    {
+        return $this->belongsTo(Pricing::class, ['departure_geoId', 'arrival_geoId'], ['departure_geoId', 'arrival_geoId']);
     }
 }

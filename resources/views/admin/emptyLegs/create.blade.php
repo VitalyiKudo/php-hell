@@ -128,6 +128,6 @@
     </div>
 </div>
 
-@include('admin.includes.js-emptyLeg')
+@include('admin.includes.js-emptyLeg-form')
 
 @endsection

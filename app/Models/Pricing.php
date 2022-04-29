@@ -50,6 +50,7 @@ use App\Models\City;
  */
 class Pricing extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     /**
      * The attributes that are mass assignable.
      *

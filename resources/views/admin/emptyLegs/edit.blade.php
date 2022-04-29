@@ -7,15 +7,15 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.emptyLegs.index') }}">Empty Legs</a>
+                        <a href="{{ route('admin.emptyLegs.index') }}">{{__('Empty Legs')}}</a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="{{ route('admin.emptyLegs.edit', $emptyLeg['id']) }}">
-                            {!! $emptyLeg['dateDeparture']->format('m-d-Y') !!}
+                            {{ $emptyLeg['dateDeparture']->format('m-d-Y') }}
                             ({{ $emptyLeg['operatorName'] }})
                         </a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('Edit')}}</li>
                 </ol>
             </nav>
         </div>
@@ -26,7 +26,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})</h5>
-                    <h6 class="card-subtitle mb-3 text-muted">Edit Empty Leg</h6>
+                    <h6 class="card-subtitle mb-3 text-muted">{{__('Edit Empty Leg')}}</h6>
 
                     <form method="POST" action="{{ route('admin.emptyLegs.update', $emptyLeg['id']) }}" id="quickForm">
                         @csrf
@@ -79,7 +79,7 @@
                             <label for="typePlane">{{__('Plane Type')}}*</label>
                             <select name="typePlane" id="typePlane" class="form-control{{ $errors->has('typePlane') ? ' is-invalid' : '' }}" required>
                                 @forelse ($typePlanes as $keyPlane => $valPlane)
-                                    <option value={{ $keyPlane }}{!! ($emptyLeg['typePlane'] === $keyPlane) ? ' selected' : '' !!}>{{ $valPlane['type'] }}</option>
+                                    <option value={{ $keyPlane }}{{ ($emptyLeg['typePlane'] === $keyPlane) ? ' selected' : '' }}>{{ $valPlane['type'] }}</option>
                                 @empty
                                     <p>No type Planes</p>
                                 @endforelse
@@ -106,7 +106,7 @@
 
                         <div class="form-group">
                             <label for="dateDeparture">{{__('Date')}}*</label>
-                            <input type="date" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{!! old('dateDeparture', $emptyLeg['dateDeparture']->format('Y-m-d') ) !!}">
+                            <input type="date" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{{ old('dateDeparture', $emptyLeg['dateDeparture']->format('Y-m-d')) }}" required>
 
                             @if ($errors->has('dateDeparture'))
                                 <span class="invalid-feedback" role="alert">
@@ -129,7 +129,7 @@
                             @endif
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">{{__('Save changes')}}</button>
                     </form>
                 </div>
             </div>
@@ -146,9 +146,9 @@
                         @csrf
                         @method('DELETE')
 
-                        <p>Are you sure you want to delete this emptyLeg? This action cannot be undone.</p>
+                        <p>{{__('Are you sure you want to delete this emptyLeg? This action cannot be undone.')}}</p>
 
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this emptyLeg? This action cannot be undone.')">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('{{__('Are you sure you want to delete this emptyLeg? This action cannot be undone.')}}')">{{__('Delete')}}</button>
                     </form>
                 </div>
             </div>
@@ -156,6 +156,6 @@
     </div>
 </div>
 
-@include('admin.includes.js-emptyLeg')
+@include('admin.includes.js-emptyLeg-form')
 
 @endsection

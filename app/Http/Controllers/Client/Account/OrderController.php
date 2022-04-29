@@ -2,29 +2,33 @@
 
 namespace App\Http\Controllers\Client\Account;
 
-use Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
+use App\Jobs\SendEmailOperator;
+
+use App\Models\EmptyLeg;
 use App\Models\Order;
 use App\Models\Airport;
-use App\Models\Region;
-use App\Models\City;
-use App\Models\AirportArea;
 use App\Models\Airline;
 use App\Models\Operator;
-use App\Models\OperatorCity;
 use App\Models\Fees;
-#use Mail;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Transaction;
 use App\Models\Search;
 use App\Models\Pricing;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
-use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
-use \Validator;
+
+use Validator;
 use Session;
-use Carbon\Carbon;
+use Carbon;
+use Auth;
+#use Config;
+#use Mail;
+#use Str;
+#use DB;
 // Square
 use Square\Environment;
 use Dotenv\Dotenv;
@@ -32,8 +36,6 @@ use Square\Models\Money;
 use Square\Models\CreatePaymentRequest;
 use Square\Exceptions\ApiException;
 use Square\SquareClient;
-#use DB;
-use App\Jobs\SendEmailOperator;
 
 class OrderController extends Controller
 {
@@ -102,7 +104,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function payment(OrderPaymentRequest $request, Order $order)
+    public function payment(OrderPaymentRequest $request, Order $order, EmptyLeg $emptyLeg)
     {
         $user = Auth::user();
         $card = $user->cards()->findOrFail($request->input('card_id'));
@@ -136,19 +138,14 @@ class OrderController extends Controller
         return redirect()->route('client.orders.booking', $order->id);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function confirm(Request $request)
     {
-        /*
-        $user = Auth::user();
-        echo $user->id;
-        echo $user->email;
-        */
-
-        //echo \Request::route()->getName();
-        //Fees
-
         $session_id = Session::get('session_token_id');
-        //echo $session_id;
 
         $search_updates = Search::where('session_id', $session_id)->get();
         if($search_updates){
@@ -158,96 +155,21 @@ class OrderController extends Controller
             }
         }
 
-
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
-
-        $feeses = Fees::all();
 
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
-        $search = Search::find($search_id);
-
-        $start_airport_name = $search->start_airport_name;
-        $end_airport_name = $search->end_airport_name;
-        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
-        $pax = $search->pax;
-
-        //echo "<pre>";
-        //print_r($search);
-        //echo $search->start_airport_name;
-        //echo $search->end_airport_name;
-        //echo Carbon::parse($search->departure_at)->format('d F Y');
-        //echo "</pre>";
-
-        $pricing = Pricing::find($search->result_id);
-
-        if($search_type == 'turbo'){
-            $price = $pricing->price_turbo;
-            $time = $pricing->time_turbo;
-        } elseif($search_type == 'light'){
-            $price = $pricing->price_light;
-            $time = $pricing->time_light;
-        } elseif($search_type == 'medium'){
-            $price = $pricing->price_medium;
-            $time = $pricing->time_medium;
-        } elseif($search_type == 'heavy'){
-            $price = $pricing->price_heavy;
-            $time = $pricing->time_heavy;
-        } else {
-            $price = 0.00;
-            $time = "00:00";
+        if ($search_type !== 'emptyLeg') {
+            $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
+        }
+        else {
+            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search_id);
         }
 
-
-        $total_price = (float)$price;
-
-        foreach($feeses as $fees){
-
-            if($fees->active){
-
-                if($fees->sall){
-                    if($fees->type == "$"){
-                        $total_price -= $fees->amount;
-                    } else {
-                        $total_price -= $price * ($fees->amount / 100 );
-                    }
-                }else{
-                    if($fees->type == "$"){
-                        $total_price += $fees->amount;
-                    } else {
-                        $total_price += $price * ($fees->amount / 100 );
-                    }
-                }
-
-                /*
-                if($fees->type == "$"){
-                    $total_price += $fees->amount;
-                } else {
-                    $total_price += $price * ($fees->amount / 100 );
-                }
-                */
-
-            }
-        }
-
-        return view('client.account.orders.confirm',
-                compact('search_id',
-                        'search_type',
-                        'pricing',
-                        'price',
-                        'time',
-                        'user',
-                        'start_airport_name',
-                        'end_airport_name',
-                        'departure_at',
-                        'pax',
-                        'feeses',
-                        'total_price',
-                        'pervis_search_url'
-                ));
+        return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 
     public function square(Request $request)
@@ -270,13 +192,18 @@ class OrderController extends Controller
             'environment' => getenv('ENVIRONMENT')
         ]);
 
-
-        $feeses = Fees::all();
-
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
+        if ($search_type !== 'emptyLeg') {
+            $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
+        }
+        else {
+            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search_id);
+        }
+
+/*
         $search = Search::find($search_id);
         #dd($search);
         $start_airport_name = $search->start_airport_name;
@@ -308,6 +235,7 @@ class OrderController extends Controller
 
         $total_price = $price;
 
+        $feeses = Fees::all();
         foreach($feeses as $fees){
 
             if($fees->active){
@@ -332,16 +260,19 @@ class OrderController extends Controller
                 } else {
                     $total_price += $price * ($fees->amount / 100 );
                 }
-                */
+                *
 
             }
         }
+*/
+
 
         $messages = NULL;
         $cart_errors = [];
 
-        $request_method = 'get';
 
+        $request_method = 'get';
+/*
         if ($request->isMethod('post')){
 
             $request_method = 'post';
@@ -377,7 +308,7 @@ class OrderController extends Controller
                     $money = new Money();
                     $money->setAmount($total_price*100);
                     $money->setCurrency('USD');
-                    $create_payment_request = new CreatePaymentRequest($nonce, uniqid(), $money);
+                    $create_payment_request = new CreatePaymentRequest($nonce, uniqid('', true), $money);
 
                     try {
                         $response = $payments_api->createPayment($create_payment_request);
@@ -432,7 +363,7 @@ class OrderController extends Controller
 
                             /*
                             * Mailing start
-                            */
+                            *
 
                             Mail::send([], [], function ($message) use ($id_order)  {
                                 $user = Auth::user();
@@ -485,7 +416,7 @@ class OrderController extends Controller
                             }
 
                             $emails = array_unique($emails);
-*/
+*
 // New Search
                             $states = Airport::with('airportAreas', 'city')
                                 ->where(function ($query) use ($start_airport_name, $end_airport_name, $departure_geoId, $arrival_geoId) {
@@ -552,7 +483,7 @@ class OrderController extends Controller
 
                            /*
                             * Mailing end
-                            */
+                            *
 
 
                             return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
@@ -566,13 +497,13 @@ class OrderController extends Controller
                             $resp_dec = json_decode($resp_arr, true);
                             print_r($resp_dec['payment']['reference_id']);
                             echo '</pre>';
-                            */
+                            *
                         }
                         /*
                         echo '<pre>';
                         print_r($response);
                         echo '</pre>';
-                        */
+                        *
                     } catch (ApiException $e) {
                         /*
                         echo 'Caught exception!<br/>';
@@ -581,7 +512,7 @@ class OrderController extends Controller
                         echo '<br/><strong>Context:</strong><br/>';
                         echo '<pre>'; var_dump($e->getContext()); echo '</pre>';
                         exit();
-                        */
+                        *
                     }
 
                 }
@@ -590,8 +521,9 @@ class OrderController extends Controller
             }
 
         }
-
-
+*/
+#dd($request->input('first_name'));
+        /*
         $params = [
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -601,6 +533,14 @@ class OrderController extends Controller
             'comments' => $request->input('comments'),
             'is_accepted' => $request->input('is_accepted'),
         ];
+        */
+#dd($user);
+        $params = [
+            'gender' => '',
+            'title' => '',
+            'comments' => '',
+            'is_accepted' => '',
+            ];
 
         return view('client.account.orders.square',
             compact(
@@ -611,16 +551,8 @@ class OrderController extends Controller
                 'locationId',
                 'search_id',
                 'search_type',
-                'pricing',
-                'price',
-                'time',
                 'user',
-                'start_airport_name',
-                'end_airport_name',
-                'departure_at',
-                'pax',
-                'feeses',
-                'total_price',
+                'search',
                 'params',
                 'request_method',
                 'cart_errors',

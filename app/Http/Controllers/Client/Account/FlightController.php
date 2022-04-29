@@ -48,7 +48,7 @@ class FlightController extends Controller
 
         $startAirport = $request->startAirport;
         $endAirport = $request->endAirport;
-
+/*
         $startCityCoordinates = $this->findCoordinates($request->startPoint);
         $endCityCoordinates = $this->findCoordinates($request->endPoint);
 
@@ -60,7 +60,7 @@ class FlightController extends Controller
             $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
             $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
         }
-
+*/
         $params["startPoint"] = $startCity ? $startCity : 0;
         $params["endPoint"] = $endCity ? $endCity : 0;
         $params["startAirport"] = $startAirport ? $startAirport : 0;

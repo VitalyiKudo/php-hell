@@ -137,19 +137,17 @@ class EmptyLegController extends Controller
      */
     public function update(UpdateEmptyLegRequest $request, EmptyLeg $emptyleg, $id)
     {
-            $emptyleg->updateOrCreate(
-                ['id' => $id],
-                ['icao_departure' => $request->icaoDeparture,
-                  'geoNameIdCity_departure' => $request->geoNameIdCityDeparture,
-                  'icao_arrival' => $request->icaoArrival,
-                  'geoNameIdCity_arrival' => $request->geoNameIdCityArrival,
-                  'operator' => $request->operatorEmail,
-                  'type_plane' => $request->typePlane,
-                  'price' => $request->price,
-                  'date_departure' => $request->dateDeparture,
-                  'active' => $request->active
-                ]
-            );
+        $emptyleg->where('id', '=', $id)
+            ->update(['icao_departure' => $request->icaoDeparture,
+                     'geoNameIdCity_departure' => $request->geoNameIdCityDeparture,
+                     'icao_arrival' => $request->icaoArrival,
+                     'geoNameIdCity_arrival' => $request->geoNameIdCityArrival,
+                     'operator' => $request->operatorEmail,
+                     'type_plane' => $request->typePlane,
+                     'price' => $request->price,
+                     'date_departure' => $request->dateDeparture,
+                     'active' => $request->active
+                 ]);
 
         return redirect()
             ->route('admin.emptyLegs.index')

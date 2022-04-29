@@ -4,7 +4,6 @@
     <title>Jet Booking | Step 3</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
     <script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://js.squareup.com/v2/paymentform" : "https://js.squareupsandbox.com/v2/paymentform" }}"></script>
     <script type="text/javascript">
         window.applicationId = "{{ $applicationId }}";
@@ -18,7 +17,12 @@
 @section('book_page', 'book-page-nav')
 
 @section('content')
-
+    @php
+        $time_type = 'time_' . $search_type;
+        $priceType = 'price_' . $search_type;
+		$type = ($search_type === 'emptyLeg') ? Str::after($search->type_plane, '_') : $search_type;
+        $total_price = (is_object($search->price)) ? $search->price->$priceType : $search->price;
+    @endphp
 
 <div class="container header-page-image header-page-image-bg"></div>
 <div class="section main-search-page header-page-image-booking-two">
@@ -33,11 +37,11 @@
                 <div class="row">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-5 col-xl-5">
-                        <div class="header-book-class">Category: <span>{{ $search_type }} jet</span></div>
+                        <div class="header-book-class">Category: <span>{{ $type }} jet</span></div>
                     </div>
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 text-center">
-                        <img src="{{ asset('images/people.png') }}" alt="people" class="rounded"/> <span>{{ $pax }}</span>
+                        <img src="{{ asset('images/people.png') }}" alt="people" class="rounded"/> <span>{{ !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers") }}</span>
                     </div>
 
                 </div>
@@ -45,7 +49,7 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
-                        <div class="header-book-time"><span>{{ $time }}</span></div>
+                        <div class="header-book-time"><span>{{ !empty($search->price->$time_type) ? $search->price->$time_type : '-' }}</span></div>
                     </div>
 
                 </div>
@@ -53,11 +57,11 @@
                 <div class="row header-book-cities">
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->departure }}</p>
+                        <p>{{ $search->departureCity->name  }}</p>
                     </div>
 
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <p>{{ $pricing->arrival }}</p>
+                        <p>{{ $search->arrivalCity->name }}</p>
                     </div>
 
                 </div>
@@ -122,7 +126,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="first_name">First name*</label>
-                                    <input type="text" name="first_name" class="form-control{{ $messages && $messages->has('first_name') ? ' is-invalid' : '' }}" id="first_name" value="{{ $request_method == 'post' ? $params['first_name'] : $user->first_name }}" placeholder="YOUR first name">
+                                    <input type="text" name="first_name" class="form-control{{ $messages && $messages->has('first_name') ? ' is-invalid' : '' }}" id="first_name" value="{{ $request_method === 'post' ? $params['first_name'] : $user->first_name }}" placeholder="YOUR first name">
                                     @if ($messages && $messages->has('first_name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $messages->first('first_name') }}</strong>
@@ -131,7 +135,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="last_name">Last name*</label>
-                                    <input type="text" name="last_name" class="form-control{{ $messages && $messages->has('last_name') ? ' is-invalid' : '' }}" id="last_name" value="{{ $request_method == 'post' ? $params['last_name'] : $user->last_name }}" placeholder="YOUR Last name">
+                                    <input type="text" name="last_name" class="form-control{{ $messages && $messages->has('last_name') ? ' is-invalid' : '' }}" id="last_name" value="{{ $request_method === 'post' ? $params['last_name'] : $user->last_name }}" placeholder="YOUR Last name">
                                     @if ($messages && $messages->has('last_name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $messages->first('last_name') }}</strong>
@@ -143,7 +147,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="birth_date">Birth date*</label>
-                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $request_method == 'post' ? $params['birth_date'] : old('date_of_birth', optional($user->date_of_birth)->format('m/d/Y'))}}" placeholder="date">
+                                    <input type="text" name="birth_date" class="form-control{{ $messages && $messages->has('birth_date') ? ' is-invalid' : '' }}" id="birth_date" value="{{ $request_method === 'post' ? $params['birth_date'] : old('date_of_birth', optional($user->date_of_birth)->format('m/d/Y'))}}" placeholder="date">
                                     @if ($messages && $messages->has('birth_date'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $messages->first('birth_date') }}</strong>

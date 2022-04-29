@@ -13,6 +13,7 @@ use App\Http\Traits\CheckAgeUserTrait;
 class EmptyLegController extends Controller
 {
     use CheckAgeUserTrait;
+
     /**
      * Show the EmptyLeg page
      * @param EmptyLeg $emptyLeg

@@ -205,7 +205,7 @@
                     number: true,
                     notOnlyZero: '0'
                 },
-                date: {
+                dateDeparture: {
                     required: {
                         depends:function(){
                             $(this).val($.trim($(this).val()));
@@ -237,7 +237,7 @@
                     minlength: "Please enter a valid Price",
                     notOnlyZero: "Please enter a valid Price"
                 },
-                date: {
+                dateDeparture: {
                     required: "Please provide a Date",
                     minlength: "Please enter a valid Date",
                 }
@@ -255,7 +255,7 @@
                     }
                 }
                 else {
-                    element.after(error);
+                    //element.after(error);
                 }
             },
 
@@ -288,55 +288,6 @@
 
         $('#typePlane').on('change', function () {
             this.value == '' ? $(this).addClass('color-placeholder') : $(this).removeClass('color-placeholder')
-        });
-
-        function fetch_data(page, query)
-        {
-            $.ajax({
-                url:"/manage/emptyLeg/search?page="+page+"&query="+query,
-                success:function(data)
-                {
-                    $('#fetch-list').html('');
-                    $('#fetch-list').html(data);
-                }
-            });
-        }
-
-        $(document).on('keyup', '#search', function(){
-            var query = $('#search').val();
-            var page = $('#hidden_page').val();
-            fetch_data(page, query);
-        });
-
-        /*$(document).on('click', '.pagination a', function(event){
-            event.preventDefault();
-            var page = $(this).attr('href').split('page=')[1];
-            $('#hidden_page').val(page);
-            var query = $('#search').val();
-
-            $('li').removeClass('active');
-            $(this).parent().addClass('active');
-            fetch_data(page, query);
-        });*/
-
-
-        $("#emptyLegs1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#emptyLegs').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "bJQueryUI":true,
-            "bSort":false,
-            "bPaginate":true,
-            "sPaginationType":"full_numbers",
-            "iDisplayLength": 25
         });
 
         $(function(){
