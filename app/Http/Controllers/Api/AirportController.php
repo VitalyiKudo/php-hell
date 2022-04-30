@@ -39,7 +39,7 @@ class AirportController extends Controller
     public function getAirportsList(Request $request)
     {
         $keyword = $request->input('query');
-
+#dd($this->SearchCityAirportNameLike($keyword));
         if (mb_strlen($keyword) >= 3) {
             return response()->json($this->SearchCityAirportNameLike($keyword)
                 ->map(fn($value) => [

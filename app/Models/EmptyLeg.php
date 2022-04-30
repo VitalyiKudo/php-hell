@@ -65,6 +65,19 @@ class EmptyLeg extends Model
     protected $guarded = [];
 
     /**
+     * @var array
+     */
+    protected $fillable = ['icao_departure',
+        'geoNameIdCity_departure',
+        'icao_arrival',
+        'geoNameIdCity_arrival',
+        'operator',
+        'type_plane',
+        'price',
+        'date_departure',
+        'active'];
+
+    /**
      * Get the operator.
      */
     public function operatorData()

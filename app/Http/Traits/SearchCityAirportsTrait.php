@@ -19,6 +19,11 @@ trait SearchCityAirportsTrait {
                             ->orWhere('iata', 'like', "{$keyword}%")
                             ->orWhere('icao', 'like', "{$keyword}%");
                     })
+                    ->orWhereHas('airportAreas.airport', function ($query) use ($keyword) {
+                        $query->where('name', 'like', "%{$keyword}%")
+                            ->orWhere('iata', 'like', "{$keyword}%")
+                            ->orWhere('icao', 'like', "{$keyword}%");
+                    })
                     ->orWhereHas('regionCountry', function ($query) use ($keyword) {
                         $query->where('name', 'like', "%{$keyword}%");
                     });
