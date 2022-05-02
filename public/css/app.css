@@ -16751,7 +16751,8 @@ ul.dashed > li:before {
     .dt-field,
     .pass-field,
     .butn-search {
-        width: 90% !important;
+        /*width: 90% !important;*/
+        flex: 0 0 93%;
     }
 
     .end-point {
