@@ -45,8 +45,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.min.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    {{--<link href="{{ mix('css/app.min.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!--<link href="{{-- asset('css/custom.css') --}}" rel="stylesheet">-->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -222,13 +222,13 @@
                         <subscribe></subscribe>
 
 
-                            <div class="row logo-app">
-                                <div>
-                                    <img src="/images/iOS-logo.webp" class="logo-ios" loading="lazy" alt="...">
+                            <div class="logo-app mt-5">
+                                <div class="logo-ios">
+                                    <img src="/images/iOS-logo.webp" loading="lazy" alt="...">
                                     <!--p class="download-text">Download Now for iOS</p-->
                                 </div>
-                                <div>
-                                    <img src="/images/Android-logo.webp" class="logo-android" loading="lazy" alt="...">
+                                <div class="logo-android">
+                                    <img src="/images/Android-logo.webp" loading="lazy" alt="...">
                                     <!--p class="download-text">Download Now for Android</p-->
                                 </div>
                             </div>

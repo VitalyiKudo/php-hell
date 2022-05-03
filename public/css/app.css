@@ -4129,6 +4129,13 @@ input[type=button].btn-block {
     width: 100%;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button;
+    margin: 0;
+    opacity: 1;
+}
+
 .fade {
     transition: opacity 0.15s linear;
 }
@@ -18442,10 +18449,22 @@ ul.dashed > li:before {
 
 .logo-app {
     display:  grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    gap: 5%;
+    max-width: 100%;
 }
 
 .logo-android, .logo-ios {
-    width: 190px;
-    padding: 15px;
+    padding: 1px;
+}
+
+.logo-android img, .logo-ios img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#app {
+    max-width: 100%;
 }

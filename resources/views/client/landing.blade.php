@@ -65,7 +65,7 @@
                         </div>
                         <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                             <div class="input-group input-style">
-                                <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
+                                <input type="number" min="1" pattern="[0-9]*" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                     <img src="/images/passengers-icon.svg" loading="lazy" class="icon-img" alt="..."></span>
