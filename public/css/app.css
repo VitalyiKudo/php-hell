@@ -4131,8 +4131,13 @@ input[type=button].btn-block {
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: inner-spin-button;
-    margin: 0;
+    -webkit-appearance: inner-spin-button !important;
+    width: 1rem;
+    position: absolute;
+    vertical-align: middle;
+    top: 0;
+    right: 0;
+    height: 100%;
     opacity: 1;
 }
 
