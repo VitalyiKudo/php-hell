@@ -571,6 +571,7 @@ class OrderController extends Controller
                                 'amount' => $newOrder->price,
                                 'message' => !empty($response) ? $response->getBody() : 'No Response!'
                             ];
+                            $cart_errors = json_decode($response->getBody(), true)['errors'][0];
                         }
                         $newTransaction = $transaction->createTransaction($dataTransaction);
 

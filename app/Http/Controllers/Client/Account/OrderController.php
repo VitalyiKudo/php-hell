@@ -300,6 +300,7 @@ class OrderController extends Controller
                                 'amount' => $newOrder->price,
                                 'message' => !empty($response) ? $response->getBody() : 'No Response!'
                             ];
+                            $cart_errors = json_decode($response->getBody(), true)['errors'][0];
                         }
                         $newTransaction = $transaction->createTransaction($dataTransaction);
 
@@ -308,7 +309,7 @@ class OrderController extends Controller
                             $newOrder->payment_id = $response->getResult()->getPayment()->getId();
                             $newOrder->save();
                             if ($search_type === 'emptyLeg') {
-                                EmptyLeg::find($search_id)->update(['active' => Config::get("constants.active.on-hold")]);
+                                EmptyLeg::find($search_id)->update(['active' => Config::get("constants.active.On hold")]);
                             }
                             $regions = City::whereIn('geonameid', $operatorCity)->get()
                                 ->unique(function ($item) {
@@ -388,11 +389,14 @@ class OrderController extends Controller
         }
 
         $params = [
-            'gender' => '',
-            'title' => '',
-            'comments' => '',
-            'is_accepted' => '',
-            ];
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'birth_date' => $request->input('birth_date'),
+            'gender' => $request->input('gender'),
+            'title' => $request->input('title'),
+            'comments' => $request->input('comments'),
+            'is_accepted' => $request->input('is_accepted'),
+        ];
 
         return view('client.account.orders.square',
             compact(

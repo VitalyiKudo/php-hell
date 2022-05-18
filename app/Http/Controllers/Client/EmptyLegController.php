@@ -21,7 +21,7 @@ class EmptyLegController extends Controller
      */
     public function index(EmptyLeg $emptyLeg)
     {
-        $emptyLegs = $emptyLeg->getEmptyLegsFull()->where('active', '=', Config::get('constants.active.activated'));
+        $emptyLegs = $emptyLeg->getEmptyLegsFull()->where('active', '=', Config::get('constants.active.Active'));
 
         $typePlanes = Config::get('constants.plane.type_plane');
 

@@ -87,7 +87,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                 <a href="{{ $pervis_confirm_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 <!--
-                <a href="{{ Request::path() }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
+                <a href="{{-- Request::path() --}}" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 <a onclick="window.history.back();" class="btn btn-light back_arrow">Back to JET TYPE</a>
                 -->
             </div>
@@ -110,16 +110,18 @@
 
                 <div class="info-square-block sq-payment-form">
 
-                    <div id="sq-walletbox">
+                    {{--<div id="sq-walletbox">
                         <button id="sq-google-pay" class="button-google-pay"></button>
                         <button id="sq-apple-pay" class="sq-apple-pay"></button>
                         <button id="sq-masterpass" class="sq-masterpass"></button>
                         <div class="sq-wallet-divider">
                             <span class="sq-wallet-divider__text">Or</span>
                         </div>
-                    </div>
+                    </div>--}}
                     <div id="sq-ccbox">
-
+@php
+    #dd($cart_errors);
+@endphp
                         <form id="nonce-form" novalidate action="{{ route('client.orders.square', [$search_id, $search_type]) }}" method="post">
                             @csrf
                             <div class="form-titles">your details</div>
