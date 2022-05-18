@@ -20,9 +20,10 @@ class SendEmailOperator implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($data_mail)
+    public function __construct($data_emails)
     {
-        $this->data_mail = $data_mail;
+        $this->data_mail = $data_emails;
+        #dd($this->data_mail);
     }
 
     /**
@@ -32,39 +33,54 @@ class SendEmailOperator implements ShouldQueue
      */
     public function handle()
     {
-        foreach ($this->data_mail->emails as $val) {
+        foreach ($this->data_mail->operator_emails as $val) {
             $emails = [];
 
-            if ($val->email == trim($val->email) && strpos($val->email, ' ') !== false) {
-                $mail_list = explode(" ", $val->email);
+            if ($val == trim($val) && strpos($val, ' ') !== false) {
+                $mail_list = explode(" ", $val);
                 foreach($mail_list as $mail){
                     $emails[] = trim($mail);
                 }
-            } else if(strstr($val->email, PHP_EOL)) {
-                $mail_list = explode(PHP_EOL, $val->email);
+            } else if(strstr($val, PHP_EOL)) {
+                $mail_list = explode(PHP_EOL, $val);
                 foreach($mail_list as $mail){
                     $emails[] = trim($mail);
                 }
             } else {
-                $emails[] = trim($val->email);
+                $emails[] = trim($val);
             }
 
             $emails = array_unique($emails);
 
             try {
+
                 foreach($emails as $email) {
 
-                    Mail::send([], [$this->data_mail->date, $this->data_mail->airports, $this->data_mail->order_id], function ($message) use ($email) {
+                    Mail::send([], [$this->data_mail], function ($message) use ($email) {
                         #Mail::send('emails.welcome', $data, function ($message) {
                         $message->from('charter@jetoset.com', 'JetOnset team');
                         #$message->to($email)->subject(
-                        $message->to($email)->subject("We have request for you #{$this->data_mail->order_id}");
-                        $message->setBody(
-                            "Hello!\n\nCan you send me a quote for a flight from {$this->data_mail->airports['start_city']->city}, {$this->data_mail->airports['start_city']->region} to {$this->data_mail->airports['end_city']->city}, {$this->data_mail->airports['end_city']->region} on {$this->data_mail->date} for {$this->data_mail->airports['pax']} person.\n\nBest regards,\nJetOnset\n"
-                        );
+                        $message->to($email);
+                        $message->subject("We have request for you #{$this->data_mail->data_flight['order_id']}");
+                        if ($this->data_mail->data_flight['start_city'] !== 'emptyLeg') {
+                            $message->setBody(
+                                "Hello!\n\nCan you send me a quote for a flight from {$this->data_mail->data_flight['start_city']}, {$this->data_mail->data_flight['start_state']} to {$this->data_mail->data_flight['end_city']}, {$this->data_mail->data_flight['end_state']} on {$this->data_mail->data_flight['date']} for {$this->data_mail->data_flight['pax']} person.\n\nBest regards,\nJetOnset\n");
+                        }
+                        else {
+                            $message->setBody(
+                                "Hello!\n\nWe are selling your empty leg {$this->data_mail->data_flight['start_city']}, {$this->data_mail->data_flight['start_state']} - {$this->data_mail->data_flight['end_city']}, {$this->data_mail->data_flight['end_state']} on {$this->data_mail->data_flight['date']}, please confirm it’s availability.\n\nBest regards,\nJetOnset\n");
+                        }
                     });
                     sleep(rand(0, 3));
                 }
+
+                Mail::send([], [$this->data_mail], function ($message)  {
+                    $message->from('quote@jetonset.com', 'JetOnset team');
+                    $message->to($this->data_mail->data_user['user_email']);
+                    $message->subject("We have received your request #{$this->data_mail->data_flight['order_id']}");
+                    $message->setBody("Dear {$this->data_mail->data_user['first_name']} {$this->data_mail->data_user['last_name']},\n\nWe have received your payment. Our manager will contact you to discuss your flight details in the shortest time possible.\n\nBest regards,\nJetOnset Team");
+                });
+
             } catch (Exception $e) {
                 report($e);
                 return false;

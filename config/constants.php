@@ -2,10 +2,19 @@
 
 return [
     'active' => [
-        'not-activated' => 0,
-        'activated' => 1,
-        'deleted' => 2,
-        'deleted_prefix' => '@@',
+        'Not activated' => 0,
+        'Active' => 1,
+        'On hold' => 2,
+        'Done' => 3,
+        'Deleted' => 4,
+    ],
+
+    'active_bg' => [
+        'bg-secondary' => 0,
+        'bg-danger' => 1,
+        'bg-warning' => 2,
+        'bg-success' => 3,
+        'bg-info' => 4,
     ],
 
     'plane' => [

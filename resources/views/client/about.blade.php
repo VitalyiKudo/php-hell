@@ -20,7 +20,7 @@
 <div class="section about-introduction mb-5">
     <div class="container">
         <div class="row text-padding">
-            <div class="col">
+            <div class="col text-justify">
                 <h3 class="about-h3-text mb-3">Introduction</h3>
                 <p class="mb-4 title-p-text txt-color">JetOnset is a <strong> team of avid professionals </strong> who love the world of private flying! We know anyone who gets a taste of this experience will agree, and we're determined to expand the once elusive world of private flying to more people at an affordable price!</p>
                 <p class="mb-4 title-p-text txt-color">We have partnered up with private jet operators around the world and have harnessed the power of  <strong>artificial intelligence  </strong> to create technology which will put you in control of these planes at affordable rates.</p>
@@ -45,7 +45,7 @@
                         </svg>
 
                     </div>
-                    <div class="col-md-11 service-fancy-p">
+                    <div class="col-md-10 service-fancy-p">
                         <p>When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane.</p>
                         <p> The same treatment will transpire once you arrive as well. On larger jets, you'll even have private cabin attendants who will wait on your needs.</p>
                     </div>

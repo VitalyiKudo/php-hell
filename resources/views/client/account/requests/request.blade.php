@@ -115,7 +115,7 @@
                             </div>
 
                             <div class="form-container-1 mt-2 ml-3 butn-search">
-                                <button type="submit" class="btn">Search Jet</button>
+                                <button type="submit" class="btn">Find a Jet</button>
                             </div>
                         </div>
                     </form>

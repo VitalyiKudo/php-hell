@@ -25,7 +25,9 @@
         <div class="col-md-12">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})</h5>
+                    <h5>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})
+                            <span class="badge {{ array_search($emptyLeg['active'], $status['statusBg']) }}">{{ array_search($emptyLeg['active'], $status['status']) }}</span>
+                    </h5>
                     <h6 class="card-subtitle mb-3 text-muted">{{__('Edit Empty Leg')}}</h6>
 
                     <form method="POST" action="{{ route('admin.emptyLegs.update', $emptyLeg['id']) }}" id="quickForm">
@@ -116,11 +118,14 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="form-check">
-                                <input type="hidden" name="active" value="0">
-                                <input type="checkbox" class="form-check-input" name="active" value="1" {{ ($emptyLeg['active'] === 1) ? 'checked' : '' }}>
-                                <label for="active">{{__('Active')}}</label>
-                            </div>
+                                <label for="active">{{__('Activate')}}</label>
+                                <select name="active" id="active" class="form-control{{ $errors->has('active') ? ' is-invalid' : '' }}" required>
+                                    @forelse ($status['status'] as $key => $val)
+                                        <option value={{ $val }}{{ ($emptyLeg['active'] === $val) ? ' selected' : '' }}>{{ $key }}</option>
+                                    @empty
+                                        <p>No Status</p>
+                                    @endforelse
+                                </select>
 
                             @if ($errors->has('active'))
                                 <span class="invalid-feedback" role="alert">

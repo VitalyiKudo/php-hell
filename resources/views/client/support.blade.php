@@ -19,7 +19,7 @@
 
     <div class="container support-for-clients-title">
         <div class="row">
-            <div class="col">
+            <div class="col text-justify">
                 <h2 class="mb-3">For Clients</h2>
                 <p class="mb-0">Feel free to reach out to us for any questions and concerns you might have!</p>
                 <p class="mb-0">We have agents that will help with om demand inquiries and the press.</p>
@@ -109,7 +109,7 @@
 <div class="section support-for-operators">
     <div class="container support-for-operators-title">
         <div class="row">
-            <div class="col">
+            <div class="col text-justify">
                 <h2 class="mb-3">For Operators</h2>
                 <p class="mb-0">Don't let your fleet go to waste! Join our network and get access to new leads, new clients and new flights! Reach out today.</p>
             </div>

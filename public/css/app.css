@@ -13162,6 +13162,7 @@ h3 {
 
 .aircraft-cat {
     color: #373737;
+    text-align: justify;
 }
 
 sup {
@@ -13575,7 +13576,8 @@ sup {
 }
 
 .services-fullwidth .services-text {
-    padding: 3rem;
+    padding: 2rem;
+    min-height: 24.375rem;
 }
 
 @media (min-width: 768px) {
@@ -13638,6 +13640,7 @@ sup {
     color: #FFFFFF;
     left: -30px;
     opacity: 0.7;
+    text-align: justify;
 }
 
 .img-align {
@@ -16245,6 +16248,10 @@ ul.dashed > li:before {
     left: 0px;
 }
 
+.service-fancy-p p {
+    text-align: justify;
+}
+
 @media (min-width: 768px) {
     .service-fancy-p {
         left: -30px;
@@ -18472,4 +18479,13 @@ ul.dashed > li:before {
 
 #app {
     max-width: 100%;
+}
+
+@media (max-width: 992px) {
+    .main-works, .col-12, .col-lg-6,
+    .main-about-us, .txt-pos, .text-padding,
+    .support-for-clients, .support-for-operators {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }

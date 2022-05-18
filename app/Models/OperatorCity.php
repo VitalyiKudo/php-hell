@@ -71,4 +71,12 @@ class OperatorCity extends Model
         return $this->belongsTo(City::class, 'geoNameIdCity', 'geonameid');
     }
 
+    /**
+     * Get the operator of the city.
+     */
+    public function operator()
+    {
+        return $this->belongsTo(Operator::class, 'email', 'email');
+    }
+
 }

@@ -19,7 +19,7 @@ use App\Models\EmptyLeg;
 use App\Models\Search;
 use App\Models\City;
 
-use App\Http\Traits\CheckAgeUserTrait;
+use App\Traits\CheckAgeUserTrait;
 
 class FlightController extends Controller
 {
@@ -127,8 +127,8 @@ class FlightController extends Controller
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
         $search->session_id = $session_id;
-        $search->start_airport_name = $params["startPointName"];
-        $search->end_airport_name = $params["endPointName"];
+        $search->start_airport_name = $params["startAirport"];
+        $search->end_airport_name = $params["endAirport"];
         $search->departure_geoId = $params["startPoint"];
         $search->arrival_geoId = $params["endPoint"];
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
@@ -141,8 +141,8 @@ class FlightController extends Controller
             [
                 'startPoint' => $params["startPoint"],
                 'endPoint' => $params["endPoint"],
-                'startPointName' => $params["startPointName"],
-                'endPointName' => $params["endPointName"],
+                'startPointName' => $params["startAirport"],
+                'endPointName' => $params["endAirport"],
                 'flightDate' => $params["flightDate"],
                 'passengers' => $params["passengers"],
             ],

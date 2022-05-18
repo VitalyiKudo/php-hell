@@ -12,9 +12,9 @@ use App\DataTables\AirportAreaDataTable;
 use App\Models\AirportArea;
 use App\Models\Airport;
 
-use App\Http\Traits\SearchCityTrait;
-use App\Http\Traits\SearchAirportTrait;
-use App\Http\Traits\SearchOperatorTrait;
+use App\Traits\SearchCityTrait;
+use App\Traits\SearchAirportTrait;
+use App\Traits\SearchOperatorTrait;
 
 class AirportAreaController extends Controller
 {

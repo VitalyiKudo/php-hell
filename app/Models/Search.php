@@ -103,6 +103,22 @@ class Search extends Model
     }
 
     /**
+     * Get the start airport of the search.
+     */
+    public function airportDeparture()
+    {
+        return $this->belongsTo(Airport::class, 'start_airport_name', 'icao');
+    }
+
+    /**
+     * Get the end airport of the search.
+     */
+    public function airportArrival()
+    {
+        return $this->belongsTo(Airport::class, 'end_airport_name', 'icao');
+    }
+
+    /**
      * Get all of the orders for the user.
      */
     public function orders()

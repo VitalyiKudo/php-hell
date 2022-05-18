@@ -15,8 +15,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 # use DB;
 use Validator;
-use App\Http\Traits\SearchCityTrait;
-use App\Http\Traits\SearchAirportTrait;
+use App\Traits\SearchCityTrait;
+use App\Traits\SearchAirportTrait;
 
 class OperatorController extends Controller
 {

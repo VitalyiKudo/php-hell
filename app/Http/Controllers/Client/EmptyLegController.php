@@ -8,7 +8,7 @@ use App\Models\EmptyLeg;
 
 use Config;
 
-use App\Http\Traits\CheckAgeUserTrait;
+use App\Traits\CheckAgeUserTrait;
 
 class EmptyLegController extends Controller
 {

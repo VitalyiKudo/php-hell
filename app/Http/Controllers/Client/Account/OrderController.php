@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Client\Account;
 
+use App\Models\City;
+use App\Models\OperatorCity;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
 use App\Jobs\SendEmailOperator;
+use App\Traits\PaymentSquareTrait;
 
 use App\Models\EmptyLeg;
 use App\Models\Order;
@@ -20,12 +23,13 @@ use App\Models\Fees;
 use App\Models\Transaction;
 use App\Models\Search;
 use App\Models\Pricing;
+use App\Models\OrderStatus;
 
 use Validator;
 use Session;
 use Carbon;
 use Auth;
-#use Config;
+use Config;
 #use Mail;
 #use Str;
 #use DB;
@@ -39,6 +43,8 @@ use Square\SquareClient;
 
 class OrderController extends Controller
 {
+    use PaymentSquareTrait;
+
     /**
      * Create a new controller instance.
      *
@@ -104,7 +110,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function payment(OrderPaymentRequest $request, Order $order, EmptyLeg $emptyLeg)
+    public function payment(OrderPaymentRequest $request, Order $order)
     {
         $user = Auth::user();
         $card = $user->cards()->findOrFail($request->input('card_id'));
@@ -172,7 +178,15 @@ class OrderController extends Controller
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 
-    public function square(Request $request)
+    /**
+     * @param Request     $request
+     * @param Order       $order
+     * @param Transaction $transaction
+     * @param OrderStatus $orderStatus
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function square(Request $request, Order $order, Transaction $transaction, OrderStatus $orderStatus)
     {
         $pervis_confirm_url = Session::get('pervis_confirm_url');
 
@@ -187,92 +201,27 @@ class OrderController extends Controller
         $environment = $_ENV["ENVIRONMENT"];
         $access_token =  getenv($upper_case_environment.'_ACCESS_TOKEN');
 
-        $client = new SquareClient([
-            'accessToken' => $access_token,
-            'environment' => getenv('ENVIRONMENT')
-        ]);
-
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
         if ($search_type !== 'emptyLeg') {
-            $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
+            $search = Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($search_id);
+            $strPrice = 'price_'.$search_type;
+            $total_price = $search->price->$strPrice;
+            $operatorCity = array_unique([$search->departure_geoId, $search->arrival_geoId, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find($search_id);
+            $total_price = $search->price;
+            $operatorCity = array_unique([$search->geoNameIdCity_departure, $search->geoNameIdCity_arrival, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
-
-/*
-        $search = Search::find($search_id);
-        #dd($search);
-        $start_airport_name = $search->start_airport_name;
-        $end_airport_name = $search->end_airport_name;
-        $departure_geoId = $search->departure_geoId;
-        $arrival_geoId = $search->arrival_geoId;
-        $departure_at = Carbon::parse($search->departure_at)->format('d F Y');
-        $pax = $search->pax;
-
-        $pricing = Pricing::find($search->result_id);
-
-        if($search_type == 'turbo'){
-            $price = $pricing->price_turbo;
-            $time = $pricing->time_turbo;
-        } elseif($search_type == 'light'){
-            $price = $pricing->price_light;
-            $time = $pricing->time_light;
-        } elseif($search_type == 'medium'){
-            $price = $pricing->price_medium;
-            $time = $pricing->time_medium;
-        } elseif($search_type == 'heavy'){
-            $price = $pricing->price_heavy;
-            $time = $pricing->time_heavy;
-        } else {
-            $price = 0.00;
-            $time = "00:00";
-        }
-
-
-        $total_price = $price;
-
-        $feeses = Fees::all();
-        foreach($feeses as $fees){
-
-            if($fees->active){
-
-                if($fees->sall){
-                    if($fees->type == "$"){
-                        $total_price -= $fees->amount;
-                    } else {
-                        $total_price -= $price * ($fees->amount / 100 );
-                    }
-                }else{
-                    if($fees->type == "$"){
-                        $total_price += $fees->amount;
-                    } else {
-                        $total_price += $price * ($fees->amount / 100 );
-                    }
-                }
-
-                /*
-                if($fees->type == "$"){
-                    $total_price += $fees->amount;
-                } else {
-                    $total_price += $price * ($fees->amount / 100 );
-                }
-                *
-
-            }
-        }
-*/
-
 
         $messages = NULL;
         $cart_errors = [];
 
-
         $request_method = 'get';
-/*
+
         if ($request->isMethod('post')){
 
             $request_method = 'post';
@@ -301,209 +250,125 @@ class OrderController extends Controller
             } else {
 
                 $nonce = $request->input('nonce');
+
                 if (!is_null($nonce)) {
+                    $comment = "";
+                    $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
+                    $comment .= $request->input('first_name') ? "First Name: " . $request->input('first_name') . ";\r\n" : "" ;
+                    $comment .= $request->input('last_name') ? "Last Name: " . $request->input('last_name') . ";\r\n" : "" ;
+                    $comment .= $request->input('birth_date') ? "Birth Date: " . $request->input('birth_date') . ";\r\n" : "" ;
+                    $comment .= $request->input('gender') ? "Gender: " . $request->input('gender') . ";\r\n" : "" ;
+                    $comment .= $request->input('title') ? "Title: ".$request->input('title').";\r\n" : "" ;
+                    $comment .= $request->input('is_accepted') ? "I agree with Cancellation policy: Yes;\r\n" : "" ;
 
-                    $payments_api = $client->getPaymentsApi();
+                    $dataOrder = [
+                        'user_id' => $user->id,
+                        'order_status_id' => 1,
+                        'search_result_id' => $search_id,
+                        'comment' => $comment,
 
-                    $money = new Money();
-                    $money->setAmount($total_price*100);
-                    $money->setCurrency('USD');
-                    $create_payment_request = new CreatePaymentRequest($nonce, uniqid('', true), $money);
+                        'billing_address' => '',
+                        'billing_country' => '',
+                        'billing_city' => '',
+                        'billing_postcode' => '',
+
+                        'price' => $total_price,
+                        'type' => $search_type,
+                        'is_accepted' => (bool)$request->input('is_accepted'),
+                        'book_status' => 1
+                    ];
 
                     try {
-                        $response = $payments_api->createPayment($create_payment_request);
-                        // If there was an error with the request we will
-                        // print them to the browser screen here
-                        if ($response->isError()) {
-                            //echo 'Api response has Errors';
-                            $errors = $response->getErrors();
-                            //echo '<ul>';
-                            foreach ($errors as $error) {
-                                //echo '<li>❌ ' . $error->getDetail() . '</li>';
-                                $cart_errors[] = $error->getDetail();
-                            }
-                            //echo '</ul>';
-                            //exit();
-
-                        }
+                        $data_user = ['data_user' => ['user_email' => $user->email, 'first_name' => $user->first_name, 'last_name' => $user->last_name]];
+                        $newOrder = $order->createOrder($dataOrder);
+                        $response = $this->paymentSquareTrait($access_token, $total_price, $nonce, $newOrder->id);
 
                         if ($response->isSuccess()) {
-                            //Order::where('id', $order->id)->update(['order_status_id' => 3]);
-
-                            $payment = $response->getResult()->getPayment();
-                            $payment_id = $payment->getId();
-
-                            $comment = "";
-                            $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
-                            $comment .= $request->input('first_name') ? "First Name: " . $request->input('first_name') . ";\r\n" : "" ;
-                            $comment .= $request->input('last_name') ? "Last Name: " . $request->input('last_name') . ";\r\n" : "" ;
-                            $comment .= $request->input('birth_date') ? "Birth Date: " . $request->input('birth_date') . ";\r\n" : "" ;
-                            $comment .= $request->input('gender') ? "Gender: " . $request->input('gender') . ";\r\n" : "" ;
-                            $comment .= $request->input('title') ? "Title: ".$request->input('title').";\r\n" : "" ;
-                            $comment .= $request->input('is_accepted') ? "I agree with Cancellation policy: Yes;\r\n" : "" ;
-
-                            $order = new Order;
-                            $order->user_id = $user->id;
-                            $order->order_status_id = 1;
-                            $order->search_result_id = $search_id;
-                            $order->comment = $comment;
-
-                            $order->billing_address = '';
-                            $order->billing_country = '';
-                            $order->billing_city = '';
-                            $order->billing_postcode = '';
-
-                            $order->price = $total_price;
-                            $order->type = $search_type;
-                            $order->payment_id = $payment_id;
-                            $order->is_accepted = (bool)$request->input('is_accepted');
-                            $order->book_status = 1;
-                            $order->save();
-                            $id_order = $order->id;
-
-                            /*
-                            * Mailing start
-                            *
-
-                            Mail::send([], [], function ($message) use ($id_order)  {
-                                $user = Auth::user();
-                                $message->from('quote@jetonset.com', 'JetOnset team');
-                                //$message->to('ju.odarjuk@gmail.com')->subject("We have received your request");
-                                $message->to($user->email)->subject("We have received your request #{$id_order}");
-                                $message->setBody("Dear {$user->first_name} {$user->last_name},\n\nWe have received your payment. Our manager will contact you to discuss your flight details in the shortest time possible.\n\nBest regards,\nJetOnset Team");
-                            });
-
-/* Old Search
-                            $airport_list = [];
-                            $airport_items = Airport::whereIn('icao', [$start_airport_name, $end_airport_name])->get();
-
-                            //$airport_items = Airport::whereIn('city', [$start_airport_name])->get();
-                            foreach($airport_items as $airport_item){
-                                if($airport_item->icao){
-                                    $airport_list[] = $airport_item->icao;
-                                }
-                            }
-                            $airport_list = array_unique($airport_list);
-
-                            $operator_list = [];
-                            //$airlines = Airline::where('category', $search_type)->whereIn('homebase', $airport_list)->get();
-                            $airlines = Airline::where('homebase', $airport_list)->get();
-
-                            foreach($airlines as $airline){
-                                $operator_list[] = $airline->operator;
-                            }
-                            $operator_list = array_unique($operator_list);
-
-                            $emails = [];
-                            $operators = Operator::whereIn('name', $operator_list)->get();
-
-                           foreach($operators as $operator){
-                                if ($operator->email == trim($operator->email) && strpos($operator->email, ' ') !== false) {
-                                    $mail_list = explode(" ", $operator->email);
-                                    foreach($mail_list as $mail){
-                                        $emails[] = trim($mail);
-                                    }
-                                    $mail_list = [];
-                                } else if(strstr($operator->email, PHP_EOL)) {
-                                    $mail_list = explode(PHP_EOL, $operator->email);
-                                    foreach($mail_list as $mail){
-                                        $emails[] = trim($mail);
-                                    }
-                                    $mail_list = [];
-                                } else {
-                                    $emails[] = trim($operator->email);
-                                }
-                            }
-
-                            $emails = array_unique($emails);
-*
-// New Search
-                            $states = Airport::with('airportAreas', 'city')
-                                ->where(function ($query) use ($start_airport_name, $end_airport_name, $departure_geoId, $arrival_geoId) {
-                                    $query->whereIn('icao', [$start_airport_name, $end_airport_name])
-                                        ->orWhereHas('airportAreas.airport', function ($query) use ($start_airport_name, $end_airport_name) {
-                                            $query->whereIn('icao', [$start_airport_name, $end_airport_name]);
-                                        })
-                                        ->orWhereHas('city', function ($query) use ($departure_geoId, $arrival_geoId) {
-                                            $query->whereIn('geonameid', [$departure_geoId, $arrival_geoId]);
-                                        });
-                                })
-                                ->get()
-                                ->groupBy(['iso_country',function ($item) {
-                                             return $item['iso_region'];
-                                         },
-                                     ], $preserveKeys = true);
-                            $operators_city = collect();
-                            $data_mail = collect();
-                            if (!empty($states)) {
-                                foreach ($states as $country => $data) {
-                                    foreach ($data as $region => $val) {
-                                        if (($region !== 'null')) {
-                                            $data_mail[$region] = $country;
-                                            $cities = DB::table('cities AS c')
-                                                ->selectRaw('c.geonameid, o.geoNameIdCity, c.name as city, c.iso_region, c.iso_country')
-                                                ->rightJoin('operator_cities AS o', 'c.geonameid', '=', 'o.geoNameIdCity')
-                                                ->where('iso_region', $region)
-                                                ->where('iso_country', $country)
-                                                ->get()
-                                                ->groupBy('geonameid');
-                                            $operators_city = $operators_city->union($cities->all());
-                                        }
-                                    }
-                                }
-                                $city_operator = $operators_city->keys();
-                                $data_mail = DB::table('operator_cities as oc')
-                                    ->selectRaw('DISTINCT(o.email), oc.geoNameIdCity, o.name, c.name as city, c.iso_region, c.iso_country')
-                                    ->rightJoin('operators AS o', 'o.email', '=', 'oc.email')
-                                    ->leftJoin('cities AS c', 'c.geonameid', '=', 'oc.geoNameIdCity')
-                                    ->whereIn('oc.geoNameIdCity', $city_operator)
-                                    ->where('o.active', '=', 1)
-                                    ->groupBy('o.email')
-                                    ->get();
-                            }
-
-                            if (!empty($data_mail)) {
-
-                                $emails = ['emails' => $data_mail];
-
-                                $airports = [ 'airports' => [
-                                    'start_city' => $this->findCity($departure_geoId),
-                                    'end_city' => $this->findCity($arrival_geoId),
-                                    'pax' => $pax,
-                                    'type' => $search_type]
-                                ];
-                                $date = ['date' => $departure_at];
-                                $order_id = ['order_id' => $order->id];
-
-                                $data_emails = array_merge($emails, $date, $airports, $order_id);
-
-                                dispatch(new SendEmailOperator((object)$data_emails));#->onQueue('emailOperator');
-
-                            }
-
-                           /*
-                            * Mailing end
-                            *
-
-
-                            return redirect()->route('client.orders.succeed', ['order_id' => $order->id, $search_type]);
-
-
-                            /*
-                             echo $response->referenceId;
-                            $createPaymentResponse = $response->getResult();
-                            echo '<pre>';
-                            $resp_arr = $response->getBody();
-                            $resp_dec = json_decode($resp_arr, true);
-                            print_r($resp_dec['payment']['reference_id']);
-                            echo '</pre>';
-                            *
+                            $dataTransaction = [
+                                'user_id' => $user->id,
+                                'order_id' => $newOrder->id,
+                                'is_success' => ($response->getResult()->getPayment()->getStatus() === 'COMPLETED') ? 1 : 0,
+                                'transaction_id' => $response->getResult()->getPayment()->getId() ?? '',
+                                'amount' => $response->getResult()->getPayment()->getTotalMoney()->getAmount() / 100 ?? 0,
+                                'message' => $response->getBody()
+                            ];
                         }
-                        /*
-                        echo '<pre>';
-                        print_r($response);
-                        echo '</pre>';
-                        *
+                        else {
+                            $dataTransaction = [
+                                'user_id' => $user->id,
+                                'order_id' => $newOrder->id,
+                                'amount' => $newOrder->price,
+                                'message' => !empty($response) ? $response->getBody() : 'No Response!'
+                            ];
+                        }
+                        $newTransaction = $transaction->createTransaction($dataTransaction);
+
+                        if ($newTransaction->is_success) {
+                            $newOrder->order_status_id = $orderStatus->where('code', '=', 'paid')->first()->id;
+                            $newOrder->payment_id = $response->getResult()->getPayment()->getId();
+                            $newOrder->save();
+                            if ($search_type === 'emptyLeg') {
+                                EmptyLeg::find($search_id)->update(['active' => Config::get("constants.active.on-hold")]);
+                            }
+                            $regions = City::whereIn('geonameid', $operatorCity)->get()
+                                ->unique(function ($item) {
+                                    return $item['iso_country'].$item['iso_region'];
+                                })
+                                ->mapToGroups(function ($item, $key) {
+                                    return [$item['iso_country'] => $item['iso_region']];
+                                });
+
+                            if (!empty($regions)) {
+                                $operator_emails = ($search_type !== 'emptyLeg') ? OperatorCity::with(
+                                    'operatorCity.regionCountry',
+                                    'operator'
+                                )
+                                    ->whereHas('operatorCity.regionCountry', function ($query) use ($regions) {
+                                        foreach ($regions as $country => $region) {
+                                            $query->where('iso_country', $country)
+                                                ->whereIn('iso_region', $region);
+                                        }
+                                    })
+                                    ->whereHas('operator', function ($query) {
+                                        $query->where('active', 1);
+                                    })
+                                    ->get()
+                                    ->groupBy('email')->keys() : [$search->operator];
+
+                                if (!empty($operator_emails)) {
+                                    $operator_emails = ['operator_emails' => $operator_emails];
+
+                                    $data_flight = [
+                                        'data_flight' => [
+                                            'start_city' => $search->departureCity->name,
+                                            'start_state' => $search->departureCity->regionCountry->name,
+                                            'start_airport' => $search->airportDeparture->name,
+                                            'end_city' => $search->arrivalCity->name,
+                                            'end_state' => $search->arrivalCity->regionCountry->name,
+                                            'end_airport' => $search->airportArrival->name,
+                                            'pax' => $search->pax ?? Config::get(
+                                                    "constants.plane.type_plane.$search->type_plane.feature_plane.Passengers"
+                                                ),
+                                            'type' => $order->type,
+                                            'date' => Carbon::parse(
+                                                $search->departure_at ?? $search->date_departure
+                                            )->format('F d Y'),
+                                            'order_id' => $order->id
+                                        ]
+                                    ];
+
+                                    $data_emails = array_merge($data_user, $operator_emails, $data_flight);
+
+                                    dispatch(new SendEmailOperator((object)$data_emails));#->onQueue('emailOperator');
+
+                                }
+
+                                return redirect()->route(
+                                    'client.orders.succeed',
+                                    ['order_id' => $newOrder->id, $search_type]
+                                );
+                            }
+                        }
                     } catch (ApiException $e) {
                         /*
                         echo 'Caught exception!<br/>';
@@ -512,7 +377,7 @@ class OrderController extends Controller
                         echo '<br/><strong>Context:</strong><br/>';
                         echo '<pre>'; var_dump($e->getContext()); echo '</pre>';
                         exit();
-                        *
+                        */
                     }
 
                 }
@@ -521,20 +386,7 @@ class OrderController extends Controller
             }
 
         }
-*/
-#dd($request->input('first_name'));
-        /*
-        $params = [
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'birth_date' => $request->input('birth_date'),
-            'gender' => $request->input('gender'),
-            'title' => $request->input('title'),
-            'comments' => $request->input('comments'),
-            'is_accepted' => $request->input('is_accepted'),
-        ];
-        */
-#dd($user);
+
         $params = [
             'gender' => '',
             'title' => '',
@@ -961,7 +813,7 @@ class OrderController extends Controller
         $order_id = $request->route('order_id');
         $search_type = $request->route('type');
         $order = Order::Find($order_id);
-        $search = Search::Find($order->search_result_id);
+        $search = ($order->type !== 'emptyLeg') ? Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($order->search_result_id) : EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find($order->search_result_id);
         $pricing = Pricing::find($search->result_id);
 
         if($search_type == 'turbo'){

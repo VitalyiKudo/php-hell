@@ -14,13 +14,14 @@ use App\Http\Requests\Admin\UpdateEmptyLeg as UpdateEmptyLegRequest;
 use App\Models\EmptyLeg;
 use App\DataTables\EmptyLegDataTable;
 
-use App\Http\Traits\SearchCityTrait;
-use App\Http\Traits\SearchAirportTrait;
-use App\Http\Traits\SearchOperatorTrait;
+use App\Traits\SearchCityTrait;
+use App\Traits\SearchAirportTrait;
+use App\Traits\SearchOperatorTrait;
+use App\Traits\EmptyLegStatusTrait;
 
 class EmptyLegController extends Controller
 {
-    use SearchCityTrait, SearchAirportTrait, SearchOperatorTrait;
+    use SearchCityTrait, SearchAirportTrait, SearchOperatorTrait, EmptyLegStatusTrait;
 
     /**
      * Create a new controller instance.
@@ -110,7 +111,9 @@ class EmptyLegController extends Controller
     {
         $emptyLeg = $emptyleg->getEmptyLegs()->where('id', $id)->at(0);
 
-        return view('admin.emptyLegs.view', compact('emptyLeg'));
+        $status = ['status' => Config::get('constants.active'), 'statusBg' => Config::get('constants.active_bg')];
+
+        return view('admin.emptyLegs.view', compact('emptyLeg', 'status'));
     }
 
     /**
@@ -125,7 +128,9 @@ class EmptyLegController extends Controller
 
         $typePlanes = Config::get('constants.plane.type_plane');
 
-        return view('admin.emptyLegs.edit', compact('emptyLeg', 'typePlanes'));
+        $status = ['status' => Config::get('constants.active'), 'statusBg' => Config::get('constants.active_bg')];
+
+        return view('admin.emptyLegs.edit', compact('emptyLeg', 'typePlanes', 'status'));
     }
 
     /**

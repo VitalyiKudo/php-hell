@@ -5,6 +5,7 @@ namespace App\DataTables;
 use Illuminate\Support\Facades\Config;
 
 use App\Models\EmptyLeg;
+use App\Traits\EmptyLegStatusTrait;
 
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -15,6 +16,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 
 class EmptyLegDataTable extends DataTable
 {
+    use EmptyLegStatusTrait;
     /**
      * Build DataTable class.
      *
@@ -30,7 +32,7 @@ class EmptyLegDataTable extends DataTable
                 return $q['dateDeparture']->format('Y-m-d');
             })
             ->rawColumns(['active', 'icaoDeparture', 'icaoArrival', 'operatorEmail', 'price', 'action'])
-            ->editColumn('active', fn($q) =>'<span class="badge'.($q["active"] === 1 ? " bg-danger" : " bg-success").'">'.($q["active"] === 1 ? "Active" : "Done").'</span>')
+            ->editColumn('active', fn($q) =>'<span class="badge '.$this->statusBg($q["active"]).'">'.$this->status($q["active"]).'</span>')
             ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
             ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
             ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')

@@ -40,6 +40,8 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
+        'order_id',
         'is_success',
         'transaction_id',
         'amount',
@@ -70,5 +72,23 @@ class Transaction extends Model
     public function order()
     {
         return $this->belongsTo('App\Models\Order');
+    }
+
+    /**
+     * @param $data
+     *
+     * @return Transaction|Model|m.\App\Models\Transaction.create
+     */
+    public function createTransaction ($data)
+    {
+        return $this->create([
+            'user_id' => $data['user_id'] ?? 0,
+            'order_id' => $data['order_id'] ?? 0,
+            'is_success' => $data['is_success'] ?? 0,
+            'transaction_id' => $data['transaction_id'] ?? '',
+            'amount' => $data['amount'] ?? 0,
+            'message' => $data['message'] ?? '',
+
+        ]);
     }
 }

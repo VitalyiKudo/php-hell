@@ -40,7 +40,7 @@
                                 <dd>{{ $emptyLeg['price'] }}</dd>
 
                                 <dt>Status</dt>
-                                <dd><span class="badge{{ $emptyLeg['active'] === 1 ? ' bg-danger' :  ' bg-success' }}">{{ $emptyLeg['active'] === 1 ? 'Active' :  'Done' }}</span></dd>
+                                <dd><span class="badge {{ array_search($emptyLeg['active'], $status['statusBg']) }}">{{ array_search($emptyLeg['active'], $status['status']) }}</span></dd>
 
                             </dl>
                         </div>

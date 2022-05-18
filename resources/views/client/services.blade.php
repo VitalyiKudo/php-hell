@@ -46,7 +46,7 @@
                     <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
-                    <div class="col-md-11 service-fancy-p">
+                    <div class="col-md-10 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line3.webp" loading="lazy" alt="line">
                     </div>
-                    <div class="col-md-11 service-fancy-p">
+                    <div class="col-md-10 service-fancy-p">
                         <p> We even have the capability in certain situations to effectively operate nearly as an ambulance with our fast service using our apps and technologies! Certain surgeries can be so expensive that you might end up saving money while you fly out to optimum luxury for the same procedure!</p>
                     </div>
                 </div>

@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-container-1 mt-2 ml-3 butn-search">
-                            <button type="submit" class="btn">Search Jet</button>
+                            <button type="submit" class="btn">Find a Jet</button>
                         </div>
                     </div>
                 </form>
@@ -109,7 +109,7 @@
             <div class="col-lg-12">
                 <h2>Private Jet Charter - How It Works</h2>
                 <p class="font-weight-bold mb-3">It’s simple.</p>
-                <p class="mb-0">You choose where you want to go, when you want to go, and where you are coming from to get started. Next, we will show you every option available with an accurate price quote. Finally, you choose the private jet that fits your needs. It’s that simple.</p>
+                <p class="mb-0 text-justify">You choose where you want to go, when you want to go, and where you are coming from to get started. Next, we will show you every option available with an accurate price quote. Finally, you choose the private jet that fits your needs. It’s that simple.</p>
             </div>
         </div>
         <div class="row align-items-center">
@@ -199,13 +199,13 @@
             <div class="col-md-6 services-image corporate-travel-image"></div>
             <div class="col-md-6 services-text">
                 <h2 class="services-h2">Corporate Travel, Corporate Retreats</h2>
-                <p class="services-p color-white">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
+                <p class="services-p">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
                     <div class="col-md-1 pr-md-0 service-fancy-separator">
                         <img src="/images/line2.webp" loading="lazy" alt="line">
                     </div>
-                    <div class="col-md-11 service-fancy-p">
+                    <div class="col-md-10 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
                 <p><strong>All Private Jets in your pocket</strong></p>
-                <p class="text-width mb-5">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
+                <p class="mb-6 text-justify">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
                 <p class="text-width mb-0">Will be available soon!</p>
             </div>
         </div>
@@ -237,7 +237,7 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-        <p class="text-fix-JetOnSet">
+        <p>
         JetOnset is a team of IT and automation enthusiasts. We believe that the natural development of any industry should lead it towards greater transparency, industrial efficiency, and user-friendliness. Services must become easier and more accessible to more people to capture the opportunity only available at scale.
         The platform we are creating will significantly change the rules of the game for all market participants in the direction of maximizing its efficiency. It will cover several of the most important aspects of the private aviation market. Intermediary services in booking flights Recruitment and registration of aircrews Interaction between aircraft operators FBO Online analytics
         </p>

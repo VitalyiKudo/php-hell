@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Http\Traits\SearchCityAirportsTrait;
+use App\Traits\SearchCityAirportsTrait;
 
 class AirportController extends Controller
 {

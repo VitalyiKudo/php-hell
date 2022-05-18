@@ -66,11 +66,11 @@ class FlightController extends Controller
      *         @OA\Schema(type="integer"),
      *     ),
      *     @OA\Response(
-     *         response=200, 
+     *         response=200,
      *         description="OK",
      *     )
      * )
-     * 
+     *
      */
 
 
@@ -149,8 +149,8 @@ class FlightController extends Controller
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
         $search->session_id = $session_id;
-        $search->start_airport_name = $params["startPointName"];
-        $search->end_airport_name = $params["endPointName"];
+        $search->start_airport_name = $params["startAirport"];
+        $search->end_airport_name = $params["endAirport"];
         $search->departure_geoId = $params["startPoint"];
         $search->arrival_geoId = $params["endPoint"];
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
@@ -163,8 +163,8 @@ class FlightController extends Controller
             [
                 'startPoint' => $params["startPoint"],
                 'endPoint' => $params["endPoint"],
-                'startPointName' => $params["startPointName"],
-                'endPointName' => $params["endPointName"],
+                'startPointName' => $params["startAirport"],
+                'endPointName' => $params["endAirport"],
                 'flightDate' => $params["flightDate"],
                 'passengers' => $params["passengers"],
             ],
@@ -197,11 +197,11 @@ class FlightController extends Controller
         }
 
         return response()->json([
-            'search_results' => $searchResults, 
-            'params' => $params, 
-            'messages' => $messages, 
-            'lastSearch_results' => $lastSearchResults, 
-            'last_session_search_results' => $lastSessionSearchResults, 
+            'search_results' => $searchResults,
+            'params' => $params,
+            'messages' => $messages,
+            'lastSearch_results' => $lastSearchResults,
+            'last_session_search_results' => $lastSessionSearchResults,
             'status' => $status,
             'pervis_search_url' => $pervis_search_url,
         ]);

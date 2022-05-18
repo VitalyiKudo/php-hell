@@ -2,7 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0>
+    <!--meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"-->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -207,7 +208,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 mb-lg-0 text-justify">
                         <h5 class="column-title text-uppercase">Contact</h5>
                         <p class="mb-3">If you have any questions or concerns, don't hesitate to reach out to us today! We'are happy to help!</p>
                         <a href="mailto:info@jetonset.com"><p class="mb-3">
@@ -272,7 +273,8 @@
         </div>
     </div>
 
-    <script src="{{ mix('js/app.min.js') }}"></script>
+    {{--<script src="{{ mix('js/app.min.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>
 
 
 
