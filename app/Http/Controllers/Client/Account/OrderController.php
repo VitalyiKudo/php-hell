@@ -382,10 +382,7 @@ class OrderController extends Controller
                     }
 
                 }
-
-
             }
-
         }
 
         $params = [
