@@ -47,7 +47,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.min.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}--}}
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <!--<link href="{{-- asset('css/custom.css') --}}" rel="stylesheet">-->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
