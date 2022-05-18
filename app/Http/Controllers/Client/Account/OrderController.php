@@ -389,13 +389,10 @@ class OrderController extends Controller
         }
 
         $params = [
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'birth_date' => $request->input('birth_date'),
-            'gender' => $request->input('gender'),
-            'title' => $request->input('title'),
-            'comments' => $request->input('comments'),
-            'is_accepted' => $request->input('is_accepted'),
+            'gender' => '',
+            'title' => '',
+            'comments' => '',
+            'is_accepted' => '',
         ];
 
         return view('client.account.orders.square',
