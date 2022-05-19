@@ -93,13 +93,13 @@
         </div>
 
         <div class="row mt-3">
-            <div class="offset-lg-2 offset-xl-2 col-sm-12 col-md-12 col-lg-10 col-xl-7">
+            <div class="offset-lg-2 offset-xl-2 col-sm-12 col-lg-10 col-xl-7">
                 <div class="info-succeed-block">
 
                     <div class="card-body">
                         <div class="card-inner-body pl-4">
                             <div class="custom-flight-page">
-                                <img src="{{ asset('images/ticket.png') }}" alt="ticket" class="rounded mx-auto d-block">
+                                <img src="{{ asset('images/ticket.svg') }}" alt="ticket" class="rounded mx-auto d-block">
                                 <div class="succeed-payment">Your payment <span>&#36;{{ number_format($order->price, 2, '.', ' ') }}</span> has been successful!</div>
                                 <div class="succeed-order">Order number: <span>#{{ $order_id }}</span></div>
                                 <a href="{{ route('client.profile.account.index') }}">View in Cabinet</a>
