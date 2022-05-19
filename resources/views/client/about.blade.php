@@ -38,13 +38,7 @@
                 <p class="services-p color-white">We believe the sky is sacred, and your time in it should be treated with respect. We aren't just a private jet charter company, we want your entire experience to and from to be as comfortable and hands-free as your time in the air. We can arrange personal Black class transportation to and from your plane.  </p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 notif-delimiter">
-                        <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="145" fill="#EFAE9F"/>
-                        </svg>
-
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>When you arrive at the airport, you'll be greeted by our Ground Associates who will escort you past traditional Airport security and assist you in anyway they can as you board your plane.</p>
                         <p> The same treatment will transpire once you arrive as well. On larger jets, you'll even have private cabin attendants who will wait on your needs.</p>
@@ -62,13 +56,7 @@
                 <p class="services-p color-white">When you use JetOnset to find and reserve a private jet charter service, you have the backing of the latest and greatest artificial intelligence and technology that will find the best fit based on your needs, your starting location, and your final destination at the best price. When it comes to getting yourself, your team, or your family on a private jet - you simply can't beat our prices!</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 notif-delimiter">
-                        <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="102" fill="#EFAE9F"/>
-                        </svg>
-
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>The JetOnset intelligent engine finds the best fit, based on your needs, your starting location, and your final destination at the best price. When it comes to getting yourself, your team, or your family on a private jet - you simply can't beat our prices!</p>
                     </div>
@@ -83,13 +71,7 @@
                 <p class="services-p color-white">Most people new to the world of private chartered jets are pleased to find out that you have the added luxury of avoiding TSA lines and hassles altogether.</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 notif-delimiter">
-                        <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="78" fill="#EFAE9F"/>
-                        </svg>
-
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p> While there is still private-security screening that must occur, it's handled by private corporations instead of the government, and we all know how that works out. Better, Faster, Safer security for everyone.</p>
                     </div>
@@ -105,13 +87,7 @@
                 <h2 class="services-h2 color-white">Private Flight Booker</h2>
                 <p class="services-p color-white">JetOnset always has your back, especially if it's your first time dealing with private jets! We understand there are a lot of questions that are unique to your situation and we are always here to help.</p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 notif-delimiter">
-                        <!-- <img src="/images/line4.png" alt="line"> -->
-                        <svg width="2px" height="100%" preserveAspectRatio="none"viewBox="0 0 3 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" width="3" height="103" fill="#EFAE9F"/>
-                        </svg>
-
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p> We have private flight bookers that can answer any question you might have and help you through the entire reserving and flying process, step by step! Don't hesitate to reach out if you have questions that we haven't thought of on our website! We love feedback of any kind!</p>
                     </div>

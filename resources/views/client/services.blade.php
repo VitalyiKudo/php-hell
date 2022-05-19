@@ -24,9 +24,7 @@
                 <h5 class="services-h2">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p color-white">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 img-align service-fancy-separator">
-                        <img src="/images/line3.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>We have access to almost any jet size, shape, and class you can imagine. It doesn’t matter if you want to travel to a nearby island or halfway around the world - we have the jets for you! World-class!</p>
                     </div>
@@ -43,9 +41,7 @@
                 <p class="services-p color-white">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 service-fancy-separator">
-                        <img src="/images/line3.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
                     </div>
@@ -60,9 +56,7 @@
                 <p class="services-p color-white">Do you want to move a priceless or prized possession? From multi-million dollar luxury custom cars to archeological artifacts and relics of art from the past - there is no safer way to relocate them than with a private chartered jet.</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 service-fancy-separator">
-                        <img src="/images/line3.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p> We have a fleet of jets varied enough to transport almost any object of any size.</p>
                     </div>
@@ -79,9 +73,7 @@
                 <p class="services-p color-white">With the rise of medical tourism as a better alternative for certain individuals in certain situations, JetOnset can maximize your comfort and experience on the way to or from your treatment!</p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 service-fancy-separator">
-                        <img src="/images/line3.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p> We even have the capability in certain situations to effectively operate nearly as an ambulance with our fast service using our apps and technologies! Certain surgeries can be so expensive that you might end up saving money while you fly out to optimum luxury for the same procedure!</p>
                     </div>

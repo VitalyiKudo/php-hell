@@ -180,9 +180,7 @@
                 <h5 class="services-h2 ">Luxury Travel, Luxury Vacations</h5>
                 <p class="services-p">You can’t experience luxury travel or luxury vacations by starting them off in economy class on a commercial airliner. With JetOnset, your luxurious getaways will get off on the right foot with a world-class experience on a private chartered jet. </p>
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 service-fancy-separator">
-                        <img src="/images/line.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>We have access to almost any jet size, shape, and class you can imagine. It doesn’t matter if you want to travel to a nearby island or halfway around the world - we have the jets for you! World-class!</p>
                     </div>
@@ -202,9 +200,7 @@
                 <p class="services-p">Treat your executives or clients like the valued stakeholders that they are with the use of private jets and chartered planes for your next shareholder meeting. Have a once-in-a-lifetime client potential or want to treat your executives to a special treat? </p>
 
                 <div class="row mt-5">
-                    <div class="col-md-1 pr-md-0 service-fancy-separator">
-                        <img src="/images/line2.webp" loading="lazy" alt="line">
-                    </div>
+                    <div class="col-md-1 pr-md-0 service-fancy-separator"></div>
                     <div class="col-md-10 service-fancy-p">
                         <p>With JetOnset you can rest assured that nothing will surpass this revolutionary way of travel. Spontaneous new sales meetings or pre-arranged travel plans are no problem, and when your clients know how much you care about their experience, they will return the same treatment.</p>
                     </div>

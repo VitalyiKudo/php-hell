@@ -218,7 +218,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseBookingQuestion3" role="button" aria-expanded="false" aria-controls="collapseBookingQuestion3">Does jetonset accept bitcoin?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseBookingQuestion3" role="button" aria-expanded="false" aria-controls="collapseBookingQuestion3">Does JetOnset accept bitcoin?</a>
                         <div class="collapse" id="collapseBookingQuestion3">
                             <p class="mt-3 mb-0">JetOnset will soon accept Bitcoin, but note that it takes up to 6 hours for a confirmation mail. Select the BTC as your payment method, and upon confirmation, we will send you the detailed invoice.</p>
                         </div>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseBookingQuestion4" role="button" aria-expanded="false" aria-controls="collapseBookingQuestion4">Does jetonset accept wire transfers and ACH?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseBookingQuestion4" role="button" aria-expanded="false" aria-controls="collapseBookingQuestion4">Does JetOnset accept wire transfers and ACH?</a>
                         <div class="collapse" id="collapseBookingQuestion4">
                             <p class="mt-3 mb-0">ACH and wire transfers are accepted at JetOnset, select the method of payment, and we will email you an invoice upon completion of the booking. It may not work for same-day travels, ACH takes three days, and wire transfer takes 48 hours to reflect in our accounts.</p>
                         </div>
@@ -241,7 +241,7 @@
                 <h2 class="mb-3">About Your Private Jet Flight</h2>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What jetonset does to ensure the safety of my flight?</a>
+                        <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What JetOnset does to ensure the safety of my flight?</a>
                         <div class="collapse" id="collapseFaq1">
                             <p class="mt-3 mb-3">Safety is our key priority, and we have zero tolerance for errors. We try to identify and mitigate risk before it happens.</p>
                             <ul>

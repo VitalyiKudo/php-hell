@@ -11769,7 +11769,7 @@ h3 {
 
 @media (min-width: 992px) {
     .custom-navbar .navbar-style {
-        width: 840px;
+        width: 800px;
         position: absolute;
         height: 55px;
         left: 300px;
@@ -11778,7 +11778,22 @@ h3 {
         opacity: 0.8;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
         border-radius: 32px;
-        margin-left: 110px;
+        margin-left: 85px;
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        padding-right: 0.7rem;
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .custom-navbar .navbar-style {
+        width: 740px !important;
+        margin-left: 10px !important;
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.7rem;
     }
 }
 
@@ -12666,6 +12681,9 @@ h3 {
         height: 440px !important;
         position: absolute;
     }
+    .div-plane-details {
+        grid-template-columns: repeat(auto-fit,minmax(170px, 1fr)) !important;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -12689,6 +12707,7 @@ h3 {
         -o-background-size: cover;
         height: 480px !important;
         position: absolute;
+        max-width: 1980px !important;
     }
 
     .bg-plane2 {
@@ -15833,6 +15852,10 @@ ul.dashed > li:before {
     .main-works .devider2 {
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
+        display: none !important;
+    }
+    .main-works .devider {
+        display: none !important;
     }
 }
 
@@ -16257,6 +16280,14 @@ ul.dashed > li:before {
         left: -30px;
         border-radius: 1rem 1rem 1rem 1rem !important;
     }
+}
+
+.service-fancy-separator {
+    background-image: url("/images/line.webp");
+    background-repeat: repeat-y;
+    width: 3px;
+    max-height: 100%;
+    margin: 0.5rem 0 1.3rem 0;
 }
 
 @media (max-width: 768px) {
@@ -18478,7 +18509,8 @@ ul.dashed > li:before {
 }
 
 #app {
-    max-width: 100%;
+    max-width: 1980px;
+    margin: 0 auto;
 }
 
 @media (max-width: 992px) {
