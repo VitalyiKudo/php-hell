@@ -226,7 +226,7 @@ class OrderController extends Controller
 
             $request_method = 'post';
 
-
+#dd($request->input('first_name'));
             $validator = Validator::make(
                 [
                     'first_name' => $request->input('first_name'),
@@ -244,13 +244,15 @@ class OrderController extends Controller
                     'is_accepted' => 'required',
                 ]
             );
-
+            #dd($request->input('first_name'));
+#dd($validator->messages());
             if ($validator->fails()){
                 $messages = $validator->messages();
             } else {
-
+                #dd($validator->messages());
+dd($request);
                 $nonce = $request->input('nonce');
-
+dd($nonce);
                 if (!is_null($nonce)) {
                     $comment = "";
                     $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
@@ -386,10 +388,13 @@ class OrderController extends Controller
         }
 
         $params = [
-            'gender' => '',
-            'title' => '',
-            'comments' => '',
-            'is_accepted' => '',
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'birth_date' => $request->input('birth_date'),
+            'gender' => $request->input('gender'),
+            'title' => $request->input('title'),
+            'comments' => $request->input('comments'),
+            'is_accepted' => $request->input('is_accepted'),
         ];
 
         return view('client.account.orders.square',

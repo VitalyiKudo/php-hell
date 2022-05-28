@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Defines the body parameters that can be provided in a request to the
- * [UpdateCustomerGroup](#endpoint-updatecustomergroup) endpoint.
+ * Defines the body parameters that can be included in a request to the
+ * [UpdateCustomerGroup]($e/CustomerGroups/UpdateCustomerGroup) endpoint.
  */
 class UpdateCustomerGroupRequest implements \JsonSerializable
 {
@@ -25,11 +27,10 @@ class UpdateCustomerGroupRequest implements \JsonSerializable
 
     /**
      * Returns Group.
-     *
      * Represents a group of customer profiles.
      *
-     * Customer groups can be created, modified, and have their membership defined either via
-     * the Customers API or within Customer Directory in the Square Dashboard or Point of Sale.
+     * Customer groups can be created, be modified, and have their membership defined using
+     * the Customers API or within the Customer Directory in the Square Seller Dashboard or Point of Sale.
      */
     public function getGroup(): CustomerGroup
     {
@@ -38,11 +39,10 @@ class UpdateCustomerGroupRequest implements \JsonSerializable
 
     /**
      * Sets Group.
-     *
      * Represents a group of customer profiles.
      *
-     * Customer groups can be created, modified, and have their membership defined either via
-     * the Customers API or within Customer Directory in the Square Dashboard or Point of Sale.
+     * Customer groups can be created, be modified, and have their membership defined using
+     * the Customers API or within the Customer Directory in the Square Seller Dashboard or Point of Sale.
      *
      * @required
      * @maps group
@@ -55,15 +55,20 @@ class UpdateCustomerGroupRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
         $json['group'] = $this->group;
-
-        return array_filter($json, function ($val) {
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

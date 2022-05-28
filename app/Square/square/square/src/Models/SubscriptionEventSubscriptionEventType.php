@@ -4,23 +4,67 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use Exception;
+use Square\ApiHelper;
+use stdClass;
+
 /**
- * The possible subscription event types.
+ * Supported types of an event occurred to a subscription.
  */
 class SubscriptionEventSubscriptionEventType
 {
     /**
-     * The subscription started.
+     * The subscription was started.
      */
     public const START_SUBSCRIPTION = 'START_SUBSCRIPTION';
 
     /**
-     * The subscription plan changed.
+     * The subscription plan was changed.
      */
     public const PLAN_CHANGE = 'PLAN_CHANGE';
 
     /**
-     * The subscription stopped.
+     * The subscription was stopped.
      */
     public const STOP_SUBSCRIPTION = 'STOP_SUBSCRIPTION';
+
+    /**
+     * The subscription was deactivated
+     */
+    public const DEACTIVATE_SUBSCRIPTION = 'DEACTIVATE_SUBSCRIPTION';
+
+    /**
+     * The subscription was resumed.
+     */
+    public const RESUME_SUBSCRIPTION = 'RESUME_SUBSCRIPTION';
+
+    /**
+     * The subscription was paused.
+     */
+    public const PAUSE_SUBSCRIPTION = 'PAUSE_SUBSCRIPTION';
+
+    private const _ALL_VALUES = [
+        self::START_SUBSCRIPTION,
+        self::PLAN_CHANGE,
+        self::STOP_SUBSCRIPTION,
+        self::DEACTIVATE_SUBSCRIPTION,
+        self::RESUME_SUBSCRIPTION,
+        self::PAUSE_SUBSCRIPTION,
+    ];
+
+    /**
+     * Ensures that all the given values are present in this Enum.
+     *
+     * @param array|stdClass|null|string $value Value or a list/map of values to be checked
+     *
+     * @return array|null|string Input value(s), if all are a part of this Enum
+     *
+     * @throws Exception Throws exception if any given value is not in this Enum
+     */
+    public static function checkValue($value)
+    {
+        $value = json_decode(json_encode($value), true); // converts stdClass into array
+        ApiHelper::checkValueInEnum($value, self::class, self::_ALL_VALUES);
+        return $value;
+    }
 }

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Defines the parameters that can be included in the body of
- * a request to the [Charge](#endpoint-charge) endpoint.
+ * a request to the [Charge]($e/Transactions/Charge) endpoint.
  *
- * Deprecated - recommend using [CreatePayment](#endpoint-payments-createpayment)
+ * Deprecated - recommend using [CreatePayment]($e/Payments/CreatePayment)
  */
 class ChargeRequest implements \JsonSerializable
 {
@@ -94,7 +96,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Idempotency Key.
-     *
      * A value you specify that uniquely identifies this
      * transaction among transactions you've created.
      *
@@ -102,7 +103,8 @@ class ChargeRequest implements \JsonSerializable
      * you can reattempt it with the same idempotency key without
      * worrying about double-charging the buyer.
      *
-     * See [Idempotency keys](#idempotencykeys) for more information.
+     * See [Idempotency keys](https://developer.squareup.com/docs/working-with-apis/idempotency) for more
+     * information.
      */
     public function getIdempotencyKey(): string
     {
@@ -111,7 +113,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Idempotency Key.
-     *
      * A value you specify that uniquely identifies this
      * transaction among transactions you've created.
      *
@@ -119,7 +120,8 @@ class ChargeRequest implements \JsonSerializable
      * you can reattempt it with the same idempotency key without
      * worrying about double-charging the buyer.
      *
-     * See [Idempotency keys](#idempotencykeys) for more information.
+     * See [Idempotency keys](https://developer.squareup.com/docs/working-with-apis/idempotency) for more
+     * information.
      *
      * @required
      * @maps idempotency_key
@@ -131,7 +133,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -147,7 +148,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -166,12 +166,12 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Card Nonce.
-     *
-     * A nonce generated from the `SqPaymentForm` that represents the card
+     * A payment token generated from the [Card.tokenize()](https://developer.squareup.
+     * com/reference/sdks/web/payments/objects/Card#Card.tokenize) that represents the card
      * to charge.
      *
-     * The application that provides a nonce to this endpoint must be the
-     * _same application_ that generated the nonce with the `SqPaymentForm`.
+     * The application that provides a payment token to this endpoint must be the
+     * _same application_ that generated the payment token with the Web Payments SDK.
      * Otherwise, the nonce is invalid.
      *
      * Do not provide a value for this field if you provide a value for
@@ -184,12 +184,12 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Card Nonce.
-     *
-     * A nonce generated from the `SqPaymentForm` that represents the card
+     * A payment token generated from the [Card.tokenize()](https://developer.squareup.
+     * com/reference/sdks/web/payments/objects/Card#Card.tokenize) that represents the card
      * to charge.
      *
-     * The application that provides a nonce to this endpoint must be the
-     * _same application_ that generated the nonce with the `SqPaymentForm`.
+     * The application that provides a payment token to this endpoint must be the
+     * _same application_ that generated the payment token with the Web Payments SDK.
      * Otherwise, the nonce is invalid.
      *
      * Do not provide a value for this field if you provide a value for
@@ -204,7 +204,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Customer Card Id.
-     *
      * The ID of the customer card on file to charge. Do
      * not provide a value for this field if you provide a value for `card_nonce`.
      *
@@ -218,7 +217,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Customer Card Id.
-     *
      * The ID of the customer card on file to charge. Do
      * not provide a value for this field if you provide a value for `card_nonce`.
      *
@@ -234,11 +232,10 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Delay Capture.
-     *
      * If `true`, the request will only perform an Auth on the provided
      * card. You can then later perform either a Capture (with the
-     * [CaptureTransaction](#endpoint-capturetransaction) endpoint) or a Void
-     * (with the [VoidTransaction](#endpoint-voidtransaction) endpoint).
+     * [CaptureTransaction]($e/Transactions/CaptureTransaction) endpoint) or a Void
+     * (with the [VoidTransaction]($e/Transactions/VoidTransaction) endpoint).
      *
      * Default value: `false`
      */
@@ -249,11 +246,10 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Delay Capture.
-     *
      * If `true`, the request will only perform an Auth on the provided
      * card. You can then later perform either a Capture (with the
-     * [CaptureTransaction](#endpoint-capturetransaction) endpoint) or a Void
-     * (with the [VoidTransaction](#endpoint-voidtransaction) endpoint).
+     * [CaptureTransaction]($e/Transactions/CaptureTransaction) endpoint) or a Void
+     * (with the [VoidTransaction]($e/Transactions/VoidTransaction) endpoint).
      *
      * Default value: `false`
      *
@@ -266,7 +262,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Reference Id.
-     *
      * An optional ID you can associate with the transaction for your own
      * purposes (such as to associate the transaction with an entity ID in your
      * own database).
@@ -280,7 +275,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Reference Id.
-     *
      * An optional ID you can associate with the transaction for your own
      * purposes (such as to associate the transaction with an entity ID in your
      * own database).
@@ -296,7 +290,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Note.
-     *
      * An optional note to associate with the transaction.
      *
      * This value cannot exceed 60 characters.
@@ -308,7 +301,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Note.
-     *
      * An optional note to associate with the transaction.
      *
      * This value cannot exceed 60 characters.
@@ -322,7 +314,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Customer Id.
-     *
      * The ID of the customer to associate this transaction with. This field
      * is required if you provide a value for `customer_card_id`, and optional
      * otherwise.
@@ -334,7 +325,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Customer Id.
-     *
      * The ID of the customer to associate this transaction with. This field
      * is required if you provide a value for `customer_card_id`, and optional
      * otherwise.
@@ -348,8 +338,9 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Billing Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      */
     public function getBillingAddress(): ?Address
     {
@@ -358,8 +349,9 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Billing Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      *
      * @maps billing_address
      */
@@ -370,8 +362,9 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Shipping Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      */
     public function getShippingAddress(): ?Address
     {
@@ -380,8 +373,9 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Shipping Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      *
      * @maps shipping_address
      */
@@ -392,7 +386,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Buyer Email Address.
-     *
      * The buyer's email address, if available. This value is optional,
      * but this transaction is ineligible for chargeback protection if it is not
      * provided.
@@ -404,7 +397,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Buyer Email Address.
-     *
      * The buyer's email address, if available. This value is optional,
      * but this transaction is ineligible for chargeback protection if it is not
      * provided.
@@ -418,7 +410,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Order Id.
-     *
      * The ID of the order to associate with this transaction.
      *
      * If you provide this value, the `amount_money` value of your request must
@@ -431,7 +422,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Order Id.
-     *
      * The ID of the order to associate with this transaction.
      *
      * If you provide this value, the `amount_money` value of your request must
@@ -446,7 +436,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Additional Recipients.
-     *
      * The basic primitive of multi-party transaction. The value is optional.
      * The transaction facilitated by you can be split from here.
      *
@@ -467,7 +456,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Additional Recipients.
-     *
      * The basic primitive of multi-party transaction. The value is optional.
      * The transaction facilitated by you can be split from here.
      *
@@ -490,7 +478,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Returns Verification Token.
-     *
      * A token generated by SqPaymentForm's verifyBuyer() that represents
      * customer's device info and 3ds challenge result.
      */
@@ -501,7 +488,6 @@ class ChargeRequest implements \JsonSerializable
 
     /**
      * Sets Verification Token.
-     *
      * A token generated by SqPaymentForm's verifyBuyer() that represents
      * customer's device info and 3ds challenge result.
      *
@@ -515,28 +501,57 @@ class ChargeRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['idempotency_key']      = $this->idempotencyKey;
-        $json['amount_money']         = $this->amountMoney;
-        $json['card_nonce']           = $this->cardNonce;
-        $json['customer_card_id']     = $this->customerCardId;
-        $json['delay_capture']        = $this->delayCapture;
-        $json['reference_id']         = $this->referenceId;
-        $json['note']                 = $this->note;
-        $json['customer_id']          = $this->customerId;
-        $json['billing_address']      = $this->billingAddress;
-        $json['shipping_address']     = $this->shippingAddress;
-        $json['buyer_email_address']  = $this->buyerEmailAddress;
-        $json['order_id']             = $this->orderId;
-        $json['additional_recipients'] = $this->additionalRecipients;
-        $json['verification_token']   = $this->verificationToken;
-
-        return array_filter($json, function ($val) {
+        $json['idempotency_key']           = $this->idempotencyKey;
+        $json['amount_money']              = $this->amountMoney;
+        if (isset($this->cardNonce)) {
+            $json['card_nonce']            = $this->cardNonce;
+        }
+        if (isset($this->customerCardId)) {
+            $json['customer_card_id']      = $this->customerCardId;
+        }
+        if (isset($this->delayCapture)) {
+            $json['delay_capture']         = $this->delayCapture;
+        }
+        if (isset($this->referenceId)) {
+            $json['reference_id']          = $this->referenceId;
+        }
+        if (isset($this->note)) {
+            $json['note']                  = $this->note;
+        }
+        if (isset($this->customerId)) {
+            $json['customer_id']           = $this->customerId;
+        }
+        if (isset($this->billingAddress)) {
+            $json['billing_address']       = $this->billingAddress;
+        }
+        if (isset($this->shippingAddress)) {
+            $json['shipping_address']      = $this->shippingAddress;
+        }
+        if (isset($this->buyerEmailAddress)) {
+            $json['buyer_email_address']   = $this->buyerEmailAddress;
+        }
+        if (isset($this->orderId)) {
+            $json['order_id']              = $this->orderId;
+        }
+        if (isset($this->additionalRecipients)) {
+            $json['additional_recipients'] = $this->additionalRecipients;
+        }
+        if (isset($this->verificationToken)) {
+            $json['verification_token']    = $this->verificationToken;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

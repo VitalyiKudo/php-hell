@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Creation source filter.
+ * The creation source filter.
  *
  * If one or more creation sources are set, customer profiles are included in,
- * or excluded from, the result if they match at least one of the filter
- * criteria.
+ * or excluded from, the result if they match at least one of the filter criteria.
  */
 class CustomerCreationSourceFilter implements \JsonSerializable
 {
@@ -25,7 +26,6 @@ class CustomerCreationSourceFilter implements \JsonSerializable
 
     /**
      * Returns Values.
-     *
      * The list of creation sources used as filtering criteria.
      * See [CustomerCreationSource](#type-customercreationsource) for possible values
      *
@@ -38,11 +38,11 @@ class CustomerCreationSourceFilter implements \JsonSerializable
 
     /**
      * Sets Values.
-     *
      * The list of creation sources used as filtering criteria.
      * See [CustomerCreationSource](#type-customercreationsource) for possible values
      *
      * @maps values
+     * @factory \Square\Models\CustomerCreationSource::checkValue
      *
      * @param string[]|null $values
      */
@@ -53,7 +53,6 @@ class CustomerCreationSourceFilter implements \JsonSerializable
 
     /**
      * Returns Rule.
-     *
      * Indicates whether customers should be included in, or excluded from,
      * the result set when they match the filtering criteria.
      */
@@ -64,11 +63,11 @@ class CustomerCreationSourceFilter implements \JsonSerializable
 
     /**
      * Sets Rule.
-     *
      * Indicates whether customers should be included in, or excluded from,
      * the result set when they match the filtering criteria.
      *
      * @maps rule
+     * @factory \Square\Models\CustomerInclusionExclusion::checkValue
      */
     public function setRule(?string $rule): void
     {
@@ -78,16 +77,25 @@ class CustomerCreationSourceFilter implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['values'] = $this->values;
-        $json['rule']   = $this->rule;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->values)) {
+            $json['values'] = CustomerCreationSource::checkValue($this->values);
+        }
+        if (isset($this->rule)) {
+            $json['rule']   = CustomerInclusionExclusion::checkValue($this->rule);
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

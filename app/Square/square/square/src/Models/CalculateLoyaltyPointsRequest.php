@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * A request to calculate the points that a buyer can earn from
  * a specified purchase.
@@ -22,10 +24,9 @@ class CalculateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Order Id.
-     *
-     * The [order](#type-Order) ID for which to calculate the points.
+     * The [order]($m/Order) ID for which to calculate the points.
      * Specify this field if your application uses the Orders API to process orders.
-     * Otherwise, specify the `transaction_amount`.
+     * Otherwise, specify the `transaction_amount_money`.
      */
     public function getOrderId(): ?string
     {
@@ -34,10 +35,9 @@ class CalculateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Order Id.
-     *
-     * The [order](#type-Order) ID for which to calculate the points.
+     * The [order]($m/Order) ID for which to calculate the points.
      * Specify this field if your application uses the Orders API to process orders.
-     * Otherwise, specify the `transaction_amount`.
+     * Otherwise, specify the `transaction_amount_money`.
      *
      * @maps order_id
      */
@@ -48,7 +48,6 @@ class CalculateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Transaction Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -64,7 +63,6 @@ class CalculateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Transaction Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -83,16 +81,25 @@ class CalculateLoyaltyPointsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['order_id']               = $this->orderId;
-        $json['transaction_amount_money'] = $this->transactionAmountMoney;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->orderId)) {
+            $json['order_id']                 = $this->orderId;
+        }
+        if (isset($this->transactionAmountMoney)) {
+            $json['transaction_amount_money'] = $this->transactionAmountMoney;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

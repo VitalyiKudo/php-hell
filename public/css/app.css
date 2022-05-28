@@ -15137,9 +15137,48 @@ ul.dashed > li:before {
     display: grid;
     text-align: left;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1px 10px;
+    grid-template-columns: [departure] 1.1fr [arrival] 1.22fr [price] 0.68fr;
     justify-content: space-evenly;
+    row-gap: 1rem;
+}
+
+.type-info-legs span {
+    display: block;
+}
+
+.type-info-legs div:nth-of-type(3n) {
+    padding-left: 3rem;
+}
+
+.type-info-legs div:nth-child(6) .btn {
+    color: #fff !important;
+}
+
+@media (max-width: 768px) {
+    .type-info-legs {
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: [departure] 1fr [arrival] 1fr;
+    }
+
+    .type-info-legs div:nth-of-type(3) {
+        grid-column: 3 / 1;
+        grid-row: 3;
+    }
+
+    .type-info-legs div:nth-of-type(6) {
+        grid-column: 3 / 2;
+        grid-row: 3;
+    }
+    .type-info-legs div:nth-of-type(3n) {
+        padding-left: 0;
+    }
+}
+
+.type-info-legs .type-price {
+    display: block;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee3ea;
+    padding-bottom: 12px;
 }
 
 .type-info-legs .flight-price {
@@ -15566,6 +15605,10 @@ ul.dashed > li:before {
     /*padding-top: 10rem;*/
     font-family: "Roboto", sans-serif !important;
     height: 600px;
+}
+
+.main-search-emptyLeg {
+    height: 480px;
 }
 
 .main-search-page .input-group-prepend {
@@ -16089,6 +16132,7 @@ ul.dashed > li:before {
         padding-top: 15px;
     }
     body {touch-action: pan-y pinch-zoom;}
+    .offset-md-1 {margin-left: 0 !important;}
 }
 
 @media (max-width: 576px) {
@@ -16782,6 +16826,10 @@ ul.dashed > li:before {
     .butn-search {
         width: 11% !important;
     }
+
+    .emptyLeg-filter {
+        width: 31% !important;
+    }
 }
 
 @media (max-width: 570px) {
@@ -16800,7 +16848,9 @@ ul.dashed > li:before {
     .end-point,
     .dt-field,
     .pass-field,
-    .butn-search {
+    .butn-search,
+    .emptyLeg-filter
+    {
         /*width: 90% !important;*/
         flex: 0 0 92%;
     }
@@ -18024,10 +18074,6 @@ ul.dashed > li:before {
 
     .carousel-control-next-icon2 {
         margin-right: -80px;
-    }
-
-    .col-md-12 {
-        padding-left: 30px;
     }
 
     .col-md-1 {

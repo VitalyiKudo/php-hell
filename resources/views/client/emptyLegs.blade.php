@@ -11,34 +11,31 @@
 @section('book_page', 'book-page-nav')
 
 @section('content')
-<div class="container header-page-image header-page-image-bg"></div>
-    <div class="section main-search-page header-min-height">
-        {{--<div class="container">
+    <div class="container header-page-image header-page-image-bg"></div>
+    <div class="section main-search-page main-search-emptyLeg">
+        <div class="container">
             <div class="row">
 
-                <div class="offset-md-1 col-md-8">
-
-
-{{--
+                <div class="offset-md-1 col-md-12">
                     <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
 
                         @csrf
                         <div class="row form-body form-search-mobile mt-5">
                             <div class="col-lg-10 mb-2 mt-4 home-title">
-                                <h1>Fly different today: Search your private jet</h1>
+                                <h1 class="text-uppercase">Search empty leg jet</h1>
                             </div>
-                            <div class="mb-3 mt-2 ml-3 start-point">
-                                <div class="input-group input-style-3">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
+                                <div class="input-group input-style">
                                     <input type="text"
-                                        class="form-control from"
-                                        placeholder="Departure Airport"
-                                        aria-describedby="departure-airport"
-                                        name="startPointName"
-                                        autocomplete="off"
-                                        value="{{ $params['startPointName'] }}"
+                                           class="form-control from"
+                                           placeholder="Departure Airport"
+                                           aria-describedby="departure-airport"
+                                           name="startPointName"
+                                           autocomplete="off"
+                                           value=""
                                     >
-                                    <input type="hidden" name="startPoint" autocomplete="off" value="{{ $params['startPoint'] }}">
-                                    <input type="hidden" name="startAirport" autocomplete="off" value="{{ $params['startAirport'] }}">
+                                    <input type="hidden" name="startPoint" autocomplete="off" value="">
+                                    <input type="hidden" name="startAirport" autocomplete="off" value="">
                                     <div id="departureList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="departure-airport">
@@ -46,18 +43,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 mt-2 pl-0 bd end-point">
-                                <div class="input-group input-style-2">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
+                                <div class="input-group input-style">
                                     <input type="text"
-                                        class="form-control to"
-                                        placeholder="Arrival Airport"
-                                        aria-describedby="arrival-airport"
-                                        name="endPointName"
-                                        autocomplete="off"
-                                        value="{{ $params['endPointName'] }}"
+                                           class="form-control to"
+                                           placeholder="Arrival Airport"
+                                           aria-describedby="arrival-airport"
+                                           name="endPointName"
+                                           autocomplete="off"
+                                           value=""
                                     >
-                                    <input type="hidden" name="endPoint" autocomplete="off" value="{{ $params['endPoint'] }}">
-                                    <input type="hidden" name="endAirport" autocomplete="off" value="{{ $params['endAirport'] }}">
+                                    <input type="hidden" name="endPoint" autocomplete="off" value="">
+                                    <input type="hidden" name="endAirport" autocomplete="off" value="">
                                     <div id="arrivalList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="arrival-airport">
@@ -65,9 +62,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 mt-2 ml-3 dt-field">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
                                 <div class="input-group input-style">
-                                    <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['flightDate'] }}">
+                                    <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="date-time">
                                         <img src="{{ asset('images/date-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
@@ -75,59 +72,18 @@
                                 </div>
 
                             </div>
-                            <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
-                                <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bd-input" id="passengers" name="passengers" >
-                                        <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-container-1 mt-2 ml-3 butn-search">
-                                <button type="submit" class="btn">Search Jet</button>
-                            </div>
                         </div>
                     </form>
-                    -}}
                 </div>
             </div>
-        </div>--}}
-    </div>
-{{--
-    <div class="show-hide-map-outside-wrapper">
-        <div class="container show-hide-map-wrapper mt-5 mb-3">
-            <a href="#" id="show-hide-map"><span class="search-mark"></span> <span class="map-text">MAP OF YOUR FLIGHT</span> <span class="caret caret-down"></span></a>
         </div>
     </div>
-
-    <div class="section map-section">
-        <div id="map"></div>
-    </div>
---}}
-    {{--<div class="container header-page-image"></div>--}}
+    <div class="section map-section"></div>
 
     <div class="container request-search-page">
 
         <div class="row">
-
-            {{--<div class="col-lg-2"></div>--}}
-
             <div class="col-xl-12 col-lg-12 right-request">
-                <!--<h2 class="mb-5">Overview of your requests</h2>-->
-{{--
-                @if ($messages)
-                    <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($messages->all() as $error)
-                            <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                    </div><br />
-                @endif
-                --}}
-
                 <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_empty_leg">
 {{-- dd($emptyLegs) --}}
                     @forelse ($emptyLegs as $emptyLeg)
@@ -135,93 +91,46 @@
                             $type = Str::after($emptyLeg->type_plane, '_');
                             $TYPE = Str::upper($type);
                             $Type = Str::ucfirst($type);
+							#dd($emptyLeg);
                         @endphp
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <div class="card-inner-image">
 
-                                            <div class="turbo-gallery-for">
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
-                                                </div>
-                                            </div>
-
-                                            <div class="turbo-gallery-nav">
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="card-inner-body pl-4">
 
-                                            <div class="type-price">
-                                                <div>
-                                                    <span class="flight-type">{{__("$Type")}}</span>
-                                                    <span class="flight-dep-arr"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
-                                                </div>
-                                                <div>
-                                                    <span class="flight-price">{{ $emptyLeg->date_departure->format('d/m/Y') }}</span>
-                                                    <span class="flight-price-desc text-right">{{__('Book now price')}}</span>
-                                                </div>
-                                            </div>
-
                                             <div class="type-info-legs">
-
-                                                <span class="flight-price-desc">{{__('From Airport')}}</span>
-                                                <span></span>
-                                                <span class="flight-price-desc text-right">{{__('To Airport')}}</span>
-
-
-                                                <span class="flight-price">{{ $emptyLeg->departureCity->name}}</span>
-                                                <span></span>
-                                                <span class="flight-price text-right">{{$emptyLeg->arrivalCity->name }}</span>
-
-                                                  {{--<ul>
-                                                      @foreach( Config::get("constants.plane.type_plane.$emptyLeg->type_plane.feature_plane") as $key => $value)
-                                                        <li>
-                                                            <img src="{{ asset(Config::get("constants.plane.icons.$key")) }}" alt="{{ $key }}">
-                                                            <div class="card-details-info">
-                                                                <span>{{ $value }}</span>
-                                                                <span>{{ $key }}</span>
-                                                            </div>
-                                                        </li>
-                                                      @endforeach
-                                                  </ul>--}}
-                                            </div>
-
-                                            <div class="book" style="justify-content: space-between">
-                                                {{--<button type="submit" class="btn rquest-best-price">{{__('Request for a best price')}}</button>--}}
-                                                <div class="type-price-legs">
-                                                    <div class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</div>
-                                                    <div class="flight-price-desc">{{__('Price (Incl. taxes)')}}</div>
+                                                <div class="type-price text-uppercase">
+                                                    <span class="flight-type">{{__("$Type")}}</span>
+                                                    <span style="font-size: 0.8rem;"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
                                                 </div>
-                                                <a href="{{ route('client.orders.confirm', [$emptyLeg->id, 'emptyLeg'] ) }}" class="btn book-now">{{__('Book now')}}</a>
-                                            </div>
+                                                <div class="type-price">
+                                                    <span class="flight-price">{{ $emptyLeg->date_departure->format('d/m/Y') }}</span>
+                                                    <span class="flight-price-desc"></span>
+                                                </div>
+                                                <div class="type-price-legs">
+                                                    <span class="flight-price">{!! ((int)$emptyLeg->price !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg->price, 2, '.', ' ') : 'Price on request.' !!}</span>
+                                                    <span class="flight-price-desc">{{ ((int)$emptyLeg->price !== 0) ? __('Lowest Price (Incl. taxes)') : ''}}</span>
+                                                </div>
 
+                                                <div>
+                                                    <span class="flight-price-desc">{{ __('From Airport')}}</span>
+                                                    <span class="flight-price">{{ $emptyLeg->departureCity->name}}</span>
+                                                </div>
+                                                <div>
+                                                    <span class="flight-price-desc">{{ __('To Airport')}}</span>
+                                                    <span class="flight-price">{{ $emptyLeg->arrivalCity->name }}</span>
+                                                </div>
+                                                {!! ((int)$emptyLeg->price !== 0) ?
+                                                "<div>
+                                                    <a href=". route('client.orders.confirm', [$emptyLeg->id, 'emptyLeg'] ) ." class='book btn book-now'>" . __('Book now') . "</a>
+                                                </div>"
+                                                :
+                                                "<div class='text-right pull-right'>
+                                                    <button type='submit' class='request-quote-submit pull-right'>Request a Quote</button>
+                                                    <a href=". route('client.orders.confirm', [$emptyLeg->id, 'emptyLeg'] ) ." class='request-quote-submit pull-right'>" . __('Request a Quote') . "</a>
+                                                </div>"
+                                                !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -259,132 +168,8 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/slick.min.js') }}"></script>
-    <script type="text/javascript">
-
-
-
-        $(function() {
-
-            $('.turbo-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.turbo-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.turbo-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.turbo-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.turbo-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.light-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.light-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.light-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.light-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.light-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.medium-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.medium-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.medium-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.medium-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.medium-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.heavy-gallery-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                dots: false,
-                asNavFor: '.heavy-gallery-nav',
-                autoplay: false,
-                adaptiveHeight: true,
-            });
-
-            $('.heavy-gallery-nav').slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                asNavFor: '.heavy-gallery-for',
-                dots: false,
-                centerMode: true,
-                centerPadding: '130px',
-                focusOnSelect: true,
-                arrows: false,
-                autoplay: false,
-            });
-
-            $('.heavy-gallery-for').on('click', '.slick-arrow', function(){
-                $('.slick-track').css({'transform': 'translate3d(0px, 0px, 0px)'});
-            });
-
-
-            $('.hover_bkgr_fricc').click(function(){
-                $('.hover_bkgr_fricc').hide();
-            });
-            $('.popupCloseButton').click(function(){
-                $('.hover_bkgr_fricc').hide();
-            });
-
+    <script>
+        $(document).ready(function(){
 
             var tc = '{{$status}}';
             if (tc === 'notAge') {
@@ -405,17 +190,12 @@
                 });
                 $('#T-C').modal('show');
             };
-            /*  else if (tc === 'notAuthorized') {
-              $('.modal-body').append('<p>Не Авторизован!</p>');
-              $('.rquest-best-price').attr('disabled', true);
-              $('.book a').removeClass('book-now').addClass('rquest-best-price').click(function(e){
-                  e.preventDefault();
-                  $('#T-C').modal('show');
-              });
-              $('#T-C').modal('show');
-          };*/
-
+            /*
+            $('.modal-content').observe(function () {
+                $(this).find('span').tooltip();
+            });
+            */
+            //$('.flight-type').css("background-color", "red");
         });
     </script>
-
 @endpush

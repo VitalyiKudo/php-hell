@@ -202,8 +202,8 @@
                             return true;
                         }
                     },
-                    number: true,
-                    notOnlyZero: '0'
+                    number: true
+                    /*, notOnlyZero: '0'*/
                 },
                 dateDeparture: {
                     required: {

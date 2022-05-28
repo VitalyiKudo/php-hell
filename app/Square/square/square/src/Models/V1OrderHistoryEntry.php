@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * V1OrderHistoryEntry
  */
@@ -31,6 +33,7 @@ class V1OrderHistoryEntry implements \JsonSerializable
      * Sets Action.
      *
      * @maps action
+     * @factory \Square\Models\V1OrderHistoryEntryAction::checkValue
      */
     public function setAction(?string $action): void
     {
@@ -39,7 +42,6 @@ class V1OrderHistoryEntry implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
      * The time when the action was performed, in ISO 8601 format.
      */
     public function getCreatedAt(): ?string
@@ -49,7 +51,6 @@ class V1OrderHistoryEntry implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
      * The time when the action was performed, in ISO 8601 format.
      *
      * @maps created_at
@@ -62,16 +63,25 @@ class V1OrderHistoryEntry implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['action']    = $this->action;
-        $json['created_at'] = $this->createdAt;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->action)) {
+            $json['action']     = V1OrderHistoryEntryAction::checkValue($this->action);
+        }
+        if (isset($this->createdAt)) {
+            $json['created_at'] = $this->createdAt;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

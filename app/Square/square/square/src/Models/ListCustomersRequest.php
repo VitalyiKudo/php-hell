@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Defines the query parameters that can be provided in a request to the
- * ListCustomers endpoint.
+ * Defines the query parameters that can be included in a request to the
+ * `ListCustomers` endpoint.
  */
 class ListCustomersRequest implements \JsonSerializable
 {
@@ -14,6 +16,11 @@ class ListCustomersRequest implements \JsonSerializable
      * @var string|null
      */
     private $cursor;
+
+    /**
+     * @var int|null
+     */
+    private $limit;
 
     /**
      * @var string|null
@@ -27,12 +34,11 @@ class ListCustomersRequest implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
-     * Provide this to retrieve the next set of results for your original query.
+     * Provide this cursor to retrieve the next set of results for your original query.
      *
-     * See the [Pagination guide](https://developer.squareup.com/docs/working-with-apis/pagination) for
-     * more information.
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
      */
     public function getCursor(): ?string
     {
@@ -41,12 +47,11 @@ class ListCustomersRequest implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
-     * Provide this to retrieve the next set of results for your original query.
+     * Provide this cursor to retrieve the next set of results for your original query.
      *
-     * See the [Pagination guide](https://developer.squareup.com/docs/working-with-apis/pagination) for
-     * more information.
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
      *
      * @maps cursor
      */
@@ -56,8 +61,39 @@ class ListCustomersRequest implements \JsonSerializable
     }
 
     /**
-     * Returns Sort Field.
+     * Returns Limit.
+     * The maximum number of results to return in a single page. This limit is advisory. The response might
+     * contain more or fewer results.
+     * If the specified limit is less than 1 or greater than 100, Square returns a `400 VALUE_TOO_LOW` or
+     * `400 VALUE_TOO_HIGH` error. The default value is 100.
      *
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
+     */
+    public function getLimit(): ?int
+    {
+        return $this->limit;
+    }
+
+    /**
+     * Sets Limit.
+     * The maximum number of results to return in a single page. This limit is advisory. The response might
+     * contain more or fewer results.
+     * If the specified limit is less than 1 or greater than 100, Square returns a `400 VALUE_TOO_LOW` or
+     * `400 VALUE_TOO_HIGH` error. The default value is 100.
+     *
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
+     *
+     * @maps limit
+     */
+    public function setLimit(?int $limit): void
+    {
+        $this->limit = $limit;
+    }
+
+    /**
+     * Returns Sort Field.
      * Specifies customer attributes as the sort key to customer profiles returned from a search.
      */
     public function getSortField(): ?string
@@ -67,10 +103,10 @@ class ListCustomersRequest implements \JsonSerializable
 
     /**
      * Sets Sort Field.
-     *
      * Specifies customer attributes as the sort key to customer profiles returned from a search.
      *
      * @maps sort_field
+     * @factory \Square\Models\CustomerSortField::checkValue
      */
     public function setSortField(?string $sortField): void
     {
@@ -79,7 +115,6 @@ class ListCustomersRequest implements \JsonSerializable
 
     /**
      * Returns Sort Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      */
     public function getSortOrder(): ?string
@@ -89,10 +124,10 @@ class ListCustomersRequest implements \JsonSerializable
 
     /**
      * Sets Sort Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      *
      * @maps sort_order
+     * @factory \Square\Models\SortOrder::checkValue
      */
     public function setSortOrder(?string $sortOrder): void
     {
@@ -102,17 +137,31 @@ class ListCustomersRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['cursor']    = $this->cursor;
-        $json['sort_field'] = $this->sortField;
-        $json['sort_order'] = $this->sortOrder;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->cursor)) {
+            $json['cursor']     = $this->cursor;
+        }
+        if (isset($this->limit)) {
+            $json['limit']      = $this->limit;
+        }
+        if (isset($this->sortField)) {
+            $json['sort_field'] = CustomerSortField::checkValue($this->sortField);
+        }
+        if (isset($this->sortOrder)) {
+            $json['sort_order'] = SortOrder::checkValue($this->sortOrder);
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

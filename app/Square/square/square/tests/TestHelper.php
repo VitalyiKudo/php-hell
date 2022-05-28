@@ -38,23 +38,25 @@ class TestHelper
 
     /**
      * Recursively check whether the leftTree is a proper subset of the right tree
-     * @param   array   $leftTree       Left tree
-     * @param   array   $rightTree      Right tree
+     * @param   mixed   $leftTree       Left tree
+     * @param   mixed   $rightTree      Right tree
      * @param   boolean $checkValues    Check primitive values for equality?
      * @param   boolean $allowExtra     Are extra elements allowed in right array?
      * @param   boolean $isOrdered      Should elements in right be compared in order to left?
      * @return  boolean                 True if leftTree is a subset of rightTree
      */
     public static function isProperSubsetOf(
-        array $leftTree = null,
-        array $rightTree = null,
+        $leftTree,
+        $rightTree,
         $checkValues,
         $allowExtra,
         $isOrdered
     ) {
-    
         if ($leftTree == null) {
             return true;
+        }
+        if (!is_array($leftTree) && !is_array($rightTree)) {
+            return $leftTree === $rightTree;
         }
 
         for ($iterator = new \ArrayIterator($leftTree); $iterator->valid(); $iterator->next()) {
@@ -233,7 +235,7 @@ class TestHelper
         
         return true;
     }
-    
+
     /**
      * Check whether the a list is a subset of another list
      * @param   array   $leftList   Expected List
@@ -255,13 +257,35 @@ class TestHelper
             return array_slice($rightList, 0, count($leftList)) === $leftList;
         } elseif (!$isOrdered && !$allowExtra) {
             return count($leftList) == count($rightList) &&
-                array_intersect($leftList, $rightList) == $leftList;
+                self::intersectArrays($leftList, $rightList) == $leftList;
         } elseif (!$isOrdered && $allowExtra) {
-            return array_intersect($leftList, $rightList) == $leftList;
+            return self::intersectArrays($leftList, $rightList) == $leftList;
         }
         return true;
     }
-    
+
+    /**
+     * Computes the intersection of arrays, even for arrays of arrays
+     *
+     * @param array $leftList  The array with main values to check
+     * @param array $rightList An array to compare values against
+     *
+     * @return array An array containing all the values in leftList whose values exist
+     *               also exists in rightList
+     */
+    public static function intersectArrays(array $leftList, array $rightList): array
+    {
+        return array_map(
+            function ($param) {
+                return self::decode($param, true);
+            },
+            array_intersect(
+                array_map([ApiHelper::class, 'serialize'], $leftList),
+                array_map([ApiHelper::class, 'serialize'], $rightList)
+            )
+        );
+    }
+
     /**
      * Recursively check whether the left headers map is a proper subset of
      * the right headers map. Header keys & values are compared case-insensitive.
@@ -347,5 +371,18 @@ class TestHelper
     {
         $mapper = new JsonMapper();
         return $mapper;
+    }
+
+    /**
+     * Apply json_decode on the given value
+     *
+     * @param string $value       Value to be decoded
+     * @param bool   $associative Whether to decode as associative array when value is json, Default: false
+     *
+     * @return mixed decoded object from the given string
+     */
+    public static function decode(string $value, bool $associative = false)
+    {
+        return json_decode($value, $associative) ?? $value;
     }
 }

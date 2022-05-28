@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Defines the fields included in the response body for requests to __ListCustomerSegments__.
+ * Defines the fields that are included in the response body for requests to the
+ * `ListCustomerSegments` endpoint.
  *
- * One of `errors` or `segments` is present in a given response (never both).
+ * Either `errors` or `segments` is present in a given response (never both).
  */
 class ListCustomerSegmentsResponse implements \JsonSerializable
 {
@@ -28,7 +31,6 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Returns Errors.
-     *
      * Any errors that occurred during the request.
      *
      * @return Error[]|null
@@ -40,7 +42,6 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Sets Errors.
-     *
      * Any errors that occurred during the request.
      *
      * @maps errors
@@ -54,7 +55,6 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Returns Segments.
-     *
      * The list of customer segments belonging to the associated Square account.
      *
      * @return CustomerSegment[]|null
@@ -66,7 +66,6 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Sets Segments.
-     *
      * The list of customer segments belonging to the associated Square account.
      *
      * @maps segments
@@ -80,13 +79,12 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
-     * A pagination cursor to be used in subsequent calls to __ListCustomerSegments__
-     * to retrieve the next set of query results. Only present only if the request succeeded and
+     * A pagination cursor to be used in subsequent calls to `ListCustomerSegments`
+     * to retrieve the next set of query results. The cursor is only present if the request succeeded and
      * additional results are available.
      *
-     * See the [Pagination guide](https://developer.squareup.com/docs/working-with-apis/pagination) for
-     * more information.
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
      */
     public function getCursor(): ?string
     {
@@ -95,13 +93,12 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
-     * A pagination cursor to be used in subsequent calls to __ListCustomerSegments__
-     * to retrieve the next set of query results. Only present only if the request succeeded and
+     * A pagination cursor to be used in subsequent calls to `ListCustomerSegments`
+     * to retrieve the next set of query results. The cursor is only present if the request succeeded and
      * additional results are available.
      *
-     * See the [Pagination guide](https://developer.squareup.com/docs/working-with-apis/pagination) for
-     * more information.
+     * For more information, see [Pagination](https://developer.squareup.com/docs/build-basics/common-api-
+     * patterns/pagination).
      *
      * @maps cursor
      */
@@ -113,17 +110,28 @@ class ListCustomerSegmentsResponse implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['errors']   = $this->errors;
-        $json['segments'] = $this->segments;
-        $json['cursor']   = $this->cursor;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->errors)) {
+            $json['errors']   = $this->errors;
+        }
+        if (isset($this->segments)) {
+            $json['segments'] = $this->segments;
+        }
+        if (isset($this->cursor)) {
+            $json['cursor']   = $this->cursor;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

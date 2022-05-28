@@ -5,20 +5,29 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `squareVersion` | `string` | Square Connect API versions<br>*Default*: `'2021-02-26'` |
-| `accessToken` | `string` | The OAuth 2.0 Access Token to use for API requests. |
+| `squareVersion` | `string` | Square Connect API versions<br>*Default*: `'2022-05-12'` |
 | `customUrl` | `string` | Sets the base URL requests are made to. Defaults to `https://connect.squareup.com`<br>*Default*: `'https://connect.squareup.com'` |
 | `environment` | `string` | The API environment. <br> **Default: `production`** |
-| `timeout` | `int` | Timeout for API calls |
-| `additionalHeaders` | `array` | Additional headers to add to each API call |
+| `timeout` | `int` | Timeout for API calls in seconds.<br>*Default*: `60` |
+| `enableRetries` | `bool` | Whether to enable retries and backoff feature.<br>*Default*: `false` |
+| `numberOfRetries` | `int` | The number of retries to make.<br>*Default*: `0` |
+| `retryInterval` | `float` | The retry time interval between the endpoint calls.<br>*Default*: `1` |
+| `backOffFactor` | `float` | Exponential backoff factor to increase interval between retries.<br>*Default*: `2` |
+| `maximumRetryWaitTime` | `int` | The maximum wait time in seconds for overall retrying requests.<br>*Default*: `0` |
+| `retryOnTimeout` | `bool` | Whether to retry on request timeout.<br>*Default*: `true` |
+| `httpStatusCodesToRetry` | `array` | Http status codes to retry against.<br>*Default*: `408, 413, 429, 500, 502, 503, 504, 521, 522, 524` |
+| `httpMethodsToRetry` | `array` | Http methods to retry against.<br>*Default*: `'GET', 'PUT'` |
+| `additionalHeaders` | `array` | Additional headers to add to each API call<br>*Default*: `[]` |
+| `userAgentDetail` | `string` | User agent detail, to be appended with user-agent header. |
+| `accessToken` | `string` | The OAuth 2.0 Access Token to use for API requests. |
 
 The API client can be initialized as follows:
 
 ```php
 $client = new Square\SquareClient([
     // Set authentication parameters
-    'squareVersion' => '2021-02-26',
     'accessToken' => 'AccessToken',
+    'squareVersion' => '2022-05-12',
 
     // Set the environment
     'environment' => 'production',
@@ -44,8 +53,8 @@ API calls return an `ApiResponse` object that includes the following fields:
 require_once "vendor/autoload.php";
 
 $client = new Square\SquareClient([
-    'squareVersion' => '2021-02-26',
     'accessToken' => 'AccessToken',
+    'squareVersion' => '2022-05-12',
 ]);
 
 $locationsApi = $client->getLocationsApi();
@@ -71,33 +80,40 @@ The gateway for the SDK. This class acts as a factory for the Apis and also hold
 
 | Name | Description |
 |  --- | --- |
-| getMobileAuthorizationApi() | Provides access to MobileAuthorizationApi |
-| getOAuthApi() | Provides access to OAuthApi |
-| getV1EmployeesApi() | Provides access to V1EmployeesApi |
-| getV1TransactionsApi() | Provides access to V1TransactionsApi |
-| getApplePayApi() | Provides access to ApplePayApi |
-| getBankAccountsApi() | Provides access to BankAccountsApi |
-| getBookingsApi() | Provides access to BookingsApi |
-| getCashDrawersApi() | Provides access to CashDrawersApi |
-| getCatalogApi() | Provides access to CatalogApi |
-| getCustomersApi() | Provides access to CustomersApi |
-| getCustomerGroupsApi() | Provides access to CustomerGroupsApi |
-| getCustomerSegmentsApi() | Provides access to CustomerSegmentsApi |
-| getDevicesApi() | Provides access to DevicesApi |
-| getDisputesApi() | Provides access to DisputesApi |
-| getEmployeesApi() | Provides access to EmployeesApi |
-| getInventoryApi() | Provides access to InventoryApi |
-| getInvoicesApi() | Provides access to InvoicesApi |
-| getLaborApi() | Provides access to LaborApi |
-| getLocationsApi() | Provides access to LocationsApi |
-| getCheckoutApi() | Provides access to CheckoutApi |
-| getTransactionsApi() | Provides access to TransactionsApi |
-| getLoyaltyApi() | Provides access to LoyaltyApi |
-| getMerchantsApi() | Provides access to MerchantsApi |
-| getOrdersApi() | Provides access to OrdersApi |
-| getPaymentsApi() | Provides access to PaymentsApi |
-| getRefundsApi() | Provides access to RefundsApi |
-| getSubscriptionsApi() | Provides access to SubscriptionsApi |
-| getTeamApi() | Provides access to TeamApi |
-| getTerminalApi() | Provides access to TerminalApi |
+| getMobileAuthorizationApi() | Gets MobileAuthorizationApi |
+| getOAuthApi() | Gets OAuthApi |
+| getV1TransactionsApi() | Gets V1TransactionsApi |
+| getApplePayApi() | Gets ApplePayApi |
+| getBankAccountsApi() | Gets BankAccountsApi |
+| getBookingsApi() | Gets BookingsApi |
+| getCardsApi() | Gets CardsApi |
+| getCashDrawersApi() | Gets CashDrawersApi |
+| getCatalogApi() | Gets CatalogApi |
+| getCustomersApi() | Gets CustomersApi |
+| getCustomerCustomAttributesApi() | Gets CustomerCustomAttributesApi |
+| getCustomerGroupsApi() | Gets CustomerGroupsApi |
+| getCustomerSegmentsApi() | Gets CustomerSegmentsApi |
+| getDevicesApi() | Gets DevicesApi |
+| getDisputesApi() | Gets DisputesApi |
+| getEmployeesApi() | Gets EmployeesApi |
+| getGiftCardsApi() | Gets GiftCardsApi |
+| getGiftCardActivitiesApi() | Gets GiftCardActivitiesApi |
+| getInventoryApi() | Gets InventoryApi |
+| getInvoicesApi() | Gets InvoicesApi |
+| getLaborApi() | Gets LaborApi |
+| getLocationsApi() | Gets LocationsApi |
+| getCheckoutApi() | Gets CheckoutApi |
+| getTransactionsApi() | Gets TransactionsApi |
+| getLoyaltyApi() | Gets LoyaltyApi |
+| getMerchantsApi() | Gets MerchantsApi |
+| getOrdersApi() | Gets OrdersApi |
+| getPaymentsApi() | Gets PaymentsApi |
+| getPayoutsApi() | Gets PayoutsApi |
+| getRefundsApi() | Gets RefundsApi |
+| getSitesApi() | Gets SitesApi |
+| getSnippetsApi() | Gets SnippetsApi |
+| getSubscriptionsApi() | Gets SubscriptionsApi |
+| getTeamApi() | Gets TeamApi |
+| getTerminalApi() | Gets TerminalApi |
+| getVendorsApi() | Gets VendorsApi |
 

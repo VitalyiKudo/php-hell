@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Defines the fields that are included in the response body of
- * a request to the [GetRefund](#endpoint-refunds-getpaymentrefund) endpoint.
+ * Defines the response returned by [GetRefund]($e/Refunds/GetPaymentRefund).
  *
  * Note: If there are errors processing the request, the refund field might not be
  * present or it might be present in a FAILED state.
@@ -25,7 +26,6 @@ class GetPaymentRefundResponse implements \JsonSerializable
 
     /**
      * Returns Errors.
-     *
      * Information about errors encountered during the request.
      *
      * @return Error[]|null
@@ -37,7 +37,6 @@ class GetPaymentRefundResponse implements \JsonSerializable
 
     /**
      * Sets Errors.
-     *
      * Information about errors encountered during the request.
      *
      * @maps errors
@@ -51,7 +50,6 @@ class GetPaymentRefundResponse implements \JsonSerializable
 
     /**
      * Returns Refund.
-     *
      * Represents a refund of a payment made using Square. Contains information about
      * the original payment and the amount of money refunded.
      */
@@ -62,7 +60,6 @@ class GetPaymentRefundResponse implements \JsonSerializable
 
     /**
      * Sets Refund.
-     *
      * Represents a refund of a payment made using Square. Contains information about
      * the original payment and the amount of money refunded.
      *
@@ -76,16 +73,25 @@ class GetPaymentRefundResponse implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['errors'] = $this->errors;
-        $json['refund'] = $this->refund;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->errors)) {
+            $json['errors'] = $this->errors;
+        }
+        if (isset($this->refund)) {
+            $json['refund'] = $this->refund;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Retrieves a list of refunds for the account making the request.
+ * Describes a request to list refunds using
+ * [ListPaymentRefunds]($e/Refunds/ListPaymentRefunds).
  *
  * The maximum results per page is 100.
  */
@@ -53,7 +56,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Begin Time.
-     *
      * The timestamp for the beginning of the requested reporting period, in RFC 3339 format.
      *
      * Default: The current time minus one year.
@@ -65,7 +67,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Begin Time.
-     *
      * The timestamp for the beginning of the requested reporting period, in RFC 3339 format.
      *
      * Default: The current time minus one year.
@@ -79,7 +80,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns End Time.
-     *
      * The timestamp for the end of the requested reporting period, in RFC 3339 format.
      *
      * Default: The current time.
@@ -91,7 +91,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets End Time.
-     *
      * The timestamp for the end of the requested reporting period, in RFC 3339 format.
      *
      * Default: The current time.
@@ -105,7 +104,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Sort Order.
-     *
      * The order in which results are listed:
      * - `ASC` - Oldest to newest.
      * - `DESC` - Newest to oldest (default).
@@ -117,7 +115,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Sort Order.
-     *
      * The order in which results are listed:
      * - `ASC` - Oldest to newest.
      * - `DESC` - Newest to oldest (default).
@@ -131,7 +128,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this cursor to retrieve the next set of results for the original query.
      *
@@ -144,7 +140,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this cursor to retrieve the next set of results for the original query.
      *
@@ -159,7 +154,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Location Id.
-     *
      * Limit results to the location supplied. By default, results are returned
      * for all locations associated with the seller.
      */
@@ -170,7 +164,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Location Id.
-     *
      * Limit results to the location supplied. By default, results are returned
      * for all locations associated with the seller.
      *
@@ -183,9 +176,8 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Status.
-     *
      * If provided, only refunds with the given status are returned.
-     * For a list of refund status values, see [PaymentRefund](#type-paymentrefund).
+     * For a list of refund status values, see [PaymentRefund]($m/PaymentRefund).
      *
      * Default: If omitted, refunds are returned regardless of their status.
      */
@@ -196,9 +188,8 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Status.
-     *
      * If provided, only refunds with the given status are returned.
-     * For a list of refund status values, see [PaymentRefund](#type-paymentrefund).
+     * For a list of refund status values, see [PaymentRefund]($m/PaymentRefund).
      *
      * Default: If omitted, refunds are returned regardless of their status.
      *
@@ -211,10 +202,10 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Source Type.
-     *
-     * If provided, only refunds with the given source type are returned.
-     * - `CARD` - List refunds only for payments where `CARD` was specified as the payment
-     * source.
+     * If provided, only returns refunds whose payments have the indicated source type.
+     * Current values include `CARD`, `BANK_ACCOUNT`, `WALLET`, `CASH`, and `EXTERNAL`.
+     * For information about these payment source types, see
+     * [Take Payments](https://developer.squareup.com/docs/payments-api/take-payments).
      *
      * Default: If omitted, refunds are returned regardless of the source type.
      */
@@ -225,10 +216,10 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Source Type.
-     *
-     * If provided, only refunds with the given source type are returned.
-     * - `CARD` - List refunds only for payments where `CARD` was specified as the payment
-     * source.
+     * If provided, only returns refunds whose payments have the indicated source type.
+     * Current values include `CARD`, `BANK_ACCOUNT`, `WALLET`, `CASH`, and `EXTERNAL`.
+     * For information about these payment source types, see
+     * [Take Payments](https://developer.squareup.com/docs/payments-api/take-payments).
      *
      * Default: If omitted, refunds are returned regardless of the source type.
      *
@@ -241,7 +232,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Returns Limit.
-     *
      * The maximum number of results to be returned in a single page.
      *
      * It is possible to receive fewer results than the specified limit on a given page.
@@ -257,7 +247,6 @@ class ListPaymentRefundsRequest implements \JsonSerializable
 
     /**
      * Sets Limit.
-     *
      * The maximum number of results to be returned in a single page.
      *
      * It is possible to receive fewer results than the specified limit on a given page.
@@ -276,22 +265,43 @@ class ListPaymentRefundsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['begin_time'] = $this->beginTime;
-        $json['end_time']   = $this->endTime;
-        $json['sort_order'] = $this->sortOrder;
-        $json['cursor']     = $this->cursor;
-        $json['location_id'] = $this->locationId;
-        $json['status']     = $this->status;
-        $json['source_type'] = $this->sourceType;
-        $json['limit']      = $this->limit;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->beginTime)) {
+            $json['begin_time']  = $this->beginTime;
+        }
+        if (isset($this->endTime)) {
+            $json['end_time']    = $this->endTime;
+        }
+        if (isset($this->sortOrder)) {
+            $json['sort_order']  = $this->sortOrder;
+        }
+        if (isset($this->cursor)) {
+            $json['cursor']      = $this->cursor;
+        }
+        if (isset($this->locationId)) {
+            $json['location_id'] = $this->locationId;
+        }
+        if (isset($this->status)) {
+            $json['status']      = $this->status;
+        }
+        if (isset($this->sourceType)) {
+            $json['source_type'] = $this->sourceType;
+        }
+        if (isset($this->limit)) {
+            $json['limit']       = $this->limit;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

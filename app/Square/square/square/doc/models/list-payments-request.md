@@ -1,7 +1,8 @@
 
 # List Payments Request
 
-Retrieves a list of payments taken by the account making the request.
+Describes a request to list payments using
+[ListPayments](../../doc/apis/payments.md#list-payments).
 
 The maximum results per page is 100.
 

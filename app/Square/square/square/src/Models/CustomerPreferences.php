@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Represents communication preferences for the customer profile.
  */
@@ -16,8 +18,9 @@ class CustomerPreferences implements \JsonSerializable
 
     /**
      * Returns Email Unsubscribed.
-     *
-     * The customer has unsubscribed from receiving marketing campaign emails.
+     * Indicates whether the customer has unsubscribed from marketing campaign emails. A value of `true`
+     * means that the customer chose to opt out of email marketing from the current Square seller or from
+     * all Square sellers. This value is read-only from the Customers API.
      */
     public function getEmailUnsubscribed(): ?bool
     {
@@ -26,8 +29,9 @@ class CustomerPreferences implements \JsonSerializable
 
     /**
      * Sets Email Unsubscribed.
-     *
-     * The customer has unsubscribed from receiving marketing campaign emails.
+     * Indicates whether the customer has unsubscribed from marketing campaign emails. A value of `true`
+     * means that the customer chose to opt out of email marketing from the current Square seller or from
+     * all Square sellers. This value is read-only from the Customers API.
      *
      * @maps email_unsubscribed
      */
@@ -39,15 +43,22 @@ class CustomerPreferences implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['email_unsubscribed'] = $this->emailUnsubscribed;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->emailUnsubscribed)) {
+            $json['email_unsubscribed'] = $this->emailUnsubscribed;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

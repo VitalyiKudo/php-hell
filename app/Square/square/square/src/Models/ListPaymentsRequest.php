@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Retrieves a list of payments taken by the account making the request.
+ * Describes a request to list payments using
+ * [ListPayments]($e/Payments/ListPayments).
  *
  * The maximum results per page is 100.
  */
@@ -58,7 +61,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Begin Time.
-     *
      * The timestamp for the beginning of the reporting period, in RFC 3339 format.
      * Inclusive. Default: The current time minus one year.
      */
@@ -69,7 +71,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Begin Time.
-     *
      * The timestamp for the beginning of the reporting period, in RFC 3339 format.
      * Inclusive. Default: The current time minus one year.
      *
@@ -82,7 +83,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns End Time.
-     *
      * The timestamp for the end of the reporting period, in RFC 3339 format.
      *
      * Default: The current time.
@@ -94,7 +94,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets End Time.
-     *
      * The timestamp for the end of the reporting period, in RFC 3339 format.
      *
      * Default: The current time.
@@ -108,7 +107,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Sort Order.
-     *
      * The order in which results are listed:
      * - `ASC` - Oldest to newest.
      * - `DESC` - Newest to oldest (default).
@@ -120,7 +118,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Sort Order.
-     *
      * The order in which results are listed:
      * - `ASC` - Oldest to newest.
      * - `DESC` - Newest to oldest (default).
@@ -134,7 +131,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this cursor to retrieve the next set of results for the original query.
      *
@@ -147,7 +143,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this cursor to retrieve the next set of results for the original query.
      *
@@ -162,7 +157,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Location Id.
-     *
      * Limit results to the location supplied. By default, results are returned
      * for the default (main) location associated with the seller.
      */
@@ -173,7 +167,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Location Id.
-     *
      * Limit results to the location supplied. By default, results are returned
      * for the default (main) location associated with the seller.
      *
@@ -186,7 +179,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Total.
-     *
      * The exact amount in the `total_money` for a payment.
      */
     public function getTotal(): ?int
@@ -196,7 +188,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Total.
-     *
      * The exact amount in the `total_money` for a payment.
      *
      * @maps total
@@ -208,7 +199,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Last 4.
-     *
      * The last four digits of a payment card.
      */
     public function getLast4(): ?string
@@ -218,7 +208,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Last 4.
-     *
      * The last four digits of a payment card.
      *
      * @maps last_4
@@ -230,7 +219,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Card Brand.
-     *
      * The brand of the payment card (for example, VISA).
      */
     public function getCardBrand(): ?string
@@ -240,7 +228,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Card Brand.
-     *
      * The brand of the payment card (for example, VISA).
      *
      * @maps card_brand
@@ -252,7 +239,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Returns Limit.
-     *
      * The maximum number of results to be returned in a single page.
      * It is possible to receive fewer results than the specified limit on a given page.
      *
@@ -268,7 +254,6 @@ class ListPaymentsRequest implements \JsonSerializable
 
     /**
      * Sets Limit.
-     *
      * The maximum number of results to be returned in a single page.
      * It is possible to receive fewer results than the specified limit on a given page.
      *
@@ -287,23 +272,46 @@ class ListPaymentsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['begin_time'] = $this->beginTime;
-        $json['end_time']   = $this->endTime;
-        $json['sort_order'] = $this->sortOrder;
-        $json['cursor']     = $this->cursor;
-        $json['location_id'] = $this->locationId;
-        $json['total']      = $this->total;
-        $json['last_4']     = $this->last4;
-        $json['card_brand'] = $this->cardBrand;
-        $json['limit']      = $this->limit;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->beginTime)) {
+            $json['begin_time']  = $this->beginTime;
+        }
+        if (isset($this->endTime)) {
+            $json['end_time']    = $this->endTime;
+        }
+        if (isset($this->sortOrder)) {
+            $json['sort_order']  = $this->sortOrder;
+        }
+        if (isset($this->cursor)) {
+            $json['cursor']      = $this->cursor;
+        }
+        if (isset($this->locationId)) {
+            $json['location_id'] = $this->locationId;
+        }
+        if (isset($this->total)) {
+            $json['total']       = $this->total;
+        }
+        if (isset($this->last4)) {
+            $json['last_4']      = $this->last4;
+        }
+        if (isset($this->cardBrand)) {
+            $json['card_brand']  = $this->cardBrand;
+        }
+        if (isset($this->limit)) {
+            $json['limit']       = $this->limit;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

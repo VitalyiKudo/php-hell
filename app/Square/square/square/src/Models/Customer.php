@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Represents a Square customer profile, which can have one or more
- * cards on file associated with it.
+ * Represents a Square customer profile in the Customer Directory of a Square seller.
  */
 class Customer implements \JsonSerializable
 {
@@ -86,11 +87,6 @@ class Customer implements \JsonSerializable
     private $preferences;
 
     /**
-     * @var CustomerGroupInfo[]|null
-     */
-    private $groups;
-
-    /**
      * @var string|null
      */
     private $creationSource;
@@ -106,9 +102,22 @@ class Customer implements \JsonSerializable
     private $segmentIds;
 
     /**
+     * @var int|null
+     */
+    private $version;
+
+    /**
+     * @var CustomerTaxIds|null
+     */
+    private $taxIds;
+
+    /**
      * Returns Id.
-     *
      * A unique Square-assigned ID for the customer profile.
+     *
+     * If you need this ID for an API request, use the ID returned when you created the customer profile or
+     * call the [SearchCustomers]($e/Customers/SearchCustomers)
+     * or [ListCustomers]($e/Customers/ListCustomers) endpoint.
      */
     public function getId(): ?string
     {
@@ -117,8 +126,11 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
      * A unique Square-assigned ID for the customer profile.
+     *
+     * If you need this ID for an API request, use the ID returned when you created the customer profile or
+     * call the [SearchCustomers]($e/Customers/SearchCustomers)
+     * or [ListCustomers]($e/Customers/ListCustomers) endpoint.
      *
      * @maps id
      */
@@ -129,7 +141,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
      * The timestamp when the customer profile was created, in RFC 3339 format.
      */
     public function getCreatedAt(): ?string
@@ -139,7 +150,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
      * The timestamp when the customer profile was created, in RFC 3339 format.
      *
      * @maps created_at
@@ -151,7 +161,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Updated At.
-     *
      * The timestamp when the customer profile was last updated, in RFC 3339 format.
      */
     public function getUpdatedAt(): ?string
@@ -161,7 +170,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Updated At.
-     *
      * The timestamp when the customer profile was last updated, in RFC 3339 format.
      *
      * @maps updated_at
@@ -173,8 +181,14 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Cards.
+     * Payment details of the credit, debit, and gift cards stored on file for the customer profile.
      *
-     * Payment details of cards stored on file for the customer profile.
+     * DEPRECATED at version 2021-06-16. Replaced by calling [ListCards]($e/Cards/ListCards) (for credit
+     * and debit cards on file)
+     * or [ListGiftCards]($e/GiftCards/ListGiftCards) (for gift cards on file) and including the
+     * `customer_id` query parameter.
+     * For more information, see [Migration notes](https://developer.squareup.com/docs/customers-api/what-
+     * it-does#migrate-customer-cards).
      *
      * @return Card[]|null
      */
@@ -185,8 +199,14 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Cards.
+     * Payment details of the credit, debit, and gift cards stored on file for the customer profile.
      *
-     * Payment details of cards stored on file for the customer profile.
+     * DEPRECATED at version 2021-06-16. Replaced by calling [ListCards]($e/Cards/ListCards) (for credit
+     * and debit cards on file)
+     * or [ListGiftCards]($e/GiftCards/ListGiftCards) (for gift cards on file) and including the
+     * `customer_id` query parameter.
+     * For more information, see [Migration notes](https://developer.squareup.com/docs/customers-api/what-
+     * it-does#migrate-customer-cards).
      *
      * @maps cards
      *
@@ -199,8 +219,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Given Name.
-     *
-     * The given (i.e., first) name associated with the customer profile.
+     * The given name (that is, the first name) associated with the customer profile.
      */
     public function getGivenName(): ?string
     {
@@ -209,8 +228,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Given Name.
-     *
-     * The given (i.e., first) name associated with the customer profile.
+     * The given name (that is, the first name) associated with the customer profile.
      *
      * @maps given_name
      */
@@ -221,8 +239,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Family Name.
-     *
-     * The family (i.e., last) name associated with the customer profile.
+     * The family name (that is, the last name) associated with the customer profile.
      */
     public function getFamilyName(): ?string
     {
@@ -231,8 +248,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Family Name.
-     *
-     * The family (i.e., last) name associated with the customer profile.
+     * The family name (that is, the last name) associated with the customer profile.
      *
      * @maps family_name
      */
@@ -243,7 +259,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Nickname.
-     *
      * A nickname for the customer profile.
      */
     public function getNickname(): ?string
@@ -253,7 +268,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Nickname.
-     *
      * A nickname for the customer profile.
      *
      * @maps nickname
@@ -265,7 +279,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Company Name.
-     *
      * A business name associated with the customer profile.
      */
     public function getCompanyName(): ?string
@@ -275,7 +288,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Company Name.
-     *
      * A business name associated with the customer profile.
      *
      * @maps company_name
@@ -287,7 +299,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Email Address.
-     *
      * The email address associated with the customer profile.
      */
     public function getEmailAddress(): ?string
@@ -297,7 +308,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Email Address.
-     *
      * The email address associated with the customer profile.
      *
      * @maps email_address
@@ -309,8 +319,9 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      */
     public function getAddress(): ?Address
     {
@@ -319,8 +330,9 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Address.
-     *
-     * Represents a physical address.
+     * Represents a postal address in a country.
+     * For more information, see [Working with Addresses](https://developer.squareup.com/docs/build-
+     * basics/working-with-addresses).
      *
      * @maps address
      */
@@ -331,8 +343,8 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Phone Number.
-     *
-     * The 11-digit phone number associated with the customer profile.
+     * The phone number associated with the customer profile. A phone number can contain 9–16 digits, with
+     * an optional `+` prefix.
      */
     public function getPhoneNumber(): ?string
     {
@@ -341,8 +353,8 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Phone Number.
-     *
-     * The 11-digit phone number associated with the customer profile.
+     * The phone number associated with the customer profile. A phone number can contain 9–16 digits, with
+     * an optional `+` prefix.
      *
      * @maps phone_number
      */
@@ -353,11 +365,10 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Birthday.
-     *
-     * The birthday associated with the customer profile, in RFC 3339 format.
-     * Year is optional, timezone and times are not allowed.
-     * For example: `0000-09-01T00:00:00-00:00` indicates a birthday on September 1st.
-     * `1998-09-01T00:00:00-00:00` indications a birthday on September 1st __1998__.
+     * The birthday associated with the customer profile, in RFC 3339 format. The year is optional. The
+     * timezone and time are not allowed.
+     * For example, `0000-09-21T00:00:00-00:00` represents a birthday on September 21 and `1998-09-21T00:00:
+     * 00-00:00` represents a birthday on September 21, 1998.
      */
     public function getBirthday(): ?string
     {
@@ -366,11 +377,10 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Birthday.
-     *
-     * The birthday associated with the customer profile, in RFC 3339 format.
-     * Year is optional, timezone and times are not allowed.
-     * For example: `0000-09-01T00:00:00-00:00` indicates a birthday on September 1st.
-     * `1998-09-01T00:00:00-00:00` indications a birthday on September 1st __1998__.
+     * The birthday associated with the customer profile, in RFC 3339 format. The year is optional. The
+     * timezone and time are not allowed.
+     * For example, `0000-09-21T00:00:00-00:00` represents a birthday on September 21 and `1998-09-21T00:00:
+     * 00-00:00` represents a birthday on September 21, 1998.
      *
      * @maps birthday
      */
@@ -381,8 +391,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Reference Id.
-     *
-     * An optional, second ID used to associate the customer profile with an
+     * An optional second ID used to associate the customer profile with an
      * entity in another system.
      */
     public function getReferenceId(): ?string
@@ -392,8 +401,7 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Reference Id.
-     *
-     * An optional, second ID used to associate the customer profile with an
+     * An optional second ID used to associate the customer profile with an
      * entity in another system.
      *
      * @maps reference_id
@@ -405,7 +413,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Note.
-     *
      * A custom note associated with the customer profile.
      */
     public function getNote(): ?string
@@ -415,7 +422,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Note.
-     *
      * A custom note associated with the customer profile.
      *
      * @maps note
@@ -427,7 +433,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Preferences.
-     *
      * Represents communication preferences for the customer profile.
      */
     public function getPreferences(): ?CustomerPreferences
@@ -437,7 +442,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Preferences.
-     *
      * Represents communication preferences for the customer profile.
      *
      * @maps preferences
@@ -448,40 +452,7 @@ class Customer implements \JsonSerializable
     }
 
     /**
-     * Returns Groups.
-     *
-     * The customer groups and segments the customer belongs to. This deprecated field has been replaced
-     * with  the dedicated `group_ids` for customer groups and the dedicated `segment_ids` field for
-     * customer segments. You can retrieve information about a given customer group and segment
-     * respectively using the Customer Groups API and Customer Segments API.
-     *
-     * @return CustomerGroupInfo[]|null
-     */
-    public function getGroups(): ?array
-    {
-        return $this->groups;
-    }
-
-    /**
-     * Sets Groups.
-     *
-     * The customer groups and segments the customer belongs to. This deprecated field has been replaced
-     * with  the dedicated `group_ids` for customer groups and the dedicated `segment_ids` field for
-     * customer segments. You can retrieve information about a given customer group and segment
-     * respectively using the Customer Groups API and Customer Segments API.
-     *
-     * @maps groups
-     *
-     * @param CustomerGroupInfo[]|null $groups
-     */
-    public function setGroups(?array $groups): void
-    {
-        $this->groups = $groups;
-    }
-
-    /**
      * Returns Creation Source.
-     *
      * Indicates the method used to create the customer profile.
      */
     public function getCreationSource(): ?string
@@ -491,10 +462,10 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Creation Source.
-     *
      * Indicates the method used to create the customer profile.
      *
      * @maps creation_source
+     * @factory \Square\Models\CustomerCreationSource::checkValue
      */
     public function setCreationSource(?string $creationSource): void
     {
@@ -503,7 +474,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Group Ids.
-     *
      * The IDs of customer groups the customer belongs to.
      *
      * @return string[]|null
@@ -515,7 +485,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Group Ids.
-     *
      * The IDs of customer groups the customer belongs to.
      *
      * @maps group_ids
@@ -529,7 +498,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Returns Segment Ids.
-     *
      * The IDs of segments the customer belongs to.
      *
      * @return string[]|null
@@ -541,7 +509,6 @@ class Customer implements \JsonSerializable
 
     /**
      * Sets Segment Ids.
-     *
      * The IDs of segments the customer belongs to.
      *
      * @maps segment_ids
@@ -554,35 +521,131 @@ class Customer implements \JsonSerializable
     }
 
     /**
+     * Returns Version.
+     * The Square-assigned version number of the customer profile. The version number is incremented each
+     * time an update is committed to the customer profile, except for changes to customer segment
+     * membership and cards on file.
+     */
+    public function getVersion(): ?int
+    {
+        return $this->version;
+    }
+
+    /**
+     * Sets Version.
+     * The Square-assigned version number of the customer profile. The version number is incremented each
+     * time an update is committed to the customer profile, except for changes to customer segment
+     * membership and cards on file.
+     *
+     * @maps version
+     */
+    public function setVersion(?int $version): void
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * Returns Tax Ids.
+     * Represents the tax ID associated with a [customer profile]($m/Customer). The corresponding `tax_ids`
+     * field is available only for customers of sellers in EU countries or the United Kingdom.
+     * For more information, see [Customer tax IDs](https://developer.squareup.com/docs/customers-api/what-
+     * it-does#customer-tax-ids).
+     */
+    public function getTaxIds(): ?CustomerTaxIds
+    {
+        return $this->taxIds;
+    }
+
+    /**
+     * Sets Tax Ids.
+     * Represents the tax ID associated with a [customer profile]($m/Customer). The corresponding `tax_ids`
+     * field is available only for customers of sellers in EU countries or the United Kingdom.
+     * For more information, see [Customer tax IDs](https://developer.squareup.com/docs/customers-api/what-
+     * it-does#customer-tax-ids).
+     *
+     * @maps tax_ids
+     */
+    public function setTaxIds(?CustomerTaxIds $taxIds): void
+    {
+        $this->taxIds = $taxIds;
+    }
+
+    /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']             = $this->id;
-        $json['created_at']     = $this->createdAt;
-        $json['updated_at']     = $this->updatedAt;
-        $json['cards']          = $this->cards;
-        $json['given_name']     = $this->givenName;
-        $json['family_name']    = $this->familyName;
-        $json['nickname']       = $this->nickname;
-        $json['company_name']   = $this->companyName;
-        $json['email_address']  = $this->emailAddress;
-        $json['address']        = $this->address;
-        $json['phone_number']   = $this->phoneNumber;
-        $json['birthday']       = $this->birthday;
-        $json['reference_id']   = $this->referenceId;
-        $json['note']           = $this->note;
-        $json['preferences']    = $this->preferences;
-        $json['groups']         = $this->groups;
-        $json['creation_source'] = $this->creationSource;
-        $json['group_ids']      = $this->groupIds;
-        $json['segment_ids']    = $this->segmentIds;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->id)) {
+            $json['id']              = $this->id;
+        }
+        if (isset($this->createdAt)) {
+            $json['created_at']      = $this->createdAt;
+        }
+        if (isset($this->updatedAt)) {
+            $json['updated_at']      = $this->updatedAt;
+        }
+        if (isset($this->cards)) {
+            $json['cards']           = $this->cards;
+        }
+        if (isset($this->givenName)) {
+            $json['given_name']      = $this->givenName;
+        }
+        if (isset($this->familyName)) {
+            $json['family_name']     = $this->familyName;
+        }
+        if (isset($this->nickname)) {
+            $json['nickname']        = $this->nickname;
+        }
+        if (isset($this->companyName)) {
+            $json['company_name']    = $this->companyName;
+        }
+        if (isset($this->emailAddress)) {
+            $json['email_address']   = $this->emailAddress;
+        }
+        if (isset($this->address)) {
+            $json['address']         = $this->address;
+        }
+        if (isset($this->phoneNumber)) {
+            $json['phone_number']    = $this->phoneNumber;
+        }
+        if (isset($this->birthday)) {
+            $json['birthday']        = $this->birthday;
+        }
+        if (isset($this->referenceId)) {
+            $json['reference_id']    = $this->referenceId;
+        }
+        if (isset($this->note)) {
+            $json['note']            = $this->note;
+        }
+        if (isset($this->preferences)) {
+            $json['preferences']     = $this->preferences;
+        }
+        if (isset($this->creationSource)) {
+            $json['creation_source'] = CustomerCreationSource::checkValue($this->creationSource);
+        }
+        if (isset($this->groupIds)) {
+            $json['group_ids']       = $this->groupIds;
+        }
+        if (isset($this->segmentIds)) {
+            $json['segment_ids']     = $this->segmentIds;
+        }
+        if (isset($this->version)) {
+            $json['version']         = $this->version;
+        }
+        if (isset($this->taxIds)) {
+            $json['tax_ids']         = $this->taxIds;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

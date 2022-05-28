@@ -11,42 +11,31 @@ Defines the fields in a `SubmitEvidence` response.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `errors` | [`?(Error[])`](/doc/models/error.md) | Optional | Information about errors encountered during the request. | getErrors(): ?array | setErrors(?array errors): void |
-| `dispute` | [`?Dispute`](/doc/models/dispute.md) | Optional | Represents a dispute a cardholder initiated with their bank. | getDispute(): ?Dispute | setDispute(?Dispute dispute): void |
+| `errors` | [`?(Error[])`](../../doc/models/error.md) | Optional | Information about errors encountered during the request. | getErrors(): ?array | setErrors(?array errors): void |
+| `dispute` | [`?Dispute`](../../doc/models/dispute.md) | Optional | Represents a dispute a cardholder initiated with their bank. | getDispute(): ?Dispute | setDispute(?Dispute dispute): void |
 
 ## Example (as JSON)
 
 ```json
 {
-  "errors": [
-    {
-      "category": "AUTHENTICATION_ERROR",
-      "code": "VALUE_TOO_SHORT",
-      "detail": "detail1",
-      "field": "field9"
-    },
-    {
-      "category": "INVALID_REQUEST_ERROR",
-      "code": "VALUE_TOO_LONG",
-      "detail": "detail2",
-      "field": "field0"
-    },
-    {
-      "category": "RATE_LIMIT_ERROR",
-      "code": "VALUE_TOO_LOW",
-      "detail": "detail3",
-      "field": "field1"
-    }
-  ],
   "dispute": {
-    "dispute_id": "dispute_id8",
     "amount_money": {
-      "amount": 40,
-      "currency": "BWP"
+      "amount": 2000,
+      "currency": "USD"
     },
-    "reason": "CANCELLED",
-    "state": "INQUIRY_PROCESSING",
-    "due_at": "due_at4"
+    "brand_dispute_id": "100000399240",
+    "card_brand": "VISA",
+    "created_at": "2018-10-18T16:02:15.313Z",
+    "disputed_payments": [
+      {
+        "payment_id": "2yeBUWJzllJTpmnSqtMRAL19taB"
+      }
+    ],
+    "due_at": "2018-11-01T00:00:00.000Z",
+    "id": "EAZoK70gX3fyvibecLwIGB",
+    "reason": "NO_KNOWLEDGE",
+    "state": "PROCESSING",
+    "updated_at": "2018-10-18T16:02:15.313Z"
   }
 }
 ```

@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers\Api\Account;
 
-use Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pricing;
-use App\Models\Search;
+use App\Http\Controllers\Controller;
+
+use Config;
+use Auth;
 use Carbon\Carbon;
 use \Validator;
 use Session;
 use DB;
+use Str;
+
+use App\Models\Order;
+use App\Models\Pricing;
+use App\Models\EmptyLeg;
+use App\Models\Search;
+use App\Models\City;
+
+use App\Traits\CheckAgeUserTrait;
 
 class FlightController extends Controller
 {
+    use CheckAgeUserTrait;
+
     /**
      * Display list of flights
      *
@@ -74,7 +85,7 @@ class FlightController extends Controller
      */
 
 
-    public function index(Request $request)
+    public function index(Request $request, Pricing $pricing, EmptyLeg $emptyLeg)
     {
         Session::put('pervis_search_url_api', url()->full());
         $pervis_search_url = Session::get('pervis_search_url_api');
@@ -85,43 +96,45 @@ class FlightController extends Controller
         }
 
         $session_id = Session::get('session_token_id');
+
         $startPointName = $request->startPointName;
         $endPointName = $request->endPointName;
 
         $startCity = $request->startPoint;
         $endCity = $request->endPoint;
 
-        $startCityCoordinates = $this->findCoordinates($request->startPoint);
-        $endCityCoordinates = $this->findCoordinates($request->endPoint);
-
-        if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
-            $params["startCityLat"] = $startCityCoordinates['lat'];
-            $params["startCityLng"] = $startCityCoordinates['lng'];
-            $params["endCityLat"] = $endCityCoordinates['lat'];
-            $params["endCityLng"] = $endCityCoordinates['lng'];
-            $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
-            $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
-        }
+        $startAirport = $request->startAirport;
+        $endAirport = $request->endAirport;
 
         $params["startPoint"] = $startCity ? $startCity : 0;
         $params["endPoint"] = $endCity ? $endCity : 0;
+        $params["startAirport"] = $startAirport ? $startAirport : 0;
+        $params["endAirport"] = $endAirport ? $endAirport : 0;
         $params["startPointName"] = $startPointName ? $startPointName : '';
         $params["endPointName"] = $endPointName ? $endPointName : '';
         $params["flightDate"] = $request->flightDate ? $request->flightDate : NULL;
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::check() ? Auth::user()->id : 0;
 
-        $searchResults =  Pricing::with('departureCity', 'arrivalCity')
-        ->where('departure_geoId', '=', $startCity)
+        $searchResults = collect(['pricing', 'emptyLeg']);
+
+        $searchResults->pricing = $pricing::with('departureCity', 'arrivalCity')
+            ->where('departure_geoId', '=', $startCity)
             ->where('arrival_geoId', '=', $endCity)
             ->first();
 
-        if($searchResults){
-            $params["result_id"] = $searchResults->id;
+        $searchResults->emptyLeg = $emptyLeg::with('departureCity', 'arrivalCity')
+            ->where('geoNameIdCity_departure', '=', $startCity)
+            ->where('geoNameIdCity_arrival', '=', $endCity)
+            ->whereDate('date_departure', '=', Carbon::parse($request->flightDate)->format('Y-m-d'))
+            ->where('active', '=', Config::get('constants.active.activated'))
+            ->get();
+
+        if($searchResults->pricing){
+            $params["result_id"] = $searchResults->pricing->id;
         } else {
             $params["result_id"] = 0;
         }
-
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],
@@ -132,10 +145,10 @@ class FlightController extends Controller
         $lastSessionSearchResults = [];
         if(Auth::check()){
             $lastSearchResults = Search::where('user_id', Auth::user()->id)
-                                ->orderBy('id', 'desc')
-                                ->take(4)
-                                ->get()
-                                ->reverse();
+                ->orderBy('id', 'desc')
+                ->take(4)
+                ->get()
+                ->reverse();
         }else{
             session()->push('last.search', $lastSearchSessionResults);
             $input = Session::get('last.search');
@@ -182,19 +195,8 @@ class FlightController extends Controller
         if ($validator->fails()){
             $messages = $validator->messages();
         }
-        if(Auth::check()) {
-            $dateAge = (Auth::user()->date_of_birth) ? Auth::user()->date_of_birth->toDateString() : false;
-            if($dateAge){
-                $dt = new Carbon($dateAge);
-                $status = (($dt->today()->year - $dt->year) < 18) ? 'notAge' : 'customer';
-            }
-            else {
-                $status = 'notFilledAge';
-            }
-        }
-        else {
-            $status = 'notAuthorized';
-        }
+
+        $status = $this->CheckAge();
 
         return response()->json([
             'search_results' => $searchResults,

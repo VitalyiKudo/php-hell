@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * V1UpdateOrderRequest
  */
@@ -55,6 +57,7 @@ class V1UpdateOrderRequest implements \JsonSerializable
      *
      * @required
      * @maps action
+     * @factory \Square\Models\V1UpdateOrderRequestAction::checkValue
      */
     public function setAction(string $action): void
     {
@@ -63,7 +66,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Returns Shipped Tracking Number.
-     *
      * The tracking number of the shipment associated with the order. Only valid if action is COMPLETE.
      */
     public function getShippedTrackingNumber(): ?string
@@ -73,7 +75,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Sets Shipped Tracking Number.
-     *
      * The tracking number of the shipment associated with the order. Only valid if action is COMPLETE.
      *
      * @maps shipped_tracking_number
@@ -85,7 +86,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Returns Completed Note.
-     *
      * A merchant-specified note about the completion of the order. Only valid if action is COMPLETE.
      */
     public function getCompletedNote(): ?string
@@ -95,7 +95,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Sets Completed Note.
-     *
      * A merchant-specified note about the completion of the order. Only valid if action is COMPLETE.
      *
      * @maps completed_note
@@ -107,7 +106,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Returns Refunded Note.
-     *
      * A merchant-specified note about the refunding of the order. Only valid if action is REFUND.
      */
     public function getRefundedNote(): ?string
@@ -117,7 +115,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Sets Refunded Note.
-     *
      * A merchant-specified note about the refunding of the order. Only valid if action is REFUND.
      *
      * @maps refunded_note
@@ -129,7 +126,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Returns Canceled Note.
-     *
      * A merchant-specified note about the canceling of the order. Only valid if action is CANCEL.
      */
     public function getCanceledNote(): ?string
@@ -139,7 +135,6 @@ class V1UpdateOrderRequest implements \JsonSerializable
 
     /**
      * Sets Canceled Note.
-     *
      * A merchant-specified note about the canceling of the order. Only valid if action is CANCEL.
      *
      * @maps canceled_note
@@ -152,19 +147,32 @@ class V1UpdateOrderRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['action']                = $this->action;
-        $json['shipped_tracking_number'] = $this->shippedTrackingNumber;
-        $json['completed_note']        = $this->completedNote;
-        $json['refunded_note']         = $this->refundedNote;
-        $json['canceled_note']         = $this->canceledNote;
-
-        return array_filter($json, function ($val) {
+        $json['action']                      = V1UpdateOrderRequestAction::checkValue($this->action);
+        if (isset($this->shippedTrackingNumber)) {
+            $json['shipped_tracking_number'] = $this->shippedTrackingNumber;
+        }
+        if (isset($this->completedNote)) {
+            $json['completed_note']          = $this->completedNote;
+        }
+        if (isset($this->refundedNote)) {
+            $json['refunded_note']           = $this->refundedNote;
+        }
+        if (isset($this->canceledNote)) {
+            $json['canceled_note']           = $this->canceledNote;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

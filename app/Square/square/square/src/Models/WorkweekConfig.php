@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Sets the Day of the week and hour of the day that a business starts a
- * work week. Used for the calculation of overtime pay.
+ * Sets the day of the week and hour of the day that a business starts a
+ * workweek. This is used to calculate overtime pay.
  */
 class WorkweekConfig implements \JsonSerializable
 {
@@ -52,8 +54,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Id.
-     *
-     * UUID for this object
+     * The UUID for this object.
      */
     public function getId(): ?string
     {
@@ -62,8 +63,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
-     * UUID for this object
+     * The UUID for this object.
      *
      * @maps id
      */
@@ -74,7 +74,6 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Start of Week.
-     *
      * The days of the week.
      */
     public function getStartOfWeek(): string
@@ -84,11 +83,11 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Start of Week.
-     *
      * The days of the week.
      *
      * @required
      * @maps start_of_week
+     * @factory \Square\Models\Weekday::checkValue
      */
     public function setStartOfWeek(string $startOfWeek): void
     {
@@ -97,8 +96,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Start of Day Local Time.
-     *
-     * The local time at which a business week cuts over. Represented as a
+     * The local time at which a business week ends. Represented as a
      * string in `HH:MM` format (`HH:MM:SS` is also accepted, but seconds are
      * truncated).
      */
@@ -109,8 +107,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Start of Day Local Time.
-     *
-     * The local time at which a business week cuts over. Represented as a
+     * The local time at which a business week ends. Represented as a
      * string in `HH:MM` format (`HH:MM:SS` is also accepted, but seconds are
      * truncated).
      *
@@ -124,9 +121,8 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Version.
-     *
-     * Used for resolving concurrency issues; request will fail if version
-     * provided does not match server version at time of request. If not provided,
+     * Used for resolving concurrency issues. The request fails if the version
+     * provided does not match the server version at the time of the request. If not provided,
      * Square executes a blind write; potentially overwriting data from another
      * write.
      */
@@ -137,9 +133,8 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Version.
-     *
-     * Used for resolving concurrency issues; request will fail if version
-     * provided does not match server version at time of request. If not provided,
+     * Used for resolving concurrency issues. The request fails if the version
+     * provided does not match the server version at the time of the request. If not provided,
      * Square executes a blind write; potentially overwriting data from another
      * write.
      *
@@ -152,8 +147,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
-     * A read-only timestamp in RFC 3339 format; presented in UTC
+     * A read-only timestamp in RFC 3339 format; presented in UTC.
      */
     public function getCreatedAt(): ?string
     {
@@ -162,8 +156,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
-     * A read-only timestamp in RFC 3339 format; presented in UTC
+     * A read-only timestamp in RFC 3339 format; presented in UTC.
      *
      * @maps created_at
      */
@@ -174,8 +167,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Returns Updated At.
-     *
-     * A read-only timestamp in RFC 3339 format; presented in UTC
+     * A read-only timestamp in RFC 3339 format; presented in UTC.
      */
     public function getUpdatedAt(): ?string
     {
@@ -184,8 +176,7 @@ class WorkweekConfig implements \JsonSerializable
 
     /**
      * Sets Updated At.
-     *
-     * A read-only timestamp in RFC 3339 format; presented in UTC
+     * A read-only timestamp in RFC 3339 format; presented in UTC.
      *
      * @maps updated_at
      */
@@ -197,20 +188,33 @@ class WorkweekConfig implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']                  = $this->id;
-        $json['start_of_week']       = $this->startOfWeek;
+        if (isset($this->id)) {
+            $json['id']                  = $this->id;
+        }
+        $json['start_of_week']           = Weekday::checkValue($this->startOfWeek);
         $json['start_of_day_local_time'] = $this->startOfDayLocalTime;
-        $json['version']             = $this->version;
-        $json['created_at']          = $this->createdAt;
-        $json['updated_at']          = $this->updatedAt;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->version)) {
+            $json['version']             = $this->version;
+        }
+        if (isset($this->createdAt)) {
+            $json['created_at']          = $this->createdAt;
+        }
+        if (isset($this->updatedAt)) {
+            $json['updated_at']          = $this->updatedAt;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

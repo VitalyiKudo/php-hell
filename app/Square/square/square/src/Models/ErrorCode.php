@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use Exception;
+use Square\ApiHelper;
+use stdClass;
+
 /**
  * Indicates the specific error that occurred during a request to a
  * Square API.
@@ -69,6 +73,11 @@ class ErrorCode
      * enabled for credit card processing.
      */
     public const CARD_PROCESSING_NOT_ENABLED = 'CARD_PROCESSING_NOT_ENABLED';
+
+    /**
+     * A required subscription was not found for the merchant
+     */
+    public const MERCHANT_SUBSCRIPTION_NOT_FOUND = 'MERCHANT_SUBSCRIPTION_NOT_FOUND';
 
     /**
      * A general error occurred with the request.
@@ -287,6 +296,26 @@ class ErrorCode
     public const MAP_KEY_LENGTH_TOO_LONG = 'MAP_KEY_LENGTH_TOO_LONG';
 
     /**
+     * The provided customer does not have a recorded name.
+     */
+    public const CUSTOMER_MISSING_NAME = 'CUSTOMER_MISSING_NAME';
+
+    /**
+     * The provided customer does not have a recorded email.
+     */
+    public const CUSTOMER_MISSING_EMAIL = 'CUSTOMER_MISSING_EMAIL';
+
+    /**
+     * The subscription cannot be paused longer than the duration of the current phase.
+     */
+    public const INVALID_PAUSE_LENGTH = 'INVALID_PAUSE_LENGTH';
+
+    /**
+     * The subscription cannot be paused/resumed on the given date.
+     */
+    public const INVALID_DATE = 'INVALID_DATE';
+
+    /**
      * The card issuer declined the request because the card is expired.
      */
     public const CARD_EXPIRED = 'CARD_EXPIRED';
@@ -330,9 +359,9 @@ class ErrorCode
     public const INVALID_CARD = 'INVALID_CARD';
 
     /**
-     * Square received a decline from the cardholder's bank without any
-     * additional information. If the card information seems correct, the card
-     * holder can contact their card issuer to ask for more information.
+     * Square received a decline without any additional information.
+     * If the payment information seems correct, the buyer can contact their
+     * issuer to ask for more information.
      */
     public const GENERIC_DECLINE = 'GENERIC_DECLINE';
 
@@ -347,7 +376,7 @@ class ErrorCode
     public const ADDRESS_VERIFICATION_FAILURE = 'ADDRESS_VERIFICATION_FAILURE';
 
     /**
-     * The card issuer was not able to locate account on record.
+     * The issuer was not able to locate the account on record.
      */
     public const INVALID_ACCOUNT = 'INVALID_ACCOUNT';
 
@@ -410,8 +439,8 @@ class ErrorCode
 
     /**
      * The card is not supported either in the geographic region or by
-     * the MCC [merchant category code](https://developer.squareup.com/docs/api/connect/v2#navsection-
-     * connectapibasics)
+     * the [merchant category code](https://developer.squareup.com/docs/locations-api#initialize-a-merchant-
+     * category-code) (MCC).
      */
     public const CARD_NOT_SUPPORTED = 'CARD_NOT_SUPPORTED';
 
@@ -419,6 +448,16 @@ class ErrorCode
      * The card issuer declined the request because the PIN is invalid.
      */
     public const INVALID_PIN = 'INVALID_PIN';
+
+    /**
+     * The payment is missing a required PIN.
+     */
+    public const MISSING_PIN = 'MISSING_PIN';
+
+    /**
+     * The payment is missing a required ACCOUNT_TYPE parameter.
+     */
+    public const MISSING_ACCOUNT_TYPE = 'MISSING_ACCOUNT_TYPE';
 
     /**
      * The postal code is incorrectly formatted.
@@ -453,6 +492,16 @@ class ErrorCode
      * api/error-codes#createpayment-errors-additional-information).
      */
     public const GIFT_CARD_AVAILABLE_AMOUNT = 'GIFT_CARD_AVAILABLE_AMOUNT';
+
+    /**
+     * The account provided cannot carry out transactions.
+     */
+    public const ACCOUNT_UNUSABLE = 'ACCOUNT_UNUSABLE';
+
+    /**
+     * Bank account rejected or was not authorized for the payment.
+     */
+    public const BUYER_REFUSED_PAYMENT = 'BUYER_REFUSED_PAYMENT';
 
     /**
      * The application tried to update a delayed-capture payment that has expired.
@@ -639,6 +688,11 @@ class ErrorCode
     public const RESERVATION_DECLINED = 'RESERVATION_DECLINED';
 
     /**
+     * The body parameter is not recognized by the requested endpoint.
+     */
+    public const UNKNOWN_BODY_PARAMETER = 'UNKNOWN_BODY_PARAMETER';
+
+    /**
      * Not Found - a general error occurred.
      */
     public const NOT_FOUND = 'NOT_FOUND';
@@ -646,7 +700,7 @@ class ErrorCode
     /**
      * Square could not find the associated Apple Pay certificate.
      */
-    public const APPLE_PAYMENT_PROCESSING_CERTIFICATE_HASH_NOT_FOUND =
+    public const APPLE_PAYMENT_PROCESSING_CERTIFICATE_HASH_NOT_FOUND     =
         'APPLE_PAYMENT_PROCESSING_CERTIFICATE_HASH_NOT_FOUND';
 
     /**
@@ -720,4 +774,161 @@ class ErrorCode
      * Gateway Timeout - a general error occurred.
      */
     public const GATEWAY_TIMEOUT = 'GATEWAY_TIMEOUT';
+
+    private const _ALL_VALUES = [
+        self::INTERNAL_SERVER_ERROR,
+        self::UNAUTHORIZED,
+        self::ACCESS_TOKEN_EXPIRED,
+        self::ACCESS_TOKEN_REVOKED,
+        self::CLIENT_DISABLED,
+        self::FORBIDDEN,
+        self::INSUFFICIENT_SCOPES,
+        self::APPLICATION_DISABLED,
+        self::V1_APPLICATION,
+        self::V1_ACCESSTOKEN,
+        self::CARD_PROCESSING_NOT_ENABLED,
+        self::MERCHANT_SUBSCRIPTION_NOT_FOUND,
+        self::BAD_REQUEST,
+        self::MISSING_REQUIRED_PARAMETER,
+        self::INCORRECT_TYPE,
+        self::INVALID_TIME,
+        self::INVALID_TIME_RANGE,
+        self::INVALID_VALUE,
+        self::INVALID_CURSOR,
+        self::UNKNOWN_QUERY_PARAMETER,
+        self::CONFLICTING_PARAMETERS,
+        self::EXPECTED_JSON_BODY,
+        self::INVALID_SORT_ORDER,
+        self::VALUE_REGEX_MISMATCH,
+        self::VALUE_TOO_SHORT,
+        self::VALUE_TOO_LONG,
+        self::VALUE_TOO_LOW,
+        self::VALUE_TOO_HIGH,
+        self::VALUE_EMPTY,
+        self::ARRAY_LENGTH_TOO_LONG,
+        self::ARRAY_LENGTH_TOO_SHORT,
+        self::ARRAY_EMPTY,
+        self::EXPECTED_BOOLEAN,
+        self::EXPECTED_INTEGER,
+        self::EXPECTED_FLOAT,
+        self::EXPECTED_STRING,
+        self::EXPECTED_OBJECT,
+        self::EXPECTED_ARRAY,
+        self::EXPECTED_MAP,
+        self::EXPECTED_BASE64_ENCODED_BYTE_ARRAY,
+        self::INVALID_ARRAY_VALUE,
+        self::INVALID_ENUM_VALUE,
+        self::INVALID_CONTENT_TYPE,
+        self::INVALID_FORM_VALUE,
+        self::CUSTOMER_NOT_FOUND,
+        self::ONE_INSTRUMENT_EXPECTED,
+        self::NO_FIELDS_SET,
+        self::TOO_MANY_MAP_ENTRIES,
+        self::MAP_KEY_LENGTH_TOO_SHORT,
+        self::MAP_KEY_LENGTH_TOO_LONG,
+        self::CUSTOMER_MISSING_NAME,
+        self::CUSTOMER_MISSING_EMAIL,
+        self::INVALID_PAUSE_LENGTH,
+        self::INVALID_DATE,
+        self::CARD_EXPIRED,
+        self::INVALID_EXPIRATION,
+        self::INVALID_EXPIRATION_YEAR,
+        self::INVALID_EXPIRATION_DATE,
+        self::UNSUPPORTED_CARD_BRAND,
+        self::UNSUPPORTED_ENTRY_METHOD,
+        self::INVALID_ENCRYPTED_CARD,
+        self::INVALID_CARD,
+        self::GENERIC_DECLINE,
+        self::CVV_FAILURE,
+        self::ADDRESS_VERIFICATION_FAILURE,
+        self::INVALID_ACCOUNT,
+        self::CURRENCY_MISMATCH,
+        self::INSUFFICIENT_FUNDS,
+        self::INSUFFICIENT_PERMISSIONS,
+        self::CARDHOLDER_INSUFFICIENT_PERMISSIONS,
+        self::INVALID_LOCATION,
+        self::TRANSACTION_LIMIT,
+        self::VOICE_FAILURE,
+        self::PAN_FAILURE,
+        self::EXPIRATION_FAILURE,
+        self::CARD_NOT_SUPPORTED,
+        self::INVALID_PIN,
+        self::MISSING_PIN,
+        self::MISSING_ACCOUNT_TYPE,
+        self::INVALID_POSTAL_CODE,
+        self::INVALID_FEES,
+        self::MANUALLY_ENTERED_PAYMENT_NOT_SUPPORTED,
+        self::PAYMENT_LIMIT_EXCEEDED,
+        self::GIFT_CARD_AVAILABLE_AMOUNT,
+        self::ACCOUNT_UNUSABLE,
+        self::BUYER_REFUSED_PAYMENT,
+        self::DELAYED_TRANSACTION_EXPIRED,
+        self::DELAYED_TRANSACTION_CANCELED,
+        self::DELAYED_TRANSACTION_CAPTURED,
+        self::DELAYED_TRANSACTION_FAILED,
+        self::CARD_TOKEN_EXPIRED,
+        self::CARD_TOKEN_USED,
+        self::AMOUNT_TOO_HIGH,
+        self::UNSUPPORTED_INSTRUMENT_TYPE,
+        self::REFUND_AMOUNT_INVALID,
+        self::REFUND_ALREADY_PENDING,
+        self::PAYMENT_NOT_REFUNDABLE,
+        self::REFUND_DECLINED,
+        self::INVALID_CARD_DATA,
+        self::SOURCE_USED,
+        self::SOURCE_EXPIRED,
+        self::UNSUPPORTED_LOYALTY_REWARD_TIER,
+        self::LOCATION_MISMATCH,
+        self::IDEMPOTENCY_KEY_REUSED,
+        self::UNEXPECTED_VALUE,
+        self::SANDBOX_NOT_SUPPORTED,
+        self::INVALID_EMAIL_ADDRESS,
+        self::INVALID_PHONE_NUMBER,
+        self::CHECKOUT_EXPIRED,
+        self::BAD_CERTIFICATE,
+        self::INVALID_SQUARE_VERSION_FORMAT,
+        self::API_VERSION_INCOMPATIBLE,
+        self::CARD_DECLINED,
+        self::VERIFY_CVV_FAILURE,
+        self::VERIFY_AVS_FAILURE,
+        self::CARD_DECLINED_CALL_ISSUER,
+        self::CARD_DECLINED_VERIFICATION_REQUIRED,
+        self::BAD_EXPIRATION,
+        self::CHIP_INSERTION_REQUIRED,
+        self::ALLOWABLE_PIN_TRIES_EXCEEDED,
+        self::RESERVATION_DECLINED,
+        self::UNKNOWN_BODY_PARAMETER,
+        self::NOT_FOUND,
+        self::APPLE_PAYMENT_PROCESSING_CERTIFICATE_HASH_NOT_FOUND,
+        self::METHOD_NOT_ALLOWED,
+        self::NOT_ACCEPTABLE,
+        self::REQUEST_TIMEOUT,
+        self::CONFLICT,
+        self::GONE,
+        self::REQUEST_ENTITY_TOO_LARGE,
+        self::UNSUPPORTED_MEDIA_TYPE,
+        self::UNPROCESSABLE_ENTITY,
+        self::RATE_LIMITED,
+        self::NOT_IMPLEMENTED,
+        self::BAD_GATEWAY,
+        self::SERVICE_UNAVAILABLE,
+        self::TEMPORARY_ERROR,
+        self::GATEWAY_TIMEOUT,
+    ];
+
+    /**
+     * Ensures that all the given values are present in this Enum.
+     *
+     * @param array|stdClass|null|string $value Value or a list/map of values to be checked
+     *
+     * @return array|null|string Input value(s), if all are a part of this Enum
+     *
+     * @throws Exception Throws exception if any given value is not in this Enum
+     */
+    public static function checkValue($value)
+    {
+        $value = json_decode(json_encode($value), true); // converts stdClass into array
+        ApiHelper::checkValueInEnum($value, self::class, self::_ALL_VALUES);
+        return $value;
+    }
 }

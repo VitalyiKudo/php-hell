@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
+/**
+ * Represents a contract to redeem loyalty points for a [reward tier]($m/LoyaltyProgramRewardTier)
+ * discount. Loyalty rewards can be in an ISSUED, REDEEMED, or DELETED state.
+ * For more information, see [Manage loyalty rewards](https://developer.squareup.com/docs/loyalty-
+ * api/loyalty-rewards).
+ */
 class LoyaltyReward implements \JsonSerializable
 {
     /**
@@ -63,7 +71,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Id.
-     *
      * The Square-assigned ID of the loyalty reward.
      */
     public function getId(): ?string
@@ -73,7 +80,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
      * The Square-assigned ID of the loyalty reward.
      *
      * @maps id
@@ -85,7 +91,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Status.
-     *
      * The status of the loyalty reward.
      */
     public function getStatus(): ?string
@@ -95,10 +100,10 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Status.
-     *
      * The status of the loyalty reward.
      *
      * @maps status
+     * @factory \Square\Models\LoyaltyRewardStatus::checkValue
      */
     public function setStatus(?string $status): void
     {
@@ -107,8 +112,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Loyalty Account Id.
-     *
-     * The Square-assigned ID of the [loyalty account](#type-LoyaltyAccount) to which the reward belongs.
+     * The Square-assigned ID of the [loyalty account]($m/LoyaltyAccount) to which the reward belongs.
      */
     public function getLoyaltyAccountId(): string
     {
@@ -117,8 +121,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Loyalty Account Id.
-     *
-     * The Square-assigned ID of the [loyalty account](#type-LoyaltyAccount) to which the reward belongs.
+     * The Square-assigned ID of the [loyalty account]($m/LoyaltyAccount) to which the reward belongs.
      *
      * @required
      * @maps loyalty_account_id
@@ -130,9 +133,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Reward Tier Id.
-     *
-     * The Square-assigned ID of the [reward tier](#type-LoyaltyProgramRewardTier) used to create the
-     * reward.
+     * The Square-assigned ID of the [reward tier]($m/LoyaltyProgramRewardTier) used to create the reward.
      */
     public function getRewardTierId(): string
     {
@@ -141,9 +142,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Reward Tier Id.
-     *
-     * The Square-assigned ID of the [reward tier](#type-LoyaltyProgramRewardTier) used to create the
-     * reward.
+     * The Square-assigned ID of the [reward tier]($m/LoyaltyProgramRewardTier) used to create the reward.
      *
      * @required
      * @maps reward_tier_id
@@ -155,7 +154,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Points.
-     *
      * The number of loyalty points used for the reward.
      */
     public function getPoints(): ?int
@@ -165,7 +163,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Points.
-     *
      * The number of loyalty points used for the reward.
      *
      * @maps points
@@ -177,8 +174,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Order Id.
-     *
-     * The Square-assigned ID of the [order](#type-Order) to which the reward is attached.
+     * The Square-assigned ID of the [order]($m/Order) to which the reward is attached.
      */
     public function getOrderId(): ?string
     {
@@ -187,8 +183,7 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Order Id.
-     *
-     * The Square-assigned ID of the [order](#type-Order) to which the reward is attached.
+     * The Square-assigned ID of the [order]($m/Order) to which the reward is attached.
      *
      * @maps order_id
      */
@@ -199,7 +194,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
      * The timestamp when the reward was created, in RFC 3339 format.
      */
     public function getCreatedAt(): ?string
@@ -209,7 +203,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
      * The timestamp when the reward was created, in RFC 3339 format.
      *
      * @maps created_at
@@ -221,7 +214,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Updated At.
-     *
      * The timestamp when the reward was last updated, in RFC 3339 format.
      */
     public function getUpdatedAt(): ?string
@@ -231,7 +223,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Updated At.
-     *
      * The timestamp when the reward was last updated, in RFC 3339 format.
      *
      * @maps updated_at
@@ -243,7 +234,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Returns Redeemed At.
-     *
      * The timestamp when the reward was redeemed, in RFC 3339 format.
      */
     public function getRedeemedAt(): ?string
@@ -253,7 +243,6 @@ class LoyaltyReward implements \JsonSerializable
 
     /**
      * Sets Redeemed At.
-     *
      * The timestamp when the reward was redeemed, in RFC 3339 format.
      *
      * @maps redeemed_at
@@ -266,23 +255,42 @@ class LoyaltyReward implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']               = $this->id;
-        $json['status']           = $this->status;
+        if (isset($this->id)) {
+            $json['id']             = $this->id;
+        }
+        if (isset($this->status)) {
+            $json['status']         = LoyaltyRewardStatus::checkValue($this->status);
+        }
         $json['loyalty_account_id'] = $this->loyaltyAccountId;
-        $json['reward_tier_id']   = $this->rewardTierId;
-        $json['points']           = $this->points;
-        $json['order_id']         = $this->orderId;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
-        $json['redeemed_at']      = $this->redeemedAt;
-
-        return array_filter($json, function ($val) {
+        $json['reward_tier_id']     = $this->rewardTierId;
+        if (isset($this->points)) {
+            $json['points']         = $this->points;
+        }
+        if (isset($this->orderId)) {
+            $json['order_id']       = $this->orderId;
+        }
+        if (isset($this->createdAt)) {
+            $json['created_at']     = $this->createdAt;
+        }
+        if (isset($this->updatedAt)) {
+            $json['updated_at']     = $this->updatedAt;
+        }
+        if (isset($this->redeemedAt)) {
+            $json['redeemed_at']    = $this->redeemedAt;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

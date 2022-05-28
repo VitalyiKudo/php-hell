@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Defines the fields that are included in the response body of
- * a request to the [RetrieveCustomerGroup](#endpoint-retrievecustomergroup) endpoint.
+ * a request to the [RetrieveCustomerGroup]($e/CustomerGroups/RetrieveCustomerGroup) endpoint.
  *
- * One of `errors` or `group` is present in a given response (never both).
+ * Either `errors` or `group` is present in a given response (never both).
  */
 class RetrieveCustomerGroupResponse implements \JsonSerializable
 {
@@ -24,7 +26,6 @@ class RetrieveCustomerGroupResponse implements \JsonSerializable
 
     /**
      * Returns Errors.
-     *
      * Any errors that occurred during the request.
      *
      * @return Error[]|null
@@ -36,7 +37,6 @@ class RetrieveCustomerGroupResponse implements \JsonSerializable
 
     /**
      * Sets Errors.
-     *
      * Any errors that occurred during the request.
      *
      * @maps errors
@@ -50,11 +50,10 @@ class RetrieveCustomerGroupResponse implements \JsonSerializable
 
     /**
      * Returns Group.
-     *
      * Represents a group of customer profiles.
      *
-     * Customer groups can be created, modified, and have their membership defined either via
-     * the Customers API or within Customer Directory in the Square Dashboard or Point of Sale.
+     * Customer groups can be created, be modified, and have their membership defined using
+     * the Customers API or within the Customer Directory in the Square Seller Dashboard or Point of Sale.
      */
     public function getGroup(): ?CustomerGroup
     {
@@ -63,11 +62,10 @@ class RetrieveCustomerGroupResponse implements \JsonSerializable
 
     /**
      * Sets Group.
-     *
      * Represents a group of customer profiles.
      *
-     * Customer groups can be created, modified, and have their membership defined either via
-     * the Customers API or within Customer Directory in the Square Dashboard or Point of Sale.
+     * Customer groups can be created, be modified, and have their membership defined using
+     * the Customers API or within the Customer Directory in the Square Seller Dashboard or Point of Sale.
      *
      * @maps group
      */
@@ -79,16 +77,25 @@ class RetrieveCustomerGroupResponse implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['errors'] = $this->errors;
-        $json['group']  = $this->group;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->errors)) {
+            $json['errors'] = $this->errors;
+        }
+        if (isset($this->group)) {
+            $json['group']  = $this->group;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

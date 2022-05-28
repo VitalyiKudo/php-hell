@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Provides details about the reward tier discount. DEPRECATED at version 2020-12-16. Discount
  * details
  * are now defined using a catalog pricing rule and other catalog objects. For more information, see
- * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
- * discount-details).
+ * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+ * rewards#get-discount-details).
  */
 class LoyaltyProgramRewardDefinition implements \JsonSerializable
 {
@@ -55,11 +57,10 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Scope.
-     *
      * Indicates the scope of the reward tier. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      */
     public function getScope(): string
     {
@@ -68,14 +69,14 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Scope.
-     *
      * Indicates the scope of the reward tier. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      *
      * @required
      * @maps scope
+     * @factory \Square\Models\LoyaltyProgramRewardDefinitionScope::checkValue
      */
     public function setScope(string $scope): void
     {
@@ -84,11 +85,10 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Discount Type.
-     *
      * The type of discount the reward tier offers. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      */
     public function getDiscountType(): string
     {
@@ -97,14 +97,14 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Discount Type.
-     *
      * The type of discount the reward tier offers. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      *
      * @required
      * @maps discount_type
+     * @factory \Square\Models\LoyaltyProgramRewardDefinitionType::checkValue
      */
     public function setDiscountType(string $discountType): void
     {
@@ -113,7 +113,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Percentage Discount.
-     *
      * The fixed percentage of the discount. Present if `discount_type` is `FIXED_PERCENTAGE`.
      * For example, a 7.25% off discount will be represented as "7.25". DEPRECATED at version 2020-12-16.
      * You can find this
@@ -127,7 +126,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Percentage Discount.
-     *
      * The fixed percentage of the discount. Present if `discount_type` is `FIXED_PERCENTAGE`.
      * For example, a 7.25% off discount will be represented as "7.25". DEPRECATED at version 2020-12-16.
      * You can find this
@@ -143,7 +141,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Catalog Object Ids.
-     *
      * The list of catalog objects to which this reward can be applied. They are either all item-variation
      * ids or category ids, depending on the `type` field.
      * DEPRECATED at version 2020-12-16. You can find this information in the `product_set_data.
@@ -159,7 +156,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Catalog Object Ids.
-     *
      * The list of catalog objects to which this reward can be applied. They are either all item-variation
      * ids or category ids, depending on the `type` field.
      * DEPRECATED at version 2020-12-16. You can find this information in the `product_set_data.
@@ -177,7 +173,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Fixed Discount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -193,7 +188,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Fixed Discount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -211,7 +205,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Returns Max Discount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -227,7 +220,6 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
 
     /**
      * Sets Max Discount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -246,20 +238,33 @@ class LoyaltyProgramRewardDefinition implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['scope']              = $this->scope;
-        $json['discount_type']      = $this->discountType;
-        $json['percentage_discount'] = $this->percentageDiscount;
-        $json['catalog_object_ids'] = $this->catalogObjectIds;
-        $json['fixed_discount_money'] = $this->fixedDiscountMoney;
-        $json['max_discount_money'] = $this->maxDiscountMoney;
-
-        return array_filter($json, function ($val) {
+        $json['scope']                    = LoyaltyProgramRewardDefinitionScope::checkValue($this->scope);
+        $json['discount_type']            = LoyaltyProgramRewardDefinitionType::checkValue($this->discountType);
+        if (isset($this->percentageDiscount)) {
+            $json['percentage_discount']  = $this->percentageDiscount;
+        }
+        if (isset($this->catalogObjectIds)) {
+            $json['catalog_object_ids']   = $this->catalogObjectIds;
+        }
+        if (isset($this->fixedDiscountMoney)) {
+            $json['fixed_discount_money'] = $this->fixedDiscountMoney;
+        }
+        if (isset($this->maxDiscountMoney)) {
+            $json['max_discount_money']   = $this->maxDiscountMoney;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

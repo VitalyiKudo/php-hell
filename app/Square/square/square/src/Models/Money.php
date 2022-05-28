@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Represents an amount of money. `Money` fields can be signed or unsigned.
  * Fields that do not explicitly define whether they are signed or unsigned are
@@ -27,20 +29,18 @@ class Money implements \JsonSerializable
 
     /**
      * Returns Amount.
-     *
      * The amount of money, in the smallest denomination of the currency
      * indicated by `currency`. For example, when `currency` is `USD`, `amount` is
      * in cents. Monetary amounts can be positive or negative. See the specific
      * field description to determine the meaning of the sign in a particular case.
      */
-    public function getAmount(): ?float
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
 
     /**
      * Sets Amount.
-     *
      * The amount of money, in the smallest denomination of the currency
      * indicated by `currency`. For example, when `currency` is `USD`, `amount` is
      * in cents. Monetary amounts can be positive or negative. See the specific
@@ -48,14 +48,13 @@ class Money implements \JsonSerializable
      *
      * @maps amount
      */
-    public function setAmount(?float $amount): void
+    public function setAmount(?int $amount): void
     {
         $this->amount = $amount;
     }
 
     /**
      * Returns Currency.
-     *
      * Indicates the associated currency for an amount of money. Values correspond
      * to [ISO 4217](https://wikipedia.org/wiki/ISO_4217).
      */
@@ -66,11 +65,11 @@ class Money implements \JsonSerializable
 
     /**
      * Sets Currency.
-     *
      * Indicates the associated currency for an amount of money. Values correspond
      * to [ISO 4217](https://wikipedia.org/wiki/ISO_4217).
      *
      * @maps currency
+     * @factory \Square\Models\Currency::checkValue
      */
     public function setCurrency(?string $currency): void
     {
@@ -80,16 +79,25 @@ class Money implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['amount']   = $this->amount;
-        $json['currency'] = $this->currency;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->amount)) {
+            $json['amount']   = $this->amount;
+        }
+        if (isset($this->currency)) {
+            $json['currency'] = Currency::checkValue($this->currency);
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

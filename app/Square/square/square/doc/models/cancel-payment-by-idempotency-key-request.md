@@ -1,7 +1,8 @@
 
 # Cancel Payment by Idempotency Key Request
 
-Specifies the idempotency key of a payment to cancel.
+Describes a request to cancel a payment using
+[CancelPaymentByIdempotencyKey](../../doc/apis/payments.md#cancel-payment-by-idempotency-key).
 
 ## Structure
 

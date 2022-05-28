@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Defines the fields that are included in the response body of
- * a request to the [ListPaymentRefunds](#endpoint-refunds-listpaymentrefunds) endpoint.
+ * Defines the response returned by [ListPaymentRefunds]($e/Refunds/ListPaymentRefunds).
  *
  * Either `errors` or `refunds` is present in a given response (never both).
  */
@@ -29,7 +30,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Returns Errors.
-     *
      * Information about errors encountered during the request.
      *
      * @return Error[]|null
@@ -41,7 +41,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Sets Errors.
-     *
      * Information about errors encountered during the request.
      *
      * @maps errors
@@ -55,7 +54,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Returns Refunds.
-     *
      * The list of requested refunds.
      *
      * @return PaymentRefund[]|null
@@ -67,7 +65,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Sets Refunds.
-     *
      * The list of requested refunds.
      *
      * @maps refunds
@@ -81,7 +78,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
      * The pagination cursor to be used in a subsequent request. If empty,
      * this is the final response.
      *
@@ -94,7 +90,6 @@ class ListPaymentRefundsResponse implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
      * The pagination cursor to be used in a subsequent request. If empty,
      * this is the final response.
      *
@@ -110,17 +105,28 @@ class ListPaymentRefundsResponse implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['errors']  = $this->errors;
-        $json['refunds'] = $this->refunds;
-        $json['cursor']  = $this->cursor;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->errors)) {
+            $json['errors']  = $this->errors;
+        }
+        if (isset($this->refunds)) {
+            $json['refunds'] = $this->refunds;
+        }
+        if (isset($this->cursor)) {
+            $json['cursor']  = $this->cursor;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

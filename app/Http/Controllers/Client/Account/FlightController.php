@@ -48,19 +48,7 @@ class FlightController extends Controller
 
         $startAirport = $request->startAirport;
         $endAirport = $request->endAirport;
-/*
-        $startCityCoordinates = $this->findCoordinates($request->startPoint);
-        $endCityCoordinates = $this->findCoordinates($request->endPoint);
 
-        if(is_array($startCityCoordinates) && is_array($endCityCoordinates)){
-            $params["startCityLat"] = $startCityCoordinates['lat'];
-            $params["startCityLng"] = $startCityCoordinates['lng'];
-            $params["endCityLat"] = $endCityCoordinates['lat'];
-            $params["endCityLng"] = $endCityCoordinates['lng'];
-            $params["biggerLat"] = ($params["startCityLat"] + $params["endCityLat"]) / 2;
-            $params["biggerLng"] = ($params["startCityLng"] + $params["endCityLng"]) / 2;
-        }
-*/
         $params["startPoint"] = $startCity ? $startCity : 0;
         $params["endPoint"] = $endCity ? $endCity : 0;
         $params["startAirport"] = $startAirport ? $startAirport : 0;
@@ -84,22 +72,12 @@ class FlightController extends Controller
             ->whereDate('date_departure', '=', Carbon::parse($request->flightDate)->format('Y-m-d'))
             ->where('active', '=', Config::get('constants.active.activated'))
             ->get();
-/*
-        $searchResults->emptyLeg->type_plane->map(function ($item, $key) {
-                return Str::after($item, '_');
-            });
- */
-        #dd($params);
-        #dd(Config::get('constants.plane'));
-#dd($searchResults->emptyLeg);
-#dd($searchResults->pricing->count()+$searchResults->emptyLeg->count());
 
         if($searchResults->pricing){
             $params["result_id"] = $searchResults->pricing->id;
         } else {
             $params["result_id"] = 0;
         }
-#dd($params["result_id"]);
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],

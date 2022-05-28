@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Represents a group of customer profiles that match one or more predefined filter criteria.
  *
- * Segments (also known as Smart Groups) are defined and created within Customer Directory in the
- * Square Dashboard or Point of Sale.
+ * Segments (also known as Smart Groups) are defined and created within the Customer Directory in the
+ * Square Seller Dashboard or Point of Sale.
  */
 class CustomerSegment implements \JsonSerializable
 {
@@ -42,8 +44,7 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Returns Id.
-     *
-     * Unique Square-generated ID for the segment.
+     * A unique Square-generated ID for the segment.
      */
     public function getId(): ?string
     {
@@ -52,8 +53,7 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
-     * Unique Square-generated ID for the segment.
+     * A unique Square-generated ID for the segment.
      *
      * @maps id
      */
@@ -64,8 +64,7 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Returns Name.
-     *
-     * Name of the segment.
+     * The name of the segment.
      */
     public function getName(): string
     {
@@ -74,8 +73,7 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Sets Name.
-     *
-     * Name of the segment.
+     * The name of the segment.
      *
      * @required
      * @maps name
@@ -87,7 +85,6 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
      * The timestamp when the segment was created, in RFC 3339 format.
      */
     public function getCreatedAt(): ?string
@@ -97,7 +94,6 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
      * The timestamp when the segment was created, in RFC 3339 format.
      *
      * @maps created_at
@@ -109,7 +105,6 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Returns Updated At.
-     *
      * The timestamp when the segment was last updated, in RFC 3339 format.
      */
     public function getUpdatedAt(): ?string
@@ -119,7 +114,6 @@ class CustomerSegment implements \JsonSerializable
 
     /**
      * Sets Updated At.
-     *
      * The timestamp when the segment was last updated, in RFC 3339 format.
      *
      * @maps updated_at
@@ -132,18 +126,29 @@ class CustomerSegment implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']        = $this->id;
-        $json['name']      = $this->name;
-        $json['created_at'] = $this->createdAt;
-        $json['updated_at'] = $this->updatedAt;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->id)) {
+            $json['id']         = $this->id;
+        }
+        $json['name']           = $this->name;
+        if (isset($this->createdAt)) {
+            $json['created_at'] = $this->createdAt;
+        }
+        if (isset($this->updatedAt)) {
+            $json['updated_at'] = $this->updatedAt;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

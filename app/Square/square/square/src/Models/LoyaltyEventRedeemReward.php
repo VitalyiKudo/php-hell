@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Provides metadata when the event `type` is `REDEEM_REWARD`.
  */
@@ -34,8 +36,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Returns Loyalty Program Id.
-     *
-     * The ID of the [loyalty program](#type-LoyaltyProgram).
+     * The ID of the [loyalty program]($m/LoyaltyProgram).
      */
     public function getLoyaltyProgramId(): string
     {
@@ -44,8 +45,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Sets Loyalty Program Id.
-     *
-     * The ID of the [loyalty program](#type-LoyaltyProgram).
+     * The ID of the [loyalty program]($m/LoyaltyProgram).
      *
      * @required
      * @maps loyalty_program_id
@@ -57,8 +57,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Returns Reward Id.
-     *
-     * The ID of the redeemed [loyalty reward](#type-LoyaltyReward).
+     * The ID of the redeemed [loyalty reward]($m/LoyaltyReward).
      * This field is returned only if the event source is `LOYALTY_API`.
      */
     public function getRewardId(): ?string
@@ -68,8 +67,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Sets Reward Id.
-     *
-     * The ID of the redeemed [loyalty reward](#type-LoyaltyReward).
+     * The ID of the redeemed [loyalty reward]($m/LoyaltyReward).
      * This field is returned only if the event source is `LOYALTY_API`.
      *
      * @maps reward_id
@@ -81,8 +79,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Returns Order Id.
-     *
-     * The ID of the [order](#type-Order) that redeemed the reward.
+     * The ID of the [order]($m/Order) that redeemed the reward.
      * This field is returned only if the Orders API is used to process orders.
      */
     public function getOrderId(): ?string
@@ -92,8 +89,7 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
 
     /**
      * Sets Order Id.
-     *
-     * The ID of the [order](#type-Order) that redeemed the reward.
+     * The ID of the [order]($m/Order) that redeemed the reward.
      * This field is returned only if the Orders API is used to process orders.
      *
      * @maps order_id
@@ -106,17 +102,26 @@ class LoyaltyEventRedeemReward implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
         $json['loyalty_program_id'] = $this->loyaltyProgramId;
-        $json['reward_id']        = $this->rewardId;
-        $json['order_id']         = $this->orderId;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->rewardId)) {
+            $json['reward_id']      = $this->rewardId;
+        }
+        if (isset($this->orderId)) {
+            $json['order_id']       = $this->orderId;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

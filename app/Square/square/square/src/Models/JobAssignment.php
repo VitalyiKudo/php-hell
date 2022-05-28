@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * An object describing a job that a team member is assigned to.
  */
@@ -46,7 +48,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Returns Job Title.
-     *
      * The title of the job.
      */
     public function getJobTitle(): string
@@ -56,7 +57,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Sets Job Title.
-     *
      * The title of the job.
      *
      * @required
@@ -69,7 +69,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Returns Pay Type.
-     *
      * Enumerates the possible pay types that a job can be assigned.
      */
     public function getPayType(): string
@@ -79,11 +78,11 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Sets Pay Type.
-     *
      * Enumerates the possible pay types that a job can be assigned.
      *
      * @required
      * @maps pay_type
+     * @factory \Square\Models\JobAssignmentPayType::checkValue
      */
     public function setPayType(string $payType): void
     {
@@ -92,7 +91,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Returns Hourly Rate.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -108,7 +106,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Sets Hourly Rate.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -126,7 +123,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Returns Annual Rate.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -142,7 +138,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Sets Annual Rate.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -160,7 +155,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Returns Weekly Hours.
-     *
      * The planned hours per week for the job. Set if the job `PayType` is `SALARY`.
      */
     public function getWeeklyHours(): ?int
@@ -170,7 +164,6 @@ class JobAssignment implements \JsonSerializable
 
     /**
      * Sets Weekly Hours.
-     *
      * The planned hours per week for the job. Set if the job `PayType` is `SALARY`.
      *
      * @maps weekly_hours
@@ -183,19 +176,30 @@ class JobAssignment implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['job_title']   = $this->jobTitle;
-        $json['pay_type']    = $this->payType;
-        $json['hourly_rate'] = $this->hourlyRate;
-        $json['annual_rate'] = $this->annualRate;
-        $json['weekly_hours'] = $this->weeklyHours;
-
-        return array_filter($json, function ($val) {
+        $json['job_title']        = $this->jobTitle;
+        $json['pay_type']         = JobAssignmentPayType::checkValue($this->payType);
+        if (isset($this->hourlyRate)) {
+            $json['hourly_rate']  = $this->hourlyRate;
+        }
+        if (isset($this->annualRate)) {
+            $json['annual_rate']  = $this->annualRate;
+        }
+        if (isset($this->weeklyHours)) {
+            $json['weekly_hours'] = $this->weeklyHours;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

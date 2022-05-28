@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Describes a loyalty program reward tier.
+ * Represents a reward tier in a loyalty program. A reward tier defines how buyers can redeem points
+ * for a reward, such as the number of points required and the value and scope of the discount. A
+ * loyalty program can offer multiple reward tiers.
  */
 class LoyaltyProgramRewardTier implements \JsonSerializable
 {
@@ -62,7 +66,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Id.
-     *
      * The Square-assigned ID of the reward tier.
      */
     public function getId(): string
@@ -72,7 +75,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
      * The Square-assigned ID of the reward tier.
      *
      * @required
@@ -85,7 +87,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Points.
-     *
      * The points exchanged for the reward tier.
      */
     public function getPoints(): int
@@ -95,7 +96,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Points.
-     *
      * The points exchanged for the reward tier.
      *
      * @required
@@ -108,7 +108,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Name.
-     *
      * The name of the reward tier.
      */
     public function getName(): string
@@ -118,7 +117,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Name.
-     *
      * The name of the reward tier.
      *
      * @required
@@ -131,11 +129,10 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Definition.
-     *
      * Provides details about the reward tier discount. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      */
     public function getDefinition(): LoyaltyProgramRewardDefinition
     {
@@ -144,11 +141,10 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Definition.
-     *
      * Provides details about the reward tier discount. DEPRECATED at version 2020-12-16. Discount details
      * are now defined using a catalog pricing rule and other catalog objects. For more information, see
-     * [Get discount details for the reward](https://developer.squareup.com/docs/loyalty-api/overview#get-
-     * discount-details).
+     * [Getting discount details for a reward tier](https://developer.squareup.com/docs/loyalty-api/loyalty-
+     * rewards#get-discount-details).
      *
      * @required
      * @maps definition
@@ -160,7 +156,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
      * The timestamp when the reward tier was created, in RFC 3339 format.
      */
     public function getCreatedAt(): string
@@ -170,7 +165,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
      * The timestamp when the reward tier was created, in RFC 3339 format.
      *
      * @required
@@ -183,7 +177,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Returns Pricing Rule Reference.
-     *
      * A reference to a Catalog object at a specific version. In general this is
      * used as an entry point into a graph of catalog objects, where the objects exist
      * at a specific version.
@@ -195,7 +188,6 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
 
     /**
      * Sets Pricing Rule Reference.
-     *
      * A reference to a Catalog object at a specific version. In general this is
      * used as an entry point into a graph of catalog objects, where the objects exist
      * at a specific version.
@@ -210,20 +202,27 @@ class LoyaltyProgramRewardTier implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']                   = $this->id;
-        $json['points']               = $this->points;
-        $json['name']                 = $this->name;
-        $json['definition']           = $this->definition;
-        $json['created_at']           = $this->createdAt;
-        $json['pricing_rule_reference'] = $this->pricingRuleReference;
-
-        return array_filter($json, function ($val) {
+        $json['id']                         = $this->id;
+        $json['points']                     = $this->points;
+        $json['name']                       = $this->name;
+        $json['definition']                 = $this->definition;
+        $json['created_at']                 = $this->createdAt;
+        if (isset($this->pricingRuleReference)) {
+            $json['pricing_rule_reference'] = $this->pricingRuleReference;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

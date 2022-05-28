@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Describes a `CancelInvoice` request.
  */
@@ -24,10 +26,9 @@ class CancelInvoiceRequest implements \JsonSerializable
 
     /**
      * Returns Version.
-     *
-     * The version of the [invoice](#type-invoice) to cancel.
+     * The version of the [invoice]($m/Invoice) to cancel.
      * If you do not know the version, you can call
-     * [GetInvoice](#endpoint-Invoices-GetInvoice) or [ListInvoices](#endpoint-Invoices-ListInvoices).
+     * [GetInvoice]($e/Invoices/GetInvoice) or [ListInvoices]($e/Invoices/ListInvoices).
      */
     public function getVersion(): int
     {
@@ -36,10 +37,9 @@ class CancelInvoiceRequest implements \JsonSerializable
 
     /**
      * Sets Version.
-     *
-     * The version of the [invoice](#type-invoice) to cancel.
+     * The version of the [invoice]($m/Invoice) to cancel.
      * If you do not know the version, you can call
-     * [GetInvoice](#endpoint-Invoices-GetInvoice) or [ListInvoices](#endpoint-Invoices-ListInvoices).
+     * [GetInvoice]($e/Invoices/GetInvoice) or [ListInvoices]($e/Invoices/ListInvoices).
      *
      * @required
      * @maps version
@@ -52,15 +52,20 @@ class CancelInvoiceRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
         $json['version'] = $this->version;
-
-        return array_filter($json, function ($val) {
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

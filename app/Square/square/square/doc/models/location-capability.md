@@ -1,7 +1,7 @@
 
 # Location Capability
 
-The capabilities a location may have.
+The capabilities a location might have.
 
 ## Enumeration
 
@@ -11,5 +11,6 @@ The capabilities a location may have.
 
 | Name | Description |
 |  --- | --- |
-| `CREDIT_CARD_PROCESSING` | The permission to process credit card transactions with Square.<br><br>The location can process credit cards if this value is present<br>in the `capabilities` array of the `Location`. |
+| `CREDIT_CARD_PROCESSING` | The capability to process credit card transactions with Square. |
+| `AUTOMATIC_TRANSFERS` | The capability to receive automatic transfers from Square. |
 

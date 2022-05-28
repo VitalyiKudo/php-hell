@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
+/**
+ * Represents a payment refund processed by the Square Terminal. Only supports Interac (Canadian debit
+ * network) payment refunds.
+ */
 class TerminalRefund implements \JsonSerializable
 {
     /**
@@ -32,12 +38,12 @@ class TerminalRefund implements \JsonSerializable
     private $amountMoney;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $reason;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $deviceId;
 
@@ -67,19 +73,32 @@ class TerminalRefund implements \JsonSerializable
     private $updatedAt;
 
     /**
+     * @var string|null
+     */
+    private $appId;
+
+    /**
+     * @var string|null
+     */
+    private $locationId;
+
+    /**
      * @param string $paymentId
      * @param Money $amountMoney
+     * @param string $reason
+     * @param string $deviceId
      */
-    public function __construct(string $paymentId, Money $amountMoney)
+    public function __construct(string $paymentId, Money $amountMoney, string $reason, string $deviceId)
     {
         $this->paymentId = $paymentId;
         $this->amountMoney = $amountMoney;
+        $this->reason = $reason;
+        $this->deviceId = $deviceId;
     }
 
     /**
      * Returns Id.
-     *
-     * A unique ID for this `TerminalRefund`
+     * A unique ID for this `TerminalRefund`.
      */
     public function getId(): ?string
     {
@@ -88,8 +107,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Id.
-     *
-     * A unique ID for this `TerminalRefund`
+     * A unique ID for this `TerminalRefund`.
      *
      * @maps id
      */
@@ -100,7 +118,6 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Refund Id.
-     *
      * The reference to the payment refund created by completing this `TerminalRefund`.
      */
     public function getRefundId(): ?string
@@ -110,7 +127,6 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Refund Id.
-     *
      * The reference to the payment refund created by completing this `TerminalRefund`.
      *
      * @maps refund_id
@@ -122,8 +138,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Payment Id.
-     *
-     * Unique ID of the payment being refunded.
+     * The unique ID of the payment being refunded.
      */
     public function getPaymentId(): string
     {
@@ -132,8 +147,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Payment Id.
-     *
-     * Unique ID of the payment being refunded.
+     * The unique ID of the payment being refunded.
      *
      * @required
      * @maps payment_id
@@ -145,8 +159,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Order Id.
-     *
-     * The reference to the Square order id for the payment identified by the `payment_id`.
+     * The reference to the Square order ID for the payment identified by the `payment_id`.
      */
     public function getOrderId(): ?string
     {
@@ -155,8 +168,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Order Id.
-     *
-     * The reference to the Square order id for the payment identified by the `payment_id`.
+     * The reference to the Square order ID for the payment identified by the `payment_id`.
      *
      * @maps order_id
      */
@@ -167,7 +179,6 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -183,7 +194,6 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Amount Money.
-     *
      * Represents an amount of money. `Money` fields can be signed or unsigned.
      * Fields that do not explicitly define whether they are signed or unsigned are
      * considered unsigned and can only hold positive amounts. For signed fields, the
@@ -202,60 +212,55 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Reason.
-     *
      * A description of the reason for the refund.
-     * Note: maximum 192 characters
      */
-    public function getReason(): ?string
+    public function getReason(): string
     {
         return $this->reason;
     }
 
     /**
      * Sets Reason.
-     *
      * A description of the reason for the refund.
-     * Note: maximum 192 characters
      *
+     * @required
      * @maps reason
      */
-    public function setReason(?string $reason): void
+    public function setReason(string $reason): void
     {
         $this->reason = $reason;
     }
 
     /**
      * Returns Device Id.
-     *
-     * The unique Id of the device intended for this `TerminalRefund`.
+     * The unique ID of the device intended for this `TerminalRefund`.
      * The Id can be retrieved from /v2/devices api.
      */
-    public function getDeviceId(): ?string
+    public function getDeviceId(): string
     {
         return $this->deviceId;
     }
 
     /**
      * Sets Device Id.
-     *
-     * The unique Id of the device intended for this `TerminalRefund`.
+     * The unique ID of the device intended for this `TerminalRefund`.
      * The Id can be retrieved from /v2/devices api.
      *
+     * @required
      * @maps device_id
      */
-    public function setDeviceId(?string $deviceId): void
+    public function setDeviceId(string $deviceId): void
     {
         $this->deviceId = $deviceId;
     }
 
     /**
      * Returns Deadline Duration.
+     * The RFC 3339 duration, after which the refund is automatically canceled.
+     * A `TerminalRefund` that is `PENDING` is automatically `CANCELED` and has a cancellation reason
+     * of `TIMED_OUT`.
      *
-     * The duration as an RFC 3339 duration, after which the refund will be automatically canceled.
-     * TerminalRefunds that are `PENDING` will be automatically `CANCELED` and have a cancellation reason
-     * of `TIMED_OUT`
-     *
-     * Default: 5 minutes from creation
+     * Default: 5 minutes from creation.
      *
      * Maximum: 5 minutes
      */
@@ -266,12 +271,11 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Deadline Duration.
+     * The RFC 3339 duration, after which the refund is automatically canceled.
+     * A `TerminalRefund` that is `PENDING` is automatically `CANCELED` and has a cancellation reason
+     * of `TIMED_OUT`.
      *
-     * The duration as an RFC 3339 duration, after which the refund will be automatically canceled.
-     * TerminalRefunds that are `PENDING` will be automatically `CANCELED` and have a cancellation reason
-     * of `TIMED_OUT`
-     *
-     * Default: 5 minutes from creation
+     * Default: 5 minutes from creation.
      *
      * Maximum: 5 minutes
      *
@@ -284,9 +288,8 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Status.
-     *
      * The status of the `TerminalRefund`.
-     * Options: `PENDING`, `IN_PROGRESS`, `CANCELED`, `COMPLETED`
+     * Options: `PENDING`, `IN_PROGRESS`, `CANCEL_REQUESTED`, `CANCELED`, or `COMPLETED`.
      */
     public function getStatus(): ?string
     {
@@ -295,9 +298,8 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Status.
-     *
      * The status of the `TerminalRefund`.
-     * Options: `PENDING`, `IN_PROGRESS`, `CANCELED`, `COMPLETED`
+     * Options: `PENDING`, `IN_PROGRESS`, `CANCEL_REQUESTED`, `CANCELED`, or `COMPLETED`.
      *
      * @maps status
      */
@@ -318,6 +320,7 @@ class TerminalRefund implements \JsonSerializable
      * Sets Cancel Reason.
      *
      * @maps cancel_reason
+     * @factory \Square\Models\ActionCancelReason::checkValue
      */
     public function setCancelReason(?string $cancelReason): void
     {
@@ -326,8 +329,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Created At.
-     *
-     * The time when the `TerminalRefund` was created as an RFC 3339 timestamp.
+     * The time when the `TerminalRefund` was created, as an RFC 3339 timestamp.
      */
     public function getCreatedAt(): ?string
     {
@@ -336,8 +338,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Created At.
-     *
-     * The time when the `TerminalRefund` was created as an RFC 3339 timestamp.
+     * The time when the `TerminalRefund` was created, as an RFC 3339 timestamp.
      *
      * @maps created_at
      */
@@ -348,8 +349,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Returns Updated At.
-     *
-     * The time when the `TerminalRefund` was last updated as an RFC 3339 timestamp.
+     * The time when the `TerminalRefund` was last updated, as an RFC 3339 timestamp.
      */
     public function getUpdatedAt(): ?string
     {
@@ -358,8 +358,7 @@ class TerminalRefund implements \JsonSerializable
 
     /**
      * Sets Updated At.
-     *
-     * The time when the `TerminalRefund` was last updated as an RFC 3339 timestamp.
+     * The time when the `TerminalRefund` was last updated, as an RFC 3339 timestamp.
      *
      * @maps updated_at
      */
@@ -369,28 +368,95 @@ class TerminalRefund implements \JsonSerializable
     }
 
     /**
+     * Returns App Id.
+     * The ID of the application that created the refund.
+     */
+    public function getAppId(): ?string
+    {
+        return $this->appId;
+    }
+
+    /**
+     * Sets App Id.
+     * The ID of the application that created the refund.
+     *
+     * @maps app_id
+     */
+    public function setAppId(?string $appId): void
+    {
+        $this->appId = $appId;
+    }
+
+    /**
+     * Returns Location Id.
+     * The location of the device where the `TerminalRefund` was directed.
+     */
+    public function getLocationId(): ?string
+    {
+        return $this->locationId;
+    }
+
+    /**
+     * Sets Location Id.
+     * The location of the device where the `TerminalRefund` was directed.
+     *
+     * @maps location_id
+     */
+    public function setLocationId(?string $locationId): void
+    {
+        $this->locationId = $locationId;
+    }
+
+    /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['id']               = $this->id;
-        $json['refund_id']        = $this->refundId;
-        $json['payment_id']       = $this->paymentId;
-        $json['order_id']         = $this->orderId;
-        $json['amount_money']     = $this->amountMoney;
-        $json['reason']           = $this->reason;
-        $json['device_id']        = $this->deviceId;
-        $json['deadline_duration'] = $this->deadlineDuration;
-        $json['status']           = $this->status;
-        $json['cancel_reason']    = $this->cancelReason;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->id)) {
+            $json['id']                = $this->id;
+        }
+        if (isset($this->refundId)) {
+            $json['refund_id']         = $this->refundId;
+        }
+        $json['payment_id']            = $this->paymentId;
+        if (isset($this->orderId)) {
+            $json['order_id']          = $this->orderId;
+        }
+        $json['amount_money']          = $this->amountMoney;
+        $json['reason']                = $this->reason;
+        $json['device_id']             = $this->deviceId;
+        if (isset($this->deadlineDuration)) {
+            $json['deadline_duration'] = $this->deadlineDuration;
+        }
+        if (isset($this->status)) {
+            $json['status']            = $this->status;
+        }
+        if (isset($this->cancelReason)) {
+            $json['cancel_reason']     = ActionCancelReason::checkValue($this->cancelReason);
+        }
+        if (isset($this->createdAt)) {
+            $json['created_at']        = $this->createdAt;
+        }
+        if (isset($this->updatedAt)) {
+            $json['updated_at']        = $this->updatedAt;
+        }
+        if (isset($this->appId)) {
+            $json['app_id']            = $this->appId;
+        }
+        if (isset($this->locationId)) {
+            $json['location_id']       = $this->locationId;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

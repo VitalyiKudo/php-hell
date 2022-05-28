@@ -4,14 +4,18 @@
     <title>Jet Booking | Step 3</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://js.squareup.com/v2/paymentform" : "https://js.squareupsandbox.com/v2/paymentform" }}"></script>
+    {{--<script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://js.squareup.com/v2/paymentform" : "https://js.squareupsandbox.com/v2/paymentform" }}"></script> --
+    <script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://web.squarecdn.com/v1/square.js" : "https://sandbox.web.squarecdn.com/v1/square.js" }}"></script>
+
     <script type="text/javascript">
         window.applicationId = "{{ $applicationId }}";
         window.locationId = "{{ $locationId }}";
-    </script>
-    <script src="{{ asset('js/sq-payment-form.js') }}" type="text/javascript"></script>
-
+    </script>--}}
+    {{--    <script src="{{ asset('js/sq-payment-form.js') }}" type="text/javascript"></script>
+    --}}
     <link href="{{ asset('css/sq-payment-form.css') }}" rel="stylesheet">
+    {{--}}<link href="{{ asset('SquareV2/stylesheets/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('SquareV2/stylesheets/style.css') }}" rel="stylesheet">--}}
 @endsection
 
 @section('book_page', 'book-page-nav')
@@ -118,10 +122,8 @@
                             <span class="sq-wallet-divider__text">Or</span>
                         </div>
                     </div>--}}
+
                     <div id="sq-ccbox">
-@php
-    #dd($cart_errors);
-@endphp
                         <form id="nonce-form" novalidate action="{{ route('client.orders.square', [$search_id, $search_type]) }}" method="post">
                             @csrf
                             <div class="form-titles">your details</div>
@@ -195,6 +197,8 @@
                                 <div class="sq-field" id="sq-card-number-wrapper">
                                     <label class="sq-label hide-desctop">Card number</label>
                                     <div id="sq-card-number"></div>
+                                    <input type="number" name="sq-card-number">
+                                    <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
                                 </div>
 
                                 <div class="sq-field" id="sq-cvv-wrapper">
@@ -251,7 +255,11 @@
                         </form>
 
                     </div>
-
+                    {{--}}<form id="payment-form">
+                        <div id="card-container"></div>
+                        <button id="card-button" type="button">Pay $1.00</button>
+                    </form>
+                    <div id="payment-status-container"></div>--}}
                 </div>
             </div>
         </div>
@@ -267,6 +275,9 @@
 @push('scripts')
     <script type="text/javascript">
 
+        $(document).ready(function(){
+
+
         $(function() {
             $('input[name="birth_date"]').daterangepicker({
                 opens: 'left',
@@ -278,6 +289,125 @@
             //$('input[name="flightDate"]').attr("placeholder","Date & Time");
 
         });
+
+        // Square
+/*
+            const appId = "{{ $applicationId }}";
+            const locationId = "{{ $locationId }}";
+
+            async function initializeCard(payments) {
+                const card = await payments.card();
+                await card.attach('#card-container');
+
+                return card;
+            }
+
+            async function createPayment(token) {
+                const body = JSON.stringify({
+                    locationId,
+                    sourceId: token,
+                });
+
+                const paymentResponse = await fetch('/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body,
+                });
+
+                if (paymentResponse.ok) {
+                    return paymentResponse.json();
+                }
+
+                const errorBody = await paymentResponse.text();
+                throw new Error(errorBody);
+            }
+
+            async function tokenize(paymentMethod) {
+                const tokenResult = await paymentMethod.tokenize();
+                if (tokenResult.status === 'OK') {
+                    return tokenResult.token;
+                } else {
+                    let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+                    if (tokenResult.errors) {
+                        errorMessage += ` and errors: ${JSON.stringify(
+                            tokenResult.errors
+                        )}`;
+                    }
+
+                    throw new Error(errorMessage);
+                }
+            }
+
+            // status is either SUCCESS or FAILURE;
+            function displayPaymentResults(status) {
+                const statusContainer = document.getElementById(
+                    'payment-status-container'
+                );
+                if (status === 'SUCCESS') {
+                    statusContainer.classList.remove('is-failure');
+                    statusContainer.classList.add('is-success');
+                } else {
+                    statusContainer.classList.remove('is-success');
+                    statusContainer.classList.add('is-failure');
+                }
+
+                statusContainer.style.visibility = 'visible';
+            }
+
+            document.addEventListener('DOMContentLoaded', async function () {
+                if (!window.Square) {
+                    throw new Error('Square.js failed to load properly');
+                }
+
+                let payments;
+                try {
+                    payments = window.Square.payments(appId, locationId);
+                } catch {
+                    const statusContainer = document.getElementById(
+                        'payment-status-container'
+                    );
+                    statusContainer.className = 'missing-credentials';
+                    statusContainer.style.visibility = 'visible';
+                    return;
+                }
+
+                let card;
+                try {
+                    card = await initializeCard(payments);
+                } catch (e) {
+                    console.error('Initializing Card failed', e);
+                    return;
+                }
+
+                // Checkpoint 2.
+                async function handlePaymentMethodSubmission(event, paymentMethod) {
+                    event.preventDefault();
+
+                    try {
+                        // disable the submit button as we await tokenization and make a payment request.
+                        cardButton.disabled = true;
+                        const token = await tokenize(paymentMethod);
+                        const paymentResults = await createPayment(token);
+                        displayPaymentResults('SUCCESS');
+
+                        console.debug('Payment Success', paymentResults);
+                    } catch (e) {
+                        cardButton.disabled = false;
+                        displayPaymentResults('FAILURE');
+                        console.error(e.message);
+                    }
+                }
+
+                const cardButton = document.getElementById('card-button');
+                cardButton.addEventListener('click', async function (event) {
+                    await handlePaymentMethodSubmission(event, card);
+                });
+            });
+*/
+        });
+
     </script>
 
 @endpush

@@ -4,23 +4,28 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use Exception;
+use Square\ApiHelper;
+use stdClass;
+
 /**
  * Specifies the action for Square to take for processing the invoice. For example,
- * email the invoice, charge a customer's card on file, or do nothing. DEPRECATED at version 2021-01-21.
- * The corresponding `request_method` field is replaced by the `Invoice.delivery_method` and
- * `InvoicePaymentRequest.automatic_payment_source` fields.
+ * email the invoice, charge a customer's card on file, or do nothing. DEPRECATED at
+ * version 2021-01-21. The corresponding `request_method` field is replaced by the
+ * `Invoice.delivery_method` and `InvoicePaymentRequest.automatic_payment_source` fields.
  */
 class InvoiceRequestMethod
 {
     /**
-     * Directs Square to email the invoice to the customer after the invoice is published
-     * (either immediately or at the `scheduled_at` time, if specified in the [invoice](#type-invoice)).
+     * Directs Square to send invoices, reminders, and receipts to the customer using email.
+     * Square sends the invoice after it is published (either immediately or at the `scheduled_at`
+     * time, if specified in the [invoice]($m/Invoice)).
      */
     public const EMAIL = 'EMAIL';
 
     /**
-     * Directs Square to charge the card on file on the `due_date` specified in the payment request,
-     * after the invoice is published.
+     * Directs Square to charge the card on file on the `due_date` specified in the payment request
+     * and to use email to send invoices, reminders, and receipts.
      */
     public const CHARGE_CARD_ON_FILE = 'CHARGE_CARD_ON_FILE';
 
@@ -35,13 +40,71 @@ class InvoiceRequestMethod
 
     /**
      * Directs Square to charge the bank account on file on the `due_date` specified in the
-     * payment request, after the invoice is published.
+     * payment request and to use email to send invoices, reminders, and receipts.
      *
-     * This payment method applies only to recurring invoices that sellers create in the Seller Dashboard
-     * or other
-     * Square first-party application. The bank account is provided by the customer during the payment flow.
-     * You
-     * cannot set `CHARGE_BANK_ON_FILE` as a payment source using the Invoices API.
+     * The bank on file payment method applies only to recurring invoices that sellers create in the Seller
+     * Dashboard or other
+     * Square first-party applications. The bank account is provided by the customer during the payment
+     * flow. You
+     * cannot set `CHARGE_BANK_ON_FILE` as a request method using the Invoices API.
      */
     public const CHARGE_BANK_ON_FILE = 'CHARGE_BANK_ON_FILE';
+
+    /**
+     * Directs Square to send invoices and receipts to the customer using SMS (text message). Square sends
+     * the invoice
+     * after it is published (either immediately or at the `scheduled_at` time, if specified in the
+     * [invoice]($m/Invoice)).
+     *
+     * You cannot set `SMS` as a request method using the Invoices API.
+     */
+    public const SMS = 'SMS';
+
+    /**
+     * Directs Square to charge the card on file on the `due_date` specified in the payment request and
+     * to
+     * use SMS (text message) to send invoices and receipts.
+     *
+     * You cannot set `SMS_CHARGE_CARD_ON_FILE` as a request method using the Invoices API.
+     */
+    public const SMS_CHARGE_CARD_ON_FILE = 'SMS_CHARGE_CARD_ON_FILE';
+
+    /**
+     * Directs Square to charge the bank account on file on the `due_date` specified in the payment
+     * request
+     * and to use SMS (text message) to send invoices and receipts.
+     *
+     * The bank on file payment method applies only to recurring invoices that sellers create in the Seller
+     * Dashboard
+     * or other Square first-party applications. The bank account is provided by the customer during the
+     * payment flow.
+     * You cannot set `SMS_CHARGE_BANK_ON_FILE` as a request method using the Invoices API.
+     */
+    public const SMS_CHARGE_BANK_ON_FILE = 'SMS_CHARGE_BANK_ON_FILE';
+
+    private const _ALL_VALUES = [
+        self::EMAIL,
+        self::CHARGE_CARD_ON_FILE,
+        self::SHARE_MANUALLY,
+        self::CHARGE_BANK_ON_FILE,
+        self::SMS,
+        self::SMS_CHARGE_CARD_ON_FILE,
+        self::SMS_CHARGE_BANK_ON_FILE,
+    ];
+
+    /**
+     * Ensures that all the given values are present in this Enum.
+     *
+     * @param array|stdClass|null|string $value Value or a list/map of values to be checked
+     *
+     * @return array|null|string Input value(s), if all are a part of this Enum
+     *
+     * @throws Exception Throws exception if any given value is not in this Enum
+     */
+    public static function checkValue($value)
+    {
+        $value = json_decode(json_encode($value), true); // converts stdClass into array
+        ApiHelper::checkValueInEnum($value, self::class, self::_ALL_VALUES);
+        return $value;
+    }
 }

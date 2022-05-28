@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Contains information defining a custom attribute. Custom attributes are
  * intended to store additional information about a catalog object or to associate a
@@ -88,7 +90,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Type.
-     *
      * Defines the possible types for a custom attribute.
      */
     public function getType(): string
@@ -98,11 +99,11 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Type.
-     *
      * Defines the possible types for a custom attribute.
      *
      * @required
      * @maps type
+     * @factory \Square\Models\CatalogCustomAttributeDefinitionType::checkValue
      */
     public function setType(string $type): void
     {
@@ -111,7 +112,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Name.
-     *
      * The name of this definition for API and seller-facing UI purposes.
      * The name must be unique within the (merchant, application) pair. Required.
      * May not be empty and may not exceed 255 characters. Can be modified after creation.
@@ -123,7 +123,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Name.
-     *
      * The name of this definition for API and seller-facing UI purposes.
      * The name must be unique within the (merchant, application) pair. Required.
      * May not be empty and may not exceed 255 characters. Can be modified after creation.
@@ -138,7 +137,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Description.
-     *
      * Seller-oriented description of the meaning of this Custom Attribute,
      * any constraints that the seller should observe, etc. May be displayed as a tooltip in Square UIs.
      */
@@ -149,7 +147,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Description.
-     *
      * Seller-oriented description of the meaning of this Custom Attribute,
      * any constraints that the seller should observe, etc. May be displayed as a tooltip in Square UIs.
      *
@@ -162,8 +159,7 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Source Application.
-     *
-     * Provides information about the application used to generate a change.
+     * Represents information about the application used to generate a change.
      */
     public function getSourceApplication(): ?SourceApplication
     {
@@ -172,8 +168,7 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Source Application.
-     *
-     * Provides information about the application used to generate a change.
+     * Represents information about the application used to generate a change.
      *
      * @maps source_application
      */
@@ -184,7 +179,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Allowed Object Types.
-     *
      * The set of Catalog Object Types that this Custom Attribute may be applied to.
      * Currently, only `ITEM` and `ITEM_VARIATION` are allowed. At least one type must be included.
      * See [CatalogObjectType](#type-catalogobjecttype) for possible values
@@ -198,13 +192,13 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Allowed Object Types.
-     *
      * The set of Catalog Object Types that this Custom Attribute may be applied to.
      * Currently, only `ITEM` and `ITEM_VARIATION` are allowed. At least one type must be included.
      * See [CatalogObjectType](#type-catalogobjecttype) for possible values
      *
      * @required
      * @maps allowed_object_types
+     * @factory \Square\Models\CatalogObjectType::checkValue
      *
      * @param string[] $allowedObjectTypes
      */
@@ -215,7 +209,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Seller Visibility.
-     *
      * Defines the visibility of a custom attribute to sellers in Square
      * client applications, Square APIs or in Square UIs (including Square Point
      * of Sale applications and Square Dashboard).
@@ -227,12 +220,12 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Seller Visibility.
-     *
      * Defines the visibility of a custom attribute to sellers in Square
      * client applications, Square APIs or in Square UIs (including Square Point
      * of Sale applications and Square Dashboard).
      *
      * @maps seller_visibility
+     * @factory \Square\Models\CatalogCustomAttributeDefinitionSellerVisibility::checkValue
      */
     public function setSellerVisibility(?string $sellerVisibility): void
     {
@@ -241,7 +234,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns App Visibility.
-     *
      * Defines the visibility of a custom attribute to applications other than their
      * creating application.
      */
@@ -252,11 +244,11 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets App Visibility.
-     *
      * Defines the visibility of a custom attribute to applications other than their
      * creating application.
      *
      * @maps app_visibility
+     * @factory \Square\Models\CatalogCustomAttributeDefinitionAppVisibility::checkValue
      */
     public function setAppVisibility(?string $appVisibility): void
     {
@@ -265,7 +257,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns String Config.
-     *
      * Configuration associated with Custom Attribute Definitions of type `STRING`.
      */
     public function getStringConfig(): ?CatalogCustomAttributeDefinitionStringConfig
@@ -275,7 +266,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets String Config.
-     *
      * Configuration associated with Custom Attribute Definitions of type `STRING`.
      *
      * @maps string_config
@@ -305,7 +295,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Selection Config.
-     *
      * Configuration associated with `SELECTION`-type custom attribute definitions.
      */
     public function getSelectionConfig(): ?CatalogCustomAttributeDefinitionSelectionConfig
@@ -315,7 +304,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Selection Config.
-     *
      * Configuration associated with `SELECTION`-type custom attribute definitions.
      *
      * @maps selection_config
@@ -327,8 +315,7 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Custom Attribute Usage Count.
-     *
-     * __Read-only.__ The number of custom attributes that reference this
+     * The number of custom attributes that reference this
      * custom attribute definition. Set by the server in response to a ListCatalog
      * request with `include_counts` set to `true`.  If the actual count is greater
      * than 100, `custom_attribute_usage_count` will be set to `100`.
@@ -340,8 +327,7 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Custom Attribute Usage Count.
-     *
-     * __Read-only.__ The number of custom attributes that reference this
+     * The number of custom attributes that reference this
      * custom attribute definition. Set by the server in response to a ListCatalog
      * request with `include_counts` set to `true`.  If the actual count is greater
      * than 100, `custom_attribute_usage_count` will be set to `100`.
@@ -355,7 +341,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Returns Key.
-     *
      * The name of the desired custom attribute key that can be used to access
      * the custom attribute value on catalog objects. Cannot be modified after the
      * custom attribute definition has been created.
@@ -368,7 +353,6 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
 
     /**
      * Sets Key.
-     *
      * The name of the desired custom attribute key that can be used to access
      * the custom attribute value on catalog objects. Cannot be modified after the
      * custom attribute definition has been created.
@@ -384,26 +368,55 @@ class CatalogCustomAttributeDefinition implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['type']                      = $this->type;
-        $json['name']                      = $this->name;
-        $json['description']               = $this->description;
-        $json['source_application']        = $this->sourceApplication;
-        $json['allowed_object_types']      = $this->allowedObjectTypes;
-        $json['seller_visibility']         = $this->sellerVisibility;
-        $json['app_visibility']            = $this->appVisibility;
-        $json['string_config']             = $this->stringConfig;
-        $json['number_config']             = $this->numberConfig;
-        $json['selection_config']          = $this->selectionConfig;
-        $json['custom_attribute_usage_count'] = $this->customAttributeUsageCount;
-        $json['key']                       = $this->key;
-
-        return array_filter($json, function ($val) {
+        $json['type']                             = CatalogCustomAttributeDefinitionType::checkValue($this->type);
+        $json['name']                             = $this->name;
+        if (isset($this->description)) {
+            $json['description']                  = $this->description;
+        }
+        if (isset($this->sourceApplication)) {
+            $json['source_application']           = $this->sourceApplication;
+        }
+        $json['allowed_object_types']             = CatalogObjectType::checkValue($this->allowedObjectTypes);
+        if (isset($this->sellerVisibility)) {
+            $json['seller_visibility']            =
+                CatalogCustomAttributeDefinitionSellerVisibility::checkValue(
+                    $this->sellerVisibility
+                );
+        }
+        if (isset($this->appVisibility)) {
+            $json['app_visibility']               =
+                CatalogCustomAttributeDefinitionAppVisibility::checkValue(
+                    $this->appVisibility
+                );
+        }
+        if (isset($this->stringConfig)) {
+            $json['string_config']                = $this->stringConfig;
+        }
+        if (isset($this->numberConfig)) {
+            $json['number_config']                = $this->numberConfig;
+        }
+        if (isset($this->selectionConfig)) {
+            $json['selection_config']             = $this->selectionConfig;
+        }
+        if (isset($this->customAttributeUsageCount)) {
+            $json['custom_attribute_usage_count'] = $this->customAttributeUsageCount;
+        }
+        if (isset($this->key)) {
+            $json['key']                          = $this->key;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 class V1ListSettlementsRequest implements \JsonSerializable
 {
     /**
@@ -38,7 +40,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Returns Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      */
     public function getOrder(): ?string
@@ -48,10 +49,10 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Sets Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      *
      * @maps order
+     * @factory \Square\Models\SortOrder::checkValue
      */
     public function setOrder(?string $order): void
     {
@@ -60,7 +61,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Returns Begin Time.
-     *
      * The beginning of the requested reporting period, in ISO 8601 format. If this value is before January
      * 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time
      * minus one year.
@@ -72,7 +72,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Sets Begin Time.
-     *
      * The beginning of the requested reporting period, in ISO 8601 format. If this value is before January
      * 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time
      * minus one year.
@@ -86,7 +85,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Returns End Time.
-     *
      * The end of the requested reporting period, in ISO 8601 format. If this value is more than one year
      * greater than begin_time, this endpoint returns an error. Default value: The current time.
      */
@@ -97,7 +95,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Sets End Time.
-     *
      * The end of the requested reporting period, in ISO 8601 format. If this value is more than one year
      * greater than begin_time, this endpoint returns an error. Default value: The current time.
      *
@@ -110,7 +107,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Returns Limit.
-     *
      * The maximum number of settlements to return in a single response. This value cannot exceed 200.
      */
     public function getLimit(): ?int
@@ -120,7 +116,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Sets Limit.
-     *
      * The maximum number of settlements to return in a single response. This value cannot exceed 200.
      *
      * @maps limit
@@ -142,6 +137,7 @@ class V1ListSettlementsRequest implements \JsonSerializable
      * Sets Status.
      *
      * @maps status
+     * @factory \Square\Models\V1ListSettlementsRequestStatus::checkValue
      */
     public function setStatus(?string $status): void
     {
@@ -150,7 +146,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Returns Batch Token.
-     *
      * A pagination cursor to retrieve the next set of results for your
      * original query to the endpoint.
      */
@@ -161,7 +156,6 @@ class V1ListSettlementsRequest implements \JsonSerializable
 
     /**
      * Sets Batch Token.
-     *
      * A pagination cursor to retrieve the next set of results for your
      * original query to the endpoint.
      *
@@ -175,20 +169,37 @@ class V1ListSettlementsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['order']      = $this->order;
-        $json['begin_time'] = $this->beginTime;
-        $json['end_time']   = $this->endTime;
-        $json['limit']      = $this->limit;
-        $json['status']     = $this->status;
-        $json['batch_token'] = $this->batchToken;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->order)) {
+            $json['order']       = SortOrder::checkValue($this->order);
+        }
+        if (isset($this->beginTime)) {
+            $json['begin_time']  = $this->beginTime;
+        }
+        if (isset($this->endTime)) {
+            $json['end_time']    = $this->endTime;
+        }
+        if (isset($this->limit)) {
+            $json['limit']       = $this->limit;
+        }
+        if (isset($this->status)) {
+            $json['status']      = V1ListSettlementsRequestStatus::checkValue($this->status);
+        }
+        if (isset($this->batchToken)) {
+            $json['batch_token'] = $this->batchToken;
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

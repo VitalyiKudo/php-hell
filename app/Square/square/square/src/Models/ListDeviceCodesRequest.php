@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 class ListDeviceCodesRequest implements \JsonSerializable
 {
     /**
@@ -28,11 +30,11 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Returns Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this to retrieve the next set of results for your original query.
      *
-     * See [Paginating results](#paginatingresults) for more information.
+     * See [Paginating results](https://developer.squareup.com/docs/working-with-apis/pagination) for more
+     * information.
      */
     public function getCursor(): ?string
     {
@@ -41,11 +43,11 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Sets Cursor.
-     *
      * A pagination cursor returned by a previous call to this endpoint.
      * Provide this to retrieve the next set of results for your original query.
      *
-     * See [Paginating results](#paginatingresults) for more information.
+     * See [Paginating results](https://developer.squareup.com/docs/working-with-apis/pagination) for more
+     * information.
      *
      * @maps cursor
      */
@@ -56,7 +58,6 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Returns Location Id.
-     *
      * If specified, only returns DeviceCodes of the specified location.
      * Returns DeviceCodes of all locations if empty.
      */
@@ -67,7 +68,6 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Sets Location Id.
-     *
      * If specified, only returns DeviceCodes of the specified location.
      * Returns DeviceCodes of all locations if empty.
      *
@@ -90,6 +90,7 @@ class ListDeviceCodesRequest implements \JsonSerializable
      * Sets Product Type.
      *
      * @maps product_type
+     * @factory \Square\Models\ProductType::checkValue
      */
     public function setProductType(?string $productType): void
     {
@@ -98,7 +99,6 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Returns Status.
-     *
      * If specified, returns DeviceCodes with the specified statuses.
      * Returns DeviceCodes of status `PAIRED` and `UNPAIRED` if empty.
      * See [DeviceCodeStatus](#type-devicecodestatus) for possible values
@@ -112,12 +112,12 @@ class ListDeviceCodesRequest implements \JsonSerializable
 
     /**
      * Sets Status.
-     *
      * If specified, returns DeviceCodes with the specified statuses.
      * Returns DeviceCodes of status `PAIRED` and `UNPAIRED` if empty.
      * See [DeviceCodeStatus](#type-devicecodestatus) for possible values
      *
      * @maps status
+     * @factory \Square\Models\DeviceCodeStatus::checkValue
      *
      * @param string[]|null $status
      */
@@ -129,18 +129,31 @@ class ListDeviceCodesRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['cursor']      = $this->cursor;
-        $json['location_id'] = $this->locationId;
-        $json['product_type'] = $this->productType;
-        $json['status']      = $this->status;
-
-        return array_filter($json, function ($val) {
+        if (isset($this->cursor)) {
+            $json['cursor']       = $this->cursor;
+        }
+        if (isset($this->locationId)) {
+            $json['location_id']  = $this->locationId;
+        }
+        if (isset($this->productType)) {
+            $json['product_type'] = ProductType::checkValue($this->productType);
+        }
+        if (isset($this->status)) {
+            $json['status']       = DeviceCodeStatus::checkValue($this->status);
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

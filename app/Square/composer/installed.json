@@ -1,385 +1,189 @@
-[
-    {
-        "name": "apimatic/jsonmapper",
-        "version": "v2.0.2",
-        "version_normalized": "2.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/apimatic/jsonmapper.git",
-            "reference": "19c9ae29bcf17fd6836776e95c3f118a63a8dee2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/19c9ae29bcf17fd6836776e95c3f118a63a8dee2",
-            "reference": "19c9ae29bcf17fd6836776e95c3f118a63a8dee2",
-            "shasum": ""
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
-            "squizlabs/php_codesniffer": "^3.0.0"
-        },
-        "time": "2021-02-09T05:57:07+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "apimatic\\jsonmapper\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "OSL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "Christian Weiske",
-                "email": "christian.weiske@netresearch.de",
-                "homepage": "http://www.netresearch.de/",
-                "role": "Developer"
+{
+    "packages": [
+        {
+            "name": "apimatic/jsonmapper",
+            "version": "v3.0.2",
+            "version_normalized": "3.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/jsonmapper.git",
+                "reference": "12e32cabc911d2af78f4d81f4ad5c06bd29391ca"
             },
-            {
-                "name": "Mehdi Jaffery",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/12e32cabc911d2af78f4d81f4ad5c06bd29391ca",
+                "reference": "12e32cabc911d2af78f4d81f4ad5c06bd29391ca",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+                "squizlabs/php_codesniffer": "^3.0.0"
+            },
+            "time": "2022-05-25T07:21:59+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "apimatic\\jsonmapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "christian.weiske@netresearch.de",
+                    "homepage": "http://www.netresearch.de/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mehdi Jaffery",
+                    "email": "mehdi.jaffery@apimatic.io",
+                    "homepage": "http://apimatic.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "support": {
                 "email": "mehdi.jaffery@apimatic.io",
-                "homepage": "http://apimatic.io/",
-                "role": "Developer"
-            }
-        ],
-        "description": "Map nested JSON structures onto PHP classes"
-    },
-    {
-        "name": "apimatic/unirest-php",
-        "version": "2.0.0",
-        "version_normalized": "2.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/apimatic/unirest-php.git",
-            "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/b4e399a8970c3a5c611f734282f306381f9d1eee",
-            "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee",
-            "shasum": ""
-        },
-        "require": {
-            "ext-curl": "*",
-            "php": ">=5.6.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^5 || ^6 || ^7"
-        },
-        "suggest": {
-            "ext-json": "Allows using JSON Bodies for sending and parsing requests"
-        },
-        "time": "2020-04-07T17:16:29+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Unirest\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mashape",
-                "email": "opensource@mashape.com",
-                "homepage": "https://www.mashape.com",
-                "role": "Developer"
+                "issues": "https://github.com/apimatic/jsonmapper/issues",
+                "source": "https://github.com/apimatic/jsonmapper/tree/v3.0.2"
             },
-            {
-                "name": "APIMATIC",
+            "install-path": "../apimatic/jsonmapper"
+        },
+        {
+            "name": "apimatic/unirest-php",
+            "version": "2.2.2",
+            "version_normalized": "2.2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/unirest-php.git",
+                "reference": "a45c4c71a1ea3659b118042a67cc1b6486bcf03a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/a45c4c71a1ea3659b118042a67cc1b6486bcf03a",
+                "reference": "a45c4c71a1ea3659b118042a67cc1b6486bcf03a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5 || ^6 || ^7 || ^8 || ^9"
+            },
+            "suggest": {
+                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
+            },
+            "time": "2022-03-24T08:19:20+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Unirest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mashape",
+                    "email": "opensource@mashape.com",
+                    "homepage": "https://www.mashape.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "APIMATIC",
+                    "email": "opensource@apimatic.io",
+                    "homepage": "https://www.apimatic.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Unirest PHP",
+            "homepage": "https://github.com/apimatic/unirest-php",
+            "keywords": [
+                "client",
+                "curl",
+                "http",
+                "https",
+                "rest"
+            ],
+            "support": {
                 "email": "opensource@apimatic.io",
-                "homepage": "https://www.apimatic.io",
-                "role": "Developer"
-            }
-        ],
-        "description": "Unirest PHP",
-        "homepage": "https://github.com/apimatic/unirest-php",
-        "keywords": [
-            "client",
-            "curl",
-            "http",
-            "https",
-            "rest"
-        ]
-    },
-    {
-        "name": "phpoption/phpoption",
-        "version": "1.7.5",
-        "version_normalized": "1.7.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/schmittjoh/php-option.git",
-            "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/994ecccd8f3283ecf5ac33254543eb0ac946d525",
-            "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.5.9 || ^7.0 || ^8.0"
-        },
-        "require-dev": {
-            "bamarni/composer-bin-plugin": "^1.4.1",
-            "phpunit/phpunit": "^4.8.35 || ^5.7.27 || ^6.5.6 || ^7.0 || ^8.0 || ^9.0"
-        },
-        "time": "2020-07-20T17:29:33+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.7-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "PhpOption\\": "src/PhpOption/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Johannes M. Schmitt",
-                "email": "schmittjoh@gmail.com"
+                "issues": "https://github.com/apimatic/unirest-php/issues",
+                "source": "https://github.com/apimatic/unirest-php/tree/2.2.2"
             },
-            {
-                "name": "Graham Campbell",
-                "email": "graham@alt-three.com"
-            }
-        ],
-        "description": "Option Type for PHP",
-        "keywords": [
-            "language",
-            "option",
-            "php",
-            "type"
-        ],
-        "funding": [
-            {
-                "url": "https://github.com/GrahamCampbell",
-                "type": "github"
+            "install-path": "../apimatic/unirest-php"
+        },
+        {
+            "name": "square/square",
+            "version": "19.0.1.20220512",
+            "version_normalized": "19.0.1.20220512",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/square/square-php-sdk.git",
+                "reference": "7852d8a09f818b1bdd929a6366afaa1dbc6bf5e9"
             },
-            {
-                "url": "https://tidelift.com/funding/github/packagist/phpoption/phpoption",
-                "type": "tidelift"
-            }
-        ]
-    },
-    {
-        "name": "square/square",
-        "version": "9.0.0.20210226",
-        "version_normalized": "9.0.0.20210226",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/square/square-php-sdk.git",
-            "reference": "5d4c6e40f3b0849dc4501a6bdd1405301d424c4b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/square/square-php-sdk/zipball/5d4c6e40f3b0849dc4501a6bdd1405301d424c4b",
-            "reference": "5d4c6e40f3b0849dc4501a6bdd1405301d424c4b",
-            "shasum": ""
-        },
-        "require": {
-            "apimatic/jsonmapper": "^2.0.1",
-            "apimatic/unirest-php": "^2.0",
-            "ext-curl": "*",
-            "ext-json": "*",
-            "ext-mbstring": "*",
-            "php": ">=7.1"
-        },
-        "require-dev": {
-            "phan/phan": "^2.5",
-            "phpunit/phpunit": "^7.5 || ^8.5",
-            "squizlabs/php_codesniffer": "^3.5"
-        },
-        "time": "2021-02-26T18:27:38+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Square\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Square Developer Platform",
-                "email": "developers@squareup.com",
-                "homepage": "https://squareup.com/developers"
-            }
-        ],
-        "description": "Use Square APIs to manage and run business including payment, customer, product, inventory, and employee management.",
-        "homepage": "https://squareup.com/developers",
-        "keywords": [
-            "api",
-            "sdk",
-            "square"
-        ]
-    },
-    {
-        "name": "symfony/polyfill-ctype",
-        "version": "v1.22.1",
-        "version_normalized": "1.22.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/polyfill-ctype.git",
-            "reference": "c6c942b1ac76c82448322025e084cadc56048b4e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/c6c942b1ac76c82448322025e084cadc56048b4e",
-            "reference": "c6c942b1ac76c82448322025e084cadc56048b4e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.1"
-        },
-        "suggest": {
-            "ext-ctype": "For best performance"
-        },
-        "time": "2021-01-07T16:49:33+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-main": "1.22-dev"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/square/square-php-sdk/zipball/7852d8a09f818b1bdd929a6366afaa1dbc6bf5e9",
+                "reference": "7852d8a09f818b1bdd929a6366afaa1dbc6bf5e9",
+                "shasum": ""
             },
-            "thanks": {
-                "name": "symfony/polyfill",
-                "url": "https://github.com/symfony/polyfill"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Polyfill\\Ctype\\": ""
+            "require": {
+                "apimatic/jsonmapper": "^3.0.1",
+                "apimatic/unirest-php": "^2.2.2",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=7.2 <8.2"
             },
-            "files": [
-                "bootstrap.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Gert de Pagter",
-                "email": "BackEndTea@gmail.com"
+            "require-dev": {
+                "phan/phan": "5.3.1",
+                "phpunit/phpunit": "^7.5 || ^8.5",
+                "squizlabs/php_codesniffer": "^3.5"
             },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony polyfill for ctype functions",
-        "homepage": "https://symfony.com",
-        "keywords": [
-            "compatibility",
-            "ctype",
-            "polyfill",
-            "portable"
-        ],
-        "funding": [
-            {
-                "url": "https://symfony.com/sponsor",
-                "type": "custom"
+            "time": "2022-05-25T17:40:58+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Square\\": "src/"
+                }
             },
-            {
-                "url": "https://github.com/fabpot",
-                "type": "github"
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Square Developer Platform",
+                    "email": "developers@squareup.com",
+                    "homepage": "https://squareup.com/developers"
+                }
+            ],
+            "description": "Use Square APIs to manage and run business including payment, customer, product, inventory, and employee management.",
+            "homepage": "https://squareup.com/developers",
+            "keywords": [
+                "api",
+                "sdk",
+                "square"
+            ],
+            "support": {
+                "issues": "https://github.com/square/square-php-sdk/issues",
+                "source": "https://github.com/square/square-php-sdk/tree/19.0.1.20220512"
             },
-            {
-                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                "type": "tidelift"
-            }
-        ]
-    },
-    {
-        "name": "vlucas/phpdotenv",
-        "version": "v3.6.8",
-        "version_normalized": "3.6.8.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/vlucas/phpdotenv.git",
-            "reference": "5e679f7616db829358341e2d5cccbd18773bdab8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/5e679f7616db829358341e2d5cccbd18773bdab8",
-            "reference": "5e679f7616db829358341e2d5cccbd18773bdab8",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.4 || ^7.0 || ^8.0",
-            "phpoption/phpoption": "^1.5.2",
-            "symfony/polyfill-ctype": "^1.17"
-        },
-        "require-dev": {
-            "ext-filter": "*",
-            "ext-pcre": "*",
-            "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20"
-        },
-        "suggest": {
-            "ext-filter": "Required to use the boolean validator.",
-            "ext-pcre": "Required to use most of the library."
-        },
-        "time": "2021-01-20T14:39:46+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.6-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Dotenv\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Graham Campbell",
-                "email": "graham@alt-three.com",
-                "homepage": "https://gjcampbell.co.uk/"
-            },
-            {
-                "name": "Vance Lucas",
-                "email": "vance@vancelucas.com",
-                "homepage": "https://vancelucas.com/"
-            }
-        ],
-        "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
-        "keywords": [
-            "dotenv",
-            "env",
-            "environment"
-        ],
-        "funding": [
-            {
-                "url": "https://github.com/GrahamCampbell",
-                "type": "github"
-            },
-            {
-                "url": "https://tidelift.com/funding/github/packagist/vlucas/phpdotenv",
-                "type": "tidelift"
-            }
-        ]
-    }
-]
+            "install-path": "../square/square"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

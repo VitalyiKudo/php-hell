@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * A request to adjust (add or subtract) points manually.
  */
@@ -31,7 +33,6 @@ class AdjustLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Idempotency Key.
-     *
      * A unique string that identifies this `AdjustLoyaltyPoints` request.
      * Keys can be any valid string, but must be unique for every request.
      */
@@ -42,7 +43,6 @@ class AdjustLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Idempotency Key.
-     *
      * A unique string that identifies this `AdjustLoyaltyPoints` request.
      * Keys can be any valid string, but must be unique for every request.
      *
@@ -56,7 +56,6 @@ class AdjustLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Adjust Points.
-     *
      * Provides metadata when the event `type` is `ADJUST_POINTS`.
      */
     public function getAdjustPoints(): LoyaltyEventAdjustPoints
@@ -66,7 +65,6 @@ class AdjustLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Adjust Points.
-     *
      * Provides metadata when the event `type` is `ADJUST_POINTS`.
      *
      * @required
@@ -80,16 +78,21 @@ class AdjustLoyaltyPointsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
         $json['idempotency_key'] = $this->idempotencyKey;
-        $json['adjust_points']  = $this->adjustPoints;
-
-        return array_filter($json, function ($val) {
+        $json['adjust_points']   = $this->adjustPoints;
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

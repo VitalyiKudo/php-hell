@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * A request to accumulate points for a purchase.
  */
@@ -41,7 +43,6 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Accumulate Points.
-     *
      * Provides metadata when the event `type` is `ACCUMULATE_POINTS`.
      */
     public function getAccumulatePoints(): LoyaltyEventAccumulatePoints
@@ -51,7 +52,6 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Accumulate Points.
-     *
      * Provides metadata when the event `type` is `ACCUMULATE_POINTS`.
      *
      * @required
@@ -64,7 +64,6 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Idempotency Key.
-     *
      * A unique string that identifies the `AccumulateLoyaltyPoints` request.
      * Keys can be any valid string but must be unique for every request.
      */
@@ -75,7 +74,6 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Idempotency Key.
-     *
      * A unique string that identifies the `AccumulateLoyaltyPoints` request.
      * Keys can be any valid string but must be unique for every request.
      *
@@ -89,8 +87,7 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Returns Location Id.
-     *
-     * The [location](#type-Location) where the purchase was made.
+     * The [location]($m/Location) where the purchase was made.
      */
     public function getLocationId(): string
     {
@@ -99,8 +96,7 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
 
     /**
      * Sets Location Id.
-     *
-     * The [location](#type-Location) where the purchase was made.
+     * The [location]($m/Location) where the purchase was made.
      *
      * @required
      * @maps location_id
@@ -113,17 +109,22 @@ class AccumulateLoyaltyPointsRequest implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
         $json['accumulate_points'] = $this->accumulatePoints;
-        $json['idempotency_key']  = $this->idempotencyKey;
-        $json['location_id']      = $this->locationId;
-
-        return array_filter($json, function ($val) {
+        $json['idempotency_key']   = $this->idempotencyKey;
+        $json['location_id']       = $this->locationId;
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

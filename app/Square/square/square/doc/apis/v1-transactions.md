@@ -10,18 +10,20 @@ $v1TransactionsApi = $client->getV1TransactionsApi();
 
 ## Methods
 
-* [List Orders](/doc/apis/v1-transactions.md#list-orders)
-* [Retrieve Order](/doc/apis/v1-transactions.md#retrieve-order)
-* [Update Order](/doc/apis/v1-transactions.md#update-order)
-* [List Payments](/doc/apis/v1-transactions.md#list-payments)
-* [Retrieve Payment](/doc/apis/v1-transactions.md#retrieve-payment)
-* [List Refunds](/doc/apis/v1-transactions.md#list-refunds)
-* [Create Refund](/doc/apis/v1-transactions.md#create-refund)
-* [List Settlements](/doc/apis/v1-transactions.md#list-settlements)
-* [Retrieve Settlement](/doc/apis/v1-transactions.md#retrieve-settlement)
+* [List Orders](../../doc/apis/v1-transactions.md#list-orders)
+* [Retrieve Order](../../doc/apis/v1-transactions.md#retrieve-order)
+* [Update Order](../../doc/apis/v1-transactions.md#update-order)
+* [List Payments](../../doc/apis/v1-transactions.md#list-payments)
+* [Retrieve Payment](../../doc/apis/v1-transactions.md#retrieve-payment)
+* [List Refunds](../../doc/apis/v1-transactions.md#list-refunds)
+* [Create Refund](../../doc/apis/v1-transactions.md#create-refund)
+* [List Settlements](../../doc/apis/v1-transactions.md#list-settlements)
+* [Retrieve Settlement](../../doc/apis/v1-transactions.md#retrieve-settlement)
 
 
 # List Orders
+
+**This endpoint is deprecated.**
 
 Provides summary information for a merchant's online store orders.
 
@@ -39,23 +41,20 @@ function listOrders(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the location to list online store orders for. |
-| `order` | [`?string (SortOrder)`](/doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
+| `order` | [`?string (SortOrder)`](../../doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
 | `limit` | `?int` | Query, Optional | The maximum number of payments to return in a single response. This value cannot exceed 200. |
 | `batchToken` | `?string` | Query, Optional | A pagination cursor to retrieve the next set of results for your<br>original query to the endpoint. |
 
 ## Response Type
 
-[`V1Order[]`](/doc/models/v1-order.md)
+[`V1Order[]`](../../doc/models/v1-order.md)
 
 ## Example Usage
 
 ```php
 $locationId = 'location_id4';
-$order = Models\SortOrder::DESC;
-$limit = 172;
-$batchToken = 'batch_token2';
 
-$apiResponse = $v1TransactionsApi->listOrders($locationId, $order, $limit, $batchToken);
+$apiResponse = $v1TransactionsApi->listOrders($locationId);
 
 if ($apiResponse->isSuccess()) {
     $v1Order = $apiResponse->getResult();
@@ -70,6 +69,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # Retrieve Order
+
+**This endpoint is deprecated.**
 
 Provides comprehensive information for a single online store order, including the order's history.
 
@@ -86,7 +87,7 @@ function retrieveOrder(string $locationId, string $orderId): ApiResponse
 
 ## Response Type
 
-[`V1Order`](/doc/models/v1-order.md)
+[`V1Order`](../../doc/models/v1-order.md)
 
 ## Example Usage
 
@@ -110,6 +111,8 @@ if ($apiResponse->isSuccess()) {
 
 # Update Order
 
+**This endpoint is deprecated.**
+
 Updates the details of an online store order. Every update you perform on an order corresponds to one of three actions:
 
 ```php
@@ -122,11 +125,11 @@ function updateOrder(string $locationId, string $orderId, V1UpdateOrderRequest $
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the order's associated location. |
 | `orderId` | `string` | Template, Required | The order's Square-issued ID. You obtain this value from Order objects returned by the List Orders endpoint |
-| `body` | [`V1UpdateOrderRequest`](/doc/models/v1-update-order-request.md) | Body, Required | An object containing the fields to POST for the request.<br><br>See the corresponding object definition for field details. |
+| `body` | [`V1UpdateOrderRequest`](../../doc/models/v1-update-order-request.md) | Body, Required | An object containing the fields to POST for the request.<br><br>See the corresponding object definition for field details. |
 
 ## Response Type
 
-[`V1Order`](/doc/models/v1-order.md)
+[`V1Order`](../../doc/models/v1-order.md)
 
 ## Example Usage
 
@@ -137,10 +140,6 @@ $body_action = Models\V1UpdateOrderRequestAction::REFUND;
 $body = new Models\V1UpdateOrderRequest(
     $body_action
 );
-$body->setShippedTrackingNumber('shipped_tracking_number6');
-$body->setCompletedNote('completed_note6');
-$body->setRefundedNote('refunded_note0');
-$body->setCanceledNote('canceled_note4');
 
 $apiResponse = $v1TransactionsApi->updateOrder($locationId, $orderId, $body);
 
@@ -157,6 +156,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # List Payments
+
+**This endpoint is deprecated.**
 
 Provides summary information for all payments taken for a given
 Square account during a date range. Date ranges cannot exceed 1 year in
@@ -187,7 +188,7 @@ function listPayments(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the location to list payments for. If you specify me, this endpoint returns payments aggregated from all of the business's locations. |
-| `order` | [`?string (SortOrder)`](/doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
+| `order` | [`?string (SortOrder)`](../../doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
 | `beginTime` | `?string` | Query, Optional | The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year. |
 | `endTime` | `?string` | Query, Optional | The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time. |
 | `limit` | `?int` | Query, Optional | The maximum number of payments to return in a single response. This value cannot exceed 200. |
@@ -196,20 +197,15 @@ function listPayments(
 
 ## Response Type
 
-[`V1Payment[]`](/doc/models/v1-payment.md)
+[`V1Payment[]`](../../doc/models/v1-payment.md)
 
 ## Example Usage
 
 ```php
 $locationId = 'location_id4';
-$order = Models\SortOrder::DESC;
-$beginTime = 'begin_time2';
-$endTime = 'end_time2';
-$limit = 172;
-$batchToken = 'batch_token2';
 $includePartial = false;
 
-$apiResponse = $v1TransactionsApi->listPayments($locationId, $order, $beginTime, $endTime, $limit, $batchToken, $includePartial);
+$apiResponse = $v1TransactionsApi->listPayments($locationId, null, null, null, null, null, $includePartial);
 
 if ($apiResponse->isSuccess()) {
     $v1Payment = $apiResponse->getResult();
@@ -224,6 +220,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # Retrieve Payment
+
+**This endpoint is deprecated.**
 
 Provides comprehensive information for a single payment.
 
@@ -240,7 +238,7 @@ function retrievePayment(string $locationId, string $paymentId): ApiResponse
 
 ## Response Type
 
-[`V1Payment`](/doc/models/v1-payment.md)
+[`V1Payment`](../../doc/models/v1-payment.md)
 
 ## Example Usage
 
@@ -264,6 +262,8 @@ if ($apiResponse->isSuccess()) {
 
 # List Refunds
 
+**This endpoint is deprecated.**
+
 Provides the details for all refunds initiated by a merchant or any of the merchant's mobile staff during a date range. Date ranges cannot exceed one year in length.
 
 ```php
@@ -282,7 +282,7 @@ function listRefunds(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the location to list refunds for. |
-| `order` | [`?string (SortOrder)`](/doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
+| `order` | [`?string (SortOrder)`](../../doc/models/sort-order.md) | Query, Optional | The order in which payments are listed in the response. |
 | `beginTime` | `?string` | Query, Optional | The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year. |
 | `endTime` | `?string` | Query, Optional | The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time. |
 | `limit` | `?int` | Query, Optional | The approximate number of refunds to return in a single response. Default: 100. Max: 200. Response may contain more results than the prescribed limit when refunds are made simultaneously to multiple tenders in a payment or when refunds are generated in an exchange to account for the value of returned goods. |
@@ -290,19 +290,14 @@ function listRefunds(
 
 ## Response Type
 
-[`V1Refund[]`](/doc/models/v1-refund.md)
+[`V1Refund[]`](../../doc/models/v1-refund.md)
 
 ## Example Usage
 
 ```php
 $locationId = 'location_id4';
-$order = Models\SortOrder::DESC;
-$beginTime = 'begin_time2';
-$endTime = 'end_time2';
-$limit = 172;
-$batchToken = 'batch_token2';
 
-$apiResponse = $v1TransactionsApi->listRefunds($locationId, $order, $beginTime, $endTime, $limit, $batchToken);
+$apiResponse = $v1TransactionsApi->listRefunds($locationId);
 
 if ($apiResponse->isSuccess()) {
     $v1Refund = $apiResponse->getResult();
@@ -317,6 +312,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # Create Refund
+
+**This endpoint is deprecated.**
 
 Issues a refund for a previously processed payment. You must issue
 a refund within 60 days of the associated payment.
@@ -340,11 +337,11 @@ function createRefund(string $locationId, V1CreateRefundRequest $body): ApiRespo
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the original payment's associated location. |
-| `body` | [`V1CreateRefundRequest`](/doc/models/v1-create-refund-request.md) | Body, Required | An object containing the fields to POST for the request.<br><br>See the corresponding object definition for field details. |
+| `body` | [`V1CreateRefundRequest`](../../doc/models/v1-create-refund-request.md) | Body, Required | An object containing the fields to POST for the request.<br><br>See the corresponding object definition for field details. |
 
 ## Response Type
 
-[`V1Refund`](/doc/models/v1-refund.md)
+[`V1Refund`](../../doc/models/v1-refund.md)
 
 ## Example Usage
 
@@ -358,10 +355,6 @@ $body = new Models\V1CreateRefundRequest(
     $body_type,
     $body_reason
 );
-$body->setRefundedMoney(new Models\V1Money);
-$body->getRefundedMoney()->setAmount(222);
-$body->getRefundedMoney()->setCurrencyCode(Models\Currency::CLF);
-$body->setRequestIdempotenceKey('request_idempotence_key2');
 
 $apiResponse = $v1TransactionsApi->createRefund($locationId, $body);
 
@@ -378,6 +371,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # List Settlements
+
+**This endpoint is deprecated.**
 
 Provides summary information for all deposits and withdrawals
 initiated by Square to a linked bank account during a date range. Date
@@ -403,29 +398,23 @@ function listSettlements(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `locationId` | `string` | Template, Required | The ID of the location to list settlements for. If you specify me, this endpoint returns settlements aggregated from all of the business's locations. |
-| `order` | [`?string (SortOrder)`](/doc/models/sort-order.md) | Query, Optional | The order in which settlements are listed in the response. |
+| `order` | [`?string (SortOrder)`](../../doc/models/sort-order.md) | Query, Optional | The order in which settlements are listed in the response. |
 | `beginTime` | `?string` | Query, Optional | The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year. |
 | `endTime` | `?string` | Query, Optional | The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time. |
 | `limit` | `?int` | Query, Optional | The maximum number of settlements to return in a single response. This value cannot exceed 200. |
-| `status` | [`?string (V1ListSettlementsRequestStatus)`](/doc/models/v1-list-settlements-request-status.md) | Query, Optional | Provide this parameter to retrieve only settlements with a particular status (SENT or FAILED). |
+| `status` | [`?string (V1ListSettlementsRequestStatus)`](../../doc/models/v1-list-settlements-request-status.md) | Query, Optional | Provide this parameter to retrieve only settlements with a particular status (SENT or FAILED). |
 | `batchToken` | `?string` | Query, Optional | A pagination cursor to retrieve the next set of results for your<br>original query to the endpoint. |
 
 ## Response Type
 
-[`V1Settlement[]`](/doc/models/v1-settlement.md)
+[`V1Settlement[]`](../../doc/models/v1-settlement.md)
 
 ## Example Usage
 
 ```php
 $locationId = 'location_id4';
-$order = Models\SortOrder::DESC;
-$beginTime = 'begin_time2';
-$endTime = 'end_time2';
-$limit = 172;
-$status = Models\V1ListSettlementsRequestStatus::SENT;
-$batchToken = 'batch_token2';
 
-$apiResponse = $v1TransactionsApi->listSettlements($locationId, $order, $beginTime, $endTime, $limit, $status, $batchToken);
+$apiResponse = $v1TransactionsApi->listSettlements($locationId);
 
 if ($apiResponse->isSuccess()) {
     $v1Settlement = $apiResponse->getResult();
@@ -440,6 +429,8 @@ if ($apiResponse->isSuccess()) {
 
 
 # Retrieve Settlement
+
+**This endpoint is deprecated.**
 
 Provides comprehensive information for a single settlement.
 
@@ -472,7 +463,7 @@ function retrieveSettlement(string $locationId, string $settlementId): ApiRespon
 
 ## Response Type
 
-[`V1Settlement`](/doc/models/v1-settlement.md)
+[`V1Settlement`](../../doc/models/v1-settlement.md)
 
 ## Example Usage
 

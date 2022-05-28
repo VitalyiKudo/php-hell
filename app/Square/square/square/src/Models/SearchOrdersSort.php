@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
- * Sorting criteria for a SearchOrders request. Results can only be sorted
+ * Sorting criteria for a `SearchOrders` request. Results can only be sorted
  * by a timestamp field.
  */
 class SearchOrdersSort implements \JsonSerializable
@@ -30,8 +32,7 @@ class SearchOrdersSort implements \JsonSerializable
 
     /**
      * Returns Sort Field.
-     *
-     * Specifies which timestamp to use to sort SearchOrder results.
+     * Specifies which timestamp to use to sort `SearchOrder` results.
      */
     public function getSortField(): string
     {
@@ -40,11 +41,11 @@ class SearchOrdersSort implements \JsonSerializable
 
     /**
      * Sets Sort Field.
-     *
-     * Specifies which timestamp to use to sort SearchOrder results.
+     * Specifies which timestamp to use to sort `SearchOrder` results.
      *
      * @required
      * @maps sort_field
+     * @factory \Square\Models\SearchOrdersSortField::checkValue
      */
     public function setSortField(string $sortField): void
     {
@@ -53,7 +54,6 @@ class SearchOrdersSort implements \JsonSerializable
 
     /**
      * Returns Sort Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      */
     public function getSortOrder(): ?string
@@ -63,10 +63,10 @@ class SearchOrdersSort implements \JsonSerializable
 
     /**
      * Sets Sort Order.
-     *
      * The order (e.g., chronological or alphabetical) in which results from a request are returned.
      *
      * @maps sort_order
+     * @factory \Square\Models\SortOrder::checkValue
      */
     public function setSortOrder(?string $sortOrder): void
     {
@@ -76,16 +76,23 @@ class SearchOrdersSort implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['sort_field'] = $this->sortField;
-        $json['sort_order'] = $this->sortOrder;
-
-        return array_filter($json, function ($val) {
+        $json['sort_field']     = SearchOrdersSortField::checkValue($this->sortField);
+        if (isset($this->sortOrder)) {
+            $json['sort_order'] = SortOrder::checkValue($this->sortOrder);
+        }
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }

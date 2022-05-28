@@ -4,14 +4,38 @@ declare(strict_types=1);
 
 namespace Square;
 
+use apimatic\jsonmapper\JsonMapper;
+use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
+use Square\Exceptions\ApiException;
+use Square\Http\HttpRequest;
+use Square\Http\HttpResponse;
+use stdClass;
 
 /**
  * API utility class
  */
 class ApiHelper
 {
+    /**
+     * @var JsonMapper
+     */
+    private static $mapper;
+
+    /**
+     * Get a new JsonMapper instance for mapping objects
+     *
+     * @return JsonMapper JsonMapper instance
+     */
+    public static function getJsonMapper(): JsonMapper
+    {
+        if (!isset(self::$mapper)) {
+            self::$mapper = new JsonMapper();
+        }
+        return self::$mapper;
+    }
+
     /**
      * Replaces template parameters in the given url
      *
@@ -44,57 +68,258 @@ class ApiHelper
     }
 
     /**
-     * Appends the given set of parameters to the given query string
+     * Appends the given set of parameters to the given query string.
      *
-     * @param    string  $queryBuilder   The query url string to append the parameters
-     * @param    array   $parameters     The parameters to append
+     * @param string $queryUrl   The query url string to append the parameters
+     * @param array  $parameters The parameters to append
      */
-    public static function appendUrlWithQueryParameters(string &$queryBuilder, array $parameters): void
+    public static function appendUrlWithQueryParameters(string &$queryUrl, array $parameters): void
     {
         //perform parameter validation
-        if (is_null($queryBuilder) || !is_string($queryBuilder)) {
+        if (is_null($queryUrl) || !is_string($queryUrl)) {
             throw new InvalidArgumentException('Given value for parameter "queryBuilder" is invalid.');
         }
         if (is_null($parameters)) {
             return;
         }
         //does the query string already has parameters
-        $hasParams = (strrpos($queryBuilder, '?') > 0);
+        $hasParams = (strrpos($queryUrl, '?') > 0);
 
         //if already has parameters, use the &amp; to append new parameters
-        $queryBuilder = $queryBuilder . (($hasParams) ? '&' : '?');
+        $queryUrl .= (($hasParams) ? '&' : '?');
 
         //append parameters
-        $queryBuilder = $queryBuilder . http_build_query($parameters);
+        $queryUrl .= http_build_query($parameters);
     }
 
     /**
-     * Validates and processes the given Url
+     * Map the class onto the value,
+     * If mapping failed due to the invalid oneOf or anyOf types,
+     * throw ApiException
      *
-     * @param    string  $url The given Url to process
+     * @param HttpRequest  $request   httpRequest obj to be used to throw ApiException
+     * @param HttpResponse $response  httpResponse obj to be used to throw ApiException
+     * @param mixed        $value     value to be verified against the types
+     * @param string       $classname name of the class to map
+     * @param int          $dimension greater then 0 if trying to map class array of some
+     *                                dimensions, Default: 0
+     * @param string       $namespace namespace name for the model classes, Default: global namespace
      *
-     * @return   string       Pre-processed Url as string
+     * @return mixed
+     * @throws ApiException
      */
-    public static function cleanUrl(string $url): string
+    public static function mapClass(
+        HttpRequest $request,
+        HttpResponse $response,
+        $value,
+        string $classname,
+        int $dimension = 0,
+        string $namespace = 'Square\Models'
+    ) {
+        try {
+            return $dimension == 0 ? self::getJsonMapper()->mapClass($value, "$namespace\\$classname")
+                : self::getJsonMapper()->mapClassArray($value, "$namespace\\$classname", $dimension);
+        } catch (Exception $e) {
+            throw new ApiException($e->getMessage(), $request, $response);
+        }
+    }
+
+    /**
+     * Try mapping the class onto the value,
+     * If mapping failed due to the invalid oneOf or anyOf types,
+     * throw ApiException
+     *
+     * @param array  $json      value to be verified against the types
+     * @param string $classname name of the class to map
+     * @param string $namespace namespace name for the model classes, Default: global namespace
+     *
+     * @throws InvalidArgumentException
+     */
+    public static function verifyClass(
+        array $json,
+        string $classname,
+        string $namespace = 'Square\Models'
+    ) {
+        try {
+            $value = empty($json) ? new stdClass() : json_decode(json_encode($json));
+            self::getJsonMapper()->mapClass($value, "$namespace\\$classname");
+        } catch (Exception $e) {
+            throw new InvalidArgumentException($e->getMessage());
+        }
+    }
+
+    /**
+     * Map the types onto the value,
+     * If mapping failed due to the invalid oneOf or anyOf types,
+     * throw ApiException
+     *
+     * @param HttpRequest  $request    httpRequest obj to be used to throw ApiException
+     * @param HttpResponse $response   httpResponse obj to be used to throw ApiException
+     * @param mixed        $value      value to be verified against the types
+     * @param string       $types      types to be mapped in format OneOf(...) or AnyOf(...)
+     * @param string[]     $facMethods Specify if any methods are required to map this value into any type
+     * @param string       $namespace  namespace name for the model classes, Default: global namespace
+     *
+     * @return mixed
+     * @throws ApiException
+     */
+    public static function mapTypes(
+        HttpRequest $request,
+        HttpResponse $response,
+        $value,
+        string $types,
+        array $facMethods = [],
+        string $namespace = 'Square\Models'
+    ) {
+        try {
+            return self::getJsonMapper()->mapFor($value, $types, $namespace, $facMethods);
+        } catch (Exception $e) {
+            throw new ApiException($e->getMessage(), $request, $response);
+        }
+    }
+
+    /**
+     * Try mapping the types onto the value,
+     * If mapping failed due to the invalid oneOf or anyOf types,
+     * throw InvalidArgumentException
+     *
+     * @param mixed    $value                value to be verified against the types
+     * @param string   $types                types to be mapped in format OneOf(...) or AnyOf(...)
+     * @param string[] $serializationMethods Specify methods required for serialization instead of json_encode,
+     *                                       should be a string path to the accessible method along with the type,
+     *                                       separated by a space.
+     * @param string[] $facMethods           Specify if any methods are required to map this value into any type
+     * @param string   $namespace            namespace name for the model classes, Default: global namespace
+     *
+     * @return mixed
+     * @throws InvalidArgumentException
+     */
+    public static function verifyTypes(
+        $value,
+        string $types,
+        array $serializationMethods = [],
+        array $facMethods = [],
+        string $namespace = 'Square\Models'
+    ) {
+        try {
+            $value = self::applySerializationMethods($value, $serializationMethods);
+            self::getJsonMapper()->mapFor(json_decode(json_encode($value)), $types, $namespace, $facMethods);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException($e->getMessage());
+        }
+        return $value;
+    }
+
+    /**
+     * Ensures that all the given values are present in given Enum.
+     *
+     * @param array|null|int|string $value      Value or a list of values to be checked
+     * @param string                $enumName   Enum to be checked with given value
+     * @param array                 $enumValues An array with all possible enum values
+     *
+     * @throws Exception Throws exception if any given value is not in given Enum
+     */
+    public static function checkValueInEnum($value, string $enumName, array $enumValues): void
     {
-        //perform parameter validation
-        if (is_null($url) || !is_string($url)) {
-            throw new InvalidArgumentException('Invalid Url.');
+        if (is_null($value)) {
+            return;
         }
-        //ensure that the urls are absolute
-        $matchCount = preg_match("#^(https?://[^/]+)#", $url, $matches);
-        if ($matchCount == 0) {
-            throw new InvalidArgumentException('Invalid Url format.');
+        if (is_array($value)) {
+            foreach ($value as $v) {
+                self::checkValueInEnum($v, $enumName, $enumValues);
+            }
+            return;
         }
-        //get the http protocol match
-        $protocol = $matches[1];
+        if (!in_array($value, $enumValues, true)) {
+            throw new Exception("$value is invalid for $enumName.");
+        }
+    }
 
-        //remove redundant forward slashes
-        $query = substr($url, strlen($protocol));
-        $query = preg_replace("#//+#", "/", $query);
+    /**
+     * Extract type from any given value.
+     *
+     * @param mixed  $value should be an array to be checked for inner type
+     * @param string $start string to be appended at the start of the extracted type, Default: ''
+     * @param string $end   string to be appended at the end of the extracted type, Default: ''
+     *
+     * @return string Returns the type that could be mapped on the given value.
+     */
+    private static function getType($value, string $start = '', string $end = ''): string
+    {
+        if (is_array($value)) {
+            if (self::isAssociative($value)) {
+                // if value is associative array
+                $start .= 'array<string,';
+                $end = '>' . $end;
+            } else {
+                // if value is indexed array
+                if (empty($value)) {
+                    return 'array';
+                }
+                $end = '[]' . $end;
+            }
+            return self::getType(array_pop($value), $start, $end);
+        } elseif (is_object($value)) {
+            $type = get_class($value); // returns full path of class
+            $slashPos = strrpos($type, '\\');
+            if ($slashPos !== false) {
+                $slashPos++; // to get the type after last slash
+            } else {
+                $slashPos = 0; // if did not have any slashes
+            }
+            $type = substr($type, $slashPos);
+            return $start . $type . $end;
+        }
+        return $start . gettype($value) . $end;
+    }
 
-        //return process url
-        return $protocol . $query;
+    /**
+     * Apply serialization methods onto any given value.
+     *
+     * @param mixed    $value                Any value to be serialized
+     * @param string[] $serializationMethods Specify methods required for serialization instead of json_encode,
+     *                                       should be a string path to the accessible method along with the type,
+     *                                       separated by a space.
+     * @return mixed value after applying serialization method if applicable
+     */
+    public static function applySerializationMethods($value, array $serializationMethods)
+    {
+        $type = empty($serializationMethods) ? null : self::getType($value);
+        $error = null;
+        foreach ($serializationMethods as $method) {
+            $method = explode(' ', $method);
+            try {
+                if (is_callable($method[0]) && $type == $method[1]) {
+                    return call_user_func($method[0], $value);
+                }
+            } catch (\Throwable $e) {
+                $error = $e;
+            }
+        }
+        if (is_array($value)) {
+            return array_map(function ($v) use ($serializationMethods) {
+                return self::applySerializationMethods($v, $serializationMethods);
+            }, $value);
+        }
+        if (isset($error)) {
+            throw new InvalidArgumentException($error->getMessage());
+        }
+        return $value;
+    }
+
+    /**
+     * Serialize any given mixed value.
+     *
+     * @param mixed $value Any value to be serialized
+     *
+     * @return string|null serialized value
+     */
+    public static function serialize($value): ?string
+    {
+        if (is_string($value) || is_null($value)) {
+            return $value;
+        }
+        return json_encode($value);
     }
 
     /**
@@ -124,6 +349,61 @@ class ApiHelper
     }
 
     /**
+     * Decodes a valid json string into an array to send in Api calls.
+     *
+     * @param  mixed  $json         Must be null or array or a valid string json to be translated into a php array.
+     * @param  string $name         Name of the argument whose value is being validated in $json parameter.
+     * @param  bool   $associative  Should check for associative? Default: true.
+     *
+     * @return array|null    Returns an array made up of key-value pairs in the provided json string
+     *                       or throws exception, if the provided json is not valid.
+     * @throws InvalidArgumentException
+     */
+    public static function decodeJson($json, string $name, bool $associative = true): ?array
+    {
+        if (is_null($json) || (is_array($json) && (!$associative || self::isAssociative($json)))) {
+            return $json;
+        }
+        if ($json instanceof stdClass) {
+            $json = json_encode($json);
+        }
+        if (is_string($json)) {
+            $decoded = json_decode($json, true);
+            if (is_array($decoded) && (!$associative || self::isAssociative($decoded))) {
+                return $decoded;
+            }
+        }
+        throw new InvalidArgumentException("Invalid json value for argument: '$name'");
+    }
+
+    /**
+     * Decodes a valid jsonArray string into an array to send in Api calls.
+     *
+     * @param  mixed  $json   Must be null or array or a valid string jsonArray to be translated into a php array.
+     * @param  string $name   Name of the argument whose value is being validated in $json parameter.
+     * @param  bool   $asMap  Should decode as map? Default: false.
+     *
+     * @return array|null    Returns an array made up of key-value pairs in the provided jsonArray string
+     *                       or throws exception, if the provided json is not valid.
+     * @throws InvalidArgumentException
+     */
+    public static function decodeJsonArray($json, string $name, bool $asMap = false): ?array
+    {
+        $decoded = self::decodeJson($json, $name, false);
+        if (is_null($decoded)) {
+            return null;
+        }
+        $isAssociative = self::isAssociative($decoded);
+        if (($asMap && $isAssociative) || (!$asMap && !$isAssociative)) {
+            return array_map(function ($v) use ($name) {
+                return self::decodeJson($v, $name);
+            }, $decoded);
+        }
+        $type = $asMap ? 'map' : 'array';
+        throw new InvalidArgumentException("Invalid json $type value for argument: '$name'");
+    }
+
+    /**
      * Check if an array isAssociative (has string keys)
      *
      * @param  array   $arr   A valid array
@@ -142,36 +422,44 @@ class ApiHelper
     }
 
     /**
-     * Prepare a model for form encoding
+     * Prepare a model for form/query encoding.
      *
-     * @param  JsonSerializable  $model  A valid instance of JsonSerializable
+     * @param JsonSerializable|null $model  A valid instance of JsonSerializable.
      *
-     * @return array                     The model as a map of key value pairs
+     * @return array|null  The model as a map of key value pairs.
      */
-    public static function prepareFormFields(JsonSerializable $model): array
+    public static function prepareFields(?JsonSerializable $model): ?array
     {
-        if (!$model instanceof JsonSerializable) {
-            return $model;
+        if ($model == null) {
+            return null;
         }
-
-        $arr = $model->jsonSerialize();
-
-        foreach ($arr as $key => $value) {
-            if ($value instanceof JsonSerializable) {
-                $arr[$key] = static::prepareFormFields($value);
-            } elseif (
-                is_array($value) && !empty($value) && !static::isAssociative($value) &&
-                $value[0] instanceof JsonSerializable
-            ) {
-                $temp = [];
-                foreach ($value as $k => $v) {
-                    $temp[$k] = static::prepareFormFields($v);
-                }
-                $arr[$key] = $temp;
-            }
+        $modelArray = $model->jsonSerialize();
+        if ($modelArray instanceof stdClass) {
+            return [];
         }
+        return self::prepareValue($modelArray);
+    }
 
-        return $arr;
+    /**
+     * Prepare a mixed typed value or array for form/query encoding.
+     *
+     * @param mixed $value  Any mixed typed value.
+     *
+     * @return mixed  A valid instance to be sent in form/query.
+     */
+    public static function prepareValue($value)
+    {
+        if (is_null($value)) {
+            return null;
+        } elseif (is_array($value)) {
+            // recursively calling this function to resolve all types in any array
+            return array_map([self::class, 'prepareValue'], $value);
+        } elseif (is_bool($value)) {
+            return var_export($value, true);
+        } elseif ($value instanceof JsonSerializable) {
+            return self::prepareFields($value);
+        }
+        return $value;
     }
 
     /**

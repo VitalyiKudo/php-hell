@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Square\Models;
 
+use stdClass;
+
 /**
  * Defines a filter used in a search for `Shift` records. `AND` logic is
  * used by Square's servers to apply each filter property specified.
@@ -57,7 +59,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Location Ids.
-     *
      * Fetch shifts for the specified location.
      *
      * @return string[]
@@ -69,7 +70,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Location Ids.
-     *
      * Fetch shifts for the specified location.
      *
      * @required
@@ -84,9 +84,8 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Employee Ids.
-     *
      * Fetch shifts for the specified employees. DEPRECATED at version 2020-08-26. Use `team_member_ids`
-     * instead
+     * instead.
      *
      * @return string[]|null
      */
@@ -97,9 +96,8 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Employee Ids.
-     *
      * Fetch shifts for the specified employees. DEPRECATED at version 2020-08-26. Use `team_member_ids`
-     * instead
+     * instead.
      *
      * @maps employee_ids
      *
@@ -112,7 +110,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Status.
-     *
      * Specifies the `status` of `Shift` records to be returned.
      */
     public function getStatus(): ?string
@@ -122,10 +119,10 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Status.
-     *
      * Specifies the `status` of `Shift` records to be returned.
      *
      * @maps status
+     * @factory \Square\Models\ShiftFilterStatus::checkValue
      */
     public function setStatus(?string $status): void
     {
@@ -134,7 +131,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Start.
-     *
      * Represents a generic time range. The start and end values are
      * represented in RFC 3339 format. Time ranges are customized to be
      * inclusive or exclusive based on the needs of a particular endpoint.
@@ -148,7 +144,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Start.
-     *
      * Represents a generic time range. The start and end values are
      * represented in RFC 3339 format. Time ranges are customized to be
      * inclusive or exclusive based on the needs of a particular endpoint.
@@ -164,7 +159,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns End.
-     *
      * Represents a generic time range. The start and end values are
      * represented in RFC 3339 format. Time ranges are customized to be
      * inclusive or exclusive based on the needs of a particular endpoint.
@@ -178,7 +172,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets End.
-     *
      * Represents a generic time range. The start and end values are
      * represented in RFC 3339 format. Time ranges are customized to be
      * inclusive or exclusive based on the needs of a particular endpoint.
@@ -194,7 +187,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Workday.
-     *
      * A `Shift` search query filter parameter that sets a range of days that
      * a `Shift` must start or end in before passing the filter condition.
      */
@@ -205,7 +197,6 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Workday.
-     *
      * A `Shift` search query filter parameter that sets a range of days that
      * a `Shift` must start or end in before passing the filter condition.
      *
@@ -218,8 +209,7 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Returns Team Member Ids.
-     *
-     * Fetch shifts for the specified team members. Replaced `employee_ids` at version "2020-08-26"
+     * Fetch shifts for the specified team members. Replaced `employee_ids` at version "2020-08-26".
      *
      * @return string[]
      */
@@ -230,8 +220,7 @@ class ShiftFilter implements \JsonSerializable
 
     /**
      * Sets Team Member Ids.
-     *
-     * Fetch shifts for the specified team members. Replaced `employee_ids` at version "2020-08-26"
+     * Fetch shifts for the specified team members. Replaced `employee_ids` at version "2020-08-26".
      *
      * @required
      * @maps team_member_ids
@@ -246,21 +235,36 @@ class ShiftFilter implements \JsonSerializable
     /**
      * Encode this object to JSON
      *
-     * @return mixed
+     * @param bool $asArrayWhenEmpty Whether to serialize this model as an array whenever no fields
+     *        are set. (default: false)
+     *
+     * @return array|stdClass
      */
-    public function jsonSerialize()
+    #[\ReturnTypeWillChange] // @phan-suppress-current-line PhanUndeclaredClassAttribute for (php < 8.1)
+    public function jsonSerialize(bool $asArrayWhenEmpty = false)
     {
         $json = [];
-        $json['location_ids']  = $this->locationIds;
-        $json['employee_ids']  = $this->employeeIds;
-        $json['status']        = $this->status;
-        $json['start']         = $this->start;
-        $json['end']           = $this->end;
-        $json['workday']       = $this->workday;
-        $json['team_member_ids'] = $this->teamMemberIds;
-
-        return array_filter($json, function ($val) {
+        $json['location_ids']     = $this->locationIds;
+        if (isset($this->employeeIds)) {
+            $json['employee_ids'] = $this->employeeIds;
+        }
+        if (isset($this->status)) {
+            $json['status']       = ShiftFilterStatus::checkValue($this->status);
+        }
+        if (isset($this->start)) {
+            $json['start']        = $this->start;
+        }
+        if (isset($this->end)) {
+            $json['end']          = $this->end;
+        }
+        if (isset($this->workday)) {
+            $json['workday']      = $this->workday;
+        }
+        $json['team_member_ids']  = $this->teamMemberIds;
+        $json = array_filter($json, function ($val) {
             return $val !== null;
         });
+
+        return (!$asArrayWhenEmpty && empty($json)) ? new stdClass() : $json;
     }
 }
