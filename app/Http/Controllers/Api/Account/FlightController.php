@@ -199,7 +199,7 @@ class FlightController extends Controller
         $status = $this->CheckAge();
 
         return response()->json([
-            'search_results' => $searchResults,
+            'search_results' => ['pricing' => $searchResults->pricing, 'emptyLeg' => $searchResults->emptyLeg],
             'params' => $params,
             'messages' => $messages,
             'lastSearch_results' => $lastSearchResults,
