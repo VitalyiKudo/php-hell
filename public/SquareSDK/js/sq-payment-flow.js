@@ -4,13 +4,13 @@ async function SquarePaymentFlow() {
   CardPay(document.getElementById('card-container'), document.getElementById('card-button'));
 
   // Create Apple pay instance
-  ApplePay(document.getElementById('apple-pay-button'));
+//  ApplePay(document.getElementById('apple-pay-button'));
 
   // Create Google pay instance
-  GooglePay(document.getElementById('google-pay-button'));
+//  GooglePay(document.getElementById('google-pay-button'));
 
   // Create ACH payment
-  ACHPay(document.getElementById('ach-button'));
+//  ACHPay(document.getElementById('ach-button'));
 }
 
 window.payments = Square.payments(window.applicationId, window.locationId);
@@ -33,7 +33,8 @@ window.createPayment = async function(token) {
   const dataJsonString = JSON.stringify({
     token
   });
-
+//  alert(token);
+//    console.log(token);
   try {
     const response = await fetch('process-payment.php', {
       method: 'POST',

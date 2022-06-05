@@ -250,10 +250,10 @@ class OrderController extends Controller
                 $messages = $validator->messages();
             } else {
                 #dd($validator->messages());
-dd($request);
+#dd($request);
                 $nonce = $request->input('nonce');
 #dd($nonce);
-                if (is_null($nonce)) {
+                if (!is_null($nonce)) {
                     $comment = "";
                     $comment .= $request->input('comment') ? "Comment: " . $request->input('comment') . ";\r\n" : "" ;
                     $comment .= $request->input('first_name') ? "First Name: " . $request->input('first_name') . ";\r\n" : "" ;
@@ -284,7 +284,7 @@ dd($request);
                         $data_user = ['data_user' => ['user_email' => $user->email, 'first_name' => $user->first_name, 'last_name' => $user->last_name]];
                         $newOrder = $order->createOrder($dataOrder);
                         $response = $this->paymentSquareTrait($access_token, $total_price, $nonce, $newOrder->id);
-dd($response);
+#dd($response);
                         if ($response->isSuccess()) {
                             $dataTransaction = [
                                 'user_id' => $user->id,
@@ -305,7 +305,8 @@ dd($response);
                             $cart_errors = json_decode($response->getBody(), true)['errors'][0];
                         }
                         $newTransaction = $transaction->createTransaction($dataTransaction);
-
+                        #var_dump($cart_errors);
+#dd($newTransaction);
                         if ($newTransaction->is_success) {
                             $newOrder->order_status_id = $orderStatus->where('code', '=', 'paid')->first()->id;
                             $newOrder->payment_id = $response->getResult()->getPayment()->getId();

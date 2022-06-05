@@ -9,8 +9,13 @@ use Square\Models\Money;
 use Square\SquareClient;
 */
 use Square\SquareClient;
+use Square\Models\Money;
+use Square\Models\CreatePaymentRequest;
 use Square\Environment;
 use Square\Exceptions\ApiException;
+
+use Dotenv\Dotenv;
+use Ramsey\Uuid\Uuid;
 
 trait PaymentSquareTrait
 {
@@ -23,17 +28,20 @@ trait PaymentSquareTrait
 */
 
 $client = new SquareClient([
-                               'accessToken' => getenv('SQUARE_ACCESS_TOKEN'),
-                               'environment' => Environment::SANDBOX,
-                           ]);
+       #'accessToken' => getenv('SQUARE_ACCESS_TOKEN'),
+       #'environment' => ENVIRONMENT::SANDBOX,
+       'accessToken' => $access_token,
+       'environment' => getenv('ENVIRONMENT'),
 
+   ]);
+#dd($client);
 try {
 
     $apiResponse = $client->getLocationsApi()->listLocations();
-
+#dd($apiResponse);
     if ($apiResponse->isSuccess()) {
         $result = $apiResponse->getResult();
-        foreach ($result->getLocations() as $location) {
+        /*foreach ($result->getLocations() as $location) {
             printf(
                 "%s: %s, %s, %s<p/>",
                 $location->getId(),
@@ -41,7 +49,7 @@ try {
                 $location->getAddress()->getAddressLine1(),
                 $location->getAddress()->getLocality()
             );
-        }
+        }*/
 
     } else {
         $errors = $apiResponse->getErrors();
@@ -59,15 +67,33 @@ try {
     echo "ApiException occurred: <b/>";
     echo $e->getMessage() . "<p/>";
 }
-dd($apiResponse);
         $payments_api = $client->getPaymentsApi();
+        #$payments_api = $square_client->getPaymentsApi();
+
+// To learn more about splitting payments with additional recipients,
+// see the Payments API documentation on our [developer site]
+// (https://developer.squareup.com/docs/payments-api/overview).
 
         $money = new Money();
-        $money->setAmount($total_price*100);
+        /*
+// Monetary amounts are specified in the smallest unit of the applicable currency.
+// This amount is in cents. It's also hard-coded for $1.00, which isn't very useful.
+        $money->setAmount(100);
+// Set currency to the currency for the location
+        $money->setCurrency($location_info->getCurrency());
+        $money = new Money();
+        */
+
+        $money->setAmount((int)$total_price*100);
+        // TO DO $result->location
         $money->setCurrency('USD');
+
+#dd($money);
         $create_payment_request = new CreatePaymentRequest($nonce, uniqid('', true), $money);
+        #$create_payment_request = new CreatePaymentRequest($nonce, Uuid::uuid4(), $money);
         #$create_payment_request->setOrderId((string)$orderId);
 #dd($create_payment_request);
+        #dd($payments_api->createPayment($create_payment_request));
         return  $payments_api->createPayment($create_payment_request);
         /*
             // If there was an error with the request we will

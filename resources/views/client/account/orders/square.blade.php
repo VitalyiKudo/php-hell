@@ -10,15 +10,25 @@
     <script type="text/javascript">
         window.applicationId = "{{ $applicationId }}";
         window.locationId = "{{ $locationId }}";
+        window.currency = 'USD';
+        window.country = 'US';
+        const appId = "{{ $applicationId }}";
+        const locationId = "{{ $locationId }}";
+
     </script>
     {{--    <script src="{{ asset('js/sq-payment-form.js') }}" type="text/javascript"></script>
     --
     <link href="{{ asset('css/sq-payment-form.css') }}" rel="stylesheet">
-    --}}
-    <script src="{{ asset('SquareV2/js/sq-payment-flow.js') }}" type="text/javascript"></script>
+    --
 
-    <link href="{{ asset('SquareV2/stylesheets/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('SquareV2/stylesheets/style.css') }}" rel="stylesheet">
+    <script src="{{ asset('SquareSDK/js/sq-card-pay.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('SquareSDK/js/sq-payment-flow.js') }}" type="text/javascript"></script>--}}
+
+    {{--}}<link href="{{ asset('SquareSDK/stylesheets/app.css') }}" rel="stylesheet">--
+    <link href="{{ asset('SquareSDK/stylesheets/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('SquareSDK/stylesheets/sq-payment.css') }}" rel="stylesheet">--}}
+
+    <link href="{{ asset('css/sq-payment-form.css') }}" rel="stylesheet">
 @endsection
 
 @section('book_page', 'book-page-nav')
@@ -194,7 +204,7 @@
                                 <input type="text" class="form-control" id="postal" placeholder="ZIP code">
                             </div>
                             -->
-
+{{--}}
                             <div class="sq-field-out-wrapper">
                                 <img src="{{ asset('images/card_numbers.png') }}" class="img-fluid" alt="card-numbers"/>
                                 <div class="sq-field" id="sq-card-number-wrapper">
@@ -218,7 +228,7 @@
                                 <label class="sq-label">Postal</label>
                                 <div id="sq-postal-code"></div>
                             </div>
-
+--}}
                             <!--
                             <div class="sq-field">
                                 <button id="sq-creditcard" class="sq-button" onclick="onGetCardNonce(event)">Pay $1.00 Now</button>
@@ -226,43 +236,84 @@
 
                               After a nonce is generated it will be assigned to this hidden input field.
                             -->
-                            <ul id="error"></ul>
 
-                            <ul id="error-card">
-                                @foreach ($cart_errors as  $cart_error)
-                                <li>{{ $cart_error }}</li>
-                                @endforeach
-                            </ul>
-
-                            <input type="hidden" id="card-nonce" name="nonce">
-
-                            <div class="form-group agree-block pt-3">
-                                <div class="form-check text-center">
-                                    <input class="form-check-input{{ $messages && $messages->has('is_accepted') ? ' is-invalid' : '' }}" name="is_accepted" value="on" type="checkbox" id="gridCheck" {{ $params['is_accepted'] == 'on' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="gridCheck">I agree with Cancellation policy</label>
-                                    @if ($messages && $messages->has('is_accepted'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $messages->first('is_accepted') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
+                            {{--}}
+                            <div id="card-container1"></div>
                             <div class="sq-field text-center abs-reset-button pb-5">
                                 <button id="sq-creditcard" class="sq-button" onclick="onGetCardNonce(event)">CONFIRM & PAY</button>
                             </div>
-
+--}}
                             <!--
                             <button type="submit" class="btn btn-primary">Sign in</button>
                             -->
+                            <div class="wrapper">
+
+                                <div id="card-container"></div>
+
+                                <ul id="error"></ul>
+
+                                <ul id="error-card">
+                                    @foreach ($cart_errors as  $cart_error)
+                                        <li>{!! $cart_error !!}</li>
+                                    @endforeach
+                                </ul>
+
+                                <input type="hidden" id="card-nonce" name="nonce" value="">
+
+                                <div class="form-group agree-block pt-3">
+                                    <div class="form-check text-center">
+                                        <input class="form-check-input{{ $messages && $messages->has('is_accepted') ? ' is-invalid' : '' }}" name="is_accepted" value="on" type="checkbox" id="gridCheck" {{ $params['is_accepted'] == 'on' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="gridCheck">I agree with Cancellation policy</label>
+                                        @if ($messages && $messages->has('is_accepted'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $messages->first('is_accepted') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="sq-field text-center abs-reset-button pb-5">
+                                    <button id="card-button" type="button" class="sq-button">CONFIRM & PAY</button>
+                                </div>
+                                <span id="payment-flow-message"></span>
+                            </div>
                         </form>
 
                     </div>
+{{--
                     <form id="payment-form">
                         <div id="card-container"></div>
-                        <button id="card-button" type="button">Pay $1.00</button>
+                        <div class="sq-field text-center abs-reset-button pb-5">
+                            <button id="card-button" type="button" class="sq-button">Pay $1.00</button>
+                        </div>
                     </form>
                     <div id="payment-status-container"></div>
+--}}
+{{--}}
+                <form class="payment-form" id="fast-checkout">
+                    @csrf
+                    <div class="wrapper">
+                        {{--<div id="apple-pay-button" alt="apple-pay" type="button"></div>
+                        <div id="google-pay-button" alt="google-pay" type="button"></div>
+                        <div class="border">
+                            <span>OR</span>
+                        </div>
+                        <div id="ach-wrapper">
+                            <label for="ach-account-holder-name">Full Name</label>
+                            <input id="ach-account-holder-name" type="text" placeholder="Jane Doe" name="ach-account-holder-name" autocomplete="name" /><span id="ach-message"></span><button id="ach-button" type="button">Pay with Bank Account</button>
+
+                            <div class="border">
+                                <span>OR</span>
+                            </div>
+                        </div>--
+                        <div id="card-container"></div>
+                        <div class="sq-field text-center abs-reset-button pb-5">
+                            <button id="card-button" type="button" class="sq-button">Pay $1.00</button>
+                        </div>
+                        <span id="payment-flow-message"></span>
+                    </div>
+                </form>
+--}}
                 </div>
             </div>
         </div>
@@ -276,9 +327,11 @@
 
 
 @push('scripts')
+    <script src="{{ asset('SquareSDK/js/sq-card-pay.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('SquareSDK/js/sq-payment-flow.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
 
-        $(document).ready(function(){
+    $(document).ready(function(){
 
 
         $(function() {
@@ -292,124 +345,7 @@
             //$('input[name="flightDate"]').attr("placeholder","Date & Time");
 
         });
-
-        // Square
-
-            const appId = "{{ $applicationId }}";
-            const locationId = "{{ $locationId }}";
-
-            async function initializeCard(payments) {
-                const card = await payments.card();
-                await card.attach('#card-container');
-
-                return card;
-            }
-
-            async function createPayment(token) {
-                const body = JSON.stringify({
-                    locationId,
-                    sourceId: token,
-                });
-
-                const paymentResponse = await fetch('/payment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body,
-                });
-
-                if (paymentResponse.ok) {
-                    return paymentResponse.json();
-                }
-
-                const errorBody = await paymentResponse.text();
-                throw new Error(errorBody);
-            }
-
-            async function tokenize(paymentMethod) {
-                const tokenResult = await paymentMethod.tokenize();
-                if (tokenResult.status === 'OK') {
-                    return tokenResult.token;
-                } else {
-                    let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
-                    if (tokenResult.errors) {
-                        errorMessage += ` and errors: ${JSON.stringify(
-                            tokenResult.errors
-                        )}`;
-                    }
-
-                    throw new Error(errorMessage);
-                }
-            }
-
-            // status is either SUCCESS or FAILURE;
-            function displayPaymentResults(status) {
-                const statusContainer = document.getElementById(
-                    'payment-status-container'
-                );
-                if (status === 'SUCCESS') {
-                    statusContainer.classList.remove('is-failure');
-                    statusContainer.classList.add('is-success');
-                } else {
-                    statusContainer.classList.remove('is-success');
-                    statusContainer.classList.add('is-failure');
-                }
-
-                statusContainer.style.visibility = 'visible';
-            }
-
-            document.addEventListener('DOMContentLoaded', async function () {
-                if (!window.Square) {
-                    throw new Error('Square.js failed to load properly');
-                }
-
-                let payments;
-                try {
-                    payments = window.Square.payments(appId, locationId);
-                } catch {
-                    const statusContainer = document.getElementById(
-                        'payment-status-container'
-                    );
-                    statusContainer.className = 'missing-credentials';
-                    statusContainer.style.visibility = 'visible';
-                    return;
-                }
-
-                let card;
-                try {
-                    card = await initializeCard(payments);
-                } catch (e) {
-                    console.error('Initializing Card failed', e);
-                    return;
-                }
-
-                // Checkpoint 2.
-                async function handlePaymentMethodSubmission(event, paymentMethod) {
-                    event.preventDefault();
-
-                    try {
-                        // disable the submit button as we await tokenization and make a payment request.
-                        cardButton.disabled = true;
-                        const token = await tokenize(paymentMethod);
-                        const paymentResults = await createPayment(token);
-                        displayPaymentResults('SUCCESS');
-
-                        console.debug('Payment Success', paymentResults);
-                    } catch (e) {
-                        cardButton.disabled = false;
-                        displayPaymentResults('FAILURE');
-                        console.error(e.message);
-                    }
-                }
-
-                const cardButton = document.getElementById('card-button');
-                cardButton.addEventListener('click', async function (event) {
-                    await handlePaymentMethodSubmission(event, card);
-                });
-            });
-
-        });
+    });
 
     </script>
 

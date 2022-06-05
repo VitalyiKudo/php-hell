@@ -2,28 +2,37 @@
 
 namespace App\Http\Controllers\Api\Account;
 
-use App\Jobs\SendEmailOperator;
 use App\Models\City;
-use App\Models\EmptyLeg;
 use App\Models\OperatorCity;
-use App\Models\OrderStatus;
-use Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
+use App\Jobs\SendEmailOperator;
+use App\Traits\PaymentSquareTrait;
+
+use App\Models\EmptyLeg;
 use App\Models\Order;
 use App\Models\Airport;
 use App\Models\Airline;
 use App\Models\Operator;
 use App\Models\Fees;
-use Mail;
 use App\Models\Transaction;
 use App\Models\Search;
 use App\Models\Pricing;
-use App\Http\Controllers\Controller;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
-use App\Http\Requests\Client\OrderPayment as OrderPaymentRequest;
-use \Validator;
+use App\Models\OrderStatus;
+
+use Validator;
 use Session;
-use Carbon\Carbon;
+use Carbon;
+use Auth;
+use Config;
+#use Mail;
+#use Str;
+#use DB;
 // Square
 use Square\Environment;
 use Dotenv\Dotenv;
@@ -31,11 +40,11 @@ use Square\Models\Money;
 use Square\Models\CreatePaymentRequest;
 use Square\Exceptions\ApiException;
 use Square\SquareClient;
-use DB;
-
 
 class OrderController extends Controller
 {
+    use PaymentSquareTrait;
+
     /**
      * Create a new controller instance.
      *
