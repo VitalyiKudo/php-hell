@@ -84,14 +84,14 @@
 
         <div class="row">
             <div class="col-xl-12 col-lg-12 right-request">
-                <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_empty_leg">
+
 {{-- dd($emptyLegs) --}}
                     @forelse ($emptyLegs as $emptyLeg)
+                    <form action="{{ route('client.search.requestQuote') }}" method="GET">
                         @php
                             $type = Str::after($emptyLeg->type_plane, '_');
                             $TYPE = Str::upper($type);
                             $Type = Str::ucfirst($type);
-							#dd($emptyLeg);
                         @endphp
                                 <div class="card mb-4">
                                     <div class="card-body">
@@ -114,30 +114,42 @@
 
                                                 <div>
                                                     <span class="flight-price-desc">{{ __('From Airport')}}</span>
-                                                    <span class="flight-price">{{ $emptyLeg->departureCity->name}}</span>
+                                                    <span class="flight-price">{{ $emptyLeg->departureCity->name }}</span>
                                                 </div>
                                                 <div>
                                                     <span class="flight-price-desc">{{ __('To Airport')}}</span>
                                                     <span class="flight-price">{{ $emptyLeg->arrivalCity->name }}</span>
                                                 </div>
+
+                                                <input type="hidden" name="result_id" value="{{ $emptyLeg->id }}" name="result_id">
+                                                <input type="hidden" name="aircraft" value="{{ $Type }}" name="aircraft">
+                                                <input type="hidden" name="startPointName" value="{{ $emptyLeg->departureCity->name }}" name="start_airport_name">
+                                                <input type="hidden" name="endPointName" value="{{ $emptyLeg->arrivalCity->name }}" name="end_airport_name">
+                                                <input type="hidden" name="startPoint" value="{{ $emptyLeg->departureCity->geonameid }}" name="start_city_id">
+                                                <input type="hidden" name="endPoint" value="{{ $emptyLeg->arrivalCity->geonameid }}" name="end_city_id">
+                                                <input type="hidden" name="startAirport" value="{{ $emptyLeg->airportDeparture->icao }}" name="start_airport_id">
+                                                <input type="hidden" name="endAirport" value="{{ $emptyLeg->airportArrival->icao }}" name="end_airport_id">
+                                                <input type="hidden" name="departure_at" value="{{ $emptyLeg->date_departure }}" name="departure_at">
+                                                <input type="hidden" name="page_name" value="empty-leg-page">
+
                                                 {!! ((int)$emptyLeg->price !== 0) ?
                                                 "<div>
                                                     <a href=". route('client.orders.confirm', [$emptyLeg->id, 'emptyLeg'] ) ." class='book btn book-now'>" . __('Book now') . "</a>
                                                 </div>"
                                                 :
-                                                "<div class='text-right pull-right'>
-                                                    <button type='submit' class='request-quote-submit pull-right'>Request a Quote</button>
-                                                    <a href=". route('client.orders.confirm', [$emptyLeg->id, 'emptyLeg'] ) ." class='request-quote-submit pull-right'>" . __('Request a Quote') . "</a>
+                                                "<div>
+                                                    <button type='submit' class='request-empty-leg-submit'>Request a Quote</button>
                                                 </div>"
                                                 !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </form>
                     @empty
                         <div></div>
                     @endforelse
-               </form>
+
            <div class="pb-5"></div>
        </div>
    </div>

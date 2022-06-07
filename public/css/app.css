@@ -16650,6 +16650,7 @@ ul.dashed > li:before {
     opacity: 0.8;
     border-radius: 6px;
     padding: 0.5rem 2rem 0.5rem 3.5rem;
+    color: #ffffff;
 }
 
 .rquest-best-price {
@@ -16685,6 +16686,17 @@ ul.dashed > li:before {
     text-align: center !important;
     color: #ffffff !important;
     padding: 10px 30px;
+    text-decoration: none !important;
+    background: linear-gradient(180deg, #ca9d86 0%, #b58267 29.69%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: none;
+}
+
+.request-empty-leg-submit {
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 0.5rem 2.34rem;
     text-decoration: none !important;
     background: linear-gradient(180deg, #ca9d86 0%, #b58267 29.69%);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);

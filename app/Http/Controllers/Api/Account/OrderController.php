@@ -650,12 +650,12 @@ class OrderController extends Controller
                                 );
 
                                 return response()->json([
-                                                            'order_id' => $order->id,
-                                                            'order' => Order::Find($order->id),
-                                                            'search' => Search::Find($order->search_result_id),
+                                                            'order_id' => $newOrder->id,
+                                                            'order' => Order::Find($newOrder->id),
+                                                            'search' => Search::Find($newOrder->search_result_id),
                                                             'search_type' => $search_type,
                                                             'time' => $time,
-                                                            'pricing' => $pricing,
+                                                            'pricing' => $newOrder->price,
                                                         ]);
                             }
 
@@ -695,6 +695,8 @@ class OrderController extends Controller
             'is_accepted' => $request->input('is_accepted'),
         ];
 
+        $time_type = 'time_' . $search_type;
+
         return response()->json([
             'messages' => $messages,
             'upper_case_environment' => $upper_case_environment,
@@ -703,21 +705,21 @@ class OrderController extends Controller
             'locationId' => $locationId,
             'search_id' => $search_id,
             'search_type' => $search_type,
-            'pricing' => $pricing,
-            'price' => $price,
-            'time' => $time,
+            'pricing' => $total_price,
+            'price' => $total_price,
+            'time' => !empty($search->price->$time_type) ? $search->price->$time_type : '-',
             'user' => $user,
-            'start_airport_name' => $start_airport_name,
-            'end_airport_name' => $end_airport_name,
-            'departure_at' => $departure_at,
-            'pax' => $pax,
-            'feeses' => $feeses,
+ #           'start_airport_name' => $start_airport_name,
+ #           'end_airport_name' => $end_airport_name,
+ #           'departure_at' => $departure_at,
+            'pax' => !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers"),
+#            'feeses' => $feeses,
             'total_price' => $total_price,
             'params' => $params,
             'request_method' => $request_method,
             'cart_errors' => $cart_errors,
             'pervis_confirm_url' => $pervis_confirm_url,
-            'post_form_url' => $post_form_url,
+ #           'post_form_url' => $post_form_url,
         ]);
 
     }
@@ -776,7 +778,7 @@ class OrderController extends Controller
             //return redirect($pervis_search_url);
             return response()->json([
                 'message' => 'Your order status is not in process or order price equal 0. You must return to the previous url.',
-                'pervis_confirm_url' => $pervis_confirm_url,
+                'pervis_confirm_url' => $pervis_search_url,
             ], 302);
         }
 

@@ -147,6 +147,6 @@ class Order extends Model
      */
     public function searches()
     {
-        return $this->belongsTo('App\Models\Search', 'search_result_id');
+        return $this->belongsTo(Search::class, 'search_result_id', 'id');
     }
 }

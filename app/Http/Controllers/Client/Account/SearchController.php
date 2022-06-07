@@ -264,7 +264,7 @@ class SearchController extends Controller
         //echo "<pre>";
         //print_r($search_update);
         //echo "</pre>";
-
+#dd($request);
 
         $lastSearchResults = Search::where('user_id', Auth::user()->id)
             ->orderBy('id', 'desc')
@@ -329,7 +329,7 @@ class SearchController extends Controller
             $search->order_status_id = 5;
             $search->search_result_id = $searchResult->id;
             $search->comment = $comment;
-            $search->type = $params['flight_model'];
+            $search->type = $params['aircraft'];
             $search->book_status = 0;
             $search->save();
 

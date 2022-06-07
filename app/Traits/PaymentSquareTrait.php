@@ -20,25 +20,17 @@ use Ramsey\Uuid\Uuid;
 trait PaymentSquareTrait
 {
     public function paymentSquareTrait ($access_token, $total_price, $nonce, $orderId) {
-/*
-        $client = new SquareClient([
-           'accessToken' => $access_token,
-           'environment' => getenv('ENVIRONMENT')
-       ]);
-*/
 
 $client = new SquareClient([
-       #'accessToken' => getenv('SQUARE_ACCESS_TOKEN'),
-       #'environment' => ENVIRONMENT::SANDBOX,
        'accessToken' => $access_token,
        'environment' => getenv('ENVIRONMENT'),
 
    ]);
-#dd($client);
+
 try {
 
     $apiResponse = $client->getLocationsApi()->listLocations();
-#dd($apiResponse);
+
     if ($apiResponse->isSuccess()) {
         $result = $apiResponse->getResult();
         /*foreach ($result->getLocations() as $location) {
@@ -68,7 +60,6 @@ try {
     echo $e->getMessage() . "<p/>";
 }
         $payments_api = $client->getPaymentsApi();
-        #$payments_api = $square_client->getPaymentsApi();
 
 // To learn more about splitting payments with additional recipients,
 // see the Payments API documentation on our [developer site]
@@ -88,12 +79,8 @@ try {
         // TO DO $result->location
         $money->setCurrency('USD');
 
-#dd($money);
         $create_payment_request = new CreatePaymentRequest($nonce, uniqid('', true), $money);
-        #$create_payment_request = new CreatePaymentRequest($nonce, Uuid::uuid4(), $money);
-        #$create_payment_request->setOrderId((string)$orderId);
-#dd($create_payment_request);
-        #dd($payments_api->createPayment($create_payment_request));
+
         return  $payments_api->createPayment($create_payment_request);
         /*
             // If there was an error with the request we will

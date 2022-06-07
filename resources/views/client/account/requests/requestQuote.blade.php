@@ -264,13 +264,16 @@
                                                 <label class="form-check-label" for="catering">Catering</label>
                                             </div>
 
+                                            {{--}}<input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" name="start_city_id">
+                                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" name="end_city_id">
+                                            <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" name="start_airport_id">
+                                            <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" name="end_airport_id">--}}
                                             <input type="hidden" name="page_name" value="reqest-page">
 
                                         </div>
                                     </div>
 
                                 </div>
-
 
                                 <div class="request-quote-block">
                                     <input type="text" name="comment" class="form-control" placeholder="Write your preferences" value="{{ $params['comment'] }}">

@@ -33,8 +33,7 @@ window.createPayment = async function(token) {
   const dataJsonString = JSON.stringify({
     token
   });
-//  alert(token);
-//    console.log(token);
+
   try {
     const response = await fetch('process-payment.php', {
       method: 'POST',

@@ -8,13 +8,13 @@
 
 <div class="container request-page">
     <div class="row">
-        
+
         <!--
         <div class="col-lg-4">
             <h2 class="mb-4 left-request-title">Requests</h2>
             <div class="left-request">
                 <p class="mb-3">Sort search request by</p>
-                
+
                 <p class="dropdown-label mb-0">Status</p>
                 <select class="selectpicker mb-3" data-width="100%">
                     <option>Active</option>
@@ -47,7 +47,7 @@
                             <div class="col-1 col-sm-1 col-md-1"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">From Airport</div>
-                                <div class="center-bold">{{ $request->start_airport_name }}</div>
+                                <div class="center-bold">{{ $request->searches->departureCity->name }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-1 col-sm-1 col-md-1">
@@ -55,13 +55,13 @@
                             </div>
                             <div class="col-5 col-sm-5 col-md-2">
                                 <div class="silver-info mb-2">To Airport</div>
-                                <div class="center-bold">{{ $request->end_airport_name }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
+                                <div class="center-bold">{{ $request->searches->arrivalCity->name }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->searches->created_at)->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-6 col-sm-6 col-md-1">
                                 <div class="d-block d-sm-block d-md-none mt-4"></div>
                                 <div class="silver-info mb-1">PASS.</div>
-                                <div class="center-bold">{{ $request->pax }}</div>
+                                <div class="center-bold">{{ $request->searches->pax }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
                             <div class="col-6 col-sm-6 col-md-2">
@@ -76,7 +76,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         @if (createAdditionalDataArray($request->comment, 'from_stop_airport') || createAdditionalDataArray($request->comment, 'to_stop_airport'))
                         <hr>
                         <div class="row align-items-center">
@@ -97,7 +97,7 @@
                             <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
-                        
+
                         @if (createAdditionalDataArray($request->comment, 'from_return_airport') || createAdditionalDataArray($request->comment, 'to_return_airport'))
                         <hr>
                         <div class="row align-items-center">
@@ -120,13 +120,13 @@
                             <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
-                        
+
                     </div>
                 </div>
             @endforeach
-            
+
             {{ $requests->links() }}
-            
+
         </div>
     </div>
 </div>

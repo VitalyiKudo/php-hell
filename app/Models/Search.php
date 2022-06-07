@@ -123,7 +123,7 @@ class Search extends Model
      */
     public function orders()
     {
-        return $this->hasMany('App\Models\Order', 'id', 'search_result_id');
+        return $this->hasMany(Order::class, 'search_result_id', 'id');
     }
 
     /**

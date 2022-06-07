@@ -4,29 +4,12 @@
     <title>Jet Booking | Step 3</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    {{--<script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://js.squareup.com/v2/paymentform" : "https://js.squareupsandbox.com/v2/paymentform" }}"></script> --}}
     <script type="text/javascript" src="{{ 'PRODUCTION' == $upper_case_environment  ? "https://web.squarecdn.com/v1/square.js" : "https://sandbox.web.squarecdn.com/v1/square.js" }}"></script>
 
     <script type="text/javascript">
         window.applicationId = "{{ $applicationId }}";
         window.locationId = "{{ $locationId }}";
-        window.currency = 'USD';
-        window.country = 'US';
-        const appId = "{{ $applicationId }}";
-        const locationId = "{{ $locationId }}";
-
     </script>
-    {{--    <script src="{{ asset('js/sq-payment-form.js') }}" type="text/javascript"></script>
-    --
-    <link href="{{ asset('css/sq-payment-form.css') }}" rel="stylesheet">
-    --
-
-    <script src="{{ asset('SquareSDK/js/sq-card-pay.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('SquareSDK/js/sq-payment-flow.js') }}" type="text/javascript"></script>--}}
-
-    {{--}}<link href="{{ asset('SquareSDK/stylesheets/app.css') }}" rel="stylesheet">--
-    <link href="{{ asset('SquareSDK/stylesheets/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('SquareSDK/stylesheets/sq-payment.css') }}" rel="stylesheet">--}}
 
     <link href="{{ asset('css/sq-payment-form.css') }}" rel="stylesheet">
 @endsection
@@ -103,10 +86,6 @@
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                 <a href="{{ $pervis_confirm_url }}" class="btn btn-light back_arrow">Back to JET TYPE</a>
-                <!--
-                <a href="{{-- Request::path() --}}" class="btn btn-light back_arrow">Back to JET TYPE</a>
-                <a onclick="window.history.back();" class="btn btn-light back_arrow">Back to JET TYPE</a>
-                -->
             </div>
 
             <div class="d-none d-sm-none d-md-none d-lg-block col-lg-9 col-lg-10 col-xl-7">
@@ -198,54 +177,6 @@
 
                             <div class="form-titles mt-5">payment</div>
 
-                            <!--
-                            <div class="form-group">
-                                <label for="postal">Postal</label>
-                                <input type="text" class="form-control" id="postal" placeholder="ZIP code">
-                            </div>
-                            -->
-{{--}}
-                            <div class="sq-field-out-wrapper">
-                                <img src="{{ asset('images/card_numbers.png') }}" class="img-fluid" alt="card-numbers"/>
-                                <div class="sq-field" id="sq-card-number-wrapper">
-                                    <label class="sq-label hide-desctop">Card number</label>
-                                    <div id="sq-card-number"></div>
-                                    <input type="number" name="sq-card-number">
-                                    <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
-                                </div>
-
-                                <div class="sq-field" id="sq-cvv-wrapper">
-                                    <label class="sq-label hide-desctop">3 digits on the back of card</label>
-                                    <div id="sq-cvv"></div>
-                                </div>
-                                <div class="sq-field" id="sq-expiration-date-wrapper">
-                                    <label class="sq-label hide-desctop">Expiration date</label>
-                                    <div id="sq-expiration-date"></div>
-                                </div>
-                            </div>
-
-                            <div class="sq-field abs-reset-post">
-                                <label class="sq-label">Postal</label>
-                                <div id="sq-postal-code"></div>
-                            </div>
---}}
-                            <!--
-                            <div class="sq-field">
-                                <button id="sq-creditcard" class="sq-button" onclick="onGetCardNonce(event)">Pay $1.00 Now</button>
-                            </div>
-
-                              After a nonce is generated it will be assigned to this hidden input field.
-                            -->
-
-                            {{--}}
-                            <div id="card-container1"></div>
-                            <div class="sq-field text-center abs-reset-button pb-5">
-                                <button id="sq-creditcard" class="sq-button" onclick="onGetCardNonce(event)">CONFIRM & PAY</button>
-                            </div>
---}}
-                            <!--
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                            -->
                             <div class="wrapper">
 
                                 <div id="card-container"></div>
@@ -280,45 +211,9 @@
                         </form>
 
                     </div>
-{{--
-                    <form id="payment-form">
-                        <div id="card-container"></div>
-                        <div class="sq-field text-center abs-reset-button pb-5">
-                            <button id="card-button" type="button" class="sq-button">Pay $1.00</button>
-                        </div>
-                    </form>
-                    <div id="payment-status-container"></div>
---}}
-{{--}}
-                <form class="payment-form" id="fast-checkout">
-                    @csrf
-                    <div class="wrapper">
-                        {{--<div id="apple-pay-button" alt="apple-pay" type="button"></div>
-                        <div id="google-pay-button" alt="google-pay" type="button"></div>
-                        <div class="border">
-                            <span>OR</span>
-                        </div>
-                        <div id="ach-wrapper">
-                            <label for="ach-account-holder-name">Full Name</label>
-                            <input id="ach-account-holder-name" type="text" placeholder="Jane Doe" name="ach-account-holder-name" autocomplete="name" /><span id="ach-message"></span><button id="ach-button" type="button">Pay with Bank Account</button>
-
-                            <div class="border">
-                                <span>OR</span>
-                            </div>
-                        </div>--
-                        <div id="card-container"></div>
-                        <div class="sq-field text-center abs-reset-button pb-5">
-                            <button id="card-button" type="button" class="sq-button">Pay $1.00</button>
-                        </div>
-                        <span id="payment-flow-message"></span>
-                    </div>
-                </form>
---}}
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </div>
