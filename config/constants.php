@@ -7,6 +7,8 @@ return [
         'On hold' => 2,
         'Done' => 3,
         'Deleted' => 4,
+        'Awaiting for Acceptance' => 5,
+        'Paid' => 6,
     ],
 
     'active_bg' => [

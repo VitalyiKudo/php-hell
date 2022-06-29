@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,16 +30,15 @@ class EmptyLegController extends Controller
 
         $status = $this->CheckAge();
 
-        return view('client.emptyLegs', compact('emptyLegs', 'typePlanes', 'status'));
+        return response()->json(compact('emptyLegs', 'typePlanes', 'status'));
     }
 
     public function ajaxSearch (Request $request)
     {
         $startPointName = $request->startPointName;
-        #dd($request);
         $endPointName = $request->endPointName;
         $flightDate = (!empty($request->flightDate)) ? Carbon::parse($request->flightDate)->format('Y-m-d') : null;
-#dd($flightDate);
+
         $filterEmptyLegs = collect();
         if (!empty($startPointName) || !empty($endPointName) || !empty($flightDate)) {
             $filterEmptyLegs = EmptyLeg::with(
@@ -107,13 +106,9 @@ class EmptyLegController extends Controller
                 })
                 ->where('active', Config::get('constants.active.Active'))
                 ->get()
-            #->toSql();
-            ->paginate(1);
+            ->paginate(10);
         }
-        #dd($result);
-        #dd(response()->json($result));
+
         return response()->json(compact('filterEmptyLegs'));
-        #return Response::json(View::make('posts', array('posts' => $posts))->render());
-        #return view('client.emptyLegs', compact('emptyLegs', 'typePlanes', 'status'));
     }
 }

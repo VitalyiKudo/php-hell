@@ -21,7 +21,7 @@ class OrderAdminSender
         $date = Carbon::parse($date)->format('d F Y');
         Mail::send([], [], static function ($message) use ($user, $resultId, $date, $startCity, $endCity, $comment, $pax, $flightModel) {
             $message->from($user->email, 'JetOnset team');
-            $message->to('hitman@humanit.pro')->subject("We have request for you #{$resultId}");
+            $message->to('request@jetonset.com')->subject("We have request for you #{$resultId}");
 
             $flightModel = ucfirst($flightModel);
             $message->setBody(

@@ -152,7 +152,7 @@ class OrderController extends Controller
     public function confirm(Request $request)
     {
         $session_id = Session::get('session_token_id');
-
+/*
         $search_updates = Search::where('session_id', $session_id)->get();
         if($search_updates){
             foreach ($search_updates as $search_update) {
@@ -160,21 +160,38 @@ class OrderController extends Controller
                 $search_update->save();
             }
         }
+*/
+        #dd($request);
 
+        $search = new Search;
+        $search->result_id = $request->result_id;
+        $search->user_id = Auth::check() ? Auth::user()->id : NULL;
+        $search->session_id = $session_id;
+        $search->start_airport_name = $request->startAirport;
+        $search->end_airport_name = $request->endAirport;
+        $search->departure_geoId = $request->startPoint;
+        $search->arrival_geoId = $request->endPoint;
+        $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
+        $search->pax = $request->passengers > 0 ? $request->passengers : 0;
+        $search->save();
+
+#dd($search);
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
 
         $user = Auth::user();
-        $search_id = $request->route('search');
-        $search_type = $request->route('type');
-
+        $search_id = $search->id;
+        #$search_id = 648;
+        #$search_type = $request->route('type');
+        $search_type = $request->type;
+#dd($search_type);
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
-
+#dd($search);
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 
@@ -188,20 +205,23 @@ class OrderController extends Controller
      */
     public function square(Request $request, Order $order, Transaction $transaction, OrderStatus $orderStatus)
     {
-        $pervis_confirm_url = Session::get('pervis_confirm_url');
-
+/*
         $dotenv = Dotenv::create(base_path());
         $dotenv->load();
-
+*/
         $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
 
         $applicationId = getenv($upper_case_environment.'_APP_ID');
         $locationId = getenv($upper_case_environment.'_LOCATION_ID');
-
+/*
         $environment = $_ENV["ENVIRONMENT"];
-        $access_token =  getenv($upper_case_environment.'_ACCESS_TOKEN');
+        $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
+*/
+        $pervis_confirm_url = Session::get('pervis_confirm_url');
 
         $user = Auth::user();
+        #dd($request);
+
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
@@ -219,7 +239,7 @@ class OrderController extends Controller
 
         $messages = NULL;
         $cart_errors = [];
-
+#dd($search);
         $request_method = 'get';
 
         if ($request->isMethod('post')){
@@ -279,7 +299,7 @@ class OrderController extends Controller
                     try {
                         $data_user = ['data_user' => ['user_email' => $user->email, 'first_name' => $user->first_name, 'last_name' => $user->last_name]];
                         $newOrder = $order->createOrder($dataOrder);
-                        $response = $this->paymentSquareTrait($access_token, $total_price, $nonce, $newOrder->id);
+                        $response = $this->paymentSquareTrait($total_price, $nonce);
 
                         if ($response->isSuccess()) {
                             $dataTransaction = [
@@ -398,7 +418,7 @@ class OrderController extends Controller
             compact(
                 'messages',
                 'upper_case_environment',
-                'environment',
+#                'environment',
                 'applicationId',
                 'locationId',
                 'search_id',

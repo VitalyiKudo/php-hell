@@ -133,4 +133,20 @@ class City extends Model
         return $this->hasMany(OperatorCity::class, 'geoNameIdCity', 'geonameid');
     }
 
+    /**
+     * Get the departure pricing of the city.
+     */
+    public function pricingDepartureCity()
+    {
+        return $this->hasMany(Pricing::class, 'departure_geoId', 'geonameid');
+    }
+
+    /**
+     * Get the departure pricing of the city.
+     */
+    public function pricingArrivalCity()
+    {
+        return $this->hasMany(Pricing::class, 'arrival_geoId', 'geonameid');
+    }
+
 }

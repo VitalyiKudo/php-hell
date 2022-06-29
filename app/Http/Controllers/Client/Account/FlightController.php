@@ -59,25 +59,57 @@ class FlightController extends Controller
         $params["passengers"] = $request->passengers;
         $params["userId"] = Auth::check() ? Auth::user()->id : 0;
 
-        $searchResults = collect(['pricing', 'emptyLeg']);
+        $searchResults = collect();
+
+        $typePlanes = collect();
+        foreach (Config::get('constants.plane.type_plane') as $key => $val) {
+            $typePlanes->push(Str::after($key, '_'));
+        }
+        $typePlanes = $typePlanes->reverse();
+
+        $stdRes = collect();
+        $stdRes = $stdRes->put('quote', ['pricing' => true, 'type' => 'quote']);
 
         $searchResults->pricing = $pricing::with('departureCity', 'arrivalCity')
-            ->where('departure_geoId', '=', $startCity)
-            ->where('arrival_geoId', '=', $endCity)
-            ->first();
+            ->where('departure_geoId', $startCity)
+            ->where('arrival_geoId', $endCity)
+            ->get()
+            ->map(function ($value, $key) use($typePlanes)  {
+                $item = collect();
+                $typePlanes->each(function($type) use($value, $item) {
+                    if ($value['price_'.$type] > 0) {
+                        $item[$type] = collect([
+                            'pricing' => true,
+                           'price' => $value['price_'.$type],
+                           'time' => $value['time_'.$type],
+                           'type' => $type,
+                           'startCity' => $value->departureCity->name,
+                           'endtCity' => $value->arrivalCity->name,
+                       ]);
+                    }
+                });
+                return $item;
+            })
+        ->at(0);
+
+        $searchResults->pricing = ($searchResults->pricing) ? $stdRes->merge($searchResults->pricing) : $stdRes;
 
         $searchResults->emptyLeg = $emptyLeg::with('departureCity', 'arrivalCity')
-            ->where('geoNameIdCity_departure', '=', $startCity)
-            ->where('geoNameIdCity_arrival', '=', $endCity)
+            ->where('geoNameIdCity_departure', $startCity)
+            ->where('geoNameIdCity_arrival',$endCity)
             ->whereDate('date_departure', '=', Carbon::parse($request->flightDate)->format('Y-m-d'))
-            ->where('active', '=', Config::get('constants.active.activated'))
-            ->get();
+            #->orWhereDate('date_departure', '>', Carbon::parse($request->flightDate)->format('Y-m-d'))
+            ->where('active', '=', Config::get('constants.active.Active'))
+            #->toSql();
+            ->get()
+            ->sortByDesc('price');
 
-        if($searchResults->pricing){
-            $params["result_id"] = $searchResults->pricing->id;
-        } else {
-            $params["result_id"] = 0;
-        }
+        $countPricing = $searchResults->pricing->filter(function ($item, $key) {
+            return ($item == true);
+        })
+        ->count();
+
+        $searchResults = ($searchResults->pricing->merge($searchResults->emptyLeg))->reverse()->paginate(3);
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],
@@ -100,20 +132,6 @@ class FlightController extends Controller
 
             $lastSearchResults = [];
         }
-
-        $search = new Search;
-        $search->result_id = $params["result_id"];
-        $search->user_id = Auth::check() ? Auth::user()->id : NULL;
-        $search->session_id = $session_id;
-        $search->start_airport_name = $params["startAirport"];
-        $search->end_airport_name = $params["endAirport"];
-        $search->departure_geoId = $params["startPoint"];
-        $search->arrival_geoId = $params["endPoint"];
-        $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
-        $search->pax = $request->passengers > 0 ? $request->passengers : 0;
-        $search->save();
-
-        $params["searchId"] = $search->id;
 
         $validator = Validator::make(
             [
@@ -141,7 +159,7 @@ class FlightController extends Controller
 
         $status = $this->CheckAge();
 
-        return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults', 'lastSessionSearchResults', 'status'));
+        return view('client.account.requests.request', compact('searchResults', 'params', 'messages', 'lastSearchResults', 'lastSessionSearchResults', 'status', 'countPricing'/*, 'page'*/));
     }
 
 
@@ -218,7 +236,7 @@ class FlightController extends Controller
 
 
 
-
+/*
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = NULL;
@@ -227,7 +245,7 @@ class FlightController extends Controller
         $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
-
+*/
 
 
 

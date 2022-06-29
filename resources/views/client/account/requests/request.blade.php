@@ -24,12 +24,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
                             @foreach ($lastSearchResults as $lastSearch)
-                            <li class="breadcrumb-item">
-                                <a href="#" data-from="{{ $lastSearch->start_airport_name }}" data-to="{{ $lastSearch->end_airport_name }}">
-                                    <span class="search-item-first">{{ $lastSearch->start_airport_name }}</span>
-                                    <span class="search-item-second">{{ $lastSearch->end_airport_name }}</span>
-                                </a>
-                            </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#" data-from="{{ $lastSearch->departureCity->name }}" data-to="{{ $lastSearch->arrivalCity->name }}">
+                                        <span class="search-item-first">{{ $lastSearch->departureCity->name }}</span>
+                                        <span class="search-item-second">{{ $lastSearch->arrivalCity->name }}</span>
+                                    </a>
+                                </li>
                             @endforeach
                         </ol>
                     </nav>
@@ -154,646 +154,294 @@
                       </ul>
                     </div><br />
                 @endif
+                    @forelse ($searchResults as $key => $emptyLeg)
+                    {{-- dd($emptyLeg) --}}
+                    @if(empty($emptyLeg['pricing']))
+                        {!! ((int)$emptyLeg->price !== 0) ?
+                        "<form action='" . route('client.orders.confirm') . "' method='GET'>"
+                        :
+                        "<form action='" . route('client.search.requestQuote') . "' method='GET'>"
+                        !!}
+                            @php
+                                $type = Str::after($emptyLeg->type_plane, '_');
+                                $TYPE = Str::upper($type);
+                                $Type = Str::ucfirst($type);
+                            @endphp
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <div class="card-inner-image">
 
-                <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                                                <div class="turbo-gallery-for">
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
+                                                    </div>
+                                                </div>
 
-                    @forelse ($searchResults->emptyLeg as $emptyLeg)
-                        @php
-                            $type = Str::after($emptyLeg->type_plane, '_');
-                            $TYPE = Str::upper($type);
-                            $Type = Str::ucfirst($type);
-                        @endphp
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="card-inner-image">
-
-                                            <div class="turbo-gallery-for">
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
+                                                <div class="turbo-gallery-nav">
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
+                                                    </div>
+                                                    <div>
+                                                        <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="card-inner-body pl-4">
+                                               <div class="type-price">
+                                                    <div>
+                                                        <span class="flight-type">{{__("$Type")}}</span>
+                                                        <span class="flight-dep-arr">{{ $emptyLeg->departureCity->name . ' - ' . $emptyLeg->arrivalCity->name }}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>
+                                                        <span class="flight-price-desc">{{__('Book now price')}}</span>
+                                                    </div>
+                                                </div>
 
-                                            <div class="turbo-gallery-nav">
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
+                                                <div class="card-body-details">
+                                                      <ul>
+                                                          @foreach( Config::get("constants.plane.type_plane.$emptyLeg->type_plane.feature_plane") as $key => $value)
+                                                            <li>
+                                                                <img src="{{ asset(Config::get("constants.plane.icons.$key")) }}" alt="{{ $key }}">
+                                                                <div class="card-details-info">
+                                                                    <span>{{ $value }}</span>
+                                                                    <span>{{ $key }}</span>
+                                                                </div>
+                                                            </li>
+                                                          @endforeach
+                                                      </ul>
                                                 </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
-                                                </div>
-                                                <div>
-                                                    <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
-                                                </div>
+
+
+                                                <input type="hidden" name="result_id" value="{{ $emptyLeg->id }}">
+                                                <input type="hidden" name="aircraft" value="{{ $Type }}">
+                                                <input type="hidden" name="startPointName" value="{{ $emptyLeg->departureCity->name }}">
+                                                <input type="hidden" name="endPointName" value="{{ $emptyLeg->arrivalCity->name }}">
+                                                <input type="hidden" name="startPoint" value="{{ $emptyLeg->departureCity->geonameid }}">
+                                                <input type="hidden" name="endPoint" value="{{ $emptyLeg->arrivalCity->geonameid }}">
+                                                <input type="hidden" name="startAirport" value="{{ $emptyLeg->airportDeparture->icao }}">
+                                                <input type="hidden" name="endAirport" value="{{ $emptyLeg->airportArrival->icao }}">
+                                                <input type="hidden" name="departure_at" value="{{ $emptyLeg->date_departure }}">
+                                                <input type="hidden" name="price" value="{{ $emptyLeg->price }}">
+                                                <input type="hidden" name="type" value="emptyLeg">
+                                                <input type="hidden" name="page_name" value="reqest-emptyLeg-page">
+
+                                                {!! ((int)$emptyLeg->price !== 0) ?
+                                                "<div class='book'>
+                                                    <button type='submit' class='btn rquest-best-price'>" . __('Request for a best price') . "</button>
+                                                    <button type='submit' class='book btn book-now'>" . __('Book now') . "</button>
+                                                </div>"
+                                                :
+                                                "<div class='book'>
+                                                    <button type='submit' class='request-empty-leg-submit'>" . __('Request a Quote') . "</button>
+                                                </div>"
+                                                !!}
                                             </div>
-                                        </div>
-                                        <div class="card-inner-body pl-4">
-
-                                            <div class="type-price">
-                                                <div>
-                                                    <span class="flight-type">{{__("$Type")}}</span>
-                                                    <span class="flight-dep-arr">{{ $emptyLeg->departureCity->name . ' - ' . $emptyLeg->arrivalCity->name }}</span>
-                                                </div>
-                                                <div>
-                                                    <span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>
-                                                    <span class="flight-price-desc">{{__('Book now price')}}</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body-details">
-                                                  <ul>
-                                                      @foreach( Config::get("constants.plane.type_plane.$emptyLeg->type_plane.feature_plane") as $key => $value)
-                                                        <li>
-                                                            <img src="{{ asset(Config::get("constants.plane.icons.$key")) }}" alt="{{ $key }}">
-                                                            <div class="card-details-info">
-                                                                <span>{{ $value }}</span>
-                                                                <span>{{ $key }}</span>
-                                                            </div>
-                                                        </li>
-                                                      @endforeach
-                                                  </ul>
-                                            </div>
-
-                                            <div class="book">
-                                                <button type="submit" class="btn rquest-best-price">{{__('Request for a best price')}}</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], $type] ) }}" class="btn book-now">{{__('Book now')}}</a>
-                                            </div>
-
                                         </div>
                                     </div>
-                                </div>
+                        {!! "</form>" !!}
+                    @endif
                     @empty
                         <div></div>
                     @endforelse
 
+                    @forelse ($searchResults as $key => $value)
+                        @if(isset($value['pricing']))
+                            @php
+                                $type = $value['type'];
+                                $TYPE = Str::upper($type);
+                                $Type = Str::ucfirst($type);
+                            @endphp
+                            @if($type !== 'quote')
+                                @if($countPricing > 1)
+                                    <form action='{{ route('client.orders.confirm') }}' method='GET'>
+                                        <div class="card mb-4">
+                                            <div class="card-body">
+                                                <div class="card-inner-image">
 
-                @if($searchResults->pricing and ($searchResults->pricing->price_turbo > 0 or $searchResults->pricing->price_light > 0 or $searchResults->pricing->price_medium > 0 or $searchResults->pricing->price_heavy > 0) and strtotime(date('m/d/Y',strtotime("+1 day"))) < strtotime($params['flightDate']))
+                                                    <div class="turbo-gallery-for">
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
+                                                        </div>
+                                                    </div>
 
-                    @if($searchResults->pricing->price_turbo > 0)
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="card-inner-image">
+                                                    <div class="turbo-gallery-nav">
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-1.webp") }}" alt="{{$TYPE}}-1">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-2.webp") }}" alt="{{$TYPE}}-2">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-3.webp") }}" alt="{{$TYPE}}-3">
+                                                        </div>
+                                                        <div>
+                                                            <img src="{{ asset("images/search_galery/$type/$TYPE-4.webp") }}" alt="{{$TYPE}}-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-inner-body pl-4">
+                                                    <div class="type-price">
+                                                        <div>
+                                                            <span class="flight-type">{{__("$Type")}}</span>
+                                                            <span class="flight-dep-arr">{{ $value['startCity'] . ' - ' . $value['endtCity'] }}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="flight-price">&#36;{{ number_format($value['price'] , 2, '.', ' ') }}</span>
+                                                            <span class="flight-price-desc">{{__('Book now price')}}</span>
+                                                        </div>
+                                                    </div>
 
-                                <div class="turbo-gallery-for">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP.webp') }}" alt="TURBO-PROP">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-1.webp') }}" alt="TURBO-PROP-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-2.webp') }}" alt="TURBO-PROP-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-3.webp') }}" alt="TURBO-PROP-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-4.webp') }}" alt="TURBO-PROP-4">
-                                    </div>
-                                </div>
+                                                    <div class="card-body-details">
+                                                        <ul>
+                                                            @foreach( Config::get("constants.plane.type_plane.plane_$type.feature_plane") as $key => $val)
+                                                                <li>
+                                                                    <img src="{{ asset(Config::get("constants.plane.icons.$key")) }}" alt="{{ $key }}">
+                                                                    {{-- print "$key - $$value" --}}
+                                                                    <div class="card-details-info">
+                                                                        <span>{{ ($key === 'Flight Time') ? $value['time'] : $val }}</span>
+                                                                        <span>{{ $key }}</span>
+                                                                    </div>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
 
-                                <div class="turbo-gallery-nav">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP.webp') }}" alt="TURBO-PROP">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-1.webp') }}" alt="TURBO-PROP-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-2.webp') }}" alt="TURBO-PROP-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-3.webp') }}" alt="TURBO-PROP-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/turbo/TURBO-PROP-4.webp') }}" alt="TURBO-PROP-4">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-inner-body pl-4">
+                                                    <input type="hidden" name="result_id" value="0">
+                                                    <input type="hidden" name="aircraft" value="{{ $type }}">
+                                                    <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}">
+                                                    <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}">
+                                                    <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}">
+                                                    <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}">
+                                                    <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}">
+                                                    <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}">
+                                                    <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}">
+                                                    <input type="hidden" name="passengers" value="{{ $params['passengers'] }}">
 
-                                <div class="type-price">
-                                    <div>
-                                        <span class="flight-type">Turbo</span>
-                                        <span class="flight-dep-arr">{{ $searchResults->pricing->departure . ' - ' . $searchResults->pricing->arrival }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="flight-price">&#36;{{ number_format($searchResults->pricing->price_turbo, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Book now price</span>
-                                    </div>
-                                </div>
+                                                    <input type="hidden" name="type" value="{{ $type }}">
+                                                    <input type="hidden" name="page_name" value="reqest-search-page">
 
-                                <div class="card-body-details">
-                                    <ul>
-                                        <li>
-                                            <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
-                                            <div class="card-details-info">
-                                                <span>1-12</span>
-                                                <span>Passengers:</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>28</span>
-                                                <span>Cubic feet</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/altitude.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>30000ft</span>
-                                                <span>Altitude</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/pilots.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>1-2</span>
-                                                <span>Pilots</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/range.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>2500 miles</span>
-                                                <span>Range</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>360 mph</span>
-                                                <span>Max Speed</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/time.svg') }}" alt="time">
-                                            <div class="card-details-info">
-                                                <span>{{ $searchResults->pricing->time_turbo }}</span>
-                                                <span>Flight Time: </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                                      <div class='book'>
+                                                          <button type='submit' class='btn rquest-best-price'>{{ __('Request for a best price') }}</button>
+                                                          <button type='submit' class='book btn book-now'>{{ __('Book now') }}</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </form>
+                                  @else
+                                      <p class="not-found-message">We do not have such a flight, make a request a quote </p>
+                                  @endif
+                              @else
+                                  <div class="card mb-4">
+                                      <div class="card-body">
+                                          <div class="card-inner-image">
+                                              <img src="{{ asset('images/search_galery/reqest_quote.png') }}" class="img-fluid" alt="reqest quote">
+                                          </div>
 
-                                <div class="book">
-                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'turbo'] ) }}" class="btn book-now">Book now</a>
-                                </div>
+                                          <div class="card-inner-body pl-4">
+                                              <div class="custom-flight">
+                                                  <div>Custom flight search</div>
+                                                  <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
+                                              </div>
+                                              <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                                                  @csrf
 
-                            </div>
-                        </div>
-                    </div>
-                    @endif
+                                                  <div class="form-row">
+                                                      <div class="form-group col-sm-6">
+                                                          <label for="flight_model">Flight model:</label>
+                                                          <select name="flight_model" class="form-control" id="flight_model">
+                                                              <option value="">--- Nothing selected ---</option>
+                                                              <option value="turbo">Turbo</option>
+                                                              <option value="light">Light</option>
+                                                              <option value="medium">Medium</option>
+                                                              <option value="heavy">Heavy</option>
+                                                          </select>
+                                                      </div>
 
-                    @if($searchResults->pricing->price_light > 0)
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="card-inner-image">
+                                                      <div class="form-group col-sm-3">
+                                                          <label for="passengers">Passengers</label>
+                                                          <input type="number" min="1" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers" class="form-control">
+                                                      </div>
 
-                                <div class="light-gallery-for">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT.webp') }}" alt="LIGHT">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-1.webp') }}" alt="LIGHT-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-2.webp') }}" alt="LIGHT-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-3.webp') }}" alt="LIGHT-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-4.webp') }}" alt="LIGHT-4">
-                                    </div>
-                                </div>
+                                                      <div class="form-group col-sm-3">
+                                                          <label for="bags">Bags</label>
+                                                          <input type="number" min="1" aria-describedby="bags" name="bags" autocomplete="off" id="bags" class="form-control">
+                                                      </div>
 
-                                <div class="light-gallery-nav">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT.webp') }}" alt="LIGHT">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-1.webp') }}" alt="LIGHT-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-2.webp') }}" alt="LIGHT-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-3.webp') }}" alt="LIGHT-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/light/LIGHT-4.webp') }}" alt="LIGHT-4">
-                                    </div>
-                                </div>
+                                                      <!--
+                                                      <div class="form-group col-sm-6">
+                                                          <label for="comment">Comment</label>
+                                                          <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
+                                                      </div>
+                                                      -->
+                                                  </div>
 
-                            </div>
-                            <div class="card-inner-body">
+                                                  {{--<input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">--}}
+                                                <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
+                                                <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}" id="start_airport_name">
+                                                <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}" id="end_airport_name">
+                                                <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" id="start_city_id">
+                                                <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" id="end_city_id">
+                                                <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" id="start_airport_id">
+                                                <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" id="end_airport_id">
+                                                <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
+                                                <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
+                                                <input type="hidden" name="page_name" value="search-page">
 
-                                <div class="type-price">
-                                    <div>
-                                        <span class="flight-type">Light</span>
-                                        <span class="flight-dep-arr">{{ $searchResults->pricing->departure . ' - ' . $searchResults->pricing->arrival }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="flight-price">&#36;{{ number_format($searchResults->pricing->price_light, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Book now price</span>
+                                                <div class="text-right pull-right">
+                                                    <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
                                     </div>
                                 </div>
+                            @endif
+                        @endif
+                    @empty
+                        <div></div>
+                    @endforelse
 
-                                <div class="card-body-details">
-                                    <ul>
-                                        <li>
-                                            <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
-                                            <div class="card-details-info">
-                                                <span>1-8</span>
-                                                <span>Passengers:</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>45</span>
-                                                <span>Cubic feet</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/altitude.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>37,000ft</span>
-                                                <span>Altitude</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/pilots.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>2</span>
-                                                <span>Pilots</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/range.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>3700 miles</span>
-                                                <span>Range</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>534 mph</span>
-                                                <span>Max Speed</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/time.svg') }}" alt="time">
-                                            <div class="card-details-info">
-                                                <span>{{ $searchResults->pricing->time_light }}</span>
-                                                <span>Flight Time: </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                 <div class="book">
-                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'light'] ) }}" class="btn book-now">Book now</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
-                    @if($searchResults->pricing->price_medium > 0)
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="card-inner-image">
-
-                                <div class="medium-gallery-for">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE.webp') }}" alt="MIDSIZE">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-1.webp') }}" alt="MIDSIZE-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-2.webp') }}" alt="MIDSIZE-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-3.webp') }}" alt="MIDSIZE-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-4.webp') }}" alt="MIDSIZE-4">
-                                    </div>
-                                </div>
-
-                                <div class="medium-gallery-nav">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE.webp') }}" alt="MIDSIZE">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-1.webp') }}" alt="MIDSIZE-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-2.webp') }}" alt="MIDSIZE-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-3.webp') }}" alt="MIDSIZE-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/medium/MIDSIZE-4.webp') }}" alt="MIDSIZE-4">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card-inner-body pl-4">
-
-                                <div class="type-price">
-                                    <div>
-                                        <span class="flight-type">Medium</span>
-                                        <span class="flight-dep-arr">{{ $searchResults->pricing->departure . ' - ' . $searchResults->pricing->arrival }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="flight-price">&#36;{{ number_format($searchResults->pricing->price_medium, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Book now price</span>
-                                    </div>
-                                </div>
-
-                                <div class="card-body-details">
-                                    <ul>
-                                        <li>
-                                            <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
-                                            <div class="card-details-info">
-                                                <span>1-11</span>
-                                                <span>Passengers:</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>125</span>
-                                                <span>Cubic feet</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/altitude.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>51,000ft</span>
-                                                <span>Altitude</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/pilots.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>2</span>
-                                                <span>Pilots</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/range.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>4000 miles</span>
-                                                <span>Range</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>603 mph</span>
-                                                <span>Max Speed</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/time.svg') }}" alt="time">
-                                            <div class="card-details-info">
-                                                <span>{{ $searchResults->pricing->time_medium }}</span>
-                                                <span>Flight Time: </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="book">
-                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'medium'] ) }}" class="btn book-now">Book now</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
-                    @if($searchResults->pricing->price_heavy > 0)
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="card-inner-image">
-
-                                <div class="heavy-gallery-for">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY.webp') }}" alt="HEAVY">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-1.webp') }}" alt="HEAVY-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-2.webp') }}" alt="HEAVY-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-3.webp') }}" alt="HEAVY-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-4.webp') }}" alt="HEAVY-4">
-                                    </div>
-
-                                </div>
-
-                                <div class="heavy-gallery-nav">
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY.webp') }}" alt="HEAVY">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-1.webp') }}" alt="HEAVY-1">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-2.webp') }}" alt="HEAVY-2">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-3.webp') }}" alt="HEAVY-3">
-                                    </div>
-                                    <div>
-                                        <img src="{{ asset('images/search_galery/heavy/HEAVY-4.webp') }}" alt="HEAVY-4">
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="card-inner-body pl-4">
-
-                                <div class="type-price">
-                                    <div>
-                                        <span class="flight-type">Heavy</span>
-                                        <span class="flight-dep-arr">{{ $searchResults->pricing->departure . ' - ' . $searchResults->pricing->arrival }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="flight-price">&#36;{{ number_format($searchResults->pricing->price_heavy, 2, '.', ' ') }}</span>
-                                        <span class="flight-price-desc">Book now price</span>
-                                    </div>
-                                </div>
-
-
-                                <div class="card-body-details">
-                                    <ul>
-                                        <li>
-                                            <img src="{{ asset('images/passagers.svg') }}" alt="passagers">
-                                            <div class="card-details-info">
-                                                <span>1-16</span>
-                                                <span>Passengers:</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/max_bags.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>226</span>
-                                                <span>Cubic feet</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/altitude.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>41,000ft</span>
-                                                <span>Altitude</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/pilots.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>2</span>
-                                                <span>Pilots</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/range.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>8000 miles</span>
-                                                <span>Range</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/mas_speed.svg') }}" alt="callender">
-                                            <div class="card-details-info">
-                                                <span>562 mph</span>
-                                                <span>Max Speed</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('images/time.svg') }}" alt="time">
-                                            <div class="card-details-info">
-                                                <span>{{ $searchResults->pricing->time_heavy }}</span>
-                                                <span>Flight Time: </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="book">
-                                    <button type="submit" class="btn rquest-best-price">Request for a best price</button> <a href="{{ route('client.orders.confirm', [$params['searchId'], 'heavy'] ) }}" class="btn book-now">Book now</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
-                @else
-
-                    <p class="not-found-message">We do not have such a flight, make a request a quote </p>
-
-                @endif
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="card-inner-image">
-                            <img src="{{ asset('images/search_galery/reqest_quote.png') }}" class="img-fluid" alt="reqest quote">
-                        </div>
-
-                        <div class="card-inner-body pl-4">
-                            <div class="custom-flight">
-                                <div>Custom flight search</div>
-                           <p>We would be more than happy to fulfill all of your special requests on our custom flight page.</p>
-                       </div>
-                       <!--<form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">-->
-                           @csrf
-
-                           <div class="form-row">
-                               <div class="form-group col-sm-6">
-                                   <label for="flight_model">Flight model:</label>
-                                   <select name="flight_model" class="form-control" id="flight_model">
-                                       <option value="">--- Nothing selected ---</option>
-                                       <option value="turbo">Turbo</option>
-                                       <option value="light">Light</option>
-                                       <option value="medium">Medium</option>
-                                       <option value="heavy">Heavy</option>
-                                   </select>
-                               </div>
-
-                               <div class="form-group col-sm-3">
-                                   <label for="passengers">Passengers</label>
-                                   <input type="number" min="1" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers" class="form-control">
-                               </div>
-
-                               <div class="form-group col-sm-3">
-                                   <label for="bags">Bags</label>
-                                   <input type="number" min="1" aria-describedby="bags" name="bags" autocomplete="off" id="bags" class="form-control">
-                               </div>
-
-                               <!--
-                               <div class="form-group col-sm-6">
-                                   <label for="comment">Comment</label>
-                                   <textarea type="text" name="comment" class="form-control" id="comment"></textarea>
-                               </div>
-                               -->
-                           </div>
-
-                           <input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">
-                           <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
-                           <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}" id="start_airport_name">
-                           <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}" id="end_airport_name">
-                            <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" id="start_city_id">
-                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" id="end_city_id">
-                            <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" id="start_airport_id">
-                            <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" id="end_airport_id">
-                           <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
-                           <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
-                           <input type="hidden" name="page_name" value="search-page">
-
-                           <div class="text-right pull-right">
-                               <button type="submit" class="request-quote-submit pull-right">Request a Quote</button>
-                           </div>
-                       <!--</form>-->
-                   </div>
-
-               </div>
-           </div>
-
-
-
-           </form>
-
-
+                <div class="d-flex justify-content-center">
+                    {!! $searchResults->appends($_GET)->links() !!}
+                </div>
 
            <div class="pb-5"></div>
 

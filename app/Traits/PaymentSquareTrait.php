@@ -19,47 +19,50 @@ use Ramsey\Uuid\Uuid;
 
 trait PaymentSquareTrait
 {
-    public function paymentSquareTrait ($access_token, $total_price, $nonce, $orderId) {
+    public function paymentSquareTrait ($total_price, $nonce) {
 
-$client = new SquareClient([
-       'accessToken' => $access_token,
-       'environment' => getenv('ENVIRONMENT'),
+        $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
 
-   ]);
+        $client = new SquareClient([
 
-try {
+               'accessToken' => getenv($upper_case_environment.'_ACCESS_TOKEN'),
+               'environment' => getenv('ENVIRONMENT'),
 
-    $apiResponse = $client->getLocationsApi()->listLocations();
+           ]);
 
-    if ($apiResponse->isSuccess()) {
-        $result = $apiResponse->getResult();
-        /*foreach ($result->getLocations() as $location) {
-            printf(
-                "%s: %s, %s, %s<p/>",
-                $location->getId(),
-                $location->getName(),
-                $location->getAddress()->getAddressLine1(),
-                $location->getAddress()->getLocality()
-            );
-        }*/
+        try {
 
-    } else {
-        $errors = $apiResponse->getErrors();
-        foreach ($errors as $error) {
-            printf(
-                "%s<br/> %s<br/> %s<p/>",
-                $error->getCategory(),
-                $error->getCode(),
-                $error->getDetail()
-            );
+            $apiResponse = $client->getLocationsApi()->listLocations();
+
+            if ($apiResponse->isSuccess()) {
+                $result = $apiResponse->getResult();
+                /*foreach ($result->getLocations() as $location) {
+                    printf(
+                        "%s: %s, %s, %s<p/>",
+                        $location->getId(),
+                        $location->getName(),
+                        $location->getAddress()->getAddressLine1(),
+                        $location->getAddress()->getLocality()
+                    );
+                }*/
+
+            } else {
+                $errors = $apiResponse->getErrors();
+                foreach ($errors as $error) {
+                    printf(
+                        "%s<br/> %s<br/> %s<p/>",
+                        $error->getCategory(),
+                        $error->getCode(),
+                        $error->getDetail()
+                    );
+                }
+            }
+
+        } catch (ApiException $e) {
+            echo "ApiException occurred: <b/>";
+            echo $e->getMessage() . "<p/>";
         }
-    }
-
-} catch (ApiException $e) {
-    echo "ApiException occurred: <b/>";
-    echo $e->getMessage() . "<p/>";
-}
-        $payments_api = $client->getPaymentsApi();
+                $payments_api = $client->getPaymentsApi();
 
 // To learn more about splitting payments with additional recipients,
 // see the Payments API documentation on our [developer site]

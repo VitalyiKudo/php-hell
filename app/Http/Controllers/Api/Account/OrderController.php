@@ -197,77 +197,48 @@ class OrderController extends Controller
             }
         }
 
+        $search = new Search;
+        $search->result_id = $request->result_id;
+        $search->user_id = Auth::check() ? Auth::user()->id : NULL;
+        $search->session_id = $session_id;
+        $search->start_airport_name = $request->startAirport;
+        $search->end_airport_name = $request->endAirport;
+        $search->departure_geoId = $request->startPoint;
+        $search->arrival_geoId = $request->endPoint;
+        $search->departure_at = Carbon::parse($request->flightDate)->format('Y-m-d');
+        $search->pax = $request->passengers > 0 ? $request->passengers : 0;
+        $search->save();
 
-        $pervis_search_url = Session::get('pervis_search_url_api');
-        Session::put('pervis_confirm_url_api', url()->full());
-
-        $feeses = Fees::all();
+        $pervis_search_url = Session::get('pervis_search_url');
+        Session::put('pervis_confirm_url', url()->full());
 
         $user = Auth::user();
         $search_id = $request->route('search');
         $search_type = $request->route('type');
 
-        $search = Search::find($search_id);
-
-        $start_airport_name = $search->start_airport_name;
-        $end_airport_name = $search->end_airport_name;
-        $departure_at = $search->departure_at;
-        $pax = $search->pax;
-
-        $pricing = Pricing::find($search->result_id);
-
-        if($search_type == 'turbo'){
-            $price = $pricing->price_turbo;
-            $time = $pricing->time_turbo;
-        } elseif($search_type == 'light'){
-            $price = $pricing->price_light;
-            $time = $pricing->time_light;
-        } elseif($search_type == 'medium'){
-            $price = $pricing->price_medium;
-            $time = $pricing->time_medium;
-        } elseif($search_type == 'heavy'){
-            $price = $pricing->price_heavy;
-            $time = $pricing->time_heavy;
-        } else {
-            $price = 0.00;
-            $time = "00:00";
+        if ($search_type !== 'emptyLeg') {
+            $search = Search::with('price', 'departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
+            $strPrice = 'price_'.$search_type;
+            $total_price = $search->price->$strPrice;
+        }
+        else {
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
+            $total_price = $search->price;
         }
 
-        $total_price = (float)$price;
-
-        foreach($feeses as $fees){
-
-            if($fees->active){
-
-                if($fees->sall){
-                    if($fees->type == "$"){
-                        $total_price -= $fees->amount;
-                    } else {
-                        $total_price -= $price * ($fees->amount / 100 );
-                    }
-                }else{
-                    if($fees->type == "$"){
-                        $total_price += $fees->amount;
-                    } else {
-                        $total_price += $price * ($fees->amount / 100 );
-                    }
-                }
-
-            }
-        }
+        $time_type = 'time_' . $search_type;
 
         return response()->json([
             'search_id' => $search_id,
             'search_type' => $search_type,
-            'pricing' => $pricing,
-            'price' => $price,
-            'time' => $time,
+            'pricing' => $total_price,
+            'price' => $total_price,
+            'time' => !empty($search->price->$time_type) ? $search->price->$time_type : '-',
             'user' => $user,
-            'start_airport_name' => $start_airport_name,
-            'end_airport_name' => $end_airport_name,
-            'departure_at' => $departure_at,
-            'pax' => $pax,
-            'feeses' => $feeses,
+            'start_airport_name' => $search->airportDeparture->icao,
+            'end_airport_name' => $search->airportArrival->icao,
+            'departure_at' => $search->departure_at,
+            'pax' => !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers"),
             'total_price' => $total_price,
             'pervis_search_url' => $pervis_search_url,
         ]);

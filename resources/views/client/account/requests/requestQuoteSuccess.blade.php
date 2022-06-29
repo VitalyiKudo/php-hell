@@ -20,12 +20,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span class="search-title">Last searches:</span></li>
                             @foreach ($lastSearchResults as $lastSearch)
-                            <li class="breadcrumb-item">
-                                <a href="#" data-from="{{ $lastSearch->start_airport_name }}" data-to="{{ $lastSearch->end_airport_name }}">
-                                    <span class="search-item-first">{{ $lastSearch->start_airport_name }}</span>
-                                    <span class="search-item-second">{{ $lastSearch->end_airport_name }}</span>
-                                </a>
-                            </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#" data-from="{{ $lastSearch->departureCity->name }}" data-to="{{ $lastSearch->arrivalCity->name }}">
+                                        <span class="search-item-first">{{ $lastSearch->departureCity->name }}</span>
+                                        <span class="search-item-second">{{ $lastSearch->arrivalCity->name }}</span>
+                                    </a>
+                                </li>
                             @endforeach
                         </ol>
                     </nav>

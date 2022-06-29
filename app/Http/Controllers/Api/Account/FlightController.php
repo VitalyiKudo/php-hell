@@ -157,7 +157,7 @@ class FlightController extends Controller
 
             $lastSearchResults = [];
         }
-
+/*
         $search = new Search;
         $search->result_id = $params["result_id"];
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
@@ -171,7 +171,7 @@ class FlightController extends Controller
         $search->save();
 
         $params["searchId"] = $search->id;
-
+*/
         $validator = Validator::make(
             [
                 'startPoint' => $params["startPoint"],

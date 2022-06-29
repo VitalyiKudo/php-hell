@@ -54,6 +54,7 @@ Route::get('/sitemap', 'SitemapController@index');
 
 /* EmptyLegs */
 Route::get('/empty-leg', 'EmptyLegController@index');
+Route::get('/empty-leg/ajaxSearch', 'EmptyLegController@ajaxSearch')->name('empty-leg.ajax-search');
 
 Auth::routes();
 
@@ -89,10 +90,12 @@ Route::namespace('Account')->group(function () {
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/{order}/booking', 'OrderController@booking')->name('orders.booking');
     Route::post('/orders/{order}/booking', 'OrderController@payment')->name('orders.payment');
-    Route::get('/orders/{search}/confirm/{type}', 'OrderController@confirm')->name('orders.confirm');
+    #Route::get('/orders/{search}/confirm/{type}', 'OrderController@confirm')->name('orders.confirm');
+    Route::get('/orders/confirm', 'OrderController@confirm')->name('orders.confirm');
     Route::get('/orders/{search}/confirm', 'OrderController@requestConfirm')->name('orders.request_confirm');
-    Route::match(['GET', 'POST'], '/orders/{search}/square/{type}', 'OrderController@square')->name('orders.square');
-    Route::match(['GET', 'POST'], '/orders/{search}/square', 'OrderController@requestSquare')->name('orders.request_square');
+    Route::match(['GET', 'POST'], '/orders/{search}/square', 'OrderController@square')->name('orders.square');
+    #Route::match(['GET', 'POST'], '/orders/{search}/square/{type}', 'OrderController@square')->name('orders.square');
+    #Route::match(['GET', 'POST'], '/orders/{search}/square', 'OrderController@requestSquare')->name('orders.request_square');
     //Route::get('/orders/confirm/', 'OrderController@confirm')->name('orders.confirm');
     Route::get('/orders/{order_id}/succeed/{type}', 'OrderController@succeed')->name('orders.succeed');
     Route::get('/orders/{order_id}/succeed', 'OrderController@request_succeed')->name('orders.request_succeed');

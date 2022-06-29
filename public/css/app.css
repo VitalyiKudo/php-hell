@@ -16693,6 +16693,17 @@ ul.dashed > li:before {
     border: none;
 }
 
+.price-empty-leg-submit {
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 0.5rem 3.9rem;
+    text-decoration: none !important;
+    background: url("/images/book_now.svg") no-repeat 30px center, linear-gradient(180deg, rgba(55, 94, 151, 0.9) 0%, #375e97 0.01%, #294a7a 29.69%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: none;
+}
+
 .request-empty-leg-submit {
     text-align: center !important;
     color: #ffffff !important;
@@ -16840,7 +16851,7 @@ ul.dashed > li:before {
     }
 
     .emptyLeg-filter {
-        width: 31% !important;
+        width: 25% !important;
     }
 }
 
@@ -18578,4 +18589,8 @@ ul.dashed > li:before {
         padding-left: 2rem;
         padding-right: 2rem;
     }
+}
+
+.input-search-flight {
+    border: none;
 }

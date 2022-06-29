@@ -102,6 +102,22 @@ class EmptyLeg extends Model
     }
 
     /**
+     * Get the airport_departure Area.
+     */
+    public function airporAreatDeparture()
+    {
+        return $this->belongsTo(AirportArea::class, 'icao_departure', 'icao');
+    }
+
+    /**
+     * Get the airport_arrival Area.
+     */
+    public function airportAreaArrival()
+    {
+        return $this->belongsTo(AirportArea::class, 'icao_arrival', 'icao');
+    }
+
+    /**
      * Get the departure of the city.
      */
     public function departureCity()

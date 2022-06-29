@@ -67,3 +67,8 @@ Route::get('messages/{room_id}','ChatsController@fetchMessages');
 Route::post('messages','ChatsController@sendMessages');
 
 
+/* EmptyLegs */
+Route::get('/empty-leg', 'EmptyLegController@index');
+Route::get('/empty-leg/ajaxSearch', 'EmptyLegController@ajaxSearch')->name('empty-leg.ajax-search');
+
+
