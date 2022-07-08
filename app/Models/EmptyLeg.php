@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Config;
+use Carbon;
+
 use App\Models\Operator;
 use App\Models\Airport;
 
@@ -136,7 +139,7 @@ class EmptyLeg extends Model
     /**
      * @return EmptyLeg[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\EmptyLeg.with[]
      */
-    public function getEmptyLegs()
+    public function getEmptyLegsFull()
     {
         return  $this->with('operatorData', 'airportDeparture', 'airportArrival')
             ->get()
@@ -164,8 +167,91 @@ class EmptyLeg extends Model
     /**
      * @return EmptyLeg[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\EmptyLeg.with[]
      */
-    public function getEmptyLegsFull()
+    public function getEmptyLegsFullOld()
     {
         return  $this->with('operatorData', 'airportDeparture', 'airportArrival', 'departureCity', 'arrivalCity')->get();
+    }
+
+    /**
+     * @param $request
+     *
+     * @return mixed
+     */
+    public function getEmptyLegs($request)
+    {
+        $startPointName = $request->startPointName ?? null;
+        $endPointName = $request->endPointName ?? null;
+        $flightDate = (!empty($request->flightDate)) ? Carbon::parse($request->flightDate)->format('Y-m-d') : null;
+
+        return  $this->with('operatorData', 'airportDeparture', 'airportArrival', 'departureCity', 'arrivalCity')
+            ->where(function ($query) use ($startPointName) {
+                if (!empty($startPointName)) {
+                    $query->whereHas('departureCity', function ($query) use ($startPointName) {
+                        $query->where('name', 'like', "%{$startPointName}%");
+                    })
+                        ->orWhereHas('airportDeparture', function ($query) use ($startPointName) {
+                            $query->where('name', 'like', "%{$startPointName}%")
+                                ->orWhere('iata', 'like', "{$startPointName}%")
+                                ->orWhere('icao', 'like', "{$startPointName}%");
+                        })
+                        ->orWhereHas(
+                            'airportDeparture.airportAreas.airport',
+                            function ($query) use ($startPointName) {
+                                $query->where('name', 'like', "%{$startPointName}%")
+                                    ->orWhere('iata', 'like', "{$startPointName}%")
+                                    ->orWhere('icao', 'like', "{$startPointName}%");
+                            }
+                        )
+                        ->orWhereHas('departureCity.regionCountry', function ($query) use ($startPointName) {
+                            $query->where('name', 'like', "%{$startPointName}%");
+                        });
+                }
+            })
+            ->where(function ($query) use ($endPointName) {
+                if (!empty($endPointName)) {
+                    $query->whereHas('arrivalCity', function ($query) use ($endPointName) {
+                        $query->where('name', 'like', "%{$endPointName}%");
+                    })
+                        ->orWhereHas('airportArrival', function ($query) use ($endPointName) {
+                            $query->where('name', 'like', "%{$endPointName}%")
+                                ->orWhere('iata', 'like', "{$endPointName}%")
+                                ->orWhere('icao', 'like', "{$endPointName}%");
+                        })
+                        ->orWhereHas('airportArrival.airportAreas.airport', function ($query) use ($endPointName) {
+                            $query->where('name', 'like', "%{$endPointName}%")
+                                ->orWhere('iata', 'like', "{$endPointName}%")
+                                ->orWhere('icao', 'like', "{$endPointName}%");
+                        })
+                        ->orWhereHas('arrivalCity.regionCountry', function ($query) use ($endPointName) {
+                            $query->where('name', 'like', "%{$endPointName}%");
+                        });
+                }
+            })
+            ->where(function ($query) use ($flightDate) {
+                if (!empty($flightDate)) {
+                    $query->where('date_departure', $flightDate);
+                }
+            })
+            ->where('active', Config::get('constants.active.Active'))
+            ->get()
+            ->map(function ($value) {
+                return collect([
+                   'id' => $value->id,
+                   'icaoDeparture' => $value->icao_departure,
+                   'airportDeparture' => $value->airportDeparture->name,
+                   'geoNameIdCityDeparture' => $value->departureCity->geonameid,
+                   'nameCityDeparture' => $value->departureCity->name,
+                   'icaoArrival' => $value->icao_arrival,
+                   'airportArrival' => $value->airportArrival->name,
+                   'geoNameIdCityArrival' => $value->arrivalCity->geonameid,
+                   'nameCityArrival' => $value->arrivalCity->name,
+                   'operatorEmail' => $value->operator,
+                   'operatorName' => $value->operatorData->name,
+                   'typePlane' => $value->type_plane,
+                   'price' => $value->price,
+                   'dateDeparture' => $value->date_departure,
+                   'active' => $value->active
+               ]);
+            });
     }
 }

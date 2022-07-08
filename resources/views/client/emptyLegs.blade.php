@@ -66,7 +66,7 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="pax" name="pax" autocomplete="off" value="" id="pax">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
@@ -95,82 +95,13 @@
 
         <div class="row">
             <div class="col-xl-12 col-lg-12 right-request">
-                <div id="search">
-                    @forelse ($emptyLegs as $emptyLeg)
-                    {!! ((int)$emptyLeg->price !== 0) ?
-                    "<form action='" . route('client.orders.confirm') . "' method='GET'>"
-                    :
-                    "<form action='" . route('client.search.requestQuote') . "' method='GET'>"
-                    !!}
-                        @php
-                            $type = Str::after($emptyLeg->type_plane, '_');
-                            $TYPE = Str::upper($type);
-                            $Type = Str::ucfirst($type);
-                        @endphp
-                                <div class="card mb-4">
-                                    <div class="card-body">
-
-                                        <div class="card-inner-body pl-4">
-
-                                            <div class="type-info-legs">
-                                                <div class="type-price text-uppercase">
-                                                    <span class="flight-type">{{__("$Type")}}</span>
-                                                    <span style="font-size: 0.8rem;"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
-                                                </div>
-                                                <div class="type-price">
-                                                    <span class="flight-price">{{ $emptyLeg->date_departure->format('d/m/Y') }}</span>
-                                                    <span class="flight-price-desc"></span>
-                                                </div>
-                                                <div class="type-price-legs">
-                                                    <span class="flight-price">{!! ((int)$emptyLeg->price !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg->price, 2, '.', ' ') : 'Price on request.' !!}</span>
-                                                    <span class="flight-price-desc">{{ ((int)$emptyLeg->price !== 0) ? __('Lowest Price (Incl. taxes)') : ''}}</span>
-                                                </div>
-
-                                                <div>
-                                                    <span class="flight-price-desc">{{ __('From Airport')}}</span>
-                                                    <span class="flight-price">{{ $emptyLeg->departureCity->name }}</span>
-                                                </div>
-                                                <div>
-                                                    <span class="flight-price-desc">{{ __('To Airport')}}</span>
-                                                    <span class="flight-price">{{ $emptyLeg->arrivalCity->name }}</span>
-                                                </div>
-
-                                                <input type="hidden" name="result_id" value="{{ $emptyLeg->id }}">
-                                                <input type="hidden" name="aircraft" value="{{ $Type }}">
-                                                <input type="hidden" name="startPointName" value="{{ $emptyLeg->departureCity->name }}">
-                                                <input type="hidden" name="endPointName" value="{{ $emptyLeg->arrivalCity->name }}">
-                                                <input type="hidden" name="startPoint" value="{{ $emptyLeg->departureCity->geonameid }}">
-                                                <input type="hidden" name="endPoint" value="{{ $emptyLeg->arrivalCity->geonameid }}">
-                                                <input type="hidden" name="startAirport" value="{{ $emptyLeg->airportDeparture->icao }}">
-                                                <input type="hidden" name="endAirport" value="{{ $emptyLeg->airportArrival->icao }}">
-                                                <input type="hidden" name="departure_at" value="{{ $emptyLeg->date_departure }}">
-                                                <input type="hidden" name="price" value="{{ $emptyLeg->price }}">
-                                                <input type="hidden" name="type" value="emptyLeg">
-                                                <input type="hidden" name="page_name" value="reqest-emptyLeg-page">
-
-                                                {!! ((int)$emptyLeg->price !== 0) ?
-                                                "<div>
-                                                    <button type='submit' class='price-empty-leg-submit'>" . __('Book now') . "</button>
-                                                </div>"
-                                                :
-                                                "<div>
-                                                    <button type='submit' class='request-empty-leg-submit'>" . __('Request a Quote') . "</button>
-                                                </div>"
-                                                !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                    @empty
-                        <div></div>
-                    @endforelse
-
-                    <div class="d-flex justify-content-center">
-                        {!! $emptyLegs->links() !!}
-                    </div>
-
-                </div>
+                @if (count($emptyLegs) > 0)
+                    <section class="emptyLegs">
+                        @include('client.emptyLegs-load')
+                    </section>
+                @else
+                    <div class="text-center">No matches found</div>
+                @endif
                 <div class="pb-5"></div>
            </div>
        </div>
@@ -237,217 +168,94 @@
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                autoApply: true,
+                autoUpdateInput: false,
+                autoClose: false,
+                locale: {
+                    "cancelLabel": 'Clear',
+                    "applyLabel": 'Apply',
+                    format: 'MM/DD/YYYY'
+                },
                 isInvalidDate: (e) => new Date(e) < today
+            }).on("apply.daterangepicker", function(e, picker) {
+                picker.element.val(picker.startDate.format(picker.locale.format));
+                e.preventDefault()
+                getEmptyLegs('/');
+                window.history.pushState("", "", window.location.href.split('?')[0]);
+                return false;
+            }).on("cancel.daterangepicker", function(e, picker) {
+                if(e.keyCode == 8 || e.keyCode == 46) {
+                    picker.element.val('');
+                }
             });
 
-            $('input[name="flightDate"]').val('');
-            $('input[name="flightDate"]').attr("placeholder","Date & Time");
+            $('#startPointName, #endPointName, #flightDate').on("keyup change", function (e) {
+                e.preventDefault();
+                getEmptyLegs('/');
+                window.history.pushState("", "", window.location.href.split('?')[0]);
+                return false;
+            });
 
-
-            $('#startPointName, #endPointName, #flightDate').on("keyup change", function () {
- /*               alert($('input[name="flightDate"]').val());
-
-
-            $(document).ready(function() {
-                $(window).on('hashchange', function() {
-                    if (window.location.hash) {
-                        var page = window.location.hash.replace('?', '');
-                        if (page == Number.NaN || page <= 0) {
-                            return false;
-                        } else {
-                            getEmptyLegs(page);
-                        }
-                    }
-                });
-                alert(page);
-
-                $(document).on('click', '.pagination .pagination-ajax a', function (e) {
-                    getEmptyLegs($(this).attr('href').split('page=')[1]);
+            $(document).on('click', '.pagination  a', function (e) {
+                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
                     e.preventDefault();
-                });
+                    let url = $(this).attr('href');
+                    getEmptyLegs(url.split('page=')[1]);
+                    window.history.pushState("", "", url);
+                    return false;
+                }
+                return true;
             });
-            */
-            /*
-            function getPosts(page) {
+
+            function getEmptyLegs(page) {
+                let startPointName = $('#startPointName').val();
+                let endPointName = $('#endPointName').val();
+                let flightDate = $('#flightDate').val();
+                let _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url : '?page=' + page,
-                    dataType: 'json',
+                    //url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,
+                    url: '?page=' + page,
+                    method: 'GET',
+                    datatype: 'html',
+                    data: {
+                        startPointName: startPointName,
+                        endPointName: endPointName,
+                        flightDate: flightDate,
+                        _token: _token
+                    }
                 }).done(function (data) {
-                    $('.posts').html(data);
-                    location.hash = page;
+                    $('#search').html(data);
+                    //let passengers = $('body').find('#pax').val();
+                    //alert(passengers);
                 }).fail(function () {
-                    alert('Posts could not be loaded.');
+                    $('#search').html('<div class="text-center">No matches found</div>');
                 });
             }
-*/
- //           function getEmptyLegs(page) {
-                    var startPointName = $('#startPointName').val();
-                    var endPointName = $('#endPointName').val();
-                    var flightDate = $('#flightDate').val();
-                    var page = 1;
-                    //flightDate.datepicker('setDate', $(this).val());
-                    //alert(startPointName);
-                    if (startPointName.length >= 3 || endPointName.length >= 3 || flightDate.length > 0) {
-                        //alert(flightDate);
-
-                        let _token = $('input[name="_token"]').val();
-                        let output = '';
-                        $.ajax({
-                            url: '{{ route('client.empty-leg.ajax-search') }}',//+'?page=' + page,
-                            method: 'GET',
-                            type: 'json',
-                            data: {
-                                startPointName: startPointName,
-                                endPointName: endPointName,
-                                flightDate: flightDate,
-                                _token: _token
-                            }
-//                            success: function (data) {
-//console.log(data);
 
 
+            $('#pax').on("keyup change", function (e) {
+                if($('#pax').val().length > 0) {
+                    $('.search-error').remove();
+                    e.preventDefault();
+                }
+            });
 
+            $('.price-empty-leg-submit').on('click', function(e){
+                //let passengers = $('#pax').val();
+                let passengers = $('html, body').find('#pax').val();
+                alert(passengers);
+                let html_message = '<span class="search-error">This field is required.</span>';
 
-
-                            }).done(function (data) {
-                            let page = "{{ !empty($filterEmptyLegs) ? $filterEmptyLegs->current_page : 1 }}";
-                            //let page = 1;
-                            alert (page);
-                            console.log({!! !empty($filterEmptyLegs) ? $filterEmptyLegs->current_page : 1  !!});
-
-                            {{-- var_dump(!empty($filterEmptyLegs) ? $filterEmptyLegs : 1 ) --}}
-
-                            //$('.articles').html(data);
-                            alert(data.filterEmptyLegs);
-                            alert(data.filterEmptyLegs);
-                            alert('TEST');
-                            console.log(data.filterEmptyLegs);
-                            {{--}}!! dd($filterEmptyLegs) !!--}}
-                            if (data.filterEmptyLegs.length !== 0) {
-                                $.each(data.filterEmptyLegs.data, function (idx, obj) {
-                                    //console.log(idx)
-                                    //alert(idx);
-                                    //alert(obj);
-                                    //$.each(obj, function(key, val) {
-                                    //console.log(val);
-//alert(obj.id);
-//alert(obj.type_plane);
-                                    //var objAirport = obj.airport;
-
-                                    let type = (obj.type_plane).split("_").pop();
-                                    let TYPE = type.toUpperCase();
-                                    let Type = type.toLowerCase().replace(/(?<= )[^\s]|^./g, a => a.toUpperCase());
-
-                                    let result_id = obj.id;
-                                    let aircraft = Type;
-                                    let startPointName = obj.departure_city.name;
-                                    let endPointName = obj.arrival_city.name
-                                    let startPoint = obj.departure_city.geonameid;
-                                    let endPoint = obj.arrival_city.geonameid;
-                                    let startAirport = obj.airport_departure.icao;
-                                    let endAirport = obj.airport_departure.icao;
-                                    //let departure_at = obj.date_departure;
-                                    //var sqlDate = new Date(obj.date_departure);
-                                    let departure_at = moment(new Date(obj.date_departure)).format('L');
-//alert(obj.date_departure);
-//alert(departure_at);
-                                    //let departure_at = moment(obj.date_departure, "DD/MM/YYYY");
-                                    let price = obj.price;
-
-                                    //alert(Number(price).toFixed(0));
-                                    //output += '<div id="search">
-
-                                    (Number(price).toFixed(0) != 0) ?
-                                        output += "<form action='{{ route('client.orders.confirm') }}' method='GET'>"
-                                        :
-                                        output += "<form action='{{ route('client.search.requestQuote') }}' method='GET'>";
-
-                                    output += `<div class='card mb-4'>
-                                            <div class='card-body'>
-
-                                            <div class='card-inner-body pl-4'>
-
-                                            <div class='type-info-legs'>
-                                            <div class='type-price text-uppercase'>
-                                                <span class='flight-type'>` + TYPE + `</span>
-                                                <span style='font-size: 0.8rem;'><a href='/aircraft' title='{{__('ABOUT CLASS')}}'>{{__('ABOUT CLASS')}}</a></span>
-                                            </div>
-                                            <div class='type-price'>
-                                                <span class='flight-price'>` + departure_at + `</span>
-                                                <span class='flight-price-desc'></span>
-                                            </div>
-                                            <div class='type-price-legs'>
-                                                <span class='flight-price'>`;
-                                    (Number(price).toFixed(0) != 0) ?
-                                        output += `{!! htmlspecialchars_decode('&#36; ', ENT_HTML5) !!}` + price
-                                        :
-                                        output += 'Price on request';
-                                    output += `</span>
-                                                <span class='flight-price-desc'>`;
-                                    (Number(price).toFixed(0) != 0) ?
-                                        output += "{{__('Lowest Price (Incl. taxes)')}}"
-                                        :
-                                        output += '';
-                                    output += `</span>
-                                            </div>
-
-                                            <div>
-                                                <span class='flight-price-desc'>{{ __('From Airport')}}</span>
-                                                <span class='flight-price'>` + startPointName + `</span>
-                                            </div>
-                                            <div>
-                                                <span class='flight-price-desc'>{{ __('To Airport')}}</span>
-                                                <span class='flight-price'>` + endPointName + `</span>
-                                            </div>
-
-                                        <input type='hidden' name='result_id' value='` + result_id + `'>
-                                        <input type='hidden' name='aircraft' value='` + aircraft + `'>
-                                        <input type='hidden' name='startPointName' value='` + startPointName + `'>
-                                        <input type='hidden' name='endPointName' value='` + endPointName + `'>
-                                        <input type='hidden' name='startPoint' value='` + startPoint + `'>
-                                        <input type='hidden' name='endPoint' value='` + endPoint + `'>
-                                        <input type='hidden' name='startAirport' value='` + startAirport + `'>
-                                        <input type='hidden' name='endAirport' value='` + endAirport + `'>
-                                        <input type='hidden' name='departure_at' value='` + departure_at + `'>
-                                        <input type='hidden' name='price' value='` + price + `'>
-                                        <input type='hidden' name='type' value='emptyLeg'>
-                                        <input type='hidden' name='page_name' value='reqest-emptyLeg-page'>`;
-
-                                    (Number(price).toFixed(0) != 0) ?
-                                        output += "<div><button type='submit' class='price-empty-leg-submit'>{{ __('Book now') }}</button></div>"
-                                        :
-                                        output += "<div><button type='submit' class='request-empty-leg-submit'>{{ __('Request a Quote') }}</button></div>";
-
-                                    output += `</div>
-                                                </div>
-                                            </div>
-                                        </div>`;
-                                    output += "</form>";
-                                });
-
-
-                                //});
-                                //});
-                                output += '<div class="d-flex justify-content-center">{{ $filterEmptyLegs->links() ?? '' }}</div>';
-                                {{-- dd() --}}
-                                //location.hash = page;
-                                {{--}}!! $emptyLegs->links() !!--}}
-                                //</div>';
-                            } else {
-                                output += '<div class="text-center">No matches found</div>';
-                            }
-
-                            //output += 'test';
-                            //alert(output);
-                            $('#search').fadeIn();
-                            $('#search').html(output);
-                            }).fail(function () {
-                            {{--}}!! var_dump($filterEmptyLegs->links ?? '') !!--}}
-                                alert('Articles could not be loaded.');
-                            });
-                    }
-
-                //}
+                if(passengers.length <= 0){
+                    $('.search-error').remove();
+                    $('#pax').parent('div').append(html_message);
+                    $('html, body').animate({
+                        scrollTop: parseInt($('.search-error').offset().top)
+                    }, 500);
+                    $('#pax').focus();
+                    e.preventDefault();
+                }
+                e.preventDefault();
             });
         });
     </script>

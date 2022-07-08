@@ -53,8 +53,7 @@ Route::post('/subscribed', 'SupportController@subscribe')->name('subscribed');
 Route::get('/sitemap', 'SitemapController@index');
 
 /* EmptyLegs */
-Route::get('/empty-leg', 'EmptyLegController@index');
-Route::get('/empty-leg/ajaxSearch', 'EmptyLegController@ajaxSearch')->name('empty-leg.ajax-search');
+Route::get('/empty-leg', 'EmptyLegController@index')->name('empty-leg');
 
 Auth::routes();
 

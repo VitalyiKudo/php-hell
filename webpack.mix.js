@@ -15,8 +15,13 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/client/client.scss', 'public/css/app.css')
    .sass('resources/sass/admin/admin.scss', 'public/css/admin.css');
 */
+/*
+mix.override((config) => {
+    delete config.watchOptions;
+});
+*/
 if (mix.inProduction()) {
     mix.version();
 }
-
+//mix.js('resources/js/app.js', 'public/js');
 mix.minify(['public/css/app.css', 'public/js/app.js', 'public/css/admin.css']);

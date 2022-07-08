@@ -91,6 +91,8 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
+        'phone_number',
+        'date_of_birth',
         'address',
         'address_secondary',
         'country',

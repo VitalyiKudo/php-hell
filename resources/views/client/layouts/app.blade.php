@@ -46,8 +46,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css.map" type="text/css">
 
     <!-- Styles -->
-    {{--<link href="{{ mix('css/app.min.css') }}" rel="stylesheet">--}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- strtoupper(getenv('APP_ENV')) !== 'LOCAL' }}
+    {{--<link href="{{ mix('css/app.min.css') }}" rel="stylesheet"> }}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('css/app.css') : mix('css/app.min.css') }}" rel="stylesheet">
     <!--<link href="{{-- asset('css/custom.css') --}}" rel="stylesheet">-->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -273,20 +275,15 @@
         </div>
     </div>
 
-    <script src="{{ mix('js/app.min.js') }}"></script>
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
-
-
-
-
+    <script src="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('js/app.js')  : mix('js/app.min.js') }}"></script>
+    {{--<script src="{{ mix('js/app.min.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js.map" type="application/octet-stream"></script>
-
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-
+--}}
     @stack('scripts')
 </body>
 </html>
