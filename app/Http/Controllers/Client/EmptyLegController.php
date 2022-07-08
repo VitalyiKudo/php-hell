@@ -18,6 +18,8 @@ class EmptyLegController extends Controller
     /**
      * Show the EmptyLeg page
      * @param EmptyLeg $emptyLeg
+     * @param Request  $request
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(EmptyLeg $emptyLeg, Request $request)
