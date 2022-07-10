@@ -214,13 +214,8 @@
                                                         <span class="flight-dep-arr">{{ $emptyLeg->departureCity->name . ' - ' . $emptyLeg->arrivalCity->name }}</span>
                                                     </div>
                                                     <div>
-
-                                                        <span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>
-                                                        <span class="flight-price-desc">{{__('Book now price')}}</span>
-                                                        {{--}}
                                                         <span class="flight-price">{!! ((int)$emptyLeg->price !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg->price, 2, '.', ' ') : 'Price on request.' !!}</span>
                                                         <span class="flight-price-desc">{{ ((int)$emptyLeg->price !== 0) ? __('Lowest Price (Incl. taxes)') : ''}}</span>
-                                                        --}}
                                                     </div>
                                                 </div>
 
