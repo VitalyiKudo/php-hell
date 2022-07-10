@@ -66,7 +66,7 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="pax" name="pax" autocomplete="off" value="" id="pax">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" autocomplete="off" value="" id="pax" name="pax">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
@@ -180,9 +180,8 @@
             }).on("apply.daterangepicker", function(e, picker) {
                 picker.element.val(picker.startDate.format(picker.locale.format));
                 e.preventDefault()
-                getEmptyLegs('/');
+                getEmptyLegs('');
                 window.history.pushState("", "", window.location.href.split('?')[0]);
-                return false;
             }).on("cancel.daterangepicker", function(e, picker) {
                 if(e.keyCode == 8 || e.keyCode == 46) {
                     picker.element.val('');
@@ -190,17 +189,18 @@
             });
 
             $('#startPointName, #endPointName, #flightDate').on("keyup change", function (e) {
-                e.preventDefault();
-                getEmptyLegs('/');
-                window.history.pushState("", "", window.location.href.split('?')[0]);
-                return false;
+                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
+                    e.preventDefault();
+                    getEmptyLegs('');
+                    window.history.pushState("", "", window.location.href.split('?')[0]);
+                }
             });
 
             $(document).on('click', '.pagination  a', function (e) {
                 if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
                     e.preventDefault();
                     let url = $(this).attr('href');
-                    getEmptyLegs(url.split('page=')[1]);
+                    getEmptyLegs(url.split('?page=')[1]);
                     window.history.pushState("", "", url);
                     return false;
                 }
@@ -217,6 +217,7 @@
                     url: '?page=' + page,
                     method: 'GET',
                     datatype: 'html',
+                    async: false,
                     data: {
                         startPointName: startPointName,
                         endPointName: endPointName,
@@ -224,9 +225,7 @@
                         _token: _token
                     }
                 }).done(function (data) {
-                    $('#search').html(data);
-                    //let passengers = $('body').find('#pax').val();
-                    //alert(passengers);
+                   $('#search').html($.parseHTML(data));
                 }).fail(function () {
                     $('#search').html('<div class="text-center">No matches found</div>');
                 });
@@ -236,14 +235,15 @@
             $('#pax').on("keyup change", function (e) {
                 if($('#pax').val().length > 0) {
                     $('.search-error').remove();
+                    alert(passengers);
+                    $('input[name=passengers]').val($('#pax').val());
                     e.preventDefault();
                 }
             });
 
-            $('.price-empty-leg-submit').on('click', function(e){
-                //let passengers = $('#pax').val();
-                let passengers = $('html, body').find('#pax').val();
-                alert(passengers);
+            $(document).on("click",".price-empty-leg-submit",function(e){
+
+                let passengers = $('#pax').val();
                 let html_message = '<span class="search-error">This field is required.</span>';
 
                 if(passengers.length <= 0){
@@ -255,7 +255,7 @@
                     $('#pax').focus();
                     e.preventDefault();
                 }
-                e.preventDefault();
+                //e.preventDefault();
             });
         });
     </script>

@@ -47,6 +47,7 @@
                         <input type="hidden" name="endAirport" value="{{ $emptyLeg['icaoArrival'] }}">
                         <input type="hidden" name="departure_at" value="{{ $emptyLeg['dateDeparture'] }}">
                         <input type="hidden" name="price" value="{{ $emptyLeg['price'] }}">
+                        <input type="hidden" name="passengers" value="">
                         <input type="hidden" name="type" value="emptyLeg">
                         <input type="hidden" name="page_name" value="reqest-emptyLeg-page">
 
@@ -74,35 +75,3 @@
         </div>
     @endif
 </div>
-{{--}}
-@push('scripts')
-    <script>
-    $(document).ready(function(){
-            $('#pax').on("keyup change", function (e) {
-                if($('#pax').val().length > 0) {
-                    $('.search-error').remove();
-                    e.preventDefault();
-                }
-            });
-
-            $('.price-empty-leg-submit').on('click', function(e){
-                //let passengers = $('#pax').val();
-                let passengers = $('html, body').find('#pax').val();
-                alert(passengers);
-                let html_message = '<span class="search-error">This field is required.</span>';
-
-                if(passengers.length <= 0){
-                    $('.search-error').remove();
-                    $('#pax').parent('div').append(html_message);
-                    $('html, body').animate({
-                        scrollTop: parseInt($('.search-error').offset().top)
-                    }, 500);
-                    $('#pax').focus();
-                    e.preventDefault();
-                }
-                e.preventDefault();
-            });
-    });
-    </script>
-@endpush
---}}

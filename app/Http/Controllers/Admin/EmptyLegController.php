@@ -109,7 +109,7 @@ class EmptyLegController extends Controller
     */
     public function show(EmptyLeg $emptyleg, $id)
     {
-        $emptyLeg = $emptyleg->getEmptyLegs()->where('id', $id)->at(0);
+        $emptyLeg = $emptyleg->getEmptyLegsFull()->where('id', $id)->at(0);
 
         $status = ['status' => Config::get('constants.active'), 'statusBg' => Config::get('constants.active_bg')];
 
@@ -124,7 +124,7 @@ class EmptyLegController extends Controller
      */
     public function edit(EmptyLeg $emptyleg, $id)
     {
-        $emptyLeg = $emptyleg->getEmptyLegs()->where('id', $id)->at(0);
+        $emptyLeg = $emptyleg->getEmptyLegsFull()->where('id', $id)->at(0);
 
         $typePlanes = Config::get('constants.plane.type_plane');
 

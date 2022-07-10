@@ -220,7 +220,6 @@ class OrderController extends Controller
         $pervis_confirm_url = Session::get('pervis_confirm_url');
 
         $user = Auth::user();
-        #dd($request);
 
         $search_id = $request->route('search');
         $search_type = $request->route('type');
@@ -239,7 +238,7 @@ class OrderController extends Controller
 
         $messages = NULL;
         $cart_errors = [];
-#dd($search);
+
         $request_method = 'get';
 
         if ($request->isMethod('post')){

@@ -51,7 +51,7 @@ class EmptyLegDataTable extends DataTable
      */
     public function query(EmptyLeg $collect)
     {
-        return $collect->getEmptyLegs();
+        return $collect->getEmptyLegsFull();
     }
 
     /**
