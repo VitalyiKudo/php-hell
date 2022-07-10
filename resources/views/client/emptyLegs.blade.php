@@ -235,7 +235,6 @@
             $('#pax').on("keyup change", function (e) {
                 if($('#pax').val().length > 0) {
                     $('.search-error').remove();
-                    alert(passengers);
                     $('input[name=passengers]').val($('#pax').val());
                     e.preventDefault();
                 }
