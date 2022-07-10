@@ -507,6 +507,8 @@
                 opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
+                autoApply: true,
+                autoUpdateInput: true,
                 isInvalidDate: (e) => new Date(e) < today
             });
             $('input[name="flightDate"]').val('');

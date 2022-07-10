@@ -170,7 +170,7 @@
                 singleDatePicker: true,
                 autoApply: true,
                 autoUpdateInput: false,
-                autoClose: false,
+                autoClose: true,
                 locale: {
                     "cancelLabel": 'Clear',
                     "applyLabel": 'Apply',

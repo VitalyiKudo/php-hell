@@ -214,8 +214,13 @@
                                                         <span class="flight-dep-arr">{{ $emptyLeg->departureCity->name . ' - ' . $emptyLeg->arrivalCity->name }}</span>
                                                     </div>
                                                     <div>
+
                                                         <span class="flight-price">&#36;{{ number_format($emptyLeg->price, 2, '.', ' ') }}</span>
                                                         <span class="flight-price-desc">{{__('Book now price')}}</span>
+                                                        {{--}}
+                                                        <span class="flight-price">{!! ((int)$emptyLeg->price !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg->price, 2, '.', ' ') : 'Price on request.' !!}</span>
+                                                        <span class="flight-price-desc">{{ ((int)$emptyLeg->price !== 0) ? __('Lowest Price (Incl. taxes)') : ''}}</span>
+                                                        --}}
                                                     </div>
                                                 </div>
 
@@ -280,7 +285,7 @@
                                             <div class="card-body">
                                                 <div class="card-inner-image">
 
-                                                    <div class="turbo-gallery-for">
+                                                    <div class="{{ $type }}-gallery-for">
                                                         <div>
                                                             <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
                                                         </div>
@@ -298,7 +303,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="turbo-gallery-nav">
+                                                    <div class="{{ $type }}-gallery-nav">
                                                         <div>
                                                             <img src="{{ asset("images/search_galery/$type/$TYPE.webp") }}" alt="{{$TYPE}}">
                                                         </div>
@@ -667,6 +672,7 @@
            opens: 'left',
            keepEmptyValues: true,
            singleDatePicker: true,
+           autoApply: true,
            autoUpdateInput: true,
            isInvalidDate: (e) => new Date(e) < today
        });
