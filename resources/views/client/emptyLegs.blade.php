@@ -100,7 +100,7 @@
                         @include('client.emptyLegs-load')
                     </section>
                 @else
-                    <div class="text-center">No matches found</div>
+                    <div class="text-center">We do not have such a flight, make a request a quote</div>
                 @endif
                 <div class="pb-5"></div>
            </div>
@@ -210,8 +210,8 @@
                 let startPointName = $('#startPointName').val();
                 let endPointName = $('#endPointName').val();
                 let flightDate = $('#flightDate').val();
-                /*let _token = $('input[name="_token"]').val();*/
-                let _token = $('meta[name="csrf-token"]').attr('content');
+                let _token = $('input[name="_token"]').val();
+                /*let _token = $('meta[name="csrf-token"]').attr('content');*/
 
                 $.ajax({
                     /*url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,*/
