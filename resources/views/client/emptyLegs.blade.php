@@ -132,7 +132,7 @@
 @endsection
 
 @push('scripts')
-    <script>
+<script>
         $(document).ready(function(){
 
             var tc = '{{$status}}';
@@ -210,7 +210,9 @@
                 let startPointName = $('#startPointName').val();
                 let endPointName = $('#endPointName').val();
                 let flightDate = $('#flightDate').val();
-                let _token = $('input[name="_token"]').val();
+                /*let _token = $('input[name="_token"]').val();*/
+                let _token = $('meta[name="csrf-token"]').attr('content');
+
                 $.ajax({
                     /*url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,*/
                     url: '?page=' + page,
