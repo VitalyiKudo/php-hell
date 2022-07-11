@@ -66,7 +66,7 @@
         </div>
         </form>
     @empty
-        <div class="text-center">No matches found</div>
+        <div class="text-center not-found-message">We do not have such a flight, make a request a quote</div>
     @endforelse
 
     @if (!empty($emptyLegs) && $emptyLegs->hasPages())

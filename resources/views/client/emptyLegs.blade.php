@@ -100,7 +100,7 @@
                         @include('client.emptyLegs-load')
                     </section>
                 @else
-                    <div class="text-center">We do not have such a flight, make a request a quote</div>
+                    <div class="text-center not-found-message">We do not have such a flight, make a request a quote</div>
                 @endif
                 <div class="pb-5"></div>
            </div>
