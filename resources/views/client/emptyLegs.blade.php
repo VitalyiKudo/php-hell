@@ -159,7 +159,6 @@
                 $(this).find('span').tooltip();
             });
             */
-            //$('.flight-type').css("background-color", "red");
 
             var nowDate = new Date();
             var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
@@ -213,7 +212,7 @@
                 let flightDate = $('#flightDate').val();
                 let _token = $('input[name="_token"]').val();
                 $.ajax({
-                    //url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,
+                    /*url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,*/
                     url: '?page=' + page,
                     method: 'GET',
                     datatype: 'html',
@@ -254,7 +253,6 @@
                     $('#pax').focus();
                     e.preventDefault();
                 }
-                //e.preventDefault();
             });
         });
     </script>
