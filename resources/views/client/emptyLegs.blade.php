@@ -178,7 +178,7 @@
                 isInvalidDate: (e) => new Date(e) < today
             }).on("apply.daterangepicker", function(e, picker) {
                 picker.element.val(picker.startDate.format(picker.locale.format));
-                e.preventDefault()
+                e.preventDefault();
                 getEmptyLegs('');
                 window.history.pushState("", "", window.location.href.split('?')[0]);
             }).on("cancel.daterangepicker", function(e, picker) {
