@@ -161,7 +161,6 @@ class OrderController extends Controller
             }
         }
 */
-        #dd($request);
 
         $search = new Search;
         $search->result_id = $request->result_id;
@@ -175,23 +174,20 @@ class OrderController extends Controller
         $search->pax = $request->passengers > 0 ? $request->passengers : 0;
         $search->save();
 
-#dd($search);
         $pervis_search_url = Session::get('pervis_search_url');
         Session::put('pervis_confirm_url', url()->full());
 
         $user = Auth::user();
         $search_id = $search->id;
-        #$search_id = 648;
-        #$search_type = $request->route('type');
         $search_type = $request->type;
-#dd($search_type);
+
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
         }
         else {
             $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
-#dd($search);
+
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 

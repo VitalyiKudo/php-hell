@@ -213,17 +213,14 @@ class OrderController extends Controller
         Session::put('pervis_confirm_url', url()->full());
 
         $user = Auth::user();
-        $search_id = $request->route('search');
-        $search_type = $request->route('type');
+        $search_id = $search->id;
+        $search_type = $request->type;
 
         if ($search_type !== 'emptyLeg') {
-            $search = Search::with('price', 'departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
-            $strPrice = 'price_'.$search_type;
-            $total_price = $search->price->$strPrice;
+            $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
-            $total_price = $search->price;
+            $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
 
         $time_type = 'time_' . $search_type;
