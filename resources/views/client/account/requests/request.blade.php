@@ -155,7 +155,7 @@
                     </div><br />
                 @endif
                     @forelse ($searchResults as $key => $emptyLeg)
-                    {{-- dd($emptyLeg) --}}
+
                     @if(empty($emptyLeg['pricing']))
                         {!! ((int)$emptyLeg->price !== 0) ?
                         "<form action='" . route('client.orders.confirm') . "' method='GET'>"

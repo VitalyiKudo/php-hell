@@ -23,7 +23,6 @@ class SendEmailOperator implements ShouldQueue
     public function __construct($data_emails)
     {
         $this->data_mail = $data_emails;
-        #dd($this->data_mail);
     }
 
     /**
