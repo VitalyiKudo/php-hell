@@ -188,7 +188,7 @@ class OrderController extends Controller
     public function confirm(Request $request)
     {
         $session_id = Session::get('session_token_id');
-
+/*
         $search_updates = Search::where('session_id', $session_id)->get();
         if($search_updates){
             foreach ($search_updates as $search_update) {
@@ -196,7 +196,7 @@ class OrderController extends Controller
                 $search_update->save();
             }
         }
-
+*/
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
