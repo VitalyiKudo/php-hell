@@ -218,12 +218,22 @@ class OrderController extends Controller
         $user = Auth::user();
         $search_id = $search->id;
         $search_type = $request->type;
-
+/*
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
         }
         else {
             $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
+        }
+        */
+        if ($search_type !== 'emptyLeg') {
+            $search = Search::with('price', 'departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
+            $strPrice = 'price_'.$search_type;
+            $total_price = $search->price->$strPrice;
+        }
+        else {
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
+            $total_price = $search->price;
         }
 
         $time_type = 'time_' . $search_type;
