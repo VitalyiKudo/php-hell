@@ -232,7 +232,7 @@ class OrderController extends Controller
             $total_price = $search->price->$strPrice;
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'airportDeparture', 'airportArrival')->find($search->result_id);
             $total_price = $search->price;
         }
 
