@@ -218,6 +218,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $search_id = $search->id;
         $search_type = $request->type;
+        $pax = $search->pax;
 /*
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity')->find($search_id);
@@ -237,7 +238,7 @@ class OrderController extends Controller
         }
 
         $time_type = 'time_' . $search_type;
-dd($search);
+#dd($search);
         return response()->json([
             'search_id' => $search_id,
             'search_type' => $search_type,
@@ -247,8 +248,9 @@ dd($search);
             'user' => $user,
             'start_airport_name' => $search->airportDeparture->icao,
             'end_airport_name' => $search->airportArrival->icao,
-            'departure_at' => $search->departure_at,
-            'pax' => !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers"),
+            'departure_at' => !empty($search->departure_at) ? $search->departure_at : $search->date_departure,
+            #'pax' => !empty($search->pax) ? $search->pax : Config::get("constants.plane.type_plane.$search->type_plane.feature_plane.Passengers"),
+            'pax' => $pax,
             'total_price' => $total_price,
             'pervis_search_url' => $pervis_search_url,
         ]);
