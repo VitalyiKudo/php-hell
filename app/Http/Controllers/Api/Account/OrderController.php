@@ -148,6 +148,8 @@ class OrderController extends Controller
      *
      * Order step #2
      *
+     * @param Request $request
+     *
      * @OA\Get(
      *     path="/api/orders/{search}/confirm/{type}",
      *     description="Order step #2",
@@ -197,6 +199,7 @@ class OrderController extends Controller
             }
         }
 */
+        dd($request);
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
