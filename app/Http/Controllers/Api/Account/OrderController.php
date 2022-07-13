@@ -199,7 +199,7 @@ class OrderController extends Controller
             }
         }
 */
-        dd($request);
+        #dd($request);
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
