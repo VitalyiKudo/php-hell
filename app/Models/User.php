@@ -40,6 +40,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read string $full_name
  * @property-read string $has_billing_address
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FcmToken[] $fcmTokens
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
  * @property-read int|null $orders_count
@@ -166,6 +167,14 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany('App\Models\Order');
+    }
+
+    /**
+     * Get all of the fcm tokens for the user.
+     */
+    public function fcmTokens()
+    {
+        return $this->hasMany('App\Models\FcmToken');
     }
 
     public function searches()

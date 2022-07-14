@@ -782,6 +782,61 @@
                 ]
             }
         },
+        "/api/profile/account/set-fcm-token": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "description": "User fcm token for firebase.",
+                "operationId": "52f1028e2dd15ac42b386897e0dd9c6e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fcm_token": {
+                                        "description": "User fcm_token of device",
+                                        "type": "string",
+                                        "example": "ereQe_e32dadopDIAJ29uAD0qie"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "example@mail.com"
+                                    },
+                                    "phone": {
+                                        "description": "User phone",
+                                        "type": "string",
+                                        "example": "+4823948238489"
+                                    },
+                                    "device": {
+                                        "description": "User device",
+                                        "type": "string",
+                                        "example": "Android 9.0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "description": "Already exist"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                }
+            }
+        },
         "/api/profile/account/forgot-password": {
             "post": {
                 "tags": [

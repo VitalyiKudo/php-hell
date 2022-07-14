@@ -33,6 +33,8 @@ Route::put('profile/account/admin_login', 'Account\Profile\AccountController@adm
 Route::post('profile/account/register', 'Account\Profile\AccountController@register');
 Route::post('profile/account/forgot-password', 'Account\Profile\ForgotPasswordController@forgot');
 Route::put('profile/account/refresh', 'Account\Profile\AccountController@refresh');
+Route::post('profile/account/set-fcm-token', 'Account\Profile\FireBaseController@storeToken');
+
 
 // Requests
 Route::get('requests', 'Account\RequestController@index');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Notification;
 use App\Models\Order;
+use App\Service\Firebase\FirebaseUpdateSender;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -19,14 +21,18 @@ use App\Models\User;
 
 class OrderController extends Controller
 {
+    private $firebaseUpdateSender;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(FirebaseUpdateSender $firebaseUpdateSender)
     {
         $this->middleware('auth:admin');
+
+        $this->firebaseUpdateSender = $firebaseUpdateSender;
     }
 
     /**
@@ -107,6 +113,15 @@ class OrderController extends Controller
         $order->price = $request->price;
         $order->operator_id = $request->operator;
         $order->save();
+
+        $notificationTypeId = Notification::REQUEST_UPDATE_NOTIFICATION_ID;
+
+        if ($order->price > 0 && null != $order->payment_id) {
+            $notificationTypeId = Notification::ORDER_UPDATE_NOTIFICATION_ID;
+        }
+
+        $notificationModel = Notification::where('id', $notificationTypeId)->firstOrFail();
+        $this->firebaseUpdateSender->send($order->user_id, $notificationModel);
 
         //Mail::to($order->user->email)->send(new SendMail($order));
         Mail::send('admin.emails.order_status', ['order' => $order], function ($m) use ($order) {

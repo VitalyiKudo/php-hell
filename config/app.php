@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'firebase_token' => env('FIREBASE_TOKEN', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -183,7 +185,7 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
-        
+
         App\Providers\SerializerServiceProvider::class
     ],
 
