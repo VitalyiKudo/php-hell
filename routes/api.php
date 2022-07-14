@@ -54,7 +54,9 @@ Route::get('search/flight', 'Account\FlightController@index');
 
 // Order
 Route::get('orders', 'Account\OrderController@index');
-Route::get('orders/{search}/confirm/{type}', 'Account\OrderController@confirm');
+#Route::get('orders/{search}/confirm/{type}', 'Account\OrderController@confirm');
+Route::get('orders/confirm', 'Account\OrderController@confirm')->name('api.orders.confirm');
+#Route::get('/orders/confirm', 'OrderController@confirm')->name('orders.confirm');
 Route::get('orders/{search}/square/{type}', 'Account\OrderController@square');
 Route::post('orders/{search}/square/{type}', 'Account\OrderController@square');
 Route::get('orders/{search}/confirm', 'Account\OrderController@requestConfirm');
@@ -70,4 +72,4 @@ Route::post('messages','ChatsController@sendMessages');
 
 
 /* EmptyLegs */
-Route::get('/empty-leg', 'EmptyLegController@index');
+Route::get('empty-leg', 'EmptyLegController@index');
