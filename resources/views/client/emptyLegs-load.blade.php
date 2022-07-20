@@ -48,6 +48,7 @@
                         <input type="hidden" name="departure_at" value="{{ $emptyLeg['dateDeparture'] }}">
                         <input type="hidden" name="price" value="{{ $emptyLeg['price'] }}">
                         <input type="hidden" name="passengers" value="">
+                        <input type="hidden" name="pax" value="">
                         <input type="hidden" name="type" value="emptyLeg">
                         <input type="hidden" name="page_name" value="reqest-emptyLeg-page">
 

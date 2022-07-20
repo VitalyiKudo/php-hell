@@ -57,7 +57,7 @@ class SendEmailOperator implements ShouldQueue
 
                     Mail::send([], [$this->data_mail], function ($message) use ($email) {
                         #Mail::send('emails.welcome', $data, function ($message) {
-                        $message->from('charter@jetoset.com', 'JetOnset team');
+                        $message->from('charter@jetonset.com', 'JetOnset team');
                         #$message->to($email)->subject(
                         $message->to($email);
                         $message->subject("We have request for you #{$this->data_mail->data_flight['order_id']}");

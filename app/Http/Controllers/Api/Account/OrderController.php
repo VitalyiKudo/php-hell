@@ -199,7 +199,7 @@ class OrderController extends Controller
             }
         }
 */
-        #dd($request);
+
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
@@ -238,7 +238,7 @@ class OrderController extends Controller
         }
 
         $time_type = 'time_' . $search_type;
-#dd($search);
+
         return response()->json([
             'search_id' => $search_id,
             'search_type' => $search_type,

@@ -61,7 +61,7 @@
                                 <p>route & AIRCRAFT</p>
                             </div>
 
-                            <form action="{{ route('client.search.requestQuote') }}" method="GET" id="request_quote">
+                            <form action="{{ route('client.search.createQuote') }}" method="GET" id="request_quote">
 
                                 <div class="row">
 
@@ -72,10 +72,11 @@
                                                 class="form-control from"
                                                 placeholder="Departure Airport"
                                                 aria-describedby="departure-airport"
-                                                name="startPoint"
+                                                name="startPointName"
                                                 autocomplete="off"
-                                                value="{{ $params['start_airport_name'] }}"
+                                                value="{{ $params['startPointName'] }}"
                                                 id="departure-airportRQ"
+                                                   disabled
                                             >
                                             <div id="departureList"></div>
 
@@ -102,7 +103,7 @@
                                                     name="fromReturnPoint"
                                                     autocomplete="off"
                                                     value="{{ $params['from_return_airport_name'] }}"
-                                                    id="from-return-airportRQ" {{ $params['from_return_airport_name'] ? '' : 'disabled' }}
+                                                    id="from-return-airportRQ" {{-- $params['from_return_airport_name'] ? '' : 'disabled' --}}
                                                 >
                                                 <div id="fromReturnList"></div>
                                             </div>
@@ -117,10 +118,11 @@
                                                 class="form-control to"
                                                 placeholder="Arrival Airport"
                                                 aria-describedby="arrival-airport"
-                                                name="endPoint"
+                                                name="endPointName"
                                                 autocomplete="off"
-                                                value="{{ $params['end_airport_name'] }}"
+                                                value="{{ $params['endPointName'] }}"
                                                 id="arrival-airportRQ"
+                                                   disabled
                                             >
                                             <div id="arrivalList"></div>
 
@@ -163,7 +165,7 @@
                                     <div class="mb-3 mt-2 ml-3 dt-field">
                                         <div class="input-group input-style">
                                             <label for="flightDateRQ">Arrival Date</label>
-                                            <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['departure_at'] }}" id="flightDateRQ">
+                                            <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['departure_at'] }}" id="flightDateRQ" disabled>
 
                                             <div class="stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
                                                 <label for="stopFlightDateRQ" class="mt-3">Stop Date</label>
@@ -223,7 +225,7 @@
                                         <div class="row">
                                             <div class="col-sm-3 pr-2">
                                                 <label for="passengers">Passengers</label>
-                                                <input type="number" min="1" class="form-control" aria-describedby="pax" name="pax" autocomplete="off" value="{{ $params['pax'] }}" id="passengers">
+                                                <input type="number" min="1" class="form-control" aria-describedby="pax" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}" id="passengers">
                                             </div>
                                             <div class="col-sm-3 pl-1 pr-3">
                                                 <label for="pets">PETS</label>
@@ -265,11 +267,13 @@
                                                 <label class="form-check-label" for="catering">Catering</label>
                                             </div>
 
-                                            {{--}}<input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}" name="start_city_id">
-                                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}" name="end_city_id">
-                                            <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" name="start_airport_id">
-                                            <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" name="end_airport_id">--}}
-                                            <input type="hidden" name="page_name" value="reqest-page">
+                                            <input type="hidden" name="result_id" value="{{ !empty($params['result_id']) ? $params['result_id'] : 0 }}">
+                                            <input type="hidden" name="search_id" value="{{ $search['id'] }}">
+                                            <input type="hidden" name="startPoint" value="{{ $params['startPoint'] }}">
+                                            <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}">
+                                            <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}">
+                                            <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}">
+                                            <input type="hidden" name="page_name" value="reqest-quote-page">
 
                                         </div>
                                     </div>
@@ -872,7 +876,7 @@
                 var start_point = $(this).find('input[name="startPoint"]').val();
                 var end_point = $(this).find('input[name="endPoint"]').val();
                 var flight_date = $(this).find('input[name="flightDate"]').val();
-                var passengers = $(this).find('input[name="pax"]').val();
+                var passengers = $(this).find('input[name="passengers"]').val();
                 var html_message = '<span class="search-error">This field is required.</span>';
 
                 if(start_point.length <= 0 || end_point.length <= 0 || flight_date.length <= 0 || passengers.length <= 0){
@@ -888,7 +892,7 @@
                         $(this).find('input[name="flightDate"]').parent('div').append(html_message);
                     }
                     if(passengers.length <= 0){
-                        $(this).find('input[name="pax"]').parent('div').append(html_message);
+                        $(this).find('input[name="passengers"]').parent('div').append(html_message);
                     }
                     e.preventDefault();
                 }

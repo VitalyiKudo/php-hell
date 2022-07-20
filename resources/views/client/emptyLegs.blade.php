@@ -237,11 +237,12 @@
                 if($('#pax').val().length > 0) {
                     $('.search-error').remove();
                     $('input[name=passengers]').val($('#pax').val());
+                    $('input[name=pax]').val($('#pax').val());
                     e.preventDefault();
                 }
             });
 
-            $(document).on("click",".price-empty-leg-submit",function(e){
+            $(document).on("click",".price-empty-leg-submit, .request-empty-leg-submit",function(e){
 
                 let passengers = $('#pax').val();
                 let html_message = '<span class="search-error">This field is required.</span>';

@@ -106,9 +106,9 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="pax">
                                     <div class="input-group-prepend">
-                                    <span class="input-group-text bd-input" id="passengers" name="passengers" >
+                                    <span class="input-group-text bd-input" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
                                 </div>
@@ -413,7 +413,7 @@
                                                       -->
                                                   </div>
 
-                                                  {{--<input type="hidden" name="result_id" value="{{ $params['searchId'] }}" id="result_id">--}}
+                                                <input type="hidden" name="result_id" value="0">
                                                 <input type="hidden" name="user_id" value="{{ $params['userId'] }}" id="user_id">
                                                 <input type="hidden" name="startPointName" value="{{ $params['startPointName'] }}" id="start_airport_name">
                                                 <input type="hidden" name="endPointName" value="{{ $params['endPointName'] }}" id="end_airport_name">
@@ -422,7 +422,7 @@
                                                 <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}" id="start_airport_id">
                                                 <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}" id="end_airport_id">
                                                 <input type="hidden" name="departure_at" value="{{ $params['flightDate'] }}" id="departure_at">
-                                                <!--<input type="hidden" name="pax" value="{{ $params['passengers'] }}" id="pax">-->
+                                                <input type="hidden" name="passengers" value="{{ $params['passengers'] }}">
                                                 <input type="hidden" name="page_name" value="search-page">
 
                                                 <div class="text-right pull-right">
@@ -919,6 +919,15 @@
            $('#T-C').modal('show');
        };*/
 
+       $('#pax').on("keyup change", function (e) {
+               $('input[name=pax]').val($('#pax').val());
+               e.preventDefault();
+       });
+
+       $('#passengers').on("keyup change", function (e) {
+               $('input[name=pax]').val($('#passengers').val());
+               e.preventDefault();
+       });
    });
 </script>
 

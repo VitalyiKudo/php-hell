@@ -40,7 +40,7 @@ class RequestController extends Controller
             ->orderBy('id', 'desc')
             ->get()
             ->paginate(25);
-
+#dd($requests);
         return view('client.account.requests.index', compact('requests'));
     }
 

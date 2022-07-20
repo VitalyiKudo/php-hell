@@ -67,13 +67,21 @@ class Operator extends Model
         'fax',
         'address',
         'active',
+        'sending_date',
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['sending_date', 'created_at', 'updated_at', 'deleted_at'];
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
+
     public $incrementing = false;
 
 }

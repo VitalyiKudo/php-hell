@@ -161,7 +161,7 @@ class OrderController extends Controller
             }
         }
 */
-
+#dd($request);
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
@@ -187,7 +187,7 @@ class OrderController extends Controller
         else {
             $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
-dd($search);
+
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 

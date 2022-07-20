@@ -254,4 +254,10 @@ class EmptyLeg extends Model
                ]);
             });
     }
+
+    public function DeactivateEmptyLegsOld()
+    {
+        return $this->whereDate('date_departure', '<=', date('Ymd'))
+            ->where('active', Config::get("constants.active.Active"));
+    }
 }

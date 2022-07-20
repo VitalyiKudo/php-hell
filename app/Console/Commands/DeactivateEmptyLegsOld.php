@@ -4,6 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use App\Models\EmptyLeg;
+use Config;
+
 class DeactivateEmptyLegsOld extends Command
 {
     /**
@@ -11,14 +14,14 @@ class DeactivateEmptyLegsOld extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'command:DeactivateEmptyLegsOld';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Command DeactivateEmptyLegsOld';
 
     /**
      * Create a new command instance.
@@ -33,10 +36,12 @@ class DeactivateEmptyLegsOld extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @param EmptyLeg $emptyLeg
+     *
+     * @return bool|int
      */
-    public function handle()
+    public function handle(EmptyLeg $emptyLeg)
     {
-        //
+        return $emptyLeg->DeactivateEmptyLegsOld()->update(['active' => Config::get("constants.active.Deleted")]);
     }
 }
