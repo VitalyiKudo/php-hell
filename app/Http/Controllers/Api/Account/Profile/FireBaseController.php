@@ -60,7 +60,7 @@ class FireBaseController extends Controller
     public function storeToken(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fcm_token' => 'required|string|max:150',
+            'fcm_token' => 'required|string|max:200',
             'phone' => 'string|nullable|max:25',
             'email' => 'email|nullable|max:150',
             'device' => 'required|string|max:150',

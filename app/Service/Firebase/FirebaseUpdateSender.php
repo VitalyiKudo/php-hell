@@ -40,7 +40,7 @@ class FirebaseUpdateSender
             $response = $this->firebaseClient
                 ->withTitle($notification->title)
                 ->withBody($notification->message)
-                ->withChannelId($notification->channel)
+                ->withAdditionalData(['channelId' => $notification->channel])
                 ->sendNotification($tokens);
 
             Log::info($response);
