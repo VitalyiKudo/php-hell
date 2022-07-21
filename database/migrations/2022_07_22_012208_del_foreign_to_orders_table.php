@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RestoreOperatorsToOrdersTable extends Migration
+class DelForeignToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,7 @@ class RestoreOperatorsToOrdersTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('operator_id')->unsigned()->nullabe()->index()->default(0);
-            $table->foreign('operator_id')->references('id')->on('operators')->onDelete('cascade');
+            $table->dropForeign(['operator_id']);
         });
         Schema::enableForeignKeyConstraints();
     }
@@ -30,8 +29,7 @@ class RestoreOperatorsToOrdersTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['operator_id']);
-            $table->dropColumn('operator_id');
+            $table->foreign('operator_id')->references('id')->on('operators')->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
     }
