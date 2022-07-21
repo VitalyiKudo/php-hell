@@ -13,12 +13,9 @@ class RestoreOperatorsToOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('operator_id')->unsigned()->nullabe()->index()->default(0);
-            $table->foreign('operator_id')->references('id')->on('operators')->onDelete('cascade');
         });
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -28,10 +25,8 @@ class RestoreOperatorsToOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('operator_id');
         });
-        Schema::enableForeignKeyConstraints();
     }
 }

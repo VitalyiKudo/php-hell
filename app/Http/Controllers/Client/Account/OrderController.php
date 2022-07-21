@@ -187,7 +187,7 @@ class OrderController extends Controller
         else {
             $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
-
+#dd($search_type);
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 
@@ -214,12 +214,12 @@ class OrderController extends Controller
         $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
 */
         $pervis_confirm_url = Session::get('pervis_confirm_url');
-
+#dd($request);
         $user = Auth::user();
 
         $search_id = $request->route('search');
         $search_type = $request->route('type');
-
+#        dd($search_type);
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($search_id);
             $strPrice = 'price_'.$search_type;
@@ -227,7 +227,9 @@ class OrderController extends Controller
             $operatorCity = array_unique([$search->departure_geoId, $search->arrival_geoId, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find($search_id);
+            #dd(Search::find($search_id)->result_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find(Search::find($search_id)->result_id);
+            #dd($search);
             $total_price = $search->price;
             $operatorCity = array_unique([$search->geoNameIdCity_departure, $search->geoNameIdCity_arrival, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
