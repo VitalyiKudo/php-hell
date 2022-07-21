@@ -36,4 +36,6 @@ class Notification extends Model
 
     public const ORDER_UPDATE_NOTIFICATION_ID = 1;
     public const REQUEST_UPDATE_NOTIFICATION_ID = 2;
+
+    public const FLUTTER_NOTIFICATION_CLICK = 'FLUTTER_NOTIFICATION_CLICK';
 }

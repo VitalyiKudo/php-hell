@@ -40,7 +40,10 @@ class FirebaseUpdateSender
             $response = $this->firebaseClient
                 ->withTitle($notification->title)
                 ->withBody($notification->message)
-                ->withChannelId($notification->channel)
+                ->withAdditionalData([
+                    'route' => $notification->channel,
+                    'click_action' => Notification::FLUTTER_NOTIFICATION_CLICK,
+                ])
                 ->sendNotification($tokens);
 
             Log::info($response);
