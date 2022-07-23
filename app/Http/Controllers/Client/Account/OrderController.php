@@ -214,12 +214,12 @@ class OrderController extends Controller
         $upper_case_environment = strtoupper(getenv('ENVIRONMENT'));
 */
         $pervis_confirm_url = Session::get('pervis_confirm_url');
-#dd($request);
+
         $user = Auth::user();
 
         $search_id = $request->route('search');
         $search_type = $request->route('type');
-#        dd($search_type);
+
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($search_id);
             $strPrice = 'price_'.$search_type;
@@ -227,9 +227,7 @@ class OrderController extends Controller
             $operatorCity = array_unique([$search->departure_geoId, $search->arrival_geoId, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
         else {
-            #dd(Search::find($search_id)->result_id);
             $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find(Search::find($search_id)->result_id);
-            #dd($search);
             $total_price = $search->price;
             $operatorCity = array_unique([$search->geoNameIdCity_departure, $search->geoNameIdCity_arrival, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
@@ -325,7 +323,7 @@ class OrderController extends Controller
                             $newOrder->payment_id = $response->getResult()->getPayment()->getId();
                             $newOrder->save();
                             if ($search_type === 'emptyLeg') {
-                                EmptyLeg::find($search_id)->update(['active' => Config::get("constants.active.On hold")]);
+                                EmptyLeg::find($search->id)->update(['active' => Config::get("constants.active.On hold")]);
                             }
                             $regions = City::whereIn('geonameid', $operatorCity)->get()
                                 ->unique(function ($item) {

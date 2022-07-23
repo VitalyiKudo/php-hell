@@ -273,6 +273,7 @@
                                             <input type="hidden" name="endPoint" value="{{ $params['endPoint'] }}">
                                             <input type="hidden" name="startAirport" value="{{ $params['startAirport'] }}">
                                             <input type="hidden" name="endAirport" value="{{ $params['endAirport'] }}">
+                                            <input type="hidden" name="type" value="{{ $params['type'] }}">
                                             <input type="hidden" name="page_name" value="reqest-quote-page">
 
                                         </div>

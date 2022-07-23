@@ -59,7 +59,8 @@ class Search extends Model
     protected $fillable = [
         'search_id',
         'departure_geoId',
-        'arrival_geoId'
+        'comment',
+        'pax'
     ];
 
     /**

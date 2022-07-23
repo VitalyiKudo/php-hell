@@ -407,9 +407,11 @@ dd($request);
         return view('client.account.requests.requestQuote', compact('lastSearchResults', 'search', 'params', 'pervis_search_url'));
     }
 
-    public function createQuote(Request $request){
+    public function createQuote(Request $request, Search $search){
 
         #dd($request);
+
+
         $comment = $request->input('comment') ? "Comment: ".$request->input('comment').";\r\n" : "";
         $comment .= $request->input('aircraft') ? "Preffered aircraft: " . $request->input('aircraft') . ";\r\n" : "" ;
         $comment .= $request->input('aircraft_one') ? "Preffered second aircraft: " . $request->input('aircraft_one') . ";\r\n" : "";
@@ -430,6 +432,8 @@ dd($request);
         $comment .= $request->input('disabilities') ? "People with disabilities: ".$request->input('disabilities').";\r\n" : "" ;
         $comment .= $request->input('catering') ? "Catering: ".$request->input('catering').";\r\n" : "" ;
 
+        $search->find($request->input('search_id'))->update(['comment' => $comment, 'pax' => $request->input('passengers')]);
+#dd($search);
         $order = new Order;
         $order->user_id = Auth::user()->id;
         $order->order_status_id = Config::get("constants.active.Awaiting for Acceptance");
