@@ -827,7 +827,8 @@ class OrderController extends Controller
         $order_id = $request->route('order_id');
         $search_type = $request->route('type');
         $order = Order::Find($order_id);
-        $search = ($order->type !== 'emptyLeg') ? Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($order->search_result_id) : EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find($order->search_result_id);
+        $search = ($order->type !== 'emptyLeg') ? Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($order->search_result_id) : EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find(Search::find($order->search_result_id)->result_id);
+/*
         $pricing = Pricing::find($search->result_id);
 
         if($search_type == 'turbo'){
@@ -841,8 +842,8 @@ class OrderController extends Controller
         } else {
             $time = "00:00";
         }
-
-        return view('client.account.orders.succeed', compact('order_id', 'order', 'search', 'search_type', 'time', 'pricing'));
+*/
+        return view('client.account.orders.succeed', compact('order_id', 'order', 'search', 'search_type'/*, 'time', 'pricing'*/));
     }
 
 
