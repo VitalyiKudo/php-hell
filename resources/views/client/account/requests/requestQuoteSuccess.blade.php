@@ -49,7 +49,7 @@
 
                         <div class="card-inner-body pl-4">
                             <div class="custom-flight-page">
-                                <img src="{{ asset('images/list-icon.png') }}" alt="list-icon" class="rounded mx-auto d-block"/>
+                                <img src="{{ asset('images/list-icon.svg') }}" alt="list-icon" class="rounded mx-auto d-block"/>
                                 <div>Your request has been send successfully!</div>
                                 <p>Request number: <span>#{{ $params['reqest_number'] }}</span></p>
                                 <a href="{{ route('client.profile.account.index') }}">View in Cabinet</a>

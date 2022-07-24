@@ -66,7 +66,7 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" autocomplete="off" value="" id="pax" name="pax">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" autocomplete="off" value="1" id="pax" name="pax">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" id="passengers" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
@@ -259,7 +259,7 @@
                     e.preventDefault();
                 }
             });
-
+/*
             $(document).on("click",".price-empty-leg-submit, .request-empty-leg-submit",function(e){
 
                 let passengers = $('#pax').val();
@@ -275,6 +275,7 @@
                     e.preventDefault();
                 }
             });
+            */
         });
     </script>
 @endpush
