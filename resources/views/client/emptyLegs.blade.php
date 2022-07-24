@@ -195,6 +195,24 @@
                 }
             });
 
+            $('#startPointName').on('keydown', function(e) {
+                if( e.which == 8 || e.which == 46 ) {
+                    e.preventDefault();
+                    $('#startPointName').val('');
+                    getEmptyLegs('');
+                    window.history.pushState("", "", window.location.href.split('?')[0]);
+                }
+            });
+
+            $('#endPointName').on('keydown', function(e) {
+                if( e.which == 8 || e.which == 46 ) {
+                    e.preventDefault();
+                    $('#endPointName').val('');
+                    getEmptyLegs('');
+                    window.history.pushState("", "", window.location.href.split('?')[0]);
+                }
+            });
+
             $(document).on('click', '.pagination  a', function (e) {
                 if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
                     e.preventDefault();
