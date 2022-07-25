@@ -109,7 +109,7 @@ class FlightController extends Controller
         })
         ->count();
 
-        $searchResults = ($searchResults->pricing->merge($searchResults->emptyLeg))->reverse()->paginate(3);
+        $searchResults = ($searchResults->pricing->merge($searchResults->emptyLeg))->reverse()->paginate(10);
 
         $lastSearchSessionResults = [
             'start_airport_name' => $params["startPointName"],

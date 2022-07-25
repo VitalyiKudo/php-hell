@@ -57,9 +57,14 @@ class Search extends Model
      * @var array
      */
     protected $fillable = [
-        'search_id',
+        'result_id',
+        'session_id',
+        'user_id',
+        'start_airport_name',
+        'end_airport_name',
         'departure_geoId',
         'arrival_geoId',
+        'departure_at',
         'comment',
         'pax'
     ];

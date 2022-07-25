@@ -859,7 +859,7 @@ class OrderController extends Controller
     }
 
 
-    public function checkout(Request $request)
+    public function checkout(Request $request, OrderStatus $orderStatus)
     {
         $validator = Validator::make(
             [
@@ -891,7 +891,8 @@ class OrderController extends Controller
 
             $order = new Order;
             $order->user_id = $user->id;
-            $order->order_status_id = 2;
+            #$order->order_status_id = 2;
+            $order->order_status_id = $orderStatus->where('code', 'in_process')->first()->id;
             $order->search_result_id = $request->input('search_result_id');
             $order->comment = $request->input('comment');
             $order->price = $request->input('price');

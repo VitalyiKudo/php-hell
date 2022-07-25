@@ -24,7 +24,7 @@ class EmptyLegController extends Controller
      */
     public function index(EmptyLeg $emptyLeg, Request $request)
     {
-        $emptyLegs = $emptyLeg->getEmptyLegs($request)->paginate(3);
+        $emptyLegs = $emptyLeg->getEmptyLegs($request)->paginate(10);
 
         $typePlanes = Config::get('constants.plane.type_plane');
 

@@ -106,7 +106,7 @@
                             </div>
                             <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
-                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="pax" autocomplete="off" value="{{ $params['passengers'] }}" id="pax">
+                                    <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" aria-describedby="passengers" name="passengers" autocomplete="off" value="{{ $params['passengers'] }}" id="pax">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text bd-input" name="passengers" >
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>

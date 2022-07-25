@@ -108,7 +108,7 @@
                                                 <div id="fromReturnList"></div>
                                             </div>
 
-                                            <button type="button" class="mt-3" id="add-stop-button">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
+                                            {{--}}<button type="button" class="mt-3" id="add-stop-button">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>--}}
                                         </div>
                                     </div>
                                     <div class="mb-3 mt-2 pl-0 bd end-point">
@@ -156,7 +156,7 @@
 
                                             <div class="d-flex justify-content-center w-100">
                                                 <button type="button" class="mt-3" id="add-stop-button-bottom">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
-                                                <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
+                                                {{--}}<button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>--}}
                                             </div>
 
                                         </div>
@@ -185,7 +185,7 @@
                                             <label for="aircraftRQ">Preffered Aircraft</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft" name="aircraft" autocomplete="off" value="{{ $params['aircraft'] }}" id="aircraftRQ">
-                                                <button type="button" class="preff-air {{ $params['aircraft_one'] ? 'preff-air-with-additional' : '' }}" id="additional-air-one-button">+</button>
+                                                {{--}}<button type="button" class="preff-air {{ $params['aircraft_one'] ? 'preff-air-with-additional' : '' }}" id="additional-air-one-button">+</button>--}}
                                             </div>
                                             <div id="aircraftList"></div>
 
