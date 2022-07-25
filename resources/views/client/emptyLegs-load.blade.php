@@ -20,7 +20,7 @@
                             <span style="font-size: 0.8rem;"><a href="/aircraft" title="{{__('ABOUT CLASS')}}">{{__('ABOUT CLASS')}}</a></span>
                         </div>
                         <div class="type-price">
-                            <span class="flight-price">{{ $emptyLeg['dateDeparture']->format('d/m/Y') }}</span>
+                            <span class="flight-price">{{ $emptyLeg['dateDeparture']->format('m/d/Y') }}</span>
                             <span class="flight-price-desc"></span>
                         </div>
                         <div class="type-price-legs">
