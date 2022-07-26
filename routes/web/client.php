@@ -50,7 +50,7 @@ Route::post('/support/operator', 'SupportController@operator')->name('support.op
 Route::post('/subscribed', 'SupportController@subscribe')->name('subscribed');
 
 /* SiteMap */
-Route::get('/sitemap', 'SitemapController@index');
+Route::get('/sitemap.xml', 'SitemapController@index');
 
 /* EmptyLegs */
 Route::get('/empty-leg', 'EmptyLegController@index')->name('empty-leg');
