@@ -69,7 +69,7 @@ Route::get('chats','ChatsController@index');
 Route::get('chat/{room_id}','ChatsController@getRoom')->name('chats.getRoom');
 Route::get('messages/{room_id}','ChatsController@fetchMessages');
 Route::post('messages','ChatsController@sendMessages');
-
+//Route::post('/message', 'MessageController@broadcast');
 
 /* EmptyLegs */
 Route::get('empty-leg', 'EmptyLegController@index');
