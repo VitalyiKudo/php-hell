@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Requests\Chat\PageRequest;
 use App\Http\Controllers\Controller;
@@ -32,11 +33,12 @@ class ChatsController extends Controller
     }
 
     /**
+     * @param \App\Http\Requests\Chat\RoomSearch $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(RoomSearch $request)
     {
-        $rooms = $this->chatRoomService->getRoomsOrCreateNew('client');
+        $rooms = $this->chatRoomService->getRoomsOrCreateNew('client', $request->page, $request->email);
 
         return view('client.chats.chats_list', compact('rooms'));
     }
