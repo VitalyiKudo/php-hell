@@ -15,12 +15,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chat.{roomId}', function ($user, $roomId) {
-    //if ($user->rooms->contains($roomId)) {
-        return $user;
-    //}
+Broadcast::channel('chat.{roomId}', function ($user) {
+    return $user;
 });
-
 
 Broadcast::channel('DemoChannel', function ($user) {
     return $user;

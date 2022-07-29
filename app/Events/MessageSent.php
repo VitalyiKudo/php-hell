@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Resources\Chat\MessagesResource;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -20,13 +21,13 @@ class MessageSent implements ShouldBroadcast
     /**
      * @var \App\Models\Message
      */
-    public  $message;
+    public $message;
 
     /**
      * @param \App\Models\Message $message
      * @param int $roomId
      */
-    public function __construct( $message, int $roomId)
+    public function __construct($message, int $roomId)
     {
         $this->message = $message;
         $this->roomId  = $roomId;
@@ -38,5 +39,16 @@ class MessageSent implements ShouldBroadcast
     public function broadcastOn(): PresenceChannel
     {
         return new PresenceChannel('chat.' . $this->roomId);
+    }
+
+    /**
+     * @return array
+     */
+    public function broadcastWith(): array
+    {
+        return [
+            'roomId'  => $this->roomId,
+            'message' => MessagesResource::make($this->message)->resolve(),
+        ];
     }
 }

@@ -65,11 +65,12 @@ Route::post('orders/{search}/square', 'Account\OrderController@requestSquare');
 Route::post('orders/custom', 'Account\CustomOrderController@index');
 
 
-Route::get('chats','ChatsController@index');
-Route::get('chat/{room_id}','ChatsController@getRoom')->name('chats.getRoom');
-Route::get('messages/{room_id}','ChatsController@fetchMessages');
-Route::post('messages','ChatsController@sendMessages');
-//Route::post('/message', 'MessageController@broadcast');
+Route::middleware('auth:api,api_admin')->group(function () {
+    Route::get('chats', 'ChatsController@index');
+    Route::get('chat/{room}', 'ChatsController@getRoom')->name('chats.getRoom');
+    Route::get('messages/{room}', 'ChatsController@fetchMessages');
+    Route::post('messages', 'ChatsController@sendMessages');
+});
 
 /* EmptyLegs */
 Route::get('empty-leg', 'EmptyLegController@index');

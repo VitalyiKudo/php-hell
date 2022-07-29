@@ -69,37 +69,32 @@ export default {
 
         Echo.join('chat.' + this.room_id)
             .here(user => {
-                console.log('user', user);
                 this.users = user;
             })
             .joining(user => {
-                console.log('user join', user);
                 this.users.push(user);
             })
             .leaving(user => {
-                console.log('user leave', user);
                 this.users = this.users.filter(u => u.id != user.id);
             })
             .listen('MessageSent', (event) => {
                 this.messages.push(event.message);
-                //Todo log
-                console.log(event.message);
             })
-            .listenForWhisper('typing', user => {
-                this.activeUser = user;
-                if (this.typingTimer) {
-                    clearTimeout(this.typingTimer);
-                }
-                this.typingTimer = setTimeout(() => {
-                    this.activeUser = false;
-                }, 3000);
-            })
+            // .listenForWhisper('typing', user => {
+            //     this.activeUser = user;
+            //     if (this.typingTimer) {
+            //         clearTimeout(this.typingTimer);
+            //     }
+            //     this.typingTimer = setTimeout(() => {
+            //         this.activeUser = false;
+            //     }, 3000);
+            // })
     },
     methods: {
         fetchMessages() {
             axios.get('/messages/' + this.room_id).then(response => {
                 this.messages = response.data.data.reverse();
-                console.log(response.data.data);
+                console.log(this.messages);
             })
         },
         sendMessage() {
@@ -116,10 +111,10 @@ export default {
                 });
             this.newMessage = '';
         },
-        sendTypingEvent() {
-            Echo.join('chat.' + this.room_id)
-                .whisper('typing', this.current_user);
-        }
+        // sendTypingEvent() {
+        //     Echo.join('chat.' + this.room_id)
+        //         .whisper('typing', this.current_user);
+        // }
     }
 }
 </script>

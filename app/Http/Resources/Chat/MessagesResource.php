@@ -18,12 +18,12 @@ class MessagesResource extends JsonResource
          * @var \App\Models\Message $this
          */
         return [
-            'id'               => $this->id,
+            'id'            => $this->id,
             'administrator' => MessageAdminnistratorResource::make($this->whenLoaded('administrator')),
-            'user' => MessageUserResource::make($this->whenLoaded('user')),
-            'message'          => $this->message,
-            'created_at'       => $this->created_at,
-            'saw'              => $this->saw,
+            'user'          => MessageUserResource::make($this->whenLoaded('user')),
+            'message'       => $this->message,
+            'created_at'    => $this->created_at,
+            'saw'           => $this->saw,
 
         ];
     }

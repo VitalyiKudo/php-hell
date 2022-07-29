@@ -7,17 +7,27 @@ use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Resources\Chat\MessagesResource;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
-use App\Models\Administrator;
-use App\Models\Room;
 use App\Events\MessageSent;
+use App\Models\Room;
+use App\Service\Chat\ChatCreateMessage;
+use App\Service\Chat\ChatRoom;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
 class ChatsController extends Controller
 {
-    public function __construct()
+    /**
+     * @var \App\Service\Chat\ChatRoom
+     */
+    protected ChatRoom $chatRoomService;
+
+    /**
+     * @param \App\Service\Chat\ChatRoom $chatRoom
+     */
+    public function __construct(ChatRoom $chatRoom)
     {
-        $this->middleware('auth:api,api_admin')->except(['login']);;
+        $this->chatRoomService = $chatRoom;
     }
 
     /**
@@ -41,23 +51,7 @@ class ChatsController extends Controller
 
     public function index()
     {
-        if (auth()->guard('api')->check()) {
-            if (auth()->user()->rooms()->count() < 1) {
-                $room = auth()->user()->rooms()->create(
-                    [
-                        'name' => auth()->guard('api')->user()->email
-                    ]
-                );
-
-                $admins = Administrator::all();
-                $room->administrators()->attach($admins);
-            }
-            $rooms = Room::where('user_id', auth()->user()->id)->get();
-        }
-        else {
-            $rooms = Room::all();
-        }
-
+        $rooms      = $this->chatRoomService->getRoomsOrCreateNew('api');
         $rooms_list = [];
 
         foreach ($rooms as $room) {
@@ -65,13 +59,13 @@ class ChatsController extends Controller
             if (auth()->guard('api_admin')->check()) {
                 $rooms_list[] = [
                     'link'  => url('chat/' . $room->id),
-                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages()->whereNotNull('administrator_id')->where('saw', false)->count() . ")",
+                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('user_id', null)->where('saw', false)->count() . ")",
                 ];
             }
             elseif (auth()->guard('api')->check()) {
                 $rooms_list[] = [
                     'link'  => url('chat/' . $room->id),
-                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages()->whereNotNull('user_id')->where('saw', false)->count() . ")",
+                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('administrator_id', null)->where('saw', false)->count() . ")",
                 ];
             }
 
@@ -109,22 +103,31 @@ class ChatsController extends Controller
      */
 
     /**
-     * @param int $room_id
+     * @param \App\Models\Room $room
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRoom(int $room_id)
+    public function getRoom(Room $room): JsonResponse
     {
         $user = auth()->user();
 
+        if (!$user->rooms()->where('id', $room->id)->exists()) {
+            abort(404);
+        }
+
         if ($user->messages()->count() > 0) {
-            $user->messages()->where('room_id', $room_id)->update(['saw' => true]);
+            if (Auth::guard('api')->check()) {
+                $room->messages()->whereNotNull('administrator_id')->update(['saw' => true]);
+            }
+            else if (Auth::guard('api_admin')->check()) {
+                $room->messages()->whereNotNull('user_id')->update(['saw' => true]);
+            }
         }
 
         return response()->json([
-                                    'room_id'      => $room_id,
+                                    'room_id'      => $room->id,
                                     'user'         => $user,
-                                    'chat_id'      => 'chat.' . $room_id,
-                                    'get_messages' => '/api/messages/' . $room_id,
+                                    'chat_id'      => 'chat.' . $room->id,
+                                    'get_messages' => '/api/messages/' . $room->id,
                                     'add_message'  => '/api/messages',
                                 ]);
     }
@@ -162,12 +165,13 @@ class ChatsController extends Controller
      * @param \App\Http\Requests\Chat\PageRequest $request
      * @return \App\Models\Message[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function fetchMessages(int $room_id, PageRequest $request)
+    public function fetchMessages(Room $room, PageRequest $request)
     {
         $message = Message::with('user', 'administrator')
-            ->where('room_id', $room_id)
+            ->where('room_id', $room->id)
             ->latest()
             ->simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = $request->page);
+
         return MessagesResource::collection($message);
     }
 
@@ -217,16 +221,9 @@ class ChatsController extends Controller
      */
     public function sendMessages(StoreMessageRequest $request): JsonResource
     {
-        $user    = Auth::user();
-        $message = $user->messages()->create(
-            [
-                'room_id' => $request->room_id,
-                'message' => $request->message,
-            ]
-        );
+        $message = (new ChatCreateMessage(Auth::user(), $request->message, $request->room_id))->handle();
 
-        $message->load(['user', 'administrator']);
-        broadcast(new MessageSent($message, $request->room_id))->toOthers();
+        broadcast(new MessageSent($message->load(['user', 'administrator']), $request->room_id))->toOthers();
 
         return JsonResource::make(['status' => 'success']);
     }

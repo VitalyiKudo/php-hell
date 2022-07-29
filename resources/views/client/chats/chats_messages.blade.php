@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <chats :current_user="{{ $user }}" :room_id="{{ $room_id }}"></chats>
+    <chats :current_user="{{ $user }}" :room_id="{{ $room->id }}"></chats>
 </div>
 @endsection

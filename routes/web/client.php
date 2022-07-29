@@ -116,7 +116,11 @@ Route::namespace('Account')->group(function () {
 
 });
 
-Route::get('/chats','ChatsController@index');
-Route::get('/chat/{room_id}','ChatsController@getRoom')->name('chats.getRoom');
-Route::get('/messages/{room_id}','ChatsController@fetchMessages');
-Route::post('/messages','ChatsController@sendMessages');
+Route::middleware('auth:client,admin')->group(function () {
+    Route::get('/chats','ChatsController@index');
+    Route::get('/chat/{room}','ChatsController@getRoom')->name('chats.getRoom');
+    Route::get('/messages/{room}','ChatsController@fetchMessages');
+    Route::post('/messages','ChatsController@sendMessages');
+});
+
+

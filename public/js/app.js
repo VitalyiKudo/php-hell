@@ -19910,33 +19910,24 @@ __webpack_require__.r(__webpack_exports__);
 
     this.fetchMessages();
     Echo.join('chat.' + this.room_id).here(function (user) {
-      console.log('user', user);
       _this.users = user;
     }).joining(function (user) {
-      console.log('user join', user);
-
       _this.users.push(user);
     }).leaving(function (user) {
-      console.log('user leave', user);
       _this.users = _this.users.filter(function (u) {
         return u.id != user.id;
       });
     }).listen('MessageSent', function (event) {
-      _this.messages.push(event.message); //Todo log
-
-
-      console.log(event.message);
-    }).listenForWhisper('typing', function (user) {
-      _this.activeUser = user;
-
-      if (_this.typingTimer) {
-        clearTimeout(_this.typingTimer);
-      }
-
-      _this.typingTimer = setTimeout(function () {
-        _this.activeUser = false;
-      }, 3000);
-    });
+      _this.messages.push(event.message);
+    }); // .listenForWhisper('typing', user => {
+    //     this.activeUser = user;
+    //     if (this.typingTimer) {
+    //         clearTimeout(this.typingTimer);
+    //     }
+    //     this.typingTimer = setTimeout(() => {
+    //         this.activeUser = false;
+    //     }, 3000);
+    // })
   },
   methods: {
     fetchMessages: function fetchMessages() {
@@ -19944,7 +19935,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/messages/' + this.room_id).then(function (response) {
         _this2.messages = response.data.data.reverse();
-        console.log(response.data.data);
+        console.log(_this2.messages);
       });
     },
     sendMessage: function sendMessage() {
@@ -19962,10 +19953,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.newMessage = '';
-    },
-    sendTypingEvent: function sendTypingEvent() {
-      Echo.join('chat.' + this.room_id).whisper('typing', this.current_user);
-    }
+    } // sendTypingEvent() {
+    //     Echo.join('chat.' + this.room_id)
+    //         .whisper('typing', this.current_user);
+    // }
+
   }
 });
 
@@ -20065,7 +20057,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))])), [[_directive_chat_scroll]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     onKeydown: _cache[0] || (_cache[0] = function () {
-      return $options.sendTypingEvent && $options.sendTypingEvent.apply($options, arguments);
+      return _ctx.sendTypingEvent && _ctx.sendTypingEvent.apply(_ctx, arguments);
     }),
     onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);

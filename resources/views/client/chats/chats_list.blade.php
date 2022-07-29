@@ -11,9 +11,9 @@
                         @foreach ($rooms as $room)
                             <li class="p-2" >
                                 @if(Auth::guard('admin')->check())
-                                    <a href="{{ url('chat/' . $room->id) }}"><strong>{{ $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages()->whereNotNull('administrator_id')->where('saw', false)->count() . ")" }}</strong></a>
+                                    <a href="{{ url('chat/' . $room->id) }}"><strong>{{ $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('user_id',null)->where('saw', false)->count() . ")" }}</strong></a>
                                 @elseif(Auth::guard('client')->check())
-                                    <a href="{{ url('chat/' . $room->id) }}"><strong>{{ $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages()->whereNotNull('user_id')->where('saw', false)->count() . ")" }}</strong></a>
+                                    <a href="{{ url('chat/' . $room->id) }}"><strong>{{ $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('administrator_id',null)->where('saw', false)->count() . ")" }}</strong></a>
                                 @endif
                             </li>
                         @endforeach
