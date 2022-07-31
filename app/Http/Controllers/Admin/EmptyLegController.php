@@ -18,10 +18,11 @@ use App\Traits\SearchCityTrait;
 use App\Traits\SearchAirportTrait;
 use App\Traits\SearchOperatorTrait;
 use App\Traits\EmptyLegStatusTrait;
+use App\Traits\SearchCityAirportsTrait;
 
 class EmptyLegController extends Controller
 {
-    use SearchCityTrait, SearchAirportTrait, SearchOperatorTrait, EmptyLegStatusTrait;
+    use SearchCityTrait, SearchAirportTrait, SearchOperatorTrait, EmptyLegStatusTrait, SearchCityAirportsTrait;
 
     /**
      * Create a new controller instance.
@@ -180,12 +181,7 @@ class EmptyLegController extends Controller
      */
     public function ajaxSearchAirport(Request $request)
     {
-        $airports = $this->SearchAirportNameLike($request->airport)
-                    ->whereNotIn('geoNameIdCity', [0])
-                    ->sortBy('name')
-                    ->sortBy('cities.name')
-                    ->sortBy('regionCountry.name')
-                    ->sortBy('country.name');
+        $airports = $this->SearchCityAirportNameLike($request->airport);
 
         if (empty($airports)) {
             return false;
@@ -193,15 +189,17 @@ class EmptyLegController extends Controller
         else {
             $res = collect([]);
             foreach ($airports as $value) {
-                $res = $res->push([
-                    'icao' => $value->icao,
-                    'iata' => (!empty($value->iata) && $value->iata !== 'noV') ? $value->iata : null,
-                    'airport' => !empty($value->name) ? $value->name : null,
-                    'geoNameIdCity' => !empty($value->geoNameIdCity) ? $value->geoNameIdCity : null,
-                    'city' => !empty($value->cities->name) ? $value->cities->name : null,
-                    'region' => !empty($value->regionCountry->name) ? $value->regionCountry->name : null,
-                    'country' => !empty($value->country->name) ? $value->country->name : null
-              ]);
+                foreach ($value['airportFull'] as $airport) {
+                    $res = $res->push([
+                      'icao' => $airport['icao'],
+                      'iata' => $airport['iata'],
+                      'airport' => $airport['name'],
+                      'geoNameIdCity' => $value['geonameid'],
+                      'city' => $value['city'],
+                      'region' => $value['region'],
+                      'country' => $value['country']
+                  ]);
+                }
             }
         }
 

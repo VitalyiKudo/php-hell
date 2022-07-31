@@ -526,7 +526,7 @@ class OrderController extends Controller
 
                     $dataOrder = [
                         'user_id' => $user->id,
-                        'order_status_id' => 1,
+                        'order_status_id' => $orderStatus->where('code', '=', 'on_hold')->first()->id,
                         'search_result_id' => $search_id,
                         'comment' => $comment,
 

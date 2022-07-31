@@ -107,23 +107,28 @@ class Order extends Model
      */
     public function createOrder ($data)
     {
-        return $this->create([
-         'user_id' => $data['user_id'] ?? 0,
-         'comment' => $data['comment'] ?? '',
-         'price' => $data['price'] ?? 0,
-         'order_status_id' => $data['order_status_id'] ?? 1,
-         'search_result_id' => $data['search_result_id'] ?? 0,
-         'billing_address' => $data['billing_address'] ?? '',
-         'billing_address_secondary' => $data['billing_address_secondary'] ?? '',
-         'billing_country' => $data['billing_country'] ?? '',
-         'billing_city' => $data['billing_city'] ?? '',
-         'billing_province' => $data['billing_province'] ?? '',
-         'billing_postcode' => $data['billing_postcode'] ?? '',
-         'is_accepted' => $data['is_accepted'] ?? 0,
-         'type' => $data['type'] ?? '',
-         'book_status' => $data['book_status'] ?? 1,
-         'payment_id' => $data['payment_id'] ?? ''
-        ]);
+        return $this->firstOrCreate(
+            [
+                'user_id' => $data['user_id'],
+                'search_result_id' => $data['search_result_id']
+            ],
+            [
+                 'user_id' => $data['user_id'] ?? 0,
+                 'comment' => $data['comment'] ?? '',
+                 'price' => $data['price'] ?? 0,
+                 'order_status_id' => $data['order_status_id'] ?? 1,
+                 'search_result_id' => $data['search_result_id'] ?? 0,
+                 'billing_address' => $data['billing_address'] ?? '',
+                 'billing_address_secondary' => $data['billing_address_secondary'] ?? '',
+                 'billing_country' => $data['billing_country'] ?? '',
+                 'billing_city' => $data['billing_city'] ?? '',
+                 'billing_province' => $data['billing_province'] ?? '',
+                 'billing_postcode' => $data['billing_postcode'] ?? '',
+                 'is_accepted' => $data['is_accepted'] ?? 0,
+                 'type' => $data['type'] ?? '',
+                 'book_status' => $data['book_status'] ?? 1,
+                 'payment_id' => $data['payment_id'] ?? ''
+            ]);
     }
 
     /**

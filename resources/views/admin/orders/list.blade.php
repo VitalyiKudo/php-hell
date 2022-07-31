@@ -45,6 +45,7 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td class="align-middle">#{{ $loop->iteration + $orders->firstItem() - 1 }}</td>
+                                    <td class="align-middle">#{{ $order->id }}</td>
                                     <td class="align-middle">
                                         @if (! is_null($order->user))
                                             <a href="{{ route('admin.users.show', $order->user->id) }}">{{ $order->user->full_name }}</a>
@@ -58,9 +59,9 @@
                                         @elseif ($order->is_accepted == 1)
                                             <span class="badge badge-pill badge-success">
                                                 Accepted
-                                            </span>  
+                                            </span>
                                             <span class="badge badge-pill badge-{{ $order->status->style }}">
-                                                {{ $order->status->name }} 
+                                                {{ $order->status->name }}
                                             </span>
                                         @else
                                             <span class="badge badge-pill badge-danger">
@@ -72,7 +73,7 @@
                                     </td>
                                     <td class="align-middle">{{ number_format($order->price, 2, '.', ' ') }} &dollar;</td>
                                     <td class="align-middle">{{ $order->created_at->format('m-d-Y H:i') }}</td>
-                                    
+
                                     <td class="align-middle text-right">
                                     <!-- {{ route('admin.orders.edit', $order->id) }} -->
                                         <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-secondary btn-sm">

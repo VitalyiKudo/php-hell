@@ -79,7 +79,6 @@
 
                     return {
                         results: $.map(data, function (val, item) {
-                            console.log(val);
                             var icao = val.icao;
                             var iata = (!$.isEmptyObject(val.iata)) ? ' | ' + val.iata : '';
                             var airport = (!$.isEmptyObject(val.airport)) ? val.airport + ', ' : '';
@@ -97,7 +96,6 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
-            //console.log(data.geoid);
             $('#geoNameIdCityDeparture').val(data.geoid);
         });
 

@@ -43,6 +43,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::orderBy('id', 'desc')->paginate(25);
+
         return view('admin.orders.list', compact('orders'));
     }
 

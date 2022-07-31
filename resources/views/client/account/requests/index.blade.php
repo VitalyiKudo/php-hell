@@ -44,56 +44,66 @@
                 <div class="card mb-4 request-card">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <div class="col-1 col-sm-1 col-md-1"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
-                            <div class="col-5 col-sm-5 col-md-2">
+                            <div class="col-auto col-sm-auto col-md-auto mr-2"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
+                            {{--}}<div class="col-2 col-sm-2 col-md-2">
+                                <div class="silver-info mb-2">Order number</div>
+                                <div class="center-bold">{{ $request->id }}</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
+                            </div>--}}
+                            <div class="col-2 col-sm-2 col-md-2">
                                 <div class="silver-info mb-2">From Airport</div>
                                 <div class="center-bold">{{ $request->searches->departureCity->name }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
+                                {{--}}<div class="silver-info">{{ Carbon\Carbon::parse($request->searches->departure_at)->format('m/d/Y') }}</div>--}}
+                                <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-1 col-sm-1 col-md-1">
+                            <div class="col-auto col-sm-auto col-md-auto mr-2">
+                                <div class="silver-info">&nbsp;</div>
                                 <img src="/images/plan-icon.svg" alt="plan icon">
+                                <div class="silver-info">&nbsp;</div>
+                                <div class="silver-info">{{ Carbon\Carbon::parse($request->searches->departure_at)->format('m/d/Y') }}</div>
                             </div>
-                            <div class="col-5 col-sm-5 col-md-2">
+                            <div class="col-2 col-sm-2 col-md-2">
                                 <div class="silver-info mb-2">To Airport</div>
                                 <div class="center-bold">{{ $request->searches->arrivalCity->name }}</div>
-                                <div class="silver-info">{{ Carbon\Carbon::parse($request->searches->created_at)->format('m/d/Y') }}</div>
+                                {{--}}<div class="silver-info">{{ Carbon\Carbon::parse($request->searches->created_at)->format('m/d/Y') }}</div>--}}
+                                <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-6 col-sm-6 col-md-1">
-                                <div class="d-block d-sm-block d-md-none mt-4"></div>
+                            <div class="col-auto col-sm-auto col-md-auto mr-2">
+                                {{--}}<div class="d-block d-sm-block d-md-none mt-4"></div>--}}
                                 <div class="silver-info mb-1">PASS.</div>
                                 <div class="center-bold">{{ $request->searches->pax }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-6 col-sm-6 col-md-2">
-                                <div class="d-block d-sm-block d-md-none mt-4"></div>
+                            <div class="col-auto col-sm-auto col-md-auto">
+                                {{--}}<div class="d-block d-sm-block d-md-none mt-4"></div>--}}
                                 <div class="silver-info mb-2">Price (Incl. taxes)</div>
                                 <div class="center-bold">${{ number_format($request->price,2) }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-3 book">
-                                <a href="{{ route('client.orders.request_confirm', [$request->search_result_id] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 2) ? 'btn' : 'isDisabled' }} justify-content-end">
-                                {{($request->price > 0 && $request->order_status_id == 2) ? "Book now" : "In progress"}}
+                            <div class="col-auto col-sm-auto col-md-auto book">
+                                <a href="{{ route('client.orders.square', [$request->search_result_id, $request->type] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 3) ? 'btn' : 'isDisabled' }} justify-content-end">
+                                {{($request->price > 0 && $request->order_status_id == 3) ? "Book now" : "In progress"}}
                                 </a>
                             </div>
                         </div>
-
+{{--}}
                         @if (createAdditionalDataArray($request->comment, 'from_stop_airport') || createAdditionalDataArray($request->comment, 'to_stop_airport'))
                         <hr>
                         <div class="row align-items-center">
                             <div class="col-1 col-sm-1 col-md-1"></div>
-                            <div class="col-5 col-sm-5 col-md-2 country">
+                            <div class="col-5 col-sm-2 col-md-2 country">
                                 <div class="silver-info mb-2">FROM STOP AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'from_stop_airport') }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('m/d/Y') }}</div>
                             </div>
                             <div class="col-1 col-sm-1 col-md-1"></div>
-                            <div class="col-5 col-sm-5 col-md-2 country">
+                            <div class="col-5 col-sm-2 col-md-2 country">
                                 <div class="silver-info mb-2">TO STOP AIRPORT</div>
                                 <div class="center-bold">{{ createAdditionalDataArray($request->comment, 'to_stop_airport') }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse(createAdditionalDataArray($request->comment, 'stop_date'))->format('m/d/Y') }}</div>
                             </div>
-                            <div class="col-6 col-sm-6 col-md-1"></div>
-                            <div class="col-6 col-sm-6 col-md-2"></div>
+                            <div class="col-6 col-sm-2 col-md-1"></div>
+                            <div class="col-6 col-sm-2 col-md-2"></div>
                             <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
@@ -120,7 +130,7 @@
                             <div class="col-12 col-sm-12 col-md-3 book"></div>
                         </div>
                         @endif
-
+--}}
                     </div>
                 </div>
             @endforeach

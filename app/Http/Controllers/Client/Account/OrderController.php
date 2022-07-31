@@ -187,7 +187,7 @@ class OrderController extends Controller
         else {
             $search = EmptyLeg::with('departureCity', 'arrivalCity')->find($search->result_id);
         }
-#dd($search_type);
+
         return view('client.account.orders.confirm', compact('search_id', 'search_type', 'user', 'pervis_search_url', 'search'));
     }
 
@@ -219,7 +219,7 @@ class OrderController extends Controller
 
         $search_id = $request->route('search');
         $search_type = $request->route('type');
-
+#dd($request);
         if ($search_type !== 'emptyLeg') {
             $search = Search::with('price', 'departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry',  'airportDeparture', 'airportArrival')->find($search_id);
             $strPrice = 'price_'.$search_type;
@@ -276,7 +276,7 @@ class OrderController extends Controller
 
                     $dataOrder = [
                         'user_id' => $user->id,
-                        'order_status_id' => 1,
+                        'order_status_id' => $orderStatus->where('code', '=', 'on_hold')->first()->id,
                         'search_result_id' => $search_id,
                         'comment' => $comment,
 

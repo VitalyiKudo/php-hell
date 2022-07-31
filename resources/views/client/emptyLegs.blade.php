@@ -12,10 +12,9 @@
 
 @section('content')
     <div class="container header-page-image header-page-image-bg"></div>
-    <div class="section main-search-page main-search-emptyLeg">
+    <div class="section main-search-page">
         <div class="container">
             <div class="row">
-
                 <div class="offset-md-1 col-md-12">
                     <form action="{{ route('client.flight.index') }}" method="GET" id="main-search-form">
 
@@ -23,6 +22,9 @@
                         <div class="row form-body form-search-mobile mt-5">
                             <div class="col-lg-10 mb-2 mt-4 home-title">
                                 <h1 class="text-uppercase">Search empty leg jet</h1>
+                            </div>
+                            <div class="col-lg-10 color-bronze">
+                                Please type at least 3 symbols of the arrival or departure and/or date to find the flight
                             </div>
                             <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
                                 <div class="input-group input-style">
