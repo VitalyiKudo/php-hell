@@ -19935,7 +19935,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/messages/' + this.room_id).then(function (response) {
         _this2.messages = response.data.data.reverse();
-        console.log(_this2.messages);
       });
     },
     sendMessage: function sendMessage() {

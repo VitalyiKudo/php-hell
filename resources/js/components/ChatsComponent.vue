@@ -94,7 +94,6 @@ export default {
         fetchMessages() {
             axios.get('/messages/' + this.room_id).then(response => {
                 this.messages = response.data.data.reverse();
-                console.log(this.messages);
             })
         },
         sendMessage() {
