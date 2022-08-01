@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\OrdersDataTable;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Service\Firebase\FirebaseUpdateSender;
@@ -30,6 +31,9 @@ class OrderController extends Controller
      */
     public function __construct(FirebaseUpdateSender $firebaseUpdateSender)
     {
+        set_time_limit(8000000);
+        ini_set('max_execution_time', 8000000);
+
         $this->middleware('auth:admin');
 
         $this->firebaseUpdateSender = $firebaseUpdateSender;
@@ -40,11 +44,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrdersDataTable $dataTable)
     {
-        $orders = Order::orderBy('id', 'desc')->paginate(25);
-
-        return view('admin.orders.list', compact('orders'));
+        try {
+            return $dataTable->render('admin.orders.list');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

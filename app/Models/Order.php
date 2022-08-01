@@ -154,4 +154,21 @@ class Order extends Model
     {
         return $this->belongsTo(Search::class, 'search_result_id', 'id');
     }
+
+    public function getOrders()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'user' => is_null($value->user) ? null : $value->user->full_name,
+                'userId' => is_null($value->user) ? null : $value->user->id,
+                'orderStatus' => $value->status->name,
+                'orderStatusStyle' => $value->status->style,
+                'isAccepted' => $value->is_accepted,
+                'price' => $value->price,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }
