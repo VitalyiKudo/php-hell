@@ -148,4 +148,24 @@ class Search extends Model
     {
         return $this->belongsTo(Pricing::class, ['departure_geoId', 'arrival_geoId'], ['departure_geoId', 'arrival_geoId']);
     }
+
+    /**
+     * Get the searches
+     *
+     * @return Search[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\Search.with[]
+     */
+    public function getSearches()
+    {
+        return $this->with('user')
+            ->withCount('results')
+            ->orderBy('id', 'desc')
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'user' => is_null($value->user) ? null : $value->user->full_name,
+                'userId' => is_null($value->user) ? null : $value->user->id,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }
