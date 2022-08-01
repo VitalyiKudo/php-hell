@@ -31,21 +31,21 @@ return [
     'connections' => [
 
         'pusher' => [
-            'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'driver'  => 'pusher',
+            'key'     => env('PUSHER_APP_KEY'),
+            'secret'  => env('PUSHER_APP_SECRET'),
+            'app_id'  => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
-                'host' => env('APP_URL'),
-                'port' => env('laravel_websockets_port'),
-                'scheme' => 'http'
+                'useTLS'  => false,
+                'host'    => env('LARAVEL_WEBSOCKETS_DOMAIN'),
+                'port'    => env('LARAVEL_WEBSOCKETS_PORT'),
+                'scheme'  => env('LARAVEL_WEBSOCKETS_SCHEME'),
             ],
         ],
 
         'redis' => [
-            'driver' => 'redis',
+            'driver'     => 'redis',
             'connection' => 'default',
         ],
 
