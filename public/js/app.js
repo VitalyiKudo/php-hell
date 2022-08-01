@@ -20127,7 +20127,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "mykey",
   wsHost: window.location.hostname,
+  wssHost: window.location.hostname,
   wsPort: 6001,
+  wssPort: 6001,
   forceTLS: false,
   disableStats: true,
   encrypted: false
