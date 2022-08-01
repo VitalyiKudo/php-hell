@@ -20131,7 +20131,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wssPort: 6001,
   forceTLS: false,
   disableStats: true,
-  encrypted: false
+  encrypted: true
 }); //
 // window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
 //     console.log(e);
