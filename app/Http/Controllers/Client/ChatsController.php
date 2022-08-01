@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\Requests\Chat\MessageSearch;
 use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Requests\Chat\PageRequest;
@@ -35,6 +36,7 @@ class ChatsController extends Controller
     /**
      * @param \App\Http\Requests\Chat\RoomSearch $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function index(RoomSearch $request)
     {
@@ -44,7 +46,7 @@ class ChatsController extends Controller
     }
 
     /**
-     * @param int $room_id
+     * @param \App\Models\Room $room
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getRoom(Room $room)
@@ -69,18 +71,26 @@ class ChatsController extends Controller
     }
 
     /**
-     * @param int $room_id
+     * @param \App\Models\Room $room
      * @param \App\Http\Requests\Chat\PageRequest $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function fetchMessages(Room $room, PageRequest $request): AnonymousResourceCollection
     {
-        $message = Message::with('user', 'administrator')
-            ->where('room_id', $room->id)
-            ->latest()
-            ->simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = $request->page);
+        $messages = $this->chatRoomService->searchMessage($room, $request->page);
 
-        return MessagesResource::collection($message);
+        return MessagesResource::collection($messages);
+    }
+
+    /**
+     * @param \App\Models\Room $room
+     * @param \App\Http\Requests\Chat\MessageSearch $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function searchMessages(Room $room, MessageSearch $request)
+    {
+        $messages = $this->chatRoomService->searchMessage($room, $request->page, $request->text);
+        return MessagesResource::collection($messages);
     }
 
     /**

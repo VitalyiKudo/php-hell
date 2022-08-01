@@ -3,9 +3,9 @@
 namespace App\Service\Chat;
 
 use App\Models\Administrator;
+use App\Models\Message;
 use App\Models\Room;
-use mysql_xdevapi\Exception;
-use function foo\func;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class  ChatRoom
 {
@@ -37,7 +37,7 @@ class  ChatRoom
             if (auth()->user()->rooms()->count() < 1) {
                 $this->createRoom($quard);
             }
-            return Room::with('messages', 'user')->where('user_id', auth()->user()->id)->get();
+            return Room::with('messages', 'user')->where('user_id', auth()->user()->id)->limit(1)->simplePaginate();
         }
 
         return $this->getAdminRooms($page, $email);
@@ -50,6 +50,9 @@ class  ChatRoom
      */
     protected function createRoom(string $quard): void
     {
+        /**
+         * @var Room $room
+         */
         $room = auth()->user()->rooms()->create(
             [
                 'name' => auth()->guard($quard)->user()->email
@@ -65,12 +68,27 @@ class  ChatRoom
      * @param string $email
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
-    public function getAdminRooms(int $page, string $email): \Illuminate\Contracts\Pagination\Paginator
+    protected function getAdminRooms(?int $page, ?string $email): Paginator
     {
         return Room::with('messages', 'user', 'administrators')
             ->whereHas('user', function ($query) use ($email) {
                 $query->where('email', 'like', "%$email%");
             })
+            ->paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page);
+    }
+
+    /**
+     * @param \App\Models\Room $room
+     * @param int|null $page
+     * @param string|null $text
+     * @return \Illuminate\Contracts\Pagination\Paginator
+     */
+    public function searchMessage(Room $room, ?int $page, string $text = null): Paginator
+    {
+        return Message::with('user', 'administrator')
+            ->where('room_id', $room->id)
+            ->where('message', 'like', "%$text%")
+            ->latest()
             ->simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page);
     }
 }

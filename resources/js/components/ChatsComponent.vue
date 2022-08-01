@@ -12,7 +12,7 @@
                                 {{ message.user.first_name }} {{ message.user.last_name }} {{ message.user.name }}
                             </strong>
                             <strong v-else-if="message.administrator">
-                                {{ message.administrator.name }}
+                                Admin
                             </strong>
                             {{ message.message }}
                         </li>
@@ -31,23 +31,23 @@
             <span class="text-muted" v-if="activeUser">{{ activeUser.name }} is typing...</span>
         </div>
 
-        <div class="col-4">
-            <div class="card card-default">
-                <div class="card-header">Active Users</div>
-                <div class="card-body">
-                    <ul>
-                        <li class="py-2" v-for="(user, index) in users" :key="index">
-                                <span v-if="user.first_name">
-                                    {{ user.first_name + " " + user.last_name }}
-                                </span>
-                            <span v-else-if="user.name">
-                                    {{ user.name }}
-                                </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!--        <div class="col-4">-->
+        <!--            <div class="card card-default">-->
+        <!--                <div class="card-header">Active Users</div>-->
+        <!--                <div class="card-body">-->
+        <!--                    <ul>-->
+        <!--                        <li class="py-2" v-for="(user, index) in users" :key="index">-->
+        <!--                                <span v-if="user.first_name">-->
+        <!--                                    {{ user.first_name + " " + user.last_name }}-->
+        <!--                                </span>-->
+        <!--                            <span v-else-if="user.name">-->
+        <!--                                    {{ user.name }}-->
+        <!--                                </span>-->
+        <!--                        </li>-->
+        <!--                    </ul>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </template>
 
@@ -80,15 +80,15 @@ export default {
             .listen('MessageSent', (event) => {
                 this.messages.push(event.message);
             })
-            // .listenForWhisper('typing', user => {
-            //     this.activeUser = user;
-            //     if (this.typingTimer) {
-            //         clearTimeout(this.typingTimer);
-            //     }
-            //     this.typingTimer = setTimeout(() => {
-            //         this.activeUser = false;
-            //     }, 3000);
-            // })
+        // .listenForWhisper('typing', user => {
+        //     this.activeUser = user;
+        //     if (this.typingTimer) {
+        //         clearTimeout(this.typingTimer);
+        //     }
+        //     this.typingTimer = setTimeout(() => {
+        //         this.activeUser = false;
+        //     }, 3000);
+        // })
     },
     methods: {
         fetchMessages() {

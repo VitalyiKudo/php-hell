@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\AdministratorCreate;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,12 @@ class Administrator extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * @var string[]
+     */
+    protected $dispatchesEvents = [
+        'created' => AdministratorCreate::class
+    ];
     /**
      * The attributes that are mass assignable.
      *
