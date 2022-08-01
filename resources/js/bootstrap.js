@@ -71,11 +71,11 @@ window.Echo = new Echo({
     disableStats: true,
     encrypted: false
 });
-
-window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
-    console.log(e);
-});
-
-window.Echo.join('chat.'+5).listen('MessageSent', (e) => {
-    console.log(e);
-});
+//
+// window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
+//     console.log(e);
+// });
+//
+// window.Echo.join('chat.'+5).listen('MessageSent', (e) => {
+//     console.log(e);
+// });

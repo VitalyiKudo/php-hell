@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -74,3 +73,12 @@ $('.companion').datepicker({
 // $('.dateranger').datepicker({
 //     format: 'yyyy-mm-dd',
 // });
+
+import {createApp} from 'vue'
+import ChatComponent from './components/ChatsComponent'
+import VueChatScroll from 'vue-chat-scroll'
+
+const app = createApp({});
+app.use(VueChatScroll);
+app.component('chats', ChatComponent);
+app.mount('#app');

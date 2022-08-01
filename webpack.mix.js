@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -24,4 +24,7 @@ if (mix.inProduction()) {
     mix.version();
 }
 //mix.js('resources/js/app.js', 'public/js');
-mix.minify(['public/css/app.css', 'public/js/app.js', 'public/css/admin.css']);
+mix.js('resources/js/app.js', 'public/js').vue();
+
+mix.minify(['public/css/app.css', 'public/css/admin.css']);
+

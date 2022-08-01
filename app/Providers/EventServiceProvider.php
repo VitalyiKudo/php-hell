@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\AdministratorCreate;
+use App\Listeners\AssotiateAdminWithRoows;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\CreateAuthorizeCustomerProfile;
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
             CreateAuthorizeCustomerProfile::class,
+        ],
+        AdministratorCreate::class => [
+            AssotiateAdminWithRoows::class
         ],
     ];
 
