@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Chat\MessageSearch;
 use App\Http\Requests\Chat\PageRequest;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Resources\Chat\MessagesResource;
@@ -12,6 +13,7 @@ use App\Models\Room;
 use App\Service\Chat\ChatCreateMessage;
 use App\Service\Chat\ChatRoom;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
@@ -161,18 +163,26 @@ class ChatsController extends Controller
      */
 
     /**
-     * @param int $room_id
+     * @param \App\Models\Room $room
      * @param \App\Http\Requests\Chat\PageRequest $request
-     * @return \App\Models\Message[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function fetchMessages(Room $room, PageRequest $request)
+    public function fetchMessages(Room $room, PageRequest $request): AnonymousResourceCollection
     {
-        $message = Message::with('user', 'administrator')
-            ->where('room_id', $room->id)
-            ->latest()
-            ->simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = $request->page);
+        $messages = $this->chatRoomService->searchMessage($room, $request->page);
 
-        return MessagesResource::collection($message);
+        return MessagesResource::collection($messages);
+    }
+
+    /**
+     * @param \App\Models\Room $room
+     * @param \App\Http\Requests\Chat\MessageSearch $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function searchMessages(Room $room, MessageSearch $request)
+    {
+        $messages = $this->chatRoomService->searchMessage($room, $request->page, $request->text);
+        return MessagesResource::collection($messages);
     }
 
     /**

@@ -69,6 +69,7 @@ Route::middleware('auth:api,api_admin')->group(function () {
     Route::get('chats', 'ChatsController@index');
     Route::get('chat/{room}', 'ChatsController@getRoom')->name('chats.getRoom');
     Route::get('messages/{room}', 'ChatsController@fetchMessages');
+    Route::get('/messages/{room}/search', 'ChatsController@searchMessages');
     Route::post('messages', 'ChatsController@sendMessages');
 });
 
