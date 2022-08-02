@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Order
@@ -53,6 +54,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -153,5 +155,31 @@ class Order extends Model
     public function searches()
     {
         return $this->belongsTo(Search::class, 'search_result_id', 'id');
+    }
+
+    public function getOrders($id = false)
+    {
+        return  $this->with('searches', 'status', 'user')
+            ->where(function ($query) use ($id) {
+                if (!empty($id)) {
+                    $query->where('id', $id);
+                }
+            })
+            ->orderByDesc('id')
+            ->get()
+            #->first();
+            ->values()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'user' => $value->user->first_name.' '.$value->user->last_name,
+                'status' => $value->status->name,
+                'statusBg' => $value->status->id,
+                'price' => $value->price,
+                'created' => $value->created_at, # - $res->city_airport_count,
+                'seacrh' => $value->searches, # - $res->city_airport_count,
+            ])
+            ->sortBy('key');
+
     }
 }

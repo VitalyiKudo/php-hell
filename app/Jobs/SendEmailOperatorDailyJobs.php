@@ -66,7 +66,7 @@ class SendEmailOperatorDailyJobs implements ShouldQueue
 
                     \Log::info('this is new mail: ', [$email]);
 
-                    sleep(rand(0, 3));
+                    sleep(rand(1, 5));
                 }
             } catch (Exception $e) {
                 report($e);

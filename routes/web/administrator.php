@@ -20,6 +20,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/orders/status', 'OrderController@UpdateStatus')->name('orders.status');
     Route::get('/', 'DashboardController')->name('dashboard');
     Route::post('/orders/accepted', 'OrderController@orderAccepted')->name('orders.accepted');
+    Route::get('orders/delete/{id}', 'OrderController@destroy')->name('orders.delete');
     Route::resource('orders', 'OrderController');
     Route::resource('searches', 'SearchController');
     Route::resource('services', 'ServiceController');
