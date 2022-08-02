@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\AdministratorCreate;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -34,6 +37,12 @@ class Administrator extends Authenticatable
     use Notifiable;
 
     /**
+     * @var string[]
+     */
+    protected $dispatchesEvents = [
+        'created' => AdministratorCreate::class
+    ];
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -53,12 +62,20 @@ class Administrator extends Authenticatable
         'password',
         'remember_token',
     ];
-    
-    public function messages(){
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages(): HasMany
+    {
         return $this->hasMany(Message::class);
     }
-    
-    public function rooms(){
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function rooms(): BelongsToMany
+    {
         return $this->belongsToMany(Room::class);
     }
 }

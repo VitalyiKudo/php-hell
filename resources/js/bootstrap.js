@@ -66,16 +66,18 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     wsHost: window.location.hostname,
+    wssHost: window.location.hostname,
     wsPort: 6001,
+    wssPort: 6001,
     forceTLS: false,
     disableStats: true,
-    encrypted: false
+    encrypted: true
 });
-
-window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
-    console.log(e);
-});
-
-window.Echo.join('chat.'+5).listen('MessageSent', (e) => {
-    console.log(e);
-});
+//
+// window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
+//     console.log(e);
+// });
+//
+// window.Echo.join('chat.'+5).listen('MessageSent', (e) => {
+//     console.log(e);
+// });
