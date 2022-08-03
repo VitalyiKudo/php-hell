@@ -12,7 +12,7 @@
                                 {{ message.user.first_name }} {{ message.user.last_name }} {{ message.user.name }}
                             </strong>
                             <strong v-else-if="message.administrator">
-                                Admin
+                                {{ message.administrator.name }}
                             </strong>
                             {{ message.message }}
                         </li>
