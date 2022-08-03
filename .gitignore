@@ -31,6 +31,5 @@ yarn-error.log
 # Telescope
 /config/telescope.php
 /app/Providers/TelescopeServiceProvider.php
-/public/vendor/*
 composer.phar
 
