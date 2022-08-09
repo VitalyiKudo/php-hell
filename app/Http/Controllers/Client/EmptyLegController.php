@@ -25,7 +25,8 @@ class EmptyLegController extends Controller
     public function index(EmptyLeg $emptyLeg, Request $request)
     {
         $emptyLegs = $emptyLeg->getEmptyLegs($request)->paginate(10);
-
+#dd($emptyLegs->at(0));
+#dd((int)$emptyLegs->at(0)['dateDeparture']->format('h'));
         $typePlanes = Config::get('constants.plane.type_plane');
 
         $status = $this->CheckAge();

@@ -51,10 +51,9 @@
     {!! $dataTable->scripts() !!}
     <script>
         $(document).ready(function(){
+            $( document ).tooltip();
             $('#emptyLegs').observe(function () {
                 $(this).find('span').tooltip();
-                //$('[data-toggle="tooltip"]').tooltip();
-                //$('span[data-toggle="tooltip"]').click(function(e){e.preventDefault()});
             });
         });
     </script>

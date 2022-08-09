@@ -33,10 +33,10 @@ class EmptyLegDataTable extends DataTable
             })
             ->rawColumns(['active', 'icaoDeparture', 'icaoArrival', 'operatorEmail', 'price', 'action'])
             ->editColumn('active', fn($q) =>'<span class="badge '.$this->statusBg($q["active"]).'">'.$this->status($q["active"]).'</span>')
-            ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'" title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
-            ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportArrival"].' "title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
-            ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["operatorName"].' "title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')
-            ->editColumn('price', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.Config::get('constants.TypePlane.'.$q['typePlane']).'">'.$q["price"].'</span>')
+            ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer ui-content" data-placement="top" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'" title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
+            ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer ui-content" data-placement="top" data-toggle="tooltip" data-title="'.$q["airportArrival"].' "title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
+            ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer ui-content" data-placement="top" data-toggle="tooltip" data-title="'.$q["operatorName"].' "title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')
+            ->editColumn('price', fn($q) =>'<span class="cursor-pointer ui-content" data-placement="top" data-toggle="tooltip" data-title="'.Config::get('constants.TypePlane.'.$q['typePlane']).'">'.$q["price"].'</span>')
             ->addColumn('action', function ($q) {
                 return '<a href="'.route('admin.emptyLegs.show', $q['id']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.emptyLegs.edit', $q['id']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.route('admin.emptyLeg.delete', $q['id']).'" class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this airportArea? This action cannot be undone.\')" data-method="delete" data-confirm="Are you sure to delete this inventory?">Delete</a>';
             });

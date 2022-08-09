@@ -187,7 +187,6 @@ class Order extends Model
             })
             ->orderByDesc('id')
             ->get()
-            #->first();
             ->values()
             ->map(fn($value, $key) => [
                 'key' => ++$key,
