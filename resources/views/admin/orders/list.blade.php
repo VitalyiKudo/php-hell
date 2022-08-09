@@ -29,14 +29,12 @@
                     <div class="card-body">
 
                         <h5>{{__('Orders')}}</h5>
-                        <h6 class="card-subtitle mb-3 text-muted">{{__('The list of Orders')}}</h6>
+                        <h6 class="card-subtitle mb-3 text-muted">{{__('The list of orders')}}</h6>
 
                         <div class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-
                                     {!! $dataTable->table() !!}
-
                                 </div>
                             </div>
                         </div>
@@ -45,7 +43,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @push('scripts')
@@ -54,9 +51,8 @@
     <script>
         $(document).ready(function(){
             $('#orders').observe(function () {
-                $(this).find('span').tooltip(); // .addClass('form-control')
+                $(this).find('span').tooltip();
             });
         });
     </script>
 @endpush
-

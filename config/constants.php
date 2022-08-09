@@ -17,6 +17,8 @@ return [
         'bg-warning' => 2,
         'bg-success' => 3,
         'bg-info' => 4,
+        'bg-dark' => 5,
+        'bg-primary' => 6,
     ],
 
     'plane' => [

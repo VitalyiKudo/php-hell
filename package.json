@@ -24,7 +24,8 @@
         "popper.js": "^1.12",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.15.2",
-        "sass-loader": "^13.0.2"
+        "sass-loader": "^13.0.2",
+        "vue-loader": "^16.8.3"
     },
     "dependenciesComments": {
         "vue": "^2.6.12",
@@ -32,8 +33,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "laravel-echo": "^1.12.0",
-        "pusher-js": "^7.1.1-beta",
+        "laravel-echo": "^1.13.0",
+        "pusher-js": "^7.3.0",
+        "vue": "^3.2.37",
+        "vue-chat-scroll": "^1.4.0",
         "webpack": "^5.72.0"
     },
     "devDependenciesComments": {

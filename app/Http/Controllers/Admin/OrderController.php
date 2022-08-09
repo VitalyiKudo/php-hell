@@ -19,6 +19,8 @@ use App\Models\Pricing;
 use App\Models\Operator;
 use App\Models\User;
 
+use App\DataTables\OrderDataTable;
+
 
 class OrderController extends Controller
 {
@@ -53,6 +55,21 @@ class OrderController extends Controller
         }
     }
 
+
+    /**
+     * Display a listing of the resource.
+     * @param OrderDataTable $dataTable
+     * @return mixed|string
+     */
+    public function index(OrderDataTable $dataTable)
+    {
+        try {
+            return $dataTable->render('admin.orders.list');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -78,18 +95,26 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Order  $order
+     * @param  \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Request $request, Order $order)
     {
+        #dd($request->route('order')->id);
+        #dd($request->route('order'));
+        /*
         $orderStatuses = OrderStatus::all();
         $search = Search::find($order->search_result_id);
         $user = User::find($order->user_id);
         $pricing = Pricing::find($search->result_id);
         $operator = Operator::find($order->operator_id);
+        */
+        $order = (object)$order->getOrders($request->route('order')->id)->first();
         #var_dump($search);
+        dd($order);
         #var_dump(compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
-        return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
+        #return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
+        return view('admin.orders.view', compact('order'));
     }
 
     /**

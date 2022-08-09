@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <h3>Selected result</h3>
 
-                    @include('admin.orders.result-card', ['search' => $search])
+                    @include('admin.orders.result-card', ['search' => $order->seacrh])
 
                     <!-- <form class="mt-3">
                         <button type="submit" class="btn btn-success">Accept</button>
@@ -45,11 +45,11 @@
                 <div class="card-body">
                     <h5 class="card-title">Order details</h5>
                     <h6 class="card-subtitle mb-3 text-muted">General information</h6>
-    
+
                     <dl class="mb-0">
                         <dt>ID</dt>
                         <dd>{{ $order->id }}</dd>
-                        
+
                         <dt>Payment ID</dt>
                         <dd>{{ $order->payment_id }}</dd>
 
@@ -62,9 +62,9 @@
                             @elseif ($order->is_accepted == 1)
                                 <span class="badge badge-pill badge-success">
                                     Accepted
-                                </span>  
+                                </span>
                                 <span class="badge badge-pill badge-{{ $order->status->style }}">
-                                    {{ $order->status->name }} 
+                                    {{ $order->status->name }}
                                 </span>
                             @else
                                 <span class="badge badge-pill badge-danger">
@@ -78,7 +78,7 @@
 
                         <dt>Created at</dt>
                         <dd class="mb-0">{{ $order->created_at->format('m-d-Y G:h') }}</dd>
-                        
+
                     </dl>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                     <dl>
                         <dt>Name</dt>
                         <dd>{{ $order->user->full_name }}</dd>
-                        
+
                         @if ($order->user->phone_number)
                             <dt>Phone number</dt>
                             <dd>{{ $order->user->phone_number }}</dd>

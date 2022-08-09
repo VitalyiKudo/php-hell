@@ -20,6 +20,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/orders/status', 'OrderController@UpdateStatus')->name('orders.status');
     Route::get('/', 'DashboardController')->name('dashboard');
     Route::post('/orders/accepted', 'OrderController@orderAccepted')->name('orders.accepted');
+    Route::get('orders/delete/{id}', 'OrderController@destroy')->name('orders.delete');
     Route::resource('orders', 'OrderController');
     Route::resource('searches', 'SearchController');
     Route::resource('services', 'ServiceController');
@@ -34,16 +35,16 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('pricing', 'PricingController');
     Route::resource('fees', 'FeesController');
 
-    Route::post('api/airports','PricingController@getAutocompleteAirports')->name('api.airports');
-    Route::post('api/cities','PricingController@getAutocompleteCities')->name('api.cities');
-    Route::post('api/areas','PricingController@getAutocompleteAreas')->name('api.areas');
-    Route::post('api/operators','PricingController@getAutocompleteOperators')->name('api.operators');
-    Route::get('/airport/search','AirportController@search')->name('airport.search');
-    Route::get('/airline/search','AirlineController@search')->name('airline.search');
-    Route::get('/pricings/search','PricingController@search')->name('pricing.search');
+    Route::post('api/airports', 'PricingController@getAutocompleteAirports')->name('api.airports');
+    Route::post('api/cities', 'PricingController@getAutocompleteCities')->name('api.cities');
+    Route::post('api/areas', 'PricingController@getAutocompleteAreas')->name('api.areas');
+    Route::post('api/operators', 'PricingController@getAutocompleteOperators')->name('api.operators');
+    Route::get('/airport/search', 'AirportController@search')->name('airport.search');
+    Route::get('/airline/search', 'AirlineController@search')->name('airline.search');
+    Route::get('/pricings/search', 'PricingController@search')->name('pricing.search');
 
     // Operator
-    Route::get('/operator/search','OperatorController@search')->name('operator.search');
+    Route::get('/operator/search', 'OperatorController@search')->name('operator.search');
     Route::post('operator/import', 'OperatorController@import')->name('operator.import');
     Route::post('operator/ajaxValidationEmail', 'OperatorController@ajaxValidationEmail')->name('operator.ajaxValidationEmail');
     Route::post('operator/ajaxSearchCity', 'OperatorController@ajaxSearchCity')->name('operator.ajaxSearchCity');

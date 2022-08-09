@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Providers\Authorize\Billable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -76,6 +77,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $api_token
+ * @property-read int|null $fcm_tokens_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Message[] $messages
+ * @property-read int|null $messages_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Room[] $rooms
+ * @property-read int|null $rooms_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereApiToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
  */
 class User extends Authenticatable
 {
@@ -125,7 +134,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'date_of_birth' => 'date',
+        'date_of_birth'     => 'date',
     ];
 
     /**
@@ -145,12 +154,12 @@ class User extends Authenticatable
      */
     public function getHasBillingAddressAttribute($value)
     {
-        return ! is_null($this->billing_address)
-            || ! is_null($this->billing_address_secondary)
-            || ! is_null($this->billing_country)
-            || ! is_null($this->billing_city)
-            || ! is_null($this->billing_state)
-            || ! is_null($this->billing_postcode);
+        return !is_null($this->billing_address)
+            || !is_null($this->billing_address_secondary)
+            || !is_null($this->billing_country)
+            || !is_null($this->billing_city)
+            || !is_null($this->billing_state)
+            || !is_null($this->billing_postcode);
     }
 
     /**
@@ -163,29 +172,35 @@ class User extends Authenticatable
 
     /**
      * Get all of the orders for the user.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orders()
+    public function orders(): HasMany
     {
         return $this->hasMany('App\Models\Order');
     }
 
     /**
      * Get all of the fcm tokens for the user.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function fcmTokens()
+    public function fcmTokens(): HasMany
     {
         return $this->hasMany('App\Models\FcmToken');
     }
 
-    public function searches()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function searches(): HasMany
     {
         return $this->hasMany('App\Models\Search');
     }
 
     /**
      * Get all of the transactions for the user.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions()
+    public function transactions(): HasMany
     {
         return $this->hasMany('App\Models\Transaction');
     }
@@ -201,5 +216,21 @@ class User extends Authenticatable
                 'email' => $value->email,
                 'createdAt' => $value->created_at->format('m-d-Y H:i'),
             ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }
