@@ -115,7 +115,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.emptyLegs.index') }}" class="nav-link {{ Request::is('manage/emptyLegs*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.emptyLegs.index') }}" class="nav-link {{ Request::is('manage/emptyLegs*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-fire"></i>
                         <p>
                             {{ __('Empty Legs') }}
@@ -123,7 +123,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.airportAreas.index') }}" class="nav-link {{ Request::is('manage/airportAreas*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.airportAreas.index') }}" class="nav-link {{ Request::is('manage/airportAreas*') ? 'active' : '' }}" style="color: indianred">
                         <i class="nav-icon fas fa-globe"></i>
                         <p>
                             {{ __('Airport Areas') }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\PricingsDataTable;
 use App\Models\Pricing;
 use App\Models\Country;
 use App\Models\Airport;
@@ -34,11 +35,9 @@ class PricingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PricingsDataTable $dataTable)
     {
-        $pricing = Pricing::paginate(25);
-
-        return view('admin.pricing.list', compact('pricing'));
+        return $dataTable->render('admin.pricing.list');
     }
 
     /**

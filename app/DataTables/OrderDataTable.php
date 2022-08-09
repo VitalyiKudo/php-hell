@@ -54,7 +54,7 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $collect)
     {
-        return $collect->getOrders();
+        return $collect->getMappedOrders();
     }
 
     /**

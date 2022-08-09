@@ -205,6 +205,19 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Transaction');
     }
 
+    public function getUsers()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'name' => $value->getFullNameAttribute(),
+                'email' => $value->email,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -220,5 +233,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
-
 }
