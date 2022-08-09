@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\OperatorsDataTable;
 use App\Models\Operator;
 use App\Models\OperatorCity;
 use Illuminate\Http\Request;
@@ -39,11 +40,9 @@ class OperatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OperatorsDataTable $dataTable)
     {
-        $operators = Operator::paginate(25);
-
-        return view('admin.operators.list', compact('operators'));
+        return $dataTable->render('admin.operators.list');
     }
 
     /**

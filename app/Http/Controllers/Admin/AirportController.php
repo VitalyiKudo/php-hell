@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\AirportsDataTable;
 use App\Models\Airport;
 use App\Models\Country;
 use Illuminate\Http\Request;
@@ -30,11 +31,9 @@ class AirportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AirportsDataTable $dataTable)
     {
-        $airports = Airport::paginate(25);
-
-        return view('admin.airports.list', compact('airports'));
+        return $dataTable->render('admin.airports.list');
     }
 
     /**

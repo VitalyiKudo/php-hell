@@ -157,15 +157,15 @@
     };
 
     DataTable.ext.buttons.import = {
-        extend: 'collection',
-
         className: 'buttons-import',
 
         text: function (dt) {
-            return '<i class="fa fa-upload"></i> ' + dt.i18n('buttons.import', 'Import') + '&nbsp;<span class="caret"/>';
+            return '<i class="fa fa-upload"></i> ' + dt.i18n('buttons.import', 'Import');
         },
 
-        buttons: ['csv']
+        action: function (e, dt, button, config) {
+            window.location = window.location.href.replace(/\/+$/, "") + '/import';
+        }
     };
 
     DataTable.ext.buttons.csv = {

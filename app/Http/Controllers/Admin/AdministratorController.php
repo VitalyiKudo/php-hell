@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\AdministratorsDataTable;
 use Illuminate\Http\Request;
 use App\Models\Administrator;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,9 @@ class AdministratorController extends Controller
      */
     public function __construct()
     {
+        set_time_limit(8000000);
+        ini_set('max_execution_time', 8000000);
+
         $this->middleware('auth:admin');
     }
 
@@ -26,11 +30,9 @@ class AdministratorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AdministratorsDataTable $dataTable)
     {
-        $administrators = Administrator::paginate(25);
-
-        return view('admin.administrators.list', compact('administrators'));
+        return $dataTable->render('admin.administrators.list');
     }
 
     /**

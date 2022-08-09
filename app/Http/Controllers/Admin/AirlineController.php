@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\AirlineDataTable;
 use App\Models\Airline;
 use App\Models\Country;
 use Illuminate\Http\Request;
@@ -32,11 +33,9 @@ class AirlineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AirlineDataTable $dataTable)
     {
-        $airlines = Airline::paginate(25);
-        
-        return view('admin.airlines.list', compact('airlines'));
+        return $dataTable->render('admin.airlines.list');
     }
 
     /**
@@ -71,7 +70,7 @@ class AirlineController extends Controller
             ->route('admin.airlines.index')
             ->with('status', 'The airline was successfully created.');
     }
-    
+
     /**
      * Store data from excel file.
      *
@@ -79,7 +78,7 @@ class AirlineController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function import() 
+    public function import()
     {
         $status = "Excel file was not uploaded";
         if(request()->file('file') && request()->file('file')->extension() == 'xlsx'){
@@ -152,14 +151,14 @@ class AirlineController extends Controller
             ->route('admin.airlines.index')
             ->with('status', 'The airline was successfully deleted.');
     }
-    
+
     public function search(Request $request)
     {
         if($request->ajax())
         {
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $airlines = DB::table('airlines') 
+            $airlines = DB::table('airlines')
                 ->where('type', 'like', '%'.$query.'%')
                 ->orWhere('reg_number', 'like', '%'.$query.'%')
                 ->orWhere('category', 'like', '%'.$query.'%')
@@ -172,5 +171,5 @@ class AirlineController extends Controller
             return view('admin.airlines.pagination', compact('airlines'))->render();
         }
     }
-    
+
 }

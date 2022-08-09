@@ -53,12 +53,25 @@ class Administrator extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
     public function messages(){
         return $this->hasMany(Message::class);
     }
-    
+
     public function rooms(){
         return $this->belongsToMany(Room::class);
+    }
+
+    public function getAdministrators()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'name' => $value->name,
+                'email' => $value->email,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
     }
 }

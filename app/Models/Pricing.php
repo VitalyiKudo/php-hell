@@ -87,4 +87,21 @@ class Pricing extends Model
     {
         return $this->belongsTo(City::class, 'arrival_geoId', 'geonameid');
     }
+
+    public function getPricing()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'departure' => $value->departure,
+                'arrival' => $value->arrival,
+                'price_turbo' => $value->price_turbo,
+                'price_light' => $value->price_light,
+                'price_medium' => $value->price_medium,
+                'price_heavy' => $value->price_heavy,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }

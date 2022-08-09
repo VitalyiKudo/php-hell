@@ -43,4 +43,22 @@ class Fees extends Model
         'active',
     ];
 
+    public const IS_SALL = 1;
+    public const IS_NOT_SALL = 0;
+
+    public function getFees()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'item' => $value->item,
+                'amount' => $value->amount,
+                'type' => $value->type,
+                'active' => $value->active,
+                'sall' => $value->sall,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }

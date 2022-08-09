@@ -119,4 +119,18 @@ class Airport extends Model
     {
         return $this->hasMany(AirportArea::class, 'icao', 'icao');
     }
+
+    public function getAirports()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'name' => $value->name,
+                'city' => $value->city,
+                'iata' => $value->iata,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }

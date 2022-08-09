@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\FeesDataTable;
 use App\Models\Fees;
 use App\Models\Pricing;
 use Illuminate\Http\Request;
@@ -30,11 +31,9 @@ class FeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FeesDataTable $dataTable)
     {
-        $feeses = Fees::paginate(25);
-
-        return view('admin.fees.list', compact('feeses'));
+        return $dataTable->render('admin.fees.list');
     }
 
     /**
@@ -92,12 +91,12 @@ class FeesController extends Controller
     public function edit($id)
     {
         $fees = Fees::find($id);
-        
+
         //echo "<pre>";
         //print_r($fees);
         //echo "</pre>";
         //echo $request->input('item');
-        
+
         return view('admin.fees.edit', compact('fees'));
     }
 
@@ -113,7 +112,7 @@ class FeesController extends Controller
         //echo $request->input('item');
         //exit();
         $fees = Fees::find($id);
-        
+
         $fees->item = $request->input('item');
         $fees->amount = $request->input('amount') ?? 0;
         $fees->type = $request->input('type');
