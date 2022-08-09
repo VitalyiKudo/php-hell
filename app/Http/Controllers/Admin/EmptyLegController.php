@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
@@ -75,7 +76,7 @@ class EmptyLegController extends Controller
             'operator' => $request->input('operatorEmail'),
             'type_plane' => $request->input('typePlane'),
             'price' => $request->input('price'),
-            'date_departure' => $request->input('dateDeparture')
+            'date_departure' => Carbon::parse($request->input('dateDeparture'))->format('Y-m-d H:i:s')
                           ]);
 
         return redirect()
@@ -151,7 +152,7 @@ class EmptyLegController extends Controller
                      'operator' => $request->operatorEmail,
                      'type_plane' => $request->typePlane,
                      'price' => $request->price,
-                     'date_departure' => $request->dateDeparture,
+                     'date_departure' => Carbon::parse($request->dateDeparture)->format('Y-m-d H:i:s'),
                      'active' => $request->active
                  ]);
 

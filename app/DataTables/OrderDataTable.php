@@ -98,7 +98,7 @@ class OrderDataTable extends DataTable
             Column::make('status')->title('Status'),
             Column::make('price')->title('Price'),
             Column::make('created')->title('Created at'),
-            Column::make('action')->title('')->orderable(false),
+            Column::make('action')->title('')->orderable(false)->addClass('dt-body-nowrap'),
         ];
     }
 

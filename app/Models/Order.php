@@ -157,17 +157,14 @@ class Order extends Model
         return $this->belongsTo(Search::class, 'search_result_id', 'id');
     }
 
-    public function getOrders($id = false)
+    /**
+     * @return Order[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection|\LaravelIdea\Helper\App\Models\_IH_Order_C|\LaravelIdea\Helper\App\Models\_IH_Order_QB[]|m.\App\Models\Order.with[]
+     */
+    public function getOrders()
     {
         return  $this->with('searches', 'status', 'user')
-            ->where(function ($query) use ($id) {
-                if (!empty($id)) {
-                    $query->where('id', $id);
-                }
-            })
             ->orderByDesc('id')
             ->get()
-            #->first();
             ->values()
             ->map(fn($value, $key) => [
                 'key' => ++$key,
@@ -176,10 +173,21 @@ class Order extends Model
                 'status' => $value->status->name,
                 'statusBg' => $value->status->id,
                 'price' => $value->price,
-                'created' => $value->created_at, # - $res->city_airport_count,
-                'seacrh' => $value->searches, # - $res->city_airport_count,
+                'created' => $value->created_at
             ])
             ->sortBy('key');
+    }
 
+    public function getOrder($id)
+    {
+        return  $this->with('searches', 'status', 'user', 'searches.price')
+            ->where(function ($query) use ($id) {
+                if (!empty($id)) {
+                    $query->where('id', $id);
+                }
+            })
+            ->orderByDesc('id')
+            ->get()
+            ->first();
     }
 }

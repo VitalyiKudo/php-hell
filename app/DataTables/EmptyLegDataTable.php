@@ -29,13 +29,13 @@ class EmptyLegDataTable extends DataTable
         return $dataTables->collection($query)
             #->editColumn('dateDeparture', '{!! $dateDeparture !!}')
             ->editColumn('dateDeparture', function ($q) {
-                return $q['dateDeparture']->format('Y-m-d');
+                return $q['dateDeparture']->format('m/d/Y h:i A');
             })
             ->rawColumns(['active', 'icaoDeparture', 'icaoArrival', 'operatorEmail', 'price', 'action'])
             ->editColumn('active', fn($q) =>'<span class="badge '.$this->statusBg($q["active"]).'">'.$this->status($q["active"]).'</span>')
-            ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
-            ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
-            ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')
+            ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'" title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
+            ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportArrival"].' "title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
+            ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["operatorName"].' "title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')
             ->editColumn('price', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.Config::get('constants.TypePlane.'.$q['typePlane']).'">'.$q["price"].'</span>')
             ->addColumn('action', function ($q) {
                 return '<a href="'.route('admin.emptyLegs.show', $q['id']).'" class="view btn btn-info btn-sm">View</a> <a href="'.route('admin.emptyLegs.edit', $q['id']).'" class="edit btn btn-success btn-sm">Edit</a> <a href="'.route('admin.emptyLeg.delete', $q['id']).'" class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this airportArea? This action cannot be undone.\')" data-method="delete" data-confirm="Are you sure to delete this inventory?">Delete</a>';
@@ -91,12 +91,12 @@ class EmptyLegDataTable extends DataTable
         return [
             Column::make('id')->title('#'),
             Column::make('active')->title('Status'),
-            Column::make('dateDeparture')->title('Departure Date'),
+            Column::make('dateDeparture')->title('Departure Date')->addClass('dt-body-nowrap'),
             Column::make('icaoDeparture')->title('Departure Airport'),
             Column::make('icaoArrival')->title('Arrival Airport'),
             Column::make('operatorEmail')->title('Operator'),
             Column::make('price')->title('Price'),
-            Column::make('action')->title('')->orderable(false),
+            Column::make('action')->title('')->orderable(false)->addClass('dt-body-nowrap'),#->width(160),
         ];
     }
 

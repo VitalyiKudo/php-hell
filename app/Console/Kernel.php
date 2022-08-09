@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         $schedule->command('sitemap:generate')->daily();
         $schedule->command('command:SendEmailOperatorDaily')->dailyAt('07:00')->timezone('America/New_York')->weekdays();
+        #$schedule->command('command:SendEmailOperatorDaily')->everyMinute()->appendOutputTo(storage_path('logs/SendEmailOperatorDaily.log'));
         $schedule->command('command:DeactivateEmptyLegsOld')->daily();
 
         if ($this->app->environment() === 'local') {

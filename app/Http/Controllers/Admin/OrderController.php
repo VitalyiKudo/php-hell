@@ -104,7 +104,7 @@ class OrderController extends Controller
         $pricing = Pricing::find($search->result_id);
         $operator = Operator::find($order->operator_id);
         */
-        $order = (object)$order->getOrders($request->route('order')->id)->first();
+        $order = $order->getOrder($request->route('order')->id);
         #var_dump($search);
         dd($order);
         #var_dump(compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
