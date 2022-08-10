@@ -250,6 +250,8 @@ class EmptyLeg extends Model
                    'typePlane' => $value->type_plane,
                    'price' => $value->price,
                    'dateDeparture' => $value->date_departure,
+                   'hDeparture' => (int)$value->date_departure->format('H'),
+                   'sDeparture' => (int)$value->date_departure->format('i'),
                    'active' => $value->active
                ]);
             });

@@ -52,4 +52,16 @@ class Airline extends Model
         'operator',
     ];
 
+    public function getAirlines()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'type' => $value->type,
+                'reg_number' => $value->reg_number,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }

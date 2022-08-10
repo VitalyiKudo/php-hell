@@ -1,24 +1,25 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">{{ $search->result_id }}</h5>
+        {{-- dd($order) --}}
+        <h5 class="card-title">{{ $order->searches->result_id }}</h5>
         <h6 class="card-subtitle mb-3 text-muted">The search result details</h6>
 
         <dl class="mb-0">
             <dt>Departure Airport</dt>
-            <dd>{{ $search->start_airport_name }}</dd>
+            <dd>{{ $order->searches->start_airport_name }}</dd>
 
             <dt>Arrival Airport</dt>
-            <dd>{{ $search->end_airport_name }}</dd>
+            <dd>{{ $order->searches->end_airport_name }}</dd>
 
             <dt>Passengers:</dt>
-            <dd>{{ $search->pax }}</dd>
+            <dd>{{ $order->searches->pax }}</dd>
 
             <dt>Date</dt>
-            <dd>{{ Carbon\Carbon::parse($search->departure_at)->format('m-d-Y') }}</dd>
-            
+            <dd>{{ Carbon\Carbon::parse($order->searches->departure_at)->format('m-d-Y') }}</dd>
+
             <dt>Type</dt>
             <dd>{{ $order->type }}</dd>
-            
+
             @if($pricing)
                 @if($order->type == 'turbo')
                     <dt>Flight Time</dt>
@@ -37,12 +38,12 @@
                     <dd>00:00</dd>
                 @endif
             @endif
-            
+
             @if($operator)
             <dt>Operator</dt>
             <dd>{{ $operator->name }}</dd>
             @endif
-            
+
         </dl>
     </div>
     <hr>
@@ -63,7 +64,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+
             <table class="table mb-0">
                 <thead>
                     <tr>

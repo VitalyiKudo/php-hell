@@ -210,7 +210,7 @@
                             return true;
                         }
                     },
-                    dateISO: true
+                    dateISO: false
                 }
             },
             messages: {
@@ -291,7 +291,35 @@
         $(function(){
             $('#emptyLegs span').tooltip();
         });
+        //Date range picker with time picker
+        //$('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+        $('#dateDeparture').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 10,
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            autoClose: true,
+            placeholder: 'Enter date',
+            drops: 'auto',
+            icons: { time: 'far fa-clock' },
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
+            }
+        }).on("apply.daterangepicker", function(e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            e.preventDefault();
+        }).on("cancel.daterangepicker", function(e, picker) {
+            if(e.keyCode == 8 || e.keyCode == 46) {
+                picker.element.val('');
+            }
+        });
 
+        $('.iconDateDeparture').click(function(e){
+            e.preventDefault();
+            $('#dateDeparture').click();
+        });
     });
 
 </script>

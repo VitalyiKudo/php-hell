@@ -11,7 +11,7 @@
                     </li>
                     <li class="breadcrumb-item">
                         <a href="{{ route('admin.emptyLegs.edit', $emptyLeg['id']) }}">
-                            {{ $emptyLeg['dateDeparture']->format('m-d-Y') }}
+                            {{ $emptyLeg['dateDeparture']->format('m/d/Y h:i A') }}
                             ({{ $emptyLeg['operatorName'] }})
                         </a>
                     </li>
@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5>{{ $emptyLeg['dateDeparture']->format('m-d-Y') }}  ({{ $emptyLeg['operatorName'] }})
+                    <h5># {{ $emptyLeg['id'] }} - {{ $emptyLeg['dateDeparture']->format('m/d/Y h:i A') }}  ({{ $emptyLeg['operatorName'] }})
                             <span class="badge {{ array_search($emptyLeg['active'], $status['statusBg']) }}">{{ array_search($emptyLeg['active'], $status['status']) }}</span>
                     </h5>
                     <h6 class="card-subtitle mb-3 text-muted">{{__('Edit Empty Leg')}}</h6>
@@ -108,13 +108,21 @@
 
                         <div class="form-group">
                             <label for="dateDeparture">{{__('Date')}}*</label>
-                            <input type="date" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{{ old('dateDeparture', $emptyLeg['dateDeparture']->format('Y-m-d')) }}" required>
+                            <div class="input-group">
+                                <div class="input-group-prepend iconDateDeparture">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                                {{-- $emptyLeg['dateDeparture'] --}}
+                                <input type="text" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{{ old('dateDeparture', $emptyLeg['dateDeparture']->format('m/d/Y h:i A')) }}" required>
 
-                            @if ($errors->has('dateDeparture'))
-                                <span class="invalid-feedback" role="alert">
+                                @if ($errors->has('dateDeparture'))
+                                    <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('dateDeparture') }}</strong>
                                 </span>
-                            @endif
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group">

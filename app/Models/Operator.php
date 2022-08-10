@@ -84,4 +84,16 @@ class Operator extends Model
 
     public $incrementing = false;
 
+    public function getOperators()
+    {
+        return $this
+            ->get()
+            ->map(fn($value, $key) => [
+                'key' => ++$key,
+                'id' => $value->id,
+                'name' => $value->name,
+                'web_site' => $value->web_site,
+                'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
 }

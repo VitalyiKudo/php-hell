@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="container header-page-image header-page-image-bg"></div>
-    <div class="section main-search-page">
+    <div class="section main-search-page main-search-emptyLeg">
         <div class="container">
             <div class="row">
                 <div class="offset-md-1 col-md-12">
@@ -26,7 +26,7 @@
                             <div class="col-lg-10 color-bronze">
                                 Please type at least 3 symbols of the arrival or departure and/or date to find the flight
                             </div>
-                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter-3">
                                 <div class="input-group input-style">
                                     <input type="text"
                                            class="form-control from"
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter-3">
                                 <div class="input-group input-style">
                                     <input type="text"
                                            class="form-control to"
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 mt-2 pl-0 ml-3 pass-field">
+                            {{--}}<div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
                                     <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" autocomplete="off" value="1" id="pax" name="pax">
                                     <div class="input-group-prepend">
@@ -74,8 +74,9 @@
                                         <img src="{{ asset('images/passengers-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter">
+                            </div>--}}
+                            <input type="hidden" min="1" autocomplete="off" value="1" id="pax" name="pax">
+                            <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter-3">
                                 <div class="input-group input-style">
                                     <input type="text" class="form-control " name="flightDate" id="flightDate" placeholder="Date & Time" autocomplete="off" value="">
                                     <div class="input-group-prepend">
@@ -83,7 +84,6 @@
                                         <img src="{{ asset('images/date-icon.svg') }}" loading="lazy" class="icon-img" alt="..."></span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </form>

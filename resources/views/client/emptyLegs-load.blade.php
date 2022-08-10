@@ -21,7 +21,7 @@
                         </div>
                         <div class="type-price">
                             <span class="flight-price">{{ $emptyLeg['dateDeparture']->format('m/d/Y') }}</span>
-                            <span class="flight-price-desc"></span>
+                            <span class="flight-price-desc">{{ ($emptyLeg['hDeparture'] === 0 && $emptyLeg['sDeparture'] === 0) ? '' : $emptyLeg['dateDeparture']->format('h:i A') }}</span>
                         </div>
                         <div class="type-price-legs">
                             <span class="flight-price">{!! ((int)$emptyLeg['price'] !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg['price'], 2, '.', ' ') : 'Price on request.' !!}</span>

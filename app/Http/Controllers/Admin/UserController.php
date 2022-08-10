@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\UsersDataTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
+        set_time_limit(8000000);
+        ini_set('max_execution_time', 8000000);
+
         $this->middleware('auth:admin');
     }
 
@@ -26,11 +30,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
-        $users = User::paginate(25);
-
-        return view('admin.users.list', compact('users'));
+        return $dataTable->render('admin.users.list');
     }
 
     /**

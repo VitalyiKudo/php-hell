@@ -97,14 +97,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="dateDeparture">Date*</label>
-                            <input type="date" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="{{ old('dateDeparture') }}" placeholder="Enter date">
+                            <label for="dateDeparture">{{__('Date')}}*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend iconDateDeparture">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            <input type="text" class="form-control{{ $errors->has('dateDeparture') ? ' is-invalid' : '' }}" id="dateDeparture" name="dateDeparture" value="" placeholder="Enter date">
 
                             @if ($errors->has('dateDeparture'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('dateDeparture') }}</strong>
                                 </span>
                             @endif
+                            </div>
                         </div>
 
                         <div class="form-group">

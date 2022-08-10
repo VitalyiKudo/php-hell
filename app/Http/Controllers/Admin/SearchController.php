@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\SearchesDataTable;
 use App\Models\Search;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,8 @@ class SearchController extends Controller
      */
     public function __construct()
     {
+        set_time_limit(8000000);
+        ini_set('max_execution_time', 8000000);
         $this->middleware('auth:admin');
     }
 
@@ -23,11 +26,13 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchesDataTable $dataTable)
     {
-        $searches = Search::with('user')->withCount('results')->orderBy('id', 'desc')->paginate(25);
-
-        return view('admin.searches.list', compact('searches'));
+        try {
+            return $dataTable->render('admin.searches.list');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

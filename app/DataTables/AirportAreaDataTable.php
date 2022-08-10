@@ -89,7 +89,7 @@ class AirportAreaDataTable extends DataTable
             Column::make('areaAirportCount')->title('Satellite'),
             Column::make('regionName')->title('State'),
             Column::make('countryName')->title('Country'),
-            Column::make('action')->title('')->orderable(false),
+            Column::make('action')->title('')->orderable(false)->addClass('dt-body-nowrap'),
             ];
     }
 
