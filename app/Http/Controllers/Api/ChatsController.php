@@ -16,6 +16,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotations as OA;
 
 class ChatsController extends Controller
 {
@@ -83,12 +84,12 @@ class ChatsController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @OA\Get(
-     *     path="/api/chat/{room_id}",
+     *     path="/api/chat/{room}",
      *     description="Get room",
      *     tags={"Chats"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
-     *         name="room_id",
+     *         name="room",
      *         description="",
      *         in = "path",
      *         required=true,
@@ -141,12 +142,12 @@ class ChatsController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @OA\Get(
-     *     path="/api/messages/{room_id}",
+     *     path="/api/messages/{room}",
      *     description="list of messages",
      *     tags={"Chats"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
-     *         name="room_id",
+     *         name="room",
      *         description="",
      *         in = "path",
      *         required=true,
@@ -154,6 +155,15 @@ class ChatsController extends Controller
      *             type="integer"
      *         )
      *     ),
+     *     @OA\Parameter (
+     *     name="page",
+     *         description="",
+     *         in = "path",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -178,6 +188,42 @@ class ChatsController extends Controller
      * @param \App\Models\Room $room
      * @param \App\Http\Requests\Chat\MessageSearch $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @OA\Get(
+     *     path="/api/messages/{room}/search",
+     *     description="search message",
+     *     tags={"Chats"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="room",
+     *         description="",
+     *         in = "path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter (
+     *     name="page",
+     *         description="",
+     *         in = "path",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\Parameter(
+     *     name = "text",
+     *         in = "path",
+     *     required=false,
+     *        @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
      */
     public function searchMessages(Room $room, MessageSearch $request)
     {
