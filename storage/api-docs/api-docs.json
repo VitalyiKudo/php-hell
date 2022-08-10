@@ -1070,17 +1070,16 @@
                 ]
             }
         },
-        "/api/chat/{room_id}": {
+        "/api/chat/{room}": {
             "get": {
                 "tags": [
                     "Chats"
                 ],
                 "summary": "Get room info.",
                 "description": "Get room",
-                "operationId": "cdfe49d2cc24be7d33dfa712faeb0154",
                 "parameters": [
                     {
-                        "name": "room_id",
+                        "name": "room",
                         "in": "path",
                         "description": "",
                         "required": true,
@@ -1101,22 +1100,77 @@
                 ]
             }
         },
-        "/api/messages/{room_id}": {
+        "/api/messages/{room}": {
             "get": {
                 "tags": [
                     "Chats"
                 ],
                 "summary": "Get the list of messages.",
                 "description": "list of messages",
-                "operationId": "862587bb3015836d07af7496dc8c7dfd",
                 "parameters": [
                     {
-                        "name": "room_id",
+                        "name": "room",
                         "in": "path",
                         "description": "",
                         "required": true,
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/messages/{room}/search": {
+            "get": {
+                "tags": [
+                    "Chats"
+                ],
+                "description": "search message",
+                "operationId": "3f78f76062a6776700c0bc096d8d7f5b",
+                "parameters": [
+                    {
+                        "name": "room",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "text",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -1139,7 +1193,6 @@
                 ],
                 "summary": "Add message",
                 "description": "Add message",
-                "operationId": "4d6d22423166ad0b9d0ea80350650be5",
                 "requestBody": {
                     "required": true,
                     "content": {
