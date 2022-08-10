@@ -26,5 +26,5 @@ if (mix.inProduction()) {
 //mix.js('resources/js/app.js', 'public/js');
 mix.js('resources/js/app.js', 'public/js').vue();
 
-mix.minify(['public/css/app.css', 'public/css/admin.css']);
+mix.minify(['public/js/app.js', 'public/css/app.css', 'public/css/admin.css']);
 
