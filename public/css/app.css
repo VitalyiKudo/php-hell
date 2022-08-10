@@ -15161,7 +15161,7 @@ ul.dashed > li:before {
     }
 
     .type-info-legs div:nth-of-type(3) {
-        grid-column: 3 / 1;
+        grid-column: 3 / 0;
         grid-row: 3;
     }
 
@@ -15253,6 +15253,7 @@ ul.dashed > li:before {
         border: none;
         font-weight: 500;
         font-size: 16px;
+        white-space: nowrap;
     }
     .request-empty-leg-submit {
         text-align: center !important;
@@ -15265,6 +15266,7 @@ ul.dashed > li:before {
         border: none;
         font-weight: 500 !important;
         font-size: 16px !important;
+        white-space: nowrap;
     }
 }
 
@@ -15647,7 +15649,7 @@ ul.dashed > li:before {
 }
 
 .main-search-emptyLeg {
-    height: 480px;
+    height: 500px;
 }
 
 .main-search-page .input-group-prepend {
