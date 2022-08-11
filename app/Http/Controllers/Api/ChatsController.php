@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Chat\MessageSearch;
 use App\Http\Requests\Chat\PageRequest;
+use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Resources\Chat\MessagesResource;
 use App\Http\Controllers\Controller;
@@ -44,6 +45,24 @@ class ChatsController extends Controller
      *     description="List of Chats",
      *     tags={"Chats"},
      *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="email",
+     *         description="email of room",
+     *         in = "path",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter (
+     *     name="page",
+     *         description="",
+     *         in = "path",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -52,9 +71,9 @@ class ChatsController extends Controller
      *
      */
 
-    public function index()
+    public function index(RoomSearch $request)
     {
-        $rooms      = $this->chatRoomService->getRoomsOrCreateNew('api');
+        $rooms      = $this->chatRoomService->getRoomsOrCreateNew('api', $request->page, $request->email);
         $rooms_list = [];
 
         foreach ($rooms as $room) {
