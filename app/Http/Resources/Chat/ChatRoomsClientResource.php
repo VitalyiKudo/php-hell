@@ -19,7 +19,7 @@ class ChatRoomsClientResource extends JsonResource
          * @var \App\Models\Room $this |self
          */
         return [
-            'id'    => $this->getAttribute('id'),
+            'id'    => $this->id,
             'link'  => url('chat/' . $this->id),
             'title' => $this->whenLoaded('user', function () {
                 return $this->user->first_name . " " . $this->user->last_name . " " . $this->user->email . $this->whenLoaded('messages', function (

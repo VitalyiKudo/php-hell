@@ -37,7 +37,7 @@ class  ChatRoom
             if (auth()->user()->rooms()->count() < 1) {
                 $this->createRoom($quard);
             }
-            return Room::with('messages', 'user')->where('user_id', auth()->user()->id)->limit(1)->simplePaginate();
+            return Room::with('messages', 'user')->where('user_id', auth()->user()->id)->limit(1)->paginate();
         }
 
         return $this->getAdminRooms($page, $email);
