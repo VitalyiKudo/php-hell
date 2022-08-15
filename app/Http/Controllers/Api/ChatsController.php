@@ -79,7 +79,7 @@ class ChatsController extends Controller
             return ChatRoomsAdminResource::collection($rooms);
         }
         else if (auth()->guard('api')->check()) {
-            return ChatRoomsClientResource::make($rooms);
+            return ChatRoomsClientResource::collection($rooms);
         }
     }
 
