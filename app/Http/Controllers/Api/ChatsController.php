@@ -6,9 +6,10 @@ use App\Http\Requests\Chat\MessageSearch;
 use App\Http\Requests\Chat\PageRequest;
 use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
+use App\Http\Resources\Chat\ChatRoomsAdminResource;
+use App\Http\Resources\Chat\ChatRoomsClientResource;
 use App\Http\Resources\Chat\MessagesResource;
 use App\Http\Controllers\Controller;
-use App\Models\Message;
 use App\Events\MessageSent;
 use App\Models\Room;
 use App\Service\Chat\ChatCreateMessage;
@@ -38,7 +39,7 @@ class ChatsController extends Controller
      * Get the rooms list.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\Chat\ChatRoomsAdminResource|\App\Http\Resources\Chat\ChatRoomsClientResource|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @OA\Get(
      *     path="/api/chats",
@@ -70,30 +71,16 @@ class ChatsController extends Controller
      * )
      *
      */
-
     public function index(RoomSearch $request)
     {
-        $rooms      = $this->chatRoomService->getRoomsOrCreateNew('api', $request->page, $request->email);
-        $rooms_list = [];
+        $rooms = $this->chatRoomService->getRoomsOrCreateNew('api', $request->page, $request->email);
 
-        foreach ($rooms as $room) {
-
-            if (auth()->guard('api_admin')->check()) {
-                $rooms_list[] = [
-                    'link'  => url('chat/' . $room->id),
-                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('user_id', null)->where('saw', false)->count() . ")",
-                ];
-            }
-            elseif (auth()->guard('api')->check()) {
-                $rooms_list[] = [
-                    'link'  => url('chat/' . $room->id),
-                    'title' => $room->user->first_name . " " . $room->user->last_name . " " . $room->user->email . " (" . $room->messages->whereNotInStrict('administrator_id', null)->where('saw', false)->count() . ")",
-                ];
-            }
-
+        if (auth()->guard('api_admin')->check()) {
+            return ChatRoomsAdminResource::collection($rooms);
         }
-
-        return response()->json($rooms_list);
+        else if (auth()->guard('api')->check()) {
+            return ChatRoomsClientResource::make($rooms);
+        }
     }
 
     /**
