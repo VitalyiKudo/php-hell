@@ -41,6 +41,10 @@ return [
                 'host'    => env('LARAVEL_WEBSOCKETS_DOMAIN'),
                 'port'    => env('LARAVEL_WEBSOCKETS_PORT'),
                 'scheme'  => env('LARAVEL_WEBSOCKETS_SCHEME'),
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ],
             ],
         ],
 
