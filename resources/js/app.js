@@ -76,9 +76,11 @@ $('.companion').datepicker({
 
 import {createApp} from 'vue'
 import ChatComponent from './components/ChatsComponent'
+import AdminChatComponent from './components/AdminChatsComponent'
 import VueChatScroll from 'vue-chat-scroll'
 
 const app = createApp({});
 app.use(VueChatScroll);
-app.component('chats', ChatComponent);
+app.component('chat', ChatComponent);
+app.component('admin-chat', AdminChatComponent);
 app.mount('#app');

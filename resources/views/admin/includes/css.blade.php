@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="{{ asset('dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
+<link href="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('css/app.css') : mix('css/app.min.css') }}" rel="stylesheet">
 @if(app()->getLocale() == "rtl")
     <!-- Bootstrap 4 RTL -->
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap_ltr.min.css">

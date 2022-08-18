@@ -68,4 +68,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('airportArea/delete/{id}', 'AirportAreaController@destroy')->name('airportArea.delete');
     Route::resource('airportAreas', 'AirportAreaController');
 
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/chats', 'ChatsController@index');
+        Route::get('/chat/{user}', 'ChatsController@getRoom')->name('chats.getRoom');
+        Route::get('/messages/{room}', 'ChatsController@fetchMessages');
+        Route::get('/messages/{room}/search', 'ChatsController@searchMessages');
+        Route::post('/messages', 'ChatsController@sendMessages');
+    });
 });

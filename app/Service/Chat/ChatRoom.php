@@ -5,6 +5,7 @@ namespace App\Service\Chat;
 use App\Models\Administrator;
 use App\Models\Message;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class  ChatRoom
@@ -35,7 +36,7 @@ class  ChatRoom
 
         if (auth()->guard($quard)->check()) {
             if (auth()->user()->rooms()->count() < 1) {
-                $this->createRoom($quard);
+                $this->createRoomGuard($quard);
             }
             return Room::with('messages', 'user')->where('user_id', auth()->user()->id)->limit(1)->paginate();
         }
@@ -48,7 +49,23 @@ class  ChatRoom
      * @param string $quard
      * @return void
      */
-    protected function createRoom(string $quard): void
+    public function createRoom(User $user): Room
+    {
+        /**
+         * @var Room $room
+         */
+        $room = $user->room()->create(
+            [
+                'name' => $user->email
+            ]
+        );
+
+        $admins = Administrator::all();
+        $room->administrators()->attach($admins);
+        return $room;
+    }
+
+    protected function createRoomGuard(string $quard): void
     {
         /**
          * @var Room $room
@@ -90,5 +107,22 @@ class  ChatRoom
             ->where('message', 'like', "%$text%")
             ->latest()
             ->simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page);
+    }
+
+    /**
+     * @param \App\Models\User $user
+     * @return \App\Models\Room
+     */
+    public function createRoomAdmin(User $user): Room
+    {
+        $room = $user->room()->create(
+            [
+                'name' => $user->email
+            ]
+        );
+
+        $admins = Administrator::all();
+        $room->administrators()->attach($admins);
+        return $room;
     }
 }

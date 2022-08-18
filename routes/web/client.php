@@ -118,9 +118,9 @@ Route::namespace('Account')->group(function () {
 
 });
 
-Route::middleware('auth:client,admin')->group(function () {
-    Route::get('/chats', 'ChatsController@index');
-    Route::get('/chat/{room}', 'ChatsController@getRoom')->name('chats.getRoom');
+Route::middleware('auth:client')->group(function () {
+//    Route::get('/chats', 'ChatsController@index');
+    Route::get('/chat', 'ChatsController@getRoom')->name('chats.getRoom');
     Route::get('/messages/{room}', 'ChatsController@fetchMessages');
     Route::get('/messages/{room}/search', 'ChatsController@searchMessages');
     Route::post('/messages', 'ChatsController@sendMessages');

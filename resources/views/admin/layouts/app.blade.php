@@ -6,7 +6,7 @@
         <title>@yield('title', 'JetOnSet | admin')</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- include css files --}}
         @include('admin.includes.css')
 
@@ -64,5 +64,9 @@
         {{-- include javascript files --}}
         {{-- @include('admin.includes.js') --}}
         @stack('scripts')
+
+        @if($isChat??false)
+        <script src="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('js/app.js')  : mix('js/app.min.js') }}"></script>
+        @endif
     </body>
 </html>

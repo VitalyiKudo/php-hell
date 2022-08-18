@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Admin;
 
+use App\DataTables\UsersChatsDataTable;
 use App\Http\Requests\Chat\MessageSearch;
-use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Requests\Chat\PageRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Chat\MessagesResource;
-use App\Models\Message;
-use App\Models\Administrator;
 use App\Models\Room;
 use App\Events\MessageSent;
+use App\Models\User;
 use App\Service\Chat\ChatCreateMessage;
 use App\Service\Chat\ChatRoom;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -33,36 +32,44 @@ class ChatsController extends Controller
         $this->chatRoomService = $chatRoom;
     }
 
-//    /**
-//     * @param \App\Http\Requests\Chat\RoomSearch $request
-//     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-//     * @throws \Exception
-//     */
-//    public function index(RoomSearch $request)
-//    {
+    /**
+     * @param \App\Http\Requests\Chat\RoomSearch $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
+    public function index(UsersChatsDataTable $dataTable)
+    {
 //        $rooms = $this->chatRoomService->getRoomsOrCreateNew('client', $request->page, $request->email);
-//
+
 //        return view('client.chats.chats_list', compact('rooms'));
-//    }
+
+        return $dataTable->render('admin.users.list');
+    }
 
     /**
      * @param \App\Models\Room $room
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getRoom()
+    public function getRoom(User $user)
     {
-        $user = Auth::user();
-        $room = $user->room;
+        $admin = Auth::user();
+        $room  = $user->room;
 
         if (!$room) {
-            $room = $this->chatRoomService->createRoom($user);
+            $room = $this->chatRoomService->createRoomAdmin($user);
+        }
+        if ($admin->messages()->count() > 0) {
+            if (Auth::guard('client')->check()) {
+                $room->messages()->whereNotNull('administrator_id')->update(['saw' => true]);
+            }
+            else if (Auth::guard('admin')->check()) {
+                $room->messages()->whereNotNull('user_id')->update(['saw' => true]);
+            }
+
         }
 
-        if ($user->messages()->count() > 0) {
-            $room->messages()->whereNotNull('administrator_id')->update(['saw' => true]);
-        }
-
-        return view('client.chats.chats_messages', compact('room', 'user'));
+        $isChat = true;
+        return view('admin.chats.chats_messages', compact('room', 'admin', 'isChat'));
     }
 
     /**
