@@ -34,7 +34,7 @@ class UsersChatsDataTable extends DataTable
      */
     public function query(User $collect)
     {
-        return $collect->getUsers();
+        return $collect->getUsersChat();
     }
 
     /**
@@ -67,9 +67,11 @@ class UsersChatsDataTable extends DataTable
     {
         return [
             Column::make('key')->title('#'),
+            Column::make('id')->title('Id'),
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
             Column::make('createdAt')->title('Created at'),
+            Column::make('messages_count')->title('Unread messages'),
             Column::make('action')->title('')->orderable(false),
         ];
     }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use function foo\func;
 
 /**
  * App\Models\User
@@ -211,11 +212,32 @@ class User extends Authenticatable
         return $this
             ->get()
             ->map(fn($value, $key) => [
-                'key' => ++$key,
-                'id' => $value->id,
-                'name' => $value->getFullNameAttribute(),
-                'email' => $value->email,
+                'key'       => ++$key,
+                'id'        => $value->id,
+                'name'      => $value->getFullNameAttribute(),
+                'email'     => $value->email,
                 'createdAt' => $value->created_at->format('m-d-Y H:i'),
+            ]);
+    }
+
+    /**
+     * @return \App\Models\User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public function getUsersChat()
+    {
+        return $this
+            ->withCount(['messages' => function ($q) {
+                return $q->where('user_id', '!=', null)->where('saw', false);
+            }])
+            ->orderBy('messages_count','desc')
+            ->get()
+            ->map(fn($value, $key) => [
+                'key'            => ++$key,
+                'id'             => $value->id,
+                'name'           => $value->getFullNameAttribute(),
+                'email'          => $value->email,
+                'createdAt'      => $value->created_at->format('m-d-Y H:i'),
+                'messages_count' => $value->messages_count,
             ]);
     }
 

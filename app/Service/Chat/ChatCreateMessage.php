@@ -39,11 +39,16 @@ class ChatCreateMessage
      */
     public function handle(): Message
     {
-        return $this->user->messages()->create(
+        /**
+         * @var $message Message
+         */
+        $message =  $this->user->messages()->create(
             [
                 'room_id' => $this->roomId,
                 'message' => $this->message,
             ]
         );
+        $message->room->touch();
+        return $message;
     }
 }
