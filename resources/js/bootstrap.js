@@ -71,7 +71,8 @@ window.Echo = new Echo({
     wssPort: 6001,
     forceTLS: false,
     disableStats: true,
-    encrypted: true
+    encrypted: true,
+    enabledTransports: ['ws', 'wss'],
 });
 //
 // window.Echo.join('DemoChannel').listen('WebsocketDemoEvent', (e) => {
