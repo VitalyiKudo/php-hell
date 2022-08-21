@@ -64,9 +64,5 @@
         {{-- include javascript files --}}
         {{-- @include('admin.includes.js') --}}
         @stack('scripts')
-
-        @if($isChat??false)
-        <script src="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('js/app.js')  : mix('js/app.min.js') }}"></script>
-        @endif
     </body>
 </html>

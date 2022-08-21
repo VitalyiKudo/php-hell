@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Requests\Chat\MessageSearch;
-use App\Http\Requests\Chat\RoomSearch;
 use App\Http\Requests\Chat\StoreMessageRequest;
 use App\Http\Requests\Chat\PageRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Chat\MessagesResource;
-use App\Models\Message;
-use App\Models\Administrator;
 use App\Models\Room;
 use App\Events\MessageSent;
 use App\Service\Chat\ChatCreateMessage;
@@ -33,21 +30,9 @@ class ChatsController extends Controller
         $this->chatRoomService = $chatRoom;
     }
 
-//    /**
-//     * @param \App\Http\Requests\Chat\RoomSearch $request
-//     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-//     * @throws \Exception
-//     */
-//    public function index(RoomSearch $request)
-//    {
-//        $rooms = $this->chatRoomService->getRoomsOrCreateNew('client', $request->page, $request->email);
-//
-//        return view('client.chats.chats_list', compact('rooms'));
-//    }
-
     /**
      * @param \App\Models\Room $room
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return 
      */
     public function getRoom()
     {
@@ -62,7 +47,14 @@ class ChatsController extends Controller
             $room->messages()->whereNotNull('administrator_id')->update(['saw' => true]);
         }
 
-        return view('client.chats.chats_messages', compact('room', 'user'));
+        return JsonResource::make([ 
+            'room_id' => $room->id,
+            'user' => [
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+            ]
+        ]);
     }
 
     /**

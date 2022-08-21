@@ -1,71 +1,115 @@
 <template>
-    <h1>chat</h1>
-    <div class="row">
+    <div class="d-flex justify-content-center p-1">
+        <div class="row w-100 ">
+            <div class="col-12 px-0">
+                <div class="card card-default">
+                    <!-- Chat header -->
+                    <div class="card-header ">
+                        <div class="d-inline-flex w-100">
+                            <div class="w-50">
+                                Messages
+                                <div v-if="isLoading" class="spinner-border spinner-border-sm ml-1" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="d-inline-flex w-50 justify-content-end">
+                                <div class="input-group">
+                                    <input class="form-control py-2 border-right-0 border" type="text"
+                                        placeholder="search..." v-model="searchString" @keyup.enter="serchMessage"
+                                        @input="removeAlert">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                                            <i v-if="showBackBtn" @click="backToChat">Back To Chat</i>
+                                            <i v-else @click="serchMessage" class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat body -->
+                    <div class="card-body p-0">
+                        <div v-if="messages.length === 0" class="text-center pt-1">{{ noHistoryMessage }}</div>
+                        <div id="chat-scroll-content" class="d-flex flex-column-reverse w-100 chat-history-container "
+                            @scroll.passive="scrollHandler">
 
-        <div class="col-8">
-            <div class="card card-default">
-                <div class="card-header">Messages</div>
-                <div class="card-body p-0">
-                    <ul class="list-unstyled" style="height:300px; overflow-y:scroll" v-chat-scroll>
-                        <li class="p-2" v-for="(message, index) in messages" :key="index">
-                            <strong v-if="message.user">
-                                {{ message.user.first_name }} {{ message.user.last_name }} {{ message.user.name }}
-                            </strong>
-                            <strong v-else-if="message.administrator">
-                                {{ message.administrator.name }}
-                            </strong>
-                            {{ message.message }}
-                        </li>
-                    </ul>
+                            <div class="m-2 message-container" v-for="(message, index) in messages" :key="index"
+                                :class="{ 'align-self-end': isMessageOwner(message) }">
+
+                                <div class="author-title-container font-italic">
+                                    <div v-if="message.user">
+                                        {{ message.user.first_name }} {{ message.user.last_name }} {{
+                                        message.user.name
+                                        }}
+                                    </div>
+                                    <div v-else-if="message.administrator">
+                                        {{ message.administrator.name }}
+                                    </div>
+                                </div>
+
+                                <div class="mt-1 chat-text-container font-weight-bold">
+                                    {{ message.message }}
+                                </div>
+
+                                <div class="date-chat-container text-right">
+                                    {{ new Date(message.created_at || new Date()).toLocaleString('en-US') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat footer -->
+                    <div class="card-footer d-inline-flex justify-content-center pb-2">
+                        <input @input="removeAlert" @keyup.enter="sendMessage" v-model="newMessage" type="text"
+                            name="message" placeholder="Enter your message..." class="form-control w-75">
+
+                        <button id="test-id" type="button" class="ml-2 btn btn-primary pl-4 pr-4 chat-send-message"
+                            @click="sendMessage" :disabled="newMessage.trim().length === 0">Send</button>
+                    </div>
                 </div>
-
-                <input
-                    @keydown="sendTypingEvent"
-                    @keyup.enter="sendMessage"
-                    v-model="newMessage"
-                    type="text"
-                    name="message"
-                    placeholder="Enter your message..."
-                    class="form-control">
+                <!-- Error Container -->
+                <div v-if="isError" class='alert alert-danger mt-1'>
+                    {{ errorMessage }}
+                </div>
             </div>
-            <span class="text-muted" v-if="activeUser">{{ activeUser.name }} is typing...</span>
         </div>
-
-        <!--        <div class="col-4">-->
-        <!--            <div class="card card-default">-->
-        <!--                <div class="card-header">Active Users</div>-->
-        <!--                <div class="card-body">-->
-        <!--                    <ul>-->
-        <!--                        <li class="py-2" v-for="(user, index) in users" :key="index">-->
-        <!--                                <span v-if="user.first_name">-->
-        <!--                                    {{ user.first_name + " " + user.last_name }}-->
-        <!--                                </span>-->
-        <!--                            <span v-else-if="user.name">-->
-        <!--                                    {{ user.name }}-->
-        <!--                                </span>-->
-        <!--                        </li>-->
-        <!--                    </ul>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
 </template>
 
 <script>
+import * as Constants from '../constants';
+
 export default {
-    props: ['current_user', 'room_id'],
+    props: ['initUser', 'initRoomId'],
     data() {
         return {
+            current_user: this.initUser ? this.initUser : null,
+            room_id: this.initRoomId ? this.initRoomId : null,
+            isAdmin: !!this.initUser,
+
+            isLoading: false,
+            showBackBtn: false,
             messages: [],
             newMessage: '',
             users: [],
-            activeUser: false,
-            typingTimer: false
-            //room_id: 0,
+            searchString: '',
+            nextPage: null,
+            noHistoryMessage: Constants.ERROR_NO_HISTORY,
+
+            isError: false,
+            errorMessage: '',
         }
     },
-    created() {
-        this.fetchMessages();
+    async created() {
+
+        if (!this.current_user || !this.room_id) {
+            await this.getInitData();
+        }
+
+        if (!this.current_user || !this.room_id) {
+            this.showAlert(Constants.ERROR_CONNECTION_PROBLEM);
+        }
+
+        await this.fetchMessages();
 
         Echo.join('chat.' + this.room_id)
             .here(user => {
@@ -78,42 +122,138 @@ export default {
                 this.users = this.users.filter(u => u.id != user.id);
             })
             .listen('MessageSent', (event) => {
-                this.messages.push(event.message);
+                this.messages.unshift(event.message);
             })
-        // .listenForWhisper('typing', user => {
-        //     this.activeUser = user;
-        //     if (this.typingTimer) {
-        //         clearTimeout(this.typingTimer);
-        //     }
-        //     this.typingTimer = setTimeout(() => {
-        //         this.activeUser = false;
-        //     }, 3000);
-        // })
     },
     methods: {
-        fetchMessages() {
-            axios.get('/messages/' + this.room_id).then(response => {
-                this.messages = response.data.data.reverse();
-            })
+        async getInitData() {
+            const response = await this.makeRequest('chat');
+            if (response) {
+                this.current_user = response.data.data.user;
+                this.room_id = response.data.data.room_id;
+            }
         },
-        sendMessage() {
-            this.messages.push({
-                user: this.current_user,
-                message: this.newMessage,
-            });
+        async scrollHandler(event) {
+            const { scrollTop, offsetHeight, scrollHeight } = event.target;
+            if (
+                (scrollTop + scrollHeight) - offsetHeight === 0
+                && this.nextPage && !this.isLoading
+                ) {
+                await this.fetchNextPage();
+            }
+        },
+        async serchMessage() {
+            if (this.searchString.trim().length === 0) {
+                return;
+            }
+            this.isLoading = true;
+            const response = await this.makeRequest(
+                this.isAdmin
+                    ? Constants.PREFIX_ADMIN + Constants.SEARCH_MESSAGES_PATH(this.room_id, this.searchString)
+                    : Constants.SEARCH_MESSAGES_PATH(this.room_id, this.searchString),
+                'GET'
+            );
 
-            let token = localStorage.getItem('access_token')
-            axios.post('/messages',
-                {message: this.newMessage, room_id: this.room_id},
-                {
-                    headers: {'Authorization': `Basic ${token}`}
-                });
-            this.newMessage = '';
+            if (response?.data?.data?.length === 0) {
+                this.showAlert('No messages found');
+            } else {
+                this.messages = response.data.data;
+                this.nextPage = response.data.links.next;
+                this.showBackBtn = true;
+            }
+            this.isLoading = false;
         },
-        // sendTypingEvent() {
-        //     Echo.join('chat.' + this.room_id)
-        //         .whisper('typing', this.current_user);
-        // }
+        async fetchNextPage() {
+            this.isLoading = true;
+            const response = await this.makeRequest(
+                this.nextPage,
+                'GET',
+            );
+
+            if (response) {
+                this.messages = this.messages.concat(response.data.data);
+                this.nextPage = response.data.links.next;
+            }
+            this.isLoading = false;
+        },
+        async fetchMessages() {
+            this.isLoading = true;
+            const response = await this.makeRequest(
+                this.isAdmin 
+                    ? Constants.PREFIX_ADMIN + `${Constants.MESSAGES_ROOT_PATH}/${this.room_id}`
+                    : `${Constants.MESSAGES_ROOT_PATH}/${this.room_id}`,
+                'GET'
+            );
+
+            if (response) {
+                this.messages = response.data.data;
+                this.nextPage = response.data.links.next;
+            }
+            this.isLoading = false;
+        },
+        async sendMessage() {
+            if (this.newMessage.trim().length === 0) {
+                this.showAlert('Write something!');
+                return;
+            }
+            this.isLoading = true;
+
+            this.showBackBtn && await this.backToChat();
+
+            const response = await this.makeRequest(
+                this.isAdmin ? Constants.PREFIX_ADMIN + Constants.MESSAGES_ROOT_PATH : Constants.MESSAGES_ROOT_PATH,
+                'POST',
+                {
+                    message: this.newMessage,
+                    room_id: this.room_id
+                },
+            );
+
+            if (response) {
+                this.messages.unshift({
+                    user: this.isAdmin ? null : this.current_user,
+                    administrator: this.isAdmin ? this.current_user : null,
+                    message: this.newMessage,
+                });
+                this.newMessage = '';
+            }
+            this.isLoading = false;
+        },
+        async makeRequest(url, method = 'GET', data = {}) {
+            try {
+                const response = await axios({
+                    method: method,
+                    url,
+                    data
+                });
+                return response;
+            } catch (e) {
+                console.log('>> ', e);
+                this.showAlert(Constants.ERROR_CONNECTION_PROBLEM);
+            }
+        },
+        async backToChat() {
+            this.showBackBtn = false;
+            await this.fetchMessages();
+            $('#chat-scroll-content').scrollTop(0);
+        },
+        isMessageOwner(message) {
+            if (!this.isAdmin && message.user) {
+                return true;
+            }
+            if (this.isAdmin && message.administrator) {
+                return true;
+            }
+            return false;
+        },
+        showAlert(message) {
+            this.errorMessage = message;
+            this.isError = true;
+        },
+        removeAlert() {
+            this.isError = false;
+            this.errorMessage = '';
+        }
     }
 }
 </script>
