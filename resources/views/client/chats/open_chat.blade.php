@@ -50,7 +50,7 @@
                 );
 
                 if (!loaded) {
-                    $.getScript('{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('js/chatApp.js')  : mix('js/chatApp.min.js') }}')
+                    $.getScript('{{ asset('js/chatApp.min.js') }}')
                         .done(function() {
                             loaded = true;
                         }).fail(function( jqxhr, settings, exception ) {
