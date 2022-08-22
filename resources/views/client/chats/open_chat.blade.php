@@ -1,6 +1,6 @@
 @section('open_chat')
     <div class="open-chat-icon">
-        <i class="fa fa-comments fa-3x" aria-hidden="true" id="open-chat-modal-window"></i>
+        <i class="fa fa-comments fa-2x" aria-hidden="true" id="open-chat-modal-window"></i>
     </div>
 
     {{-- Modal Window --}}

@@ -5,6 +5,10 @@
         margin: auto;
     }
 
+    .chat-spinner.spinner-border-sm {
+        border-width: 0.15em;
+    }
+
     .chat-history-container {
         height: 65vh;
         overflow-y: scroll;

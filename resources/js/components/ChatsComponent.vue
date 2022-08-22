@@ -6,9 +6,10 @@
                     <!-- Chat header -->
                     <div class="card-header ">
                         <div class="d-inline-flex w-100">
-                            <div class="w-50">
-                                Messages
-                                <div v-if="isLoading" class="spinner-border spinner-border-sm ml-1" role="status">
+                            <div class="d-flex align-items-center w-50">
+                                <span class="align-baseline">Messages</span>
+                                <div v-if="isLoading" class="chat-spinner spinner-border spinner-border-sm ml-2"
+                                    role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </div>

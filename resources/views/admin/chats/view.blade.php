@@ -8,6 +8,5 @@
 @endsection
 
 @push('scripts')
-    {{-- <script src="{{ (strtoupper(getenv('APP_ENV')) === 'LOCAL') ? asset('js/chatApp.js')  : mix('js/chatApp.min.js') }}"></script> --}}
     <script src="{{ asset('js/chatApp.min.js')}}"></script>
 @endpush

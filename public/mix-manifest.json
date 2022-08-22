@@ -1,6 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=619b7ecacda8f153da0c2bad5504b2f1",
-    "/js/app.min.js": "/js/app.min.js?id=619b7ecacda8f153da0c2bad5504b2f1",
-    "/css/app.min.css": "/css/app.min.css?id=420111eb12eead37709281d833db7e6e",
-    "/css/admin.min.css": "/css/admin.min.css?id=36750ffd35d3e88a5b46f88bdb3f7367"
+    "/js/chatApp.js": "/js/chatApp.js?id=2a851fc9317a6b5860f732f5623228dd",
+    "/js/app.min.js": "/js/app.min.js?id=dfd6e2401fae88a20743e660033c0946",
+    "/css/app.min.css": "/css/app.min.css?id=b5f3142909815c581d1ccf5d3d152488",
+    "/css/admin.min.css": "/css/admin.min.css?id=36b677e4869699be1e313210d9f33cba",
+    "/js/chatApp.min.js": "/js/chatApp.min.js?id=2a851fc9317a6b5860f732f5623228dd"
 }
