@@ -1,4 +1,4 @@
-<div id="search">
+
 
     @forelse ($emptyLegs as $emptyLeg)
         {!! ((int)$emptyLeg['price'] !== 0) ?
@@ -75,4 +75,3 @@
             {!! $emptyLegs->links() !!}
         </div>
     @endif
-</div>

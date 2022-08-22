@@ -43,14 +43,14 @@
             @foreach ($requests as $request)
                 <div class="card mb-4 request-card">
                     <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-auto col-sm-auto col-md-auto mr-2"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
+                        <div class="row align-items-start">
+                            <div class="col-auto col-sm-1 col-md-auto mr-2"><span class="request-number">{{ $loop->iteration + $requests->firstItem() - 1 }}</span></div>
                             {{--}}<div class="col-2 col-sm-2 col-md-2">
                                 <div class="silver-info mb-2">Order number</div>
                                 <div class="center-bold">{{ $request->id }}</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse($request->created_at)->format('m/d/Y') }}</div>
                             </div>--}}
-                            <div class="col-2 col-sm-2 col-md-2">
+                            <div class="col-3 col-sm-3 col-md-2">
                                 <div class="silver-info mb-2">From Airport</div>
                                 <div class="center-bold">{{ $request->searches->departureCity->name }}</div>
                                 {{--}}<div class="silver-info">{{ Carbon\Carbon::parse($request->searches->departure_at)->format('m/d/Y') }}</div>--}}
@@ -62,15 +62,16 @@
                                 <div class="silver-info">&nbsp;</div>
                                 <div class="silver-info">{{ Carbon\Carbon::parse($request->searches->departure_at)->format('m/d/Y') }}</div>
                             </div>
-                            <div class="col-2 col-sm-2 col-md-2">
+                            <div class="col-3 col-sm-3 col-md-2">
                                 <div class="silver-info mb-2">To Airport</div>
                                 <div class="center-bold">{{ $request->searches->arrivalCity->name }}</div>
                                 {{--}}<div class="silver-info">{{ Carbon\Carbon::parse($request->searches->created_at)->format('m/d/Y') }}</div>--}}
                                 <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-auto col-sm-auto col-md-auto mr-2">
+                            <div class="col-auto col-sm-auto col-md-2">
                                 {{--}}<div class="d-block d-sm-block d-md-none mt-4"></div>--}}
-                                <div class="silver-info mb-1">PASS.</div>
+                                <div class="silver-info mb-2">PASS.</div>
+                                <div class="d-block d-sm-block d-md-none mt-4"></div>
                                 <div class="center-bold">{{ $request->searches->pax }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>

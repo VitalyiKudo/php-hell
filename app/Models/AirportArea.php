@@ -77,6 +77,22 @@ class AirportArea extends Model
     }
 
     /**
+     * Get the area of the emptyLegs Departure.
+     */
+    public function emptyLegDeparture()
+    {
+        return $this->belongsTo(EmptyLeg::class, 'icao', 'icao_departure');
+    }
+
+    /**
+     * Get the area of the emptyLegs Arrival.
+     */
+    public function emptyLegArrival()
+    {
+        return $this->belongsTo(EmptyLeg::class, 'icao', 'icao_arrival');
+    }
+
+    /**
      * Get the areas
      *
      * @return AirportArea[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|m.\App\Models\AirportArea.with[]

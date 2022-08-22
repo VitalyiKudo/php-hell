@@ -79,7 +79,7 @@
                                                    disabled
                                             >
                                             <div id="departureList"></div>
-
+{{--
                                             <div class="w-100 position-relative stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
                                                 <label for="from-stop-airportRQ" class="mt-3">From Stop Airport</label>
                                                 <input type="text"
@@ -103,12 +103,12 @@
                                                     name="fromReturnPoint"
                                                     autocomplete="off"
                                                     value="{{ $params['from_return_airport_name'] }}"
-                                                    id="from-return-airportRQ" {{-- $params['from_return_airport_name'] ? '' : 'disabled' --}}
+                                                    id="from-return-airportRQ" {{-- $params['from_return_airport_name'] ? '' : 'disabled'
                                                 >
                                                 <div id="fromReturnList"></div>
                                             </div>
 
-                                            {{--}}<button type="button" class="mt-3" id="add-stop-button">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>--}}
+                                            <button type="button" class="mt-3" id="add-stop-button">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>--}}
                                         </div>
                                     </div>
                                     <div class="mb-3 mt-2 pl-0 bd end-point">
@@ -124,6 +124,7 @@
                                                 id="arrival-airportRQ"
                                                    disabled
                                             >
+{{--
                                             <div id="arrivalList"></div>
 
                                             <div class="w-100 position-relative stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
@@ -155,9 +156,9 @@
                                             </div>
 
                                             <div class="d-flex justify-content-center w-100">
-                                                <button type="button" class="mt-3" id="add-stop-button-bottom">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
-                                                {{--}}<button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>--}}
-                                            </div>
+                                                {{--<button type="button" class="mt-3" id="add-stop-button-bottom">{{ $params['from_stop_airport_name'] ? 'remove stop' : 'add stop' }}</button>
+                                                <button type="button" class="mt-3" id="add-return-button">{{ $params['to_return_airport_name'] ? 'remove return' : 'add return' }}</button>
+                                            </div>--}}
 
                                         </div>
                                     </div>
@@ -166,7 +167,7 @@
                                         <div class="input-group input-style">
                                             <label for="flightDateRQ">Arrival Date</label>
                                             <input type="text" class="form-control " name="flightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['departure_at'] }}" id="flightDateRQ" disabled>
-
+{{--
                                             <div class="stop-airpor-row {{ ( $params['from_stop_airport_name'] or $params['to_stop_airport_name'] or $params['stop_at'] ) ? '' : 'display-none' }}">
                                                 <label for="stopFlightDateRQ" class="mt-3">Stop Date</label>
                                                 <input type="text" class="form-control" name="stopFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['stop_at'] }}" {{ $params['stop_at'] ? '' : 'disabled' }} id="stopFlightDateRQ">
@@ -176,19 +177,27 @@
                                                 <label for="returnFlightDateRQ" class="mt-3">Return Date</label>
                                                 <input type="text" class="form-control" name="returnFlightDate" placeholder="Date&Time" autocomplete="off" value="{{ $params['return_at'] }}" {{ $params['return_at'] ? '' : 'disabled' }} id="returnFlightDateRQ">
                                             </div>
-
+--}}
                                         </div>
                                     </div>
 
                                     <div class="mb-3 mt-2 pl-0 ml-3 pass-field pf-request">
-                                        <div class="input-group input-style">
-                                            <label for="aircraftRQ">Preffered Aircraft</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft" name="aircraft" autocomplete="off" value="{{ $params['aircraft'] }}" id="aircraftRQ">
-                                                {{--}}<button type="button" class="preff-air {{ $params['aircraft_one'] ? 'preff-air-with-additional' : '' }}" id="additional-air-one-button">+</button>--}}
-                                            </div>
+                                            <div class="input-group input-style">
+                                                <label for="aircraft">Preffered Aircraft</label>
+                                                {{--<input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft" name="aircraft" autocomplete="off" value="{{ $params['aircraft'] ? $params['aircraft'] : "ANY MODEL" }}" id="aircraftRQ">
+                                                {{--<button type="button" class="preff-air {{ $params['aircraft_one'] ? 'preff-air-with-additional' : '' }}" id="additional-air-one-button">+</button>--}}
+                                                <div>
+                                                <select name="aircraft" class="form-control custom-select" id="aircraftRQ">
+                                                    <option value="">ANY MODEL</option>
+                                                    <option value="turbo" {{ (!empty($params['aircraft']) && strtolower($params['aircraft']) === 'turbo') ? 'selected' : '' }}>Turbo</option>
+                                                    <option value="light" {{ (!empty($params['aircraft']) && strtolower($params['aircraft']) === 'light') ? 'selected' : '' }}>Light</option>
+                                                    <option value="medium" {{ (!empty($params['aircraft']) && strtolower($params['aircraft']) === 'medium') ? 'selected' : '' }}>Medium</option>
+                                                    <option value="heavy" {{ (!empty($params['aircraft']) && strtolower($params['aircraft']) === 'heavy') ? 'selected' : '' }}>Heavy</option>
+                                                </select>
+                                                </div>
+{{--
                                             <div id="aircraftList"></div>
-
+{{--
                                             <div class="additional-air-one mt-3 {{ $params['aircraft_one'] ? '' : 'display-none' }}" id="additional-air-one-block">
                                                 <div class="d-flex">
                                                     <input type="text" class="form-control" placeholder="ANY MODEL" aria-describedby="aircraft_one" name="aircraft_one" autocomplete="off" value="{{ $params['aircraft_one'] }}" {{ $params['aircraft_one'] ? '' : 'disabled' }} id="aircraftRQ-one">
@@ -204,7 +213,9 @@
                                                 </div>
                                                 <div id="aircraftList-two"></div>
                                             </div>
+
                                             <button type="button" id="add-aircraft-button" class="mt-3">Add Aircraft</button>
+                                            --}}
                                         </div>
                                     </div>
 
@@ -623,7 +634,7 @@
                 $('#toReturnList').fadeOut();
             });
 
-
+/*
             $('input#aircraftRQ').keyup(function(){
                 var query = $(this).val();
                 // if(query != '' && query.length >= 2){
@@ -677,7 +688,7 @@
                 $('input#aircraftRQ').val($(this).text());
                 $('#aircraftList').fadeOut();
             });
-
+*/
 
             $('input#aircraftRQ-one').keyup(function(){
                 var query = $(this).val();
