@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Traits\SearchCityAirportsTrait;
+use Illuminate\Support\Facades\Config;
+use Str;
 
 class AirportController extends Controller
 {
@@ -56,5 +58,17 @@ class AirportController extends Controller
         else {
             return response()->json('empty data!');
         }
+    }
+
+    public function getTypesList(Request $request)
+    {
+        $keyword = $request->input('query');
+
+        $airlines = Airline::where('type', 'like', "{$keyword}%")
+            ->limit(10)
+            ->groupBy('type')
+            ->get();
+
+        return response()->json($airlines);
     }
 }

@@ -26,6 +26,7 @@
                             <div class="col-lg-10 color-bronze">
                                 Please type at least 3 symbols of the arrival or departure and/or date to find the flight
                             </div>
+                            <div class="col-lg-10" id="result"></div>
                             <div class="mb-3 mt-2 ml-3 bd emptyLeg-filter-3">
                                 <div class="input-group input-style">
                                     <input type="text"
@@ -39,6 +40,7 @@
                                     >
                                     <input type="hidden" name="startPoint" autocomplete="off" value="">
                                     <input type="hidden" name="startAirport" autocomplete="off" value="">
+                                    <input type="hidden" name="startArea" autocomplete="off" value="">
                                     <div id="departureList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="departure-airport">
@@ -59,6 +61,7 @@
                                     >
                                     <input type="hidden" name="endPoint" autocomplete="off" value="">
                                     <input type="hidden" name="endAirport" autocomplete="off" value="">
+                                    <input type="hidden" name="endArea" autocomplete="off" value="">
                                     <div id="arrivalList"></div>
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="arrival-airport">
@@ -97,14 +100,16 @@
 
         <div class="row">
             <div class="col-xl-12 col-lg-12 right-request">
-                @if (count($emptyLegs) > 0)
-                    <section class="emptyLegs">
-                        @include('client.emptyLegs-load')
-                    </section>
-                @else
-                    <div class="text-center not-found-message">We do not have such a flight, make a request a quote</div>
-                @endif
-                <div class="pb-5"></div>
+                <div id="search">
+                    @if (count($emptyLegs) > 0)
+                        <section class="emptyLegs">
+                            @include('client.emptyLegs-load')
+                        </section>
+                    @else
+                        <div class="text-center not-found-message">We do not have such a flight, make a request a quote</div>
+                    @endif
+                    <div class="pb-5"></div>
+               </div>
            </div>
        </div>
     </div>
@@ -134,6 +139,8 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+    <script src="{{ asset('js/slick.min.js') }}"></script>
 <script>
         $(document).ready(function(){
 
@@ -166,34 +173,38 @@
             var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
             $('input[name="flightDate"]').daterangepicker({
-                opens: 'left',
+                //opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
-                autoApply: true,
+                autoApply: false,
                 autoUpdateInput: false,
+                //autoApply: false,
                 autoClose: true,
+                closeOnClear: false,
                 locale: {
-                    "cancelLabel": 'Clear',
-                    "applyLabel": 'Apply',
+                    cancelLabel: 'Clear',
+                    applyLabel: 'Apply',
                     format: 'MM/DD/YYYY'
                 },
+                cancelClass: 'btn-primary',
                 isInvalidDate: (e) => new Date(e) < today
-            }).on("apply.daterangepicker", function(e, picker) {
+            }).on('apply.daterangepicker', function(e, picker) {
                 picker.element.val(picker.startDate.format(picker.locale.format));
-                e.preventDefault();
                 getEmptyLegs('');
                 window.history.pushState("", "", window.location.href.split('?')[0]);
-            }).on("cancel.daterangepicker", function(e, picker) {
-                if(e.keyCode == 8 || e.keyCode == 46) {
+                e.preventDefault();
+            }).on('cancel.daterangepicker', function(e, picker) {
                     picker.element.val('');
-                }
-            });
-
-            $('#startPointName, #endPointName, #flightDate').on("keyup change", function (e) {
-                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
-                    e.preventDefault();
                     getEmptyLegs('');
                     window.history.pushState("", "", window.location.href.split('?')[0]);
+                    e.preventDefault();
+            }).on('keydown keyup change', function(e, picker) {
+                if( e.which == 8 || e.which == 46 ) {
+                    $(this).val('');
+                    getEmptyLegs('');
+                    window.history.pushState("", "", window.location.href.split('?')[0]);
+                    $('input[name="flightDate"]').data('daterangepicker').hide();
+                    e.preventDefault();
                 }
             });
 
@@ -201,6 +212,9 @@
                 if( e.which == 8 || e.which == 46 ) {
                     e.preventDefault();
                     $('#startPointName').val('');
+                    $('input[name="startPoint"]').val('');
+                    $('input[name="startAirport"]').val('');
+                    $('input[name="startArea"]').val('');
                     getEmptyLegs('');
                     window.history.pushState("", "", window.location.href.split('?')[0]);
                 }
@@ -210,13 +224,16 @@
                 if( e.which == 8 || e.which == 46 ) {
                     e.preventDefault();
                     $('#endPointName').val('');
+                    $('input[name="endPoint"]').val('');
+                    $('input[name="endAirport"]').val('');
+                    $('input[name="endArea"]').val('');
                     getEmptyLegs('');
                     window.history.pushState("", "", window.location.href.split('?')[0]);
                 }
             });
 
             $(document).on('click', '.pagination  a', function (e) {
-                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
+                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3/* || $('#flightDate').val().length > 0*/) {
                     e.preventDefault();
                     let url = $(this).attr('href');
                     getEmptyLegs(url.split('?page=')[1]);
@@ -228,10 +245,15 @@
 
             function getEmptyLegs(page) {
                 let startPointName = $('#startPointName').val();
+                let startPoint = $('input[name="startPoint"]').val();
+                let startAirport = $('input[name="startAirport"]').val();
+                let startArea = $('input[name="startArea"]').val();
                 let endPointName = $('#endPointName').val();
+                let endPoint = $('input[name="endPoint"]').val();
+                let endAirport = $('input[name="endAirport"]').val();
+                let endArea = $('input[name="endArea"]').val();
                 let flightDate = $('#flightDate').val();
                 let _token = $('input[name="_token"]').val();
-                /*let _token = $('meta[name="csrf-token"]').attr('content');*/
 
                 $.ajax({
                     /*url: '?page=' + page + '&startPointName=' + startPointName + '&endPointName=' + endPointName +' &flightDate=' + flightDate + '&_token=' + _token,*/
@@ -241,17 +263,38 @@
                     async: false,
                     data: {
                         startPointName: startPointName,
+                        startPoint: startPoint,
+                        startAirport: startAirport,
+                        startArea: startArea,
                         endPointName: endPointName,
+                        endPoint: endPoint,
+                        endAirport: endAirport,
+                        endArea: endArea,
                         flightDate: flightDate,
                         _token: _token
                     }
                 }).done(function (data) {
+                    let res = $.parseHTML(data);
+                    let nodeNames = [];
+
+                    $.each(res, function(i, el) {
+                        if (el.nodeName.toLowerCase() === 'form') {
+                            nodeNames.push(el.nodeName);
+                        }
+                    });
+
+                    let res_message = '<span id="res_message" class="search-error">'+nodeNames.length+' flights were found. Please check bellow</span>';
+                    $('#res_message').remove();
+                    $('#result').append(res_message);
+                    $('html, body').animate({
+                        scrollTop: parseInt($('#res_message').offset().top)
+                    }, 500);
+                    $('#res_message').focus();
                    $('#search').html($.parseHTML(data));
                 }).fail(function () {
                     $('#search').html('<div class="text-center">No matches found</div>');
                 });
             }
-
 
             $('#pax').on("keyup change", function (e) {
                 if($('#pax').val().length > 0) {
@@ -278,6 +321,114 @@
                 }
             });
             */
+
+            $('input.from').keyup(function(){
+                var query = $(this).val();
+
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+
+                            var output = '<ul class="dropdown-menu">';
+
+                            if (data.length !== 0){
+                                $.each(data, function(idx, obj) {
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
+                                    var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                                    var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
+                                    var objAirport = obj.airport;
+
+                                    output += '<div>' + '<span>' + city + ' (<dt>'+ area +'</dt>)</span><span>' + region + country + '</span>' + '</div>';
+
+                                    $.each(objAirport, function(k, val) {
+                                        var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                        output += '<li><a href="' + obj.id + '">' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
+                                            '</a></li>';
+                                    });
+
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
+                            output += '</ul>';
+                            $('#departureList').fadeIn();
+                            $('#departureList').html(output).mark(query);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#departureList li', function(e){
+                $('#startPointName').val($(this).find('span:first').text());
+                $('input[name="startPoint"]').val($(this).find('a:first').attr('href'));
+                $('input[name="startAirport"]').val($(this).find('icao:first').text());
+                $('input[name="startArea"]').val($(this).prevAll('div').first().find('dt').text());
+                getEmptyLegs('');
+                window.history.pushState("", "", window.location.href.split('?')[0]);
+                $('#departureList').fadeOut();
+                e.preventDefault();
+            });
+
+            $('input.to').keyup(function(){
+                var query = $(this).val();
+
+                if(query != '' && query.length >= 3){
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "/api/airports",
+                        method: "GET",
+                        data: {query:query, _token:_token},
+                        success: function(data){
+
+                            var output = '<ul class="dropdown-menu">';
+
+                            if (data.length !== 0){
+                                $.each(data, function(idx, obj) {
+                                    var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
+                                    var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
+                                    var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                                    var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
+                                    var objAirport = obj.airport;
+
+                                    output += '<div>' + '<span>' + city + ' (<dt>'+ area +'</dt>)</span><span>' + region + country + '</span>' + '</div>';
+
+                                    $.each(objAirport, function(k, val) {
+                                        var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
+                                        output += '<li><a href="' + obj.id + '">' +
+                                            '<div>'+ '<span>'+ val.name +'</span>' + '<span><icao>' + val.icao + '</icao>' + iata + '</span>' + '</div>' +
+                                            '</a></li>';
+                                    });
+
+                                });
+                            }
+                            else {
+                                output += '<li>No matches found</li>';
+                            }
+                            output += '</ul>';
+                            $('#arrivalList').fadeIn();
+                            $('#arrivalList').html(output).mark(query);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '#arrivalList li', function(e){
+                $('#endPointName').val($(this).find('span:first').text());
+                $('input[name="endPoint"]').val($(this).find('a:first').attr('href'));
+                $('input[name="endAirport"]').val($(this).find('icao:first').text());
+                $('input[name="endArea"]').val($(this).prevAll('div').first().find('dt').text());
+                getEmptyLegs('');
+                window.history.pushState("", "", window.location.href.split('?')[0]);
+                $('#arrivalList').fadeOut();
+                e.preventDefault();
+            });
         });
     </script>
 @endpush
