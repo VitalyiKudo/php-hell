@@ -131,6 +131,11 @@ class SearchController extends Controller
         return $airport->city;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function requestQuote(Request $request)
     {
         $pervis_search_url = Session::get('pervis_search_url');
@@ -169,8 +174,9 @@ class SearchController extends Controller
         $params = $request;
         $params['departure_at'] = $request->input('flightDate') ? Carbon::parse($request->input('flightDate'))->format('m/d/Y') : Carbon::parse($request->input('departure_at'))->format('m/d/Y');
         $params['passengers'] = $search->pax;
-
-        return view('client.account.requests.requestQuote', compact('lastSearchResults', 'search', 'params', 'pervis_search_url'));
+        $typePlanes = Config::get('constants.plane.type_plane');
+#dd($params);
+        return view('client.account.requests.requestQuote', compact('lastSearchResults', 'search', 'params', 'pervis_search_url', 'typePlanes'));
     }
 
     /**

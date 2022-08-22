@@ -748,16 +748,15 @@
                            });
                        }
 
-                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
                        if (data.length !== 0){
                            $.each(data, function(idx, obj) {
                                var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                               var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
                                var objAirport = obj.airport;
 
-                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
+                               output += '<div>' + '<span>' + city + ' ('+ area +')</span><span>' + region + country + '</span>' + '</div>';
 
                                $.each(objAirport, function(k, val) {
                                    var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';
@@ -809,16 +808,15 @@
                            });
                        }
 
-                       var withoutDuplicates = removeDuplicatesBy(x => x.name, data);
-
                        if (data.length !== 0){
                            $.each(data, function(idx, obj) {
                                var city = (!$.isEmptyObject(obj.city)) ? obj.city : '';
                                var region = (!$.isEmptyObject(obj.region)) ? obj.region + ', ' : '';
                                var country = (!$.isEmptyObject(obj.country)) ? obj.country : '';
+                               var area = (!$.isEmptyObject(obj.area)) ? obj.area : '';
                                var objAirport = obj.airport;
 
-                               output += '<div>' + '<span>' + city + '</span><span>' + region + country + '</span>' + '</div>';
+                               output += '<div>' + '<span>' + city + ' ('+ area +')</span><span>' + region + country + '</span>' + '</div>';
 
                                $.each(objAirport, function(k, val) {
                                    var iata = (!$.isEmptyObject(val.iata)) ? '(' + val.iata + ')': '';

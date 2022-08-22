@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        {{-- dd($order) --}}
+        {{ dd($order) }}
         <h5 class="card-title">{{ $order->searches->result_id }}</h5>
         <h6 class="card-subtitle mb-3 text-muted">The search result details</h6>
 

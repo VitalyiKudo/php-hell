@@ -24,12 +24,7 @@ if (mix.inProduction()) {
     mix.version();
 }
 //mix.js('resources/js/app.js', 'public/js');
-// mix.js('resources/js/app.js', 'public/js').vue();
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/chatApp.js', 'public/js')
-    .sass('resources/sass/client/client.scss', 'public/css/app.css')
-    .sass('resources/sass/admin/admin.scss', 'public/css/admin.css')
-    .vue();
+mix.js('resources/js/app.js', 'public/js').vue();
 
-mix.minify(['public/js/app.js', 'public/css/app.css', 'public/css/admin.css', 'public/js/chatApp.js']);
+mix.minify(['public/js/app.js', 'public/css/app.css', 'public/css/admin.css']);
 

@@ -5,7 +5,7 @@
 // Vendor
 @import 'fonts';
 @import '~bootstrap/scss/bootstrap';
-// @import '~vue-bootstrap-typeahead/dist/VueBootstrapTypeahead';
+@import '~vue-bootstrap-typeahead/dist/VueBootstrapTypeahead';
 @import '~bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
 @import '~bootstrap-select/dist/css/bootstrap-select.css';
 
@@ -32,5 +32,3 @@
 @import 'ui/custom';
 @import 'ui/request-quote';
 @import 'ui/booking';
-
-@import 'ui/chat-modal';

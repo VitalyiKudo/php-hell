@@ -1,10 +1,6 @@
 {
-    "/js/app.js": "/js/app.js?id=d378604d993f7b0f75e45ea079d3ab13",
-    "/js/chatApp.js": "/js/chatApp.js?id=27d140b43e37af5476c33360351e776a",
-    "/css/app.css": "/css/app.css?id=51a0a6165593d7aec902d91dee2c94f1",
-    "/css/admin.css": "/css/admin.css?id=603acde503ec75b7bde1865fcdf3ab91",
-    "/js/app.min.js": "/js/app.min.js?id=d378604d993f7b0f75e45ea079d3ab13",
-    "/css/app.min.css": "/css/app.min.css?id=51a0a6165593d7aec902d91dee2c94f1",
-    "/css/admin.min.css": "/css/admin.min.css?id=603acde503ec75b7bde1865fcdf3ab91",
-    "/js/chatApp.min.js": "/js/chatApp.min.js?id=27d140b43e37af5476c33360351e776a"
+    "/js/app.js": "/js/app.js?id=619b7ecacda8f153da0c2bad5504b2f1",
+    "/js/app.min.js": "/js/app.min.js?id=619b7ecacda8f153da0c2bad5504b2f1",
+    "/css/app.min.css": "/css/app.min.css?id=420111eb12eead37709281d833db7e6e",
+    "/css/admin.min.css": "/css/admin.min.css?id=36750ffd35d3e88a5b46f88bdb3f7367"
 }

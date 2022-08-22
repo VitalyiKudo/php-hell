@@ -107,7 +107,7 @@ class EmptyLeg extends Model
     /**
      * Get the airport_departure Area.
      */
-    public function airporAreatDeparture()
+    public function airportAreaDeparture()
     {
         return $this->belongsTo(AirportArea::class, 'icao_departure', 'icao');
     }
@@ -257,6 +257,63 @@ class EmptyLeg extends Model
             });
     }
 
+    public function getEmptyLegsFront($startCity=null, $startAirportArea=null, $endCity=null, $endAirportArea=null, $flightDate=null)
+    {
+
+        return  $this->with('operatorData', 'airportDeparture', 'airportArrival', 'departureCity', 'arrivalCity')
+            ->where(function ($query) use ($startCity, $startAirportArea) {
+                if (!empty($startCity) || !empty($startAirportArea)) {
+                    $query->where('geoNameIdCity_departure', $startCity)
+                        ->orWhereHas('airportAreaDeparture', function ($query) use ($startAirportArea) {
+                                $query->whereIn('icao', $startAirportArea);
+                            });
+                }
+            })
+
+            ->where(function ($query) use ($endCity) {
+                if (!empty($endCity)) {
+                    $query->where('geoNameIdCity_arrival', $endCity);
+                }
+            })
+            ->where(function ($query) use ($flightDate) {
+                if (!empty($flightDate)) {
+                    $query->whereDate('date_departure', $flightDate);
+                }
+            })
+            ->where('active', Config::get('constants.active.Active'))
+            ->get()
+            ->map(function ($value) {
+                return collect([
+                   'id' => $value->id,
+                   'icaoDeparture' => $value->icao_departure,
+                   'airportDeparture' => $value->airportDeparture->name,
+                   'geoNameIdCityDeparture' => $value->departureCity->geonameid,
+                   'nameCityDeparture' => $value->departureCity->name,
+                   'icaoArrival' => $value->icao_arrival,
+                   'airportArrival' => $value->airportArrival->name,
+                   'geoNameIdCityArrival' => $value->arrivalCity->geonameid,
+                   'nameCityArrival' => $value->arrivalCity->name,
+                   'operatorEmail' => $value->operator,
+                   'operatorName' => $value->operatorData->name,
+                   'typePlane' => $value->type_plane,
+                   'price' => $value->price,
+                   'dateDeparture' => $value->date_departure,
+                   'hDeparture' => (int)$value->date_departure->format('H'),
+                   'sDeparture' => (int)$value->date_departure->format('i'),
+                   'active' => $value->active
+               ]);
+            });
+    }
+
+    public function getAreaCityDeparture ($icao) {
+        return $this->airporAreatDeparture()->where('icao', $icao)
+            ->get();
+
+    }
+
+    /**
+     * @return EmptyLeg|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|m.\App\Models\EmptyLeg.whereDate
+     */
     public function DeactivateEmptyLegsOld()
     {
         return $this->whereDate('date_departure', '<=', date('Ymd'))

@@ -51,7 +51,17 @@
     {!! $dataTable->scripts() !!}
     <script>
         $(document).ready(function(){
-            $( document ).tooltip();
+            //$(document).tooltip({container: 'body'});
+
+            $('*').bind('touchend', function(e){
+                if ($(e.target).attr('data-toggle') !== 'tooltip'){
+                    $('[data-toggle=tooltip]').mouseleave();
+                    e.stopPropagation();
+                } else {
+                    $(e.target).mouseenter();
+                }
+            });
+
             $('#emptyLegs').observe(function () {
                 $(this).find('span').tooltip();
             });

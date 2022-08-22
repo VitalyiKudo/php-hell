@@ -43,21 +43,6 @@ class OrderController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(OrdersDataTable $dataTable)
-    {
-        try {
-            return $dataTable->render('admin.orders.list');
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-
-    /**
-     * Display a listing of the resource.
      * @param OrderDataTable $dataTable
      * @return mixed|string
      */
@@ -101,7 +86,7 @@ class OrderController extends Controller
     public function show(Request $request, Order $order)
     {
         #dd($request->route('order')->id);
-        #dd($request->route('order'));
+        dd($request->route('order'));
         /*
         $orderStatuses = OrderStatus::all();
         $search = Search::find($order->search_result_id);
@@ -110,8 +95,8 @@ class OrderController extends Controller
         $operator = Operator::find($order->operator_id);
         */
         $order = $order->getOrder($request->route('order')->id);
-        #var_dump($search);
-        dd($order);
+        var_dump($order);
+        #dd($order);
         #var_dump(compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
         #return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
         return view('admin.orders.view', compact('order'));
