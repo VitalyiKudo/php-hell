@@ -81,8 +81,8 @@
                                 <div class="center-bold">${{ number_format($request->price,2) }}</div>
                                 <div class="silver-info">&nbsp;</div>
                             </div>
-                            <div class="col-auto col-sm-auto col-md-auto book">
-                                <a href="{{ route('client.orders.square', [$request->search_result_id, $request->type] ) }}" class="{{ ($request->price > 0 && $request->order_status_id == 3) ? 'btn' : 'isDisabled' }} justify-content-end">
+                            <div class="col-7 col-sm-auto col-md-auto book ml-3">
+                                <a href="{{ route('client.orders.square', [$request->search_result_id, $request->type] ) }}" class="text-nowrap {{ ($request->price > 0 && $request->order_status_id == 3) ? 'btn' : 'isDisabled' }} " style="{{ ($request->price > 0 && $request->order_status_id == 3) ? '' : 'padding: 0.5rem 3.5rem;' }} ">
                                 {{($request->price > 0 && $request->order_status_id == 3) ? "Book now" : "In progress"}}
                                 </a>
                             </div>
