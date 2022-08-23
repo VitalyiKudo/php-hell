@@ -71,7 +71,7 @@ class UsersChatsDataTable extends DataTable
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
             Column::make('createdAt')->title('Created at'),
-            Column::make('messages_count')->title('Unread messages'),
+            Column::make('messages_count')->title('New messages'),
             Column::make('action')->title('')->orderable(false),
         ];
     }

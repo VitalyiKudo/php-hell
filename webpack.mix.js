@@ -24,7 +24,12 @@ if (mix.inProduction()) {
     mix.version();
 }
 //mix.js('resources/js/app.js', 'public/js');
-mix.js('resources/js/app.js', 'public/js').vue();
+// mix.js('resources/js/app.js', 'public/js').vue();
 
-mix.minify(['public/js/app.js', 'public/css/app.css', 'public/css/admin.css']);
+// Vue app for chat
+// Use this line only with correct .env variables
+// mix.js('resources/js/chatApp.js', 'public/js').vue();
+
+
+mix.minify(['public/js/app.js', 'public/css/app.css', 'public/css/admin.css', 'public/js/chatApp.js']);
 

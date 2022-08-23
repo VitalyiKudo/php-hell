@@ -130,6 +130,15 @@
                         </p>
                     </a>
                 </li>
+                                {{-- chats --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.chats') }}" class="nav-link {{ Request::is('manage/chat*') ? 'active' : '' }}" style="color: indianred">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            {{ __('Chat') }}
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

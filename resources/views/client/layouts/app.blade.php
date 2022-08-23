@@ -56,6 +56,8 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTI9h361xswcSvVdM2kDtpiwcslXmjUYU&callback=initMap&libraries=&v=weekly" defer></script>-->
 
     <!--<link href="/css/app_1.css" rel="stylesheet">-->
+        {{-- Font Awesome --}}
+    <link rel="stylesheet" href="{{ asset('dashboard/plugins/fontawesome-free/css/all.css') }}">
 
 </head>
 <body>
@@ -182,6 +184,9 @@
         </nav>
 
         <main>
+            @auth()
+                @include('client.chats.open_chat')
+            @endauth
             @yield('content')
         </main>
 

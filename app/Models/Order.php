@@ -180,12 +180,14 @@ class Order extends Model
     public function getOrders()
     {
         return  $this->with('searches', 'status', 'user')
+                /*
             ->where(function ($query) use ($id) {
                 if (!empty($id)) {
                     $query->where('id', $id);
                 }
             })
             ->orderByDesc('id')
+            */
             ->get()
             ->values()
             ->map(fn($value, $key) => [
@@ -200,6 +202,11 @@ class Order extends Model
             ->sortBy('key');
     }
 
+    /**
+     * @param $id
+     *
+     * @return Order|mixed|null
+     */
     public function getOrder($id)
     {
         return  $this->with('searches', 'status', 'user', 'searches.price')
@@ -208,8 +215,16 @@ class Order extends Model
                     $query->where('id', $id);
                 }
             })
-            ->orderByDesc('id')
             ->get()
+            ->map(fn($value, $key) => [
+                'id' => $value->id,
+                'user_id' => $value->user_id,
+                'user' => $value->user->first_name.' '.$value->user->last_name,
+                'status' => $value->status->name,
+                'statusBg' => $value->status->id,
+                'price' => $value->price,
+                'created' => $value->created_at
+            ])
             ->first();
     }
 }

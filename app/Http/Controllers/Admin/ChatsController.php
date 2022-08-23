@@ -43,7 +43,7 @@ class ChatsController extends Controller
 
 //        return view('client.chats.chats_list', compact('rooms'));
 
-        return $dataTable->render('admin.users.list');
+        return $dataTable->render('admin.chats.list');
     }
 
     /**
@@ -67,9 +67,8 @@ class ChatsController extends Controller
             }
 
         }
-
-        $isChat = true;
-        return view('admin.chats.chats_messages', compact('room', 'admin', 'isChat'));
+        
+        return view('admin.chats.view', compact('room', 'admin'));
     }
 
     /**

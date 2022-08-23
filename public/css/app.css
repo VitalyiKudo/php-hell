@@ -18639,3 +18639,79 @@ ul.dashed > li:before {
 .input-search-flight {
     border: none;
 }
+
+ /* 
+    START Styles for the chat modal window 
+ */
+.open-chat-icon {
+    position: fixed;
+    top: 80vh;
+    left: 90vw;
+    background-color: #b58267;
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 999;
+}
+
+.open-chat-icon i {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    color: #2b4b7a;
+}
+
+.chat-app-info {
+    height: 10vh;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-container {
+    background-color: #b58267;
+    top: 20vh;
+    left: 20vw;
+}
+
+.chat-spinner.spinner-border-sm {
+    border-width: 0.15em;
+}
+
+.chat-history-container {
+    height: 45vh;
+    overflow-y: scroll;
+}
+
+.chat-history-container::-webkit-scrollbar {
+    width: 0.35rem;
+    border-radius: 2%;
+}
+
+.chat-history-container::-webkit-scrollbar-thumb {
+    background-color:#2b4b7a;
+    border-radius: 10px;
+}
+
+.message-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #ddd;
+    width: 60%;
+}
+
+.author-title-container {
+    font-size: 0.85rem;
+}
+
+.date-chat-container {
+    font-size: 0.7rem;
+}
+
+.chat-send-message:disabled {
+    cursor: not-allowed;
+}
+/* 
+    END Styles for the chat modal window 
+*/
