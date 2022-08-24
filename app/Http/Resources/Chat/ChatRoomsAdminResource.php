@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Chat;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use function React\Promise\Stream\first;
 
 class ChatRoomsAdminResource extends JsonResource
 {
@@ -19,14 +20,21 @@ class ChatRoomsAdminResource extends JsonResource
          * @var \App\Models\Room $this |self
          */
         return [
-            'id'    => $this->id,
-            'link'  => url('chat/' . $this->id),
-            'title' => $this->whenLoaded('user', function () {
-                return $this->user->first_name . " " . $this->user->last_name . " " . $this->user->email . $this->whenLoaded('messages', function (
-                    ) {
-                        return " (" . $this->messages->whereNotInStrict('user_id', null)->where('saw', false)->count() . ")";
-                    });
+            'id'             => $this->id,
+            'link'           => url('chat/' . $this->id),
+            'messages_count' => $this->whenLoaded('messages', function () {
+                return $this->messages->whereNotInStrict('user_id', null)->where('saw', false)->count();
             }),
+            'last_message'   => $this->whenLoaded('messages', function () {
+
+                if ($this->messages()->latest()->first()) {
+                    return $this->messages()->latest()->first()->message;
+                }
+                return '';
+            }),
+            'first_name'     => $this->user->first_name,
+            'last_name'      => $this->user->last_name,
+            'email'          => $this->user->email,
 
         ];
     }
