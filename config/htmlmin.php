@@ -28,7 +28,7 @@ return [
     */
 
     #'blade' => true,
-    'blade' => env('APP_MINIFY', true),
+    'blade' => env('APP_MINIFY_BLADE', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     */
 
     #'force' => true,
-    'force' => env('APP_MINIFY', true),
+    'force' => env('APP_MINIFY_FORCE', true),
 
     /*
     |--------------------------------------------------------------------------

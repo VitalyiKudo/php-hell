@@ -157,6 +157,14 @@ class Order extends Model
         return $this->belongsTo(Search::class, 'search_result_id', 'id');
     }
 
+    /**
+     * Get the operator of the order.
+     */
+    public function operator()
+    {
+        return $this->belongsTo(Operator::class, 'operator_id', 'id');
+    }
+
     public function getMappedOrders()
     {
         return $this
@@ -209,22 +217,37 @@ class Order extends Model
      */
     public function getOrder($id)
     {
-        return  $this->with('searches', 'status', 'user', 'searches.price')
+        return  $this->with('searches', 'status', 'user', 'searches.price', 'operator')
             ->where(function ($query) use ($id) {
                 if (!empty($id)) {
                     $query->where('id', $id);
                 }
             })
             ->get()
-            ->map(fn($value, $key) => [
-                'id' => $value->id,
+                /*
+            ->map(fn($value, $key) => collect([
+                'id' => $value->$value,
                 'user_id' => $value->user_id,
                 'user' => $value->user->first_name.' '.$value->user->last_name,
                 'status' => $value->status->name,
                 'statusBg' => $value->status->id,
                 'price' => $value->price,
                 'created' => $value->created_at
-            ])
+            ]))
+            */
+            /*->map(function($value){
+                    $order = collect([]);
+                    $order->id = $value->id;
+                    $order->user_id = $value->user_id;
+                    $order->user = $value->user->first_name.' '.$value->user->last_name;
+                    $order->status = $value->status->name;
+                    $order->statusBg = $value->status->id;
+                    $order->price = $value->price;
+                    $order->created = $value->created_at;
+
+                return $order;
+            })*/
             ->first();
+            #->all();
     }
 }

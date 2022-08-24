@@ -1,5 +1,3 @@
-
-
     @forelse ($emptyLegs as $emptyLeg)
         {!! ((int)$emptyLeg['price'] !== 0) ?
         "<form action='" . route('client.orders.confirm') . "' method='GET'>"
@@ -25,15 +23,15 @@
                         </div>
                         <div class="type-price-legs">
                             <span class="flight-price">{!! ((int)$emptyLeg['price'] !== 0) ? htmlspecialchars_decode('&#36; ', ENT_HTML5) . number_format($emptyLeg['price'], 2, '.', ' ') : 'Price on request.' !!}</span>
-                            <span class="flight-price-desc">{{ ((int)$emptyLeg['price'] !== 0) ? __('Lowest Price (Incl. taxes)') : ''}}</span>
+                            <span class="flight-price-desc">{{ ((int) $emptyLeg['price'] !== 0) ? __('Lowest Price (Incl. taxes)') : '' }}</span>
                         </div>
 
                         <div>
-                            <span class="flight-price-desc">{{ __('From Airport')}}</span>
+                            <span class="flight-price-desc">{{ __('From Airport') }}</span>
                             <span class="flight-price">{{ $emptyLeg['nameCityDeparture'] }}</span>
                         </div>
                         <div>
-                            <span class="flight-price-desc">{{ __('To Airport')}}</span>
+                            <span class="flight-price-desc">{{ __('To Airport') }}</span>
                             <span class="flight-price">{{ $emptyLeg['nameCityArrival'] }}</span>
                         </div>
 

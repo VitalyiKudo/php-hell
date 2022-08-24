@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        {{ dd($order) }}
+        {{-- dd($order) --}}
         <h5 class="card-title">{{ $order->searches->result_id }}</h5>
         <h6 class="card-subtitle mb-3 text-muted">The search result details</h6>
 
@@ -20,6 +20,9 @@
             <dt>Type</dt>
             <dd>{{ $order->type }}</dd>
 
+            <dt>Price</dt>
+            <dd>{{ $order->price }}</dd>
+{{--}}
             @if($pricing)
                 @if($order->type == 'turbo')
                     <dt>Flight Time</dt>
@@ -38,10 +41,10 @@
                     <dd>00:00</dd>
                 @endif
             @endif
-
-            @if($operator)
+--}}
+            @if($order->operator)
             <dt>Operator</dt>
-            <dd>{{ $operator->name }}</dd>
+            <dd>{{ $order->operator->name }}</dd>
             @endif
 
         </dl>

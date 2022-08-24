@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--}}<div class="mb-3 mt-2 pl-0 ml-3 pass-field">
+                            {{--<div class="mb-3 mt-2 pl-0 ml-3 pass-field">
                                 <div class="input-group input-style">
                                     <input type="number" min="1" class="form-control bd-input" placeholder="Passengers" autocomplete="off" value="1" id="pax" name="pax">
                                     <div class="input-group-prepend">
@@ -173,12 +173,10 @@
             var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
             $('input[name="flightDate"]').daterangepicker({
-                //opens: 'left',
                 keepEmptyValues: true,
                 singleDatePicker: true,
                 autoApply: false,
                 autoUpdateInput: false,
-                //autoApply: false,
                 autoClose: true,
                 closeOnClear: false,
                 locale: {
@@ -198,7 +196,7 @@
                     getEmptyLegs('');
                     window.history.pushState("", "", window.location.href.split('?')[0]);
                     e.preventDefault();
-            }).on('keydown keyup change', function(e, picker) {
+            }).on('keydown keyup change', function(e) {
                 if( e.which == 8 || e.which == 46 ) {
                     $(this).val('');
                     getEmptyLegs('');
@@ -233,7 +231,7 @@
             });
 
             $(document).on('click', '.pagination  a', function (e) {
-                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3/* || $('#flightDate').val().length > 0*/) {
+                if ($('#startPointName').val().length >= 3 || $('#endPointName').val().length >= 3 || $('#flightDate').val().length > 0) {
                     e.preventDefault();
                     let url = $(this).attr('href');
                     getEmptyLegs(url.split('?page=')[1]);
@@ -283,7 +281,7 @@
                         }
                     });
 
-                    let res_message = '<span id="res_message" class="search-error">'+nodeNames.length+' flights were found. Please check bellow</span>';
+                    let res_message = '<span id="res_message" class="search-error">' + nodeNames.length + ' flights were found. Please check bellow</span>';
                     $('#res_message').remove();
                     $('#result').append(res_message);
                     $('html, body').animate({
@@ -304,8 +302,8 @@
                     e.preventDefault();
                 }
             });
-/*
-            $(document).on("click",".price-empty-leg-submit, .request-empty-leg-submit",function(e){
+
+            /* $(document).on("click",".price-empty-leg-submit, .request-empty-leg-submit",function(e){
 
                 let passengers = $('#pax').val();
                 let html_message = '<span class="search-error">This field is required.</span>';
@@ -319,8 +317,7 @@
                     $('#pax').focus();
                     e.preventDefault();
                 }
-            });
-            */
+            });  */
 
             $('input.from').keyup(function(){
                 var query = $(this).val();
