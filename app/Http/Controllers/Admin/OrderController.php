@@ -85,20 +85,8 @@ class OrderController extends Controller
      */
     public function show(Request $request, Order $order)
     {
-        #dd($request->route('order')->id);
-        #dd($request->route('order'));
-        /*
-        $orderStatuses = OrderStatus::all();
-        $search = Search::find($order->search_result_id);
-        $user = User::find($order->user_id);
-        $pricing = Pricing::find($search->result_id);
-        $operator = Operator::find($order->operator_id);
-        */
         $order = $order->getOrder($request->route('order')->id);
-        #dd($order);
-        #$order = (object) $order;
-        #var_dump(compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
-        #return view('admin.orders.view', compact('order','orderStatuses', 'search', 'user', 'pricing', 'operator'));
+
         return view('admin.orders.view', compact('order'));
     }
 

@@ -475,9 +475,9 @@ class OrderController extends Controller
             $operatorCity = array_unique([$search->departure_geoId, $search->arrival_geoId, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find($search_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival', 'operatorData')->find($search_id);
             $total_price = $search->price;
-            $operatorCity = array_unique([$search->geoNameIdCity_departure, $search->geoNameIdCity_arrival, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
+            $operatorCity = [];
         }
 
         $messages = NULL;
@@ -538,7 +538,8 @@ class OrderController extends Controller
                         'price' => $total_price,
                         'type' => $search_type,
                         'is_accepted' => (bool)$request->input('is_accepted'),
-                        'book_status' => 1
+                        'book_status' => 1,
+                        'operator_id' => $search->operatorData->id ?? 0,
                     ];
 
                     try {

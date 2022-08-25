@@ -161,7 +161,7 @@ class OrderController extends Controller
             }
         }
 */
-#dd($request);
+
         $search = new Search;
         $search->result_id = $request->result_id;
         $search->user_id = Auth::check() ? Auth::user()->id : NULL;
@@ -227,14 +227,13 @@ class OrderController extends Controller
             $operatorCity = array_unique([$search->departure_geoId, $search->arrival_geoId, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
         }
         else {
-            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival')->find(Search::find($search_id)->result_id);
+            $search = EmptyLeg::with('departureCity', 'arrivalCity', 'departureCity.regionCountry', 'arrivalCity.regionCountry', 'airportDeparture', 'airportArrival', 'operatorData')->find(Search::find($search_id)->result_id);
             $total_price = $search->price;
-            $operatorCity = array_unique([$search->geoNameIdCity_departure, $search->geoNameIdCity_arrival, $search->airportDeparture->geoNameIdCity, $search->airportArrival->geoNameIdCity]);
+            $operatorCity = [$search->operatorData->email];
         }
 
         $messages = NULL;
         $cart_errors = [];
-
         $request_method = 'get';
 
         if ($request->isMethod('post')){
@@ -288,7 +287,8 @@ class OrderController extends Controller
                         'price' => $total_price,
                         'type' => $search_type,
                         'is_accepted' => (bool)$request->input('is_accepted'),
-                        'book_status' => 1
+                        'book_status' => 1,
+                        'operator_id' => $search->operatorData->id ?? 0
                     ];
 
                     try {

@@ -75,7 +75,8 @@ class Order extends Model
         'is_accepted',
         'type',
         'book_status',
-        'payment_id'
+        'payment_id',
+        'operator_id'
     ];
 
     /**
@@ -129,7 +130,8 @@ class Order extends Model
                  'is_accepted' => $data['is_accepted'] ?? 0,
                  'type' => $data['type'] ?? '',
                  'book_status' => $data['book_status'] ?? 1,
-                 'payment_id' => $data['payment_id'] ?? ''
+                 'payment_id' => $data['payment_id'] ?? '',
+                 'operator_id' => $data['operator_id'] ?? '',
             ]);
     }
 
@@ -204,6 +206,7 @@ class Order extends Model
                 'user' => $value->user->first_name.' '.$value->user->last_name,
                 'status' => $value->status->name,
                 'statusBg' => $value->status->id,
+                'is_accepted' => $value->is_accepted,
                 'price' => $value->price,
                 'created' => $value->created_at
             ])
@@ -217,7 +220,7 @@ class Order extends Model
      */
     public function getOrder($id)
     {
-        return  $this->with('searches', 'status', 'user', 'searches.price', 'operator')
+        return  $this->with('searches', 'status', 'user', 'searches.price', 'searches.airportDeparture', 'searches.airportArrival', 'operator')
             ->where(function ($query) use ($id) {
                 if (!empty($id)) {
                     $query->where('id', $id);
@@ -248,6 +251,5 @@ class Order extends Model
                 return $order;
             })*/
             ->first();
-            #->all();
     }
 }

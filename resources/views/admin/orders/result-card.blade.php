@@ -6,10 +6,10 @@
 
         <dl class="mb-0">
             <dt>Departure Airport</dt>
-            <dd>{{ $order->searches->start_airport_name }}</dd>
+            <dd>{{ $order->searches->airportDeparture->name }} ( {{ $order->searches->airportDeparture->icao }}/{{ $order->searches->airportDeparture->iata }} )</dd>
 
             <dt>Arrival Airport</dt>
-            <dd>{{ $order->searches->end_airport_name }}</dd>
+            <dd>{{ $order->searches->airportArrival->name }} ( {{ $order->searches->airportArrival->icao }}/{{ $order->searches->airportArrival->iata }} )</dd>
 
             <dt>Passengers:</dt>
             <dd>{{ $order->searches->pax }}</dd>
@@ -44,7 +44,7 @@
 --}}
             @if($order->operator)
             <dt>Operator</dt>
-            <dd>{{ $order->operator->name }}</dd>
+            <dd>{{ $order->operator->name }} ( {{ $order->operator->email }} )</dd>
             @endif
 
         </dl>

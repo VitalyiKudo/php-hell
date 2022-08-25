@@ -22,7 +22,8 @@ class OrderDataTable extends DataTable
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
-     * @return  \Illuminate\Http\JsonResponse
+     *
+     * @return \Illuminate\Http\JsonResponse|\Yajra\DataTables\CollectionDataTable|\Yajra\DataTables\DataTableAbstract
      */
 
     public function dataTable($query, DataTables $dataTables)
@@ -34,7 +35,20 @@ class OrderDataTable extends DataTable
             })
 
             ->rawColumns(['id', 'user', 'status', 'price', 'created', 'action'])
-            ->editColumn('status', fn($q) =>'<span class="badge '.$this->statusBg($q["statusBg"]).'">'.$q["status"].'</span>')
+            ->editColumn('status', function ($q) {
+                if(is_null($q['is_accepted'])) {
+                    return '<span class="badge badge-pill badge-warning" > Awaiting for Acceptance </span >';
+                }
+                elseif ($q['is_accepted'] === 1){
+                    return '<span class="badge badge-pill badge-success" > Accepted </span >
+                    <span class="badge '.$this->statusBg($q["statusBg"]).'">'.$q["status"].'</span>';
+                    #<span class="badge badge-pill badge-{{ $order->status->style }}" >{{$order->status->name }}</span >
+                }
+                else {
+                    return '<span class="badge badge-pill badge-danger" > Declined </span >';
+                }
+            })
+            #->editColumn('status', fn($q) =>'<span class="badge '.$this->statusBg($q["statusBg"]).'">'.$q["status"].'</span>')
 /*            ->editColumn('icaoDeparture', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportDeparture"].'">'.$q["icaoDeparture"].'</span>')
             ->editColumn('icaoArrival', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["airportArrival"].'">'.$q["icaoArrival"].'</span>')
             ->editColumn('operatorEmail', fn($q) =>'<span class="cursor-pointer" data-toggle="tooltip" data-title="'.$q["operatorName"].'">'.$q["operatorEmail"].'</span>')
