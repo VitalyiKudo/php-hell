@@ -219,12 +219,21 @@
 
 <div class="section main-get-mobile">
     <div class="container">
-        <div class="row">
+        <div class="row" style="justify-content: unset;">
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
                 <p class = ' simple-padding'><strong>All Private Jets in your pocket</strong></p>
-                <p class="mb-6 mobile-text-justify">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
-                
+                <p class="mb-6 mobile-text-justify ">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
+                    <div class="logo-app mt-5">
+                        <div class="">
+                            <img src="/images/iOS-logo.webp" loading="lazy" alt="...">
+                            <p class="download-text">Download Now for iOS</p>
+                        </div>
+                        <div class="">
+                            <img src="/images/Android-logo.webp" loading="lazy" alt="...">
+                            <p class="download-text">Download Now for Android</p>
+                        </div>
+                    </div>
             </div>
             
         </div>
@@ -234,12 +243,8 @@
 <div class="section main-about-us">
     <div class="container">
         <div class="row">
-        <p>
-        JetOnset is a team of IT and automation enthusiasts. We believe that the natural development of any industry should lead it towards greater transparency, industrial efficiency, and user-friendliness. Services must become easier and more accessible to more people to capture the opportunity only available at scale.
-        The platform we are creating will significantly change the rules of the game for all market participants in the direction of maximizing its efficiency. It will cover several of the most important aspects of the private aviation market. Intermediary services in booking flights Recruitment and registration of aircrews Interaction between aircraft operators FBO Online analytics
-        </p>
-            <!-- <div class="col-md-12 mb-2">
-                <h2>About JetOnset's Charter for Private Jets</h2>
+            <div class="col-md-12 mb-2">
+                <h2>About Us</h2>
             </div>
             <div class="col-md-6">
                 <p><strong>We are a group of people</strong> who wanted to apply the social and technological revolution found in cars yesterday, to the private jets of today and tomorrow.</p>
@@ -256,7 +261,7 @@
                     <a href="{{ url('about') }}" class="learn-more">More about JetOnset Co.</a>
                 </div>
 
-            </div> -->
+            </div>
 
 
         </div>
@@ -284,6 +289,7 @@
                                     <div class="col-md-10 text-pos">
                                         <h6>Frank D.</h6>
                                         <p> I’ve always dreaded the airports, especially for work. You guys have actually made this nightmare a much easier process for me to deal with </p>
+                                        <p style = "color: #B58267; font-weight: 800; opacity: 100%">Read on Instagram</p>
                                     </div>
 
                                 </div>
@@ -299,6 +305,7 @@
                                     <div class="col-md-10 text-pos">
                                         <h6>Sergio W.</h6>
                                         <p> My anxiety has always impacted my work. I have to frequently fly and this service has profoundly improved my “mental preparedness” for my work.</p>
+                                        <p style = "color: #B58267; font-weight: 800; opacity: 100%">Read on Instagram</p>
                                     </div>
 
                                 </div>
@@ -314,6 +321,7 @@
                                     <div class="col-md-10 text-pos">
                                         <h6>Alexander</h6>
                                         <p>My company has tried them out and saved a small fortune using this service. Same planes, half the price! </p>
+                                        <p style = "color: #B58267; font-weight: 800; opacity: 100%">Read on Instagram</p>
                                     </div>
 
                                 </div>
@@ -329,6 +337,7 @@
                                     <div class="col-md-10 text-pos">
                                         <h6>Bradly</h6>
                                         <p>Our company has private jets of their own, but some meetings are too sensitive for the public, and this service allows us to fly anywhere without rumors hurting the stock price.</p>
+                                        <p style = "color: #B58267; font-weight: 800; opacity: 100%">Read on Instagram</p>
                                     </div>
 
                                 </div>
@@ -359,7 +368,7 @@
     <div class="container" style="margin-top: 2rem;">
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="mb-3">Frequent "Flyer" Questions</h2>
+                <h2 class="mb-3 question-padding">Frequent "Flyer" Questions</h2>
                 <div class="card mb-3">
                     <div class="card-body">
                         <a class="card-title font-weight-bold mb-0 collapsed" data-toggle="collapse" href="#collapseFaq1" role="button" aria-expanded="false" aria-controls="collapseFaq1">What is private jet charter?
@@ -377,7 +386,8 @@
                                     <p class="mt-3 mb-3">JetOnset is the first platform in the world to allow you to comfortably fly on a private jet without having to own one. You can book on the 1700 plus private jets in the shortest time possible. Select from the four categories outlined; light jets, mid-size jets, long-range (heavy jets), and short-range turboprops for your appropriate fit.
                                         </p>
                                     <p class="mt-3 mb-3">We guarantee you the best fit with the lowest prices on booking, for each jet category. Once you have your best jet choice, confirm your booking by paying either by Bitcoin, Credit card, Etherium, or wired transfer. Your flight is approved, and you can go ahead and start planning for your travel.</p>
-                                    <p class="mb-0"><strong>We offer you three convenient options:</strong></p>
+                                    <p class="mb-0 uppercase"><strong>We offer you three convenient options:</strong></p>
+                                    <p>- - -</p>
                                     <p class="mb-0"><strong>Door to Door</strong> - You are picked up from your doorstep and dropped at the doorstep of your destination.</p>
                                     <p class="mb-0"><strong>Airport to Airport</strong> - From your departure airport to your arrival airport, everything is personally managed.</p>
                                     <p class="mb-0"><strong>Flight Auctions</strong> - If your schedule is flexible; there are discounted prices for sale available for you.</p>
@@ -471,15 +481,29 @@
 
 <div class="section concierge">
     <div class="container">
-        <div class="row">
-            <div class="col-10 offset-1 col-lg-6 offset-lg-3">
-                <div class="row align-items-center visit-card">
-                    <div class="col-lg-5">
-                        <img src="/images/consirge.webp" loading="lazy" class="" alt="...">
+ <div class="row section-concierge-block">
+            <div class="col-10 col-lg-6">
+                <div class="row align-items-center concierge-block-card">
+                    <div class="col-lg-6">
+                        <img src="/images/concierge2.png" loading="lazy" class="" alt="...">
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>
                         <p class="mb-3">Concierge Service</p>
+                        <a href="tel:+1 (305) 978-05-56">+1 (305) 978-05-56</a>
+                        <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-lg-6">
+                <div class="row align-items-center concierge-block-card">
+                    <div class="col-lg-6">
+                        <img src="/images/concierge.png" loading="lazy" class="" alt="...">
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="mb-0"><strong>Kylie Larson</strong></p>
+                        <p class="mb-3">Concierge Service</p>
+                        <a href="tel:+1 (305) 978-05-56">+1 (305) 978-05-56</a>
                         <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
                     </div>
                 </div>

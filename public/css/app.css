@@ -1101,11 +1101,6 @@ a {
     background-color: transparent;
 }
 
-a:hover {
-    color: #172841;
-    text-decoration: underline;
-}
-
 a:not([href]):not([tabindex]) {
     color: inherit;
     text-decoration: none;
@@ -5710,7 +5705,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 1.25rem;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 .card-title {
+    color: #2B4B7A;
+    opacity: 95%;
     margin-bottom: 0.75rem;
 }
 
@@ -5724,7 +5725,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .card-link:hover {
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 .card-link + .card-link {
@@ -7510,7 +7511,7 @@ a.close.disabled {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     display: inline-block;
-    width: 20px;
+    width: 30px;
     height: 20px;
     background: no-repeat 50%/100% 100%;
 }
@@ -12391,7 +12392,7 @@ h3 {
 .main-get-mobile {
     padding-top: 2rem;
     padding-bottom: 14rem;
-    background-image: url("/images/get-mobile-photo.png");
+    background-image: url("/images/get-mobile-photo1.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 19rem;
@@ -12426,13 +12427,14 @@ h3 {
 
 @media (min-width: 1200px) {
     .main-get-mobile {
-        padding-right: 200px;
-        margin: 0 calc((100% - 1040px) / 2 - 5rem);
+        padding-right: 70px;
+        margin: 0 calc((100% - 1081px) / 2 - 5rem);
     }
 }
 
-.main-logos {
-
+.question-padding {
+    padding-top: 60px;
+    padding-bottom: 30px;
 }
 
 .main-get-mobile .download-container {
@@ -13277,7 +13279,7 @@ sup {
 
 .mobile-app-benefits {
     padding-top: 2rem;
-    background-image: url("/images/get-mobile-photo.webp");
+    background-image: url("/images/get-mobile-photo1.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 52%;
@@ -13760,7 +13762,7 @@ sup {
 }
 
 .testimonials-landing {
-    padding-top: 6rem !important;
+    padding-top: 17rem !important;
 }
 
 @media (max-width: 576px) {
@@ -13774,14 +13776,10 @@ sup {
 }
 
 .text-bg {
-    width: 510px;
+    width: 620px;
     height: 145px;
-    background: linear-gradient(180deg, #FFFFFF 83.07%, rgba(255, 255, 255, 0.84) 100%);
-    border: 1px solid rgba(42, 96, 174, 0.2);
+    opacity: 80%;
     box-sizing: border-box;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    left: 40px;
 }
 
 .img-pos {
@@ -13795,29 +13793,32 @@ sup {
     top: -55px;
     font-family: "Roboto", sans-serif !important;
     font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px;
+    font-weight: 500;
     /* identical to box height, or 125% */
-    color: #000000;
+    color: #FFFFFF;
+}
+
+.text-pos p {
+    opacity: 90%;
 }
 
 .text-pos h6 {
     font-weight: 600;
     left: 76px;
     top: -35px;
-    font-size: 16px;
     font-family: "Roboto", sans-serif !important;
     font-style: normal;
-    color: #000000;
+    color: #FFFFFF
 }
 
 .carousel-control-prev2 {
-    left: 0px !important;
+    left: -40px !important;
 }
 
 .carousel-control-next2 {
-    right: 25px !important;
+    right: -10px !important;
 }
 
 .carousel-control-prev-icon2 {
@@ -13859,12 +13860,12 @@ ul.dashed > li:before {
 
 .questions .card {
     border-radius: 0.4rem;
-    border: 1px solid rgba(42, 96, 174, 0.4);
+    border: 1px solid #2A60AE40;
     border-radius: 8px;
 }
 
 .questions .card-body {
-    padding: 0.75rem 1.5rem;
+    padding: -1.25rem 1.5rem;
 }
 
 .questions .card-body i {
@@ -15997,11 +15998,15 @@ ul.dashed > li:before {
 }
 
 .main-get-mobile {
-    background-image: url("/images/get-mobile-photo.webp");
+    background-image: url("/images/get-mobile-photo1.png");
 }
 
 .main-about-us {
     background-image: url("/images/main-wallpaper-2.webp");
+}
+
+.download-text {
+    padding-right: 20px !important;
 }
 
 .learn-more,
@@ -16021,6 +16026,8 @@ ul.dashed > li:before {
 }
 
 .mouse-top {
+    position: relative;
+    z-index: 10000 !important;
     margin-left: 200px;
     margin-top: -185px !important;
 }
@@ -18751,6 +18758,8 @@ ul.dashed > li:before {
     cursor: not-allowed;
 }
 
+
+
 @media (min-width: 1150px) {
     .services-title {
         margin-top: -8.5rem;
@@ -18811,6 +18820,17 @@ ul.dashed > li:before {
         margin-right: 0;
         display: flex;
         justify-content: center;
+    }
+}
+
+@media (min-width: 1600px) {
+    .custom-navbar .navbar-style {
+        left: 330px;
+    }
+}
+@media (min-width: 1920px) {
+    .custom-navbar .navbar-style {
+        left: 540px;
     }
 }
 
