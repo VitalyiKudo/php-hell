@@ -1550,6 +1550,7 @@ pre code {
 .row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-right: -15px;
     margin-left: -15px;
 }
@@ -5304,7 +5305,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    margin-right: 1rem;
+    margin-right: 200px !important;
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
@@ -8239,6 +8240,7 @@ button.bg-dark:focus {
 }
 
 .align-items-center {
+    width: 99%;
     align-items: center !important;
 }
 
@@ -9514,7 +9516,7 @@ button.bg-dark:focus {
 
 .ml-auto,
 .mx-auto {
-    margin-left: auto !important;
+    /* margin-left: auto !important; */
 }
 
 @media (min-width: 576px) {
@@ -11258,8 +11260,13 @@ button.bg-dark:focus {
 }
 
 .text-justify {
+    width: 68%;
     text-align: justify !important;
 }
+
+/* .mobile-text-justify {
+    width: 88% !important;
+} */
 
 .text-wrap {
     white-space: normal !important;
@@ -11373,6 +11380,14 @@ button.bg-dark:focus {
 
 .font-weight-bolder {
     font-weight: bolder !important;
+}
+
+.simple-padding {
+    padding: 20px 0px;
+}
+
+.no-padding {
+    padding: 0px !important;
 }
 
 .font-italic {
@@ -11701,7 +11716,7 @@ h3 {
 }
 
 .custom-navbar .nav-item a {
-    font-size: 0.8rem;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -11763,7 +11778,7 @@ h3 {
 
 @media (min-width: 1600px) {
     .custom-navbar .margin-lg-left {
-        margin-left: 5rem;
+        /* margin-left: 3rem; */
     }
 }
 
@@ -11799,13 +11814,13 @@ h3 {
 
 @media (min-width: 1600px) {
     .custom-navbar .navbar-style {
-        width: 850px;
+        width: 900px;
         position: absolute;
-        height: 60px;
-        left: 455px;
+        height: 70px;
+        left: 480px;
         top: 37px;
-        background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.84) 100%);
-        opacity: 0.8;
+        background: #FAFAFA !important;
+        opacity: 1 !important;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         border-radius: 32px;
         margin-left: 300px;
@@ -12017,7 +12032,7 @@ h3 {
 @media (min-width: 992px) {
     .main-search {
         padding-top: 15rem;
-        background-image: url("/images/main-wallpaper.png");
+        background-image: url("/images/main-wallpaper1.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -12031,14 +12046,14 @@ h3 {
 @media (min-width: 1600px) {
     .main-search {
         padding-top: 15rem;
-        background-image: url("/images/main-wallpaper.png");
+        background-image: url("/images/main-wallpaper1.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
-        height: 650px;
+        height: 723px !important;
     }
 }
 
@@ -12140,6 +12155,11 @@ h3 {
     opacity: 0.6;
 }
 
+.scroll-button {
+    background: #FFFFFF;
+        /* mix-blend-mode: normal; */
+}
+
 @media (min-width: 992px) {
     .main-search .scroll-button {
         margin: 1rem auto 0;
@@ -12211,6 +12231,8 @@ h3 {
     box-sizing: border-box;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
+    padding-right: 20px;
+    padding-left: 5px;
 }
 
 .main-works {
@@ -12344,7 +12366,7 @@ h3 {
 .main-services .container-bottom a {
     display: block;
     text-align: center;
-    padding: 0.35rem 1.5rem;
+    padding: 0.35rem 4.5rem !important;
     color: #ffffff;
     background-color: #b58267;
     border: 1px solid #b58267;
@@ -12404,8 +12426,13 @@ h3 {
 
 @media (min-width: 1200px) {
     .main-get-mobile {
-        margin: 0 calc((100% - 1140px) / 2 - 5rem);
+        padding-right: 200px;
+        margin: 0 calc((100% - 1040px) / 2 - 5rem);
     }
+}
+
+.main-logos {
+    
 }
 
 .main-get-mobile .download-container {
@@ -12513,11 +12540,11 @@ h3 {
 
 .scroll-upper {
     margin-right: -41px;
-    opacity: 0.7;
+    /* opacity: 0.7; */
 }
 
 .scroll-txt {
-    opacity: 0.7;
+    /* opacity: 0.7; */
 }
 
 .bd-input {
@@ -15600,7 +15627,7 @@ ul.dashed > li:before {
 @media (min-width: 992px) {
     .main-search {
         padding-top: 24rem;
-        background-image: url("/images/main-wallpaper.webp");
+        background-image: url("/images/main-wallpaper1.webp");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -15614,7 +15641,7 @@ ul.dashed > li:before {
 @media (min-width: 992px) {
     .main-search {
         padding-top: 24rem;
-        background-image: url("/images/main-wallpaper.png");
+        background-image: url("/images/main-wallpaper1.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -15628,7 +15655,7 @@ ul.dashed > li:before {
 @media (min-width: 1600px) {
     .main-search {
         padding-top: 33rem;
-        background-image: url("/images/main-wallpaper.webp");
+        background-image: url("/images/main-wallpaper1.png");
         height: 650px;
     }
 }
@@ -15902,13 +15929,13 @@ ul.dashed > li:before {
         position: absolute;
         width: 990px;
         height: 170px;
-        top: 353px;
+        top: -100px !important;
     }
 }
 
 @media (min-width: 992px) {
     .form-body {
-        width: 1025px;
+        width: 1100px;
         height: 175px;
         top: 0;
         margin-left: -55px;
@@ -15986,14 +16013,21 @@ ul.dashed > li:before {
     background: linear-gradient(180deg, #ffffff 45.14%, #edf5fb 118.75%) repeat;
 }
 
+
+
 .mouse-top .float-left,
 .mouse-top .col-12 {
     z-index: 1 !important;
 }
 
+.mouse-top {
+    margin-left: 200px;
+    margin-top: -185px !important;
+}
+
 @media (max-width: 576px) {
     .mouse-top {
-        margin-top: 50px;
+        /* margin-top: 50px; */
     }
 }
 
@@ -16666,6 +16700,10 @@ ul.dashed > li:before {
 
 .home-title h1 {
     font-size: 1.5rem;
+}
+
+.home-title {
+    margin-right: 13.6%;
 }
 
 .main-works h2 {

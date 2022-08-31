@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-container-1 mt-2 ml-3 butn-search">
-                            <button type="submit" class="btn">Find a Jet</button>
+                            <button type="submit" class="btn">Search Jet</button>
                         </div>
                     </div>
                 </form>
@@ -104,11 +104,11 @@
 </div>
 {{--<flight></flight>--}}
 <div class="section main-works" id="how-it-works">
-    <div class="container">
+    <div class="container no-padding">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Private Jet Charter - How It Works</h2>
-                <p class="font-weight-bold mb-3">It’s simple.</p>
+                <h2>How It Works</h2>
+                <p class="font-weight-bold mb-3 simple-padding">It’s simple.</p>
                 <p class="mb-0 text-justify">You choose where you want to go, when you want to go, and where you are coming from to get started. Next, we will show you every option available with an accurate price quote. Finally, you choose the private jet that fits your needs. It’s that simple.</p>
             </div>
         </div>
@@ -169,7 +169,7 @@
     <div class="container">
         <div class="row">
             <div class="col mb-2 service-headline">
-                <h2>Private Charter Jet Services</h2>
+                <h2>Services</h2>
             </div>
         </div>
     </div>
@@ -222,10 +222,11 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <h2 class="mb-3">Get Mobile</h2>
-                <p><strong>All Private Jets in your pocket</strong></p>
-                <p class="mb-6 text-justify">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
-                <p class="text-width mb-0">Will be available soon!</p>
+                <p class = ' simple-padding'><strong>All Private Jets in your pocket</strong></p>
+                <p class="mb-6 mobile-text-justify">Are you a frequent flyer and need the ultimate speed and flexibility in private jet travel? Try our Mobile App and get to where you need to go, even faster!</p>
+                
             </div>
+            
         </div>
     </div>
 </div>
