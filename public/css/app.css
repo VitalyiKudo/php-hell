@@ -12432,7 +12432,7 @@ h3 {
 }
 
 .main-logos {
-    
+
 }
 
 .main-get-mobile .download-container {
@@ -18750,6 +18750,70 @@ ul.dashed > li:before {
 .chat-send-message:disabled {
     cursor: not-allowed;
 }
+
+@media (min-width: 1150px) {
+    .services-title {
+        margin-top: -8.5rem;
+        padding-top: 17.1em;
+        background-image: url("/images/services-wallpaper.png");
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: cover;
+        position: relative;
+    }
+
+    .services-title-img-container {
+        width: 833px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        position: absolute;
+        bottom: 33px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .services-title-img {
+        cursor: pointer;
+    }
+
+    .services-title-img img {
+        width: 62px;
+    }
+
+    .section-concierge-block {
+        display: flex;
+    }
+
+    .concierge-block-card {
+        width: 504px;
+    }
+
+    .concierge-block-card:first-child {
+        margin-right: 24px;
+    }
+
+    .concierge-block-card:last-child {
+        margin-right: 0px;
+    }
+}
+
+
+@media (min-width: 10px) {
+    .services-title {
+        background-image: url("/images/services-wallpaper.png");
+    }
+}
+
+@media (max-width: 990px) {
+    .section-concierge-block {
+        margin-right: 0;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 /* 
     END Styles for the chat modal window 
 */

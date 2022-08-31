@@ -6,7 +6,34 @@
 
 @section('content')
 
-<div class="section services-title"></div>
+<div class="section services-title">
+    <div class="services-title-img-container">
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/baggage.svg') }}" alt="baggage">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/contacts.svg') }}" alt="contacts">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/car.svg') }}" alt="car">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/time.svg') }}" alt="time">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/wifi.svg') }}" alt="wifi">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/messages.svg') }}" alt="messages">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/friends.svg') }}" alt="friends">
+        </div>
+        <div class="services-title-img">
+            <img src="{{ asset('images/svg/plane.svg') }}" alt="plane">
+        </div>
+    </div>
+</div>
 
 <div class="section services-list">
     <div class="container">
@@ -85,15 +112,29 @@
 
 <div class="section concierge">
     <div class="container">
-        <div class="row">
-            <div class="col-10 offset-1 col-lg-6 offset-lg-3">
-                <div class="row align-items-center">
+        <div class="row section-concierge-block">
+            <div class="col-10 col-lg-6">
+                <div class="row align-items-center concierge-block-card">
                     <div class="col-lg-6">
-                        <img src="/images/consirge.webp" loading="lazy" class="" alt="...">
+                        <img src="/images/concierge2.png" loading="lazy" class="" alt="...">
                     </div>
                     <div class="col-lg-6">
                         <p class="mb-0"><strong>Kylie Larson</strong></p>
                         <p class="mb-3">Concierge Service</p>
+                        <a href="tel:+1 (305) 978-05-56">+1 (305) 978-05-56</a>
+                        <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-lg-6">
+                <div class="row align-items-center concierge-block-card">
+                    <div class="col-lg-6">
+                        <img src="/images/concierge.png" loading="lazy" class="" alt="...">
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="mb-0"><strong>Kylie Larson</strong></p>
+                        <p class="mb-3">Concierge Service</p>
+                        <a href="tel:+1 (305) 978-05-56">+1 (305) 978-05-56</a>
                         <a href="mailto:concierge@jetonset.com"><p class="mb-0 txt-color">concierge@jetonset.com</p></a>
                     </div>
                 </div>
